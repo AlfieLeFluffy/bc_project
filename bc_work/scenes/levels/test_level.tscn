@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://brbrdb6ngc2es"]
+
+[ext_resource type="Texture2D" uid="uid://ct3qaogex7f10" path="res://textures/flatTileset-Sheet.png" id="1_n5x54"]
+[ext_resource type="PackedScene" uid="uid://ddrrl1gryxkup" path="res://scenes/characters/player.tscn" id="1_wpgi4"]
+[ext_resource type="Script" path="res://scripts/cameraMovement.gd" id="3_em044"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iueqx"]
+texture = ExtResource("1_n5x54")
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+11:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+12:0/0 = 0
+12:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+16:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_id35s"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_iueqx")
+
+[node name="testScene" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_id35s")
+format = 2
+layer_0/tile_data = PackedInt32Array(589831, 196608, 0, 589832, 131072, 0, 589833, 65536, 0, 589834, 196608, 0, 589835, 786432, 0, 589836, 65536, 0, 524295, 262144, 0, 524296, 262144, 0, 524297, 262144, 0, 524298, 262144, 0, 524299, 262144, 0, 524300, 262144, 0, 458764, 262144, 0, 458763, 262144, 0, 458762, 262144, 0, 458761, 262144, 0, 458760, 262144, 0, 458759, 262144, 0, 393223, 262144, 0, 327687, 393216, 0, 327688, 524288, 0, 393224, 262144, 0, 393225, 262144, 0, 393226, 262144, 0, 393227, 262144, 0, 327691, 393216, 0, 327692, 589824, 0, 393228, 262144, 0, 327690, 524288, 0, 327689, 589824, 0, 262151, 327680, 0, 262156, 917504, 0, 262155, 1048576, 0, 262154, 917504, 0, 262153, 983040, 0, 262152, 983040, 0, 589837, 786432, 0, 589838, 786432, 0, 589839, 786432, 0, 589840, 786432, 0, 589841, 720896, 0, 589842, 786432, 0, 589830, 786432, 0, 589826, 65536, 0, 589828, 786432, 0, 589829, 720896, 0, 589827, 720896, 0, 393222, 262144, 0, 458758, 262144, 0, 524294, 262144, 0, 524293, 262144, 0, 458757, 262144, 0, 393221, 262144, 0, 458756, 262144, 0, 393220, 262144, 0, 524292, 262144, 0, 524291, 262144, 0, 458755, 262144, 0, 393219, 262144, 0, 393218, 262144, 0, 458754, 262144, 0, 524290, 262144, 0, 393229, 262144, 0, 393230, 262144, 0, 393231, 262144, 0, 393232, 262144, 0, 393233, 262144, 0, 393234, 262144, 0, 458770, 262144, 0, 524306, 262144, 0, 524305, 262144, 0, 524304, 262144, 0, 458768, 262144, 0, 458769, 262144, 0, 458767, 262144, 0, 458766, 262144, 0, 458765, 262144, 0, 524301, 262144, 0, 524302, 262144, 0, 524303, 262144, 0, 327686, 458752, 0, 327685, 458752, 0, 327682, 458752, 0, 327696, 458752, 0, 327698, 458752, 0, 327694, 458752, 0, 327683, 524288, 0, 327693, 524288, 0, 327697, 524288, 0, 327695, 589824, 0, 327684, 655360, 0, 262161, 851968, 0, 262159, 917504, 0, 262162, 1048576, 0, 262160, 1048576, 0, 262157, 917504, 0, 262148, 917504, 0, 262146, 917504, 0, 262150, 851968, 0, 262147, 327680, 0, 262149, 327680, 0, 262158, 327680, 0)
+
+[node name="player" parent="." instance=ExtResource("1_wpgi4")]
+position = Vector2(160, 109)
+
+[node name="cameraControls" type="Node2D" parent="player"]
+script = ExtResource("3_em044")
+
+[node name="Camera2D" type="Camera2D" parent="player/cameraControls"]
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
