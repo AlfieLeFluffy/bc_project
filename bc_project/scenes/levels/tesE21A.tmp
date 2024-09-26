@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://ct3qaogex7f10" path="res://textures/flatTileset-Sheet.png" id="1_n5x54"]
 [ext_resource type="PackedScene" uid="uid://ddrrl1gryxkup" path="res://scenes/characters/player.tscn" id="1_wpgi4"]
 [ext_resource type="Script" path="res://scripts/cameraMovement.gd" id="3_em044"]
-[ext_resource type="PackedScene" uid="uid://chgj487p1bpqi" path="res://scenes/items/empty_plate.tscn" id="4_w2p71"]
-[ext_resource type="PackedScene" uid="uid://c4x1ywanodayi" path="res://scenes/items/thick_mug.tscn" id="5_hqxr4"]
+[ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="4_hbp61"]
+[ext_resource type="Script" path="res://scripts/itemControl.gd" id="5_bi65l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iueqx"]
 texture = ExtResource("1_n5x54")
@@ -41,14 +41,6 @@ tile_set = SubResource("TileSet_id35s")
 format = 2
 layer_0/tile_data = PackedInt32Array(589831, 196608, 0, 589832, 131072, 0, 589833, 65536, 0, 589834, 196608, 0, 589835, 786432, 0, 589836, 65536, 0, 524295, 262144, 0, 524296, 262144, 0, 524297, 262144, 0, 524298, 262144, 0, 524299, 262144, 0, 524300, 262144, 0, 458764, 262144, 0, 458763, 262144, 0, 458762, 262144, 0, 458761, 262144, 0, 458760, 262144, 0, 458759, 262144, 0, 393223, 262144, 0, 327687, 393216, 0, 327688, 524288, 0, 393224, 262144, 0, 393225, 262144, 0, 393226, 262144, 0, 393227, 262144, 0, 327691, 393216, 0, 327692, 589824, 0, 393228, 262144, 0, 327690, 524288, 0, 327689, 589824, 0, 262151, 327680, 0, 262156, 917504, 0, 262155, 1048576, 0, 262154, 917504, 0, 262153, 983040, 0, 262152, 983040, 0, 589837, 786432, 0, 589838, 786432, 0, 589839, 786432, 0, 589840, 786432, 0, 589841, 720896, 0, 589842, 786432, 0, 589830, 786432, 0, 589826, 65536, 0, 589828, 786432, 0, 589829, 720896, 0, 589827, 720896, 0, 393222, 262144, 0, 458758, 262144, 0, 524294, 262144, 0, 524293, 262144, 0, 458757, 262144, 0, 393221, 262144, 0, 458756, 262144, 0, 393220, 262144, 0, 524292, 262144, 0, 524291, 262144, 0, 458755, 262144, 0, 393219, 262144, 0, 393218, 262144, 0, 458754, 262144, 0, 524290, 262144, 0, 393229, 262144, 0, 393230, 262144, 0, 393231, 262144, 0, 393232, 262144, 0, 393233, 262144, 0, 393234, 262144, 0, 458770, 262144, 0, 524306, 262144, 0, 524305, 262144, 0, 524304, 262144, 0, 458768, 262144, 0, 458769, 262144, 0, 458767, 262144, 0, 458766, 262144, 0, 458765, 262144, 0, 524301, 262144, 0, 524302, 262144, 0, 524303, 262144, 0, 327686, 458752, 0, 327685, 458752, 0, 327682, 458752, 0, 327696, 458752, 0, 327698, 458752, 0, 327694, 458752, 0, 327683, 524288, 0, 327693, 524288, 0, 327697, 524288, 0, 327695, 589824, 0, 327684, 655360, 0, 262161, 851968, 0, 262159, 917504, 0, 262162, 1048576, 0, 262160, 1048576, 0, 262157, 917504, 0, 262148, 917504, 0, 262146, 917504, 0, 262150, 851968, 0, 262147, 327680, 0, 262149, 327680, 0, 262158, 327680, 0, 589843, 65536, 0, 589844, 65536, 0, 589845, 65536, 0, 589846, 65536, 0, 589847, 65536, 0, 458771, 262144, 0, 393235, 262144, 0, 393236, 262144, 0, 458772, 262144, 0, 458773, 262144, 0, 458774, 262144, 0, 524310, 262144, 0, 393238, 262144, 0, 393239, 262144, 0, 458775, 262144, 0, 524311, 262144, 0, 393237, 262144, 0, 524308, 262144, 0, 524309, 262144, 0, 524307, 262144, 0, 327699, 393216, 0, 327703, 393216, 0, 327700, 524288, 0, 327701, 524288, 0, 327702, 458752, 0, 262163, 983040, 0, 262166, 983040, 0, 262164, 327680, 0, 262165, 1048576, 0, 262167, 1048576, 0)
 
-[node name="InteractableObjects" type="Node2D" parent="."]
-
-[node name="EmptyPlate" parent="InteractableObjects" instance=ExtResource("4_w2p71")]
-position = Vector2(236, 139)
-
-[node name="ThickMug" parent="InteractableObjects" instance=ExtResource("5_hqxr4")]
-position = Vector2(255, 139)
-
 [node name="player" parent="." instance=ExtResource("1_wpgi4")]
 position = Vector2(160, 109)
 
@@ -59,3 +51,21 @@ script = ExtResource("3_em044")
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 position_smoothing_speed = 3.0
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_bi65l")
+
+[node name="ItemLabel" type="RichTextLabel" parent="Control"]
+offset_left = -1062.0
+offset_top = -403.0
+offset_right = 878.0
+offset_bottom = 297.0
+scale = Vector2(0.05, 0.05)
+pivot_offset = Vector2(1060, 420)
+theme_override_fonts/normal_font = ExtResource("4_hbp61")
+theme_override_font_sizes/normal_font_size = 720
+text = "Test font"

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://chgj487p1bpqi"]
+
+[ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/items/interactable_base.tscn" id="1_quxmj"]
+[ext_resource type="Texture2D" uid="uid://bvfhoixlbwq71" path="res://textures/plate_empty.png" id="2_qpsot"]
+
+[node name="EmptyPlate" instance=ExtResource("1_quxmj")]
+metadata/Name = "Empty Plate"
+metadata/Timeline = "001"
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(0, -3)
+texture = ExtResource("2_qpsot")
