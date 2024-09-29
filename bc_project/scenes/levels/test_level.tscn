@@ -44,10 +44,10 @@ layer_0/tile_data = PackedInt32Array(589831, 196608, 0, 589832, 131072, 0, 58983
 [node name="InteractableObjects" type="Node2D" parent="."]
 
 [node name="EmptyPlate" parent="InteractableObjects" instance=ExtResource("4_w2p71")]
-position = Vector2(236, 139)
+position = Vector2(236, 140)
 
 [node name="ThickMug" parent="InteractableObjects" instance=ExtResource("5_hqxr4")]
-position = Vector2(255, 139)
+position = Vector2(255, 140)
 
 [node name="player" parent="." instance=ExtResource("1_wpgi4")]
 position = Vector2(160, 109)
