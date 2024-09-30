@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://75l81bk5wreu"]
+
+[ext_resource type="Texture2D" uid="uid://cah7erp83bawo" path="res://textures/ceiling_lamp.png" id="1_lbw0p"]
+[ext_resource type="Texture2D" uid="uid://b2ynbvxgxg38d" path="res://textures/radiallight.png" id="2_v6ype"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ls3e4"]
+polygon = PackedVector2Array(-1, 7, 1, 7, 0, 6)
+
+[node name="ceiling_lamp" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.5, 16)
+texture = ExtResource("1_lbw0p")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, 14)
+color = Color(0.570332, 0.499661, 0.307287, 1)
+shadow_enabled = true
+texture = ExtResource("2_v6ype")
+texture_scale = 0.5
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_ls3e4")
