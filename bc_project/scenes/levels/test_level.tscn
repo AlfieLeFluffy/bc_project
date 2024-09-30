@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=48 format=3 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Texture2D" uid="uid://f5ht0q2x8m04" path="res://textures/flatTileset-Sheet.png" id="1_n5x54"]
 [ext_resource type="PackedScene" uid="uid://ddrrl1gryxkup" path="res://scenes/characters/player.tscn" id="1_wpgi4"]
@@ -113,8 +113,11 @@ polygon = PackedVector2Array(-8, -8, -0.25, -8, -0.125, 8, -8, 8)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4qh8y"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_p1noa"]
-polygon = PackedVector2Array(-2.07713, -73.8043, -1.81196, -67.8823, 17.8103, -67.5287, 17.6335, -73.6275, 14.8934, -74.1578, 15.0702, -87.858, 0.839689, -87.9464, 0.751301, -74.2462)
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ffq15"]
+polygon = PackedVector2Array(-2.07713, -73.8043, -1.81196, -67.8823, 17.8103, -67.5287, 17.9063, -73.8438, 15.9688, -73.7813, 15.9375, -88.1875, -0.0625, -88.0625, -0.03125, -74.0938)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jhtn1"]
+polygon = PackedVector2Array(8, 8, 7.81684, -67.816, 7.8125, -69.9375)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_11vwl"]
 polygon = PackedVector2Array(-8, -8, 23.909, -8.04334, 23.909, 7.95495, -8, 8)
@@ -255,11 +258,13 @@ texture = ExtResource("1_n5x54")
 9:0/size_in_atlas = Vector2i(2, 6)
 9:0/0 = 0
 9:0/0/texture_origin = Vector2i(-8, 40)
-9:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_p1noa")
+9:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_ffq15")
+9:0/0/occlusion_layer_1/polygon = SubResource("OccluderPolygon2D_jhtn1")
 9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(15.0313, -87.9375, 15.1563, -74, 1.09375, -74.125, 1.03125, -88)
 
 [sub_resource type="TileSet" id="TileSet_id35s"]
-occlusion_layer_0/light_mask = 1
+occlusion_layer_0/light_mask = 3
+occlusion_layer_1/light_mask = 1
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_vgmpe")
 
@@ -313,7 +318,7 @@ color = Color(0.1738, 0.18381, 0.22, 1)
 position = Vector2(176, 0)
 
 [node name="ceiling_lamp2" parent="CanvasModulate" instance=ExtResource("6_g4tah")]
-position = Vector2(454, 3)
+position = Vector2(430, 3)
 
 [node name="ceiling_lamp3" parent="CanvasModulate" instance=ExtResource("6_g4tah")]
-position = Vector2(-94, 0)
+position = Vector2(-77, 0)

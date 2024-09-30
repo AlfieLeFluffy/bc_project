@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddrrl1gryxkup"]
+[gd_scene load_steps=8 format=3 uid="uid://ddrrl1gryxkup"]
 
 [ext_resource type="Script" path="res://scripts/playerMovement.gd" id="1_1rgys"]
 [ext_resource type="Texture2D" uid="uid://dbvl0gy8mohel" path="res://textures/mainCharacter2.png" id="1_4xn7y"]
@@ -21,6 +21,9 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d2p85"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vhha4"]
+radius = 75.0067
+
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_1rgys")
 
@@ -37,5 +40,11 @@ shape = SubResource("CircleShape2D_d2p85")
 color = Color(0.466181, 0.466181, 0.466181, 1)
 energy = 0.5
 shadow_enabled = true
+shadow_item_cull_mask = 2
 texture = ExtResource("3_j5r64")
 texture_scale = 0.5
+
+[node name="interactRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactRadius"]
+shape = SubResource("CircleShape2D_vhha4")

@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://75l81bk5wreu"]
+[gd_scene load_steps=5 format=3 uid="uid://75l81bk5wreu"]
 
+[ext_resource type="Script" path="res://scripts/ceiling_lamp.gd" id="1_ip2ye"]
 [ext_resource type="Texture2D" uid="uid://cah7erp83bawo" path="res://textures/ceilingLamp.png" id="1_lbw0p"]
 [ext_resource type="Texture2D" uid="uid://b2ynbvxgxg38d" path="res://textures/radialLight.png" id="2_v6ype"]
 
@@ -7,6 +8,7 @@
 polygon = PackedVector2Array(-2, 7, 2, 7, 0, 6)
 
 [node name="ceiling_lamp" type="Node2D"]
+script = ExtResource("1_ip2ye")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0.5, 16)

@@ -22,6 +22,23 @@ metadata/Timeline = "000"
 metadata/Type = "Interactable"
 metadata/PlayerNodeName = "player"
 
+[node name="InteractKeyBG" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 15)
+texture = ExtResource("2_upsib")
+
+[node name="Label" type="Label" parent="InteractKeyBG"]
+offset_left = -8.0
+offset_top = -6.0
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_jet7m")
+theme_override_font_sizes/font_size = 12
+text = "_"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="LabelBG" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, -15)
@@ -44,23 +61,6 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_jet7m")
 theme_override_font_sizes/font_size = 10
 text = "Test"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="InteractKeyBG" type="Sprite2D" parent="LabelBG"]
-visible = false
-position = Vector2(0, 30)
-texture = ExtResource("2_upsib")
-
-[node name="Label" type="Label" parent="LabelBG/InteractKeyBG"]
-offset_left = -8.0
-offset_top = -6.0
-offset_right = 8.0
-offset_bottom = 8.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_jet7m")
-theme_override_font_sizes/font_size = 12
-text = "_"
 horizontal_alignment = 1
 vertical_alignment = 1
 

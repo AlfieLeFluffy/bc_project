@@ -7,7 +7,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kgx3u"]
 resource_local_to_scene = true
 shader = ExtResource("2_qgml6")
-shader_parameter/line_color = Color(0, 0, 0, 1)
+shader_parameter/line_color = Color(1, 1, 1, 0.498039)
 shader_parameter/line_thickness = 0.0
 
 [node name="EmptyPlate" instance=ExtResource("1_quxmj")]
