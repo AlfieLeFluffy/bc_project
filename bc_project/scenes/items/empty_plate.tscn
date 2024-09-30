@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/items/interactable_base.tscn" id="1_quxmj"]
 [ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="2_qgml6"]
-[ext_resource type="Texture2D" uid="uid://b4lgho32xwd8w" path="res://textures/plate_empty.png" id="2_qpsot"]
+[ext_resource type="Texture2D" uid="uid://b4lgho32xwd8w" path="res://textures/emptyPlate.png" id="2_qpsot"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kgx3u"]
 resource_local_to_scene = true

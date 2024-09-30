@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/playerMovement.gd" id="1_1rgys"]
 [ext_resource type="Texture2D" uid="uid://dbvl0gy8mohel" path="res://textures/mainCharacter2.png" id="1_4xn7y"]
-[ext_resource type="Texture2D" uid="uid://b2ynbvxgxg38d" path="res://textures/radiallight.png" id="3_j5r64"]
+[ext_resource type="Texture2D" uid="uid://b2ynbvxgxg38d" path="res://textures/radialLight.png" id="3_j5r64"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3255l"]
 atlas = ExtResource("1_4xn7y")

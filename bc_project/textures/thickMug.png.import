@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cah7erp83bawo"
-path="res://.godot/imported/ceiling_lamp.png-98842bad5fa24b8d3c89ecce7aa6e6d2.ctex"
+uid="uid://b8xj6gwg3vfq2"
+path="res://.godot/imported/thickMug.png-eeef1916a080bd8ce62744d04ba1d386.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/ceiling_lamp.png"
-dest_files=["res://.godot/imported/ceiling_lamp.png-98842bad5fa24b8d3c89ecce7aa6e6d2.ctex"]
+source_file="res://textures/thickMug.png"
+dest_files=["res://.godot/imported/thickMug.png-eeef1916a080bd8ce62744d04ba1d386.ctex"]
 
 [params]
 

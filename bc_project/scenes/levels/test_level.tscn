@@ -292,18 +292,14 @@ zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 position_smoothing_speed = 3.0
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-color = Color(0.375181, 0.134999, 0.132626, 1)
-shadow_enabled = true
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.5, 0.5, 0.5, 1)
 
-[node name="ceiling_lamp" parent="." instance=ExtResource("6_g4tah")]
+[node name="ceiling_lamp" parent="CanvasModulate" instance=ExtResource("6_g4tah")]
 position = Vector2(176, 0)
 
-[node name="ceiling_lamp2" parent="." instance=ExtResource("6_g4tah")]
+[node name="ceiling_lamp2" parent="CanvasModulate" instance=ExtResource("6_g4tah")]
 position = Vector2(446, 0)
 
-[node name="ceiling_lamp3" parent="." instance=ExtResource("6_g4tah")]
+[node name="ceiling_lamp3" parent="CanvasModulate" instance=ExtResource("6_g4tah")]
 position = Vector2(-94, 0)
