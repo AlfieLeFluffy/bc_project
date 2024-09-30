@@ -20,9 +20,6 @@ func _ready() -> void:
 	
 	LabelBG.get_node("Label").text = get_meta("Name")
 	keyLabel.text = InputMap.action_get_events("interact")[0].as_text()[0].to_upper()
-	
-	
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,19 +29,18 @@ func _process(delta: float) -> void:
 func _on_mouse_entered() -> void:
 	SpritePtr.material.set("shader_parameter/line_thickness",1)
 	LabelBG.visible = 1
-	pass # Replace with function body.
+	Player.set_meta("InteractItemSet",1)
 
 
 func _on_mouse_exited() -> void:
 	SpritePtr.material.set("shader_parameter/line_thickness",0)
 	LabelBG.visible = 0
-	pass # Replace with function body.
+	Player.set_meta("InteractItemSet",0)
 
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.name == "interactRadius":
 		InteractKeyBG.visible = 1
-		
 
 func _on_area_exited(area: Area2D) -> void:
 	if area.name == "interactRadius":

@@ -2,6 +2,7 @@ extends Area2D
 
 var interactiveLabelBG
 var keyLabel
+var stopSign
 var playerInReach
 var player
 
@@ -10,17 +11,22 @@ func _ready() -> void:
 	playerInReach = 0
 	interactiveLabelBG = get_node("InteractKeyBG")
 	keyLabel = get_node("InteractKeyBG/Label")
+	stopSign = get_node("InteractKeyBG/stopSign")
+	player = get_tree().get_current_scene().get_node("player")
+	
 	keyLabel.text = InputMap.action_get_events("interact")[0].as_text()[0].to_upper()
 	interactiveLabelBG.visible = 0
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if player.get_meta("InteractItemSet"):
+		stopSign.visible = 1
+	else:
+		stopSign.visible = 0		
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact") and playerInReach:
+	if event.is_action_pressed("interact") and playerInReach and not player.get_meta("InteractItemSet"):
 		player.visible = 0
 		await get_tree().create_timer(0.1).timeout
 		player.position = get_meta("TeleportPosition")
@@ -29,7 +35,6 @@ func _input(event: InputEvent) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == get_meta("EnterNodeName"):
-		player = body
 		playerInReach = 1
 		interactiveLabelBG.visible = 1
 

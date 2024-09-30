@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://djvvnkxb30bc5"]
+[gd_scene load_steps=6 format=3 uid="uid://djvvnkxb30bc5"]
 
 [ext_resource type="Script" path="res://scripts/door_teleport.gd" id="1_8kbf8"]
 [ext_resource type="Texture2D" uid="uid://dw6giryxdou1o" path="res://textures/interactiveLabelKey.png" id="2_wd7gp"]
 [ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="3_akmt3"]
+[ext_resource type="Texture2D" uid="uid://c0kecyp1a153h" path="res://textures/stopSign.png" id="4_13jq8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1155p"]
 size = Vector2(47, 82)
@@ -31,6 +32,10 @@ theme_override_font_sizes/font_size = 12
 text = "_"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="stopSign" type="Sprite2D" parent="InteractKeyBG"]
+visible = false
+texture = ExtResource("4_13jq8")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
