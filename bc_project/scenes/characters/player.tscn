@@ -1,18 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://ddrrl1gryxkup"]
+[gd_scene load_steps=7 format=3 uid="uid://ddrrl1gryxkup"]
 
 [ext_resource type="Script" path="res://scripts/playerMovement.gd" id="1_1rgys"]
-[ext_resource type="Texture2D" uid="uid://dbvl0gy8mohel" path="res://textures/mainCharacter2.png" id="1_4xn7y"]
-[ext_resource type="Texture2D" uid="uid://b2ynbvxgxg38d" path="res://textures/radialLight.png" id="3_j5r64"]
+[ext_resource type="Texture2D" uid="uid://dbvl0gy8mohel" path="res://textures/characters/mainCharacter2.png" id="2_psobe"]
+[ext_resource type="Texture2D" uid="uid://b2ynbvxgxg38d" path="res://textures/lightMaps/radialLight.png" id="3_66w77"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3255l"]
-atlas = ExtResource("1_4xn7y")
-region = Rect2(0, 0, 31, 71)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_5hrxj"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_wmv4b"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3255l")
+"texture": ExtResource("2_psobe")
 }],
 "loop": true,
 "name": &"default",
@@ -29,8 +25,8 @@ script = ExtResource("1_1rgys")
 metadata/InteractItemSet = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-4, 0)
-sprite_frames = SubResource("SpriteFrames_5hrxj")
+position = Vector2(-3, 0)
+sprite_frames = SubResource("SpriteFrames_wmv4b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 1)
@@ -42,7 +38,7 @@ color = Color(0.466181, 0.466181, 0.466181, 1)
 energy = 0.5
 shadow_enabled = true
 shadow_item_cull_mask = 2
-texture = ExtResource("3_j5r64")
+texture = ExtResource("3_66w77")
 texture_scale = 0.5
 
 [node name="interactRadius" type="Area2D" parent="."]

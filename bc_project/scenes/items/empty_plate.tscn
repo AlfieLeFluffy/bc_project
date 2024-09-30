@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/items/interactable_base.tscn" id="1_quxmj"]
 [ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="2_qgml6"]
-[ext_resource type="Texture2D" uid="uid://b4lgho32xwd8w" path="res://textures/emptyPlate.png" id="2_qpsot"]
+[ext_resource type="Texture2D" uid="uid://b4lgho32xwd8w" path="res://textures/items/emptyPlate.png" id="2_qpsot"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kgx3u"]
 resource_local_to_scene = true
@@ -14,7 +14,7 @@ shader_parameter/line_thickness = 0.0
 metadata/Name = "Empty Plate"
 metadata/Timeline = "001"
 
-[node name="Sprite2D" parent="." index="3"]
+[node name="Sprite2D" parent="." index="2"]
 material = SubResource("ShaderMaterial_kgx3u")
 position = Vector2(0, -3)
 texture = ExtResource("2_qpsot")

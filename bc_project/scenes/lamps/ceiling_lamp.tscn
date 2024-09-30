@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://75l81bk5wreu"]
 
 [ext_resource type="Script" path="res://scripts/ceiling_lamp.gd" id="1_ip2ye"]
-[ext_resource type="Texture2D" uid="uid://cah7erp83bawo" path="res://textures/ceilingLamp.png" id="1_lbw0p"]
-[ext_resource type="Texture2D" uid="uid://b2ynbvxgxg38d" path="res://textures/radialLight.png" id="2_v6ype"]
+[ext_resource type="Texture2D" uid="uid://cah7erp83bawo" path="res://textures/furniture/ceilingLamp.png" id="1_lbw0p"]
+[ext_resource type="Texture2D" uid="uid://b2ynbvxgxg38d" path="res://textures/lightMaps/radialLight.png" id="3_rwgkq"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ls3e4"]
 polygon = PackedVector2Array(-2, 7, 2, 7, 0, 6)
@@ -18,7 +18,8 @@ texture = ExtResource("1_lbw0p")
 position = Vector2(0, 14)
 color = Color(0.570332, 0.499661, 0.307287, 1)
 shadow_enabled = true
-texture = ExtResource("2_v6ype")
+shadow_filter = 2
+texture = ExtResource("3_rwgkq")
 texture_scale = 0.5
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]

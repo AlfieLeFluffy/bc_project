@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0kecyp1a153h"
-path="res://.godot/imported/stopSign.png-060156ff2531374cb2823b6b59d75e06.ctex"
+uid="uid://bfob6ubg1rt1o"
+path="res://.godot/imported/spotLight.png-f4ac1d67d1ed46c5ef382e64a4a215ab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/stopSign.png"
-dest_files=["res://.godot/imported/stopSign.png-060156ff2531374cb2823b6b59d75e06.ctex"]
+source_file="res://textures/lightMaps/spotLight.png"
+dest_files=["res://.godot/imported/spotLight.png-f4ac1d67d1ed46c5ef382e64a4a215ab.ctex"]
 
 [params]
 

@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://djvvnkxb30bc5"]
 
 [ext_resource type="Script" path="res://scripts/door_teleport.gd" id="1_8kbf8"]
-[ext_resource type="Texture2D" uid="uid://dw6giryxdou1o" path="res://textures/interactiveLabelKey.png" id="2_wd7gp"]
+[ext_resource type="Texture2D" uid="uid://dw6giryxdou1o" path="res://textures/symbols/interactiveLableKey.png" id="2_skyy2"]
 [ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="3_akmt3"]
-[ext_resource type="Texture2D" uid="uid://c0kecyp1a153h" path="res://textures/stopSign.png" id="4_13jq8"]
+[ext_resource type="Texture2D" uid="uid://c0kecyp1a153h" path="res://textures/symbols/stopSign.png" id="4_13jq8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1155p"]
 size = Vector2(47, 82)
@@ -19,7 +19,7 @@ shape = SubResource("RectangleShape2D_1155p")
 [node name="InteractKeyBG" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, -53)
-texture = ExtResource("2_wd7gp")
+texture = ExtResource("2_skyy2")
 
 [node name="Label" type="Label" parent="InteractKeyBG"]
 offset_left = -8.0

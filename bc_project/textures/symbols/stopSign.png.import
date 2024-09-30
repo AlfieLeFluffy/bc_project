@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2ynbvxgxg38d"
-path="res://.godot/imported/radialLight.png-ccaf3556c9f09c8df0f6ff7f31a4bb28.ctex"
+uid="uid://c0kecyp1a153h"
+path="res://.godot/imported/stopSign.png-03edc24835e019ac1b5951467a7b9ccd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/radialLight.png"
-dest_files=["res://.godot/imported/radialLight.png-ccaf3556c9f09c8df0f6ff7f31a4bb28.ctex"]
+source_file="res://textures/symbols/stopSign.png"
+dest_files=["res://.godot/imported/stopSign.png-03edc24835e019ac1b5951467a7b9ccd.ctex"]
 
 [params]
 

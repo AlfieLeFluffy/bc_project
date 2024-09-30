@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbvl0gy8mohel"
-path="res://.godot/imported/mainCharacter2.png-fcf8f94d03c08cd2b128a547a8e36586.ctex"
+uid="uid://cah7erp83bawo"
+path="res://.godot/imported/ceilingLamp.png-d46fccee43d2cc9b7de419c2272f775e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/mainCharacter2.png"
-dest_files=["res://.godot/imported/mainCharacter2.png-fcf8f94d03c08cd2b128a547a8e36586.ctex"]
+source_file="res://textures/furniture/ceilingLamp.png"
+dest_files=["res://.godot/imported/ceilingLamp.png-d46fccee43d2cc9b7de419c2272f775e.ctex"]
 
 [params]
 

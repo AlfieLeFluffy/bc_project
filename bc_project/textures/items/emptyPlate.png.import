@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dw6giryxdou1o"
-path="res://.godot/imported/interactiveLabelKey.png-4ddb812cd8707aa5770827fdebfc5e1a.ctex"
+uid="uid://b4lgho32xwd8w"
+path="res://.godot/imported/emptyPlate.png-5c43a5943af55008cc5741677d6436a9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/interactiveLabelKey.png"
-dest_files=["res://.godot/imported/interactiveLabelKey.png-4ddb812cd8707aa5770827fdebfc5e1a.ctex"]
+source_file="res://textures/items/emptyPlate.png"
+dest_files=["res://.godot/imported/emptyPlate.png-5c43a5943af55008cc5741677d6436a9.ctex"]
 
 [params]
 

@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scripts/mouseInteractable.gd" id="1_l1cyg"]
 [ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="2_5kqll"]
+[ext_resource type="Texture2D" uid="uid://bk0ke78wvceem" path="res://textures/symbols/textLable.png" id="2_igama"]
 [ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="2_jet7m"]
-[ext_resource type="Texture2D" uid="uid://dw6giryxdou1o" path="res://textures/interactiveLabelKey.png" id="2_upsib"]
-[ext_resource type="Texture2D" uid="uid://bk0ke78wvceem" path="res://textures/textLable.png" id="4_hu1x1"]
+[ext_resource type="Texture2D" uid="uid://dw6giryxdou1o" path="res://textures/symbols/interactiveLableKey.png" id="4_lr8ho"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_356m4"]
 size = Vector2(18, 12)
@@ -25,7 +25,7 @@ metadata/PlayerNodeName = "player"
 [node name="LabelBG" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, -15)
-texture = ExtResource("4_hu1x1")
+texture = ExtResource("2_igama")
 
 [node name="Label" type="Label" parent="LabelBG"]
 anchors_preset = 8
@@ -50,7 +50,7 @@ vertical_alignment = 1
 [node name="InteractKeyBG" type="Sprite2D" parent="LabelBG"]
 visible = false
 position = Vector2(0, 30)
-texture = ExtResource("2_upsib")
+texture = ExtResource("4_lr8ho")
 
 [node name="Label" type="Label" parent="LabelBG/InteractKeyBG"]
 offset_left = -8.0

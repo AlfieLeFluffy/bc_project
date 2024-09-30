@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfob6ubg1rt1o"
-path="res://.godot/imported/spotLight.png-8870a73ef180d8dc5897b1bead76f8e4.ctex"
+uid="uid://b2ynbvxgxg38d"
+path="res://.godot/imported/radialLight.png-15373d5cef0d1346ac2dbdade39700a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/spotLight.png"
-dest_files=["res://.godot/imported/spotLight.png-8870a73ef180d8dc5897b1bead76f8e4.ctex"]
+source_file="res://textures/lightMaps/radialLight.png"
+dest_files=["res://.godot/imported/radialLight.png-15373d5cef0d1346ac2dbdade39700a0.ctex"]
 
 [params]
 
