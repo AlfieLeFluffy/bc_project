@@ -14,6 +14,6 @@ shader_parameter/line_thickness = 0.0
 metadata/Name = "Thick Mug"
 metadata/Timeline = "001"
 
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="3"]
 material = SubResource("ShaderMaterial_tc88j")
 texture = ExtResource("2_k4yty")

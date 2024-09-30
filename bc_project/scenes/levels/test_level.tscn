@@ -1,8 +1,9 @@
-[gd_scene load_steps=46 format=3 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=47 format=3 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Texture2D" uid="uid://f5ht0q2x8m04" path="res://textures/flatTileset-Sheet.png" id="1_n5x54"]
 [ext_resource type="PackedScene" uid="uid://ddrrl1gryxkup" path="res://scenes/characters/player.tscn" id="1_wpgi4"]
 [ext_resource type="Script" path="res://scripts/cameraMovement.gd" id="3_em044"]
+[ext_resource type="PackedScene" uid="uid://djvvnkxb30bc5" path="res://scenes/interactive/door_teleport.tscn" id="4_fheky"]
 [ext_resource type="PackedScene" uid="uid://chgj487p1bpqi" path="res://scenes/items/empty_plate.tscn" id="4_w2p71"]
 [ext_resource type="PackedScene" uid="uid://c4x1ywanodayi" path="res://scenes/items/thick_mug.tscn" id="5_hqxr4"]
 [ext_resource type="PackedScene" uid="uid://75l81bk5wreu" path="res://scenes/lamps/ceiling_lamp.tscn" id="6_g4tah"]
@@ -275,11 +276,19 @@ layer_2/name = "Objects"
 
 [node name="InteractableObjects" type="Node2D" parent="."]
 
-[node name="EmptyPlate" parent="InteractableObjects" instance=ExtResource("4_w2p71")]
-position = Vector2(236, 140)
+[node name="empty_plate" parent="InteractableObjects" instance=ExtResource("4_w2p71")]
+position = Vector2(276, 140)
 
-[node name="ThickMug" parent="InteractableObjects" instance=ExtResource("5_hqxr4")]
+[node name="thick_mug" parent="InteractableObjects" instance=ExtResource("5_hqxr4")]
 position = Vector2(255, 140)
+
+[node name="door_teleport" parent="InteractableObjects" instance=ExtResource("4_fheky")]
+position = Vector2(216, 104)
+metadata/TeleportPosition = Vector2(136, -73)
+
+[node name="door_teleport2" parent="InteractableObjects" instance=ExtResource("4_fheky")]
+position = Vector2(136, -73)
+metadata/TeleportPosition = Vector2(216, 104)
 
 [node name="player" parent="." instance=ExtResource("1_wpgi4")]
 position = Vector2(160, 109)
@@ -293,13 +302,13 @@ position_smoothing_enabled = true
 position_smoothing_speed = 3.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.5, 0.5, 0.5, 1)
+color = Color(0.1738, 0.18381, 0.22, 1)
 
 [node name="ceiling_lamp" parent="CanvasModulate" instance=ExtResource("6_g4tah")]
 position = Vector2(176, 0)
 
 [node name="ceiling_lamp2" parent="CanvasModulate" instance=ExtResource("6_g4tah")]
-position = Vector2(446, 0)
+position = Vector2(454, 3)
 
 [node name="ceiling_lamp3" parent="CanvasModulate" instance=ExtResource("6_g4tah")]
 position = Vector2(-94, 0)

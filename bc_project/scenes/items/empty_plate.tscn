@@ -14,7 +14,7 @@ shader_parameter/line_thickness = 0.0
 metadata/Name = "Empty Plate"
 metadata/Timeline = "001"
 
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="3"]
 material = SubResource("ShaderMaterial_kgx3u")
 position = Vector2(0, -3)
 texture = ExtResource("2_qpsot")
