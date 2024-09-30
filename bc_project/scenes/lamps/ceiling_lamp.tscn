@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b2ynbvxgxg38d" path="res://textures/radialLight.png" id="2_v6ype"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ls3e4"]
-polygon = PackedVector2Array(-1, 7, 1, 7, 0, 6)
+polygon = PackedVector2Array(-2, 7, 2, 7, 0, 6)
 
 [node name="ceiling_lamp" type="Node2D"]
 

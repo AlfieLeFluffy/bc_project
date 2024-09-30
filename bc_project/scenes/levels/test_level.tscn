@@ -266,6 +266,7 @@ sources/1 = SubResource("TileSetAtlasSource_vgmpe")
 [node name="testScene" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
+position = Vector2(200, 184)
 tile_set = SubResource("TileSet_id35s")
 format = 2
 layer_0/name = "BG"
@@ -275,6 +276,7 @@ layer_1/tile_data = PackedInt32Array(-720908, 196609, 4, -655372, 131073, 3, -58
 layer_2/name = "Objects"
 
 [node name="InteractableObjects" type="Node2D" parent="."]
+position = Vector2(200, 184)
 
 [node name="empty_plate" parent="InteractableObjects" instance=ExtResource("4_w2p71")]
 position = Vector2(276, 140)
@@ -282,16 +284,18 @@ position = Vector2(276, 140)
 [node name="thick_mug" parent="InteractableObjects" instance=ExtResource("5_hqxr4")]
 position = Vector2(255, 140)
 
-[node name="door_teleport" parent="InteractableObjects" instance=ExtResource("4_fheky")]
-position = Vector2(216, 104)
-metadata/TeleportPosition = Vector2(136, -73)
+[node name="Doors" type="Node2D" parent="InteractableObjects"]
 
-[node name="door_teleport2" parent="InteractableObjects" instance=ExtResource("4_fheky")]
+[node name="door_teleport" parent="InteractableObjects/Doors" instance=ExtResource("4_fheky")]
+position = Vector2(216, 104)
+metadata/TeleportPosition = Vector2(336, 111)
+
+[node name="door_teleport2" parent="InteractableObjects/Doors" instance=ExtResource("4_fheky")]
 position = Vector2(136, -73)
-metadata/TeleportPosition = Vector2(216, 104)
+metadata/TeleportPosition = Vector2(416, 288)
 
 [node name="player" parent="." instance=ExtResource("1_wpgi4")]
-position = Vector2(160, 109)
+position = Vector2(360, 293)
 
 [node name="cameraControls" type="Node2D" parent="player"]
 script = ExtResource("3_em044")
@@ -302,6 +306,7 @@ position_smoothing_enabled = true
 position_smoothing_speed = 3.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2(200, 184)
 color = Color(0.1738, 0.18381, 0.22, 1)
 
 [node name="ceiling_lamp" parent="CanvasModulate" instance=ExtResource("6_g4tah")]
