@@ -1,20 +1,43 @@
-[gd_scene load_steps=5 format=3 uid="uid://chgj487p1bpqi"]
+[gd_scene load_steps=8 format=3 uid="uid://chgj487p1bpqi"]
 
-[ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/items/interactable_base.tscn" id="1_quxmj"]
-[ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="2_qgml6"]
+[ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactable_base.tscn" id="1_quxmj"]
 [ext_resource type="Texture2D" uid="uid://b4lgho32xwd8w" path="res://textures/items/emptyPlate.png" id="2_qpsot"]
+[ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="2_xq1fx"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kgx3u"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q715m"]
 resource_local_to_scene = true
-shader = ExtResource("2_qgml6")
-shader_parameter/line_color = Color(1, 1, 1, 0.498039)
+size = Vector2(16, 9)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yr1bm"]
+resource_local_to_scene = true
+shader = ExtResource("2_xq1fx")
+shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pc5vm"]
+atlas = ExtResource("2_qpsot")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ruim7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pc5vm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="EmptyPlate" instance=ExtResource("1_quxmj")]
 metadata/Name = "Empty Plate"
 metadata/Timeline = "001"
 
-[node name="Sprite2D" parent="." index="2"]
-material = SubResource("ShaderMaterial_kgx3u")
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_q715m")
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+material = SubResource("ShaderMaterial_yr1bm")
 position = Vector2(0, -3)
-texture = ExtResource("2_qpsot")
+sprite_frames = SubResource("SpriteFrames_ruim7")

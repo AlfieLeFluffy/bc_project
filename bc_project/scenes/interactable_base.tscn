@@ -1,18 +1,19 @@
 [gd_scene load_steps=8 format=3 uid="uid://b6sidrweg1p0"]
 
-[ext_resource type="Script" path="res://scripts/mouseInteractable.gd" id="1_l1cyg"]
+[ext_resource type="Script" path="res://scripts/interactable.gd" id="1_l1cyg"]
 [ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="2_5kqll"]
 [ext_resource type="Texture2D" uid="uid://bk0ke78wvceem" path="res://textures/symbols/textLable.png" id="2_igama"]
 [ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="2_jet7m"]
 [ext_resource type="Texture2D" uid="uid://dw6giryxdou1o" path="res://textures/symbols/interactiveLableKey.png" id="4_lr8ho"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_356m4"]
-size = Vector2(18, 12)
+resource_local_to_scene = true
+size = Vector2(12, 10)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6bx2x"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_28gpt"]
 resource_local_to_scene = true
 shader = ExtResource("2_5kqll")
-shader_parameter/line_color = Color(1, 1, 1, 0.498039)
+shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 
 [node name="Area2D" type="Area2D"]
@@ -67,8 +68,8 @@ vertical_alignment = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_356m4")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_6bx2x")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_28gpt")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
