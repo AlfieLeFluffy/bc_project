@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ddrrl1gryxkup"]
 
-[ext_resource type="Script" path="res://scripts/playerMovement.gd" id="1_1rgys"]
+[ext_resource type="Script" path="res://scenes/characters/player_movement.gd" id="1_fg2e7"]
 [ext_resource type="Texture2D" uid="uid://dbvl0gy8mohel" path="res://textures/characters/mainCharacter2.png" id="2_psobe"]
 [ext_resource type="Texture2D" uid="uid://b2ynbvxgxg38d" path="res://textures/lightMaps/radialLight.png" id="3_66w77"]
 
@@ -21,7 +21,7 @@ animations = [{
 radius = 75.0067
 
 [node name="player" type="CharacterBody2D"]
-script = ExtResource("1_1rgys")
+script = ExtResource("1_fg2e7")
 metadata/InteractItemSet = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
