@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://b6sidrweg1p0"]
 
-[ext_resource type="Script" path="res://scripts/interactable.gd" id="1_l1cyg"]
+[ext_resource type="Script" path="res://scenes/interactable.gd" id="1_m6fs8"]
 [ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="2_5kqll"]
 [ext_resource type="Texture2D" uid="uid://bk0ke78wvceem" path="res://textures/symbols/textLable.png" id="2_igama"]
 [ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="2_jet7m"]
@@ -17,7 +17,7 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 
 [node name="Area2D" type="Area2D"]
-script = ExtResource("1_l1cyg")
+script = ExtResource("1_m6fs8")
 metadata/Name = "Interactable Object"
 metadata/Timeline = "000"
 metadata/Type = "Interactable"

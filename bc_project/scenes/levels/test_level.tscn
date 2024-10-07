@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=50 format=3 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Texture2D" uid="uid://f5ht0q2x8m04" path="res://textures/flatTileset-Sheet.png" id="1_n5x54"]
 [ext_resource type="PackedScene" uid="uid://ddrrl1gryxkup" path="res://scenes/characters/player.tscn" id="1_wpgi4"]
@@ -269,6 +269,27 @@ occlusion_layer_1/light_mask = 1
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_vgmpe")
 
+[sub_resource type="GDScript" id="GDScript_ohqbe"]
+script/source = "extends Node2D
+
+var pointLight
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pointLight = get_node(\"PointLight2D\")
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+	
+func toggleLight() -> void:
+	if pointLight.visible:
+		pointLight.visible = 0
+	else:
+		pointLight.visible = 1
+"
+
 [node name="testScene" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -283,12 +304,6 @@ layer_2/name = "Objects"
 
 [node name="InteractableObjects" type="Node2D" parent="."]
 position = Vector2(200, 184)
-
-[node name="empty_plate" parent="InteractableObjects" instance=ExtResource("4_w2p71")]
-position = Vector2(276, 140)
-
-[node name="thick_mug" parent="InteractableObjects" instance=ExtResource("5_hqxr4")]
-position = Vector2(255, 140)
 
 [node name="Doors" type="Node2D" parent="InteractableObjects"]
 
@@ -308,12 +323,21 @@ position = Vector2(12, 0)
 
 [node name="ceiling_lamp" parent="InteractableObjects/light_switch/lights" instance=ExtResource("6_g4tah")]
 position = Vector2(91, -94)
+script = SubResource("GDScript_ohqbe")
 
 [node name="ceiling_lamp2" parent="InteractableObjects/light_switch/lights" instance=ExtResource("6_g4tah")]
 position = Vector2(345, -91)
+script = SubResource("GDScript_ohqbe")
 
 [node name="ceiling_lamp3" parent="InteractableObjects/light_switch/lights" instance=ExtResource("6_g4tah")]
 position = Vector2(-162, -94)
+script = SubResource("GDScript_ohqbe")
+
+[node name="EmptyPlate" parent="InteractableObjects" instance=ExtResource("4_w2p71")]
+position = Vector2(274, 140)
+
+[node name="ThickMug" parent="InteractableObjects" instance=ExtResource("5_hqxr4")]
+position = Vector2(255, 140)
 
 [node name="player" parent="." instance=ExtResource("1_wpgi4")]
 position = Vector2(360, 293)

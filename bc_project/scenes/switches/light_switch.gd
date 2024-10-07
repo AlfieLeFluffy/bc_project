@@ -1,4 +1,4 @@
-extends "res://scripts/interactable.gd"
+extends "res://scenes/interactable.gd"
 
 var Lights
 

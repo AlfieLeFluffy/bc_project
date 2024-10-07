@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dkvl1inu1enr8"]
 
 [ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactable_base.tscn" id="1_g0vw7"]
-[ext_resource type="Script" path="res://scripts/light_switch.gd" id="2_82j4r"]
+[ext_resource type="Script" path="res://scenes/switches/light_switch.gd" id="2_di4um"]
 [ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="3_l601d"]
 [ext_resource type="Texture2D" uid="uid://dvxob6uesaaqh" path="res://textures/switches/lightSwitch.png" id="4_pa811"]
 
@@ -38,7 +38,7 @@ animations = [{
 }]
 
 [node name="light_switch" instance=ExtResource("1_g0vw7")]
-script = ExtResource("2_82j4r")
+script = ExtResource("2_di4um")
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("RectangleShape2D_igsdy")
