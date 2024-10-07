@@ -17,6 +17,10 @@ run/main_scene="res://scenes/menus/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://textures/icon.svg"
 
+[autoload]
+
+Global="*res://scripts/global.gd"
+
 [input]
 
 ui_left={
