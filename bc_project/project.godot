@@ -21,6 +21,11 @@ config/icon="res://textures/icon.svg"
 
 Global="*res://scripts/global.gd"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
 [input]
 
 ui_left={

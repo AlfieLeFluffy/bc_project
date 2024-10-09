@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/interactive/door_teleport.gd" id="1_w0kh2"]
 [ext_resource type="Texture2D" uid="uid://dw6giryxdou1o" path="res://textures/symbols/interactiveLableKey.png" id="2_skyy2"]
-[ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="3_akmt3"]
+[ext_resource type="LabelSettings" uid="uid://d1lvtjugos2m4" path="res://settings/Interactable_label_settings.tres" id="3_0e7h5"]
 [ext_resource type="Texture2D" uid="uid://c0kecyp1a153h" path="res://textures/symbols/stopSign.png" id="4_13jq8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1155p"]
@@ -26,10 +26,8 @@ offset_left = -8.0
 offset_top = -6.0
 offset_right = 8.0
 offset_bottom = 8.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_akmt3")
-theme_override_font_sizes/font_size = 12
 text = "_"
+label_settings = ExtResource("3_0e7h5")
 horizontal_alignment = 1
 vertical_alignment = 1
 
