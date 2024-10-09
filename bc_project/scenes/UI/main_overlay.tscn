@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8dkj5105sudy"]
+
+[ext_resource type="Script" path="res://scenes/UI/main_overlay.gd" id="1_fmb6v"]
+[ext_resource type="Texture2D" uid="uid://dutut208e6hui" path="res://textures/ui/timelineUI.png" id="2_3uuai"]
+[ext_resource type="LabelSettings" uid="uid://doqukeeaoqvm" path="res://settings/UI_label_settings.tres" id="3_hx8fx"]
+
+[node name="main_overlay" type="CanvasLayer"]
+script = ExtResource("1_fmb6v")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 256.0
+offset_bottom = 32.0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_3uuai")
+
+[node name="Label" type="Label" parent="MarginContainer/TextureRect"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 32.0
+text = " Timeline:"
+label_settings = ExtResource("3_hx8fx")
