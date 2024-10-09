@@ -344,3 +344,57 @@ position = Vector2(360, 293)
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(200, 184)
 color = Color(0.1738, 0.18381, 0.22, 1)
+
+[node name="light_switch" parent="." instance=ExtResource("7_wo4n4")]
+position = Vector2(73, 94)
+
+[node name="lights" type="Node2D" parent="light_switch"]
+position = Vector2(12, 0)
+
+[node name="ceiling_lamp" parent="light_switch/lights" instance=ExtResource("6_g4tah")]
+position = Vector2(91, -94)
+script = SubResource("GDScript_ohqbe")
+
+[node name="ceiling_lamp2" parent="light_switch/lights" instance=ExtResource("6_g4tah")]
+position = Vector2(345, -91)
+script = SubResource("GDScript_ohqbe")
+
+[node name="ceiling_lamp3" parent="light_switch/lights" instance=ExtResource("6_g4tah")]
+position = Vector2(-162, -94)
+script = SubResource("GDScript_ohqbe")
+
+[node name="light_switch" parent="light_switch" instance=ExtResource("7_wo4n4")]
+position = Vector2(73, 94)
+
+[node name="lights" type="Node2D" parent="light_switch/light_switch"]
+position = Vector2(12, 0)
+
+[node name="ceiling_lamp" parent="light_switch/light_switch/lights" instance=ExtResource("6_g4tah")]
+position = Vector2(91, -94)
+script = SubResource("GDScript_ohqbe")
+
+[node name="ceiling_lamp2" parent="light_switch/light_switch/lights" instance=ExtResource("6_g4tah")]
+position = Vector2(345, -91)
+script = SubResource("GDScript_ohqbe")
+
+[node name="ceiling_lamp3" parent="light_switch/light_switch/lights" instance=ExtResource("6_g4tah")]
+position = Vector2(-162, -94)
+script = SubResource("GDScript_ohqbe")
+
+[node name="light_switch" parent="light_switch/light_switch" instance=ExtResource("7_wo4n4")]
+position = Vector2(73, 94)
+
+[node name="lights" type="Node2D" parent="light_switch/light_switch/light_switch"]
+position = Vector2(12, 0)
+
+[node name="ceiling_lamp" parent="light_switch/light_switch/light_switch/lights" instance=ExtResource("6_g4tah")]
+position = Vector2(91, -94)
+script = SubResource("GDScript_ohqbe")
+
+[node name="ceiling_lamp2" parent="light_switch/light_switch/light_switch/lights" instance=ExtResource("6_g4tah")]
+position = Vector2(345, -91)
+script = SubResource("GDScript_ohqbe")
+
+[node name="ceiling_lamp3" parent="light_switch/light_switch/light_switch/lights" instance=ExtResource("6_g4tah")]
+position = Vector2(-162, -94)
+script = SubResource("GDScript_ohqbe")

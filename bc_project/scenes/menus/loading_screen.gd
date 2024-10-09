@@ -7,7 +7,6 @@ var packedScene
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Scene = Global.NextScene
-	print(Scene)
 	ResourceLoader.load_threaded_request(Scene)
 
 
@@ -15,8 +14,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	progress = []
 	ResourceLoader.load_threaded_get_status(Scene,progress)
-	print(progress[0]*100)
-	
+	$TextureProgressBar.value = progress[0]*100
 	if progress[0] == 1:
 		packedScene = ResourceLoader.load_threaded_get(Scene)
 		get_tree().change_scene_to_packed(packedScene)
