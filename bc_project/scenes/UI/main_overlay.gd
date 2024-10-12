@@ -6,4 +6,5 @@ func _ready() -> void:
 	UpdateUI()
 
 func UpdateUI () -> void:
-	$MarginContainer/TextureRect/Label.text = " Timeline: " + Global.Timeline
+	$MarginContainer/VBoxContainer/TimelineUI/Label.text = "Timeline: " + Global.Timeline
+	$MarginContainer/VBoxContainer/CaseUI/Label.text = "Case: " + Global.Case

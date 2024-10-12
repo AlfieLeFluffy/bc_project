@@ -3,6 +3,7 @@
 [ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="1_22ks0"]
 
 [resource]
+line_spacing = 0.0
 font = ExtResource("1_22ks0")
-font_size = 32
-font_color = Color(0, 0, 0, 1)
+font_size = 24
+font_color = Color(0.668038, 0.849834, 0.855844, 1)

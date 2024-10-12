@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/interactable.gd" id="1_m6fs8"]
 [ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="2_5kqll"]
 [ext_resource type="Texture2D" uid="uid://bk0ke78wvceem" path="res://textures/symbols/textLable.png" id="2_igama"]
-[ext_resource type="Texture2D" uid="uid://dw6giryxdou1o" path="res://textures/symbols/interactiveLableKey.png" id="4_lr8ho"]
+[ext_resource type="Texture2D" uid="uid://bmtosx3662qc2" path="res://textures/symbols/interactiveLabelKey.png" id="4_20to0"]
 [ext_resource type="LabelSettings" uid="uid://d1lvtjugos2m4" path="res://settings/Interactable_label_settings.tres" id="4_oco1s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_356m4"]
@@ -49,10 +49,10 @@ vertical_alignment = 1
 [node name="InteractKeyBG" type="Sprite2D" parent="LabelBG"]
 visible = false
 position = Vector2(0, 30)
-texture = ExtResource("4_lr8ho")
+texture = ExtResource("4_20to0")
 
 [node name="Label" type="Label" parent="LabelBG/InteractKeyBG"]
-offset_left = -8.0
+offset_left = -7.0
 offset_top = -6.0
 offset_right = 8.0
 offset_bottom = 8.0
