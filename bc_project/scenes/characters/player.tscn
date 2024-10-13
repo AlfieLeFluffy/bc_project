@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddrrl1gryxkup"]
+[gd_scene load_steps=10 format=3 uid="uid://ddrrl1gryxkup"]
 
 [ext_resource type="Script" path="res://scenes/characters/player_movement.gd" id="1_fg2e7"]
 [ext_resource type="Texture2D" uid="uid://dbvl0gy8mohel" path="res://textures/characters/mainCharacter2.png" id="2_psobe"]
 [ext_resource type="Texture2D" uid="uid://b2ynbvxgxg38d" path="res://textures/lightMaps/radialLight.png" id="3_66w77"]
 [ext_resource type="PackedScene" uid="uid://c8dkj5105sudy" path="res://scenes/UI/main_overlay.tscn" id="4_ej0mm"]
 [ext_resource type="PackedScene" uid="uid://x3lasufaexva" path="res://scenes/characters/camera_controls.tscn" id="5_2uxfp"]
+[ext_resource type="PackedScene" uid="uid://c73m21uddf5ye" path="res://scenes/UI/board_UI.tscn" id="6_hlohb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wmv4b"]
 animations = [{
@@ -51,3 +52,5 @@ shape = SubResource("CircleShape2D_vhha4")
 [node name="CameraControls" parent="." instance=ExtResource("5_2uxfp")]
 
 [node name="main_overlay" parent="." instance=ExtResource("4_ej0mm")]
+
+[node name="CanvasLayer" parent="." instance=ExtResource("6_hlohb")]

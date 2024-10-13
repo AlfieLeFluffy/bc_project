@@ -1,20 +1,44 @@
-[gd_scene load_steps=2 format=3 uid="uid://c73m21uddf5ye"]
+[gd_scene load_steps=5 format=3 uid="uid://c73m21uddf5ye"]
 
 [ext_resource type="Texture2D" uid="uid://cwqhqr5tnxgpm" path="res://textures/ui/board/board_background_UI.png" id="1_avnfn"]
+[ext_resource type="Script" path="res://scenes/UI/board_ui.gd" id="1_r52og"]
+
+[sub_resource type="Gradient" id="Gradient_ylqva"]
+colors = PackedColorArray(0.0658754, 0.082576, 0.158838, 0.8, 0.2336, 0.24512, 0.32, 0.647059)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gi1gm"]
+gradient = SubResource("Gradient_ylqva")
+width = 800
+height = 600
+fill_to = Vector2(0.782051, 1)
 
 [node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_r52og")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="Node2D"]
-offset_right = 1280.0
-offset_bottom = 720.0
-theme_override_constants/margin_left = 80
-theme_override_constants/margin_top = 80
-theme_override_constants/margin_right = 80
-theme_override_constants/margin_bottom = 80
-
-[node name="TextureRect" type="TextureRect" parent="Node2D/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
 layout_mode = 2
+texture = SubResource("GradientTexture2D_gi1gm")
+
+[node name="Board" type="Node2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="Board"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 1210.0
+offset_bottom = 810.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_avnfn")
 stretch_mode = 1
