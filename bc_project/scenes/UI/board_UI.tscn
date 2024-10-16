@@ -13,6 +13,7 @@ height = 600
 fill_to = Vector2(0.782051, 1)
 
 [node name="CanvasLayer" type="CanvasLayer"]
+visible = false
 script = ExtResource("1_r52og")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

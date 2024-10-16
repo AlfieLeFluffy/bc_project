@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dpdrbm7tfimf4"]
+
+[ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="1_5tnem"]
+
+[resource]
+font = ExtResource("1_5tnem")
+font_size = 32
+font_color = Color(0.649933, 0.779488, 0.785845, 1)
