@@ -2,6 +2,8 @@ extends Node
 
 # Game state variable
 var InMenu = false
+var MenuLock = false
+var MenuCounter = 0
 
 # Variable used to set the next scene to load
 var NextScene = ""
@@ -16,6 +18,10 @@ var CaseIndex = 0
 
 func OpenMenu() -> void:
 	InMenu = true
+	MenuCounter += 1
 	
 func CloseMenu() -> void:
-	InMenu = false
+	MenuCounter -= 1
+	if MenuCounter <= 0:
+		MenuCounter = 0
+		InMenu = false
