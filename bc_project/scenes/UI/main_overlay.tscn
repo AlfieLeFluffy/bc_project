@@ -1,18 +1,200 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8dkj5105sudy"]
+[gd_scene load_steps=35 format=3 uid="uid://c8dkj5105sudy"]
 
 [ext_resource type="Script" path="res://scenes/UI/main_overlay.gd" id="1_fmb6v"]
 [ext_resource type="Texture2D" uid="uid://dutut208e6hui" path="res://textures/ui/overlay/timelineUI.png" id="2_3uuai"]
 [ext_resource type="LabelSettings" uid="uid://doqukeeaoqvm" path="res://settings/UI_label_settings.tres" id="3_hx8fx"]
 [ext_resource type="Texture2D" uid="uid://dg7tk2fu61pdi" path="res://textures/ui/overlay/caseUI.png" id="4_5weyg"]
+[ext_resource type="Texture2D" uid="uid://7ef3jtpje8iw" path="res://textures/ui/overlay/timelineKeyUI-Sheet.png" id="4_kav33"]
 [ext_resource type="Texture2D" uid="uid://bjjxv3j838ah6" path="res://textures/ui/overlay/board_tabUI.png" id="5_yoycj"]
 [ext_resource type="LabelSettings" uid="uid://cgmbpfsnk0h08" path="res://settings/UI_small_label_settings.tres" id="6_hckqj"]
+[ext_resource type="Texture2D" uid="uid://cquvvwpt4svef" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_0.png" id="8_7aamr"]
+[ext_resource type="Texture2D" uid="uid://drspipthklq8n" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_1.png" id="9_knop2"]
+[ext_resource type="Texture2D" uid="uid://wbc03aq0aiw2" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_2.png" id="10_p2iiy"]
+[ext_resource type="Texture2D" uid="uid://3lqfkr5jpx1m" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_3.png" id="11_8nb4r"]
+[ext_resource type="Texture2D" uid="uid://bxxf8pcsu5ogr" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_4.png" id="12_muirf"]
+[ext_resource type="Texture2D" uid="uid://8xv7mq6hrs0f" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_5.png" id="13_7k05y"]
+[ext_resource type="Texture2D" uid="uid://caq2hckrgwtc1" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_6.png" id="14_qlxjm"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_g4vv2"]
+frames = 8
+one_shot = true
+frame_0/texture = ExtResource("8_7aamr")
+frame_0/duration = 0.03
+frame_1/texture = ExtResource("9_knop2")
+frame_1/duration = 0.03
+frame_2/texture = ExtResource("10_p2iiy")
+frame_2/duration = 0.03
+frame_3/texture = ExtResource("11_8nb4r")
+frame_3/duration = 0.03
+frame_4/texture = ExtResource("12_muirf")
+frame_4/duration = 0.03
+frame_5/texture = ExtResource("13_7k05y")
+frame_5/duration = 0.03
+frame_6/texture = ExtResource("14_qlxjm")
+frame_6/duration = 0.03
+frame_7/texture = ExtResource("8_7aamr")
+frame_7/duration = 0.03
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvic2"]
+atlas = ExtResource("4_kav33")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cdg2"]
+atlas = ExtResource("4_kav33")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tij10"]
+atlas = ExtResource("4_kav33")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ga4dl"]
+atlas = ExtResource("4_kav33")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tbet"]
+atlas = ExtResource("4_kav33")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vja4g"]
+atlas = ExtResource("4_kav33")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pru1o"]
+atlas = ExtResource("4_kav33")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycqrx"]
+atlas = ExtResource("4_kav33")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mpwr"]
+atlas = ExtResource("4_kav33")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0w8s"]
+atlas = ExtResource("4_kav33")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1enmk"]
+atlas = ExtResource("4_kav33")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w67db"]
+atlas = ExtResource("4_kav33")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x23x4"]
+atlas = ExtResource("4_kav33")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x08e0"]
+atlas = ExtResource("4_kav33")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aguwc"]
+atlas = ExtResource("4_kav33")
+region = Rect2(448, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ok78t"]
+atlas = ExtResource("4_kav33")
+region = Rect2(480, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6yn1"]
+atlas = ExtResource("4_kav33")
+region = Rect2(512, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bax6u"]
+atlas = ExtResource("4_kav33")
+region = Rect2(544, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kk8bu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvic2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cdg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tij10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ga4dl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tbet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vja4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pru1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycqrx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4mpwr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0w8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1enmk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w67db")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x23x4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x08e0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aguwc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ok78t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6yn1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bax6u")
+}],
+"loop": false,
+"name": &"timeout",
+"speed": 16.0
+}]
 
 [node name="main_overlay" type="CanvasLayer"]
 scale = Vector2(1.5, 1.5)
 transform = Transform2D(1.5, 0, 0, 1.5, 0, 0)
 script = ExtResource("1_fmb6v")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="ScreenEffectContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.666481, 0.666621)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="ScreenEffectContainer"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_g4vv2")
+
+[node name="Overlay" type="MarginContainer" parent="."]
 anchors_preset = -1
 anchor_right = 0.666406
 anchor_bottom = 0.666667
@@ -24,19 +206,18 @@ theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Overlay"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Overlay/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 
-[node name="TimelineUI" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="TimelineUI" type="TextureRect" parent="Overlay/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 texture = ExtResource("2_3uuai")
 stretch_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/TimelineUI"]
+[node name="Label" type="Label" parent="Overlay/HBoxContainer/VBoxContainer/TimelineUI"]
 layout_mode = 2
 offset_left = 16.0
 offset_top = 7.0
@@ -46,12 +227,27 @@ text = "Timeline:"
 label_settings = ExtResource("3_hx8fx")
 vertical_alignment = 1
 
-[node name="CaseUI" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="InteractKeyBG" type="AnimatedSprite2D" parent="Overlay/HBoxContainer/VBoxContainer/TimelineUI"]
+position = Vector2(189, 15.6667)
+sprite_frames = SubResource("SpriteFrames_kk8bu")
+autoplay = "default"
+
+[node name="Label" type="Label" parent="Overlay/HBoxContainer/VBoxContainer/TimelineUI/InteractKeyBG"]
+offset_left = -12.0
+offset_top = -10.0
+offset_right = 13.0
+offset_bottom = 14.0
+text = "Q"
+label_settings = ExtResource("3_hx8fx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CaseUI" type="TextureRect" parent="Overlay/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 texture = ExtResource("4_5weyg")
 stretch_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/CaseUI"]
+[node name="Label" type="Label" parent="Overlay/HBoxContainer/VBoxContainer/CaseUI"]
 layout_mode = 2
 offset_left = 16.0
 offset_top = 5.0
@@ -61,21 +257,21 @@ text = "Case:"
 label_settings = ExtResource("3_hx8fx")
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Overlay/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="TableTab" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="TableTab" type="TextureRect" parent="Overlay/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 texture = ExtResource("5_yoycj")
 stretch_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/TableTab"]
+[node name="Label" type="Label" parent="Overlay/HBoxContainer/VBoxContainer/TableTab"]
 layout_mode = 0
-offset_left = 16.3333
+offset_left = 17.6667
 offset_top = 7.0
-offset_right = 56.3333
+offset_right = 57.6667
 offset_bottom = 30.0
 text = "TAB"
 label_settings = ExtResource("6_hckqj")

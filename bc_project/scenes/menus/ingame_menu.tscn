@@ -18,6 +18,7 @@ fill_from = Vector2(1, 0.111111)
 fill_to = Vector2(0, 1)
 
 [node name="ingame_menu" type="CanvasLayer"]
+visible = false
 script = ExtResource("1_rriae")
 
 [node name="BackgroundContainer" type="MarginContainer" parent="."]
