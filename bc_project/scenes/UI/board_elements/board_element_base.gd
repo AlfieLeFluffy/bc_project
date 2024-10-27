@@ -1,0 +1,61 @@
+extends Area2D
+
+var active = false
+var dragged = false
+
+var parent
+var mouse_offset
+var board_size
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	element_setup()
+	parent = get_parent()
+	board_size = parent.get_meta("TextureSize")
+
+func element_setup() -> void:
+	pass
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("drag_element") and active:
+		dragged = true
+		mouse_offset = $".".position - $".".get_global_mouse_position()
+	elif event.is_action_released("drag_element"):
+		dragged = false
+	
+	if active and event.is_action_pressed("destroy_board_element") and not Global.FocusSet:
+		Signals.emit_signal('delete_element',self)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func _physics_process(delta: float) -> void:
+	if Global.InMenu and visible and dragged:
+		var mouse_possition = get_global_mouse_position()
+		position = mouse_possition + mouse_offset
+		restrain_element()
+
+func restrain_element() -> void:
+	if position.x > board_size.x - $element_texture.texture.get_height()/2:
+		position.x = board_size.x - $element_texture.texture.get_height()/2
+	
+	if position.x < $element_texture.texture.get_height()/2 :
+		position.x = $element_texture.texture.get_height()/2
+	
+	if position.y > board_size.y -$element_texture.texture.get_width()/2:
+		position.y = board_size.y -$element_texture.texture.get_width()/2
+		
+	if position.y < $element_texture.texture.get_width()/2:
+		position.y = $element_texture.texture.get_height()/2
+
+func _on_mouse_entered() -> void:
+	
+	Signals.emit_signal("help_text_toggle","deleteElement",1)
+	active = true
+	Global.Active_Board_Element = $"."
+
+func _on_mouse_exited() -> void:
+	Signals.emit_signal("help_text_toggle","deleteElement",0)
+	active = false
+	Global.Active_Board_Element = null

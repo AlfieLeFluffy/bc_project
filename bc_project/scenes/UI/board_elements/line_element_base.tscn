@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bt27y2pw7u6a7"]
+
+[ext_resource type="Script" path="res://scenes/UI/board_elements/line_element_base.gd" id="1_6m0vb"]
+[ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="1_q2pfj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dccki"]
+size = Vector2(138, 33)
+
+[node name="line_element_base" type="Area2D"]
+script = ExtResource("1_6m0vb")
+
+[node name="ConnectionText" type="LineEdit" parent="."]
+visible = false
+offset_left = -57.0
+offset_top = -14.0
+offset_right = 59.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("1_q2pfj")
+theme_override_font_sizes/font_size = 20
+placeholder_text = "Line Name"
+expand_to_text_length = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dccki")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

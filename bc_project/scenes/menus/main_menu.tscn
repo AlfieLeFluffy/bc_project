@@ -45,6 +45,10 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/separation = 25
 
+[node name="ExpandBox" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -96,7 +100,7 @@ label_settings = ExtResource("6_gi2p0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+[node name="ExpandBox2" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 

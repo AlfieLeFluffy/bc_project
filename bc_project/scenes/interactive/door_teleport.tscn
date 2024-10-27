@@ -1,9 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://djvvnkxb30bc5"]
+[gd_scene load_steps=3 format=3 uid="uid://djvvnkxb30bc5"]
 
 [ext_resource type="Script" path="res://scenes/interactive/door_teleport.gd" id="1_w0kh2"]
-[ext_resource type="Texture2D" uid="uid://bmtosx3662qc2" path="res://textures/symbols/interactiveLabelKey.png" id="2_88rf7"]
-[ext_resource type="LabelSettings" uid="uid://d1lvtjugos2m4" path="res://settings/Interactable_label_settings.tres" id="3_0e7h5"]
-[ext_resource type="Texture2D" uid="uid://1wse8oji861i" path="res://textures/symbols/interactable_crossout.png" id="4_b2cmw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1155p"]
 size = Vector2(47, 82)
@@ -15,25 +12,6 @@ metadata/TeleportPosition = Vector2(0, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_1155p")
-
-[node name="InteractKeyBG" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0, -53)
-texture = ExtResource("2_88rf7")
-
-[node name="Label" type="Label" parent="InteractKeyBG"]
-offset_left = -6.0
-offset_top = -5.0
-offset_right = 7.0
-offset_bottom = 7.0
-text = "_"
-label_settings = ExtResource("3_0e7h5")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="stopSign" type="Sprite2D" parent="InteractKeyBG"]
-visible = false
-texture = ExtResource("4_b2cmw")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

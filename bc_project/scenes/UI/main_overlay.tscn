@@ -5,8 +5,6 @@
 [ext_resource type="LabelSettings" uid="uid://doqukeeaoqvm" path="res://settings/UI_label_settings.tres" id="3_hx8fx"]
 [ext_resource type="Texture2D" uid="uid://dg7tk2fu61pdi" path="res://textures/ui/overlay/caseUI.png" id="4_5weyg"]
 [ext_resource type="Texture2D" uid="uid://7ef3jtpje8iw" path="res://textures/ui/overlay/timelineKeyUI-Sheet.png" id="4_kav33"]
-[ext_resource type="Texture2D" uid="uid://bjjxv3j838ah6" path="res://textures/ui/overlay/board_tabUI.png" id="5_yoycj"]
-[ext_resource type="LabelSettings" uid="uid://cgmbpfsnk0h08" path="res://settings/UI_small_label_settings.tres" id="6_hckqj"]
 [ext_resource type="Texture2D" uid="uid://cquvvwpt4svef" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_0.png" id="8_7aamr"]
 [ext_resource type="Texture2D" uid="uid://drspipthklq8n" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_1.png" id="9_knop2"]
 [ext_resource type="Texture2D" uid="uid://wbc03aq0aiw2" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_2.png" id="10_p2iiy"]
@@ -14,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://bxxf8pcsu5ogr" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_4.png" id="12_muirf"]
 [ext_resource type="Texture2D" uid="uid://8xv7mq6hrs0f" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_5.png" id="13_7k05y"]
 [ext_resource type="Texture2D" uid="uid://caq2hckrgwtc1" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_6.png" id="14_qlxjm"]
+[ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="15_6ev66"]
+[ext_resource type="Script" path="res://scenes/UI/help_labels.gd" id="15_w8qt3"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_g4vv2"]
 frames = 8
@@ -206,18 +206,18 @@ theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Overlay"]
+[node name="Collums" type="HBoxContainer" parent="Overlay"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Overlay/HBoxContainer"]
+[node name="LeftUI" type="VBoxContainer" parent="Overlay/Collums"]
 layout_mode = 2
 
-[node name="TimelineUI" type="TextureRect" parent="Overlay/HBoxContainer/VBoxContainer"]
+[node name="TimelineUI" type="TextureRect" parent="Overlay/Collums/LeftUI"]
 layout_mode = 2
 texture = ExtResource("2_3uuai")
 stretch_mode = 2
 
-[node name="Label" type="Label" parent="Overlay/HBoxContainer/VBoxContainer/TimelineUI"]
+[node name="Label" type="Label" parent="Overlay/Collums/LeftUI/TimelineUI"]
 layout_mode = 2
 offset_left = 16.0
 offset_top = 7.0
@@ -227,12 +227,12 @@ text = "Timeline:"
 label_settings = ExtResource("3_hx8fx")
 vertical_alignment = 1
 
-[node name="InteractKeyBG" type="AnimatedSprite2D" parent="Overlay/HBoxContainer/VBoxContainer/TimelineUI"]
+[node name="InteractKeyBG" type="AnimatedSprite2D" parent="Overlay/Collums/LeftUI/TimelineUI"]
 position = Vector2(189, 15.6667)
 sprite_frames = SubResource("SpriteFrames_kk8bu")
 autoplay = "default"
 
-[node name="Label" type="Label" parent="Overlay/HBoxContainer/VBoxContainer/TimelineUI/InteractKeyBG"]
+[node name="Label" type="Label" parent="Overlay/Collums/LeftUI/TimelineUI/InteractKeyBG"]
 offset_left = -12.0
 offset_top = -10.0
 offset_right = 13.0
@@ -242,12 +242,12 @@ label_settings = ExtResource("3_hx8fx")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CaseUI" type="TextureRect" parent="Overlay/HBoxContainer/VBoxContainer"]
+[node name="CaseUI" type="TextureRect" parent="Overlay/Collums/LeftUI"]
 layout_mode = 2
 texture = ExtResource("4_5weyg")
 stretch_mode = 2
 
-[node name="Label" type="Label" parent="Overlay/HBoxContainer/VBoxContainer/CaseUI"]
+[node name="Label" type="Label" parent="Overlay/Collums/LeftUI/CaseUI"]
 layout_mode = 2
 offset_left = 16.0
 offset_top = 5.0
@@ -257,23 +257,76 @@ text = "Case:"
 label_settings = ExtResource("3_hx8fx")
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Overlay/HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Overlay/Collums/LeftUI"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="TableTab" type="TextureRect" parent="Overlay/HBoxContainer/VBoxContainer"]
+[node name="Fill" type="VBoxContainer" parent="Overlay/Collums"]
 layout_mode = 2
-texture = ExtResource("5_yoycj")
-stretch_mode = 2
+size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Overlay/HBoxContainer/VBoxContainer/TableTab"]
-layout_mode = 0
-offset_left = 17.6667
-offset_top = 7.0
-offset_right = 57.6667
-offset_bottom = 30.0
-text = "TAB"
-label_settings = ExtResource("6_hckqj")
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="RightUI" type="VBoxContainer" parent="Overlay/Collums"]
+z_index = 5
+z_as_relative = false
+layout_mode = 2
+alignment = 2
+script = ExtResource("15_w8qt3")
+
+[node name="ShiftHelp" type="RichTextLabel" parent="Overlay/Collums/RightUI"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("15_6ev66")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[right][color=lightblue]Q[/color] - shift timeline"
+fit_content = true
+autowrap_mode = 0
+
+[node name="InteractHelp" type="RichTextLabel" parent="Overlay/Collums/RightUI"]
+visible = false
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("15_6ev66")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[right][color=lightblue]E[/color] - interact"
+fit_content = true
+autowrap_mode = 0
+
+[node name="DoorHelp" type="RichTextLabel" parent="Overlay/Collums/RightUI"]
+visible = false
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("15_6ev66")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[right][color=lightblue]E[/color] - go through door"
+fit_content = true
+autowrap_mode = 0
+
+[node name="AddToBoardHelp" type="RichTextLabel" parent="Overlay/Collums/RightUI"]
+visible = false
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("15_6ev66")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[right][color=lightblue]F[/color] - add to board"
+fit_content = true
+autowrap_mode = 0
+
+[node name="DeleteElementHelp" type="RichTextLabel" parent="Overlay/Collums/RightUI"]
+visible = false
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("15_6ev66")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[right][color=lightblue]Shift + R[/color] - delete board element"
+fit_content = true
+autowrap_mode = 0
+
+[node name="BoardToggleHelp" type="RichTextLabel" parent="Overlay/Collums/RightUI"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("15_6ev66")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[right][color=lightblue]Tab[/color] - toggle board"
+fit_content = true
+autowrap_mode = 0

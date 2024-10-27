@@ -1,7 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://c73m21uddf5ye"]
+[gd_scene load_steps=11 format=3 uid="uid://c73m21uddf5ye"]
 
 [ext_resource type="Texture2D" uid="uid://cwqhqr5tnxgpm" path="res://textures/ui/board/board_background_UI.png" id="1_avnfn"]
 [ext_resource type="Script" path="res://scenes/UI/board_ui.gd" id="1_r52og"]
+[ext_resource type="Texture2D" uid="uid://dliqg0viaccks" path="res://textures/ui/button/button_normal.png" id="3_8p4ts"]
+[ext_resource type="Texture2D" uid="uid://daddylvcavti6" path="res://textures/ui/button/button_click.png" id="4_dirfb"]
+[ext_resource type="Texture2D" uid="uid://c47g2unwgbyl0" path="res://textures/ui/button/button_hover.png" id="5_l46hj"]
+[ext_resource type="Texture2D" uid="uid://cpo5dwxmo24wo" path="res://textures/ui/button/button_disabled.png" id="6_jf36i"]
+[ext_resource type="LabelSettings" uid="uid://c2bxjbp8lpkw3" path="res://settings/ingame_menu_buttons_settings.tres" id="7_5s8pn"]
 
 [sub_resource type="Gradient" id="Gradient_ylqva"]
 colors = PackedColorArray(0.0658754, 0.082576, 0.158838, 0.8, 0.2336, 0.24512, 0.32, 0.647059)
@@ -12,8 +17,24 @@ width = 800
 height = 600
 fill_to = Vector2(0.782051, 1)
 
-[node name="CanvasLayer" type="CanvasLayer"]
-visible = false
+[sub_resource type="GDScript" id="GDScript_3753c"]
+script/source = "extends TextureRect
+
+var creating_line = false
+
+var board_element_0 = null
+var board_element_1 = null
+
+func _process(delta: float) -> void:
+	if creating_line:
+		queue_redraw()
+
+func _draw() -> void:
+	if creating_line:
+		draw_line(board_element_0.position,$\".\".get_local_mouse_position(), Color.GREEN, 2.0 )
+"
+
+[node name="board_UI" type="CanvasLayer"]
 script = ExtResource("1_r52og")
 
 [node name="BackgroundContainer" type="MarginContainer" parent="."]
@@ -24,12 +45,65 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 0
 
 [node name="TextureRect" type="TextureRect" parent="BackgroundContainer"]
 layout_mode = 2
 texture = SubResource("GradientTexture2D_gi1gm")
 
+[node name="ButtonContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 50
+
+[node name="Collums" type="HBoxContainer" parent="ButtonContainer"]
+z_index = 1
+layout_mode = 2
+
+[node name="FillLeft" type="VBoxContainer" parent="ButtonContainer/Collums"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Rows" type="VBoxContainer" parent="ButtonContainer/Collums"]
+layout_mode = 2
+
+[node name="AddNoteButton" type="TextureButton" parent="ButtonContainer/Collums/Rows"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+texture_normal = ExtResource("3_8p4ts")
+texture_pressed = ExtResource("4_dirfb")
+texture_hover = ExtResource("5_l46hj")
+texture_disabled = ExtResource("6_jf36i")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ButtonContainer/Collums/Rows/AddNoteButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+text = "Add Note"
+label_settings = ExtResource("7_5s8pn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FillRight" type="VBoxContainer" parent="ButtonContainer/Collums"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="Board" type="Node2D" parent="."]
+metadata/TextureSize = Vector2(1200, 800)
 
 [node name="TextureRect" type="TextureRect" parent="Board"]
 anchors_preset = 15
@@ -43,3 +117,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_avnfn")
 stretch_mode = 1
+script = SubResource("GDScript_3753c")
+
+[connection signal="pressed" from="ButtonContainer/Collums/Rows/AddNoteButton" to="." method="_on_add_note_button_pressed"]

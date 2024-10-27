@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://b46knckxjdkiq"]
+
+[ext_resource type="PackedScene" uid="uid://cxwyhyyqufru4" path="res://scenes/UI/board_elements/board_element_base.tscn" id="1_wl567"]
+[ext_resource type="Script" path="res://scenes/UI/board_elements/board_element_note.gd" id="2_a87ig"]
+[ext_resource type="Texture2D" uid="uid://b4w0x7f4tp3vy" path="res://textures/ui/board/board_note_UI.png" id="3_23jng"]
+[ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="4_8qemr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w6uyw"]
+resource_local_to_scene = true
+size = Vector2(160, 158)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gdcp7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4vmk5"]
+
+[node name="board_element_note" instance=ExtResource("1_wl567")]
+script = ExtResource("2_a87ig")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_w6uyw")
+
+[node name="element_texture" parent="." index="1"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -81.0
+offset_right = 80.0
+offset_bottom = 79.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_23jng")
+
+[node name="NoteName" type="LineEdit" parent="." index="2"]
+offset_left = -76.0
+offset_top = -77.0
+offset_right = -29.0
+offset_bottom = -57.0
+theme_override_colors/selection_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_8qemr")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxTexture_gdcp7")
+placeholder_text = "Note name"
+expand_to_text_length = true
+
+[node name="NoteText" type="TextEdit" parent="." index="3"]
+offset_left = -72.0
+offset_top = -52.0
+offset_right = 69.0
+offset_bottom = 44.0
+size_flags_vertical = 3
+theme_override_colors/current_line_color = Color(0, 0, 0, 0)
+theme_override_colors/background_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = ExtResource("4_8qemr")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxTexture_4vmk5")
+placeholder_text = "Note text"
+wrap_mode = 1
+scroll_past_end_of_file = true

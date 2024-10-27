@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxwyhyyqufru4"]
+
+[ext_resource type="Script" path="res://scenes/UI/board_elements/board_element_base.gd" id="1_4ifnd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7oiv"]
+resource_local_to_scene = true
+
+[sub_resource type="Gradient" id="Gradient_2y3ls"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vyays"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_2y3ls")
+width = 20
+height = 20
+
+[node name="board_element_base" type="Area2D"]
+z_index = 1
+script = ExtResource("1_4ifnd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_a7oiv")
+
+[node name="element_texture" type="TextureRect" parent="."]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+texture = SubResource("GradientTexture2D_vyays")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

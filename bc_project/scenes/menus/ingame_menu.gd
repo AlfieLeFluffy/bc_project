@@ -3,23 +3,31 @@ extends CanvasLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$".".visible = false
+	get_viewport().connect("gui_focus_changed", _on_focus_changed)
+	visible = false
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ingame_menu_toggle"):
+	if event.is_action_pressed("ingame_menu_toggle") and not Global.FocusSet:
 		toggle_ingame_menu()
+	elif event.is_action_pressed("ingame_menu_toggle") and Global.FocusSet:
+		Global.FocusSet = false
+		get_viewport().gui_release_focus()
+		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
+func _on_focus_changed(control:Control) -> void:
+	Global.FocusSet = true
+
 func toggle_ingame_menu() -> void:
-	if $".".visible:
+	if visible:
 		Global.CloseMenu()
-		$".".visible = 0
+		visible = 0
 	else:
 		Global.OpenMenu()
-		$".".visible = 1
+		visible = 1
 
 
 func _on_continue_button_pressed() -> void:

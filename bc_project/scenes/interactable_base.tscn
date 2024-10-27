@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6sidrweg1p0"]
+[gd_scene load_steps=7 format=3 uid="uid://b6sidrweg1p0"]
 
 [ext_resource type="Script" path="res://scenes/interactable.gd" id="1_m6fs8"]
 [ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="2_5kqll"]
 [ext_resource type="Texture2D" uid="uid://bk0ke78wvceem" path="res://textures/symbols/textLable.png" id="2_igama"]
-[ext_resource type="Texture2D" uid="uid://bmtosx3662qc2" path="res://textures/symbols/interactiveLabelKey.png" id="4_20to0"]
 [ext_resource type="LabelSettings" uid="uid://d1lvtjugos2m4" path="res://settings/Interactable_label_settings.tres" id="4_oco1s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_356m4"]
@@ -16,20 +15,21 @@ shader = ExtResource("2_5kqll")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 
-[node name="Area2D" type="Area2D"]
+[node name="interactable_base" type="Area2D"]
 script = ExtResource("1_m6fs8")
 metadata/Name = "Interactable Object"
 metadata/Timeline = "000"
 metadata/Type = "Interactable"
 metadata/PlayerNodeName = "player"
+metadata/Description = "Test Description"
 
-[node name="LabelBG" type="Sprite2D" parent="."]
+[node name="Labels" type="Sprite2D" parent="."]
 visible = false
 z_index = 1
 position = Vector2(0, -15)
 texture = ExtResource("2_igama")
 
-[node name="Label" type="Label" parent="LabelBG"]
+[node name="Label" type="Label" parent="Labels"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -43,21 +43,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 text = "Test"
-label_settings = ExtResource("4_oco1s")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="InteractKeyBG" type="Sprite2D" parent="LabelBG"]
-visible = false
-position = Vector2(0, 30)
-texture = ExtResource("4_20to0")
-
-[node name="Label" type="Label" parent="LabelBG/InteractKeyBG"]
-offset_left = -7.0
-offset_top = -6.0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "_"
 label_settings = ExtResource("4_oco1s")
 horizontal_alignment = 1
 vertical_alignment = 1

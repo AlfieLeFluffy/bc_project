@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://l6dipa8asrta"]
+
+[ext_resource type="PackedScene" uid="uid://cxwyhyyqufru4" path="res://scenes/UI/board_elements/board_element_base.tscn" id="1_7ckma"]
+[ext_resource type="Script" path="res://scenes/UI/board_elements/board_element_item.gd" id="2_egriy"]
+[ext_resource type="Texture2D" uid="uid://c73e8062ccnlk" path="res://textures/ui/board/board_item_note_UI.png" id="2_unwog"]
+[ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="3_sivkv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wc6vw"]
+resource_local_to_scene = true
+size = Vector2(194, 130)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dlvox"]
+line_spacing = 0.0
+font = ExtResource("3_sivkv")
+font_color = Color(0, 0, 0, 1)
+
+[node name="board_element_base" instance=ExtResource("1_7ckma")]
+script = ExtResource("2_egriy")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_wc6vw")
+
+[node name="element_texture" parent="." index="1"]
+offset_left = -96.0
+offset_top = -63.0
+offset_right = 96.0
+offset_bottom = 65.0
+texture = ExtResource("2_unwog")
+
+[node name="ItemTexture" type="TextureRect" parent="." index="2"]
+offset_left = -87.0
+offset_top = -54.0
+offset_right = -21.0
+offset_bottom = 12.0
+
+[node name="ItemLabel" type="Label" parent="." index="3"]
+offset_left = -87.0
+offset_top = 14.0
+offset_right = -21.0
+offset_bottom = 30.0
+text = "test"
+label_settings = SubResource("LabelSettings_dlvox")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." index="4"]
+offset_left = -16.0
+offset_top = -55.0
+offset_right = 91.0
+offset_bottom = 60.0
+theme_override_fonts/normal_font = ExtResource("3_sivkv")
+theme_override_font_sizes/normal_font_size = 16
+text = "test"

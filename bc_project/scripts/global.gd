@@ -19,6 +19,11 @@ const TIMELINE_TIMEOUT = 1.0
 var Case = "000"
 var CaseIndex = 0
 
+var Active_Board_Element
+var Active_Interactive_Item
+
+var FocusSet = false
+
 func OpenMenu() -> void:
 	InMenu = true
 	MenuCounter += 1

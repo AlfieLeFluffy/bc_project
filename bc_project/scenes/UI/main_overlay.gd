@@ -10,17 +10,14 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	if not Global.TimelineShiftReady and TimelineTimeoutFlag:
-		$Overlay/HBoxContainer/VBoxContainer/TimelineUI/InteractKeyBG.play("timeout")
+		$Overlay/Collums/LeftUI/TimelineUI/InteractKeyBG.play("timeout")
 		$ScreenEffectContainer/TextureRect.texture.current_frame = 0
 		TimeoutFlag()
 
 func UpdateUI () -> void:
-	$Overlay/HBoxContainer/VBoxContainer/TimelineUI/Label.text = "Timeline: " + Global.Timeline
-	$Overlay/HBoxContainer/VBoxContainer/CaseUI/Label.text = "Case: " + Global.Case
-	$Overlay/HBoxContainer/VBoxContainer/TableTab/Label.text = Global.GetInputMapKey("table_toggle")
-	$Overlay/HBoxContainer/VBoxContainer/TimelineUI/InteractKeyBG/Label.text = Global.GetInputMapKey("timeline_shift")
-
-
+	$Overlay/Collums/LeftUI/TimelineUI/Label.text = "Timeline: " + Global.Timeline
+	$Overlay/Collums/LeftUI/CaseUI/Label.text = "Case: " + Global.Case
+	$Overlay/Collums/LeftUI/TimelineUI/InteractKeyBG/Label.text = Global.GetInputMapKey("timeline_shift")
 
 func TimeoutFlag() -> void:
 	TimelineTimeoutFlag = false
