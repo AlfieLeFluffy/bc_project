@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bt27y2pw7u6a7"]
 
-[ext_resource type="Script" path="res://scenes/UI/board_elements/line_element_base.gd" id="1_6m0vb"]
+[ext_resource type="Script" path="res://scenes/UI/board/board_elements/line_element_base.gd" id="1_6m0vb"]
 [ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="1_q2pfj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dccki"]

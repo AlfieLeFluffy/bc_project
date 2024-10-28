@@ -8,9 +8,9 @@ func _ready() -> void:
 func toggle_help(type,direction) -> void:
 	match type:
 		"interactive":
-			$InteractHelp.visible = direction
-			$AddToBoardHelp.visible = direction
+			$InteractiveLabel.visible = direction
+			$AddToBoardLabel.visible = direction
 		"deleteElement":
-			$DeleteElementHelp.visible = direction
+			$DeleteElementLabel.visible = direction
 		"door":
-			$DoorHelp.visible = direction
+			$DoorLabel.visible = direction

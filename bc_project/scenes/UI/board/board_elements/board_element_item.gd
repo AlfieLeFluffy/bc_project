@@ -1,4 +1,4 @@
-extends "res://scenes/UI/board_elements/board_element_base.gd"
+extends "res://scenes/UI/board/board_elements/board_element_base.gd"
 
 var texture
 var label

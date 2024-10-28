@@ -24,6 +24,10 @@ var Active_Interactive_Item
 
 var FocusSet = false
 
+# Board elements and lines
+var array_board_elements = []
+var array_line_elements = []
+
 func OpenMenu() -> void:
 	InMenu = true
 	MenuCounter += 1
