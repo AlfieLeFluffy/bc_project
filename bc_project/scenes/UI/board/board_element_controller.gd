@@ -22,7 +22,7 @@ func finalize_element() -> void:
 	Global.array_board_elements.append(board_element_instance)
 	get_parent().add_child(board_element_instance)
 	var random_offset = Vector2(rng.randi_range(-100,100),rng.randi_range(-100,100))
-	board_element_instance.position = Vector2(get_parent().get_node("TextureRect").size/2+random_offset)
+	board_element_instance.position = Vector2(get_parent().get_node("BoardBackground").size/2+random_offset)
 	board_element_instance = null
 	
 func create_note() -> void:

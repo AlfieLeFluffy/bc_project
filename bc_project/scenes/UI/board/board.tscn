@@ -41,14 +41,14 @@ texture = SubResource("GradientTexture2D_gi1gm")
 script = ExtResource("7_84m22")
 metadata/TextureSize = Vector2(1200, 800)
 
-[node name="TextureRect" type="TextureRect" parent="BoardControler"]
+[node name="BoardBackground" type="TextureRect" parent="BoardControler"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 10.0
 offset_top = 10.0
-offset_right = 1210.0
-offset_bottom = 810.0
+offset_right = 1510.0
+offset_bottom = 1010.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_avnfn")

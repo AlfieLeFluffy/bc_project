@@ -4,14 +4,17 @@ var active = false
 var dragged = false
 
 var parent
-var mouse_offset
+var board
 var board_size
+
+var mouse_offset
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	element_setup()
 	parent = get_parent()
-	board_size = parent.get_meta("TextureSize")
+	board = parent.get_node("BoardBackground")
+	board_size = board.size
 
 func element_setup() -> void:
 	pass
