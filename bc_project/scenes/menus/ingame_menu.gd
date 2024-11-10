@@ -10,18 +10,17 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ingame_menu_toggle") and not Global.FocusSet:
 		toggle_ingame_menu()
 	elif event.is_action_pressed("ingame_menu_toggle") and Global.FocusSet:
-		Global.FocusSet = false
-		get_viewport().gui_release_focus()
+		Global.release_focus()
 
 func _on_focus_changed(control:Control) -> void:
 	Global.FocusSet = true
 
 func toggle_ingame_menu() -> void:
 	if visible:
-		Global.CloseMenu()
+		Global.close_menu()
 		visible = 0
 	else:
-		Global.OpenMenu()
+		Global.open_menu()
 		visible = 1
 
 

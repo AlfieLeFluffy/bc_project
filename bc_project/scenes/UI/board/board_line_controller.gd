@@ -16,44 +16,48 @@ func _ready() -> void:
 	Signals.connect('delete_line', delete_line_element)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel") and drawing:
-		end_drawing()
 	
-	if event.is_action_pressed("create_line"):
-		print(Global.Active_Board_Element)
+	if event.is_action_pressed("create_line") and Global.Active_Board_Element != null and not drawing:
+		Global.release_focus()
 		if not drawing:
 			start_drawing()
 	
-	if event.is_action_released("create_line"):
-		print(Global.Active_Board_Element)
+	if event.is_action_pressed("ui_cancel") and drawing:
+		end_drawing()
+		
+	if event.is_action_released("create_line") and drawing:
 		end_drawing()
 
 func start_drawing() -> void:
-	if Global.Active_Board_Element != null:
-		drawing = true
-		line_element_instance = line_element.instantiate()
-		line_element_instance.drawing = true
-		line_element_instance.thickness = 2.0
-		line_element_instance.color = Color.LIGHT_BLUE
-		line_element_instance.board_element_0 = Global.Active_Board_Element
-		get_parent().add_child(line_element_instance)
-		line_element_instance.position = get_parent().get_local_mouse_position()
+	drawing = true
+	line_element_instance = line_element.instantiate()
+	line_element_instance.drawing = true
+	line_element_instance.thickness = 2.0
+	line_element_instance.color = Color.LIGHT_BLUE
+	line_element_instance.board_element_0 = Global.Active_Board_Element
+	get_parent().add_child(line_element_instance)
+	line_element_instance.position = get_parent().get_local_mouse_position()
 
 func end_drawing() -> void:
-	if Global.Active_Board_Element == null and drawing:
-		line_element_instance.queue_free()
-		line_element_instance = null
-		drawing = false
-	elif Global.Active_Board_Element != null and drawing:
+	if Global.Active_Board_Element == null:
+		line_queue_free()
+	elif Global.Active_Board_Element != null:
 		if Global.Active_Board_Element == line_element_instance.board_element_0:
-			line_element_instance.queue_free()
+			line_queue_free()
 		else:
 			line_element_instance.board_element_1 = Global.Active_Board_Element
 			line_element_instance.toggle_description()
 			Global.array_line_elements.append(line_element_instance)
 			line_element_instance.drawing = false
-		line_element_instance = null
-		drawing = false
+			reset_state()
+
+func line_queue_free() -> void:
+	line_element_instance.queue_free()
+	reset_state()
+
+func reset_state() -> void:
+	line_element_instance = null
+	drawing = false
 
 func delete_line_element(line) -> void:
 	var index = Global.array_line_elements.find(line)

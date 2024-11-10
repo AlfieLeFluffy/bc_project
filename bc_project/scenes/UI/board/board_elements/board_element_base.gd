@@ -27,6 +27,7 @@ func _input(event: InputEvent) -> void:
 		dragged = false
 	
 	if active and event.is_action_pressed("destroy_board_element") and not Global.FocusSet:
+		Global.release_focus()
 		Signals.emit_signal('delete_element',self)
 		
 func _physics_process(delta: float) -> void:
@@ -60,14 +61,12 @@ func _on_mouse_exited() -> void:
 """
 
 func _on_mouse_shape_entered(shape_idx: int) -> void:
-	print("in: " + $".".to_string())
 	Global.Active_Board_Element = $"."
 	Signals.emit_signal("help_text_toggle","deleteElement",1)
 	active = true
 
 
 func _on_mouse_shape_exited(shape_idx: int) -> void:
-	print("out: " + $".".to_string())
 	Global.Active_Board_Element = null
 	Signals.emit_signal("help_text_toggle","deleteElement",0)
 	active = false

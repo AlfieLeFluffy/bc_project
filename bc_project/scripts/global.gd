@@ -19,25 +19,33 @@ const TIMELINE_TIMEOUT = 1.0
 var Case = "000"
 var CaseIndex = 0
 
+# Veriables used in board control
 var Active_Board_Element
 var Active_Interactive_Item
-
-var FocusSet = false
 
 # Board elements and lines
 var array_board_elements = []
 var array_line_elements = []
 
-func OpenMenu() -> void:
+# Focus variables
+var FocusSet = false
+
+func open_menu() -> void:
 	InMenu = true
 	MenuCounter += 1
 	
-func CloseMenu() -> void:
+func close_menu() -> void:
 	MenuCounter -= 1
 	if MenuCounter <= 0:
 		MenuCounter = 0
 		InMenu = false
 
-func GetInputMapKey(inputName) -> String:
+func get_input_key(inputName) -> String:
 	var output = InputMap.action_get_events(inputName)[0].as_text().split("(")[0]
 	return output.left(output.length()-1)
+
+func release_focus() -> void:
+	if FocusSet:
+		get_viewport().gui_release_focus()
+		Global.FocusSet = false
+	

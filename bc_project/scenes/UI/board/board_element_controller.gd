@@ -38,9 +38,12 @@ func create_item(_texture, _label, _text) -> void:
 
 func delete_board_element(element) -> void:
 	var index = Global.array_board_elements.find(element)
+	var list = []
 	for line in Global.array_line_elements:
 		if line.board_element_0 == element or line.board_element_1 == element:
-			Signals.emit_signal('delete_line',line)
+			list.append(line)
+	for line in list:
+		Signals.emit_signal('delete_line',line)
 	Global.array_board_elements[index].queue_free()
 	Global.array_board_elements.remove_at(index)
 	Signals.emit_signal("help_text_toggle","deleteElement",0)

@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 func UpdateUI () -> void:
 	$Overlay/Collums/LeftUI/TimelineUI/Label.text = "Timeline: " + Global.Timeline
 	$Overlay/Collums/LeftUI/CaseUI/Label.text = "Case: " + Global.Case
-	$Overlay/Collums/LeftUI/TimelineUI/InteractKeyBG/Label.text = Global.GetInputMapKey("timeline_shift")
+	$Overlay/Collums/LeftUI/TimelineUI/InteractKeyBG/Label.text = Global.get_input_key("timeline_shift")
 
 func TimeoutFlag() -> void:
 	TimelineTimeoutFlag = false

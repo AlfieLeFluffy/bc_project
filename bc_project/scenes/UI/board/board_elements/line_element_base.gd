@@ -28,6 +28,7 @@ func toggle_description() -> void:
 
 func _input(event: InputEvent) -> void:
 	if active and event.is_action_pressed("destroy_board_element") and not Global.FocusSet:
+		Global.release_focus()
 		Signals.emit_signal('delete_line',self)
 
 func _on_mouse_entered() -> void:

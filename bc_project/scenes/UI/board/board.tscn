@@ -19,6 +19,7 @@ height = 600
 fill_to = Vector2(0.782051, 1)
 
 [node name="board_UI" type="CanvasLayer"]
+visible = false
 script = ExtResource("1_r52og")
 
 [node name="BackgroundContainer" type="MarginContainer" parent="."]
