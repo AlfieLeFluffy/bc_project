@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c73m21uddf5ye"]
+[gd_scene load_steps=17 format=3 uid="uid://c73m21uddf5ye"]
 
 [ext_resource type="Texture2D" uid="uid://cwqhqr5tnxgpm" path="res://textures/ui/board/board_background_UI.png" id="1_avnfn"]
 [ext_resource type="Script" path="res://scenes/UI/board/board_controler.gd" id="1_r52og"]
@@ -18,8 +18,40 @@ width = 800
 height = 600
 fill_to = Vector2(0.782051, 1)
 
+[sub_resource type="Gradient" id="Gradient_rfis8"]
+offsets = PackedFloat32Array(0.491979, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b8f32"]
+gradient = SubResource("Gradient_rfis8")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.512821, 0.495726)
+
+[sub_resource type="Gradient" id="Gradient_mfdub"]
+offsets = PackedFloat32Array(0.465241, 1)
+colors = PackedColorArray(3.27289e-06, 0.656007, 0.950405, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8n1dx"]
+gradient = SubResource("Gradient_mfdub")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.487179, 0.491453)
+
+[sub_resource type="Gradient" id="Gradient_1jnkq"]
+offsets = PackedFloat32Array(0.593583, 1)
+colors = PackedColorArray(0.187074, 0.732006, 3.85046e-07, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1iujs"]
+gradient = SubResource("Gradient_1jnkq")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.504274)
+
 [node name="board_UI" type="CanvasLayer"]
-visible = false
 script = ExtResource("1_r52og")
 
 [node name="BackgroundContainer" type="MarginContainer" parent="."]
@@ -91,6 +123,34 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center] Create note"
 
+[node name="ColorSetterContainer" type="MarginContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -81.0
+offset_right = 203.0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 35
+
+[node name="ColorPicker" type="OptionButton" parent="ColorSetterContainer"]
+layout_mode = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "Red"
+popup/item_0/icon = SubResource("GradientTexture2D_b8f32")
+popup/item_1/text = "Green"
+popup/item_1/icon = SubResource("GradientTexture2D_8n1dx")
+popup/item_1/id = 1
+popup/item_2/text = "Blue"
+popup/item_2/icon = SubResource("GradientTexture2D_1iujs")
+popup/item_2/id = 2
+
 [connection signal="mouse_entered" from="ButtonContainer/CreateNoteButton" to="ButtonContainer/CreateNoteButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="ButtonContainer/CreateNoteButton" to="ButtonContainer/CreateNoteButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="ButtonContainer/CreateNoteButton" to="BoardControler/BoardElementController" method="_on_button_symbol_plus_pressed"]
+[connection signal="item_selected" from="ColorSetterContainer/ColorPicker" to="BoardControler/BoardLineController" method="_on_color_picker_item_selected"]
