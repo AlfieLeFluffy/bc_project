@@ -1,5 +1,8 @@
 extends Node
 
+# Signals for updating player overlay
+signal update_overlay()
+
 # Signals for deleting board elements
 signal delete_line(line)
 signal delete_element(element)

@@ -54,6 +54,7 @@ shape = SubResource("CircleShape2D_vhha4")
 [node name="CameraControls" parent="." instance=ExtResource("5_2uxfp")]
 
 [node name="main_overlay" parent="." instance=ExtResource("4_ej0mm")]
+visible = false
 
 [node name="board_ui" parent="." instance=ExtResource("6_hlohb")]
 

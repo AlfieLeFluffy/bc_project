@@ -4,6 +4,9 @@ extends CharacterBody2D
 const SPEED = 130.0
 const JUMP_VELOCITY = -200.0
 
+func _ready() -> void:
+	Signals.connect("update_overlay",update_overlay)
+
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -24,5 +27,5 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func Update() -> void:
+func update_overlay() -> void:
 	$main_overlay.UpdateUI()
