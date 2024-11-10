@@ -5,21 +5,18 @@
 [ext_resource type="Texture2D" uid="uid://b4w0x7f4tp3vy" path="res://textures/ui/board/board_note_UI.png" id="3_23jng"]
 [ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="4_8qemr"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w6uyw"]
-resource_local_to_scene = true
-size = Vector2(208, 212)
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gdcp7"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4vmk5"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w6uyw"]
+resource_local_to_scene = true
+size = Vector2(218, 220)
+
 [node name="board_element_note" instance=ExtResource("1_wl567")]
 script = ExtResource("2_a87ig")
 
-[node name="CollisionShape2D" parent="." index="0"]
-shape = SubResource("RectangleShape2D_w6uyw")
-
-[node name="element_texture" parent="." index="1"]
+[node name="element_texture" parent="." index="0"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -31,10 +28,10 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_23jng")
 
-[node name="NoteName" type="LineEdit" parent="." index="2"]
+[node name="NoteName" type="LineEdit" parent="." index="1"]
 offset_left = -98.0
 offset_top = -101.0
-offset_right = -14.0
+offset_right = -12.0
 offset_bottom = -65.0
 theme_override_colors/selection_color = Color(0, 0, 0, 1)
 theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
@@ -46,7 +43,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_gdcp7")
 placeholder_text = "Note name"
 expand_to_text_length = true
 
-[node name="NoteText" type="TextEdit" parent="." index="3"]
+[node name="NoteText" type="TextEdit" parent="." index="2"]
 offset_left = -98.0
 offset_top = -61.0
 offset_right = 95.0
@@ -60,3 +57,6 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_4vmk5")
 placeholder_text = "Note text"
 wrap_mode = 1
 scroll_past_end_of_file = true
+
+[node name="CollisionShape2D" parent="." index="3"]
+shape = SubResource("RectangleShape2D_w6uyw")

@@ -47,9 +47,8 @@ func restrain_element() -> void:
 		
 	if position.y < $element_texture.texture.get_width()/2:
 		position.y = $element_texture.texture.get_height()/2
-
+"""
 func _on_mouse_entered() -> void:
-	
 	Signals.emit_signal("help_text_toggle","deleteElement",1)
 	active = true
 	Global.Active_Board_Element = $"."
@@ -58,3 +57,17 @@ func _on_mouse_exited() -> void:
 	Signals.emit_signal("help_text_toggle","deleteElement",0)
 	active = false
 	Global.Active_Board_Element = null
+"""
+
+func _on_mouse_shape_entered(shape_idx: int) -> void:
+	print("in: " + $".".to_string())
+	Global.Active_Board_Element = $"."
+	Signals.emit_signal("help_text_toggle","deleteElement",1)
+	active = true
+
+
+func _on_mouse_shape_exited(shape_idx: int) -> void:
+	print("out: " + $".".to_string())
+	Global.Active_Board_Element = null
+	Signals.emit_signal("help_text_toggle","deleteElement",0)
+	active = false

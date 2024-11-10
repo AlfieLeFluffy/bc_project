@@ -20,10 +20,12 @@ func _input(event: InputEvent) -> void:
 		end_drawing()
 	
 	if event.is_action_pressed("create_line"):
+		print(Global.Active_Board_Element)
 		if not drawing:
 			start_drawing()
 	
 	if event.is_action_released("create_line"):
+		print(Global.Active_Board_Element)
 		end_drawing()
 
 func start_drawing() -> void:
