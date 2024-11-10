@@ -17,12 +17,11 @@ func _physics_process(delta: float) -> void:
 		position = (board_element_0.position).lerp(board_element_1.position, 0.5); 
 
 func _draw() -> void:
-	
 	if drawing:
 		draw_line(board_element_0.position-position,$".".get_local_mouse_position(), color, thickness )
 	
 	if not drawing and is_instance_valid(board_element_0) and is_instance_valid(board_element_1):
-		draw_line(board_element_0.position-position,board_element_1.position-position, color, thickness )
+		draw_line(board_element_0.position-position,board_element_1.position-position, color, thickness)
 
 func toggle_description() -> void:
 	$ConnectionText.visible = not $ConnectionText.visible

@@ -7,7 +7,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w6uyw"]
 resource_local_to_scene = true
-size = Vector2(160, 158)
+size = Vector2(208, 212)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gdcp7"]
 
@@ -32,30 +32,30 @@ grow_vertical = 2
 texture = ExtResource("3_23jng")
 
 [node name="NoteName" type="LineEdit" parent="." index="2"]
-offset_left = -76.0
-offset_top = -77.0
-offset_right = -29.0
-offset_bottom = -57.0
+offset_left = -98.0
+offset_top = -101.0
+offset_right = -14.0
+offset_bottom = -65.0
 theme_override_colors/selection_color = Color(0, 0, 0, 1)
 theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_8qemr")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxTexture_gdcp7")
 placeholder_text = "Note name"
 expand_to_text_length = true
 
 [node name="NoteText" type="TextEdit" parent="." index="3"]
-offset_left = -72.0
-offset_top = -52.0
-offset_right = 69.0
-offset_bottom = 44.0
+offset_left = -98.0
+offset_top = -61.0
+offset_right = 95.0
+offset_bottom = 87.0
 size_flags_vertical = 3
 theme_override_colors/current_line_color = Color(0, 0, 0, 0)
 theme_override_colors/background_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("4_8qemr")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxTexture_4vmk5")
 placeholder_text = "Note text"
 wrap_mode = 1

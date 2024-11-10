@@ -7,47 +7,49 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wc6vw"]
 resource_local_to_scene = true
-size = Vector2(194, 130)
+size = Vector2(238, 174)
 
 [sub_resource type="LabelSettings" id="LabelSettings_dlvox"]
 line_spacing = 0.0
 font = ExtResource("3_sivkv")
+font_size = 20
 font_color = Color(0, 0, 0, 1)
 
 [node name="board_element_base" instance=ExtResource("1_7ckma")]
 script = ExtResource("2_egriy")
 
 [node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_wc6vw")
 
 [node name="element_texture" parent="." index="1"]
-offset_left = -96.0
-offset_top = -63.0
-offset_right = 96.0
-offset_bottom = 65.0
+offset_left = -120.0
+offset_top = -98.0
+offset_right = 120.0
+offset_bottom = 78.0
 texture = ExtResource("2_unwog")
 
 [node name="ItemTexture" type="TextureRect" parent="." index="2"]
-offset_left = -87.0
-offset_top = -54.0
-offset_right = -21.0
-offset_bottom = 12.0
+offset_left = -111.0
+offset_top = -89.0
+offset_right = -29.0
+offset_bottom = -7.0
 
 [node name="ItemLabel" type="Label" parent="." index="3"]
-offset_left = -87.0
-offset_top = 14.0
-offset_right = -21.0
-offset_bottom = 30.0
+offset_left = -111.0
+offset_top = -5.0
+offset_right = -29.0
+offset_bottom = 15.0
 text = "test"
 label_settings = SubResource("LabelSettings_dlvox")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." index="4"]
-offset_left = -16.0
-offset_top = -55.0
-offset_right = 91.0
-offset_bottom = 60.0
+offset_left = -23.0
+offset_top = -89.0
+offset_right = 114.0
+offset_bottom = 72.0
 theme_override_fonts/normal_font = ExtResource("3_sivkv")
-theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/normal_font_size = 22
 text = "test"

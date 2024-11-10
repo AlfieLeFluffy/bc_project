@@ -3,6 +3,8 @@ extends Node
 
 var board_element_instance
 
+var rng = RandomNumberGenerator.new()
+
 # Board ELements preloaded for instantiation
 var board_element = preload("res://scenes/UI/board/board_elements/board_element_base.tscn")
 var note_element = preload("res://scenes/UI/board/board_elements/board_element_note.tscn")
@@ -19,7 +21,8 @@ func _on_add_note_button_pressed() -> void:
 func finalize_element() -> void:
 	Global.array_board_elements.append(board_element_instance)
 	get_parent().add_child(board_element_instance)
-	board_element_instance.position = Vector2(get_parent().get_node("TextureRect").size/2)
+	var random_offset = Vector2(rng.randi_range(-100,100),rng.randi_range(-100,100))
+	board_element_instance.position = Vector2(get_parent().get_node("TextureRect").size/2+random_offset)
 	board_element_instance = null
 	
 func create_note() -> void:

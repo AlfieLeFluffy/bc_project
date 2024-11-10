@@ -27,7 +27,8 @@ func _input(event: InputEvent) -> void:
 		end_drawing()
 	
 	if event.is_action_pressed("create_line"):
-		start_drawing()
+		if not drawing:
+			start_drawing()
 	
 	if event.is_action_released("create_line"):
 		end_drawing()
