@@ -12,11 +12,6 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("ingame_menu_toggle") and Global.FocusSet:
 		Global.FocusSet = false
 		get_viewport().gui_release_focus()
-		
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func _on_focus_changed(control:Control) -> void:
 	Global.FocusSet = true

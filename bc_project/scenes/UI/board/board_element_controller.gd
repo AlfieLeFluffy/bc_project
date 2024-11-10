@@ -15,9 +15,9 @@ func _ready() -> void:
 	Signals.connect('delete_element', delete_board_element)
 	Signals.connect('create_item_element', create_item)
 
-func _on_add_note_button_pressed() -> void:
+func _on_button_symbol_plus_pressed() -> void:
 	create_note()
-	
+
 func finalize_element() -> void:
 	Global.array_board_elements.append(board_element_instance)
 	get_parent().add_child(board_element_instance)

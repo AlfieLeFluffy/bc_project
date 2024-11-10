@@ -28,11 +28,7 @@ func _input(event: InputEvent) -> void:
 	
 	if active and event.is_action_pressed("destroy_board_element") and not Global.FocusSet:
 		Signals.emit_signal('delete_element',self)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
+		
 func _physics_process(delta: float) -> void:
 	if Global.InMenu and visible and dragged:
 		var mouse_possition = get_global_mouse_position()

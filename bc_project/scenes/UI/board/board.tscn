@@ -1,14 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://c73m21uddf5ye"]
+[gd_scene load_steps=11 format=3 uid="uid://c73m21uddf5ye"]
 
 [ext_resource type="Texture2D" uid="uid://cwqhqr5tnxgpm" path="res://textures/ui/board/board_background_UI.png" id="1_avnfn"]
 [ext_resource type="Script" path="res://scenes/UI/board/board_controler.gd" id="1_r52og"]
 [ext_resource type="Script" path="res://scenes/UI/board/board_element_controller.gd" id="2_o58ty"]
-[ext_resource type="Texture2D" uid="uid://dliqg0viaccks" path="res://textures/ui/button/button_normal.png" id="3_8p4ts"]
-[ext_resource type="Texture2D" uid="uid://daddylvcavti6" path="res://textures/ui/button/button_click.png" id="4_dirfb"]
-[ext_resource type="Texture2D" uid="uid://c47g2unwgbyl0" path="res://textures/ui/button/button_hover.png" id="5_l46hj"]
-[ext_resource type="Texture2D" uid="uid://cpo5dwxmo24wo" path="res://textures/ui/button/button_disabled.png" id="6_jf36i"]
-[ext_resource type="LabelSettings" uid="uid://c2bxjbp8lpkw3" path="res://settings/ingame_menu_buttons_settings.tres" id="7_5s8pn"]
+[ext_resource type="PackedScene" uid="uid://c3cr13ksd4qam" path="res://scenes/UI/buttons/button_symbol_plus.tscn" id="6_oi6ex"]
 [ext_resource type="Script" path="res://scenes/UI/board/board_movement.gd" id="7_84m22"]
+[ext_resource type="Script" path="res://scenes/UI/buttons/create_note_button.gd" id="7_gv8j2"]
+[ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="8_ryf4i"]
 [ext_resource type="Script" path="res://scenes/UI/board/board_line_controller.gd" id="10_tsqgj"]
 
 [sub_resource type="Gradient" id="Gradient_ylqva"]
@@ -64,8 +62,8 @@ script = ExtResource("10_tsqgj")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -129.0
-offset_right = 129.0
+offset_left = -41.0
+offset_right = 41.0
 offset_bottom = 90.0
 grow_horizontal = 2
 theme_override_constants/margin_left = 25
@@ -73,37 +71,22 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="Collums" type="HBoxContainer" parent="ButtonContainer"]
-z_index = 1
+[node name="CreateNoteButton" parent="ButtonContainer" instance=ExtResource("6_oi6ex")]
 layout_mode = 2
-size_flags_vertical = 0
+script = ExtResource("7_gv8j2")
 
-[node name="Rows" type="VBoxContainer" parent="ButtonContainer/Collums"]
-layout_mode = 2
+[node name="RichTextLabel" type="RichTextLabel" parent="ButtonContainer/CreateNoteButton"]
+visible = false
+layout_mode = 0
+offset_left = -57.0
+offset_top = 31.0
+offset_right = 89.0
+offset_bottom = 65.0
+theme_override_fonts/normal_font = ExtResource("8_ryf4i")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center] Create note"
 
-[node name="AddNoteButton" type="TextureButton" parent="ButtonContainer/Collums/Rows"]
-custom_minimum_size = Vector2(200, 40)
-layout_mode = 2
-focus_mode = 0
-mouse_filter = 1
-texture_normal = ExtResource("3_8p4ts")
-texture_pressed = ExtResource("4_dirfb")
-texture_hover = ExtResource("5_l46hj")
-texture_disabled = ExtResource("6_jf36i")
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="ButtonContainer/Collums/Rows/AddNoteButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 4.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-text = "Add Note"
-label_settings = ExtResource("7_5s8pn")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[connection signal="pressed" from="ButtonContainer/Collums/Rows/AddNoteButton" to="BoardControler/BoardElementController" method="_on_add_note_button_pressed"]
+[connection signal="mouse_entered" from="ButtonContainer/CreateNoteButton" to="ButtonContainer/CreateNoteButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ButtonContainer/CreateNoteButton" to="ButtonContainer/CreateNoteButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="ButtonContainer/CreateNoteButton" to="BoardControler/BoardElementController" method="_on_button_symbol_plus_pressed"]
