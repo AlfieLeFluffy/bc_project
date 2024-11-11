@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 
 var dragged = false
@@ -13,12 +13,12 @@ func _physics_process(delta: float) -> void:
 		if horizontal or vertical:
 			$Board.position = $Board.position + direction
 	el"""
-	if Global.InMenu and visible and dragged:
+	if dragged:
 		position = get_global_mouse_position() + mouse_offset
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("drag_board"):
+	if event.is_action_pressed("drag_board") and visible:
 		dragged = true
 		mouse_offset = position - get_global_mouse_position()
-	elif event.is_action_released("drag_board"):
+	elif event.is_action_released("drag_board") and visible:
 		dragged = false

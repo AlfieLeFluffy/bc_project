@@ -25,13 +25,12 @@ func _input(event: InputEvent) -> void:
 		mouse_offset = $".".position - $".".get_global_mouse_position()
 	elif event.is_action_released("drag_element"):
 		dragged = false
-	
-	if active and event.is_action_pressed("destroy_board_element") and not Global.FocusSet:
+	elif active and event.is_action_pressed("destroy_board_element") and not Global.FocusSet:
 		Global.release_focus()
 		Signals.emit_signal('delete_element',self)
-		
+
 func _physics_process(delta: float) -> void:
-	if Global.InMenu and visible and dragged:
+	if visible and dragged:	
 		var mouse_possition = get_global_mouse_position()
 		position = mouse_possition + mouse_offset
 		restrain_element()

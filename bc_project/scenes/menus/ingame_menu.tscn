@@ -29,7 +29,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-mouse_filter = 0
 
 [node name="TextureRect" type="TextureRect" parent="BackgroundContainer"]
 layout_mode = 2
@@ -58,6 +57,7 @@ alignment = 1
 [node name="ContinueButton" type="TextureButton" parent="MenuContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("2_21epg")
 texture_pressed = ExtResource("3_4cisa")
 texture_hover = ExtResource("4_ah7om")
@@ -81,6 +81,7 @@ vertical_alignment = 1
 [node name="SettingsButton" type="TextureButton" parent="MenuContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("2_21epg")
 texture_pressed = ExtResource("3_4cisa")
 texture_hover = ExtResource("4_ah7om")
@@ -105,6 +106,7 @@ vertical_alignment = 1
 [node name="QuitButton" type="TextureButton" parent="MenuContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("2_21epg")
 texture_pressed = ExtResource("3_4cisa")
 texture_hover = ExtResource("4_ah7om")

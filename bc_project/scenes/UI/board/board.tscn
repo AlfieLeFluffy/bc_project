@@ -67,13 +67,18 @@ mouse_filter = 0
 
 [node name="TextureRect" type="TextureRect" parent="BackgroundContainer"]
 layout_mode = 2
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_gi1gm")
 
-[node name="BoardControler" type="Node2D" parent="."]
+[node name="BoardControler" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 1
 script = ExtResource("7_84m22")
 metadata/TextureSize = Vector2(1200, 800)
 
 [node name="BoardBackground" type="TextureRect" parent="BoardControler"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 		Signals.emit_signal("help_text_toggle",Global.help_signal_type.door,false)
 		
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and playerInReach and Global.Active_Interactive_Item == null:
 		player.visible = 0
 		await get_tree().create_timer(0.1).timeout

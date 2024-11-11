@@ -79,6 +79,5 @@ theme_override_constants/margin_bottom = 5
 
 [node name="helpLabels" parent="helpLabels/MarginContainer" instance=ExtResource("7_lxwgw")]
 layout_mode = 2
-mouse_filter = 2
 
 [node name="ingame_menu" parent="." instance=ExtResource("7_m38fl")]
