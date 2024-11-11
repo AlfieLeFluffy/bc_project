@@ -4,7 +4,7 @@ extends Node
 
 func dialog_start() -> void:
 	if parent.dialogs.size() > 0:
-		DialogScripts.start_dialog(parent.dialogs[parent.dialogIndex],parent.heads[parent.headIndex])
+		DialogScripts.start_dialog(parent.dialogs[parent.dialogIndex],parent.titles[parent.titleIndex])
 
 """
 --- Dialog control functions
@@ -23,13 +23,13 @@ func append_dialog_file(filepath:String) -> void:
 	parent.dialogs.append(filepath)
 
 func increment_head_index(overflowFlag:bool = false) -> void:
-	if parent.headIndex + 1 >= parent.heads.size() and not overflowFlag:
-		parent.headIndex = 0
+	if parent.titleIndex + 1 >= parent.titles.size() and not overflowFlag:
+		parent.titleIndex = 0
 	else:
-		parent.headIndex = parent.headIndex + 1
+		parent.titleIndex = parent.titleIndex + 1
 
 func set_head_index(index:int) -> void:
-	parent.headIndex = index
+	parent.titleIndex = index
 
 func append_head_name(headName:String) -> void:
-	parent.heads.append(headName)
+	parent.titles.append(headName)

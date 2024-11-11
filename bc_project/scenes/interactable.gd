@@ -8,7 +8,6 @@ enum type_enum {interactable, noninteractable}
 @export var type: type_enum
 @export var description: String
 
-
 @export_group("interactive flags")
 @export var active: bool = false
 @export var mouseHover: bool = false
@@ -17,8 +16,8 @@ enum type_enum {interactable, noninteractable}
 @export_group("dialog")
 @export var dialogIndex: int = 0 
 @export var dialogs: Array[DialogueResource]
-@export var headIndex: int = 0 
-@export var heads: PackedStringArray
+@export var titleIndex: int = 0 
+@export var titles: PackedStringArray
 
 """
 --- Ready functions
@@ -68,34 +67,14 @@ func get_sprite_from_current_frame() -> Texture2D:
 	return currentSprite
 
 """
---- Area and mouse entry and leave functions
+--- Activate/deactivate interactivity
 """
 
-func _on_mouse_entered() -> void:
+func activate_hover() -> void:
 	$AnimatedSprite2D.material.set("shader_parameter/line_thickness",1)
-	mouseHover = true
-	if inRadius:
-		activate_interactivity()
 
-
-func _on_mouse_exited() -> void:
+func deactivate_hover() -> void:
 	$AnimatedSprite2D.material.set("shader_parameter/line_thickness",0)
-	mouseHover = false
-	if inRadius:
-		deactivate_interactivity()
-
-
-func _on_area_entered(area: Area2D) -> void:
-	if area.name == Global.interactive_radius_name:
-		if mouseHover:
-			activate_interactivity()
-		inRadius = true
-
-func _on_area_exited(area: Area2D) -> void:
-	if area.name == Global.interactive_radius_name:
-		if mouseHover:
-			deactivate_interactivity()
-		inRadius = false
 
 func activate_interactivity() -> void:
 	$Labels.visible = true

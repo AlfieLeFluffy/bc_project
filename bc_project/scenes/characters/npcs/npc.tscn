@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://ntmpwduq5xno"]
+
+[ext_resource type="Script" path="res://scenes/characters/npcs/npc_controller.gd" id="1_osmvx"]
+[ext_resource type="Script" path="res://scripts/dialog_handler.gd" id="2_oy5yp"]
+[ext_resource type="Script" path="res://scripts/interactive_handler.gd" id="3_4ik2d"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_okuox"]
+resource_local_to_scene = true
+radius = 13.0
+height = 69.0
+
+[node name="NPC" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_osmvx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_okuox")
+
+[node name="DialogHandler" type="Node" parent="."]
+script = ExtResource("2_oy5yp")
+
+[node name="InteractiveHandler" type="Node" parent="."]
+script = ExtResource("3_4ik2d")
