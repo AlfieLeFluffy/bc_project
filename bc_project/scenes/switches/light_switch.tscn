@@ -39,6 +39,7 @@ animations = [{
 
 [node name="light_switch" instance=ExtResource("1_g0vw7")]
 script = ExtResource("2_di4um")
+item_name = "Light switch"
 metadata/Name = "Light switch"
 
 [node name="CollisionShape2D" parent="." index="1"]

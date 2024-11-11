@@ -30,8 +30,10 @@ animations = [{
 }]
 
 [node name="ThickMug" instance=ExtResource("1_wjbls")]
-metadata/Name = "Thick Mug"
-metadata/Timeline = "001"
+item_name = "Thick mug"
+timeline = "001"
+dialogs = PackedStringArray("res://dialog/test_dialogue.dialogue")
+heads = PackedStringArray("test")
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("RectangleShape2D_ujfcp")

@@ -332,6 +332,11 @@ position = Vector2(200, 184)
 
 [node name="light_switch" parent="Timelines/001" instance=ExtResource("7_wo4n4")]
 position = Vector2(73, 94)
+timeline = "001"
+metadata/Timeline = "000"
+metadata/Type = "Interactable"
+metadata/PlayerNodeName = "player"
+metadata/Description = "Test Description"
 
 [node name="lights" type="Node2D" parent="Timelines/001/light_switch"]
 position = Vector2(12, 0)
@@ -353,6 +358,9 @@ position = Vector2(274, 140)
 
 [node name="ThickMug" parent="Timelines/001" instance=ExtResource("5_hqxr4")]
 position = Vector2(255, 140)
+metadata/Type = "Interactable"
+metadata/PlayerNodeName = "player"
+metadata/Description = "Test Description"
 
 [node name="002" type="Node2D" parent="Timelines"]
 visible = false
@@ -360,6 +368,11 @@ position = Vector2(200, 8)
 
 [node name="light_switch" parent="Timelines/002" instance=ExtResource("7_wo4n4")]
 position = Vector2(73, 94)
+timeline = "002"
+metadata/Timeline = "000"
+metadata/Type = "Interactable"
+metadata/PlayerNodeName = "player"
+metadata/Description = "Test Description"
 
 [node name="lights" type="Node2D" parent="Timelines/002/light_switch"]
 position = Vector2(12, 0)
@@ -378,9 +391,15 @@ script = SubResource("GDScript_ohqbe")
 
 [node name="EmptyPlate" parent="Timelines/002" instance=ExtResource("4_w2p71")]
 position = Vector2(254, 140)
+metadata/Type = "Interactable"
+metadata/PlayerNodeName = "player"
+metadata/Description = "Test Description"
 
 [node name="ThickMug" parent="Timelines/002" instance=ExtResource("5_hqxr4")]
 position = Vector2(274, 140)
+metadata/Type = "Interactable"
+metadata/PlayerNodeName = "player"
+metadata/Description = "Test Description"
 
 [node name="player" parent="." instance=ExtResource("1_wpgi4")]
 z_index = 1

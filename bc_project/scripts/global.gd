@@ -30,6 +30,9 @@ var array_line_elements = []
 # Focus variables
 var FocusSet = false
 
+# Interactable variables
+var interactive_radius_name = "interactRadius"
+
 func open_menu() -> void:
 	InMenu = true
 	MenuCounter += 1

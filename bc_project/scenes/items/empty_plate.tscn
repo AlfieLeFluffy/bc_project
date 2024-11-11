@@ -30,8 +30,8 @@ animations = [{
 }]
 
 [node name="EmptyPlate" instance=ExtResource("1_quxmj")]
-metadata/Name = "Empty Plate"
-metadata/Timeline = "001"
+item_name = "Empty plate"
+timeline = "001"
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, 0.5)
