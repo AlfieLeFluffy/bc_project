@@ -1,0 +1,5 @@
+extends Node
+
+"""
+Dialog variables
+"""

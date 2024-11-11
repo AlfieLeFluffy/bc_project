@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6sidrweg1p0"]
+[gd_scene load_steps=8 format=3 uid="uid://b6sidrweg1p0"]
 
 [ext_resource type="Script" path="res://scenes/interactable.gd" id="1_m6fs8"]
 [ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="2_5kqll"]
 [ext_resource type="Texture2D" uid="uid://bk0ke78wvceem" path="res://textures/symbols/textLable.png" id="2_igama"]
 [ext_resource type="LabelSettings" uid="uid://d1lvtjugos2m4" path="res://settings/Interactable_label_settings.tres" id="4_oco1s"]
+[ext_resource type="Script" path="res://scripts/dialog_handler.gd" id="5_o84kc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_356m4"]
 resource_local_to_scene = true
@@ -50,6 +51,9 @@ shape = SubResource("RectangleShape2D_356m4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_28gpt")
+
+[node name="DialogHandler" type="Node" parent="."]
+script = ExtResource("5_o84kc")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
