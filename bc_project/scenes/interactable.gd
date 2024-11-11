@@ -46,14 +46,21 @@ func _process(delta: float) -> void:
 		active = false
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact") and dialogs.size() != 0 and active:
-		$DialogHandler.dialog_start()
+	if event.is_action_pressed("interact") and active:
+		if dialogs.size() > 0:
+			$DialogHandler.dialog_start()
+		elif dialogs.size() <= 0:
+			interact_function()
 	elif event.is_action_pressed("add_to_board") and active:
 		Signals.emit_signal('create_item_element',get_sprite_from_current_frame(), item_name,description)
 
 """
 --- Custom functions
 """
+
+# Active function if no dialog detected
+func interact_function() -> void:
+	pass
 
 # Returns current sprite from interactable item's sprite sheet
 func get_sprite_from_current_frame() -> Texture2D:

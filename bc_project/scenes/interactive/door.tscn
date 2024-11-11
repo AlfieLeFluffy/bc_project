@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://baw3h6q2ebxe6"]
+
+[ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactable_base.tscn" id="1_a4r6l"]
+[ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="2_08q5s"]
+[ext_resource type="Script" path="res://scenes/interactive/door.gd" id="2_q50el"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kp8uv"]
+resource_local_to_scene = true
+size = Vector2(47, 82)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sqfc0"]
+resource_local_to_scene = true
+shader = ExtResource("2_08q5s")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+
+[node name="door" instance=ExtResource("1_a4r6l")]
+script = ExtResource("2_q50el")
+item_name = "Door"
+
+[node name="Labels" parent="." index="0"]
+position = Vector2(0, -51)
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_kp8uv")
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+visible = false
+material = SubResource("ShaderMaterial_sqfc0")
