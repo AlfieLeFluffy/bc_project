@@ -32,6 +32,7 @@ var FocusSet = false
 
 # Interactable variables
 var interactive_radius_name = "interactRadius"
+enum help_signal_type {interactive,deleteElement,door}
 
 func open_menu() -> void:
 	InMenu = true

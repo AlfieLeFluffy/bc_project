@@ -64,7 +64,7 @@ func delete_line_element(line) -> void:
 	var index = Global.array_line_elements.find(line)
 	Global.array_line_elements[index].queue_free()
 	Global.array_line_elements.remove_at(index)
-	Signals.emit_signal("help_text_toggle","deleteElement",0)
+	Signals.emit_signal("help_text_toggle",Global.help_signal_type.deleteElement,false)
 
 
 func _on_color_picker_item_selected(index: int) -> void:

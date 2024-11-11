@@ -62,11 +62,11 @@ func _on_mouse_exited() -> void:
 
 func _on_mouse_shape_entered(shape_idx: int) -> void:
 	Global.Active_Board_Element = $"."
-	Signals.emit_signal("help_text_toggle","deleteElement",1)
+	Signals.emit_signal("help_text_toggle",Global.help_signal_type.deleteElement,true)
 	active = true
 
 
 func _on_mouse_shape_exited(shape_idx: int) -> void:
 	Global.Active_Board_Element = null
-	Signals.emit_signal("help_text_toggle","deleteElement",0)
+	Signals.emit_signal("help_text_toggle",Global.help_signal_type.deleteElement,false)
 	active = false

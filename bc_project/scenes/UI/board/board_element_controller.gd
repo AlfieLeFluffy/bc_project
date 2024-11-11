@@ -46,4 +46,4 @@ func delete_board_element(element) -> void:
 		Signals.emit_signal('delete_line',line)
 	Global.array_board_elements[index].queue_free()
 	Global.array_board_elements.remove_at(index)
-	Signals.emit_signal("help_text_toggle","deleteElement",0)
+	Signals.emit_signal("help_text_toggle",Global.help_signal_type.deleteElement,false)

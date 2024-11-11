@@ -97,32 +97,34 @@ func _on_mouse_entered() -> void:
 	$AnimatedSprite2D.material.set("shader_parameter/line_thickness",1)
 	mouseHover = true
 	if inRadius:
-		$Labels.visible = true
-		Global.Active_Interactive_Item = self
-		Signals.emit_signal("help_text_toggle","interactive",1)
+		activate_interactivity()
 
 
 func _on_mouse_exited() -> void:
 	$AnimatedSprite2D.material.set("shader_parameter/line_thickness",0)
 	mouseHover = false
 	if inRadius:
-		$Labels.visible = false
-		Global.Active_Interactive_Item = null
-		Signals.emit_signal("help_text_toggle","interactive",0)
+		deactivate_interactivity()
 
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.name == Global.interactive_radius_name:
 		if mouseHover:
-			$Labels.visible = true
-			Global.Active_Interactive_Item = self
-			Signals.emit_signal("help_text_toggle","interactive",1)
+			activate_interactivity()
 		inRadius = true
 
 func _on_area_exited(area: Area2D) -> void:
 	if area.name == Global.interactive_radius_name:
 		if mouseHover:
-			$Labels.visible = false
-			Global.Active_Interactive_Item = null
-			Signals.emit_signal("help_text_toggle","interactive",0)
+			deactivate_interactivity()
 		inRadius = false
+
+func activate_interactivity() -> void:
+	$Labels.visible = true
+	Global.Active_Interactive_Item = self
+	Signals.emit_signal("help_text_toggle",Global.help_signal_type.interactive,true)
+
+func deactivate_interactivity() -> void:
+	$Labels.visible = false
+	Global.Active_Interactive_Item = null
+	Signals.emit_signal("help_text_toggle",Global.help_signal_type.interactive,false)

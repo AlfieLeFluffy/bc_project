@@ -14,13 +14,13 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if playerInReach and not flop and Global.Active_Interactive_Item == null:
 		flop = true
-		Signals.emit_signal("help_text_toggle","door",1)
+		Signals.emit_signal("help_text_toggle",Global.help_signal_type.door,true)
 	elif playerInReach and flop and Global.Active_Interactive_Item != null:
 		flop = false
-		Signals.emit_signal("help_text_toggle","door",0)
+		Signals.emit_signal("help_text_toggle",Global.help_signal_type.door,false)
 	elif not playerInReach and flop:
 		flop = false
-		Signals.emit_signal("help_text_toggle","door",0)
+		Signals.emit_signal("help_text_toggle",Global.help_signal_type.door,false)
 		
 
 func _input(event: InputEvent) -> void:
