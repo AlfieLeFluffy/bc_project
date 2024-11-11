@@ -10,8 +10,8 @@ func _ready() -> void:
 	Global.TimelineIndex = 0
 	UpdateTimeline()
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("timeline_shift") and Global.TimelineShiftReady and not Global.InMenu:
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("timeline_shift") and Global.TimelineShiftReady:
 		TimelineTimeout()
 		CycleTimeline()
 
