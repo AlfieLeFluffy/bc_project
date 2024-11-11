@@ -50,7 +50,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		DialogueManager.show_example_dialogue_balloon(load(dialogs[dialogIndex]),heads[headIndex])
 		return
 	if event.is_action_pressed("add_to_board") and active:
-		Signals.emit_signal('create_item_element',get_sprite_from_current_frame(), get_meta("Name"),get_meta("Description"))
+		Signals.emit_signal('create_item_element',get_sprite_from_current_frame(), item_name,description)
 
 """
 --- Custom functions

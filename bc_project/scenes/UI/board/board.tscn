@@ -140,6 +140,7 @@ theme_override_constants/margin_bottom = 35
 
 [node name="ColorPicker" type="OptionButton" parent="ColorSetterContainer"]
 layout_mode = 2
+focus_mode = 0
 selected = 0
 item_count = 3
 popup/item_0/text = "Red"
