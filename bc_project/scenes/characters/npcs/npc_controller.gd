@@ -26,8 +26,23 @@ const JUMP_VELOCITY = -400.0
 @export var titles: PackedStringArray
 
 """
+--- Input functions
+"""
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact") and active:
+		$DialogHandler.dialog_start()
+
+"""
 --- Runtime functions
 """
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if mouseHover and inRadius:
+		active = true
+	else:
+		active = false
 
 func _physics_process(delta: float) -> void:
 	var direction

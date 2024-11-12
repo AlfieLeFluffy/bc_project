@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ntmpwduq5xno"]
+[gd_scene load_steps=7 format=3 uid="uid://ntmpwduq5xno"]
 
 [ext_resource type="Script" path="res://scenes/characters/npcs/npc_controller.gd" id="1_osmvx"]
 [ext_resource type="Script" path="res://scripts/dialog_handler.gd" id="2_oy5yp"]
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="2_w6kho"]
 [ext_resource type="Script" path="res://scripts/interactive_handler.gd" id="3_4ik2d"]
+[ext_resource type="Resource" uid="uid://cibt63o4kpss8" path="res://dialogs/test_npc.dialogue" id="3_6rqlj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_okuox"]
 resource_local_to_scene = true
@@ -12,7 +14,10 @@ height = 69.0
 [node name="NPC" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 2
+input_pickable = true
 script = ExtResource("1_osmvx")
+dialogs = Array[ExtResource("2_w6kho")]([ExtResource("3_6rqlj")])
+titles = PackedStringArray("this_is_a_node_title")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_okuox")
@@ -22,3 +27,15 @@ script = ExtResource("2_oy5yp")
 
 [node name="InteractiveHandler" type="Node" parent="."]
 script = ExtResource("3_4ik2d")
+
+[node name="InteractableArea" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="InteractableAreCollisionShape" type="CollisionShape2D" parent="InteractableArea"]
+shape = SubResource("CapsuleShape2D_okuox")
+
+[connection signal="mouse_entered" from="." to="InteractiveHandler" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="InteractiveHandler" method="_on_mouse_exited"]
+[connection signal="area_entered" from="InteractableArea" to="InteractiveHandler" method="_on_area_entered"]
+[connection signal="area_exited" from="InteractableArea" to="InteractiveHandler" method="_on_area_exited"]

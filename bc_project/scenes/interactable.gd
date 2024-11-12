@@ -39,7 +39,7 @@ func LocalReady() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if $Labels.visible == true and inRadius:
+	if mouseHover and inRadius:
 		active = true
 	else:
 		active = false
