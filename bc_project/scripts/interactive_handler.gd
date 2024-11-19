@@ -1,4 +1,4 @@
-extends Node
+class_name InteractiveHandler extends Node
 
 var parent
 

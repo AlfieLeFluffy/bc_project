@@ -9,6 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://bvxpeerpgh7a6" path="res://scenes/UI/help_labels.tscn" id="7_lxwgw"]
 [ext_resource type="PackedScene" uid="uid://fbx8e7x0hb" path="res://scenes/menus/ingame_menu.tscn" id="7_m38fl"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tpys6"]
+radius = 13.0
+height = 69.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vhha4"]
+radius = 75.0067
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_wmv4b"]
 animations = [{
 "frames": [{
@@ -20,20 +27,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tpys6"]
-radius = 13.0
-height = 69.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_vhha4"]
-radius = 75.0067
-
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_fg2e7")
 metadata/InteractItemSet = false
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-3, 0)
-sprite_frames = SubResource("SpriteFrames_wmv4b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 1)
@@ -55,6 +51,9 @@ collision_mask = 3
 shape = SubResource("CircleShape2D_vhha4")
 
 [node name="CameraControls" parent="." instance=ExtResource("5_2uxfp")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wmv4b")
 
 [node name="main_overlay" parent="." instance=ExtResource("4_ej0mm")]
 visible = false

@@ -322,10 +322,26 @@ position = Vector2(200, 184)
 
 [node name="door" parent="Doors" node_paths=PackedStringArray("otherDoor") instance=ExtResource("3_ya4qs")]
 position = Vector2(216, 105)
+type = null
+active = null
+mouseHover = null
+inRadius = null
+dialogIndex = null
+dialogs = null
+titleIndex = null
+titles = null
 otherDoor = NodePath("../door2")
 
 [node name="door2" parent="Doors" node_paths=PackedStringArray("otherDoor") instance=ExtResource("3_ya4qs")]
 position = Vector2(136, -72)
+type = null
+active = null
+mouseHover = null
+inRadius = null
+dialogIndex = null
+dialogs = null
+titleIndex = null
+titles = null
 otherDoor = NodePath("../door")
 
 [node name="Timelines" type="Node" parent="."]
@@ -411,7 +427,7 @@ metadata/Type = "Interactable"
 metadata/PlayerNodeName = "player"
 metadata/Description = "Test Description"
 
-[node name="player" parent="." instance=ExtResource("1_wpgi4")]
+[node name="player" parent="." groups=["Player"] instance=ExtResource("1_wpgi4")]
 z_index = 1
 position = Vector2(360, 293)
 

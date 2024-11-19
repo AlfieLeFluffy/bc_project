@@ -12,3 +12,7 @@ signal create_item_element(texture,lable,text)
 
 # Signals for help tips
 signal help_text_toggle(type,direction)
+
+# Singnal for notifying npc state machine about conversation starting/ending
+signal start_npc_conversation_state(npc)
+signal end_npc_conversation_state()

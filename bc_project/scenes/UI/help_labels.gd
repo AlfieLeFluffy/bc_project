@@ -8,10 +8,12 @@ func _ready() -> void:
 
 func toggle_help(type,direction) -> void:
 	match type:
-		Global.help_signal_type.interactive:
+		Global.help_signal_type.INTERACTIVE:
 			$InteractiveLabel.visible = direction
 			$AddToBoardLabel.visible = direction
-		Global.help_signal_type.deleteElement:
+		Global.help_signal_type.TALK:
+			$TalkLabel.visible = direction
+		Global.help_signal_type.DELETEELEMENT:
 			$DeleteElementLabel.visible = direction
-		Global.help_signal_type.door:
+		Global.help_signal_type.DOOR:
 			$DoorLabel.visible = direction

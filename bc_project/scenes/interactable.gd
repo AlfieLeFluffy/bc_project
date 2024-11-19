@@ -79,9 +79,9 @@ func deactivate_hover() -> void:
 func activate_interactivity() -> void:
 	$Labels.visible = true
 	Global.Active_Interactive_Item = self
-	Signals.emit_signal("help_text_toggle",Global.help_signal_type.interactive,true)
+	Signals.emit_signal("help_text_toggle",Global.help_signal_type.INTERACTIVE,true)
 
 func deactivate_interactivity() -> void:
 	$Labels.visible = false
 	Global.Active_Interactive_Item = null
-	Signals.emit_signal("help_text_toggle",Global.help_signal_type.interactive,false)
+	Signals.emit_signal("help_text_toggle",Global.help_signal_type.INTERACTIVE,false)

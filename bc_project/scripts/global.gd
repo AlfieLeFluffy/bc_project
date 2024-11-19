@@ -27,7 +27,7 @@ var FocusSet = false
 
 # Interactable variables
 var interactive_radius_name = "interactRadius"
-enum help_signal_type {interactive,deleteElement,door}
+enum help_signal_type {INTERACTIVE,DELETEELEMENT,DOOR,TALK}
 
 func get_input_key(inputName) -> String:
 	var output = InputMap.action_get_events(inputName)[0].as_text().split("(")[0]

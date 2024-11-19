@@ -1,4 +1,4 @@
-extends Node
+class_name DialogHandler extends Node
 
 @onready var parent: Node = get_parent()
 

@@ -18,9 +18,9 @@ func interact_function() -> void:
 func activate_interactivity() -> void:
 	$Labels.visible = true
 	Global.Active_Interactive_Item = self
-	Signals.emit_signal("help_text_toggle",Global.help_signal_type.door,true)
+	Signals.emit_signal("help_text_toggle",Global.help_signal_type.DOOR,true)
 
 func deactivate_interactivity() -> void:
 	$Labels.visible = false
 	Global.Active_Interactive_Item = null
-	Signals.emit_signal("help_text_toggle",Global.help_signal_type.door,false)
+	Signals.emit_signal("help_text_toggle",Global.help_signal_type.DOOR,false)
