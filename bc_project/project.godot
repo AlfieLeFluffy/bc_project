@@ -27,7 +27,7 @@ DialogVariables="*res://scripts/dialog/dialog_variables.gd"
 
 [dialogue_manager]
 
-general/balloon_path="res://scenes/dialog/balloon.tscn"
+general/balloon_path="res://scripts/dialog/balloon/balloon.tscn"
 
 [display]
 

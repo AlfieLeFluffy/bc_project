@@ -1,6 +1,6 @@
 extends Node
 
-const Balloon = preload("res://scenes/dialog/balloon.tscn")
+const Balloon = preload("res://scripts/dialog/balloon/balloon.tscn")
 
 func start_dialog(filepath, title) -> void:
 	var balloon: Node = Balloon.instantiate()
