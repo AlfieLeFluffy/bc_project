@@ -1,38 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://fbx8e7x0hb"]
+[gd_scene load_steps=8 format=3 uid="uid://fbx8e7x0hb"]
 
 [ext_resource type="Script" path="res://scenes/menus/ingame_menu.gd" id="1_rriae"]
 [ext_resource type="Texture2D" uid="uid://dliqg0viaccks" path="res://textures/ui/button/button_normal.png" id="2_21epg"]
+[ext_resource type="PackedScene" uid="uid://bcdby6svlp0fj" path="res://scenes/UI/backgrounds/fade_background.tscn" id="2_ckiny"]
 [ext_resource type="Texture2D" uid="uid://daddylvcavti6" path="res://textures/ui/button/button_click.png" id="3_4cisa"]
 [ext_resource type="Texture2D" uid="uid://c47g2unwgbyl0" path="res://textures/ui/button/button_hover.png" id="4_ah7om"]
 [ext_resource type="Texture2D" uid="uid://cpo5dwxmo24wo" path="res://textures/ui/button/button_disabled.png" id="5_gwmlc"]
 [ext_resource type="LabelSettings" uid="uid://c2bxjbp8lpkw3" path="res://settings/ingame_menu_buttons_settings.tres" id="6_sk1el"]
 
-[sub_resource type="Gradient" id="Gradient_h1lcr"]
-colors = PackedColorArray(0, 0, 0, 0.192157, 0, 0, 0, 0.352941)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_y731h"]
-gradient = SubResource("Gradient_h1lcr")
-width = 1920
-height = 1080
-use_hdr = true
-fill = 1
-
 [node name="ingame_menu" type="CanvasLayer"]
-visible = false
 script = ExtResource("1_rriae")
 
-[node name="BackgroundContainer" type="MarginContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="TextureRect" type="TextureRect" parent="BackgroundContainer"]
-layout_mode = 2
-texture = SubResource("GradientTexture2D_y731h")
+[node name="FadeBackground" parent="." instance=ExtResource("2_ckiny")]
 
 [node name="MenuContainer" type="MarginContainer" parent="."]
 anchors_preset = 15

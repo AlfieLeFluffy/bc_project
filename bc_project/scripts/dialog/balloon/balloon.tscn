@@ -1,19 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://73jm5qjy52vq"]
+[gd_scene load_steps=11 format=3 uid="uid://73jm5qjy52vq"]
 
 [ext_resource type="Script" path="res://scripts/dialog/balloon/balloon.gd" id="1_36de5"]
 [ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="2_7hpel"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
+[ext_resource type="PackedScene" uid="uid://bcdby6svlp0fj" path="res://scenes/UI/backgrounds/fade_background.tscn" id="2_ualdr"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="3_72ixx"]
-
-[sub_resource type="Gradient" id="Gradient_h1lcr"]
-colors = PackedColorArray(0, 0, 0, 0.192157, 0, 0, 0, 0.352941)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_567bq"]
-gradient = SubResource("Gradient_h1lcr")
-width = 1920
-height = 1080
-use_hdr = true
-fill = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spyqn"]
 bg_color = Color(0, 0, 0, 1)
@@ -79,17 +70,7 @@ Panel/styles/panel = SubResource("StyleBoxFlat_uy0d5")
 layer = 100
 script = ExtResource("1_36de5")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
-layout_mode = 2
-mouse_filter = 0
-texture = SubResource("GradientTexture2D_567bq")
+[node name="FadeBackground" parent="." instance=ExtResource("2_ualdr")]
 
 [node name="Balloon" type="Control" parent="."]
 unique_name_in_owner = true
