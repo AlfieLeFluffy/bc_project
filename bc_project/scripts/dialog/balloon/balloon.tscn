@@ -88,6 +88,7 @@ grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer"]
 layout_mode = 2
+mouse_filter = 0
 texture = SubResource("GradientTexture2D_567bq")
 
 [node name="Balloon" type="Control" parent="."]
