@@ -5,15 +5,15 @@ var player
 @export var otherDoor: Node
 
 # Local ready function for instantiated objects
-func LocalReady() -> void:
-	player = get_tree().get_current_scene().get_node("player")
+func local_ready() -> void:
+	player = get_tree().get_first_node_in_group("Player")
 
 # Active function if no dialog detected
 func interact_function() -> void:
-	player.visible = 0
+	player.visible = false
 	await get_tree().create_timer(0.1).timeout
 	player.position = otherDoor.global_position
-	player.visible = 1
+	player.visible = true
 
 func activate_interactivity() -> void:
 	$Labels.visible = true

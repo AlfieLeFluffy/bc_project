@@ -9,14 +9,15 @@
 [ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="8_ryf4i"]
 [ext_resource type="Script" path="res://scenes/UI/board/board_line_controller.gd" id="10_tsqgj"]
 
-[sub_resource type="Gradient" id="Gradient_ylqva"]
-colors = PackedColorArray(0.0658754, 0.082576, 0.158838, 0.8, 0.2336, 0.24512, 0.32, 0.647059)
+[sub_resource type="Gradient" id="Gradient_h1lcr"]
+colors = PackedColorArray(0, 0, 0, 0.192157, 0, 0, 0, 0.352941)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_gi1gm"]
-gradient = SubResource("Gradient_ylqva")
-width = 800
-height = 600
-fill_to = Vector2(0.782051, 1)
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_compe"]
+gradient = SubResource("Gradient_h1lcr")
+width = 1920
+height = 1080
+use_hdr = true
+fill = 1
 
 [sub_resource type="Gradient" id="Gradient_rfis8"]
 offsets = PackedFloat32Array(0.491979, 1)
@@ -68,7 +69,7 @@ mouse_filter = 0
 [node name="TextureRect" type="TextureRect" parent="BackgroundContainer"]
 layout_mode = 2
 mouse_filter = 2
-texture = SubResource("GradientTexture2D_gi1gm")
+texture = SubResource("GradientTexture2D_compe")
 
 [node name="BoardControler" type="Control" parent="."]
 layout_mode = 3

@@ -26,24 +26,19 @@ var inRadius: bool = false
 
 func _ready() -> void:
 	npc_info_setup()
-	dialog_handler_setup()
 
 func npc_info_setup() -> void:
 	if npc_resource:
 		name = npc_resource.npcName
-
-func dialog_handler_setup() -> void:
-	if dialog_resource:
-		$DialogHandler.dialog_resource = dialog_resource
 
 """
 --- Input functions
 """
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact") and active:
+	if event.is_action_pressed("interact") and dialog_resource and active:
 		Signals.start_npc_conversation_state.emit(self)
-		$DialogHandler.dialog_start()
+		DialogScripts.start_dialog(dialog_resource.dialog,dialog_resource.titleName)
 
 """
 --- Runtime functions

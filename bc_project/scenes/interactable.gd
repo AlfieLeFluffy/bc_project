@@ -20,17 +20,12 @@ var inRadius: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	interactable_info_setup()
-	dialog_handler_setup()
 	local_ready()
 
 func interactable_info_setup() -> void:
 	if interactable_resource:
 		$Labels/Label.text = interactable_resource.item_name
 		name = interactable_resource.item_name
-
-func dialog_handler_setup() -> void:
-	if dialog_resource:
-		$DialogHandler.dialog_resource = dialog_resource
 
 # Local ready function for instantiated objects
 func local_ready() -> void:
@@ -50,8 +45,8 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and active:
-		if dialog_resource.dialog:
-			$DialogHandler.dialog_start()
+		if dialog_resource:
+			DialogScripts.start_dialog(dialog_resource.dialog,dialog_resource.titleName)
 		else:
 			interact_function()
 	elif event.is_action_pressed("add_to_board") and active:
