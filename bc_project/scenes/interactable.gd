@@ -9,8 +9,9 @@ var inRadius: bool = false
 --- Exported Variables
 """
 
-@export_group("NPC Resource")
+@export_group("Interactable Resource")
 @export var interactable_resource: InteractableResource
+@export var dialog_resource: DialogResource
 
 """
 --- Setup functions
@@ -28,11 +29,8 @@ func interactable_info_setup() -> void:
 		name = interactable_resource.item_name
 
 func dialog_handler_setup() -> void:
-	if interactable_resource:
-		$DialogHandler.dialogs = interactable_resource.dialogs
-		$DialogHandler.dialogIndex = interactable_resource.dialogIndex
-		$DialogHandler.titles = interactable_resource.titles
-		$DialogHandler.titleIndex = interactable_resource.titleIndex
+	if dialog_resource:
+		$DialogHandler.dialog_resource = dialog_resource
 
 # Local ready function for instantiated objects
 func local_ready() -> void:
@@ -52,9 +50,9 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and active:
-		if interactable_resource.dialogs.size() > 0:
+		if dialog_resource.dialog:
 			$DialogHandler.dialog_start()
-		elif interactable_resource.dialogs.size() <= 0:
+		else:
 			interact_function()
 	elif event.is_action_pressed("add_to_board") and active:
 		Signals.emit_signal('create_item_element',get_sprite_from_current_frame(), interactable_resource.item_name,interactable_resource.description)

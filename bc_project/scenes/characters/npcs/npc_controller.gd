@@ -12,8 +12,9 @@ extends CharacterBody2D
 --- Exported Variables
 """
 
-@export_group("NPC Resource")
+@export_group("Resources")
 @export var npc_resource: npcResource
+@export var dialog_resource: DialogResource
 
 var active: bool = false
 var mouseHover: bool = false
@@ -28,13 +29,12 @@ func _ready() -> void:
 	dialog_handler_setup()
 
 func npc_info_setup() -> void:
-	name = npc_resource.npcName
+	if npc_resource:
+		name = npc_resource.npcName
 
 func dialog_handler_setup() -> void:
-	$DialogHandler.dialogs = npc_resource.dialogs
-	$DialogHandler.dialogIndex = npc_resource.dialogIndex
-	$DialogHandler.titles = npc_resource.titles
-	$DialogHandler.titleIndex = npc_resource.titleIndex
+	if dialog_resource:
+		$DialogHandler.dialog_resource = dialog_resource
 
 """
 --- Input functions

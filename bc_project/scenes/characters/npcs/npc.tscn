@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://ntmpwduq5xno"]
 
 [ext_resource type="Script" path="res://scenes/characters/npcs/npc_controller.gd" id="1_osmvx"]
-[ext_resource type="Script" path="res://scripts/dialog_handler.gd" id="2_oy5yp"]
+[ext_resource type="Script" path="res://scripts/dialog/dialog_handler.gd" id="2_1nage"]
 [ext_resource type="Script" path="res://scripts/interactive_handler.gd" id="3_4ik2d"]
 [ext_resource type="Texture2D" uid="uid://dbvl0gy8mohel" path="res://textures/characters/mainCharacter2.png" id="6_6yt6g"]
 [ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="7_w0oeo"]
@@ -39,7 +39,7 @@ script = ExtResource("1_osmvx")
 shape = SubResource("CapsuleShape2D_okuox")
 
 [node name="DialogHandler" type="Node" parent="."]
-script = ExtResource("2_oy5yp")
+script = ExtResource("2_1nage")
 
 [node name="InteractiveHandler" type="Node" parent="."]
 script = ExtResource("3_4ik2d")

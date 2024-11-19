@@ -22,8 +22,8 @@ config/icon="res://textures/icon.svg"
 Global="*res://scripts/global.gd"
 Signals="*res://scripts/signals.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-DialogVariables="*res://scripts/dialog_variables.gd"
-DialogScripts="*res://scripts/dialog_scripts.gd"
+DialogScripts="*res://scripts/dialog/dialog_scripts.gd"
+DialogVariables="*res://scripts/dialog/dialog_variables.gd"
 
 [dialogue_manager]
 
