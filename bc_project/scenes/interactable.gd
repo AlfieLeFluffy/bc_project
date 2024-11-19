@@ -1,35 +1,41 @@
 extends Node2D
 
-enum type_enum {interactable, noninteractable}
 
-@export_group("item information")
-@export var item_name: String
-@export var timeline: String
-@export var type: type_enum
-@export var description: String
-
-@export_group("interactive flags")
-@export var active: bool = false
-@export var mouseHover: bool = false
-@export var inRadius: bool = false
-
-@export_group("dialog")
-@export var dialogIndex: int = 0 
-@export var dialogs: Array[DialogueResource]
-@export var titleIndex: int = 0 
-@export var titles: PackedStringArray
+var active: bool = false
+var mouseHover: bool = false
+var inRadius: bool = false
 
 """
---- Ready functions
+--- Exported Variables
+"""
+
+@export_group("NPC Resource")
+@export var interactable_resource: InteractableResource
+
+"""
+--- Setup functions
 """
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Labels/Label.text = item_name
-	LocalReady()
+	interactable_info_setup()
+	dialog_handler_setup()
+	local_ready()
+
+func interactable_info_setup() -> void:
+	if interactable_resource:
+		$Labels/Label.text = interactable_resource.item_name
+		name = interactable_resource.item_name
+
+func dialog_handler_setup() -> void:
+	if interactable_resource:
+		$DialogHandler.dialogs = interactable_resource.dialogs
+		$DialogHandler.dialogIndex = interactable_resource.dialogIndex
+		$DialogHandler.titles = interactable_resource.titles
+		$DialogHandler.titleIndex = interactable_resource.titleIndex
 
 # Local ready function for instantiated objects
-func LocalReady() -> void:
+func local_ready() -> void:
 	pass
 	
 
@@ -46,12 +52,12 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and active:
-		if dialogs.size() > 0:
+		if interactable_resource.dialogs.size() > 0:
 			$DialogHandler.dialog_start()
-		elif dialogs.size() <= 0:
+		elif interactable_resource.dialogs.size() <= 0:
 			interact_function()
 	elif event.is_action_pressed("add_to_board") and active:
-		Signals.emit_signal('create_item_element',get_sprite_from_current_frame(), item_name,description)
+		Signals.emit_signal('create_item_element',get_sprite_from_current_frame(), interactable_resource.item_name,interactable_resource.description)
 
 """
 --- Custom functions

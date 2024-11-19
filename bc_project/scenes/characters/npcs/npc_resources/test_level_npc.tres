@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="npcResource" load_steps=4 format=3 uid="uid://yu00wqy70eyc"]
+
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="1_fq768"]
+[ext_resource type="Resource" uid="uid://cibt63o4kpss8" path="res://dialogs/test_npc.dialogue" id="2_4xaxv"]
+[ext_resource type="Script" path="res://scenes/characters/npcs/npc_resource.gd" id="3_3ekfd"]
+
+[resource]
+script = ExtResource("3_3ekfd")
+npcName = "test_npc"
+dialogIndex = 0
+dialogs = Array[ExtResource("1_fq768")]([ExtResource("2_4xaxv")])
+titleIndex = 0
+titles = PackedStringArray("this_is_a_node_title")

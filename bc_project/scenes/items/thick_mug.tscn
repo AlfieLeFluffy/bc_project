@@ -1,8 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://c4x1ywanodayi"]
+[gd_scene load_steps=11 format=3 uid="uid://c4x1ywanodayi"]
 
 [ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactable_base.tscn" id="1_wjbls"]
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="2_ehj3g"]
 [ext_resource type="Texture2D" uid="uid://b8xj6gwg3vfq2" path="res://textures/items/thickMug.png" id="2_k4yty"]
 [ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="2_skodu"]
+[ext_resource type="Script" path="res://scenes/interactable_resource.gd" id="3_35s1i"]
+
+[sub_resource type="Resource" id="Resource_4i138"]
+resource_local_to_scene = true
+script = ExtResource("3_35s1i")
+item_name = "Thick Mug"
+timeline = "000"
+type = 0
+description = "Test Description"
+dialogIndex = 0
+dialogs = Array[ExtResource("2_ehj3g")]([])
+titleIndex = 0
+titles = PackedStringArray()
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ujfcp"]
 resource_local_to_scene = true
@@ -30,10 +44,7 @@ animations = [{
 }]
 
 [node name="ThickMug" instance=ExtResource("1_wjbls")]
-item_name = "Thick mug"
-timeline = "001"
-dialogs = PackedStringArray("res://dialog/test_dialogue.dialogue")
-heads = PackedStringArray("test")
+interactable_resource = SubResource("Resource_4i138")
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("RectangleShape2D_ujfcp")

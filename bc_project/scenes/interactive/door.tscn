@@ -1,8 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://baw3h6q2ebxe6"]
+[gd_scene load_steps=9 format=3 uid="uid://baw3h6q2ebxe6"]
 
 [ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactable_base.tscn" id="1_a4r6l"]
 [ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="2_08q5s"]
 [ext_resource type="Script" path="res://scenes/interactive/door.gd" id="2_q50el"]
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="3_rnq2w"]
+[ext_resource type="Script" path="res://scenes/interactable_resource.gd" id="4_ybn5o"]
+
+[sub_resource type="Resource" id="Resource_slcme"]
+resource_local_to_scene = true
+script = ExtResource("4_ybn5o")
+item_name = "Door"
+timeline = "000"
+type = 0
+description = "Test Description"
+dialogIndex = 0
+dialogs = Array[ExtResource("3_rnq2w")]([])
+titleIndex = 0
+titles = PackedStringArray()
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kp8uv"]
 resource_local_to_scene = true
@@ -16,7 +30,7 @@ shader_parameter/line_thickness = 0.0
 
 [node name="door" instance=ExtResource("1_a4r6l")]
 script = ExtResource("2_q50el")
-item_name = "Door"
+interactable_resource = SubResource("Resource_slcme")
 
 [node name="Labels" parent="." index="0"]
 position = Vector2(0, -51)

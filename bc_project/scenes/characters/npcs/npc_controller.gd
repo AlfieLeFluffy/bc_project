@@ -9,28 +9,32 @@ extends CharacterBody2D
 @export var JUMP_VELOCITY: int = -400.0
 
 """
---- States Machine Variables
-"""
-
-"""
 --- Exported Variables
 """
 
-@export_group("Npc Information")
-@export var npcName: String
+@export_group("NPC Resource")
+@export var npc_resource: npcResource
 
-@export_group("Interactive Flags")
-@export var active: bool = false
-@export var mouseHover: bool = false
-@export var inRadius: bool = false
+var active: bool = false
+var mouseHover: bool = false
+var inRadius: bool = false
 
-@export_group("Dialog")
-@export var dialogIndex: int = 0 
-@export var dialogs: Array[DialogueResource]
-@export var titleIndex: int = 0 
-@export var titles: PackedStringArray
+"""
+--- Setup functions
+"""
 
-@export_group("State Machine")
+func _ready() -> void:
+	npc_info_setup()
+	dialog_handler_setup()
+
+func npc_info_setup() -> void:
+	name = npc_resource.npcName
+
+func dialog_handler_setup() -> void:
+	$DialogHandler.dialogs = npc_resource.dialogs
+	$DialogHandler.dialogIndex = npc_resource.dialogIndex
+	$DialogHandler.titles = npc_resource.titles
+	$DialogHandler.titleIndex = npc_resource.titleIndex
 
 """
 --- Input functions
