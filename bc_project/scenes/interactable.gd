@@ -47,6 +47,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and active:
 		if dialog_resource:
 			DialogScripts.start_dialog(dialog_resource.dialog,dialog_resource.titleName)
+			Signals.setup_conversation_profile.emit("right", interactable_resource.item_name, get_sprite_from_current_frame())
 		else:
 			interact_function()
 	elif event.is_action_pressed("add_to_board") and active:

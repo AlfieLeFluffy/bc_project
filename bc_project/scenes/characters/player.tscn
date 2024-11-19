@@ -59,6 +59,7 @@ sprite_frames = SubResource("SpriteFrames_wmv4b")
 visible = false
 
 [node name="board_ui" parent="." instance=ExtResource("6_hlohb")]
+visible = false
 
 [node name="helpLabels" type="CanvasLayer" parent="."]
 
@@ -83,3 +84,4 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 
 [node name="ingame_menu" parent="." instance=ExtResource("7_m38fl")]
+visible = false

@@ -39,6 +39,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and dialog_resource and active:
 		Signals.start_npc_conversation_state.emit(self)
 		DialogScripts.start_dialog(dialog_resource.dialog,dialog_resource.titleName)
+		Signals.setup_conversation_profile.emit("right", name, get_sprite_from_current_frame())
 
 """
 --- Runtime functions
@@ -61,6 +62,15 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.flip_h = false
 
 	move_and_slide()
+
+"""
+-- Custom functions
+"""
+
+# Returns current sprite from interactable item's sprite sheet
+func get_sprite_from_current_frame() -> Texture2D:
+	var currentSprite: Texture2D = $AnimatedSprite2D.get_sprite_frames().get_frame_texture($AnimatedSprite2D.animation, $AnimatedSprite2D.get_frame())
+	return currentSprite
 
 """
 --- Activate/deactivate interactivity

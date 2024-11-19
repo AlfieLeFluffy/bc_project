@@ -1,11 +1,11 @@
 ~ this_is_a_node_title
-Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
-Nathan: Here are some choices.
+Alfie: [[Hi|Hello|Howdy]], this is some dialogue.
+test_npc: Here are some choices.
 - First one
-	Nathan: You picked the first one.
+	Alfie: You picked the first one.
 - Second one
-	Nathan: You picked the second one.
+	Alfie: You picked the second one.
 - Start again => this_is_a_node_title
 - End the conversation => END
-Nathan: For more information see the online documentation.
+Alfie: For more information see the online documentation.
 => END

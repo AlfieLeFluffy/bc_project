@@ -15,4 +15,5 @@ signal help_text_toggle(type,direction)
 
 # Singnal for notifying npc state machine about conversation starting/ending
 signal start_npc_conversation_state(npc)
+signal setup_conversation_profile(side,character_name,picture)
 signal end_npc_conversation_state()
