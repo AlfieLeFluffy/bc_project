@@ -1,6 +1,6 @@
 ~ this_is_a_node_title
 Alfie: [[Hi|Hello|Howdy]], this is some dialogue.
-test_npc: Here are some choices.
+Eifla: Here are some choices.
 - First one
 	Alfie: You picked the first one.
 - Second one
