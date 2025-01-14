@@ -32,9 +32,9 @@ func _input(event: InputEvent) -> void:
 		Signals.emit_signal('delete_line',self)
 
 func _on_mouse_entered() -> void:
-	Signals.emit_signal("help_text_toggle","deleteElement",1)
+	Signals.emit_signal("help_text_toggle",Global.help_signal_type.DELETEELEMENT,true)
 	active = true
 
 func _on_mouse_exited() -> void:
-	Signals.emit_signal("help_text_toggle","deleteElement",0)
+	Signals.emit_signal("help_text_toggle",Global.help_signal_type.DELETEELEMENT,false)
 	active = false

@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcdby6svlp0fj"]
+
+[sub_resource type="Gradient" id="Gradient_h1lcr"]
+colors = PackedColorArray(0, 0, 0, 0.501961, 0, 0, 0, 0.752941)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_567bq"]
+gradient = SubResource("Gradient_h1lcr")
+width = 1920
+height = 1080
+use_hdr = true
+fill = 1
+
+[node name="FadeBackground" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GradientTextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+mouse_filter = 0
+texture = SubResource("GradientTexture2D_567bq")

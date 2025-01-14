@@ -1,22 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://c73m21uddf5ye"]
+[gd_scene load_steps=16 format=3 uid="uid://c73m21uddf5ye"]
 
 [ext_resource type="Texture2D" uid="uid://cwqhqr5tnxgpm" path="res://textures/ui/board/board_background_UI.png" id="1_avnfn"]
 [ext_resource type="Script" path="res://scenes/UI/board/board_controler.gd" id="1_r52og"]
+[ext_resource type="PackedScene" uid="uid://bcdby6svlp0fj" path="res://scenes/UI/backgrounds/fade_background.tscn" id="2_i1t00"]
 [ext_resource type="Script" path="res://scenes/UI/board/board_element_controller.gd" id="2_o58ty"]
 [ext_resource type="PackedScene" uid="uid://c3cr13ksd4qam" path="res://scenes/UI/buttons/button_symbol_plus.tscn" id="6_oi6ex"]
 [ext_resource type="Script" path="res://scenes/UI/board/board_movement.gd" id="7_84m22"]
 [ext_resource type="Script" path="res://scenes/UI/buttons/create_note_button.gd" id="7_gv8j2"]
 [ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="8_ryf4i"]
 [ext_resource type="Script" path="res://scenes/UI/board/board_line_controller.gd" id="10_tsqgj"]
-
-[sub_resource type="Gradient" id="Gradient_ylqva"]
-colors = PackedColorArray(0.0658754, 0.082576, 0.158838, 0.8, 0.2336, 0.24512, 0.32, 0.647059)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_gi1gm"]
-gradient = SubResource("Gradient_ylqva")
-width = 800
-height = 600
-fill_to = Vector2(0.782051, 1)
 
 [sub_resource type="Gradient" id="Gradient_rfis8"]
 offsets = PackedFloat32Array(0.491979, 1)
@@ -54,25 +46,17 @@ fill_from = Vector2(0.5, 0.504274)
 [node name="board_UI" type="CanvasLayer"]
 script = ExtResource("1_r52og")
 
-[node name="BackgroundContainer" type="MarginContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 0
+[node name="FadeBackground" parent="." instance=ExtResource("2_i1t00")]
 
-[node name="TextureRect" type="TextureRect" parent="BackgroundContainer"]
-layout_mode = 2
-texture = SubResource("GradientTexture2D_gi1gm")
-
-[node name="BoardControler" type="Node2D" parent="."]
+[node name="BoardControler" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 1
 script = ExtResource("7_84m22")
 metadata/TextureSize = Vector2(1200, 800)
 
 [node name="BoardBackground" type="TextureRect" parent="BoardControler"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -139,6 +123,7 @@ theme_override_constants/margin_bottom = 35
 
 [node name="ColorPicker" type="OptionButton" parent="ColorSetterContainer"]
 layout_mode = 2
+focus_mode = 0
 selected = 0
 item_count = 3
 popup/item_0/text = "Red"

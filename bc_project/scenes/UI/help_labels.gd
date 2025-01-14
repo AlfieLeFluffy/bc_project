@@ -1,16 +1,19 @@
 extends VBoxContainer
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Signals.connect('help_text_toggle', toggle_help)
 
 func toggle_help(type,direction) -> void:
 	match type:
-		"interactive":
+		Global.help_signal_type.INTERACTIVE:
 			$InteractiveLabel.visible = direction
 			$AddToBoardLabel.visible = direction
-		"deleteElement":
+		Global.help_signal_type.TALK:
+			$TalkLabel.visible = direction
+		Global.help_signal_type.DELETEELEMENT:
 			$DeleteElementLabel.visible = direction
-		"door":
+		Global.help_signal_type.DOOR:
 			$DoorLabel.visible = direction

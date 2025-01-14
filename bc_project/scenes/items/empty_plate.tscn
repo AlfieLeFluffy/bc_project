@@ -1,8 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://chgj487p1bpqi"]
+[gd_scene load_steps=11 format=3 uid="uid://chgj487p1bpqi"]
 
 [ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactable_base.tscn" id="1_quxmj"]
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="2_n5cj5"]
 [ext_resource type="Texture2D" uid="uid://b4lgho32xwd8w" path="res://textures/items/emptyPlate.png" id="2_qpsot"]
 [ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="2_xq1fx"]
+[ext_resource type="Script" path="res://scenes/interactable_resource.gd" id="3_uqlsw"]
+
+[sub_resource type="Resource" id="Resource_78cg6"]
+resource_local_to_scene = true
+script = ExtResource("3_uqlsw")
+item_name = "Empty Plate"
+timeline = "000"
+type = 0
+description = "Test Description"
+dialogIndex = 0
+dialogs = Array[ExtResource("2_n5cj5")]([])
+titleIndex = 0
+titles = PackedStringArray()
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q715m"]
 resource_local_to_scene = true
@@ -30,8 +44,7 @@ animations = [{
 }]
 
 [node name="EmptyPlate" instance=ExtResource("1_quxmj")]
-metadata/Name = "Empty Plate"
-metadata/Timeline = "001"
+interactable_resource = SubResource("Resource_78cg6")
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, 0.5)

@@ -13,8 +13,4 @@ func _input(event: InputEvent) -> void:
 
 
 func toggle_board() -> void:
-	if visible:
-		Global.close_menu()
-	else:
-		Global.open_menu()
 	visible = not visible

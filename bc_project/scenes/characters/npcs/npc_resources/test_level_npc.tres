@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="npcResource" load_steps=2 format=3 uid="uid://yu00wqy70eyc"]
+
+[ext_resource type="Script" path="res://scenes/characters/npcs/npc_resource.gd" id="3_3ekfd"]
+
+[resource]
+script = ExtResource("3_3ekfd")
+npcName = "Eifla"
