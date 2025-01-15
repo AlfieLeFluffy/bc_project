@@ -19,31 +19,40 @@ func _on_button_symbol_plus_pressed() -> void:
 	create_note()
 
 func finalize_element() -> void:
-	Global.array_board_elements.append(board_element_instance)
 	get_parent().add_child(board_element_instance)
 	var random_offset = Vector2(rng.randi_range(-100,100),rng.randi_range(-100,100))
 	board_element_instance.position = Vector2(get_parent().get_node("BoardBackground").size/2+random_offset)
 	board_element_instance = null
 	
 func create_note() -> void:
+	if check_element("note"+Global.Timeline):
+		return
 	board_element_instance = note_element.instantiate()
+	board_element_instance.label = "note"
+	board_element_instance.elementName = "note"+Global.Timeline
+	Global.board_elements[board_element_instance.elementName] = board_element_instance
 	finalize_element()
 	
 func create_item(_texture, _label, _text) -> void:
+	if check_element(_label+Global.Timeline):
+		return
 	board_element_instance = item_element.instantiate()
 	board_element_instance.texture = _texture
 	board_element_instance.label = _label
 	board_element_instance.text = _text
+	board_element_instance.elementName = _label+Global.Timeline
+	Global.board_elements[board_element_instance.elementName] = board_element_instance
 	finalize_element()
 
+func check_element(key:String) -> bool:
+	if Global.board_elements.has(key):
+		return true
+	return false
+
 func delete_board_element(element) -> void:
-	var index = Global.array_board_elements.find(element)
-	var list = []
-	for line in Global.array_line_elements:
-		if line.board_element_0 == element or line.board_element_1 == element:
-			list.append(line)
-	for line in list:
-		Signals.emit_signal('delete_line',line)
-	Global.array_board_elements[index].queue_free()
-	Global.array_board_elements.remove_at(index)
+	for lineKey in Global.line_elements.keys():
+		if lineKey.contains(element.elementName):
+			Signals.emit_signal('delete_line',Global.line_elements[lineKey])
+	Global.board_elements.erase(element.elementName)
+	element.queue_free()
 	Signals.emit_signal("help_text_toggle",Global.help_signal_type.DELETEELEMENT,false)

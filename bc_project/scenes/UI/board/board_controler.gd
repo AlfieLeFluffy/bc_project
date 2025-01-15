@@ -11,6 +11,5 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("table_toggle"):
 		toggle_board()
 
-
 func toggle_board() -> void:
 	visible = not visible

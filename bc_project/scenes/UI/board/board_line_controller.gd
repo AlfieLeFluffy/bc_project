@@ -48,7 +48,10 @@ func end_drawing() -> void:
 		else:
 			line_element_instance.board_element_1 = Global.Active_Board_Element
 			line_element_instance.toggle_description()
-			Global.array_line_elements.append(line_element_instance)
+			var line = line_element_instance
+			var line_name = line.board_element_0.elementName + line.board_element_1.elementName
+			line_element_instance.lineName = line_name
+			Global.line_elements[line_name] = line_element_instance
 			line_element_instance.drawing = false
 			reset_state()
 
@@ -61,9 +64,8 @@ func reset_state() -> void:
 	drawing = false
 
 func delete_line_element(line) -> void:
-	var index = Global.array_line_elements.find(line)
-	Global.array_line_elements[index].queue_free()
-	Global.array_line_elements.remove_at(index)
+	Global.line_elements.erase(line.lineName)
+	line.queue_free()
 	Signals.emit_signal("help_text_toggle",Global.help_signal_type.DELETEELEMENT,false)
 
 

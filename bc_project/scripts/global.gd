@@ -26,8 +26,8 @@ var Active_Board_Element
 var Active_Interactive_Item
 
 # Board elements and lines
-var array_board_elements = []
-var array_line_elements = []
+var board_elements: Dictionary
+var line_elements: Dictionary
 
 # Focus variables
 var FocusSet = false

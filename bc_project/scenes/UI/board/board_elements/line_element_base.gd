@@ -2,6 +2,7 @@ extends Node2D
 
 var color
 var thickness
+var lineName
 
 var active = false
 var drawing = true

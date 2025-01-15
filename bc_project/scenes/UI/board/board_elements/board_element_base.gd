@@ -6,6 +6,7 @@ var dragged = false
 var parent
 var board
 var board_size
+var elementName
 
 var mouse_offset
 
