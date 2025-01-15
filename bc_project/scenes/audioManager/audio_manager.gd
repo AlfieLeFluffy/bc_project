@@ -94,10 +94,10 @@ func import_audio_track(folder, file, fileName, directory) -> bool:
 # If sound doesn't exist an error is printed and the call is terminated
 # For every sound the manager creates a new AudioStreamPlayer
 # Pitch variance option allows generation of a different pitch for given sound
-func play_sound(name: String, pitchVariance: bool= true) -> void:
+func play_sound(soundName: String, pitchVariance: bool= true) -> void:
 	
 	# Checks if track exists 
-	if not check_track(busses.SFX,name):
+	if not check_track(busses.SFX,soundName):
 		return
 	
 	# Checks for sfx limit and return if exceded
@@ -109,7 +109,7 @@ func play_sound(name: String, pitchVariance: bool= true) -> void:
 	var audioPlayer = AudioStreamPlayer.new()
 	add_child(audioPlayer)
 	
-	audio_player_setup(audioPlayer,busses.SFX,name,pitchVariance)
+	audio_player_setup(audioPlayer,busses.SFX,soundName,pitchVariance)
 	await run_sound(audioPlayer)
 	finish_sound()
 
@@ -117,10 +117,10 @@ func play_sound(name: String, pitchVariance: bool= true) -> void:
 # If sound doesn't exist an error is printed and the call is terminated
 # For every sound the manager creates a new AudioStreamPlayer
 # Pitch variance option allows generation of a different pitch for given sound
-func play_sound_2d(name: String, position: Vector2, pitchVariance: bool= true) -> void:
+func play_sound_2d(soundName: String, position: Vector2, pitchVariance: bool= true) -> void:
 	
 	# Checks if track exists 
-	if not check_track(busses.SFX, name):
+	if not check_track(busses.SFX, soundName):
 		return
 	
 	# Checks for sfx limit and return if exceded
@@ -132,7 +132,7 @@ func play_sound_2d(name: String, position: Vector2, pitchVariance: bool= true) -
 	var audioPlayer = AudioStreamPlayer2D.new()
 	add_child(audioPlayer)
 	
-	audio_player_setup(audioPlayer,busses.SFX,name,pitchVariance)
+	audio_player_setup(audioPlayer,busses.SFX,soundName,pitchVariance)
 	# Setup step for 2D audio position
 	audioPlayer.position = position
 	await run_sound(audioPlayer)
@@ -142,10 +142,10 @@ func play_sound_2d(name: String, position: Vector2, pitchVariance: bool= true) -
 --- Play Dialog Sounds
 """
 # 
-func play_dialog(name: String, skipDialogue: bool = true, pitchVariance: bool= true) -> void:
+func play_dialog(dialogName: String, skipDialogue: bool = true, pitchVariance: bool= true) -> void:
 	
 	# Checks if track exists 
-	if not check_track(busses.Dialogue,name):
+	if not check_track(busses.Dialogue,dialogName):
 		return
 	
 	# Checks if dialogue is running and skipDialog is dissabled returns this call
@@ -159,40 +159,68 @@ func play_dialog(name: String, skipDialogue: bool = true, pitchVariance: bool= t
 	dialogueFinished = false
 	
 	# Sets up and runs the dialogue audio
-	audio_player_setup($DialogAudioStreamPlayer,busses.Dialogue,name,pitchVariance)
+	audio_player_setup($DialogAudioStreamPlayer,busses.Dialogue,dialogName,pitchVariance)
 	run_sound($DialogAudioStreamPlayer)
 
-func play_dialog_2d(name: String, position: Vector2, pitchVariance: bool= true) -> void:
+func play_dialog_2d(dialogName: String, position: Vector2, pitchVariance: bool= true) -> void:
 	
 	# Checks if track exists 
-	if not check_track(busses.Dialogue,name):
+	if not check_track(busses.Dialogue,dialogName):
 		return
 	
 	# AudioStreamPlayer instantiation
 	var audioPlayer = AudioStreamPlayer.new()
 	add_child(audioPlayer)
 	
-	audio_player_setup(audioPlayer,busses.Dialogue,name,pitchVariance)
+	audio_player_setup(audioPlayer,busses.Dialogue,dialogName,pitchVariance)
 	# Setup step for 2D audio position
 	audioPlayer.position = position
 	run_sound(audioPlayer)
+
+"""
+--- Play Music
+"""
+
+func play_music(musicName: String, fade:bool = false, loop:bool = true, pitchVariance: bool= true) -> void:
+	$MusicAudioStreamPlayer.stream = tracks[busses.Music][musicName]
+	tracks[busses.Music][musicName].loop = loop
+	if pitchVariance:
+		$MusicAudioStreamPlayer.pitch_scale = randf_range(audioManRes.pitchRange.x,audioManRes.pitchRange.y)
+	$MusicAudioStreamPlayer.play()
+
+func pause_music() -> void:
+	if not $MusicAudioStreamPlayer.stream_paused:
+		$MusicAudioStreamPlayer.stream_paused = true
+
+func resume_music() -> void:
+	if $MusicAudioStreamPlayer.stream_paused:
+		$MusicAudioStreamPlayer.stream_paused = false
+
+func stop_music() -> void:
+	if $MusicAudioStreamPlayer.playing:
+		$MusicAudioStreamPlayer.stop()
+
+func change_music(musicName: String) -> void:
+	if check_track(busses.Music,musicName):
+		$MusicAudioStreamPlayer.stream = tracks[busses.Music][musicName]
+	$MusicAudioStreamPlayer.play()
 
 """
 --- General AudioStreamPlayer Functions
 """
 # Checks if given audio track exists
 # Returns false if search returns null, otherwise true
-func check_track(bus: busses, name: String) -> bool:
-	if not tracks[bus].has(name):
-		printerr("Audio track of name "+ name +" doesn't exist")
+func check_track(bus: busses, trackName: String) -> bool:
+	if not tracks[bus].has(trackName):
+		printerr("Audio track of name "+ trackName +" doesn't exist")
 		return false
 	return true
 
 # AudioStreamPlayer2D setup
-func audio_player_setup(audioPlayer ,bus: busses, name: String, pitchVariance: bool= true) -> void:
+func audio_player_setup(audioPlayer ,bus: busses, trackName: String, pitchVariance: bool= true) -> void:
 	sfxPlayerList[sfxCount-1] = audioPlayer
 	audioPlayer.bus = busDict[bus]
-	audioPlayer.stream = tracks[bus][name]
+	audioPlayer.stream = tracks[bus][trackName]
 	if pitchVariance:
 		audioPlayer.pitch_scale = randf_range(audioManRes.pitchRange.x,audioManRes.pitchRange.y)
 
