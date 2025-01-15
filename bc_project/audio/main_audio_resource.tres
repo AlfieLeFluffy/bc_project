@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AudioManagerResource" load_steps=5 format=3 uid="uid://cvmfljobk6116"]
+
+[ext_resource type="Script" path="res://scenes/audioManager/audio_manager_resource.gd" id="1_a8yxu"]
+[ext_resource type="Script" path="res://scenes/audioManager/audio_track.gd" id="2_gh7l8"]
+[ext_resource type="AudioStream" uid="uid://c4rwaja6twbp0" path="res://audio/testAudio/ui-ding.mp3" id="3_p041f"]
+
+[sub_resource type="Resource" id="Resource_dt8ie"]
+script = ExtResource("2_gh7l8")
+name = "ding"
+file = ExtResource("3_p041f")
+
+[resource]
+script = ExtResource("1_a8yxu")
+pitchRange = Vector2(0.95, 1.05)
+sfxTracks = Array[ExtResource("2_gh7l8")]([SubResource("Resource_dt8ie")])

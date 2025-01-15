@@ -52,6 +52,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			interact_function()
 	elif event.is_action_pressed("add_to_board") and active:
 		Signals.emit_signal('create_item_element',get_sprite_from_current_frame(), interactable_resource.item_name,interactable_resource.description)
+		AudioManager.play_sound("ding")
 
 """
 --- Custom functions
