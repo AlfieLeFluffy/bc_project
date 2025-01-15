@@ -6,3 +6,9 @@
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_648cp")
 audioManRes = ExtResource("2_2mgof")
+
+[node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="DialogAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Dialogue"
