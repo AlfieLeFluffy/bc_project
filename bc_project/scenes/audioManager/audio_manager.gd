@@ -1,7 +1,7 @@
 extends Node
 
 """
---- Bus Setup
+--- Bus and Folder Setup
 """
 
 # A list of all available busses
@@ -13,6 +13,8 @@ const busDict: Dictionary = {
 	busses.Music: &"Music",
 	busses.Dialogue: &"Dialogue"
 }
+
+const folders = ["sfx", "music", "dialogue"]
 
 """
 --- Audio Manager and Tracks Resources
@@ -50,15 +52,40 @@ var dialogueFinished:bool = true
 # Prepares all audio clips from the resource to be called upon
 func _ready() -> void:
 
+	if audioManRes.importTracks:
+		import_audio_file_from_folder()
+
 	if audioManRes:
 		for track in audioManRes.sfxTracks:
-			sfxTracks[track.name] = track.file
+			if not sfxTracks.has(track.name):
+				sfxTracks[track.name] = track.file
 		for track in audioManRes.musicTracks:
-			musicTracks[track.name] = track.file
+			if not musicTracks.has(track.name):
+				musicTracks[track.name] = track.file
 		for track in audioManRes.dialogueTracks:
-			dialogueTracks[track.name] = track.file
+			if not dialogueTracks.has(track.name):
+				dialogueTracks[track.name] = track.file
 	
 	sfxPlayerList.resize(Global.MaxSFXSounds)
+
+func import_audio_file_from_folder() -> void:
+	var files
+	for i in range(folders.size()):
+		files = DirAccess.get_files_at("res://audio/"+folders[i])
+		for file in files:
+			var fileName = file.rstrip(".mp3")
+			if not import_audio_track(folders[i], file, fileName, tracks[i+1]):
+				printerr("Audio track by name " + file + "could not be loaded")
+
+func import_audio_track(folder, file, fileName, directory) -> bool:
+	if not sfxTracks.has(fileName):
+		var audioStream = AudioStreamMP3.new()
+		var fileStream = FileAccess.open("res://audio/"+folder+"/"+file, FileAccess.READ)
+		if fileStream:
+			audioStream.data = fileStream.get_buffer(fileStream.get_length())
+			directory[fileName] = audioStream
+			return true
+	return false
 
 """
 --- Play SFX Sounds
@@ -156,8 +183,8 @@ func play_dialog_2d(name: String, position: Vector2, pitchVariance: bool= true) 
 # Checks if given audio track exists
 # Returns false if search returns null, otherwise true
 func check_track(bus: busses, name: String) -> bool:
-	if not tracks[bus][name]:
-		printerr("Audio file of name "+ name +" doesn't exist")
+	if not tracks[bus].has(name):
+		printerr("Audio track of name "+ name +" doesn't exist")
 		return false
 	return true
 
