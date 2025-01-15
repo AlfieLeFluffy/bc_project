@@ -22,7 +22,7 @@ var CaseIndex = 0
 var MainCharacterName = "Alfie"
 
 # Veriables used in board control
-var Active_Board_Element
+var activeElement
 var Active_Interactive_Item
 
 # Board elements and lines

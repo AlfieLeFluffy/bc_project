@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cxwyhyyqufru4"]
 
-[ext_resource type="Script" path="res://scenes/UI/board/board_elements/board_element_base.gd" id="1_4ifnd"]
+[ext_resource type="Script" path="res://scenes/UI/board/board_elements/element_base.gd" id="1_4ifnd"]
 
 [sub_resource type="Gradient" id="Gradient_2y3ls"]
 
@@ -13,7 +13,7 @@ height = 20
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a7oiv"]
 resource_local_to_scene = true
 
-[node name="board_element_base" type="Area2D"]
+[node name="element_base" type="Area2D"]
 z_index = 1
 script = ExtResource("1_4ifnd")
 

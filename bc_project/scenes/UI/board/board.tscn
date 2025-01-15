@@ -3,12 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://cwqhqr5tnxgpm" path="res://textures/ui/board/board_background_UI.png" id="1_avnfn"]
 [ext_resource type="Script" path="res://scenes/UI/board/board_controler.gd" id="1_r52og"]
 [ext_resource type="PackedScene" uid="uid://bcdby6svlp0fj" path="res://scenes/UI/backgrounds/fade_background.tscn" id="2_i1t00"]
-[ext_resource type="Script" path="res://scenes/UI/board/board_element_controller.gd" id="2_o58ty"]
+[ext_resource type="Script" path="res://scenes/UI/board/element_controller.gd" id="2_o58ty"]
 [ext_resource type="PackedScene" uid="uid://c3cr13ksd4qam" path="res://scenes/UI/buttons/button_symbol_plus.tscn" id="6_oi6ex"]
 [ext_resource type="Script" path="res://scenes/UI/board/board_movement.gd" id="7_84m22"]
 [ext_resource type="Script" path="res://scenes/UI/buttons/create_note_button.gd" id="7_gv8j2"]
 [ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="8_ryf4i"]
-[ext_resource type="Script" path="res://scenes/UI/board/board_line_controller.gd" id="10_tsqgj"]
+[ext_resource type="Script" path="res://scenes/UI/board/connection_controller.gd" id="10_tsqgj"]
 
 [sub_resource type="Gradient" id="Gradient_rfis8"]
 offsets = PackedFloat32Array(0.491979, 1)
@@ -70,10 +70,10 @@ mouse_default_cursor_shape = 6
 texture = ExtResource("1_avnfn")
 stretch_mode = 1
 
-[node name="BoardElementController" type="Node" parent="BoardControler"]
+[node name="ElementController" type="Node" parent="BoardControler"]
 script = ExtResource("2_o58ty")
 
-[node name="BoardLineController" type="Node" parent="BoardControler"]
+[node name="ConnectionController" type="Node" parent="BoardControler"]
 script = ExtResource("10_tsqgj")
 
 [node name="ButtonContainer" type="MarginContainer" parent="."]
@@ -137,5 +137,5 @@ popup/item_2/id = 2
 
 [connection signal="mouse_entered" from="ButtonContainer/CreateNoteButton" to="ButtonContainer/CreateNoteButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="ButtonContainer/CreateNoteButton" to="ButtonContainer/CreateNoteButton" method="_on_mouse_exited"]
-[connection signal="pressed" from="ButtonContainer/CreateNoteButton" to="BoardControler/BoardElementController" method="_on_button_symbol_plus_pressed"]
-[connection signal="item_selected" from="ColorSetterContainer/ColorPicker" to="BoardControler/BoardLineController" method="_on_color_picker_item_selected"]
+[connection signal="pressed" from="ButtonContainer/CreateNoteButton" to="BoardControler/ElementController" method="_on_button_symbol_plus_pressed"]
+[connection signal="item_selected" from="ColorSetterContainer/ColorPicker" to="BoardControler/ConnectionController" method="_on_color_picker_item_selected"]

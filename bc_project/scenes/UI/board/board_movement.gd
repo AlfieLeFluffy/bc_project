@@ -1,10 +1,14 @@
 extends Control
 
-
+"""
+--- Runtime Variables
+"""
 var dragged = false
+var mouseOffset
 
-var mouse_offset
-
+"""
+--- Runtime Methods
+"""
 func _physics_process(delta: float) -> void:
 	"""if Global.InMenu and visible and not dragged:
 		var horizontal := Input.get_axis("ui_left", "ui_right")
@@ -14,11 +18,11 @@ func _physics_process(delta: float) -> void:
 			$Board.position = $Board.position + direction
 	el"""
 	if dragged:
-		position = get_global_mouse_position() + mouse_offset
+		position = get_global_mouse_position() + mouseOffset
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("drag_board") and visible:
 		dragged = true
-		mouse_offset = position - get_global_mouse_position()
+		mouseOffset = position - get_global_mouse_position()
 	elif event.is_action_released("drag_board") and visible:
 		dragged = false
