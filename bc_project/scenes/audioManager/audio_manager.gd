@@ -42,7 +42,7 @@ const busDict: Dictionary = {
 var sfxCount:int = 0
 var sfxPlayerList: Array = []
 var musicFinished:bool = true
-var dialogFinished:bool = true
+var dialogueFinished:bool = true
 
 """
 --- Ready Functions Setup
@@ -112,6 +112,45 @@ func play_sound_2d(name: String, position: Vector2, pitchVariance: bool= true) -
 	finish_sound()
 
 """
+--- Play Dialog Sounds
+"""
+# 
+func play_dialog(name: String, skipDialogue: bool = true, pitchVariance: bool= true) -> void:
+	
+	# Checks if track exists 
+	if not check_track(busses.Dialogue,name):
+		return
+	
+	# Checks if dialogue is running and skipDialog is dissabled returns this call
+	if not dialogueFinished and not skipDialogue:
+		return
+	
+	# Checks if dialogue is running and skipDialog is enabled then terminates previous dialogue and starts a new one
+	if not dialogueFinished and skipDialogue:
+		$DialogAudioStreamPlayer.stop()
+	
+	dialogueFinished = false
+	
+	# Sets up and runs the dialogue audio
+	audio_player_setup($DialogAudioStreamPlayer,busses.Dialogue,name,pitchVariance)
+	run_sound($DialogAudioStreamPlayer)
+
+func play_dialog_2d(name: String, position: Vector2, pitchVariance: bool= true) -> void:
+	
+	# Checks if track exists 
+	if not check_track(busses.Dialogue,name):
+		return
+	
+	# AudioStreamPlayer instantiation
+	var audioPlayer = AudioStreamPlayer.new()
+	add_child(audioPlayer)
+	
+	audio_player_setup(audioPlayer,busses.Dialogue,name,pitchVariance)
+	# Setup step for 2D audio position
+	audioPlayer.position = position
+	run_sound(audioPlayer)
+
+"""
 --- General AudioStreamPlayer Functions
 """
 # Checks if given audio track exists
@@ -137,6 +176,7 @@ func run_sound(audioPlayer) -> void:
 	await audioPlayer.finished
 	audioPlayer.queue_free()
 
+
 """
 --- SFX Audio Limit Functions
 """
@@ -150,3 +190,9 @@ func check_count() -> bool:
 
 func finish_sound() -> void:
 	change_count(-1)
+
+"""
+--- Signals
+"""
+func _on_dialog_audio_stream_player_finished() -> void:
+	dialogueFinished = true

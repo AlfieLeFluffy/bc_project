@@ -12,3 +12,5 @@ bus = &"Music"
 
 [node name="DialogAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"Dialogue"
+
+[connection signal="finished" from="DialogAudioStreamPlayer" to="." method="_on_dialog_audio_stream_player_finished"]
