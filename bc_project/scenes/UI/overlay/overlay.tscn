@@ -1,6 +1,6 @@
 [gd_scene load_steps=33 format=3 uid="uid://c8dkj5105sudy"]
 
-[ext_resource type="Script" path="res://scenes/UI/main_overlay.gd" id="1_fmb6v"]
+[ext_resource type="Script" path="res://scenes/UI/overlay/overlay.gd" id="1_fmb6v"]
 [ext_resource type="Texture2D" uid="uid://dutut208e6hui" path="res://textures/ui/overlay/timelineUI.png" id="2_3uuai"]
 [ext_resource type="LabelSettings" uid="uid://doqukeeaoqvm" path="res://settings/UI_label_settings.tres" id="3_hx8fx"]
 [ext_resource type="Texture2D" uid="uid://dg7tk2fu61pdi" path="res://textures/ui/overlay/caseUI.png" id="4_5weyg"]

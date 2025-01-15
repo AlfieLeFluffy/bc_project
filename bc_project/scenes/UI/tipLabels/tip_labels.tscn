@@ -1,20 +1,20 @@
 [gd_scene load_steps=3 format=3 uid="uid://bvxpeerpgh7a6"]
 
-[ext_resource type="Script" path="res://scenes/UI/help_labels.gd" id="1_kxvj5"]
-[ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="2_sslv4"]
+[ext_resource type="Script" path="res://scenes/UI/tipLabels/tip_labels.gd" id="1_6tbjq"]
+[ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="2_1npel"]
 
-[node name="helpLabels" type="VBoxContainer"]
+[node name="tip_labels" type="VBoxContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 2
-script = ExtResource("1_kxvj5")
+script = ExtResource("1_6tbjq")
 
 [node name="TimelineShiftLabel" type="RichTextLabel" parent="."]
 layout_mode = 2
 mouse_force_pass_scroll_events = false
-theme_override_fonts/normal_font = ExtResource("2_sslv4")
+theme_override_fonts/normal_font = ExtResource("2_1npel")
 theme_override_font_sizes/normal_font_size = 26
 bbcode_enabled = true
 text = "[right][color=lightblue]Q[/color] - Timeline Shift"
@@ -25,7 +25,7 @@ autowrap_mode = 0
 visible = false
 layout_mode = 2
 mouse_force_pass_scroll_events = false
-theme_override_fonts/normal_font = ExtResource("2_sslv4")
+theme_override_fonts/normal_font = ExtResource("2_1npel")
 theme_override_font_sizes/normal_font_size = 26
 bbcode_enabled = true
 text = "[right][color=lightblue]E[/color] - Interact"
@@ -36,7 +36,7 @@ autowrap_mode = 0
 visible = false
 layout_mode = 2
 mouse_force_pass_scroll_events = false
-theme_override_fonts/normal_font = ExtResource("2_sslv4")
+theme_override_fonts/normal_font = ExtResource("2_1npel")
 theme_override_font_sizes/normal_font_size = 26
 bbcode_enabled = true
 text = "[right][color=lightblue]E[/color] - Talk"
@@ -47,7 +47,7 @@ autowrap_mode = 0
 visible = false
 layout_mode = 2
 mouse_force_pass_scroll_events = false
-theme_override_fonts/normal_font = ExtResource("2_sslv4")
+theme_override_fonts/normal_font = ExtResource("2_1npel")
 theme_override_font_sizes/normal_font_size = 26
 bbcode_enabled = true
 text = "[right][color=lightblue]E[/color] - Go Through Door"
@@ -58,7 +58,7 @@ autowrap_mode = 0
 visible = false
 layout_mode = 2
 mouse_force_pass_scroll_events = false
-theme_override_fonts/normal_font = ExtResource("2_sslv4")
+theme_override_fonts/normal_font = ExtResource("2_1npel")
 theme_override_font_sizes/normal_font_size = 26
 bbcode_enabled = true
 text = "[right][color=lightblue]F[/color] - Add To Board"
@@ -69,7 +69,7 @@ autowrap_mode = 0
 visible = false
 layout_mode = 2
 mouse_force_pass_scroll_events = false
-theme_override_fonts/normal_font = ExtResource("2_sslv4")
+theme_override_fonts/normal_font = ExtResource("2_1npel")
 theme_override_font_sizes/normal_font_size = 26
 bbcode_enabled = true
 text = "[right][color=lightblue]Shift + R[/color] - Remove An Element"
@@ -79,7 +79,7 @@ autowrap_mode = 0
 [node name="ToggleBoardLabel" type="RichTextLabel" parent="."]
 layout_mode = 2
 mouse_force_pass_scroll_events = false
-theme_override_fonts/normal_font = ExtResource("2_sslv4")
+theme_override_fonts/normal_font = ExtResource("2_1npel")
 theme_override_font_sizes/normal_font_size = 26
 bbcode_enabled = true
 text = "[right][color=lightblue]Tab[/color] - Toggle Board"

@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://scenes/characters/player_movement.gd" id="1_fg2e7"]
 [ext_resource type="Texture2D" uid="uid://dbvl0gy8mohel" path="res://textures/characters/mainCharacter2.png" id="2_psobe"]
 [ext_resource type="Texture2D" uid="uid://b2ynbvxgxg38d" path="res://textures/lightMaps/radialLight.png" id="3_66w77"]
-[ext_resource type="PackedScene" uid="uid://c8dkj5105sudy" path="res://scenes/UI/main_overlay.tscn" id="4_ej0mm"]
+[ext_resource type="PackedScene" uid="uid://c8dkj5105sudy" path="res://scenes/UI/overlay/overlay.tscn" id="4_ej0mm"]
 [ext_resource type="PackedScene" uid="uid://x3lasufaexva" path="res://scenes/characters/camera_controls.tscn" id="5_2uxfp"]
 [ext_resource type="PackedScene" uid="uid://c73m21uddf5ye" path="res://scenes/UI/board/board.tscn" id="6_hlohb"]
-[ext_resource type="PackedScene" uid="uid://bvxpeerpgh7a6" path="res://scenes/UI/help_labels.tscn" id="7_lxwgw"]
+[ext_resource type="PackedScene" uid="uid://bvxpeerpgh7a6" path="res://scenes/UI/tipLabels/tip_labels.tscn" id="7_lxwgw"]
 [ext_resource type="PackedScene" uid="uid://fbx8e7x0hb" path="res://scenes/menus/ingame_menu.tscn" id="7_m38fl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tpys6"]

@@ -1,11 +1,15 @@
 extends VBoxContainer
 
-
-
+"""
+--- Setup Functions
+"""
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Signals.connect('help_text_toggle', toggle_help)
 
+"""
+--- Tip Toggle Functionss
+"""
 func toggle_help(type,direction) -> void:
 	match type:
 		Global.help_signal_type.INTERACTIVE:

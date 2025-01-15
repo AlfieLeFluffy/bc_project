@@ -38,24 +38,19 @@ enum help_signal_type {INTERACTIVE,DELETEELEMENT,DOOR,TALK}
 
 const MaxSFXSounds:int = 5
 
+
 """
 --- Setup functions
 """
-
 func _ready() -> void:
 	DialogueManager.connect("dialogue_ended",release_focus)
 
 """
---- Input map functions
+--- Gloabal Functions
 """
-
 func get_input_key(inputName) -> String:
 	var output = InputMap.action_get_events(inputName)[0].as_text().split("(")[0]
 	return output.left(output.length()-1)
-
-"""
---- Focus functions
-"""
 
 func release_focus(resource = null) -> void:
 	if FocusSet:
