@@ -230,7 +230,6 @@ func run_sound(audioPlayer) -> void:
 	await audioPlayer.finished
 	audioPlayer.queue_free()
 
-
 """
 --- SFX Audio Limit Functions
 """
@@ -298,6 +297,16 @@ func mute_bus_volume(bus:busses) -> void:
 func unmute_bus_volume(bus:busses) -> void:
 	if not AudioServer.is_bus_mute(bus):
 		AudioServer.set_bus_mute(bus, true)
+
+# Fades in sounds on a specified bus
+func fade_in_bus(bus, endVolume:float, baseVolume:float = 0, step:float = .25) -> void:
+	var tween = create_tween().bind_node(bus)
+	tween.tween_method(set_bus_volume, baseVolume, endVolume, step)
+
+# Fades out sounds on a specified bus
+func fade_out_bus(bus, baseVolume:float, endVolume:float= 0, step:float = .25) -> void:
+	var tween = create_tween().bind_node(bus)
+	tween.tween_method(set_bus_volume, baseVolume, endVolume, step)
 
 """
 --- Effects Bus Managnemnt Methods
