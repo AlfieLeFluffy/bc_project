@@ -180,7 +180,6 @@ func play_dialog_2d(dialogName: String, position: Vector2, pitchVariance: bool= 
 """
 --- Play Music
 """
-
 func play_music(musicName: String, fade:bool = false, loop:bool = true, pitchVariance: bool= true) -> void:
 	$MusicAudioStreamPlayer.stream = tracks[busses.Music][musicName]
 	tracks[busses.Music][musicName].loop = loop
@@ -245,6 +244,112 @@ func check_count() -> bool:
 
 func finish_sound() -> void:
 	change_count(-1)
+
+"""
+--- Bus Managnemnt Methods
+"""
+# Creates a bus and reroutes its output to specified bus
+# Created bus is appended as last bus
+func create_bus(sendBus:busses) -> void:
+	AudioServer.add_bus(AudioServer.bus_count)
+	AudioServer.set_bus_send(AudioServer.bus_count, AudioServer.get_bus_name(sendBus))
+
+# Deletes a specified bus
+# If bus index is not specified it deletes the last bus
+func delete_bus(busIndex:int = -1) -> void:
+	if busIndex == -1:
+		AudioServer.remove_bus(AudioServer.bus_count-1)
+	else:
+		AudioServer.remove_bus(busIndex)
+
+"""
+--- Base Bus Managnemnt Methods
+"""
+# Returns bus volume as linear transformation float (converts from db scale)
+# If linearOutput is set to false; returns volume as db scale
+func get_bus_volume(bus:busses, linearOutput:bool = true) -> float:
+	if linearOutput:
+		return db_to_linear(AudioServer.get_bus_volume_db(bus))
+	return AudioServer.get_bus_volume_db(bus)
+
+# Sets bus volume from linear float (converts into db scale)
+# If linearInput is set to false; set volume as db scale (doesn't convert)
+func set_bus_volume(bus:busses, x:float, linearInput:bool = true) -> void:
+	if linearInput:
+		AudioServer.set_bus_volume_db(bus, linear_to_db(x))
+	else:
+		AudioServer.set_bus_volume_db(bus, x)
+
+# Resets bus volume to 0 db
+func reset_bus_volume(bus:busses) -> void:
+	set_bus_volume(bus, 0.0)
+
+# Resets all busses volume to 0 db
+func reset_all_bus_volume(bus:busses) -> void:
+	for i in range(AudioServer.bus_count):
+		set_bus_volume(i, 0.0)
+
+# Mutes specified bus
+func mute_bus_volume(bus:busses) -> void:
+	if AudioServer.is_bus_mute(bus):
+		AudioServer.set_bus_mute(bus, false)
+
+# Unmutes specified bus
+func unmute_bus_volume(bus:busses) -> void:
+	if not AudioServer.is_bus_mute(bus):
+		AudioServer.set_bus_mute(bus, true)
+
+"""
+--- Effects Bus Managnemnt Methods
+"""
+# Adds an effect to a specified bus to a specified index
+# The effect has to create beforehand
+# If index is not given it automatically appends it
+func add_bus_effect(bus:busses, effect:AudioEffect, index:int = -1) -> void:
+	if index == -1:
+		AudioServer.add_bus_effect(bus,effect,AudioServer.get_bus_effect_count(bus))
+	else:
+		AudioServer.add_bus_effect(bus,effect,index)
+
+# Removes an effect from a specified bus on a specified index
+# If index is not given it defaults into the last effect
+func remove_bus_effect(bus:busses, index:int = -1) -> void:
+	if not check_bus_effect(bus, index):
+		return
+	
+	if index == -1:
+		AudioServer.remove_bus_effect(bus,AudioServer.get_bus_effect_count(bus)-1)
+	else:
+		AudioServer.remove_bus_effect(bus,index)
+
+# Exchanges a bus effect for another one
+# If index is not given it defaults into the last effect
+func change_bus_effect(bus:busses, effect:AudioEffect, index:int = -1) -> void:
+	if not check_bus_effect(bus, index):
+		return
+	
+	remove_bus_effect(bus, index)
+	add_bus_effect(bus, effect, index)
+
+# Clears all effects on a bus
+func clear_bus_effect_all(bus:busses) -> void:
+	for i in range(AudioServer.get_bus_effect_count(bus)):
+		remove_bus_effect(bus)
+
+# Clears all effects on all buses
+func clear_all_bus_effect_all() -> void:
+	for i in range(AudioServer.bus_count):
+		clear_bus_effect_all(i)
+
+# Checks for existence of given bus effect
+func check_bus_effect(bus, index) -> bool:
+	if index == -1:
+		index = AudioServer.get_bus_effect_count(bus) -1
+	if not AudioServer.get_bus_effect(bus, index):
+		printerr("Given effect index " + index + " on bus " + bus + "doesn't exist. Out of bounds error.")
+		return false
+	return true 
+
 
 """
 --- Signals
