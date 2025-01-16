@@ -1,8 +1,9 @@
-[gd_scene load_steps=68 format=4 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=69 format=4 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Texture2D" uid="uid://f5ht0q2x8m04" path="res://textures/flatTileset-Sheet.png" id="1_n5x54"]
 [ext_resource type="Script" path="res://scenes/levels/level_control.gd" id="1_t01cb"]
 [ext_resource type="PackedScene" uid="uid://ddrrl1gryxkup" path="res://scenes/characters/player.tscn" id="1_wpgi4"]
+[ext_resource type="Resource" uid="uid://cjggp125qd82o" path="res://scenes/levels/case_clues_001.tres" id="2_6di2b"]
 [ext_resource type="PackedScene" uid="uid://baw3h6q2ebxe6" path="res://scenes/interactive/door.tscn" id="3_ya4qs"]
 [ext_resource type="PackedScene" uid="uid://chgj487p1bpqi" path="res://scenes/items/empty_plate.tscn" id="4_w2p71"]
 [ext_resource type="Script" path="res://scenes/levels/timeline_controller.gd" id="4_xluye"]
@@ -402,6 +403,7 @@ titles = PackedStringArray()
 
 [node name="testScene" type="Node2D"]
 script = ExtResource("1_t01cb")
+caseClues = ExtResource("2_6di2b")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.3081, 0.323115, 0.39, 1)

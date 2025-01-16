@@ -8,14 +8,14 @@ extends Node
 var NextScene = ""
 
 # Veriables used in timeline hoping and UI elements
-var Timeline = "000"
+var Timeline = "001"
 var TimelineIndex = 0
 
 var TimelineShiftReady = true
 const TIMELINE_TIMEOUT = 1.0
 
 # Veriables used in cases
-var Case = "000"
+var Case = "001"
 var CaseIndex = 0
 
 # Main character info

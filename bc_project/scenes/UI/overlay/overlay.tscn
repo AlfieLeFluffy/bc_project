@@ -172,7 +172,7 @@ animations = [{
 "speed": 16.0
 }]
 
-[node name="main_overlay" type="CanvasLayer"]
+[node name="overlay" type="CanvasLayer"]
 scale = Vector2(1.5, 1.5)
 transform = Transform2D(1.5, 0, 0, 1.5, 0, 0)
 script = ExtResource("1_fmb6v")

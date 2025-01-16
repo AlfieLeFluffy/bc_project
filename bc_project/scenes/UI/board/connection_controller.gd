@@ -13,8 +13,10 @@ var drawing = false
 var color
 
 var instance
-var element0 = null
-var element1 = null
+var element0
+var element1
+
+var caseClues: Dictionary
 
 """
 --- Setup Methods
@@ -22,7 +24,28 @@ var element1 = null
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	color = $"../../ColorSetterContainer/ColorPicker".get_item_icon(0).gradient.colors[0]
+	
+	import_clues()
+	
 	Signals.connect('delete_line', delete_line_element)
+
+func import_clues() -> void:
+	var resource
+	for child in get_tree().root.get_children():
+		if child is LevelControl:
+			resource = child.caseClues
+			break
+	
+	if not resource:
+		printerr("This level does not contain clue combinations.")
+		return
+	
+	if resource.case != Global.Case:
+		printerr("The global case and case clues dont match. Clue loading stopped.")
+		return
+	
+	for clue in resource.clues:
+		caseClues[clue.combination] = clue
 
 """
 --- Runtime Methods
@@ -61,12 +84,21 @@ func end_drawing() -> void:
 		else:
 			instance.element1 = Global.activeElement
 			instance.toggle_description()
-			var line = instance
-			var line_name = line.element0.elementName + line.element1.elementName
-			instance.lineName = line_name
-			Global.line_elements[line_name] = instance
+			var lineName = combine_strings(instance.element0.elementName, instance.element1.elementName)
+			instance.lineName = lineName
+			var clue = check_for_clue(lineName)
+			if clue != "":
+				instance.set_description(clue)
+				instance.toggle_edit()
+				AudioManager.play_sound("ding")
+			Global.line_elements[lineName] = instance
 			instance.drawing = false
 			reset_state()
+
+func check_for_clue(combination:String) -> String:
+	if caseClues.has(combination):
+		return caseClues[combination].clueString
+	return ""
 
 func line_queue_free() -> void:
 	instance.queue_free()
@@ -83,6 +115,18 @@ func delete_line_element(line) -> void:
 	Global.line_elements.erase(line.lineName)
 	line.queue_free()
 	Signals.emit_signal("help_text_toggle",Global.help_signal_type.DELETEELEMENT,false)
+
+"""
+--- General Methods
+"""
+func combine_strings(a:String, b:String) -> String:
+	if not (a and b):
+		printerr("Combining strings can't be done.")
+		return ""
+	
+	if a < b:
+		return a+b
+	return b+a
 
 """
 --- Input Signal Methods

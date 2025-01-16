@@ -72,7 +72,6 @@ func check_element(key:String) -> bool:
 		return true
 	return false
 
-
 """
 --- Input Signal Methods
 """

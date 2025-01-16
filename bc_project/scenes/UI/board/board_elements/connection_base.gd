@@ -41,6 +41,12 @@ func _draw() -> void:
 func toggle_description() -> void:
 	$ConnectionText.visible = not $ConnectionText.visible
 
+func set_description(text) -> void:
+	$ConnectionText.text = text
+
+func toggle_edit() -> void:
+	$ConnectionText.editable = not $ConnectionText.editable 
+
 """
 --- Input Signal Methods
 """
