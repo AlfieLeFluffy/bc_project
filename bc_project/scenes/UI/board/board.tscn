@@ -1,14 +1,21 @@
-[gd_scene load_steps=16 format=3 uid="uid://c73m21uddf5ye"]
+[gd_scene load_steps=19 format=3 uid="uid://c73m21uddf5ye"]
 
 [ext_resource type="Texture2D" uid="uid://cwqhqr5tnxgpm" path="res://textures/ui/board/board_background_UI.png" id="1_avnfn"]
 [ext_resource type="Script" path="res://scenes/UI/board/board_controler.gd" id="1_r52og"]
 [ext_resource type="PackedScene" uid="uid://bcdby6svlp0fj" path="res://scenes/UI/backgrounds/fade_background.tscn" id="2_i1t00"]
 [ext_resource type="Script" path="res://scenes/UI/board/element_controller.gd" id="2_o58ty"]
+[ext_resource type="Texture2D" uid="uid://bayy46gdxy3ml" path="res://textures/lightMaps/board_outline_shade.png" id="5_787gc"]
 [ext_resource type="PackedScene" uid="uid://c3cr13ksd4qam" path="res://scenes/UI/buttons/button_symbol_plus.tscn" id="6_oi6ex"]
 [ext_resource type="Script" path="res://scenes/UI/board/board_movement.gd" id="7_84m22"]
 [ext_resource type="Script" path="res://scenes/UI/buttons/create_note_button.gd" id="7_gv8j2"]
 [ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="8_ryf4i"]
 [ext_resource type="Script" path="res://scenes/UI/board/connection_controller.gd" id="10_tsqgj"]
+
+[sub_resource type="Shader" id="Shader_kj08y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ja2cj"]
+render_priority = 0
+shader = SubResource("Shader_kj08y")
 
 [sub_resource type="Gradient" id="Gradient_rfis8"]
 offsets = PackedFloat32Array(0.491979, 1)
@@ -56,19 +63,25 @@ script = ExtResource("7_84m22")
 metadata/TextureSize = Vector2(1200, 800)
 
 [node name="BoardBackground" type="TextureRect" parent="BoardControler"]
+material = SubResource("ShaderMaterial_ja2cj")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 1510.0
-offset_bottom = 1010.0
+offset_right = 3840.0
+offset_bottom = 2160.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 6
 texture = ExtResource("1_avnfn")
 stretch_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="BoardControler/BoardBackground"]
+modulate = Color(0, 0, 0, 0.92549)
+layout_mode = 0
+offset_right = 3840.0
+offset_bottom = 2160.0
+texture = ExtResource("5_787gc")
 
 [node name="ElementController" type="Node" parent="BoardControler"]
 script = ExtResource("2_o58ty")

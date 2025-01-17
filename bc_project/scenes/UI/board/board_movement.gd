@@ -10,15 +10,25 @@ var mouseOffset
 --- Runtime Methods
 """
 func _physics_process(delta: float) -> void:
-	"""if Global.InMenu and visible and not dragged:
-		var horizontal := Input.get_axis("ui_left", "ui_right")
-		var vertical := Input.get_axis("ui_up", "ui_down")
-		var direction = Vector2(horizontal*SPEED,vertical*SPEED)
-		if horizontal or vertical:
-			$Board.position = $Board.position + direction
-	el"""
 	if dragged:
 		position = get_global_mouse_position() + mouseOffset
+		restrain_board()
+
+func restrain_board() -> void:
+	DisplayServer.screen_get_size()
+	
+	if position.x >= 0:
+		position.x = 0
+	
+	if position.y >= 0:
+		position.y = 0
+	
+	if position.x <= -$BoardBackground.size.x/2:
+		position.x = -$BoardBackground.size.x/2
+	
+	if position.y <= -$BoardBackground.size.y/2:
+		position.y = -$BoardBackground.size.y/2
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("drag_board") and visible:

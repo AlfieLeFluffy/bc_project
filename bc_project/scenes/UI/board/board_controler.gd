@@ -11,6 +11,7 @@ var mouse_offset
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	visible = false
+	$BoardControler/BoardBackground.size = DisplayServer.screen_get_size()*2
 	$BoardControler.position = (DisplayServer.screen_get_size() /2) - Vector2i($BoardControler/BoardBackground.size/2)
 	
 func _input(event: InputEvent) -> void:
