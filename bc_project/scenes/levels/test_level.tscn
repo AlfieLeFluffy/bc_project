@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=4 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=71 format=4 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Texture2D" uid="uid://f5ht0q2x8m04" path="res://textures/flatTileset-Sheet.png" id="1_n5x54"]
 [ext_resource type="Script" path="res://scenes/levels/level_control.gd" id="1_t01cb"]
@@ -17,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://yu00wqy70eyc" path="res://scenes/characters/npcs/npc_resources/test_level_npc.tres" id="12_no2yr"]
 [ext_resource type="Resource" uid="uid://cibt63o4kpss8" path="res://dialogs/test_npc.dialogue" id="14_xpdhh"]
 [ext_resource type="Script" path="res://scripts/dialog/dialog_resource.gd" id="15_p50u5"]
+[ext_resource type="PackedScene" uid="uid://xdset1j1nj24" path="res://scenes/interactive/door_sideways.tscn" id="18_caylh"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_sh7fj"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -401,6 +402,18 @@ dialogs = Array[ExtResource("9_0c4pi")]([])
 titleIndex = 0
 titles = PackedStringArray()
 
+[sub_resource type="Resource" id="Resource_0aw31"]
+resource_local_to_scene = true
+script = ExtResource("7_paapu")
+item_name = "Door"
+timeline = "000"
+type = 0
+description = "Door is a door"
+dialogIndex = 0
+dialogs = Array[ExtResource("9_0c4pi")]([])
+titleIndex = 0
+titles = PackedStringArray()
+
 [node name="testScene" type="Node2D"]
 script = ExtResource("1_t01cb")
 caseClues = ExtResource("2_6di2b")
@@ -484,7 +497,7 @@ metadata/PlayerNodeName = "player"
 metadata/Description = "Test Description"
 
 [node name="NPC" parent="Timelines/001" instance=ExtResource("11_lkrka")]
-position = Vector2(333, 100)
+position = Vector2(417, 108)
 SPEED = 60
 JUMP_VELOCITY = -200
 npc_resource = ExtResource("12_no2yr")
@@ -534,6 +547,10 @@ metadata/Description = "Test Description"
 [node name="player" parent="." groups=["Player"] instance=ExtResource("1_wpgi4")]
 z_index = 1
 position = Vector2(360, 293)
+
+[node name="DoorSideways" parent="." instance=ExtResource("18_caylh")]
+position = Vector2(503, 289)
+interactable_resource = SubResource("Resource_0aw31")
 
 [connection signal="area_entered" from="Doors/door" to="Doors/door" method="_on_area_entered"]
 [connection signal="area_entered" from="Doors/door" to="Doors/door/InteractiveHandler" method="_on_interactable_base_area_entered"]

@@ -29,8 +29,10 @@ animations = [{
 }]
 
 [node name="npc" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 2
+light_mask = 7
+visibility_layer = 7
+collision_layer = 514
+collision_mask = 514
 input_pickable = true
 script = ExtResource("1_osmvx")
 
@@ -65,6 +67,12 @@ characterBody = NodePath("../..")
 [node name="Talking" type="Node" parent="StateMachine" node_paths=PackedStringArray("characterBody")]
 script = ExtResource("10_8strs")
 characterBody = NodePath("../..")
+
+[node name="CastAhead" type="RayCast2D" parent="."]
+rotation = -1.5708
+target_position = Vector2(-1.31134e-06, 30)
+collision_mask = 514
+collide_with_areas = true
 
 [connection signal="mouse_entered" from="." to="InteractiveHandler" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="InteractiveHandler" method="_on_mouse_exited"]
