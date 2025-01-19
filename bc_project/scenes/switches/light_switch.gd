@@ -1,14 +1,16 @@
 extends "res://scenes/interactable.gd"
 
-var Lights
+var lights
 
-func LocalReady() -> void:
-	Lights = get_node("lights").get_children()
+func local_ready() -> void:
+	lights = get_node("lights").get_children()
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("add_to_board") and active:
-		Signals.emit_signal('create_item_element',get_sprite_from_current_frame(), get_meta("Name"),get_meta("Description"))
-	elif event.is_action_pressed("interact") and active:
-		$AnimatedSprite2D.frame = ($AnimatedSprite2D.frame + 1) % 2
-		for light in Lights:
-			light.toggleLight()
+func interact_function(event: InputEvent) -> void:
+	# Turns on/off all lights and updates frames
+	if event.is_action_pressed("interact") and active:
+		# Set animation frame to opposite
+		$Sprite2D.frame = ($Sprite2D.frame + 1) % 2
+		# Turn all the light on/off
+		if lights:
+			for light in lights:
+				light.toggleLight()

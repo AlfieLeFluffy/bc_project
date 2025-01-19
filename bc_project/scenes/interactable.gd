@@ -49,7 +49,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			DialogScripts.start_dialog(dialog_resource.dialog,dialog_resource.titleName)
 			Signals.setup_conversation_profile.emit("right", interactable_resource.item_name, get_sprite_from_current_frame())
 		else:
-			interact_function()
+			interact_function(event)
 	elif event.is_action_pressed("add_to_board") and active:
 		Signals.emit_signal('create_item_element',get_sprite_from_current_frame(), interactable_resource.item_name,interactable_resource.description)
 		AudioManager.play_sound("ding")
@@ -59,14 +59,25 @@ func _unhandled_input(event: InputEvent) -> void:
 """
 
 # Active function if no dialog detected
-func interact_function() -> void:
+func interact_function(event: InputEvent) -> void:
 	pass
 
 # Returns current sprite from interactable item's sprite sheet
 func get_sprite_from_current_frame() -> Texture2D:
-	if $AnimatedSprite2D.sprite_frames:
-		var currentSprite: Texture2D = $AnimatedSprite2D.get_sprite_frames().get_frame_texture($AnimatedSprite2D.animation, $AnimatedSprite2D.get_frame())
-		return currentSprite
+	if $Sprite2D.texture:
+		var texture = $Sprite2D.texture
+		if $Sprite2D.hframes > 1 or $Sprite2D.vframes > 1: 
+			var atlas = AtlasTexture.new()
+			atlas.atlas = texture
+			var frameSize = Vector2($Sprite2D.texture.get_width() / $Sprite2D.hframes,$Sprite2D.texture.get_height() / $Sprite2D.vframes)
+			atlas.region = Rect2(frameSize * Vector2($Sprite2D.frame_coords), frameSize)
+			texture = atlas
+		return texture
+		
+	#if $AnimatedSprite2D.sprite_frames:
+	#	var currentSprite: Texture2D = $AnimatedSprite2D.get_sprite_frames().get_frame_texture($AnimatedSprite2D.animation, $AnimatedSprite2D.get_frame())
+	#	return currentSprite
+		
 	return load("res://textures/icon.svg")
 
 """
@@ -74,10 +85,10 @@ func get_sprite_from_current_frame() -> Texture2D:
 """
 
 func activate_hover() -> void:
-	$AnimatedSprite2D.material.set("shader_parameter/line_thickness",1)
+	$Sprite2D.material.set("shader_parameter/line_thickness",1)
 
 func deactivate_hover() -> void:
-	$AnimatedSprite2D.material.set("shader_parameter/line_thickness",0)
+	$Sprite2D.material.set("shader_parameter/line_thickness",0)
 
 func activate_interactivity() -> void:
 	$Labels.visible = true

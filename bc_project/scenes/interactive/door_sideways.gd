@@ -1,34 +1,42 @@
 extends "res://scenes/interactable.gd"
 
+@export_category("Door Information")
 @export var opened:bool = false
 @export var locked:bool = false
+@export var inverted:bool = false
 
 @onready var state_machine = $AnimationTree["parameters/playback"]
 
 
 # Local ready function for instantiated objects
 func local_ready() -> void:
-	state_machine.start("Start")
+	if opened:
+		state_machine.start("open")
+	else:
+		state_machine.start("closed")
+	
+	if inverted:
+		$Sprite2D.scale.x = -1
+		$Sprite2D.position.x = $Sprite2D.position.x * -1
 
 # Active function if no dialog detected
-func interact_function() -> void:
+func interact_function(event: InputEvent) -> void:
 	if locked:
 		return
 	
 	if opened:
 		opened = not opened
+		state_machine.travel("closing")
 		$StaticBody2D/CollisionShape2D2.set_deferred("disabled",false)
 		$LightOccluder2D.visible = true
-		state_machine.travel("closing")
 	elif not opened:
 		opened = not opened
+		state_machine.travel("opening")
 		$StaticBody2D/CollisionShape2D2.set_deferred("disabled",true)
 		$LightOccluder2D.visible = false
-		state_machine.travel("opening")
 
 func toggle_lock() -> void:
 	locked = not locked
-
 
 """
 --- Activate/deactivate interactivity Rewrite

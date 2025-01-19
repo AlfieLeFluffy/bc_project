@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://xdset1j1nj24"]
+[gd_scene load_steps=29 format=3 uid="uid://xdset1j1nj24"]
 
 [ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactable_base.tscn" id="1_o2gm0"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="2_hq6vl"]
@@ -22,118 +22,11 @@ titles = PackedStringArray()
 resource_local_to_scene = true
 size = Vector2(32, 84)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ec8i3"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0pxaw"]
 resource_local_to_scene = true
 shader = ExtResource("4_d51ol")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ev22y"]
-atlas = ExtResource("6_obk3w")
-region = Rect2(96, 80, 48, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mqp3v"]
-atlas = ExtResource("6_obk3w")
-region = Rect2(48, 0, 48, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rlonv"]
-atlas = ExtResource("6_obk3w")
-region = Rect2(96, 0, 48, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lffhy"]
-atlas = ExtResource("6_obk3w")
-region = Rect2(144, 0, 48, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7ell4"]
-atlas = ExtResource("6_obk3w")
-region = Rect2(0, 80, 48, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aniqa"]
-atlas = ExtResource("6_obk3w")
-region = Rect2(48, 80, 48, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_84wkf"]
-atlas = ExtResource("6_obk3w")
-region = Rect2(0, 0, 48, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dqcdb"]
-atlas = ExtResource("6_obk3w")
-region = Rect2(144, 80, 48, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v4kom"]
-atlas = ExtResource("6_obk3w")
-region = Rect2(0, 160, 48, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4oxr0"]
-atlas = ExtResource("6_obk3w")
-region = Rect2(48, 160, 48, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cibbf"]
-atlas = ExtResource("6_obk3w")
-region = Rect2(96, 160, 48, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vnia2"]
-atlas = ExtResource("6_obk3w")
-region = Rect2(144, 160, 48, 80)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_5hf4l"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ev22y")
-}],
-"loop": true,
-"name": &"closed",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mqp3v")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rlonv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lffhy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7ell4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aniqa")
-}],
-"loop": true,
-"name": &"closing",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_84wkf")
-}],
-"loop": true,
-"name": &"open",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dqcdb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v4kom")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4oxr0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cibbf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vnia2")
-}],
-"loop": true,
-"name": &"opening",
-"speed": 5.0
-}]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_p4doa"]
 closed = false
@@ -142,10 +35,20 @@ polygon = PackedVector2Array(0, -45, 0, 35)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ar21o"]
 size = Vector2(10, 78)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pdhn1"]
-shader = ExtResource("4_d51ol")
-shader_parameter/line_color = Color(1, 1, 1, 1)
-shader_parameter/line_thickness = 0.0
+[sub_resource type="Animation" id="Animation_64t1r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
 
 [sub_resource type="Animation" id="Animation_xus3f"]
 resource_name = "closed"
@@ -164,8 +67,9 @@ tracks/0/keys = {
 "values": [6]
 }
 
-[sub_resource type="Animation" id="Animation_64t1r"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_0sy7f"]
+resource_name = "closing"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -173,10 +77,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [6]
+"values": [1, 2, 3, 4, 5]
 }
 
 [sub_resource type="Animation" id="Animation_fll4u"]
@@ -212,22 +116,6 @@ tracks/0/keys = {
 "values": [7, 8, 9, 10, 11]
 }
 
-[sub_resource type="Animation" id="Animation_0sy7f"]
-resource_name = "closing"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [1, 2, 3, 4, 5]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o77mj"]
 _data = {
 "RESET": SubResource("Animation_64t1r"),
@@ -249,12 +137,6 @@ animation = &"open"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2dl3h"]
 animation = &"opening"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cx0so"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iffrx"]
-advance_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dali8"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6c24n"]
@@ -267,8 +149,14 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_olvo5"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fq2xt"]
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_223ic"]
-states/Start/position = Vector2(121, 100)
+states/Start/position = Vector2(138, 91)
 states/closed/node = SubResource("AnimationNodeAnimation_flm6r")
 states/closed/position = Vector2(439, 158)
 states/closing/node = SubResource("AnimationNodeAnimation_recg0")
@@ -277,13 +165,14 @@ states/open/node = SubResource("AnimationNodeAnimation_wr1pb")
 states/open/position = Vector2(429, 32)
 states/opening/node = SubResource("AnimationNodeAnimation_2dl3h")
 states/opening/position = Vector2(345, 100)
-transitions = ["Start", "open", SubResource("AnimationNodeStateMachineTransition_cx0so"), "Start", "closed", SubResource("AnimationNodeStateMachineTransition_iffrx"), "open", "closing", SubResource("AnimationNodeStateMachineTransition_dali8"), "closing", "closed", SubResource("AnimationNodeStateMachineTransition_6c24n"), "closed", "opening", SubResource("AnimationNodeStateMachineTransition_pfmai"), "opening", "open", SubResource("AnimationNodeStateMachineTransition_ew67v")]
-graph_offset = Vector2(-91, -25)
+transitions = ["open", "closing", SubResource("AnimationNodeStateMachineTransition_dali8"), "closing", "closed", SubResource("AnimationNodeStateMachineTransition_6c24n"), "closed", "opening", SubResource("AnimationNodeStateMachineTransition_pfmai"), "opening", "open", SubResource("AnimationNodeStateMachineTransition_ew67v"), "Start", "open", SubResource("AnimationNodeStateMachineTransition_olvo5"), "Start", "closed", SubResource("AnimationNodeStateMachineTransition_fq2xt")]
+graph_offset = Vector2(-146, -6)
 
 [node name="DoorSideways" instance=ExtResource("1_o2gm0")]
 script = ExtResource("2_q4uyh")
 opened = false
 locked = false
+inverted = false
 interactable_resource = SubResource("Resource_ukw77")
 
 [node name="Labels" parent="." index="0"]
@@ -292,12 +181,13 @@ position = Vector2(0, -55)
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("RectangleShape2D_mq2eq")
 
-[node name="AnimatedSprite2D" parent="." index="2"]
-visible = false
-material = SubResource("ShaderMaterial_ec8i3")
+[node name="Sprite2D" parent="." index="2"]
+material = SubResource("ShaderMaterial_0pxaw")
 position = Vector2(-16, 2)
-sprite_frames = SubResource("SpriteFrames_5hf4l")
-animation = &"closed"
+texture = ExtResource("6_obk3w")
+hframes = 4
+vframes = 3
+frame = 6
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." index="4"]
 position = Vector2(0, 5)
@@ -311,19 +201,11 @@ collision_mask = 768
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" index="0"]
 shape = SubResource("RectangleShape2D_ar21o")
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="6"]
-material = SubResource("ShaderMaterial_pdhn1")
-position = Vector2(-16, 2)
-texture = ExtResource("6_obk3w")
-hframes = 4
-vframes = 3
-frame = 6
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
 libraries = {
 "": SubResource("AnimationLibrary_o77mj")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="8"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="7"]
 tree_root = SubResource("AnimationNodeStateMachine_223ic")
 anim_player = NodePath("../AnimationPlayer")

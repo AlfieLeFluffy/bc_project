@@ -22,7 +22,7 @@ titles = PackedStringArray()
 resource_local_to_scene = true
 size = Vector2(47, 82)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sqfc0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4qd0g"]
 resource_local_to_scene = true
 shader = ExtResource("2_08q5s")
 shader_parameter/line_color = Color(1, 1, 1, 1)
@@ -38,6 +38,5 @@ position = Vector2(0, -51)
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("RectangleShape2D_kp8uv")
 
-[node name="AnimatedSprite2D" parent="." index="2"]
-visible = false
-material = SubResource("ShaderMaterial_sqfc0")
+[node name="Sprite2D" parent="." index="2"]
+material = SubResource("ShaderMaterial_4qd0g")

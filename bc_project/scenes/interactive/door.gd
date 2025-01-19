@@ -9,7 +9,7 @@ func local_ready() -> void:
 	player = get_tree().get_first_node_in_group("Player")
 
 # Active function if no dialog detected
-func interact_function() -> void:
+func interact_function(event: InputEvent) -> void:
 	player.visible = false
 	await get_tree().create_timer(0.1).timeout
 	player.position = otherDoor.global_position
