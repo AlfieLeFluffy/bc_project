@@ -30,6 +30,7 @@ func _ready() -> void:
 	else:
 		if states[0]:
 			currentState = states[0]
+			currentState.Enter()
 
 """
 --- Runtime Functions
