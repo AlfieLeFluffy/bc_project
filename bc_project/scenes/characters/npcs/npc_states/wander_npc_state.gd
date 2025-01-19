@@ -56,7 +56,7 @@ func Physics_Process(delta: float) -> void:
 """
 
 func randomize_wander() -> void:
-	moveDirection = Vector2(randi_range(1,-1),0)
+	moveDirection.x = [1,-1].pick_random() #Vector2(randi_range(1,-1),0)
 	set_cast()
 	wanderTime = randf_range(minWanderTime,maxWanderTime)
 	

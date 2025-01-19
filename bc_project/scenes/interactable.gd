@@ -64,8 +64,10 @@ func interact_function() -> void:
 
 # Returns current sprite from interactable item's sprite sheet
 func get_sprite_from_current_frame() -> Texture2D:
-	var currentSprite: Texture2D = $AnimatedSprite2D.get_sprite_frames().get_frame_texture($AnimatedSprite2D.animation, $AnimatedSprite2D.get_frame())
-	return currentSprite
+	if $AnimatedSprite2D.sprite_frames:
+		var currentSprite: Texture2D = $AnimatedSprite2D.get_sprite_frames().get_frame_texture($AnimatedSprite2D.animation, $AnimatedSprite2D.get_frame())
+		return currentSprite
+	return load("res://textures/icon.svg")
 
 """
 --- Activate/deactivate interactivity

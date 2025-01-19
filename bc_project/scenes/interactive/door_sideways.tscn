@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=3 uid="uid://xdset1j1nj24"]
+
+[ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactable_base.tscn" id="1_o2gm0"]
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="2_hq6vl"]
+[ext_resource type="Script" path="res://scenes/interactive/door_sideways.gd" id="2_q4uyh"]
+[ext_resource type="Script" path="res://scenes/interactable_resource.gd" id="3_651so"]
+[ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="4_d51ol"]
+
+[sub_resource type="Resource" id="Resource_ukw77"]
+script = ExtResource("3_651so")
+item_name = "Door"
+timeline = "000"
+type = 0
+description = "Door is a door"
+dialogIndex = 0
+dialogs = Array[ExtResource("2_hq6vl")]([])
+titleIndex = 0
+titles = PackedStringArray()
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mq2eq"]
+resource_local_to_scene = true
+size = Vector2(32, 84)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ec8i3"]
+resource_local_to_scene = true
+shader = ExtResource("4_d51ol")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_p4doa"]
+closed = false
+polygon = PackedVector2Array(0, -45, 0, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ar21o"]
+size = Vector2(10, 78)
+
+[node name="DoorSideways" instance=ExtResource("1_o2gm0")]
+script = ExtResource("2_q4uyh")
+opened = false
+locked = false
+interactable_resource = SubResource("Resource_ukw77")
+
+[node name="Labels" parent="." index="0"]
+position = Vector2(0, -55)
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_mq2eq")
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+material = SubResource("ShaderMaterial_ec8i3")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." index="4"]
+position = Vector2(0, 5)
+occluder = SubResource("OccluderPolygon2D_p4doa")
+occluder_light_mask = 7
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="5"]
+collision_layer = 768
+collision_mask = 768
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+shape = SubResource("RectangleShape2D_ar21o")

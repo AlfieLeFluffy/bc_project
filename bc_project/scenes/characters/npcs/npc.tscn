@@ -43,8 +43,8 @@ shape = SubResource("CapsuleShape2D_okuox")
 script = ExtResource("3_4ik2d")
 
 [node name="InteractableArea" type="Area2D" parent="."]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2
+collision_mask = 2
 
 [node name="InteractableAreCollisionShape" type="CollisionShape2D" parent="InteractableArea"]
 shape = SubResource("CapsuleShape2D_okuox")
@@ -70,7 +70,7 @@ characterBody = NodePath("../..")
 
 [node name="CastAhead" type="RayCast2D" parent="."]
 rotation = -1.5708
-target_position = Vector2(-1.31134e-06, 30)
+target_position = Vector2(0, 25)
 collision_mask = 514
 collide_with_areas = true
 
