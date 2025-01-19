@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://xdset1j1nj24"]
+[gd_scene load_steps=30 format=3 uid="uid://xdset1j1nj24"]
 
 [ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactable_base.tscn" id="1_o2gm0"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="2_hq6vl"]
@@ -22,11 +22,8 @@ titles = PackedStringArray()
 resource_local_to_scene = true
 size = Vector2(32, 84)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0pxaw"]
-resource_local_to_scene = true
-shader = ExtResource("4_d51ol")
-shader_parameter/line_color = Color(1, 1, 1, 1)
-shader_parameter/line_thickness = 0.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xlxrf"]
+size = Vector2(25, 84)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_p4doa"]
 closed = false
@@ -34,6 +31,12 @@ polygon = PackedVector2Array(0, -45, 0, 35)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ar21o"]
 size = Vector2(10, 78)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0pxaw"]
+resource_local_to_scene = true
+shader = ExtResource("4_d51ol")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
 
 [sub_resource type="Animation" id="Animation_64t1r"]
 length = 0.001
@@ -181,7 +184,23 @@ position = Vector2(0, -55)
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("RectangleShape2D_mq2eq")
 
-[node name="Sprite2D" parent="." index="2"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="2"]
+position = Vector2(-28.5, 0)
+shape = SubResource("RectangleShape2D_xlxrf")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." index="3"]
+position = Vector2(0, 5)
+occluder = SubResource("OccluderPolygon2D_p4doa")
+occluder_light_mask = 7
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="4"]
+collision_layer = 768
+collision_mask = 768
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+shape = SubResource("RectangleShape2D_ar21o")
+
+[node name="Sprite2D" parent="." index="5"]
 material = SubResource("ShaderMaterial_0pxaw")
 position = Vector2(-16, 2)
 texture = ExtResource("6_obk3w")
@@ -189,23 +208,11 @@ hframes = 4
 vframes = 3
 frame = 6
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="." index="4"]
-position = Vector2(0, 5)
-occluder = SubResource("OccluderPolygon2D_p4doa")
-occluder_light_mask = 7
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="5"]
-collision_layer = 768
-collision_mask = 768
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" index="0"]
-shape = SubResource("RectangleShape2D_ar21o")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7"]
 libraries = {
 "": SubResource("AnimationLibrary_o77mj")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="7"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="8"]
 tree_root = SubResource("AnimationNodeStateMachine_223ic")
 anim_player = NodePath("../AnimationPlayer")

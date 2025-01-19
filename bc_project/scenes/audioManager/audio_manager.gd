@@ -67,22 +67,32 @@ func _ready() -> void:
 				dialogueTracks[track.name] = track.file
 	
 	sfxPlayerList.resize(Global.MaxSFXSounds)
-
+	
+	DialogueManager.connect("dialogue_ended",end_dialogue)
+	
 func import_audio_file_from_folder() -> void:
 	var files
 	for i in range(folders.size()):
 		files = DirAccess.get_files_at("res://audio/"+folders[i])
 		for file in files:
 			var fileName = file.rstrip(".mp3")
-			if not import_audio_track(folders[i], file, fileName, tracks[i+1]):
+			if file.ends_with(".import"):
+				pass
+			elif not import_audio_track(folders[i], file, fileName, tracks[i+1]):
 				printerr("Audio track by name " + file + "could not be loaded")
 
 func import_audio_track(folder, file, fileName, directory) -> bool:
 	if not sfxTracks.has(fileName):
+		"""
 		var audioStream = AudioStreamMP3.new()
 		var fileStream = FileAccess.open("res://audio/"+folder+"/"+file, FileAccess.READ)
 		if fileStream:
 			audioStream.data = fileStream.get_buffer(fileStream.get_length())
+			directory[fileName] = audioStream
+			return true
+		"""
+		if FileAccess.file_exists("res://audio/"+folder+"/"+file):
+			var audioStream = load("res://audio/"+folder+"/"+file)
 			directory[fileName] = audioStream
 			return true
 	return false
@@ -142,7 +152,7 @@ func play_sound_2d(soundName: String, position: Vector2, pitchVariance: bool= tr
 --- Play Dialog Sounds
 """
 # 
-func play_dialog(dialogName: String, skipDialogue: bool = true, pitchVariance: bool= true) -> void:
+func play_dialogue(dialogName: String, skipDialogue: bool = true, pitchVariance: bool= true) -> void:
 	
 	# Checks if track exists 
 	if not check_track(busses.Dialogue,dialogName):
@@ -162,7 +172,7 @@ func play_dialog(dialogName: String, skipDialogue: bool = true, pitchVariance: b
 	audio_player_setup($DialogAudioStreamPlayer,busses.Dialogue,dialogName,pitchVariance)
 	run_sound($DialogAudioStreamPlayer)
 
-func play_dialog_2d(dialogName: String, position: Vector2, pitchVariance: bool= true) -> void:
+func play_dialogue_2d(dialogName: String, position: Vector2, pitchVariance: bool= true) -> void:
 	
 	# Checks if track exists 
 	if not check_track(busses.Dialogue,dialogName):
@@ -176,6 +186,9 @@ func play_dialog_2d(dialogName: String, position: Vector2, pitchVariance: bool= 
 	# Setup step for 2D audio position
 	audioPlayer.position = position
 	run_sound(audioPlayer)
+
+func end_dialogue(resource: DialogueResource):
+	$DialogAudioStreamPlayer.stop()
 
 """
 --- Play Music

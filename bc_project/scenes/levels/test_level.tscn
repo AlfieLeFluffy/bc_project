@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=4 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=73 format=4 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Texture2D" uid="uid://f5ht0q2x8m04" path="res://textures/flatTileset-Sheet.png" id="1_n5x54"]
 [ext_resource type="Script" path="res://scenes/levels/level_control.gd" id="1_t01cb"]
@@ -16,8 +16,8 @@
 [ext_resource type="Resource" uid="uid://bmxx1uimby337" path="res://dialogs/test_dialogue.dialogue" id="10_wnetc"]
 [ext_resource type="PackedScene" uid="uid://ntmpwduq5xno" path="res://scenes/characters/npcs/npc.tscn" id="11_lkrka"]
 [ext_resource type="Resource" uid="uid://yu00wqy70eyc" path="res://scenes/characters/npcs/npc_resources/test_level_npc.tres" id="12_no2yr"]
-[ext_resource type="Resource" uid="uid://cibt63o4kpss8" path="res://dialogs/test_npc.dialogue" id="14_xpdhh"]
 [ext_resource type="Script" path="res://scripts/dialog/dialog_resource.gd" id="15_p50u5"]
+[ext_resource type="Resource" uid="uid://p2pgjby8025n" path="res://dialogs/ribli.dialogue" id="17_ls76e"]
 [ext_resource type="PackedScene" uid="uid://xdset1j1nj24" path="res://scenes/interactive/door_sideways.tscn" id="18_caylh"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_sh7fj"]
@@ -364,8 +364,32 @@ titleName = "test"
 
 [sub_resource type="Resource" id="Resource_j4kbt"]
 script = ExtResource("15_p50u5")
-dialog = ExtResource("14_xpdhh")
-titleName = "this_is_a_node_title"
+dialog = ExtResource("17_ls76e")
+titleName = "Ribli"
+
+[sub_resource type="Resource" id="Resource_wd0m7"]
+resource_local_to_scene = true
+script = ExtResource("7_paapu")
+item_name = "Door"
+timeline = "000"
+type = 0
+description = "Door is a door"
+dialogIndex = 0
+dialogs = Array[ExtResource("9_0c4pi")]([])
+titleIndex = 0
+titles = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_lvqsm"]
+resource_local_to_scene = true
+script = ExtResource("7_paapu")
+item_name = "Door"
+timeline = "000"
+type = 0
+description = "Door is a door"
+dialogIndex = 0
+dialogs = Array[ExtResource("9_0c4pi")]([])
+titleIndex = 0
+titles = PackedStringArray()
 
 [sub_resource type="Resource" id="Resource_atus6"]
 resource_local_to_scene = true
@@ -398,18 +422,6 @@ item_name = "Thick Mug"
 timeline = "002"
 type = 0
 description = "Test Description"
-dialogIndex = 0
-dialogs = Array[ExtResource("9_0c4pi")]([])
-titleIndex = 0
-titles = PackedStringArray()
-
-[sub_resource type="Resource" id="Resource_2dx3u"]
-resource_local_to_scene = true
-script = ExtResource("7_paapu")
-item_name = "Door"
-timeline = "000"
-type = 0
-description = "Door is a door"
 dialogIndex = 0
 dialogs = Array[ExtResource("9_0c4pi")]([])
 titleIndex = 0
@@ -509,6 +521,23 @@ JUMP_VELOCITY = -200
 npc_resource = ExtResource("12_no2yr")
 dialog_resource = SubResource("Resource_j4kbt")
 
+[node name="NPC_Ribli" parent="TimelineStateMachine/001/TimelineSpace001" instance=ExtResource("11_lkrka")]
+position = Vector2(-40, 108)
+SPEED = 60
+JUMP_VELOCITY = -200
+npc_resource = ExtResource("12_no2yr")
+dialog_resource = SubResource("Resource_j4kbt")
+
+[node name="DoorSideways" parent="TimelineStateMachine/001/TimelineSpace001" instance=ExtResource("18_caylh")]
+position = Vector2(304, 105)
+inverted = true
+interactable_resource = SubResource("Resource_wd0m7")
+
+[node name="DoorSideways2" parent="TimelineStateMachine/001/TimelineSpace001" instance=ExtResource("18_caylh")]
+position = Vector2(47, 105)
+inverted = true
+interactable_resource = SubResource("Resource_lvqsm")
+
 [node name="002" type="Node" parent="TimelineStateMachine"]
 script = ExtResource("8_d0i2x")
 nextTimeline = "001"
@@ -557,11 +586,6 @@ metadata/Description = "Test Description"
 [node name="player" parent="." groups=["Player"] instance=ExtResource("1_wpgi4")]
 z_index = 1
 position = Vector2(360, 293)
-
-[node name="DoorSideways" parent="." instance=ExtResource("18_caylh")]
-position = Vector2(504, 289)
-inverted = true
-interactable_resource = SubResource("Resource_2dx3u")
 
 [connection signal="area_entered" from="Doors/door" to="Doors/door" method="_on_area_entered"]
 [connection signal="area_entered" from="Doors/door" to="Doors/door/InteractiveHandler" method="_on_interactable_base_area_entered"]

@@ -55,6 +55,7 @@ shape = SubResource("CircleShape2D_vhha4")
 [node name="CameraControls" parent="." instance=ExtResource("5_2uxfp")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 10
 sprite_frames = SubResource("SpriteFrames_wmv4b")
 
 [node name="main_overlay" parent="." instance=ExtResource("4_ej0mm")]

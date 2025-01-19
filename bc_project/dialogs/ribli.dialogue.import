@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://p2pgjby8025n"
+path="res://.godot/imported/ribli.dialogue-c60244635a3f9d4099125a7d614507f5.tres"
+
+[deps]
+
+source_file="res://dialogs/ribli.dialogue"
+dest_files=["res://.godot/imported/ribli.dialogue-c60244635a3f9d4099125a7d614507f5.tres"]
+
+[params]
+
+defaults=true
