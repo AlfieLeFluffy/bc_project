@@ -7,9 +7,12 @@ extends "res://scenes/interactable.gd"
 
 @onready var state_machine = $AnimationTree["parameters/playback"]
 
+var timelineSpace
 
 # Local ready function for instantiated objects
 func local_ready() -> void:
+	timelineSpace = get_parent().get_parent()
+	
 	if opened:
 		state_machine.start("open")
 	else:
@@ -20,6 +23,14 @@ func local_ready() -> void:
 		$Sprite2D.scale.x = -1
 		$Sprite2D.position.x = $Sprite2D.position.x * -1
 		$CollisionShape2D2.position.x = $CollisionShape2D2.position.x * -1
+
+func local_process(delta: float):
+	if not timelineSpace.visible and not $StaticBody2D/CollisionShape2D.disabled:
+		$StaticBody2D/CollisionShape2D.set_deferred("disabled",true)
+	elif timelineSpace.visible and not opened and $StaticBody2D/CollisionShape2D.disabled:
+		$StaticBody2D/CollisionShape2D.set_deferred("disabled",false)
+	elif timelineSpace.visible and opened and $StaticBody2D/CollisionShape2D.disabled:
+		$StaticBody2D/CollisionShape2D.set_deferred("disabled",true)
 
 # Active function if no dialog detected
 func interact_function(event: InputEvent) -> void:
@@ -51,3 +62,12 @@ func activate_hover() -> void:
 
 func deactivate_hover() -> void:
 	$Sprite2D.material.set("shader_parameter/line_thickness",0)
+
+
+func activate_interactivity() -> void:
+	Global.Active_Interactive_Item = self
+	Signals.emit_signal("help_text_toggle",Global.help_signal_type.INTERACTIVE,true)
+
+func deactivate_interactivity() -> void:
+	Global.Active_Interactive_Item = null
+	Signals.emit_signal("help_text_toggle",Global.help_signal_type.INTERACTIVE,false)

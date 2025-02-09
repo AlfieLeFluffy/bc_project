@@ -15,6 +15,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	if (Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("ui_up")) and is_on_floor():
 		jump = true
 	
+	if event is InputEventMouseMotion and velocity.x == 0:
+		if global_position.x - get_global_mouse_position().x > 0:
+			$AnimatedSprite2D.flip_h = true
+		else:
+			$AnimatedSprite2D.flip_h = false
+	
 	direction = Input.get_axis("ui_left", "ui_right")
 
 func _physics_process(delta: float) -> void:

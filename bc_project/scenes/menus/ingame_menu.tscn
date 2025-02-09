@@ -57,6 +57,54 @@ label_settings = ExtResource("6_sk1el")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="SaveButton" type="TextureButton" parent="MenuContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("2_21epg")
+texture_pressed = ExtResource("3_4cisa")
+texture_hover = ExtResource("4_ah7om")
+texture_disabled = ExtResource("5_gwmlc")
+texture_focused = ExtResource("4_ah7om")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MenuContainer/HBoxContainer/VBoxContainer/SaveButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Save Game"
+label_settings = ExtResource("6_sk1el")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LoadButton" type="TextureButton" parent="MenuContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("2_21epg")
+texture_pressed = ExtResource("3_4cisa")
+texture_hover = ExtResource("4_ah7om")
+texture_disabled = ExtResource("5_gwmlc")
+texture_focused = ExtResource("4_ah7om")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MenuContainer/HBoxContainer/VBoxContainer/LoadButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Load Game"
+label_settings = ExtResource("6_sk1el")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="SettingsButton" type="TextureButton" parent="MenuContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
@@ -107,5 +155,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="MenuContainer/HBoxContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/VBoxContainer/SaveButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/VBoxContainer/LoadButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="MenuContainer/HBoxContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="MenuContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

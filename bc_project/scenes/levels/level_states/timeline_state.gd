@@ -10,16 +10,19 @@ func _ready() -> void:
 	activeTimeline = false
 	if not get_children().is_empty():
 		timelineSpace = get_children()[0]
+	SetAllItems(false)
 
 func Enter() -> void:
 	if timelineSpace:
 		activeTimeline = true
 		timelineSpace.visible = true
+	SetAllItems(true)
 
 func Exit() -> void:
 	if timelineSpace:
 		activeTimeline = false
 		timelineSpace.visible = false
+	SetAllItems(false)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if activeTimeline and event.is_action_pressed("timeline_shift") and Global.TimelineShiftReady:
@@ -31,6 +34,12 @@ func Process(delta: float) -> void:
 
 func Physics_Process(delta: float) -> void:
 	pass
+
+func SetAllItems(state: bool):
+	if timelineSpace:
+		if get_node("Items"):
+			for item in get_node("Items").get_children():
+				item.set_process(state)
 
 func TimelineTimeout() -> void:
 	Global.TimelineShiftReady = false

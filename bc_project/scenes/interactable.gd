@@ -42,6 +42,7 @@ func _process(delta: float) -> void:
 		active = true
 	else:
 		active = false
+	local_process(delta)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and active:
@@ -60,6 +61,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 # Active function if no dialog detected
 func interact_function(event: InputEvent) -> void:
+	pass
+
+# Active function if no dialog detected
+func local_process(delta: float) -> void:
 	pass
 
 # Returns current sprite from interactable item's sprite sheet

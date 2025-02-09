@@ -1,23 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://ntmpwduq5xno"]
+[gd_scene load_steps=8 format=3 uid="uid://doxp2j8t2vs5a"]
 
-[ext_resource type="Script" path="res://scenes/characters/npcs/npc_controller.gd" id="1_osmvx"]
-[ext_resource type="Script" path="res://scripts/interactive_handler.gd" id="3_4ik2d"]
-[ext_resource type="Texture2D" uid="uid://dlo6oyplrtp4v" path="res://textures/characters/test_npc_0.png" id="3_84f2k"]
-[ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="3_e8nap"]
-[ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="7_w0oeo"]
-[ext_resource type="Script" path="res://scenes/characters/npcs/npc_states/wander_npc_state.gd" id="8_t2uxy"]
-[ext_resource type="Script" path="res://scenes/characters/npcs/npc_states/idle_npc_state.gd" id="9_nlyis"]
-[ext_resource type="Script" path="res://scenes/characters/npcs/npc_states/talking_npc_state.gd" id="10_8strs"]
+[ext_resource type="Script" path="res://scenes/characters/npcs/npc_controller.gd" id="1_3p06p"]
+[ext_resource type="Script" path="res://scripts/interactive_handler.gd" id="2_3ti8x"]
+[ext_resource type="Texture2D" uid="uid://dlo6oyplrtp4v" path="res://textures/characters/test_npc_0.png" id="3_ubbw2"]
+[ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="4_lycei"]
+[ext_resource type="Script" path="res://scenes/characters/npcs/npc_states/idle_npc_state.gd" id="6_1bnfv"]
+[ext_resource type="Script" path="res://scenes/characters/npcs/npc_states/talking_npc_state.gd" id="7_50y58"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_okuox"]
 resource_local_to_scene = true
 radius = 13.0
 height = 69.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_731kl"]
-shader = ExtResource("3_e8nap")
-shader_parameter/line_color = Color(1, 1, 1, 1)
-shader_parameter/line_thickness = 0.0
 
 [node name="npc" type="CharacterBody2D"]
 light_mask = 7
@@ -25,13 +18,13 @@ visibility_layer = 7
 collision_layer = 514
 collision_mask = 514
 input_pickable = true
-script = ExtResource("1_osmvx")
+script = ExtResource("1_3p06p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_okuox")
 
 [node name="InteractiveHandler" type="Node" parent="."]
-script = ExtResource("3_4ik2d")
+script = ExtResource("2_3ti8x")
 
 [node name="InteractableArea" type="Area2D" parent="."]
 collision_layer = 771
@@ -42,24 +35,19 @@ shape = SubResource("CapsuleShape2D_okuox")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 5
-material = SubResource("ShaderMaterial_731kl")
 position = Vector2(-3, -5)
-texture = ExtResource("3_84f2k")
+texture = ExtResource("3_ubbw2")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
-script = ExtResource("7_w0oeo")
+script = ExtResource("4_lycei")
 initialState = NodePath("Idle")
 
-[node name="Wander" type="Node" parent="StateMachine" node_paths=PackedStringArray("characterBody")]
-script = ExtResource("8_t2uxy")
-characterBody = NodePath("../..")
-
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("characterBody")]
-script = ExtResource("9_nlyis")
+script = ExtResource("6_1bnfv")
 characterBody = NodePath("../..")
 
 [node name="Talking" type="Node" parent="StateMachine" node_paths=PackedStringArray("characterBody")]
-script = ExtResource("10_8strs")
+script = ExtResource("7_50y58")
 characterBody = NodePath("../..")
 
 [node name="CastAhead" type="RayCast2D" parent="."]

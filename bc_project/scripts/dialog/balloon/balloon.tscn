@@ -1,12 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://73jm5qjy52vq"]
+[gd_scene load_steps=14 format=3 uid="uid://73jm5qjy52vq"]
 
 [ext_resource type="Script" path="res://scripts/dialog/balloon/balloon.gd" id="1_36de5"]
 [ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="2_7hpel"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
 [ext_resource type="PackedScene" uid="uid://bcdby6svlp0fj" path="res://scenes/UI/backgrounds/fade_background.tscn" id="2_ualdr"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="3_72ixx"]
-[ext_resource type="Texture2D" uid="uid://dbvl0gy8mohel" path="res://textures/characters/mainCharacter2.png" id="4_8sfy2"]
 [ext_resource type="Script" path="res://scripts/dialog/balloon/profiles_controler.gd" id="4_f38en"]
+[ext_resource type="Texture2D" uid="uid://dni7o236p3am" path="res://textures/characters/mainCharacter_itt.png" id="5_ob21l"]
+[ext_resource type="Texture2D" uid="uid://b8xj6gwg3vfq2" path="res://textures/items/thickMug.png" id="6_no22r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spyqn"]
 bg_color = Color(0.2673, 0.27, 0.27, 0.501961)
@@ -93,35 +94,39 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_f38en")
+offsetTalking = 35.0
 
 [node name="CharacterLeft" type="TextureRect" parent="Balloon/Profiles"]
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.201
-anchor_top = 0.831
-anchor_right = 0.201
-anchor_bottom = 0.831
-offset_left = -136.92
-offset_top = -522.48
-offset_right = -105.92
-offset_bottom = -451.48
+anchor_left = 0.196
+anchor_top = 0.644
+anchor_right = 0.196
+anchor_bottom = 0.644
+offset_left = -127.32
+offset_top = -320.52
+offset_right = -96.32
+offset_bottom = -249.52
 scale = Vector2(8, 8)
-texture = ExtResource("4_8sfy2")
+texture = ExtResource("5_ob21l")
 
 [node name="CharacterRight" type="TextureRect" parent="Balloon/Profiles"]
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.805
-anchor_top = 0.831
-anchor_right = 0.805
-anchor_bottom = 0.831
-offset_left = -124.6
-offset_top = -522.48
-offset_right = -93.6001
-offset_bottom = -451.48
+anchor_left = 0.795
+anchor_top = 0.661
+anchor_right = 0.795
+anchor_bottom = 0.661
+offset_left = -127.4
+offset_top = -338.88
+offset_right = -95.4
+offset_bottom = -258.88
+grow_horizontal = 0
+grow_vertical = 0
 scale = Vector2(8, 8)
+texture = ExtResource("6_no22r")
 stretch_mode = 3
 flip_h = true
 

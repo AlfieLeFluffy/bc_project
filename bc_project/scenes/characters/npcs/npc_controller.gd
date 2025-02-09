@@ -30,6 +30,14 @@ func _ready() -> void:
 func npc_info_setup() -> void:
 	if npc_resource:
 		name = npc_resource.npcName
+		if npc_resource.spritesheet:
+			$Sprite2D.texture = npc_resource.spritesheet
+			$Sprite2D.hframes = npc_resource.frameVector.x
+			$Sprite2D.vframes = npc_resource.frameVector.y
+			$Sprite2D.material = ShaderMaterial.new()
+			$Sprite2D.material.shader = load("res://shaders/outline_shader.gdshader")
+			$Sprite2D.material.set("shader_parameter/line_thickness",0)
+			
 
 """
 --- Input functions
@@ -57,9 +65,9 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	
 	if velocity.x < 0:
-		$AnimatedSprite2D.flip_h = true
+		$Sprite2D.flip_h = true
 	elif velocity.x != 0:
-		$AnimatedSprite2D.flip_h = false
+		$Sprite2D.flip_h = false
 
 	move_and_slide()
 
@@ -69,18 +77,31 @@ func _physics_process(delta: float) -> void:
 
 # Returns current sprite from interactable item's sprite sheet
 func get_sprite_from_current_frame() -> Texture2D:
-	var currentSprite: Texture2D = $AnimatedSprite2D.get_sprite_frames().get_frame_texture($AnimatedSprite2D.animation, $AnimatedSprite2D.get_frame())
-	return currentSprite
+	if $Sprite2D.texture:
+		var texture = $Sprite2D.texture
+		if $Sprite2D.hframes > 1 or $Sprite2D.vframes > 1: 
+			var atlas = AtlasTexture.new()
+			atlas.atlas = texture
+			var frameSize = Vector2($Sprite2D.texture.get_width() / $Sprite2D.hframes,$Sprite2D.texture.get_height() / $Sprite2D.vframes)
+			atlas.region = Rect2(frameSize * Vector2($Sprite2D.frame_coords), frameSize)
+			texture = atlas
+		return texture
+		
+	#if $AnimatedSprite2D.sprite_frames:
+	#	var currentSprite: Texture2D = $AnimatedSprite2D.get_sprite_frames().get_frame_texture($AnimatedSprite2D.animation, $AnimatedSprite2D.get_frame())
+	#	return currentSprite
+		
+	return load("res://textures/icon.svg")
 
 """
 --- Activate/deactivate interactivity
 """
 
 func activate_hover() -> void:
-	pass
+	$Sprite2D.material.set("shader_parameter/line_thickness",1)
 
 func deactivate_hover() -> void:
-	pass
+	$Sprite2D.material.set("shader_parameter/line_thickness",0)
 
 func activate_interactivity() -> void:
 	Signals.emit_signal("help_text_toggle",Global.help_signal_type.TALK,true)

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="AudioManagerResource" load_steps=3 format=3 uid="uid://bjhqqxq8685up"]
+
+[ext_resource type="Script" path="res://scenes/audioManager/audio_track.gd" id="1_4epqr"]
+[ext_resource type="Script" path="res://scenes/audioManager/audio_manager_resource.gd" id="2_o0suu"]
+
+[resource]
+script = ExtResource("2_o0suu")
+importTracks = true
+pitchRange = Vector2(0.95, 1.05)
+sfxTracks = Array[ExtResource("1_4epqr")]([])
+musicTracks = Array[ExtResource("1_4epqr")]([])
+dialogueTracks = Array[ExtResource("1_4epqr")]([])

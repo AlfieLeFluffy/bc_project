@@ -170,7 +170,7 @@ func play_dialogue(dialogName: String, skipDialogue: bool = true, pitchVariance:
 	
 	# Sets up and runs the dialogue audio
 	audio_player_setup($DialogAudioStreamPlayer,busses.Dialogue,dialogName,pitchVariance)
-	run_sound($DialogAudioStreamPlayer)
+	run_dialog($DialogAudioStreamPlayer, false)
 
 func play_dialogue_2d(dialogName: String, position: Vector2, pitchVariance: bool= true) -> void:
 	
@@ -237,11 +237,15 @@ func audio_player_setup(audioPlayer ,bus: busses, trackName: String, pitchVarian
 		audioPlayer.pitch_scale = randf_range(audioManRes.pitchRange.x,audioManRes.pitchRange.y)
 
 # Play sound, await till end of track and free audioPlayer after audio track finishes
-func run_sound(audioPlayer) -> void:
+func run_sound(audioPlayer, freePlayer: bool = true) -> void:
 	sfxPlayerList[sfxPlayerList.find(audioPlayer)] = null
 	audioPlayer.play()
 	await audioPlayer.finished
 	audioPlayer.queue_free()
+
+# Play dialog, await till end of track and free audioPlayer after audio track finishes
+func run_dialog(audioPlayer, freePlayer: bool = false) -> void:
+	audioPlayer.play()
 
 """
 --- SFX Audio Limit Functions

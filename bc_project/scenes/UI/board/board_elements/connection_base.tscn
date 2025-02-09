@@ -12,15 +12,17 @@ script = ExtResource("1_wd7yk")
 [node name="ConnectionText" type="LineEdit" parent="."]
 visible = false
 offset_left = -57.0
-offset_top = -14.0
+offset_top = -36.0
 offset_right = 59.0
-offset_bottom = 14.0
+offset_bottom = -8.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_eotmm")
 theme_override_font_sizes/font_size = 20
 placeholder_text = "Line Name"
 expand_to_text_length = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -22)
 shape = SubResource("RectangleShape2D_dccki")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
