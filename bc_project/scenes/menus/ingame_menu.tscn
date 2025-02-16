@@ -9,6 +9,7 @@
 [ext_resource type="LabelSettings" uid="uid://c2bxjbp8lpkw3" path="res://settings/ingame_menu_buttons_settings.tres" id="6_sk1el"]
 
 [node name="ingame_menu" type="CanvasLayer"]
+layer = 90
 script = ExtResource("1_rriae")
 
 [node name="FadeBackground" parent="." instance=ExtResource("2_ckiny")]

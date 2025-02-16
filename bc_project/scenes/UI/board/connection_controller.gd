@@ -52,7 +52,7 @@ func import_clues() -> void:
 """
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("create_line") and Global.activeElement != null and not drawing:
-		Global.release_focus()
+		GameController.release_focus()
 		if not drawing:
 			start_drawing()
 	

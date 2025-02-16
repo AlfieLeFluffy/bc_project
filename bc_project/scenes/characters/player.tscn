@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ddrrl1gryxkup"]
+[gd_scene load_steps=12 format=3 uid="uid://ddrrl1gryxkup"]
 
 [ext_resource type="Script" path="res://scenes/characters/player_movement.gd" id="1_fg2e7"]
 [ext_resource type="Texture2D" uid="uid://b2ynbvxgxg38d" path="res://textures/lightMaps/radialLight.png" id="3_66w77"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://x3lasufaexva" path="res://scenes/characters/camera_controls.tscn" id="5_2uxfp"]
 [ext_resource type="PackedScene" uid="uid://c73m21uddf5ye" path="res://scenes/UI/board/board.tscn" id="6_hlohb"]
 [ext_resource type="PackedScene" uid="uid://bvxpeerpgh7a6" path="res://scenes/UI/tipLabels/tip_labels.tscn" id="7_lxwgw"]
-[ext_resource type="PackedScene" uid="uid://fbx8e7x0hb" path="res://scenes/menus/ingame_menu.tscn" id="7_m38fl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tpys6"]
 radius = 13.0
@@ -90,6 +89,3 @@ theme_override_constants/margin_bottom = 5
 
 [node name="helpLabels" parent="helpLabels/MarginContainer" instance=ExtResource("7_lxwgw")]
 layout_mode = 2
-
-[node name="ingame_menu" parent="." instance=ExtResource("7_m38fl")]
-visible = false

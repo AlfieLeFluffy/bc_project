@@ -29,31 +29,14 @@ var Active_Interactive_Item
 var board_elements: Dictionary
 var line_elements: Dictionary
 
-# Focus variables
-var FocusSet = false
-
 # Interactable variables
 var interactive_radius_name = "interactRadius"
 enum help_signal_type {INTERACTIVE,DELETEELEMENT,DOOR,TALK}
 
 const MaxSFXSounds:int = 5
 
-
 """
 --- Setup functions
 """
 func _ready() -> void:
-	DialogueManager.connect("dialogue_ended",release_focus)
-
-"""
---- Gloabal Functions
-"""
-func get_input_key(inputName) -> String:
-	var output = InputMap.action_get_events(inputName)[0].as_text().split("(")[0]
-	return output.left(output.length()-1)
-
-func release_focus(resource = null) -> void:
-	if FocusSet:
-		get_viewport().gui_release_focus()
-		Global.FocusSet = false
-	
+	pass

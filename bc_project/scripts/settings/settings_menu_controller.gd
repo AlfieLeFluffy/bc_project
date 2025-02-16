@@ -40,10 +40,10 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ingame_menu_toggle") and not Global.FocusSet:
+	if event.is_action_pressed("ingame_menu_toggle") and not GameController.FocusSet:
 		queue_free()
-	elif event.is_action_pressed("ingame_menu_toggle") and Global.FocusSet:
-		Global.release_focus()
+	elif event.is_action_pressed("ingame_menu_toggle") and GameController.FocusSet:
+		GameController.release_focus()
 	get_viewport().set_input_as_handled()
 
 """
