@@ -7,12 +7,13 @@ func _ready() -> void:
 	visible = false
 
 func _input(event: InputEvent) -> void:
+	pass
+
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ingame_menu_toggle") and not Global.FocusSet:
 		toggle_ingame_menu()
 	elif event.is_action_pressed("ingame_menu_toggle") and Global.FocusSet:
 		Global.release_focus()
-
-func _unhandled_input(event: InputEvent) -> void:
 	if visible:
 		get_viewport().set_input_as_handled()
 
@@ -28,7 +29,7 @@ func _on_continue_button_pressed() -> void:
 
 
 func _on_settings_button_pressed() -> void:
-	pass # Replace with function body.
+	SettingsController.emit_signal("openSettingsMenu")
 
 
 func _on_quit_button_pressed() -> void:

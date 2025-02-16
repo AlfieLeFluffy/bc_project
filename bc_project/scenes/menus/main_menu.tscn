@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://b2vbyl6277p6b"]
+[gd_scene load_steps=10 format=3 uid="uid://b2vbyl6277p6b"]
 
 [ext_resource type="Script" path="res://scenes/menus/main_menu.gd" id="1_7ttt2"]
+[ext_resource type="Theme" uid="uid://f6rijghqdfrw" path="res://settings/main_menu_theme.tres" id="1_c65hb"]
 [ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="1_fnumv"]
 [ext_resource type="Texture2D" uid="uid://dliqg0viaccks" path="res://textures/ui/button/button_normal.png" id="2_d8s78"]
 [ext_resource type="Texture2D" uid="uid://daddylvcavti6" path="res://textures/ui/button/button_click.png" id="3_7i62j"]
@@ -22,39 +23,40 @@ func _process(delta: float) -> void:
 	pass
 "
 
-[node name="MarginContainer" type="MarginContainer"]
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="MainMenu" type="Control" parent="."]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1.0
-offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_left = 120
-theme_override_constants/margin_top = 120
-theme_override_constants/margin_right = 80
-theme_override_constants/margin_bottom = 80
+theme = ExtResource("1_c65hb")
 script = ExtResource("1_7ttt2")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 2
+[node name="VB" type="VBoxContainer" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.062
+anchor_top = 0.117
+anchor_right = 0.216
+anchor_bottom = 0.889
+offset_left = 0.959991
+offset_top = -0.360008
+offset_right = 0.279999
+offset_bottom = -0.120056
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 25
-
-[node name="ExpandBox" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+[node name="ExpandBox" type="VBoxContainer" parent="MainMenu/VB"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+[node name="VBButtons" type="VBoxContainer" parent="MainMenu/VB"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 12
 
-[node name="TestScene" type="TextureButton" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="TestSceneButton" type="TextureButton" parent="MainMenu/VB/VBButtons"]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 texture_normal = ExtResource("2_d8s78")
@@ -64,7 +66,7 @@ texture_disabled = ExtResource("5_v6ax4")
 texture_focused = ExtResource("4_2ncbb")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/VBoxContainer/TestScene"]
+[node name="Label" type="Label" parent="MainMenu/VB/VBButtons/TestSceneButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -77,7 +79,7 @@ label_settings = ExtResource("6_gi2p0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="QuitButton" type="TextureButton" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="SettingsButton" type="TextureButton" parent="MainMenu/VB/VBButtons"]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 texture_normal = ExtResource("2_d8s78")
@@ -87,7 +89,30 @@ texture_disabled = ExtResource("5_v6ax4")
 texture_focused = ExtResource("4_2ncbb")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/VBoxContainer/QuitButton"]
+[node name="Label" type="Label" parent="MainMenu/VB/VBButtons/SettingsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Settings"
+label_settings = ExtResource("6_gi2p0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitButton" type="TextureButton" parent="MainMenu/VB/VBButtons"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+texture_normal = ExtResource("2_d8s78")
+texture_pressed = ExtResource("3_7i62j")
+texture_hover = ExtResource("4_2ncbb")
+texture_disabled = ExtResource("5_v6ax4")
+texture_focused = ExtResource("4_2ncbb")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MainMenu/VB/VBButtons/QuitButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -100,16 +125,17 @@ label_settings = ExtResource("6_gi2p0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ExpandBox2" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+[node name="ExpandBox2" type="VBoxContainer" parent="MainMenu/VB"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Version" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="Version" type="Label" parent="MainMenu/VB"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_fnumv")
 theme_override_font_sizes/font_size = 24
 text = "Version - 0.0.0"
 script = SubResource("GDScript_0itgy")
 
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/VBoxContainer/TestScene" to="." method="_on_test_scene_pressed"]
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MainMenu/VB/VBButtons/TestSceneButton" to="MainMenu" method="_on_test_scene_button_pressed"]
+[connection signal="pressed" from="MainMenu/VB/VBButtons/SettingsButton" to="MainMenu" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MainMenu/VB/VBButtons/QuitButton" to="MainMenu" method="_on_quit_button_pressed"]

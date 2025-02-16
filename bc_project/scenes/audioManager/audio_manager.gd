@@ -281,6 +281,9 @@ func delete_bus(busIndex:int = -1) -> void:
 """
 --- Base Bus Managnemnt Methods
 """
+func get_bus_enum(busName: String) -> busses:
+	return busses.get(busName)
+
 # Returns bus volume as linear transformation float (converts from db scale)
 # If linearOutput is set to false; returns volume as db scale
 func get_bus_volume(bus:busses, linearOutput:bool = true) -> float:
