@@ -4,9 +4,6 @@ extends Node
 --- GLobal variables
 """
 
-# Variable used to set the next scene to load
-var NextScene = ""
-
 # Veriables used in timeline hoping and UI elements
 var Timeline = "001"
 var TimelineIndex = 0
@@ -34,6 +31,15 @@ var interactive_radius_name = "interactRadius"
 enum help_signal_type {INTERACTIVE,DELETEELEMENT,DOOR,TALK}
 
 const MaxSFXSounds:int = 5
+
+"""
+--- Scene variables
+"""
+
+const scene_paths: Dictionary = {
+	"main_menu": "res://scenes/menus/main_menu.tscn",
+	"test_level": "res://scenes/levels/test_level.tscn"
+}
 
 """
 --- Setup functions

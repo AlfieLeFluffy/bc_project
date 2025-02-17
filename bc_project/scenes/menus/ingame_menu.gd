@@ -24,5 +24,4 @@ func _on_settings_button_pressed() -> void:
 	SettingsController.emit_signal("openSettingsMenu")
 
 func _on_quit_button_pressed() -> void:
-	Global.NextScene = "res://scenes/menus/main_menu.tscn"
-	get_tree().change_scene_to_packed(load("res://scenes/menus/loading_screen.tscn"))
+	GameController.change_scene("main_menu")

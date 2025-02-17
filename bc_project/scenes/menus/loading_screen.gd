@@ -6,7 +6,7 @@ var packedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Scene = Global.NextScene
+	Scene = GameController.sceneToLoad
 	ResourceLoader.load_threaded_request(Scene)
 
 

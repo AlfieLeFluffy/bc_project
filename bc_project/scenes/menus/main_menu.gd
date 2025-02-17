@@ -12,8 +12,7 @@ func _ready() -> void:
 """
 
 func _on_test_scene_button_pressed() -> void:
-	Global.NextScene = "res://scenes/levels/test_level.tscn"
-	get_tree().change_scene_to_packed(load("res://scenes/menus/loading_screen.tscn"))
+	GameController.change_scene("test_level")
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit(0)

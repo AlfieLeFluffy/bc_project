@@ -9,7 +9,9 @@ const preloadInGameMenu = preload("res://scenes/menus/ingame_menu.tscn")
 --- Runtime Variables
 """
 # Flag for if focus is set
-var FocusSet = false
+var FocusSet:bool = false
+
+var sceneToLoad:String = ""
 
 """
 --- Setup Methods
@@ -32,8 +34,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 """
---- Gloabal Minsc Functions
+--- Gloabal Minsc Methods
 """
+
+func change_scene(sceneName:String) -> void:
+	sceneToLoad = Global.scene_paths[sceneName]
+	get_tree().change_scene_to_packed(load("res://scenes/menus/loading_screen.tscn"))
 
 # Instantiates and shows the in-game menu
 func open_ingame_menu() -> void:
