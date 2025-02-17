@@ -1,4 +1,4 @@
-class_name LevelControl extends Node2D
+class_name LevelController extends Node2D
 
 """
 --- Level/Case Variables
@@ -10,4 +10,4 @@ class_name LevelControl extends Node2D
 """
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	Signals.emit_signal("scene_loaded")

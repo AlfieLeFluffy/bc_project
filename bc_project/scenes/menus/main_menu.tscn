@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 	pass
 "
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="MainMenu" type="CanvasLayer"]
 
 [node name="MainMenu" type="Control" parent="."]
 layout_mode = 3
@@ -75,6 +75,29 @@ offset_top = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Test Scene"
+label_settings = ExtResource("6_gi2p0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LoadButton" type="TextureButton" parent="MainMenu/VB/VBButtons"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+texture_normal = ExtResource("2_d8s78")
+texture_pressed = ExtResource("3_7i62j")
+texture_hover = ExtResource("4_2ncbb")
+texture_disabled = ExtResource("5_v6ax4")
+texture_focused = ExtResource("4_2ncbb")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MainMenu/VB/VBButtons/LoadButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Load"
 label_settings = ExtResource("6_gi2p0")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -137,5 +160,6 @@ text = "Version - 0.0.0"
 script = SubResource("GDScript_0itgy")
 
 [connection signal="pressed" from="MainMenu/VB/VBButtons/TestSceneButton" to="MainMenu" method="_on_test_scene_button_pressed"]
+[connection signal="pressed" from="MainMenu/VB/VBButtons/LoadButton" to="MainMenu" method="_on_load_button_pressed"]
 [connection signal="pressed" from="MainMenu/VB/VBButtons/SettingsButton" to="MainMenu" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="MainMenu/VB/VBButtons/QuitButton" to="MainMenu" method="_on_quit_button_pressed"]

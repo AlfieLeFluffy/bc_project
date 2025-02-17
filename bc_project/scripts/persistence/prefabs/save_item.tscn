@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://8p7mcpd5o46e"]
+
+[ext_resource type="Script" path="res://scripts/persistence/prefabs/save_item.gd" id="1_o32js"]
+
+[node name="SaveItem" type="HBoxContainer"]
+size_flags_horizontal = 3
+script = ExtResource("1_o32js")
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Save Name"
+
+[node name="Date" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Save Date"
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+initial_position = 4
+size = Vector2i(277, 100)
+dialog_text = "Do you wish to overwrite this file?"
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "REWRITE"
+
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

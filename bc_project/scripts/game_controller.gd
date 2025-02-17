@@ -4,6 +4,14 @@ extends Node
 --- Preload Scenes
 """
 const preloadInGameMenu = preload("res://scenes/menus/ingame_menu.tscn")
+const preloadPersistenceMenu = preload("res://scripts/persistence/persistence_menu.tscn")
+
+"""
+--- Signals
+"""
+signal openPersistenceMenu(mode)
+signal saveGame(filename)
+signal loadGame(filename)
 
 """
 --- Runtime Variables
@@ -18,8 +26,15 @@ var sceneToLoad:String = ""
 """
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# File and folder integrity checks
+	check_savefile_dir()
+	
+	# Connecting signals
 	get_viewport().connect("gui_focus_changed", _on_focus_changed)
 	DialogueManager.connect("dialogue_ended",release_focus)
+	connect("openPersistenceMenu",open_persistence_menu)
+	connect("saveGame", save_game)
+	connect("loadGame", load_game)
 
 """
 --- Runtime Methods
@@ -37,12 +52,18 @@ func _unhandled_input(event: InputEvent) -> void:
 --- Gloabal Minsc Methods
 """
 
-func change_scene(sceneName:String) -> void:
-	sceneToLoad = Global.scene_paths[sceneName]
-	get_tree().change_scene_to_packed(load("res://scenes/menus/loading_screen.tscn"))
+func change_scene(sceneName:String) -> bool:
+	sceneToLoad = Global.scenePaths[sceneName]
+	if sceneToLoad:
+		Global.currentScene = sceneName
+		get_tree().change_scene_to_packed(load("res://scenes/menus/loading_screen.tscn"))
+		return true
+	return false
 
 # Instantiates and shows the in-game menu
 func open_ingame_menu() -> void:
+	if get_tree().current_scene.name == "MainMenu":
+		return
 	var menu = preloadInGameMenu.instantiate()
 	get_tree().current_scene.add_child(menu)
 	menu.layer = 90
@@ -78,3 +99,50 @@ func release_focus(resource = null) -> void:
 	if FocusSet:
 		get_viewport().gui_release_focus()
 		FocusSet = false
+
+func open_persistence_menu(mode: int = 0) -> void:
+	if mode > 1 or mode < 0:
+		printerr("Wrong Persistence Mode Parameter")
+		return
+	var menu = preloadPersistenceMenu.instantiate()
+	menu.mode = mode
+	get_tree().current_scene.add_child(menu)
+	menu.layer = 100
+
+func check_savefile_dir() -> void:
+	var dir = DirAccess.open(Global.savesDirectoryPath)
+	if not dir:
+		DirAccess.make_dir_absolute(Global.savesDirectoryPath)
+
+func save_game(filename:String) -> void:
+	# Master dictionary holding all saved data
+	var saveDic: Dictionary = {}
+	# Saves current scene
+	saveDic["scene"] = Global.currentScene
+	
+	var player = get_tree().get_nodes_in_group("Player")
+	saveDic["player"] = player[0].saving()
+	
+	# Opens and prepares the savefile
+	var save_file = FileAccess.open(Global.savesDirectoryPath+"/"+filename.rstrip(".sf")+".sf", FileAccess.WRITE)
+	# JSON provides a static method to serialized JSON string.
+	var json_string = JSON.stringify(saveDic)
+	# Store the save dictionary as a new line in the save file.
+	save_file.store_line(json_string)
+
+func load_game(filename:String) -> void:
+	# Checks if savefile exists
+	if not FileAccess.file_exists(Global.savesDirectoryPath+"/"+filename):
+		return # Error! We don't have a save to load.
+	# Opens savefile
+	var save_file = FileAccess.open(Global.savesDirectoryPath+"/"+filename, FileAccess.READ)
+	var json_string = save_file.get_line()
+	# Get the data from the JSON object.
+	var node_data = JSON.parse_string(json_string)
+	
+	# Loads current scene
+	change_scene(node_data["scene"])
+	await Signals.scene_loaded
+	
+	var player = get_tree().get_nodes_in_group("Player")
+	player[0].loading(node_data["player"])

@@ -53,3 +53,13 @@ func reset_direction(variable) -> void:
 
 func update_overlay() -> void:
 	$main_overlay.UpdateUI()
+
+func saving() -> Dictionary:
+	return {
+		"positionX": position.x,
+		"positionY": position.y
+	}
+
+func loading(save:Dictionary) ->void:
+	position.x = save["positionX"]
+	position.y = save["positionY"]

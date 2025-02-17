@@ -156,7 +156,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="MenuContainer/HBoxContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
-[connection signal="pressed" from="MenuContainer/HBoxContainer/VBoxContainer/SaveButton" to="." method="_on_continue_button_pressed"]
-[connection signal="pressed" from="MenuContainer/HBoxContainer/VBoxContainer/LoadButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="MenuContainer/HBoxContainer/VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
 [connection signal="pressed" from="MenuContainer/HBoxContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="MenuContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
