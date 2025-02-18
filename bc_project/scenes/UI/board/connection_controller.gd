@@ -32,7 +32,7 @@ func _ready() -> void:
 func import_clues() -> void:
 	var resource
 	for child in get_tree().root.get_children():
-		if child is LevelControl:
+		if child is LevelController:
 			resource = child.caseClues
 			break
 	
@@ -92,6 +92,7 @@ func end_drawing() -> void:
 				instance.toggle_edit()
 				AudioManager.play_sound("ding")
 			Global.line_elements[lineName] = instance
+			instance.name = lineName
 			instance.drawing = false
 			reset_state()
 

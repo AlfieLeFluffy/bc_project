@@ -3,9 +3,6 @@ extends Node
 """
 --- GLobal variables
 """
-
-
-
 # Veriables used in timeline hoping and UI elements
 var Timeline = "001"
 var TimelineIndex = 0
@@ -47,7 +44,20 @@ const scenePaths: Dictionary = {
 }
 
 """
---- Setup functions
+--- Setup Methods
 """
+# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	
+	# Added group tag for persistence purposes
+	add_to_group("Persistent")
+
+"""
+--- Persistence Methods
+"""
+func saving() -> Dictionary:
+	var output: Dictionary = {}
+	return output
+
+func loading(input: Dictionary) -> bool:
+	return true

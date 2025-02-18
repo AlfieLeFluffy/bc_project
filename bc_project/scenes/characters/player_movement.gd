@@ -60,6 +60,9 @@ func saving() -> Dictionary:
 		"positionY": position.y
 	}
 
-func loading(save:Dictionary) ->void:
-	position.x = save["positionX"]
-	position.y = save["positionY"]
+func loading(input:Dictionary) -> bool:
+	if input.has("positionX") and input.has("positionY"):
+		position.x = input["positionX"]
+		position.y = input["positionY"]
+		return true
+	return false

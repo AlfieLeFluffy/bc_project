@@ -19,7 +19,7 @@ shader = ExtResource("3_e8nap")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 
-[node name="npc" type="CharacterBody2D"]
+[node name="npc" type="CharacterBody2D" groups=["Persistent"]]
 light_mask = 7
 visibility_layer = 7
 collision_layer = 514

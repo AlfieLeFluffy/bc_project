@@ -108,3 +108,22 @@ func activate_interactivity() -> void:
 
 func deactivate_interactivity() -> void:
 	Signals.emit_signal("help_text_toggle",Global.help_signal_type.TALK,false)
+
+func saving() -> Dictionary:
+	var output: Dictionary = {
+		"filepath": get_path(),
+		"parent": get_parent().get_path(),
+		"name": name,
+		"posX": position.x,
+		"posY": position.y,
+		"currentState": $StateMachine.currentState.name
+	}
+	return output
+
+func loading(input: Dictionary) -> bool:
+	name = input["name"]
+	position.x = input["posX"]
+	position.y = input["posY"]
+	if $StateMachine.states.has(input["currentState"]):
+		$StateMachine.currentState = $StateMachine.states[input["currentState"]]
+	return true

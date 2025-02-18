@@ -42,6 +42,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_menu"):
+		GameController.release_focus()
+		queue_free()
+	get_viewport().set_input_as_handled()
+
 """
 --- Persistence Methods
 """

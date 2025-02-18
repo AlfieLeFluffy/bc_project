@@ -15,7 +15,7 @@ font_color = Color(0, 0, 0, 1)
 resource_local_to_scene = true
 size = Vector2(244, 180)
 
-[node name="element_base" instance=ExtResource("1_7ckma")]
+[node name="element_base" groups=["Persistent"] instance=ExtResource("1_7ckma")]
 script = ExtResource("2_egriy")
 
 [node name="element_texture" parent="." index="0"]

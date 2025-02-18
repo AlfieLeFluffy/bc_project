@@ -25,8 +25,8 @@ Signals="*res://scripts/signals.gd"
 AudioManager="*res://scenes/audioManager/audio_manager.tscn"
 SettingsController="*res://scripts/settings/settings_controller.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-DialogScripts="*res://scripts/dialog/dialog_scripts.gd"
 DialogVariables="*res://scripts/dialog/dialog_variables.gd"
+DialogScripts="*res://scripts/dialog/dialog_scripts.gd"
 
 [dialogue_manager]
 

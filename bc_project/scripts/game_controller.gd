@@ -26,6 +26,10 @@ var sceneToLoad:String = ""
 """
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
+	# Added group tag for persistence purposes
+	add_to_group("Persistent")
+	
 	# File and folder integrity checks
 	check_savefile_dir()
 	
@@ -120,8 +124,14 @@ func save_game(filename:String) -> void:
 	# Saves current scene
 	saveDic["scene"] = Global.currentScene
 	
-	var player = get_tree().get_nodes_in_group("Player")
-	saveDic["player"] = player[0].saving()
+	var save_nodes = get_tree().get_nodes_in_group("Persistent")
+	for node in save_nodes:
+		# Check the node has a save function.
+		if !node.has_method("saving"):
+			printerr("persistent node '%s' is missing a save() function, skipped" % node.name)
+			continue
+
+		saveDic[node.get_path()] = node.saving()
 	
 	# Opens and prepares the savefile
 	var save_file = FileAccess.open(Global.savesDirectoryPath+"/"+filename.rstrip(".sf")+".sf", FileAccess.WRITE)
@@ -138,11 +148,37 @@ func load_game(filename:String) -> void:
 	var save_file = FileAccess.open(Global.savesDirectoryPath+"/"+filename, FileAccess.READ)
 	var json_string = save_file.get_line()
 	# Get the data from the JSON object.
-	var node_data = JSON.parse_string(json_string)
+	var dic = JSON.parse_string(json_string)
 	
 	# Loads current scene
-	change_scene(node_data["scene"])
+	if not dic.has("scene"):
+		printerr("Savefile doesn't have a scene to load.")
+		return
+	change_scene(dic["scene"])
+	dic.erase("scene")
+	
 	await Signals.scene_loaded
 	
-	var player = get_tree().get_nodes_in_group("Player")
-	player[0].loading(node_data["player"])
+	var save_nodes = get_tree().get_nodes_in_group("Persistent")
+	for node in save_nodes:
+		if dic.has(String(node.get_path())):
+			node.loading(dic[String(node.get_path())])
+			dic.erase(String(node.get_path()))
+	
+	for key in dic:
+		if dic[key].has("node"):
+			var node = load(dic[key]["node"])
+			node = node.instantiate()
+			var parent = get_node(dic[key]["parent"])
+			parent.add_child(node)
+			node.loading(dic[key])
+
+"""
+--- Persistence Methods
+"""
+func saving() -> Dictionary:
+	var output: Dictionary = {}
+	return output
+
+func loading(input: Dictionary) -> bool:
+	return true

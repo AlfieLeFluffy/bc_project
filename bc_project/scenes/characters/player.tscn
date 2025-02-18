@@ -30,7 +30,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" groups=["Persistent", "Player"]]
 light_mask = 7
 visibility_layer = 7
 collision_layer = 257

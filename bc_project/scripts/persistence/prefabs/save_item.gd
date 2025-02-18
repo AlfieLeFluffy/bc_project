@@ -27,3 +27,12 @@ func _on_confirmation_dialog_confirmed() -> void:
 		return
 	GameController.emit_signal("saveGame",filename)
 	menuNode.emit_signal("closeMenu")
+
+
+
+func _on_delete_button_pressed() -> void:
+	$DeleteConfirmationDialog.popup()
+
+func _on_delete_confirmation_dialog_confirmed() -> void:
+	DirAccess.remove_absolute(Global.savesDirectoryPath+"/"+filename)
+	queue_free()

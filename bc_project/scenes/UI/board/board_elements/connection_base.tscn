@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dccki"]
 size = Vector2(138, 33)
 
-[node name="connection_base" type="Area2D"]
+[node name="connection_base" type="Area2D" groups=["Persistent"]]
 script = ExtResource("1_wd7yk")
 
 [node name="ConnectionText" type="LineEdit" parent="."]
