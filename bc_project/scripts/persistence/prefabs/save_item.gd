@@ -34,5 +34,5 @@ func _on_delete_button_pressed() -> void:
 	$DeleteConfirmationDialog.popup()
 
 func _on_delete_confirmation_dialog_confirmed() -> void:
-	DirAccess.remove_absolute(Global.savesDirectoryPath+"/"+filename)
+	GameController.delete_savefile(filename)
 	queue_free()

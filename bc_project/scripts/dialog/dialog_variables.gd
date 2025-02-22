@@ -19,10 +19,16 @@ func _ready() -> void:
 --- Persistence Methods
 """
 func saving() -> Dictionary:
-	return dict
+	var output: Dictionary ={
+		"persistent": true,
+		"nodepath": get_path(),
+		"parent": get_parent().get_path(),
+		"dict": dict
+	}
+	return output
 
 func loading(input: Dictionary) -> bool:
-	if input.has("DialogVariables"):
-		dict = input["DialogVariables"]
+	if input.has("dic"):
+		dict = input["dict"]
 		return true
 	return false

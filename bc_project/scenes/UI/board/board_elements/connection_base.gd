@@ -69,7 +69,7 @@ func _on_mouse_exited() -> void:
 func saving() -> Dictionary:
 	var output: Dictionary = {
 		"node": "res://scenes/UI/board/board_elements/connection_base.tscn",
-		"filepath": get_path(),
+		"nodepath": get_path(),
 		"parent": get_parent().get_path(),
 		"name": name,
 		"lineName": lineName,

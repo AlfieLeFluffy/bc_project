@@ -171,7 +171,7 @@ states/opening/position = Vector2(345, 100)
 transitions = ["open", "closing", SubResource("AnimationNodeStateMachineTransition_dali8"), "closing", "closed", SubResource("AnimationNodeStateMachineTransition_6c24n"), "closed", "opening", SubResource("AnimationNodeStateMachineTransition_pfmai"), "opening", "open", SubResource("AnimationNodeStateMachineTransition_ew67v"), "Start", "open", SubResource("AnimationNodeStateMachineTransition_olvo5"), "Start", "closed", SubResource("AnimationNodeStateMachineTransition_fq2xt")]
 graph_offset = Vector2(-146, -6)
 
-[node name="DoorSideways" instance=ExtResource("1_o2gm0")]
+[node name="DoorSideways" groups=["Persistent"] instance=ExtResource("1_o2gm0")]
 script = ExtResource("2_q4uyh")
 opened = false
 locked = false

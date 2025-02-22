@@ -65,22 +65,30 @@ func setup_base_items() -> void:
 		grid.add_child(newSaveItem)
 
 func setup_savefiles() -> void:
-	var dir = DirAccess.open(Global.savesDirectoryPath)
-	if dir:
-		var files = dir.get_files()
-		for file in files:
-			if file.ends_with(".sf"):
-				var item
-				if mode == modeEnum.SAVE:
-					item = saveItemPreload.instantiate()
-				elif mode == modeEnum.LOAD:
-					item = loadItemPreload.instantiate()
-				item.filename = file
-				item.menuNode = self
-				item.date = Time.get_datetime_string_from_unix_time(FileAccess.get_modified_time(Global.savesDirectoryPath+"/"+file))
-				grid.add_child(item)
+	var directory = DirAccess.open(Global.savesDirectoryPath)
+	if directory:
+		var dirs = directory.get_directories()
+		for dir in dirs:
+			setup_savefile_directory(dir)
 	else:
 		printerr("Could not load saves directory.")
+
+func setup_savefile_directory(directory: String) -> void:
+	var files = DirAccess.open(Global.savesDirectoryPath+"/"+directory).get_files()
+	for file in files:
+		if file.ends_with(".sf"):
+			setup_savefile_entry(file)
+
+func setup_savefile_entry(file: String) -> void:#
+	var item
+	if mode == modeEnum.SAVE:
+		item = saveItemPreload.instantiate()
+	elif mode == modeEnum.LOAD:
+		item = loadItemPreload.instantiate()
+	item.filename = file
+	item.menuNode = self
+	item.date = Time.get_datetime_string_from_unix_time(FileAccess.get_modified_time(Global.savesDirectoryPath+"/"+file))
+	grid.add_child(item)
 
 func close_menu() -> void:
 	queue_free()

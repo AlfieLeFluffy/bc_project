@@ -18,7 +18,7 @@ func element_setup() -> void:
 func saving() -> Dictionary:
 	var output: Dictionary = {
 		"node": "res://scenes/UI/board/board_elements/element_note.tscn",
-		"filepath": get_path(),
+		"nodepath": get_path(),
 		"parent": get_parent().get_path(),
 		"name": name,
 		"elementName": elementName,

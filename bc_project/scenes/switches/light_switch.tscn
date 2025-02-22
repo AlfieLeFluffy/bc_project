@@ -29,8 +29,9 @@ shader = ExtResource("3_l601d")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 
-[node name="light_switch" instance=ExtResource("1_g0vw7")]
+[node name="light_switch" groups=["Persistent"] instance=ExtResource("1_g0vw7")]
 script = ExtResource("2_di4um")
+state = true
 interactable_resource = SubResource("Resource_tpmc6")
 metadata/Name = "Light switch"
 

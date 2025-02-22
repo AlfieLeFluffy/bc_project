@@ -10,7 +10,7 @@ extends "res://scenes/interactable.gd"
 var timelineSpace
 
 # Local ready function for instantiated objects
-func local_ready() -> void:
+func local_ready(startup:bool = true) -> void:
 	timelineSpace = get_parent().get_parent()
 	
 	if opened:
@@ -19,7 +19,7 @@ func local_ready() -> void:
 		state_machine.start("closed")
 		$CollisionShape2D2.disabled = true
 	
-	if inverted:
+	if inverted and startup:
 		$Sprite2D.scale.x = -1
 		$Sprite2D.position.x = $Sprite2D.position.x * -1
 		$CollisionShape2D2.position.x = $CollisionShape2D2.position.x * -1
@@ -71,3 +71,24 @@ func activate_interactivity() -> void:
 func deactivate_interactivity() -> void:
 	Global.Active_Interactive_Item = null
 	Signals.emit_signal("help_text_toggle",Global.help_signal_type.INTERACTIVE,false)
+
+"""
+--- Persistence Methods
+"""
+func saving() -> Dictionary:
+	var output: Dictionary = {
+		"persistent": true,
+		"nodepath": get_path(),
+		"parent": get_parent().get_path(),
+		"opened": opened,
+		"locked": locked
+	}
+	return output
+
+func loading(input: Dictionary) -> bool:
+	if input.has("opened") and input.has("locked"):
+		opened = input["opened"]
+		locked = input["locked"]
+		local_ready(false)
+		return true
+	return false

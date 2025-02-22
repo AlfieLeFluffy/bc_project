@@ -7,7 +7,7 @@
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ls3e4"]
 polygon = PackedVector2Array(-2, 7, 2, 7, 0, 6)
 
-[node name="ceiling_lamp" type="Node2D"]
+[node name="ceiling_lamp" type="Node2D" groups=["Light"]]
 script = ExtResource("1_ip2ye")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

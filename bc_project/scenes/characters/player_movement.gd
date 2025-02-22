@@ -56,13 +56,16 @@ func update_overlay() -> void:
 
 func saving() -> Dictionary:
 	return {
-		"positionX": position.x,
-		"positionY": position.y
+		"persistent": true,
+		"nodepath": get_path(),
+		"parent": get_parent().get_path(),
+		"posX": position.x,
+		"posY": position.y
 	}
 
 func loading(input:Dictionary) -> bool:
-	if input.has("positionX") and input.has("positionY"):
-		position.x = input["positionX"]
-		position.y = input["positionY"]
+	if input.has("posX") and input.has("posY"):
+		position.x = input["posX"]
+		position.y = input["posY"]
 		return true
 	return false

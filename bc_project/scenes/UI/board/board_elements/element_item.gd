@@ -27,7 +27,7 @@ func element_setup() -> void:
 func saving() -> Dictionary:
 	var output: Dictionary = {
 		"node": "res://scenes/UI/board/board_elements/element_item.tscn",
-		"filepath": get_path(),
+		"nodepath": get_path(),
 		"parent": get_parent().get_path(),
 		"name": name,
 		"elementName": elementName,
@@ -35,7 +35,8 @@ func saving() -> Dictionary:
 		"posY": position.y,
 		"label": label,
 		"text": text,
-		"timeline": timeline
+		"timeline": timeline,
+		"img": texture
 	}
 	return output
 
@@ -48,5 +49,7 @@ func loading(input: Dictionary) -> bool:
 	label = input["label"]
 	text = input["text"]
 	timeline = input["timeline"]
+	if input["img"]:
+		texture = input["img"]
 	element_setup()
 	return true

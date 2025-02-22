@@ -56,7 +56,11 @@ func _ready() -> void:
 --- Persistence Methods
 """
 func saving() -> Dictionary:
-	var output: Dictionary = {}
+	var output: Dictionary = {
+		"persistent": true,
+		"nodepath": get_path(),
+		"parent": get_parent().get_path(),
+	}
 	return output
 
 func loading(input: Dictionary) -> bool:

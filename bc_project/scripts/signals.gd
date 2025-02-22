@@ -5,6 +5,7 @@ signal update_overlay()
 
 # Signals for updating player overlay
 signal scene_loaded()
+signal game_loaded()
 
 # Signals for deleting board elements
 signal delete_line(line)

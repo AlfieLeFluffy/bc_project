@@ -111,7 +111,8 @@ func deactivate_interactivity() -> void:
 
 func saving() -> Dictionary:
 	var output: Dictionary = {
-		"filepath": get_path(),
+		"persistent": true,
+		"nodepath": get_path(),
 		"parent": get_parent().get_path(),
 		"name": name,
 		"posX": position.x,

@@ -31,7 +31,7 @@ func _ready() -> void:
 	add_to_group("Persistent")
 	
 	# File and folder integrity checks
-	check_savefile_dir()
+	check_directory(Global.savesDirectoryPath)
 	
 	# Connecting signals
 	get_viewport().connect("gui_focus_changed", _on_focus_changed)
@@ -104,6 +104,34 @@ func release_focus(resource = null) -> void:
 		get_viewport().gui_release_focus()
 		FocusSet = false
 
+
+"""
+--- Directory Methods
+"""
+# Checks if a directory exists and creates one if not
+func check_directory(directory:String) -> void:
+	var dir = DirAccess.open(directory)
+	if not dir:
+		DirAccess.make_dir_absolute(directory)
+
+# Deletes a directory and anything within said directory
+func delete_directory_recurse(directoryPath:String) -> void:
+	# Checks if directory exists, if not then exists
+	if not DirAccess.dir_exists_absolute(directoryPath):
+		return
+	
+	var dir = DirAccess.open(directoryPath)
+	for file in dir.get_files():
+		dir.remove(file)
+	for directory in dir.get_directories():
+		delete_directory_recurse(directoryPath.path_join(directory))
+	DirAccess.remove_absolute(directoryPath)
+
+"""
+--- Save and Load Methods
+"""
+
+# Opens persistence menu either in save or load mode
 func open_persistence_menu(mode: int = 0) -> void:
 	if mode > 1 or mode < 0:
 		printerr("Wrong Persistence Mode Parameter")
@@ -113,71 +141,129 @@ func open_persistence_menu(mode: int = 0) -> void:
 	get_tree().current_scene.add_child(menu)
 	menu.layer = 100
 
-func check_savefile_dir() -> void:
-	var dir = DirAccess.open(Global.savesDirectoryPath)
-	if not dir:
-		DirAccess.make_dir_absolute(Global.savesDirectoryPath)
+""" Methods for saving and loading images in safe nodes """
+# Saves an image in a dictionary into the img directory inside a savefile and sets flag to load it once loading
+func save_img(key:String ,safeDirPath:String, dictionary:Dictionary) -> void:
+	dictionary[key].get_image().save_png(safeDirPath.path_join("img").path_join(key+"_"+dictionary["name"])+".png")
+	dictionary[key] = true
 
+# Loads an image from the img directory if given flag is present in dictionary
+func load_img(key, safeDirPath:String, dictionary: Dictionary) -> void:
+	if not dictionary[key]:
+		return
+	if FileAccess.file_exists(safeDirPath.path_join("img").path_join(key+"_"+dictionary["name"])+".png"):
+		var image = Image.load_from_file(safeDirPath.path_join("img").path_join(key+"_"+dictionary["name"])+".png")
+		var texture = ImageTexture.create_from_image(image)
+		dictionary[key] = texture
+
+""" Methods for saving and loading one node dictonary as a JSON line """
+# Takes a node dictionary, checks and saves any images, stringfies the node dictionary and writes into the savefile as a line
+func save_line(safeFile, saveDirPath:String, dictionary:Dictionary) -> void:
+	if dictionary.has("img"):
+		save_img("img",saveDirPath,dictionary)
+	var json = JSON.stringify(dictionary)
+	safeFile.store_line(json)
+
+# Reads one line of the savefile, parses the string into a dictionary, checks and laods any images and return node dictionary
+func load_line(safeFile, safeDirPath:String) -> Dictionary:
+	var json = safeFile.get_line()
+	var parse =  JSON.parse_string(json)
+	if parse.has("img"):
+		load_img("img",safeDirPath, parse)
+	return parse
+
+""" Methods for saving and loading the game """
 func save_game(filename:String) -> void:
-	# Master dictionary holding all saved data
-	var saveDic: Dictionary = {}
-	# Saves current scene
-	saveDic["scene"] = Global.currentScene
+	var safeDirPath = Global.savesDirectoryPath.path_join(filename.rstrip(".sf"))
+	var safeFilePath = safeDirPath.path_join(filename.rstrip(".sf")+".sf")
 	
-	var save_nodes = get_tree().get_nodes_in_group("Persistent")
-	for node in save_nodes:
+	delete_directory_recurse(safeDirPath)
+	check_directory(safeDirPath)
+	check_directory(safeDirPath.path_join("img"))
+	
+	# Opens and prepares the savefile
+	var saveFile = FileAccess.open(safeFilePath, FileAccess.WRITE)
+	
+	# Saves current scene first so it can be loaded first
+	var sceneDictionary: Dictionary = {
+		"scene" = Global.currentScene
+	}
+	save_line(saveFile, safeDirPath, sceneDictionary)
+	
+	# Loads up all persistent nodes in the scene (and globals)
+	var persistentNodes = get_tree().get_nodes_in_group("Persistent")
+	for node in persistentNodes:
 		# Check the node has a save function.
 		if !node.has_method("saving"):
 			printerr("persistent node '%s' is missing a save() function, skipped" % node.name)
 			continue
-
-		saveDic[node.get_path()] = node.saving()
-	
-	# Opens and prepares the savefile
-	var save_file = FileAccess.open(Global.savesDirectoryPath+"/"+filename.rstrip(".sf")+".sf", FileAccess.WRITE)
-	# JSON provides a static method to serialized JSON string.
-	var json_string = JSON.stringify(saveDic)
-	# Store the save dictionary as a new line in the save file.
-	save_file.store_line(json_string)
+			
+		# Calls for node's saving method and the stores is as a line in the savefile
+		save_line(saveFile, safeDirPath, node.saving())
 
 func load_game(filename:String) -> void:
+	var safeDirPath = Global.savesDirectoryPath.path_join(filename.rstrip(".sf"))
+	var safeFilePath = safeDirPath.path_join(filename)
+	
 	# Checks if savefile exists
-	if not FileAccess.file_exists(Global.savesDirectoryPath+"/"+filename):
-		return # Error! We don't have a save to load.
+	if not FileAccess.file_exists(safeFilePath):
+		printerr("Load game method cannot locate given save file: "+filename)
+		return
+	
 	# Opens savefile
-	var save_file = FileAccess.open(Global.savesDirectoryPath+"/"+filename, FileAccess.READ)
-	var json_string = save_file.get_line()
-	# Get the data from the JSON object.
-	var dic = JSON.parse_string(json_string)
+	var saveFile = FileAccess.open(safeFilePath, FileAccess.READ)
+	
+	# Retrives first json line that should be the scene
+	var data = load_line(saveFile,safeDirPath)
 	
 	# Loads current scene
-	if not dic.has("scene"):
+	if not data.has("scene"):
 		printerr("Savefile doesn't have a scene to load.")
 		return
-	change_scene(dic["scene"])
-	dic.erase("scene")
 	
+	# Starts process for loading a scene
+	change_scene(data["scene"])
+	# Waits till the scene loads
 	await Signals.scene_loaded
 	
-	var save_nodes = get_tree().get_nodes_in_group("Persistent")
-	for node in save_nodes:
-		if dic.has(String(node.get_path())):
-			node.loading(dic[String(node.get_path())])
-			dic.erase(String(node.get_path()))
+	# Loads up all persistent nodes in the scene (and globals)
+	var persistentNodes = get_tree().get_nodes_in_group("Persistent")
 	
-	for key in dic:
-		if dic[key].has("node"):
-			var node = load(dic[key]["node"])
-			node = node.instantiate()
-			var parent = get_node(dic[key]["parent"])
-			parent.add_child(node)
-			node.loading(dic[key])
+	while saveFile.get_position() < saveFile.get_length():
+		data = load_line(saveFile,safeDirPath)
+	
+		if not data.has("nodepath"):
+			printerr("Loaded entry has no nodepath")
+			continue
+		
+		if data.has("persistent"):
+			for i in max(persistentNodes.size()-1,1):
+				if data["nodepath"] == String(persistentNodes[i].get_path()):
+					persistentNodes[i].loading(data)
+					persistentNodes.pop_at(i)
+					break
+		else:
+			if data.has("node"):
+				var node = load(data["node"])
+				node = node.instantiate()
+				var parent = get_node(data["parent"])
+				parent.add_child(node)
+				node.loading(data)
+			
+	Signals.emit_signal("game_loaded")
+	
+func delete_savefile(filename:String) -> void:
+	delete_directory_recurse(Global.savesDirectoryPath.path_join(filename.rstrip(".sf")))
 
 """
 --- Persistence Methods
 """
 func saving() -> Dictionary:
-	var output: Dictionary = {}
+	var output: Dictionary = {
+		"persistent": true,
+		"nodepath": get_path(),
+		"parent": get_parent().get_path(),
+	}
 	return output
 
 func loading(input: Dictionary) -> bool:
