@@ -1,21 +1,17 @@
 extends "res://scenes/interactable.gd"
 
 """
---- Runtime Variables
+--- Setup Exported Variables
 """
-var lights
-
 @export_category("Setup Variables")
+@export var circuit: int = 0 
 @export var state: bool = true 
 
 """
 --- Setup Methods
 """
 func local_ready() -> void:
-	lights = get_node("lights").get_children()
-	
-	if not state:
-		set_lights(state)
+	pass
 
 """
 --- Interact Methods
@@ -26,13 +22,10 @@ func interact_function(event: InputEvent) -> void:
 	# Inverts state for persistence
 	state = not state
 	# Toggles all lights
-	set_lights(state)
+	Signals.emit_signal("set_light",circuit,state)
 
 func set_lights(newState: bool) -> void:
-	# Turn all the light on/off
-	if lights:
-		for light in lights:
-			light.set_state(newState)
+	Signals.emit_signal("set_light",circuit,newState)
 
 """
 --- Persistence Methods

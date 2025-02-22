@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=4 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=89 format=4 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Texture2D" uid="uid://f5ht0q2x8m04" path="res://textures/flatTileset-Sheet.png" id="1_n5x54"]
 [ext_resource type="Script" path="res://scenes/levels/level_controller.gd" id="1_t01cb"]
@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://baw3h6q2ebxe6" path="res://scenes/interactive/door.tscn" id="3_ya4qs"]
 [ext_resource type="PackedScene" uid="uid://chgj487p1bpqi" path="res://scenes/items/empty_plate.tscn" id="4_w2p71"]
 [ext_resource type="PackedScene" uid="uid://c4x1ywanodayi" path="res://scenes/items/thick_mug.tscn" id="5_hqxr4"]
-[ext_resource type="PackedScene" uid="uid://75l81bk5wreu" path="res://scenes/lamps/ceiling_lamp.tscn" id="6_g4tah"]
+[ext_resource type="PackedScene" uid="uid://75l81bk5wreu" path="res://scenes/lighting/ceiling_lamp/ceiling_lamp.tscn" id="6_g4tah"]
 [ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="7_es8ye"]
 [ext_resource type="Script" path="res://scenes/interactable_resource.gd" id="7_paapu"]
 [ext_resource type="PackedScene" uid="uid://dkvl1inu1enr8" path="res://scenes/switches/light_switch.tscn" id="7_wo4n4"]
@@ -332,30 +332,6 @@ dialogs = Array[ExtResource("9_0c4pi")]([])
 titleIndex = 0
 titles = PackedStringArray()
 
-[sub_resource type="Resource" id="Resource_a028a"]
-resource_local_to_scene = true
-script = ExtResource("7_paapu")
-item_name = "Light Switch"
-timeline = "001"
-type = 0
-description = "Test Description"
-dialogIndex = 0
-dialogs = Array[ExtResource("9_0c4pi")]([])
-titleIndex = 0
-titles = PackedStringArray()
-
-[sub_resource type="Resource" id="Resource_js2yf"]
-resource_local_to_scene = true
-script = ExtResource("7_paapu")
-item_name = "Light Switch"
-timeline = "001"
-type = 0
-description = "Test Description"
-dialogIndex = 0
-dialogs = Array[ExtResource("9_0c4pi")]([])
-titleIndex = 0
-titles = PackedStringArray()
-
 [sub_resource type="Resource" id="Resource_tm674"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
@@ -397,7 +373,7 @@ script = ExtResource("15_p50u5")
 dialog = ExtResource("10_wnetc")
 titleName = "test"
 
-[sub_resource type="Resource" id="Resource_o7o87"]
+[sub_resource type="Resource" id="Resource_jogwq"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "Door"
@@ -409,7 +385,7 @@ dialogs = Array[ExtResource("9_0c4pi")]([])
 titleIndex = 0
 titles = PackedStringArray()
 
-[sub_resource type="Resource" id="Resource_tu2dk"]
+[sub_resource type="Resource" id="Resource_nnslv"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "Door"
@@ -421,7 +397,7 @@ dialogs = Array[ExtResource("9_0c4pi")]([])
 titleIndex = 0
 titles = PackedStringArray()
 
-[sub_resource type="Resource" id="Resource_4vwss"]
+[sub_resource type="Resource" id="Resource_j4kl1"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "Door"
@@ -433,7 +409,7 @@ dialogs = Array[ExtResource("9_0c4pi")]([])
 titleIndex = 0
 titles = PackedStringArray()
 
-[sub_resource type="Resource" id="Resource_nl5yx"]
+[sub_resource type="Resource" id="Resource_mf6jt"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "Door"
@@ -445,7 +421,7 @@ dialogs = Array[ExtResource("9_0c4pi")]([])
 titleIndex = 0
 titles = PackedStringArray()
 
-[sub_resource type="Resource" id="Resource_idy5q"]
+[sub_resource type="Resource" id="Resource_psq0n"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "Door"
@@ -457,7 +433,7 @@ dialogs = Array[ExtResource("9_0c4pi")]([])
 titleIndex = 0
 titles = PackedStringArray()
 
-[sub_resource type="Resource" id="Resource_lt24e"]
+[sub_resource type="Resource" id="Resource_vdstd"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "Door"
@@ -479,58 +455,6 @@ frameVector = Vector2(1, 1)
 script = ExtResource("15_p50u5")
 dialog = ExtResource("17_ls76e")
 titleName = "Ribli"
-
-[sub_resource type="Resource" id="Resource_ecanu"]
-resource_local_to_scene = true
-script = ExtResource("7_paapu")
-item_name = "Light Switch"
-timeline = "001"
-type = 0
-description = "Test Description"
-dialogIndex = 0
-dialogs = Array[ExtResource("9_0c4pi")]([])
-titleIndex = 0
-titles = PackedStringArray()
-
-[sub_resource type="GDScript" id="GDScript_ohqbe"]
-script/source = "extends Node2D
-
-var pointLight
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pointLight = get_node(\"PointLight2D\")
-	
-func toggleLight() -> void:
-	if pointLight.visible:
-		pointLight.visible = 0
-	else:
-		pointLight.visible = 1
-"
-
-[sub_resource type="Resource" id="Resource_sf3xm"]
-resource_local_to_scene = true
-script = ExtResource("7_paapu")
-item_name = "Light Switch"
-timeline = "001"
-type = 0
-description = "Test Description"
-dialogIndex = 0
-dialogs = Array[ExtResource("9_0c4pi")]([])
-titleIndex = 0
-titles = PackedStringArray()
-
-[sub_resource type="Resource" id="Resource_kt4ce"]
-resource_local_to_scene = true
-script = ExtResource("7_paapu")
-item_name = "Light Switch"
-timeline = "001"
-type = 0
-description = "Test Description"
-dialogIndex = 0
-dialogs = Array[ExtResource("9_0c4pi")]([])
-titleIndex = 0
-titles = PackedStringArray()
 
 [sub_resource type="Resource" id="Resource_u1rjm"]
 resource_local_to_scene = true
@@ -556,7 +480,7 @@ dialogs = Array[ExtResource("9_0c4pi")]([ExtResource("10_wnetc")])
 titleIndex = 0
 titles = PackedStringArray("test")
 
-[sub_resource type="Resource" id="Resource_gsvh7"]
+[sub_resource type="Resource" id="Resource_yofn5"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "Door"
@@ -568,7 +492,7 @@ dialogs = Array[ExtResource("9_0c4pi")]([])
 titleIndex = 0
 titles = PackedStringArray()
 
-[sub_resource type="Resource" id="Resource_he5ac"]
+[sub_resource type="Resource" id="Resource_ve0b5"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "Door"
@@ -580,7 +504,7 @@ dialogs = Array[ExtResource("9_0c4pi")]([])
 titleIndex = 0
 titles = PackedStringArray()
 
-[sub_resource type="Resource" id="Resource_cu5o6"]
+[sub_resource type="Resource" id="Resource_vemm8"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "Door"
@@ -592,7 +516,7 @@ dialogs = Array[ExtResource("9_0c4pi")]([])
 titleIndex = 0
 titles = PackedStringArray()
 
-[sub_resource type="Resource" id="Resource_f6xqh"]
+[sub_resource type="Resource" id="Resource_1wv5e"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "Door"
@@ -604,7 +528,7 @@ dialogs = Array[ExtResource("9_0c4pi")]([])
 titleIndex = 0
 titles = PackedStringArray()
 
-[sub_resource type="Resource" id="Resource_cyl3h"]
+[sub_resource type="Resource" id="Resource_wj0ga"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "Door"
@@ -616,7 +540,7 @@ dialogs = Array[ExtResource("9_0c4pi")]([])
 titleIndex = 0
 titles = PackedStringArray()
 
-[sub_resource type="Resource" id="Resource_vsbx4"]
+[sub_resource type="Resource" id="Resource_ta00n"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "Door"
@@ -628,7 +552,7 @@ dialogs = Array[ExtResource("9_0c4pi")]([])
 titleIndex = 0
 titles = PackedStringArray()
 
-[sub_resource type="Resource" id="Resource_o3e4t"]
+[sub_resource type="Resource" id="Resource_se6rc"]
 resource_local_to_scene = true
 script = ExtResource("16_2qb3d")
 npcName = "Eifla"
@@ -700,67 +624,27 @@ nextTimeline = "002"
 
 [node name="TimelineSpace001" type="Node2D" parent="TimelineStateMachine/001"]
 
-[node name="Lights" type="Node2D" parent="TimelineStateMachine/001/TimelineSpace001"]
+[node name="Switches" type="Node2D" parent="TimelineStateMachine/001/TimelineSpace001"]
 
-[node name="light_switch3" parent="TimelineStateMachine/001/TimelineSpace001/Lights" instance=ExtResource("7_wo4n4")]
-position = Vector2(273, 102)
-interactable_resource = SubResource("Resource_a028a")
-metadata/Timeline = "000"
-metadata/Type = "Interactable"
-metadata/PlayerNodeName = "player"
-metadata/Description = "Test Description"
-
-[node name="lights" type="Node2D" parent="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch3"]
-position = Vector2(12, 0)
-
-[node name="ceiling_lamp" parent="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch3/lights" instance=ExtResource("6_g4tah")]
-position = Vector2(91, -94)
-
-[node name="ceiling_lamp2" parent="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch3/lights" instance=ExtResource("6_g4tah")]
-position = Vector2(345, -91)
-
-[node name="ceiling_lamp3" parent="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch3/lights" instance=ExtResource("6_g4tah")]
-position = Vector2(-162, -94)
-
-[node name="light_switch2" parent="TimelineStateMachine/001/TimelineSpace001/Lights" instance=ExtResource("7_wo4n4")]
-position = Vector2(266, 464)
-interactable_resource = SubResource("Resource_js2yf")
-metadata/Timeline = "000"
-metadata/Type = "Interactable"
-metadata/PlayerNodeName = "player"
-metadata/Description = "Test Description"
-
-[node name="lights" type="Node2D" parent="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch2"]
-position = Vector2(12, 0)
-
-[node name="ceiling_lamp" parent="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch2/lights" instance=ExtResource("6_g4tah")]
-position = Vector2(91, -94)
-
-[node name="ceiling_lamp2" parent="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch2/lights" instance=ExtResource("6_g4tah")]
-position = Vector2(345, -91)
-
-[node name="ceiling_lamp3" parent="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch2/lights" instance=ExtResource("6_g4tah")]
-position = Vector2(-162, -94)
-
-[node name="light_switch" parent="TimelineStateMachine/001/TimelineSpace001/Lights" instance=ExtResource("7_wo4n4")]
+[node name="light_switch" parent="TimelineStateMachine/001/TimelineSpace001/Switches" instance=ExtResource("7_wo4n4")]
 position = Vector2(273, 278)
+circuit = 0
 interactable_resource = SubResource("Resource_tm674")
 metadata/Timeline = "000"
 metadata/Type = "Interactable"
 metadata/PlayerNodeName = "player"
 metadata/Description = "Test Description"
 
-[node name="lights" type="Node2D" parent="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch"]
-position = Vector2(12, 0)
+[node name="Lights" type="Node2D" parent="TimelineStateMachine/001/TimelineSpace001"]
 
-[node name="ceiling_lamp" parent="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch/lights" instance=ExtResource("6_g4tah")]
-position = Vector2(91, -94)
+[node name="ceiling_lamp" parent="TimelineStateMachine/001/TimelineSpace001/Lights" instance=ExtResource("6_g4tah")]
+position = Vector2(376, 184)
 
-[node name="ceiling_lamp2" parent="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch/lights" instance=ExtResource("6_g4tah")]
-position = Vector2(345, -91)
+[node name="ceiling_lamp2" parent="TimelineStateMachine/001/TimelineSpace001/Lights" instance=ExtResource("6_g4tah")]
+position = Vector2(630, 187)
 
-[node name="ceiling_lamp3" parent="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch/lights" instance=ExtResource("6_g4tah")]
-position = Vector2(-162, -94)
+[node name="ceiling_lamp3" parent="TimelineStateMachine/001/TimelineSpace001/Lights" instance=ExtResource("6_g4tah")]
+position = Vector2(123, 184)
 
 [node name="Items" type="Node2D" parent="TimelineStateMachine/001/TimelineSpace001"]
 
@@ -781,29 +665,29 @@ metadata/Description = "Test Description"
 [node name="DoorSideways" parent="TimelineStateMachine/001/TimelineSpace001/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(504, 289)
 inverted = true
-interactable_resource = SubResource("Resource_o7o87")
+interactable_resource = SubResource("Resource_jogwq")
 
 [node name="DoorSideways2" parent="TimelineStateMachine/001/TimelineSpace001/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(247, 289)
-interactable_resource = SubResource("Resource_tu2dk")
+interactable_resource = SubResource("Resource_nnslv")
 
 [node name="DoorSideways3" parent="TimelineStateMachine/001/TimelineSpace001/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(504, 464)
 inverted = true
-interactable_resource = SubResource("Resource_4vwss")
+interactable_resource = SubResource("Resource_j4kl1")
 
 [node name="DoorSideways4" parent="TimelineStateMachine/001/TimelineSpace001/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(247, 464)
-interactable_resource = SubResource("Resource_nl5yx")
+interactable_resource = SubResource("Resource_mf6jt")
 
 [node name="DoorSideways5" parent="TimelineStateMachine/001/TimelineSpace001/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(504, 112)
 inverted = true
-interactable_resource = SubResource("Resource_idy5q")
+interactable_resource = SubResource("Resource_psq0n")
 
 [node name="DoorSideways6" parent="TimelineStateMachine/001/TimelineSpace001/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(247, 112)
-interactable_resource = SubResource("Resource_lt24e")
+interactable_resource = SubResource("Resource_vdstd")
 
 [node name="NPCs" type="Node2D" parent="TimelineStateMachine/001/TimelineSpace001"]
 
@@ -819,76 +703,27 @@ nextTimeline = "001"
 [node name="TimelineSpace002" type="Node2D" parent="TimelineStateMachine/002"]
 visible = false
 
+[node name="Switches" type="Node2D" parent="TimelineStateMachine/002/TimelineSpace002"]
+
+[node name="light_switch" parent="TimelineStateMachine/002/TimelineSpace002/Switches" instance=ExtResource("7_wo4n4")]
+position = Vector2(273, 278)
+circuit = 0
+interactable_resource = SubResource("Resource_tm674")
+metadata/Timeline = "000"
+metadata/Type = "Interactable"
+metadata/PlayerNodeName = "player"
+metadata/Description = "Test Description"
+
 [node name="Lights" type="Node2D" parent="TimelineStateMachine/002/TimelineSpace002"]
 
-[node name="light_switch3" parent="TimelineStateMachine/002/TimelineSpace002/Lights" instance=ExtResource("7_wo4n4")]
-position = Vector2(273, 102)
-interactable_resource = SubResource("Resource_ecanu")
-metadata/Timeline = "000"
-metadata/Type = "Interactable"
-metadata/PlayerNodeName = "player"
-metadata/Description = "Test Description"
+[node name="ceiling_lamp" parent="TimelineStateMachine/002/TimelineSpace002/Lights" instance=ExtResource("6_g4tah")]
+position = Vector2(376, 184)
 
-[node name="lights" type="Node2D" parent="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch3"]
-position = Vector2(12, 0)
+[node name="ceiling_lamp2" parent="TimelineStateMachine/002/TimelineSpace002/Lights" instance=ExtResource("6_g4tah")]
+position = Vector2(630, 187)
 
-[node name="ceiling_lamp" parent="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch3/lights" instance=ExtResource("6_g4tah")]
-position = Vector2(91, -94)
-script = SubResource("GDScript_ohqbe")
-
-[node name="ceiling_lamp2" parent="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch3/lights" instance=ExtResource("6_g4tah")]
-position = Vector2(345, -91)
-script = SubResource("GDScript_ohqbe")
-
-[node name="ceiling_lamp3" parent="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch3/lights" instance=ExtResource("6_g4tah")]
-position = Vector2(-162, -94)
-script = SubResource("GDScript_ohqbe")
-
-[node name="light_switch2" parent="TimelineStateMachine/002/TimelineSpace002/Lights" instance=ExtResource("7_wo4n4")]
-position = Vector2(266, 464)
-interactable_resource = SubResource("Resource_sf3xm")
-metadata/Timeline = "000"
-metadata/Type = "Interactable"
-metadata/PlayerNodeName = "player"
-metadata/Description = "Test Description"
-
-[node name="lights" type="Node2D" parent="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch2"]
-position = Vector2(12, 0)
-
-[node name="ceiling_lamp" parent="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch2/lights" instance=ExtResource("6_g4tah")]
-position = Vector2(91, -94)
-script = SubResource("GDScript_ohqbe")
-
-[node name="ceiling_lamp2" parent="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch2/lights" instance=ExtResource("6_g4tah")]
-position = Vector2(345, -91)
-script = SubResource("GDScript_ohqbe")
-
-[node name="ceiling_lamp3" parent="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch2/lights" instance=ExtResource("6_g4tah")]
-position = Vector2(-162, -94)
-script = SubResource("GDScript_ohqbe")
-
-[node name="light_switch" parent="TimelineStateMachine/002/TimelineSpace002/Lights" instance=ExtResource("7_wo4n4")]
-position = Vector2(273, 278)
-interactable_resource = SubResource("Resource_kt4ce")
-metadata/Timeline = "000"
-metadata/Type = "Interactable"
-metadata/PlayerNodeName = "player"
-metadata/Description = "Test Description"
-
-[node name="lights" type="Node2D" parent="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch"]
-position = Vector2(12, 0)
-
-[node name="ceiling_lamp" parent="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch/lights" instance=ExtResource("6_g4tah")]
-position = Vector2(91, -94)
-script = SubResource("GDScript_ohqbe")
-
-[node name="ceiling_lamp2" parent="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch/lights" instance=ExtResource("6_g4tah")]
-position = Vector2(345, -91)
-script = SubResource("GDScript_ohqbe")
-
-[node name="ceiling_lamp3" parent="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch/lights" instance=ExtResource("6_g4tah")]
-position = Vector2(-162, -94)
-script = SubResource("GDScript_ohqbe")
+[node name="ceiling_lamp3" parent="TimelineStateMachine/002/TimelineSpace002/Lights" instance=ExtResource("6_g4tah")]
+position = Vector2(123, 184)
 
 [node name="Items" type="Node2D" parent="TimelineStateMachine/002/TimelineSpace002"]
 
@@ -909,29 +744,29 @@ metadata/Description = "Test Description"
 [node name="DoorSideways" parent="TimelineStateMachine/002/TimelineSpace002/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(504, 289)
 inverted = true
-interactable_resource = SubResource("Resource_gsvh7")
+interactable_resource = SubResource("Resource_yofn5")
 
 [node name="DoorSideways2" parent="TimelineStateMachine/002/TimelineSpace002/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(247, 289)
-interactable_resource = SubResource("Resource_he5ac")
+interactable_resource = SubResource("Resource_ve0b5")
 
 [node name="DoorSideways3" parent="TimelineStateMachine/002/TimelineSpace002/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(504, 464)
 inverted = true
-interactable_resource = SubResource("Resource_cu5o6")
+interactable_resource = SubResource("Resource_vemm8")
 
 [node name="DoorSideways4" parent="TimelineStateMachine/002/TimelineSpace002/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(247, 464)
-interactable_resource = SubResource("Resource_f6xqh")
+interactable_resource = SubResource("Resource_1wv5e")
 
 [node name="DoorSideways5" parent="TimelineStateMachine/002/TimelineSpace002/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(504, 112)
 inverted = true
-interactable_resource = SubResource("Resource_cyl3h")
+interactable_resource = SubResource("Resource_wj0ga")
 
 [node name="DoorSideways6" parent="TimelineStateMachine/002/TimelineSpace002/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(247, 112)
-interactable_resource = SubResource("Resource_vsbx4")
+interactable_resource = SubResource("Resource_ta00n")
 
 [node name="NPCs" type="Node2D" parent="TimelineStateMachine/002/TimelineSpace002"]
 
@@ -939,7 +774,7 @@ interactable_resource = SubResource("Resource_vsbx4")
 position = Vector2(58, 293)
 SPEED = 60
 JUMP_VELOCITY = -200
-npc_resource = SubResource("Resource_o3e4t")
+npc_resource = SubResource("Resource_se6rc")
 dialog_resource = SubResource("Resource_h871w")
 
 [node name="player" parent="." instance=ExtResource("1_wpgi4")]
@@ -978,30 +813,14 @@ position = Vector2(360, 293)
 [connection signal="mouse_entered" from="Doors/door1_1" to="Doors/door1_1/InteractiveHandler" method="_on_interactable_base_mouse_entered"]
 [connection signal="mouse_exited" from="Doors/door1_1" to="Doors/door1_1" method="_on_mouse_exited"]
 [connection signal="mouse_exited" from="Doors/door1_1" to="Doors/door1_1/InteractiveHandler" method="_on_interactable_base_mouse_exited"]
-[connection signal="area_entered" from="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch3" to="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch3" method="_on_area_entered"]
-[connection signal="area_entered" from="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch3" to="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch3/InteractiveHandler" method="_on_interactable_base_area_entered"]
-[connection signal="area_exited" from="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch3" to="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch3" method="_on_area_exited"]
-[connection signal="area_exited" from="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch3" to="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch3/InteractiveHandler" method="_on_interactable_base_area_exited"]
-[connection signal="mouse_entered" from="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch3" to="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch3" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch3" to="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch3/InteractiveHandler" method="_on_interactable_base_mouse_entered"]
-[connection signal="mouse_exited" from="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch3" to="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch3" method="_on_mouse_exited"]
-[connection signal="mouse_exited" from="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch3" to="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch3/InteractiveHandler" method="_on_interactable_base_mouse_exited"]
-[connection signal="area_entered" from="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch2" to="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch2" method="_on_area_entered"]
-[connection signal="area_entered" from="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch2" to="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch2/InteractiveHandler" method="_on_interactable_base_area_entered"]
-[connection signal="area_exited" from="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch2" to="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch2" method="_on_area_exited"]
-[connection signal="area_exited" from="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch2" to="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch2/InteractiveHandler" method="_on_interactable_base_area_exited"]
-[connection signal="mouse_entered" from="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch2" to="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch2" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch2" to="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch2/InteractiveHandler" method="_on_interactable_base_mouse_entered"]
-[connection signal="mouse_exited" from="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch2" to="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch2" method="_on_mouse_exited"]
-[connection signal="mouse_exited" from="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch2" to="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch2/InteractiveHandler" method="_on_interactable_base_mouse_exited"]
-[connection signal="area_entered" from="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch" to="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch" method="_on_area_entered"]
-[connection signal="area_entered" from="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch" to="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch/InteractiveHandler" method="_on_interactable_base_area_entered"]
-[connection signal="area_exited" from="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch" to="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch" method="_on_area_exited"]
-[connection signal="area_exited" from="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch" to="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch/InteractiveHandler" method="_on_interactable_base_area_exited"]
-[connection signal="mouse_entered" from="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch" to="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch" to="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch/InteractiveHandler" method="_on_interactable_base_mouse_entered"]
-[connection signal="mouse_exited" from="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch" to="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch" method="_on_mouse_exited"]
-[connection signal="mouse_exited" from="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch" to="TimelineStateMachine/001/TimelineSpace001/Lights/light_switch/InteractiveHandler" method="_on_interactable_base_mouse_exited"]
+[connection signal="area_entered" from="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch" to="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch" method="_on_area_entered"]
+[connection signal="area_entered" from="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch" to="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch/InteractiveHandler" method="_on_interactable_base_area_entered"]
+[connection signal="area_exited" from="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch" to="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch" method="_on_area_exited"]
+[connection signal="area_exited" from="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch" to="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch/InteractiveHandler" method="_on_interactable_base_area_exited"]
+[connection signal="mouse_entered" from="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch" to="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch" to="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch/InteractiveHandler" method="_on_interactable_base_mouse_entered"]
+[connection signal="mouse_exited" from="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch" to="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch" method="_on_mouse_exited"]
+[connection signal="mouse_exited" from="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch" to="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch/InteractiveHandler" method="_on_interactable_base_mouse_exited"]
 [connection signal="area_entered" from="TimelineStateMachine/001/TimelineSpace001/Items/EmptyPlate" to="TimelineStateMachine/001/TimelineSpace001/Items/EmptyPlate" method="_on_area_entered"]
 [connection signal="area_entered" from="TimelineStateMachine/001/TimelineSpace001/Items/EmptyPlate" to="TimelineStateMachine/001/TimelineSpace001/Items/EmptyPlate/InteractiveHandler" method="_on_interactable_base_area_entered"]
 [connection signal="area_exited" from="TimelineStateMachine/001/TimelineSpace001/Items/EmptyPlate" to="TimelineStateMachine/001/TimelineSpace001/Items/EmptyPlate" method="_on_area_exited"]
@@ -1018,30 +837,14 @@ position = Vector2(360, 293)
 [connection signal="mouse_entered" from="TimelineStateMachine/001/TimelineSpace001/Items/ThickMug" to="TimelineStateMachine/001/TimelineSpace001/Items/ThickMug/InteractiveHandler" method="_on_interactable_base_mouse_entered"]
 [connection signal="mouse_exited" from="TimelineStateMachine/001/TimelineSpace001/Items/ThickMug" to="TimelineStateMachine/001/TimelineSpace001/Items/ThickMug" method="_on_mouse_exited"]
 [connection signal="mouse_exited" from="TimelineStateMachine/001/TimelineSpace001/Items/ThickMug" to="TimelineStateMachine/001/TimelineSpace001/Items/ThickMug/InteractiveHandler" method="_on_interactable_base_mouse_exited"]
-[connection signal="area_entered" from="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch3" to="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch3" method="_on_area_entered"]
-[connection signal="area_entered" from="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch3" to="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch3/InteractiveHandler" method="_on_interactable_base_area_entered"]
-[connection signal="area_exited" from="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch3" to="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch3" method="_on_area_exited"]
-[connection signal="area_exited" from="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch3" to="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch3/InteractiveHandler" method="_on_interactable_base_area_exited"]
-[connection signal="mouse_entered" from="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch3" to="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch3" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch3" to="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch3/InteractiveHandler" method="_on_interactable_base_mouse_entered"]
-[connection signal="mouse_exited" from="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch3" to="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch3" method="_on_mouse_exited"]
-[connection signal="mouse_exited" from="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch3" to="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch3/InteractiveHandler" method="_on_interactable_base_mouse_exited"]
-[connection signal="area_entered" from="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch2" to="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch2" method="_on_area_entered"]
-[connection signal="area_entered" from="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch2" to="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch2/InteractiveHandler" method="_on_interactable_base_area_entered"]
-[connection signal="area_exited" from="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch2" to="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch2" method="_on_area_exited"]
-[connection signal="area_exited" from="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch2" to="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch2/InteractiveHandler" method="_on_interactable_base_area_exited"]
-[connection signal="mouse_entered" from="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch2" to="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch2" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch2" to="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch2/InteractiveHandler" method="_on_interactable_base_mouse_entered"]
-[connection signal="mouse_exited" from="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch2" to="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch2" method="_on_mouse_exited"]
-[connection signal="mouse_exited" from="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch2" to="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch2/InteractiveHandler" method="_on_interactable_base_mouse_exited"]
-[connection signal="area_entered" from="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch" to="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch" method="_on_area_entered"]
-[connection signal="area_entered" from="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch" to="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch/InteractiveHandler" method="_on_interactable_base_area_entered"]
-[connection signal="area_exited" from="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch" to="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch" method="_on_area_exited"]
-[connection signal="area_exited" from="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch" to="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch/InteractiveHandler" method="_on_interactable_base_area_exited"]
-[connection signal="mouse_entered" from="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch" to="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch" to="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch/InteractiveHandler" method="_on_interactable_base_mouse_entered"]
-[connection signal="mouse_exited" from="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch" to="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch" method="_on_mouse_exited"]
-[connection signal="mouse_exited" from="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch" to="TimelineStateMachine/002/TimelineSpace002/Lights/light_switch/InteractiveHandler" method="_on_interactable_base_mouse_exited"]
+[connection signal="area_entered" from="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch" to="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch" method="_on_area_entered"]
+[connection signal="area_entered" from="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch" to="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch/InteractiveHandler" method="_on_interactable_base_area_entered"]
+[connection signal="area_exited" from="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch" to="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch" method="_on_area_exited"]
+[connection signal="area_exited" from="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch" to="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch/InteractiveHandler" method="_on_interactable_base_area_exited"]
+[connection signal="mouse_entered" from="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch" to="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch" to="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch/InteractiveHandler" method="_on_interactable_base_mouse_entered"]
+[connection signal="mouse_exited" from="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch" to="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch" method="_on_mouse_exited"]
+[connection signal="mouse_exited" from="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch" to="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch/InteractiveHandler" method="_on_interactable_base_mouse_exited"]
 [connection signal="area_entered" from="TimelineStateMachine/002/TimelineSpace002/Items/EmptyPlate" to="TimelineStateMachine/002/TimelineSpace002/Items/EmptyPlate" method="_on_area_entered"]
 [connection signal="area_entered" from="TimelineStateMachine/002/TimelineSpace002/Items/EmptyPlate" to="TimelineStateMachine/002/TimelineSpace002/Items/EmptyPlate/InteractiveHandler" method="_on_interactable_base_area_entered"]
 [connection signal="area_exited" from="TimelineStateMachine/002/TimelineSpace002/Items/EmptyPlate" to="TimelineStateMachine/002/TimelineSpace002/Items/EmptyPlate" method="_on_area_exited"]
