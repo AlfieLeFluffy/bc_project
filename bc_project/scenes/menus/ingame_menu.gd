@@ -9,11 +9,9 @@ func _input(event: InputEvent) -> void:
 	pass
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_menu") and not GameController.FocusSet:
+	if event.is_action_pressed("ui_menu") and not GameController.check_release_focus():
 		queue_free()
 		get_viewport().set_input_as_handled()
-	elif event.is_action_pressed("ui_menu") and GameController.FocusSet:
-		GameController.release_focus()
 	if visible:
 		get_viewport().set_input_as_handled()
 

@@ -50,7 +50,7 @@ height = 16
 fill = 1
 fill_from = Vector2(0.5, 0.504274)
 
-[node name="board_UI" type="CanvasLayer"]
+[node name="DetectiveBoardMenu" type="CanvasLayer"]
 script = ExtResource("1_r52og")
 
 [node name="FadeBackground" parent="." instance=ExtResource("2_i1t00")]

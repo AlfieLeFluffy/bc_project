@@ -115,6 +115,9 @@ func get_input_key_count(inputName: String) -> int:
 		return InputMap.action_get_events(inputName).size()
 	return -1
 
+"""
+--- Input Key Map Methods
+"""
 # Returns key bound to input map by index
 # Default index is 0
 func get_input_key(inputName: String, index: int = 0) -> String:
@@ -145,9 +148,20 @@ func get_input_key_list(inputName: String) -> Array:
 		output.append(get_input_key(inputName,x))
 	return output
 
+"""
+--- Focus Methods
+"""
 # Called if focus has been set
 func _on_focus_changed(control:Control) -> void:
-	FocusSet = true
+	if control:
+		FocusSet = true
+
+# Called if focus has been set
+func check_release_focus() -> bool:
+	if FocusSet:
+		release_focus()
+		return true
+	return false
 
 # Can be called to reset focus
 func release_focus(resource = null) -> void:
