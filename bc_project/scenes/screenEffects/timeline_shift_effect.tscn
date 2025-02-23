@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=3 uid="uid://clyigeb0nm6le"]
+
+[ext_resource type="Texture2D" uid="uid://cquvvwpt4svef" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_0.png" id="1_1vf7b"]
+[ext_resource type="Script" path="res://scenes/screenEffects/timeline_shift_effect.gd" id="1_h4pix"]
+[ext_resource type="Texture2D" uid="uid://drspipthklq8n" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_1.png" id="2_xbhuf"]
+[ext_resource type="Texture2D" uid="uid://wbc03aq0aiw2" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_2.png" id="3_pks4p"]
+[ext_resource type="Texture2D" uid="uid://3lqfkr5jpx1m" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_3.png" id="4_xv3b5"]
+[ext_resource type="Texture2D" uid="uid://bxxf8pcsu5ogr" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_4.png" id="5_svs1q"]
+[ext_resource type="Texture2D" uid="uid://8xv7mq6hrs0f" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_5.png" id="6_d14i5"]
+[ext_resource type="Texture2D" uid="uid://caq2hckrgwtc1" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_6.png" id="7_lo1pa"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_g4vv2"]
+frames = 8
+one_shot = true
+frame_0/texture = ExtResource("1_1vf7b")
+frame_0/duration = 0.03
+frame_1/texture = ExtResource("2_xbhuf")
+frame_1/duration = 0.03
+frame_2/texture = ExtResource("3_pks4p")
+frame_2/duration = 0.03
+frame_3/texture = ExtResource("4_xv3b5")
+frame_3/duration = 0.03
+frame_4/texture = ExtResource("5_svs1q")
+frame_4/duration = 0.03
+frame_5/texture = ExtResource("6_d14i5")
+frame_5/duration = 0.03
+frame_6/texture = ExtResource("7_lo1pa")
+frame_6/duration = 0.03
+frame_7/texture = ExtResource("1_1vf7b")
+frame_7/duration = 0.03
+
+[node name="CanvasLayer" type="CanvasLayer"]
+layer = 60
+
+[node name="TimelineShiftEffect" type="MarginContainer" parent="."]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 961.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.666481, 0.666621)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_h4pix")
+metadata/_edit_use_anchors_ = true
+
+[node name="Animation" type="TextureRect" parent="TimelineShiftEffect"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_g4vv2")

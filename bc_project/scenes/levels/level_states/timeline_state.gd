@@ -26,6 +26,8 @@ func Exit() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if activeTimeline and event.is_action_pressed("timeline_shift") and Global.TimelineShiftReady:
+		Signals.emit_signal("timeline_shift")
+		await get_tree().create_timer(Global.TIMELINE_SHIFT_OFFSET).timeout
 		TimelineTimeout()
 		Transition.emit(self,nextTimeline)
 

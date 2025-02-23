@@ -224,7 +224,7 @@ func change_music(musicName: String) -> void:
 # Returns false if search returns null, otherwise true
 func check_track(bus: busses, trackName: String) -> bool:
 	if not tracks[bus].has(trackName):
-		printerr("Audio track of name "+ trackName +" doesn't exist")
+		print_rich("[color=yellow] Warning: Audio track of name "+ trackName +" doesn't exist")
 		return false
 	return true
 

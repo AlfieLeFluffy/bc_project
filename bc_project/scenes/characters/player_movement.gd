@@ -8,7 +8,7 @@ var jump: bool = false
 var direction: float
 
 func _ready() -> void:
-	Signals.connect("update_overlay", update_overlay)
+	pass
 
 func _unhandled_input(event: InputEvent) -> void:
 	if (Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("ui_up")) and is_on_floor():
@@ -46,9 +46,6 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.flip_h = false
 
 	move_and_slide()
-
-func update_overlay() -> void:
-	$main_overlay.UpdateUI()
 
 func saving() -> Dictionary:
 	return {

@@ -9,6 +9,7 @@ var TimelineIndex = 0
 
 var TimelineShiftReady = true
 const TIMELINE_TIMEOUT = 1.0
+const TIMELINE_SHIFT_OFFSET = 0.2
 
 # Veriables used in cases
 var Case = "001"
@@ -42,6 +43,7 @@ const scenePaths: Dictionary = {
 	"main_menu": "res://scenes/menus/main_menu.tscn",
 	"test_level": "res://scenes/levels/test_level.tscn"
 }
+const nongameplayScenes: Array[String] = ["MainMenu"]
 
 """
 --- Setup Methods

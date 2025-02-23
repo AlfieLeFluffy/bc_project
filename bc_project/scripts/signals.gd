@@ -1,6 +1,9 @@
 extends Node
 
 # Signals for updating player overlay
+signal timeline_shift()
+
+# Signals for updating player overlay
 signal update_overlay()
 
 # Signals opening of a new menu, used to clear active 

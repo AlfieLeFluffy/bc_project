@@ -5,6 +5,17 @@ extends Node
 """
 const preloadInGameMenu = preload("res://scenes/menus/ingame_menu.tscn")
 const preloadPersistenceMenu = preload("res://scripts/persistence/persistence_menu.tscn")
+const preloadMainOverlay = preload("res://scenes/UI/overlay/main_overlay.tscn")
+
+"""
+--- Preload ScreenEffects
+"""
+const preloadTimelineShiftEffect = preload("res://scenes/screenEffects/timeline_shift_effect.tscn")
+
+enum screenEffectEnum {TIMELINE_SHIFT}
+const screenEffects: Dictionary = {
+	screenEffectEnum.TIMELINE_SHIFT : preloadTimelineShiftEffect,
+}
 
 """
 --- Signals
@@ -13,6 +24,10 @@ signal openPersistenceMenu(mode)
 signal saveGame(filename)
 signal loadGame(filename)
 
+signal setMainOverlayVisibility(state)
+
+signal playScreenEffect(effect)
+
 """
 --- Runtime Variables
 """
@@ -20,6 +35,9 @@ signal loadGame(filename)
 var FocusSet:bool = false
 
 var sceneToLoad:String = ""
+
+# Node for further control over main overlay
+var mainOverlay: Node
 
 """
 --- Setup Methods
@@ -40,6 +58,9 @@ func _ready() -> void:
 	connect("openPersistenceMenu",open_persistence_menu)
 	connect("saveGame", save_game)
 	connect("loadGame", load_game)
+	Signals.connect("scene_loaded",setup_main_overlay_menu)
+	connect("setMainOverlayVisibility",set_main_overlay_visibility)
+	connect("playScreenEffect",play_screen_effect)
 
 """
 --- Runtime Methods
@@ -64,10 +85,20 @@ func change_scene(sceneName:String) -> bool:
 		get_tree().change_scene_to_packed(load("res://scenes/menus/loading_screen.tscn"))
 		return true
 	return false
+	
+# Checks if the currecnt scene is a nongameplay one
+# Return true if yes and false if not
+func check_nongameplay_scene() -> bool:
+	var current_scene_name = get_tree().current_scene.name
+	if current_scene_name in Global.nongameplayScenes:
+		return true
+	return false
 
 # Instantiates and shows the in-game menu
 func open_ingame_menu() -> void:
-	if get_tree().current_scene.name == "MainMenu":
+	# Checks if the scene name or filename is in the nongameplay scenes
+	# If the scene is a non gameplay one this menu cannot open
+	if check_nongameplay_scene():
 		return
 	var menu = preloadInGameMenu.instantiate()
 	get_tree().current_scene.add_child(menu)
@@ -105,6 +136,31 @@ func release_focus(resource = null) -> void:
 	if FocusSet:
 		get_viewport().gui_release_focus()
 		FocusSet = false
+
+"""
+--- Screen Effect Methods
+"""
+func play_screen_effect(effect: screenEffectEnum) -> void:
+	var screenEffect = screenEffects[effect].instantiate()
+	get_tree().current_scene.add_child(screenEffect)
+	screenEffect.visible = true
+
+"""
+--- Overlay Methods
+"""
+# Instantiates and shows the in-game menu
+func setup_main_overlay_menu() -> void:
+	# Checks if the scene name is in the nongameplay scenes
+	# If the scene is a non gameplay one this menu cannot open
+	if check_nongameplay_scene():
+		return
+	mainOverlay = preloadMainOverlay.instantiate()
+	get_tree().current_scene.add_child(mainOverlay)
+	mainOverlay.layer = 50
+	mainOverlay.visible = true
+
+func set_main_overlay_visibility(state: bool) -> void:
+	mainOverlay.visibility = state
 
 """
 --- Dialogue Methods
