@@ -19,12 +19,17 @@ func _ready() -> void:
 	
 	Signals.connect("set_tracked_node",set_tracked_node)
 
+
 """
 --- Runtime Methods
 """
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		global_position = trackedNode.position.lerp(get_global_mouse_position(), 0.2); 
+
+#func _unhandled_input(event: InputEvent) -> void:
+#	if event:
+#		global_position = trackedNode.position.lerp(get_global_mouse_position(), 0.2); 
+
+func _physics_process(delta: float) -> void:
+	global_position = trackedNode.position.lerp(get_global_mouse_position(), 0.2); 
 
 """
 --- Set Methods
