@@ -3,6 +3,9 @@ extends Node
 # Signals for updating player overlay
 signal update_overlay()
 
+# Signals opening of a new menu, used to clear active 
+signal menu_clear()
+
 # Signals for updating lighting scenes
 signal set_light(circuitSignal,state)
 signal toggle_light(circuitSignal)

@@ -109,6 +109,9 @@ func activate_interactivity() -> void:
 func deactivate_interactivity() -> void:
 	Signals.emit_signal("help_text_toggle",Global.help_signal_type.TALK,false)
 
+"""
+--- Persistence Methods
+"""
 func saving() -> Dictionary:
 	var output: Dictionary = {
 		"persistent": true,

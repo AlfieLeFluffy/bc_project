@@ -1,9 +1,24 @@
 class_name InteractiveHandler extends Node
 
+"""
+--- Runtime variables
+"""
 var parent
 
+"""
+--- Setup methods
+"""
 func _ready() -> void:
 	parent = get_parent()
+	
+	Signals.connect("menu_clear", menu_clear)
+
+"""
+--- Global signal methods
+"""
+
+func menu_clear() -> void:
+	parent.deactivate_interactivity()
 
 """
 --- Area and mouse entry and leave functions

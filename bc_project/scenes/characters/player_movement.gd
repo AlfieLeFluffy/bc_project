@@ -9,7 +9,6 @@ var direction: float
 
 func _ready() -> void:
 	Signals.connect("update_overlay", update_overlay)
-	Signals.connect("start_npc_conversation_state", reset_direction)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if (Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("ui_up")) and is_on_floor():
@@ -36,7 +35,7 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	
-	if direction:
+	if direction and Input.get_axis("ui_left", "ui_right"):
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -47,9 +46,6 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.flip_h = false
 
 	move_and_slide()
-
-func reset_direction(variable) -> void:
-	direction = 0
 
 func update_overlay() -> void:
 	$main_overlay.UpdateUI()

@@ -74,6 +74,7 @@ func open_settings_menu() -> void:
 	var menu = preloadSettingsMenu.instantiate()
 	get_tree().current_scene.add_child(menu)
 	menu.layer = 100
+	Signals.emit_signal("menu_clear")
 	
 func save_settings() -> void:
 	config.save("user://config.cfg")

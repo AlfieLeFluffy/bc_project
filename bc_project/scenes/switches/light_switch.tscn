@@ -31,7 +31,7 @@ shader_parameter/line_thickness = 0.0
 
 [node name="light_switch" groups=["Persistent"] instance=ExtResource("1_g0vw7")]
 script = ExtResource("2_di4um")
-circut = 0
+circuit = 0
 state = true
 interactable_resource = SubResource("Resource_tpmc6")
 metadata/Name = "Light switch"

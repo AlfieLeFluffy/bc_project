@@ -72,6 +72,7 @@ func open_ingame_menu() -> void:
 	get_tree().current_scene.add_child(menu)
 	menu.layer = 90
 	menu.visible = true
+	Signals.emit_signal("menu_clear")
 
 # Returns number of keys bound to input map
 func get_input_key_count(inputName: String) -> int:
@@ -140,6 +141,7 @@ func open_persistence_menu(mode: int = 0) -> void:
 	menu.mode = mode
 	get_tree().current_scene.add_child(menu)
 	menu.layer = 100
+	Signals.emit_signal("menu_clear")
 
 """ Methods for saving and loading images in safe nodes """
 # Saves an image in a dictionary into the img directory inside a savefile and sets flag to load it once loading

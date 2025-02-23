@@ -29,15 +29,17 @@ func element_setup() -> void:
 """
 --- Runtime Methods
 """
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("drag_element") and active:
 		dragged = true
 		mouseOffset = $".".position - $".".get_global_mouse_position()
+		get_viewport().set_input_as_handled()
 	elif event.is_action_released("drag_element"):
 		dragged = false
 	elif active and event.is_action_pressed("destroy_board_element") and not Global.FocusSet:
 		GameController.release_focus()
 		Signals.emit_signal('delete_element',self)
+		get_viewport().set_input_as_handled()
 
 func _physics_process(delta: float) -> void:
 	if visible and dragged:	
@@ -76,12 +78,11 @@ func _on_mouse_exited() -> void:
 --- Input Signal Methods
 """
 func _on_mouse_shape_entered(shape_idx: int) -> void:
+	active = true
 	Global.activeElement = $"."
 	Signals.emit_signal("help_text_toggle",Global.help_signal_type.DELETEELEMENT,true)
-	active = true
-
 
 func _on_mouse_shape_exited(shape_idx: int) -> void:
+	active = false
 	Global.activeElement = null
 	Signals.emit_signal("help_text_toggle",Global.help_signal_type.DELETEELEMENT,false)
-	active = false
