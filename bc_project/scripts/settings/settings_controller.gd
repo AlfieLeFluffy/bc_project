@@ -41,6 +41,7 @@ func _ready() -> void:
 			if err != OK:
 				config = create_new_config()
 				printerr("Error loading config file. Created/Rewriten a new config file")
+	
 	update_settings()
 	
 	updateSettings.connect(update_settings)
@@ -62,11 +63,11 @@ func _process(delta: float) -> void:
 
 func create_new_config() -> ConfigFile:
 	var newConfig = ConfigFile.new()
-	newConfig = set_default_config(newConfig)
+	newConfig = get_default_config_file(newConfig)
 	newConfig.save("user://config.cfg")
 	return newConfig
 
-func set_default_config(config: ConfigFile) -> ConfigFile:
+func get_default_config_file(config: ConfigFile) -> ConfigFile:
 	config.load("res://scripts/settings/default_config.cfg")
 	return config
 	
@@ -79,17 +80,30 @@ func open_settings_menu() -> void:
 func save_settings() -> void:
 	config.save("user://config.cfg")
 	
+func check_config_file_integrity() -> bool:
+	var default_config_file:ConfigFile = ConfigFile.new()
+	default_config_file.load("res://scripts/settings/default_config.cfg")
+	for section in default_config_file.get_sections():
+		for key in default_config_file.get_section_keys(section):
+			if not config.has_section_key(section,key):
+				printerr("Config file intergry fault at section:"+ section +" and key:" + key+". Reseting to default settings.")
+				return false
+	return true
+	
 func update_settings() -> void:
+	if not check_config_file_integrity():
+		config = create_new_config()
 	update_graphics()
 	update_audio()
 	
 func update_graphics() -> void:
-	if config.has_section_key("Graphics", "ScreenMode"):
-		DisplayServer.window_set_mode(config.get_value("Graphics", "ScreenMode"))
-	if config.has_section_key("Graphics", "Resolution"):
-		DisplayServer.window_set_size(config.get_value("Graphics", "Resolution"))
-	if config.has_section_key("Graphics", "Vsync"):
-		DisplayServer.window_set_vsync_mode(config.get_value("Graphics", "Vsync"))
+	DisplayServer.window_set_mode(config.get_value("Graphics", "ScreenMode"))
+	# Sets window resolution
+	DisplayServer.window_set_size(config.get_value("Graphics", "Resolution"))
+	# If window mode windowed is selected it repositions the window into the middle of the screen
+	if config.get_value("Graphics", "ScreenMode") == 0:
+		DisplayServer.window_set_position(DisplayServer.screen_get_size()/2-DisplayServer.window_get_size()/Vector2i(2.0,4.0))
+	DisplayServer.window_set_vsync_mode(config.get_value("Graphics", "Vsync"))
 
 func update_audio() -> void:
 	for bus in config.get_section_keys("AudioVolume"):

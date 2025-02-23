@@ -108,6 +108,7 @@ size_flags_horizontal = 4
 selected = 0
 item_count = 4
 popup/item_0/text = "640 x 360"
+popup/item_0/disabled = true
 popup/item_1/text = "1280 x 720"
 popup/item_1/id = 1
 popup/item_2/text = "1920 x 1080"
