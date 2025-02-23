@@ -36,6 +36,7 @@ func _ready() -> void:
 	# Connecting signals
 	get_viewport().connect("gui_focus_changed", _on_focus_changed)
 	DialogueManager.connect("dialogue_ended",release_focus)
+	DialogueManager.connect("got_dialogue",dialogue_voice_check)
 	connect("openPersistenceMenu",open_persistence_menu)
 	connect("saveGame", save_game)
 	connect("loadGame", load_game)
@@ -105,6 +106,12 @@ func release_focus(resource = null) -> void:
 		get_viewport().gui_release_focus()
 		FocusSet = false
 
+"""
+--- Dialogue Methods
+"""
+func dialogue_voice_check(line: DialogueLine) -> void:
+	if line.translation_key:
+		AudioManager.play_dialogue(line.translation_key)
 
 """
 --- Directory Methods

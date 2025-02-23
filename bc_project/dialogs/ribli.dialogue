@@ -1,10 +1,7 @@
 ~ Ribli
 
-do! AudioManager.play_dialogue("Ribli_0_0")
-Alfie: It is really nice how Jirka and Frid are getting along so well so soon after they got together.
-do! AudioManager.play_dialogue("Ribli_0_1")
-Alfie: Ahh, what do you think?
-do! AudioManager.play_dialogue("Ribli_0_2")
-Ribli: ...yeah, yeah... I guess it is nice between them... but I think it is not exactly how it should be.
+Alfie: It is really nice how Jirka and Frid are getting along so well so soon after they got together. [ID:Ribli_0_0]
+Alfie: Ahh, what do you think? [ID:Ribli_0_1]
+Ribli: ...yeah, yeah... I guess it is nice between them... but I think it is not exactly how it should be. [ID:Ribli_0_2]
 
 => END
