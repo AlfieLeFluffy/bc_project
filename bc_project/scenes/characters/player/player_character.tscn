@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddrrl1gryxkup"]
+[gd_scene load_steps=8 format=3 uid="uid://ddrrl1gryxkup"]
 
-[ext_resource type="Script" path="res://scenes/characters/player_movement.gd" id="1_fg2e7"]
+[ext_resource type="Script" path="res://scenes/characters/player/player_movement.gd" id="1_fg2e7"]
 [ext_resource type="Texture2D" uid="uid://b2ynbvxgxg38d" path="res://textures/lightMaps/radialLight.png" id="3_66w77"]
 [ext_resource type="Texture2D" uid="uid://dni7o236p3am" path="res://textures/characters/mainCharacter_itt.png" id="4_xf3m6"]
-[ext_resource type="PackedScene" uid="uid://x3lasufaexva" path="res://scenes/characters/camera_controls.tscn" id="5_2uxfp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tpys6"]
 radius = 13.0
@@ -27,7 +26,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="player" type="CharacterBody2D" groups=["Persistent", "Player"]]
+[node name="PlayerCharacter" type="CharacterBody2D" groups=["Persistent", "Player"]]
 light_mask = 7
 visibility_layer = 7
 collision_layer = 257
@@ -51,8 +50,6 @@ texture_scale = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interactRadius"]
 shape = SubResource("CircleShape2D_vhha4")
-
-[node name="CameraControls" parent="." instance=ExtResource("5_2uxfp")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 10

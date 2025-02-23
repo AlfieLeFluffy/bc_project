@@ -8,6 +8,7 @@ const preloadPersistenceMenu = preload("res://scripts/persistence/persistence_me
 const preloadDetectiveBoardMenu = preload("res://scenes/UI/board/detective_board.tscn")
 const preloadMainOverlay = preload("res://scenes/UI/overlay/main_overlay.tscn")
 const preloadInputHelp = preload("res://scenes/UI/input_help/input_help.tscn")
+const preloadCameraControls = preload("res://scenes/cameraControls/camera_controls.tscn")
 
 """
 --- Preload ScreenEffects
@@ -42,6 +43,7 @@ var sceneToLoad:String = ""
 var mainOverlay: Node
 var inputHelp: Node
 var detectiveBoard: Node
+var cameraControls: Node
 
 """
 --- Setup Methods
@@ -65,6 +67,7 @@ func _ready() -> void:
 	Signals.connect("scene_loaded",setup_main_overlay_menu)
 	Signals.connect("scene_loaded",setup_input_help_menu)
 	Signals.connect("scene_loaded",setup_detective_board_menu)
+	Signals.connect("scene_loaded",setup_camera_controls)
 	connect("setMainOverlayVisibility",set_main_overlay_visibility)
 	connect("playScreenEffect",play_screen_effect)
 
@@ -159,6 +162,19 @@ func release_focus(resource = null) -> void:
 	if FocusSet:
 		get_viewport().gui_release_focus()
 		FocusSet = false
+
+"""
+--- Camera Control Methods
+"""
+# Instantiates and shows the in-game menu
+func setup_camera_controls() -> void:
+	# Checks if the scene name is in the nongameplay scenes
+	# If the scene is a non gameplay one this menu cannot open
+	if check_nongameplay_scene():
+		return
+	cameraControls = preloadCameraControls.instantiate()
+	cameraControls.position = get_tree().get_first_node_in_group("Player").position
+	get_tree().current_scene.add_child(cameraControls)
 
 """
 --- Detective Board Methods

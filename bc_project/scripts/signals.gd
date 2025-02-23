@@ -3,6 +3,9 @@ extends Node
 # Signals for updating player overlay
 signal timeline_shift()
 
+# Signals for setting what node the camera is following
+signal set_tracked_node(node)
+
 # Signals for updating player overlay
 signal update_overlay()
 
