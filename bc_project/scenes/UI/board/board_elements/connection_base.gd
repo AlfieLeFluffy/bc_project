@@ -59,11 +59,11 @@ func toggle_edit() -> void:
 --- Input Signal Methods
 """
 func _on_mouse_entered() -> void:
-	Signals.emit_signal("help_text_toggle",Global.help_signal_type.DELETEELEMENT,true)
+	Signals.emit_signal("input_help_set",GameController.get_input_key_list("destroy_board_element"),"Remove The Element")
 	active = true
 
 func _on_mouse_exited() -> void:
-	Signals.emit_signal("help_text_toggle",Global.help_signal_type.DELETEELEMENT,false)
+	Signals.emit_signal("input_help_delete","Remove The Element")
 	active = false
 
 func saving() -> Dictionary:

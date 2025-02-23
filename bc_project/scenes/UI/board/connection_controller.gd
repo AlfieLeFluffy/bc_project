@@ -115,7 +115,7 @@ func reset_state() -> void:
 func delete_line_element(line) -> void:
 	Global.line_elements.erase(line.lineName)
 	line.queue_free()
-	Signals.emit_signal("help_text_toggle",Global.help_signal_type.DELETEELEMENT,false)
+	Signals.emit_signal("input_help_delete","Remove The Element")
 
 """
 --- General Methods

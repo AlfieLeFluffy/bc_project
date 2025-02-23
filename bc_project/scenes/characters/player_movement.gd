@@ -46,7 +46,6 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.flip_h = false
 
 	move_and_slide()
-
 func saving() -> Dictionary:
 	return {
 		"persistent": true,

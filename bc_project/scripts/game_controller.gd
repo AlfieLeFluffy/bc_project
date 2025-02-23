@@ -6,6 +6,7 @@ extends Node
 const preloadInGameMenu = preload("res://scenes/menus/ingame_menu.tscn")
 const preloadPersistenceMenu = preload("res://scripts/persistence/persistence_menu.tscn")
 const preloadMainOverlay = preload("res://scenes/UI/overlay/main_overlay.tscn")
+const preloadInputHelp = preload("res://scenes/UI/input_help/input_help.tscn")
 
 """
 --- Preload ScreenEffects
@@ -36,8 +37,9 @@ var FocusSet:bool = false
 
 var sceneToLoad:String = ""
 
-# Node for further control over main overlay
+# Node for further control over overlays
 var mainOverlay: Node
+var inputHelp: Node
 
 """
 --- Setup Methods
@@ -59,6 +61,7 @@ func _ready() -> void:
 	connect("saveGame", save_game)
 	connect("loadGame", load_game)
 	Signals.connect("scene_loaded",setup_main_overlay_menu)
+	Signals.connect("scene_loaded",setup_input_help_menu)
 	connect("setMainOverlayVisibility",set_main_overlay_visibility)
 	connect("playScreenEffect",play_screen_effect)
 
@@ -116,9 +119,24 @@ func get_input_key_count(inputName: String) -> int:
 # Default index is 0
 func get_input_key(inputName: String, index: int = 0) -> String:
 	if InputMap.has_action(inputName):
-		var output = InputMap.action_get_events(inputName)[index].as_text().split("(")[0]
-		return output.left(output.length()-1)
-	return ""
+		var output = InputMap.action_get_events(inputName)[index].as_text()
+		output = output.split("(")[0]
+		output = output.split("-")[0]
+		output = output.strip_edges()
+		if output.contains(" "):
+			output = create_inintials_from_string(output)
+		return output
+	printerr("No input key found during method get_input_key")
+	return "null"
+
+func create_inintials_from_string(input: String) -> String:
+	if not input:
+		printerr("No input given to the create_inintials_from_string method")
+		return ""
+	var output: String = ""
+	for word in input.split(" "):
+		output = output + word[0]
+	return output
 
 # Returns all keys bound to input map in an array
 func get_input_key_list(inputName: String) -> Array:
@@ -158,6 +176,17 @@ func setup_main_overlay_menu() -> void:
 	get_tree().current_scene.add_child(mainOverlay)
 	mainOverlay.layer = 50
 	mainOverlay.visible = true
+
+# Instantiates and shows the in-game menu
+func setup_input_help_menu() -> void:
+	# Checks if the scene name is in the nongameplay scenes
+	# If the scene is a non gameplay one this menu cannot open
+	if check_nongameplay_scene():
+		return
+	inputHelp = preloadInputHelp.instantiate()
+	get_tree().current_scene.add_child(inputHelp)
+	inputHelp.layer = 60
+	inputHelp.visible = true
 
 func set_main_overlay_visibility(state: bool) -> void:
 	mainOverlay.visibility = state

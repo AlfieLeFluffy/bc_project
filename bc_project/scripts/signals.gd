@@ -24,8 +24,9 @@ signal delete_element(element)
 # Signals for creating board elements
 signal create_item_element(texture,lable,text)
 
-# Signals for help tips
-signal help_text_toggle(type,direction)
+# Signals for input help setting
+signal input_help_set(input,description)
+signal input_help_delete(description)
 
 # Singnal for notifying npc state machine about conversation starting/ending
 signal start_npc_conversation_state(npc)
