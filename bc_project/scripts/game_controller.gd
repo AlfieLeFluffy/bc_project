@@ -5,6 +5,7 @@ extends Node
 """
 const preloadInGameMenu = preload("res://scenes/menus/ingame_menu.tscn")
 const preloadPersistenceMenu = preload("res://scripts/persistence/persistence_menu.tscn")
+const preloadDetectiveBoardMenu = preload("res://scenes/UI/board/detective_board.tscn")
 const preloadMainOverlay = preload("res://scenes/UI/overlay/main_overlay.tscn")
 const preloadInputHelp = preload("res://scenes/UI/input_help/input_help.tscn")
 
@@ -40,6 +41,7 @@ var sceneToLoad:String = ""
 # Node for further control over overlays
 var mainOverlay: Node
 var inputHelp: Node
+var detectiveBoard: Node
 
 """
 --- Setup Methods
@@ -62,6 +64,7 @@ func _ready() -> void:
 	connect("loadGame", load_game)
 	Signals.connect("scene_loaded",setup_main_overlay_menu)
 	Signals.connect("scene_loaded",setup_input_help_menu)
+	Signals.connect("scene_loaded",setup_detective_board_menu)
 	connect("setMainOverlayVisibility",set_main_overlay_visibility)
 	connect("playScreenEffect",play_screen_effect)
 
@@ -96,18 +99,6 @@ func check_nongameplay_scene() -> bool:
 	if current_scene_name in Global.nongameplayScenes:
 		return true
 	return false
-
-# Instantiates and shows the in-game menu
-func open_ingame_menu() -> void:
-	# Checks if the scene name or filename is in the nongameplay scenes
-	# If the scene is a non gameplay one this menu cannot open
-	if check_nongameplay_scene():
-		return
-	var menu = preloadInGameMenu.instantiate()
-	get_tree().current_scene.add_child(menu)
-	menu.layer = 90
-	menu.visible = true
-	Signals.emit_signal("menu_clear")
 
 # Returns number of keys bound to input map
 func get_input_key_count(inputName: String) -> int:
@@ -170,6 +161,20 @@ func release_focus(resource = null) -> void:
 		FocusSet = false
 
 """
+--- Detective Board Methods
+"""
+# Instantiates and shows the in-game menu
+func setup_detective_board_menu() -> void:
+	# Checks if the scene name is in the nongameplay scenes
+	# If the scene is a non gameplay one this menu cannot open
+	if check_nongameplay_scene():
+		return
+	detectiveBoard = preloadDetectiveBoardMenu.instantiate()
+	get_tree().current_scene.add_child(detectiveBoard)
+	detectiveBoard.layer = 60
+	detectiveBoard.visible = false
+
+"""
 --- Screen Effect Methods
 """
 func play_screen_effect(effect: screenEffectEnum) -> void:
@@ -201,6 +206,18 @@ func setup_input_help_menu() -> void:
 	get_tree().current_scene.add_child(inputHelp)
 	inputHelp.layer = 60
 	inputHelp.visible = true
+
+# Instantiates and shows the in-game menu
+func open_ingame_menu() -> void:
+	# Checks if the scene name or filename is in the nongameplay scenes
+	# If the scene is a non gameplay one this menu cannot open
+	if check_nongameplay_scene():
+		return
+	var menu = preloadInGameMenu.instantiate()
+	get_tree().current_scene.add_child(menu)
+	menu.layer = 90
+	menu.visible = true
+	Signals.emit_signal("menu_clear")
 
 func set_main_overlay_visibility(state: bool) -> void:
 	mainOverlay.visibility = state

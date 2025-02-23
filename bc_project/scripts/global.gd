@@ -28,7 +28,6 @@ var line_elements: Dictionary
 
 # Interactable variables
 var interactive_radius_name = "interactRadius"
-enum help_signal_type {INTERACTIVE,DELETEELEMENT,DOOR,TALK}
 
 const MaxSFXSounds:int = 5
 
