@@ -31,9 +31,9 @@ func _process(delta: float) -> void:
 """
 func update_UI (Timeline: String = "") -> void:
 	if Timeline != "":
-		TimelineInfo.get_node("Label").text = "Timeline: " + Timeline
+		TimelineInfo.get_node("Label").text = tr("TIMELINE_UI") + Timeline
 	else:
-		TimelineInfo.get_node("Label").text = "Timeline: " + Global.Timeline
+		TimelineInfo.get_node("Label").text = tr("TIMELINE_UI") + Global.Timeline
 	TimelineShiftAnimation.get_node("Label").text = GameController.get_input_key("timeline_shift")
 	
 	#CaseInfo.get_node("Lable").text = "Case: " + Global.Case

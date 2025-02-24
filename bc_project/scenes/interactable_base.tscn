@@ -11,10 +11,10 @@
 [sub_resource type="Resource" id="Resource_rbs5y"]
 resource_local_to_scene = true
 script = ExtResource("3_0x2wn")
-item_name = "test"
+item_name = "TEST_NAME"
 timeline = "000"
 type = 0
-description = "Test Description"
+description = "TEST_DESCRIPTION"
 dialogIndex = 0
 dialogs = Array[ExtResource("2_bvr64")]([])
 titleIndex = 0

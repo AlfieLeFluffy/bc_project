@@ -44,7 +44,7 @@ offset_bottom = -210.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
-text = "CANCEL"
+text = "CANCEL_BUTTON"
 
 [node name="MenuLabel" type="Label" parent="PersistenceMenu"]
 layout_mode = 0
@@ -52,7 +52,7 @@ offset_left = 508.0
 offset_top = 100.0
 offset_right = 1400.0
 offset_bottom = 179.0
-text = "SAVE/LOAD"
+text = "SAVE_GAME_LABEL"
 horizontal_alignment = 1
 vertical_alignment = 1
 

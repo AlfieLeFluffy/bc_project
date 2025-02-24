@@ -93,8 +93,12 @@ func check_config_file_integrity() -> bool:
 func update_settings() -> void:
 	if not check_config_file_integrity():
 		config = create_new_config()
+	update_gameplay()
 	update_graphics()
 	update_audio()
+	
+func update_gameplay() -> void:
+	TranslationServer.set_locale(config.get_value("Gameplay", "Language"))
 	
 func update_graphics() -> void:
 	DisplayServer.window_set_mode(config.get_value("Graphics", "ScreenMode"))

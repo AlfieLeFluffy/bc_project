@@ -1,10 +1,12 @@
 extends Node
 
 """
---- Gloabal Signals
+--- Constants
 """
-
-
+const LANG_DICT: Dictionary ={
+	0:"en",
+	1:"cz",
+}
 
 """
 --- Runtime Variables
@@ -12,12 +14,15 @@ extends Node
 
 @onready var config = SettingsController.config
 
-@onready var GraphicsMenuList = $Menu/TabContainer/Graphics/VB
+@onready var GameplayMenuList = $Menu/TabContainer/GAMEPLAY_TAB/VB
+@onready var Language = GameplayMenuList.get_node("LanguageOptionButton")
+
+@onready var GraphicsMenuList = $Menu/TabContainer/GRAPHICS_TAB/VB
 @onready var WinMode = GraphicsMenuList.get_node("ModeOptionButton")
 @onready var WinSize = GraphicsMenuList.get_node("SizeOptionButton")
 @onready var Vsync = GraphicsMenuList.get_node("VsyncOptionButton")
 
-@onready var AudioMenuList = $Menu/TabContainer/Audio/VB
+@onready var AudioMenuList = $Menu/TabContainer/AUDIO_TAB/VB
 @onready var MasterSl = AudioMenuList.get_node("MasterSlider")
 @onready var SoundSl = AudioMenuList.get_node("SoundSlider")
 @onready var MusicSl = AudioMenuList.get_node("MusicSlider")
@@ -31,6 +36,7 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	setup_gameplay()
 	setup_graphics()
 	setup_sound()
 
@@ -48,21 +54,19 @@ func _unhandled_input(event: InputEvent) -> void:
 """
 --- Custom Methods
 """
+func setup_gameplay() -> void:
+	Language.selected = LANG_DICT.find_key(config.get_value("Gameplay", "Language"))
 
 func setup_graphics() -> void:
-	if config.has_section_key("Graphics", "ScreenMode"):
-		WinMode.selected = config.get_value("Graphics", "ScreenMode")
-	if config.has_section_key("Graphics", "Resolution"):
-		WinSize.selected = SettingsController.resolutionsDict.find_key(config.get_value("Graphics", "Resolution"))
-	if config.has_section_key("Graphics", "Vsync"):
-		Vsync.selected = config.get_value("Graphics", "Vsync")
+	WinMode.selected = config.get_value("Graphics", "ScreenMode")
+	WinSize.selected = SettingsController.resolutionsDict.find_key(config.get_value("Graphics", "Resolution"))
+	Vsync.selected = config.get_value("Graphics", "Vsync")
 
 func setup_sound() -> void:
-	if config.has_section("AudioVolume"):
-		MasterSl.value = config.get_value("AudioVolume", "Master")
-		SoundSl.value = config.get_value("AudioVolume", "SFX")
-		MusicSl.value = config.get_value("AudioVolume", "Music")
-		DialogueSl.value = config.get_value("AudioVolume", "Dialogue")
+	MasterSl.value = config.get_value("AudioVolume", "Master")
+	SoundSl.value = config.get_value("AudioVolume", "SFX")
+	MusicSl.value = config.get_value("AudioVolume", "Music")
+	DialogueSl.value = config.get_value("AudioVolume", "Dialogue")
 
 """
 --- Node Signal Methods
@@ -76,6 +80,9 @@ func _on_save_button_pressed() -> void:
 func _on_apply_button_pressed() -> void:
 	SettingsController.emit_signal("updateSettings")
 
+func _on_language_option_button_item_selected(index: int) -> void:
+	if LANG_DICT.has(index):
+		config.set_value("Gameplay", "Language", LANG_DICT[index])
 
 func _on_mode_option_button_item_selected(index: int) -> void:
 	config.set_value("Graphics", "ScreenMode", index)

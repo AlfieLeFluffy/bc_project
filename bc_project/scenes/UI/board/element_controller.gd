@@ -62,7 +62,7 @@ func delete_board_element(element) -> void:
 			Signals.emit_signal('delete_line',Global.line_elements[lineKey])
 	Global.board_elements.erase(element.elementName)
 	element.queue_free()
-	Signals.emit_signal("input_help_delete","Remove The Element")
+	Signals.emit_signal("input_help_delete","REMOVE_BOARD_ELEMENT_INPUT_HELP")
 
 """
 --- Element Creation Methods

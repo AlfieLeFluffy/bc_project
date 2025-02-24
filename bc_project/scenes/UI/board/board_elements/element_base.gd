@@ -80,9 +80,9 @@ func _on_mouse_exited() -> void:
 func _on_mouse_shape_entered(shape_idx: int) -> void:
 	active = true
 	Global.activeElement = $"."
-	Signals.emit_signal("input_help_set",GameController.get_input_key_list("destroy_board_element"),"Remove The Element")
+	Signals.emit_signal("input_help_set",GameController.get_input_key_list("destroy_board_element"),"REMOVE_BOARD_ELEMENT_INPUT_HELP")
 
 func _on_mouse_shape_exited(shape_idx: int) -> void:
 	active = false
 	Global.activeElement = null
-	Signals.emit_signal("input_help_delete","Remove The Element")
+	Signals.emit_signal("input_help_delete","REMOVE_BOARD_ELEMENT_INPUT_HELP")

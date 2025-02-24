@@ -17,9 +17,9 @@ func element_setup() -> void:
 	if texture:
 		$ItemTexture.texture = texture
 	if label:
-		$ItemLabel.text = label
+		$ItemLabel.text = tr(label)
 	if text:
-		$RichTextLabel.text = text
+		$RichTextLabel.text = tr(text)
 
 """
 --- Persistence Methods
@@ -46,8 +46,8 @@ func loading(input: Dictionary) -> bool:
 	Global.board_elements[elementName] = self
 	position.x = input["posX"]
 	position.y = input["posY"]
-	label = input["label"]
-	text = input["text"]
+	label = tr(input["label"])
+	text = tr(input["text"])
 	timeline = input["timeline"]
 	if input["img"]:
 		texture = input["img"]

@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Timesplit"
 config/description="Your detective agency's R&D team has created a strange device that allows users to cross between alternative timelines similar to the one you are standing in and the best way to test it, is to use it in the field. You are tasked with using and testing the device while solving cases. What will you find out with the help of this new strange device, what consequences will it bring to solving crimes and are there any downsides of hoping through time and space? That is your objective to find out."
-config/version="0.1.1"
+config/version="0.1.2"
 run/main_scene="res://scenes/menus/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://textures/icon.svg"
@@ -52,7 +52,8 @@ folder_colors={
 "res://dialogs/": "purple",
 "res://scenes/": "green",
 "res://scripts/": "teal",
-"res://textures/": "yellow"
+"res://textures/": "yellow",
+"res://translation/": "pink"
 }
 
 [global_group]
@@ -158,7 +159,7 @@ run={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://translation/ribli.en.translation")
+locale/translations=PackedStringArray("res://translation/main.cz.translation", "res://translation/main.en.translation", "res://translation/ribli.cz.translation", "res://translation/ribli.en.translation", "res://translation/object.cz.translation", "res://translation/object.en.translation")
 locale/translations_pot_files=PackedStringArray("res://dialogs/test_dialogue.dialogue", "res://dialogs/test_npc.dialogue", "res://dialogs/ribli.dialogue")
 
 [layer_names]

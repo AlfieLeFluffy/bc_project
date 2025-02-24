@@ -6,10 +6,10 @@ uid="uid://d2dnwtu4buebf"
 
 [deps]
 
-files=["res://translation/ribli.en.translation"]
+files=["res://translation/ribli.en.translation", "res://translation/ribli.cz.translation"]
 
 source_file="res://translation/ribli.csv"
-dest_files=["res://translation/ribli.en.translation"]
+dest_files=["res://translation/ribli.en.translation", "res://translation/ribli.cz.translation"]
 
 [params]
 

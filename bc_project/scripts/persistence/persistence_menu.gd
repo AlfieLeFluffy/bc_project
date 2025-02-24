@@ -54,9 +54,9 @@ func _unhandled_input(event: InputEvent) -> void:
 func setup_ui() -> void:
 	match mode:
 		modeEnum.SAVE:
-			menuLabel.text = "SAVE GAME"
+			menuLabel.text = tr("SAVE_GAME_LABEL")
 		modeEnum.LOAD:
-			menuLabel.text = "LOAD GAME"
+			menuLabel.text = tr("LOAD_GAME_LABEL")
 
 func setup_base_items() -> void:
 	if mode == modeEnum.SAVE:

@@ -10,10 +10,10 @@ func set_label(input:Array, description:String):
 	
 	name = description
 	if input.size() == 1:
-		text = "[right][color=lightblue]"+input[0]+"[/color] - "+ description
+		text = "[right][color=lightblue]"+input[0]+"[/color] - "+ tr(description)
 		return
 	
 	var keys: String = input.pop_front()
 	for key in input:
 		keys = keys + " / " + key
-	text = "[right][color=lightblue]"+keys+"[/color] - "+ description
+	text = "[right][color=lightblue]"+keys+"[/color] - "+ tr(description)

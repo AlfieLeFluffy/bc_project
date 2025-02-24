@@ -104,10 +104,10 @@ func deactivate_hover() -> void:
 	$Sprite2D.material.set("shader_parameter/line_thickness",0)
 
 func activate_interactivity() -> void:
-	Signals.emit_signal("input_help_set",GameController.get_input_key_list("interact"),"Talk")
+	Signals.emit_signal("input_help_set",GameController.get_input_key_list("interact"),"TALK_INPUT_HELP")
 
 func deactivate_interactivity() -> void:
-	Signals.emit_signal("input_help_delete","Talk")
+	Signals.emit_signal("input_help_delete","TALK_INPUT_HELP")
 
 """
 --- Persistence Methods

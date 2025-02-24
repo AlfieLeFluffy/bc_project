@@ -1,0 +1,10 @@
+key,en,cz
+TEST_NAME,Test Name,Testovaci Jmeno
+TEST_DESCRIPTION,Test Description,Testovaci Popisek
+LIGHT_SWITCH_NAME,Light Switch,Vypinac Svetla
+EMPTY_PLATE_NAME,Empty Plate,Prazdny Talir
+EMPTY_PLATE_DESCRIPTION,Test Description,Testovaci Popisek
+THICK_MUG_NAME,Thick Mug,Bujny Hrnek
+THICK_MUG_DESCRIPTION,Test Description,Testovaci Popisek
+DOOR_NAME,Door,Dvere
+DISHES_CLUE,Dishes,Nadoby

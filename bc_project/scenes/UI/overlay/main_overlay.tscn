@@ -178,7 +178,7 @@ offset_left = 16.0
 offset_top = 7.0
 offset_right = 162.0
 offset_bottom = 31.0
-text = "Timeline:"
+text = "TIMELINE_UI"
 label_settings = ExtResource("10_fqs35")
 vertical_alignment = 1
 

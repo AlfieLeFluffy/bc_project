@@ -5,9 +5,9 @@
 
 [sub_resource type="Resource" id="Resource_e4t5y"]
 script = ExtResource("1_bmhtc")
-combination = "Empty Plate001Thick Mug001"
+combination = "EMPTY_PLATE_NAME001THICK_MUG_NAME001"
 type = 0
-clueString = "Dishes"
+clueString = "DISHES_CLUE"
 
 [resource]
 script = ExtResource("2_57byt")

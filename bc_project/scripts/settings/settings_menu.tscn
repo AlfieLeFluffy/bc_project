@@ -31,7 +31,7 @@ offset_bottom = -210.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
-text = "SAVE & CLOSE"
+text = "SAVE_AND_CLOSE_BUTTON"
 
 [node name="ApplyButton" type="Button" parent="Menu"]
 layout_mode = 1
@@ -45,7 +45,7 @@ offset_bottom = -210.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
-text = "APPLY"
+text = "APPLY_BUTTON"
 
 [node name="TabContainer" type="TabContainer" parent="Menu"]
 layout_mode = 1
@@ -61,47 +61,88 @@ grow_vertical = 2
 tab_alignment = 1
 current_tab = 0
 
-[node name="Graphics" type="TabBar" parent="Menu/TabContainer"]
+[node name="GAMEPLAY_TAB" type="TabBar" parent="Menu/TabContainer"]
 layout_mode = 2
 focus_mode = 0
 metadata/_tab_index = 0
 
-[node name="VB" type="VBoxContainer" parent="Menu/TabContainer/Graphics"]
+[node name="VB" type="VBoxContainer" parent="Menu/TabContainer/GAMEPLAY_TAB"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 131.0
+offset_top = 3.0
+offset_right = -6.0
+offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="ModeOptionButton" type="OptionButton" parent="Menu/TabContainer/Graphics/VB"]
+[node name="LanguageOptionButton" type="OptionButton" parent="Menu/TabContainer/GAMEPLAY_TAB/VB"]
+custom_minimum_size = Vector2(300, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+selected = 0
+item_count = 2
+popup/item_0/text = "ENGLISH_LANGUAGE"
+popup/item_1/text = "CZECH_LANGUAGE"
+popup/item_1/id = 1
+
+[node name="Label" type="Label" parent="Menu/TabContainer/GAMEPLAY_TAB/VB/LanguageOptionButton"]
+layout_mode = 2
+anchor_left = -0.573
+anchor_top = 0.125
+anchor_right = 0.007
+anchor_bottom = 0.844
+offset_left = 49.9
+offset_right = 49.9
+offset_bottom = 0.991999
+text = "LANGUAGE_SETTING"
+
+[node name="GRAPHICS_TAB" type="TabBar" parent="Menu/TabContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+metadata/_tab_index = 1
+
+[node name="VB" type="VBoxContainer" parent="Menu/TabContainer/GRAPHICS_TAB"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 153.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ModeOptionButton" type="OptionButton" parent="Menu/TabContainer/GRAPHICS_TAB/VB"]
 custom_minimum_size = Vector2(300, 25)
 layout_mode = 2
 size_flags_horizontal = 4
 selected = 0
 item_count = 5
-popup/item_0/text = "Windowed"
-popup/item_1/text = "Minimized"
+popup/item_0/text = "WINDOWED_OPTION"
+popup/item_1/text = "MINIMEZED_OPTION"
 popup/item_1/id = 1
 popup/item_1/disabled = true
-popup/item_2/text = "Maximized"
+popup/item_2/text = "MAXIMIZED_OPTION"
 popup/item_2/id = 2
-popup/item_3/text = "Fullscreen"
+popup/item_3/text = "FULLSCREEN_OPTION"
 popup/item_3/id = 3
-popup/item_4/text = "Exclusive Fullscreen"
+popup/item_4/text = "EXCLUSIVE_FULLSCREEN_OPTION"
 popup/item_4/id = 4
 popup/item_4/disabled = true
 
-[node name="Label" type="Label" parent="Menu/TabContainer/Graphics/VB/ModeOptionButton"]
+[node name="Label" type="Label" parent="Menu/TabContainer/GRAPHICS_TAB/VB/ModeOptionButton"]
 layout_mode = 2
 offset_left = -122.0
 offset_top = 4.0
 offset_right = -24.0
 offset_bottom = 28.0
-text = "Window Mode:"
+text = "WIN_MODE_SETTING"
 
-[node name="SizeOptionButton" type="OptionButton" parent="Menu/TabContainer/Graphics/VB"]
+[node name="SizeOptionButton" type="OptionButton" parent="Menu/TabContainer/GRAPHICS_TAB/VB"]
 custom_minimum_size = Vector2(300, 25)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -116,109 +157,111 @@ popup/item_2/id = 2
 popup/item_3/text = "2560 x 1440"
 popup/item_3/id = 3
 
-[node name="Label" type="Label" parent="Menu/TabContainer/Graphics/VB/SizeOptionButton"]
+[node name="Label" type="Label" parent="Menu/TabContainer/GRAPHICS_TAB/VB/SizeOptionButton"]
 layout_mode = 2
 offset_left = -115.0
 offset_top = 4.0
 offset_right = -24.0
 offset_bottom = 28.0
-text = "Window Size:"
+text = "WIN_SIZE_SETTING"
 
-[node name="VsyncOptionButton" type="OptionButton" parent="Menu/TabContainer/Graphics/VB"]
+[node name="VsyncOptionButton" type="OptionButton" parent="Menu/TabContainer/GRAPHICS_TAB/VB"]
 custom_minimum_size = Vector2(300, 25)
 layout_mode = 2
 size_flags_horizontal = 4
 selected = 0
 item_count = 2
-popup/item_0/text = "Disabled"
-popup/item_1/text = "Enabled"
+popup/item_0/text = "DISABLED_OPTION"
+popup/item_1/text = "ENABLED_OPTION"
 popup/item_1/id = 1
 
-[node name="Label" type="Label" parent="Menu/TabContainer/Graphics/VB/VsyncOptionButton"]
+[node name="Label" type="Label" parent="Menu/TabContainer/GRAPHICS_TAB/VB/VsyncOptionButton"]
 layout_mode = 2
 offset_left = -70.0
 offset_top = 4.0
 offset_right = -24.0
 offset_bottom = 28.0
-text = "Vsync:"
+text = "VSYNC_SETTING"
 
-[node name="Audio" type="TabBar" parent="Menu/TabContainer"]
+[node name="AUDIO_TAB" type="TabBar" parent="Menu/TabContainer"]
 visible = false
 layout_mode = 2
 focus_mode = 0
-metadata/_tab_index = 1
+metadata/_tab_index = 2
 
-[node name="VB" type="VBoxContainer" parent="Menu/TabContainer/Audio"]
+[node name="VB" type="VBoxContainer" parent="Menu/TabContainer/AUDIO_TAB"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 166.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="MasterSlider" type="HSlider" parent="Menu/TabContainer/Audio/VB"]
+[node name="MasterSlider" type="HSlider" parent="Menu/TabContainer/AUDIO_TAB/VB"]
 custom_minimum_size = Vector2(400, 25)
 layout_mode = 2
 size_flags_horizontal = 4
 max_value = 1.0
 step = 0.01
 
-[node name="Label" type="Label" parent="Menu/TabContainer/Audio/VB/MasterSlider"]
+[node name="Label" type="Label" parent="Menu/TabContainer/AUDIO_TAB/VB/MasterSlider"]
 layout_mode = 2
 offset_left = -119.0
 offset_right = -24.0
 offset_bottom = 24.0
-text = "Master Audio:"
+text = "AUDIO_MASTER_SETTING"
 
-[node name="SoundSlider" type="HSlider" parent="Menu/TabContainer/Audio/VB"]
+[node name="SoundSlider" type="HSlider" parent="Menu/TabContainer/AUDIO_TAB/VB"]
 custom_minimum_size = Vector2(400, 25)
 layout_mode = 2
 size_flags_horizontal = 4
 max_value = 1.0
 step = 0.01
 
-[node name="Label" type="Label" parent="Menu/TabContainer/Audio/VB/SoundSlider"]
+[node name="Label" type="Label" parent="Menu/TabContainer/AUDIO_TAB/VB/SoundSlider"]
 layout_mode = 2
 offset_left = -119.0
 offset_right = -24.0
 offset_bottom = 24.0
-text = "Sound Audio:"
+text = "AUDIO_SOUND_SETTING"
 
-[node name="MusicSlider" type="HSlider" parent="Menu/TabContainer/Audio/VB"]
+[node name="MusicSlider" type="HSlider" parent="Menu/TabContainer/AUDIO_TAB/VB"]
 custom_minimum_size = Vector2(400, 25)
 layout_mode = 2
 size_flags_horizontal = 4
 max_value = 1.0
 step = 0.01
 
-[node name="Label" type="Label" parent="Menu/TabContainer/Audio/VB/MusicSlider"]
+[node name="Label" type="Label" parent="Menu/TabContainer/AUDIO_TAB/VB/MusicSlider"]
 layout_mode = 2
 offset_left = -119.0
 offset_right = -24.0
 offset_bottom = 24.0
-text = "Music Audio:"
+text = "AUDIO_MUSIC_SETTING"
 
-[node name="DialogueSlider" type="HSlider" parent="Menu/TabContainer/Audio/VB"]
+[node name="DialogueSlider" type="HSlider" parent="Menu/TabContainer/AUDIO_TAB/VB"]
 custom_minimum_size = Vector2(400, 25)
 layout_mode = 2
 size_flags_horizontal = 4
 max_value = 1.0
 step = 0.01
 
-[node name="Label" type="Label" parent="Menu/TabContainer/Audio/VB/DialogueSlider"]
+[node name="Label" type="Label" parent="Menu/TabContainer/AUDIO_TAB/VB/DialogueSlider"]
 layout_mode = 2
 offset_left = -119.0
 offset_right = -24.0
 offset_bottom = 24.0
-text = "Dialogue Audio:"
+text = "AUDIO_DIALOGUE_SETTING"
 
 [connection signal="pressed" from="Menu/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="Menu/ApplyButton" to="." method="_on_apply_button_pressed"]
-[connection signal="item_selected" from="Menu/TabContainer/Graphics/VB/ModeOptionButton" to="." method="_on_mode_option_button_item_selected"]
-[connection signal="item_selected" from="Menu/TabContainer/Graphics/VB/SizeOptionButton" to="." method="_on_size_option_button_item_selected"]
-[connection signal="item_selected" from="Menu/TabContainer/Graphics/VB/VsyncOptionButton" to="." method="_on_vsync_option_button_item_selected"]
-[connection signal="drag_ended" from="Menu/TabContainer/Audio/VB/MasterSlider" to="." method="_on_master_slider_drag_ended"]
-[connection signal="drag_ended" from="Menu/TabContainer/Audio/VB/SoundSlider" to="." method="_on_sound_slider_drag_ended"]
-[connection signal="drag_ended" from="Menu/TabContainer/Audio/VB/MusicSlider" to="." method="_on_music_slider_drag_ended"]
-[connection signal="drag_ended" from="Menu/TabContainer/Audio/VB/DialogueSlider" to="." method="_on_dialogue_slider_drag_ended"]
+[connection signal="item_selected" from="Menu/TabContainer/GAMEPLAY_TAB/VB/LanguageOptionButton" to="." method="_on_language_option_button_item_selected"]
+[connection signal="item_selected" from="Menu/TabContainer/GRAPHICS_TAB/VB/ModeOptionButton" to="." method="_on_mode_option_button_item_selected"]
+[connection signal="item_selected" from="Menu/TabContainer/GRAPHICS_TAB/VB/SizeOptionButton" to="." method="_on_size_option_button_item_selected"]
+[connection signal="item_selected" from="Menu/TabContainer/GRAPHICS_TAB/VB/VsyncOptionButton" to="." method="_on_vsync_option_button_item_selected"]
+[connection signal="drag_ended" from="Menu/TabContainer/AUDIO_TAB/VB/MasterSlider" to="." method="_on_master_slider_drag_ended"]
+[connection signal="drag_ended" from="Menu/TabContainer/AUDIO_TAB/VB/SoundSlider" to="." method="_on_sound_slider_drag_ended"]
+[connection signal="drag_ended" from="Menu/TabContainer/AUDIO_TAB/VB/MusicSlider" to="." method="_on_music_slider_drag_ended"]
+[connection signal="drag_ended" from="Menu/TabContainer/AUDIO_TAB/VB/DialogueSlider" to="." method="_on_dialogue_slider_drag_ended"]

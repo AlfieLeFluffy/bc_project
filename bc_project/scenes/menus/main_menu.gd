@@ -5,7 +5,7 @@ extends Node
 """
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$VB/Version.text = "Version " + ProjectSettings.get_setting("application/config/version")
+	$VB/Version.text = tr("VERSION_LABEL") + ": " + ProjectSettings.get_setting("application/config/version")
 
 """
 --- Node Signal Methods

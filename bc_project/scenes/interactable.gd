@@ -24,7 +24,7 @@ func _ready() -> void:
 
 func interactable_info_setup() -> void:
 	if interactable_resource:
-		$Labels/Label.text = interactable_resource.item_name
+		$Labels/Label.text = tr(interactable_resource.item_name)
 		name = interactable_resource.item_name
 
 # Local ready function for instantiated objects
@@ -98,9 +98,9 @@ func deactivate_hover() -> void:
 func activate_interactivity() -> void:
 	$Labels.visible = true
 	Global.Active_Interactive_Item = self
-	Signals.emit_signal("input_help_set",GameController.get_input_key_list("interact"),"Interact")
+	Signals.emit_signal("input_help_set",GameController.get_input_key_list("interact"),"INTERACT_INPUT_HELP")
 
 func deactivate_interactivity() -> void:
 	$Labels.visible = false
 	Global.Active_Interactive_Item = null
-	Signals.emit_signal("input_help_delete","Interact")
+	Signals.emit_signal("input_help_delete","INTERACT_INPUT_HELP")

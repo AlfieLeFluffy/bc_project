@@ -6,6 +6,7 @@ extends Node2D
 var color
 var thickness
 var lineName
+var description
 
 var active = false
 var drawing = true
@@ -50,7 +51,8 @@ func toggle_description() -> void:
 	$ConnectionText.visible = not $ConnectionText.visible
 
 func set_description(text) -> void:
-	$ConnectionText.text = text
+	description = text
+	$ConnectionText.text = tr(text)
 
 func toggle_edit() -> void:
 	$ConnectionText.editable = not $ConnectionText.editable 
@@ -59,11 +61,11 @@ func toggle_edit() -> void:
 --- Input Signal Methods
 """
 func _on_mouse_entered() -> void:
-	Signals.emit_signal("input_help_set",GameController.get_input_key_list("destroy_board_element"),"Remove The Element")
+	Signals.emit_signal("input_help_set",GameController.get_input_key_list("destroy_board_element"),"REMOVE_BOARD_ELEMENT_INPUT_HELP")
 	active = true
 
 func _on_mouse_exited() -> void:
-	Signals.emit_signal("input_help_delete","Remove The Element")
+	Signals.emit_signal("input_help_delete","REMOVE_BOARD_ELEMENT_INPUT_HELP")
 	active = false
 
 func saving() -> Dictionary:
@@ -78,7 +80,7 @@ func saving() -> Dictionary:
 		"color": color.to_html(),
 		"thickness": thickness,
 		"visible": $ConnectionText.visible,
-		"text": $ConnectionText.text,
+		"text": description,
 		"editable": $ConnectionText.editable,
 		"element0": element0.elementName,
 		"element1": element1.elementName,
@@ -95,7 +97,7 @@ func loading(input: Dictionary) -> bool:
 	color = Color.html(input["color"]) 
 	thickness = input["thickness"]
 	$ConnectionText.visible = input["visible"]
-	$ConnectionText.text = input["text"]
+	$ConnectionText.text = tr(input["text"])
 	$ConnectionText.editable = input["editable"]
 	element0Name = input["element0"]
 	element1Name = input["element1"]

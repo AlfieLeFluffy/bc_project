@@ -24,12 +24,12 @@ func _ready() -> void:
 --- Runtime Methods
 """
 
-#func _unhandled_input(event: InputEvent) -> void:
-#	if event:
-#		global_position = trackedNode.position.lerp(get_global_mouse_position(), 0.2); 
+func _unhandled_input(event: InputEvent) -> void:
+	if event:
+		global_position = trackedNode.position.lerp(get_global_mouse_position(), 0.2); 
 
-func _physics_process(delta: float) -> void:
-	global_position = trackedNode.position.lerp(get_global_mouse_position(), 0.2); 
+#func _physics_process(delta: float) -> void:
+#	global_position = trackedNode.position.lerp(get_global_mouse_position(), 0.2); 
 
 """
 --- Set Methods
