@@ -1,9 +1,9 @@
 [gd_scene load_steps=30 format=3 uid="uid://xdset1j1nj24"]
 
-[ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactable_base.tscn" id="1_o2gm0"]
+[ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable_base.tscn" id="1_o2gm0"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="2_hq6vl"]
-[ext_resource type="Script" path="res://scenes/interactive/door_sideways.gd" id="2_q4uyh"]
-[ext_resource type="Script" path="res://scenes/interactable_resource.gd" id="3_651so"]
+[ext_resource type="Script" path="res://scenes/interactive/doors/door_sideways.gd" id="2_q4uyh"]
+[ext_resource type="Script" path="res://scenes/interactive/interactable_resource.gd" id="3_651so"]
 [ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="4_d51ol"]
 [ext_resource type="Texture2D" uid="uid://b0eois1rqs5gg" path="res://textures/doors/door_grey.png" id="6_obk3w"]
 

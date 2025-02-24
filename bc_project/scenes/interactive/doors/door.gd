@@ -1,4 +1,4 @@
-extends "res://scenes/interactable.gd"
+extends "res://scenes/interactive/interactable.gd"
 
 var player
 

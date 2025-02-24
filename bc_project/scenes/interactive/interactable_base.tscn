@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://b6sidrweg1p0"]
 
-[ext_resource type="Script" path="res://scenes/interactable.gd" id="1_m6fs8"]
+[ext_resource type="Script" path="res://scenes/interactive/interactable.gd" id="1_m6fs8"]
 [ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="2_5kqll"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="2_bvr64"]
 [ext_resource type="Texture2D" uid="uid://bk0ke78wvceem" path="res://textures/symbols/textLable.png" id="2_igama"]
-[ext_resource type="Script" path="res://scenes/interactable_resource.gd" id="3_0x2wn"]
+[ext_resource type="Script" path="res://scenes/interactive/interactable_resource.gd" id="3_0x2wn"]
 [ext_resource type="LabelSettings" uid="uid://d1lvtjugos2m4" path="res://settings/Interactable_label_settings.tres" id="4_oco1s"]
 [ext_resource type="Script" path="res://scripts/interactive_handler.gd" id="6_wipk1"]
 

@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://chgj487p1bpqi"]
 
-[ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactable_base.tscn" id="1_quxmj"]
+[ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable_base.tscn" id="1_quxmj"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="2_n5cj5"]
 [ext_resource type="Texture2D" uid="uid://b4lgho32xwd8w" path="res://textures/items/emptyPlate.png" id="2_qpsot"]
 [ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="2_xq1fx"]
-[ext_resource type="Script" path="res://scenes/interactable_resource.gd" id="3_uqlsw"]
+[ext_resource type="Script" path="res://scenes/interactive/interactable_resource.gd" id="3_uqlsw"]
 
 [sub_resource type="Resource" id="Resource_78cg6"]
 resource_local_to_scene = true

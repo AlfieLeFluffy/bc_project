@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://baw3h6q2ebxe6"]
 
-[ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactable_base.tscn" id="1_a4r6l"]
+[ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable_base.tscn" id="1_a4r6l"]
 [ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="2_08q5s"]
-[ext_resource type="Script" path="res://scenes/interactive/door.gd" id="2_q50el"]
+[ext_resource type="Script" path="res://scenes/interactive/doors/door.gd" id="2_q50el"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="3_rnq2w"]
-[ext_resource type="Script" path="res://scenes/interactable_resource.gd" id="4_ybn5o"]
+[ext_resource type="Script" path="res://scenes/interactive/interactable_resource.gd" id="4_ybn5o"]
 
 [sub_resource type="Resource" id="Resource_slcme"]
 resource_local_to_scene = true
