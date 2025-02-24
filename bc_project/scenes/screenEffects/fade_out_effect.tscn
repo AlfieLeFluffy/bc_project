@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://bh08dg10hb1rt"]
+
+[ext_resource type="Script" path="res://scenes/screenEffects/fade_in_effect.gd" id="1_2vhfb"]
+[ext_resource type="Shader" path="res://scenes/screenEffects/fade_effect.gdshader" id="2_i0uc3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nfdhv"]
+shader = ExtResource("2_i0uc3")
+shader_parameter/state = 0.0
+shader_parameter/centering = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_yvpjx"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1le07"]
+gradient = SubResource("Gradient_yvpjx")
+width = 255
+height = 255
+fill = 1
+fill_from = Vector2(0.529915, 0.529915)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+layer = 120
+
+[node name="FadeOutEffect" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2vhfb")
+
+[node name="TextureRect" type="TextureRect" parent="FadeOutEffect"]
+material = SubResource("ShaderMaterial_nfdhv")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_1le07")

@@ -14,10 +14,14 @@ const preloadCameraControls = preload("res://scenes/cameraControls/camera_contro
 --- Preload ScreenEffects
 """
 const preloadTimelineShiftEffect = preload("res://scenes/screenEffects/timeline_shift_effect.tscn")
+const preloadFadeInEffect = preload("res://scenes/screenEffects/fade_in_effect.tscn")
+const preloadFadeOutEffect = preload("res://scenes/screenEffects/fade_out_effect.tscn")
 
-enum screenEffectEnum {TIMELINE_SHIFT}
+enum screenEffectEnum {TIMELINE_SHIFT,FADE_IN,FADE_OUT}
 const screenEffects: Dictionary = {
 	screenEffectEnum.TIMELINE_SHIFT : preloadTimelineShiftEffect,
+	screenEffectEnum.FADE_IN: preloadFadeInEffect,
+	screenEffectEnum.FADE_OUT: preloadFadeOutEffect,
 }
 
 """
@@ -64,6 +68,7 @@ func _ready() -> void:
 	connect("openPersistenceMenu",open_persistence_menu)
 	connect("saveGame", save_game)
 	connect("loadGame", load_game)
+	Signals.connect("scene_loaded",play_fade_in_effect)
 	Signals.connect("scene_loaded",setup_main_overlay_menu)
 	Signals.connect("scene_loaded",setup_input_help_menu)
 	Signals.connect("scene_loaded",setup_detective_board_menu)
@@ -197,6 +202,10 @@ func play_screen_effect(effect: screenEffectEnum) -> void:
 	var screenEffect = screenEffects[effect].instantiate()
 	get_tree().current_scene.add_child(screenEffect)
 	screenEffect.visible = true
+
+
+func play_fade_in_effect() -> void:
+	play_screen_effect(screenEffectEnum.FADE_IN)
 
 """
 --- Overlay Methods
