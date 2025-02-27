@@ -16,6 +16,8 @@ func Enter() -> void:
 	if timelineSpace:
 		activeTimeline = true
 		timelineSpace.visible = true
+	Global.Timeline = name
+	Signals.emit_signal("update_overlay")
 	SetAllItems(true)
 
 func Exit() -> void:

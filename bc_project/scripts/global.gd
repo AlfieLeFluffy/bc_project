@@ -4,16 +4,11 @@ extends Node
 --- GLobal variables
 """
 # Veriables used in timeline hoping and UI elements
-var Timeline = "001"
-var TimelineIndex = 0
+var Timeline = "___"
 
 var TimelineShiftReady = true
 const TIMELINE_TIMEOUT = 1.0
 const TIMELINE_SHIFT_OFFSET = 0.2
-
-# Veriables used in cases
-var Case = "001"
-var CaseIndex = 0
 
 # Main character info
 var MainCharacterName = "Alfie"

@@ -1,6 +1,9 @@
 extends Node2D
 
 
+"""
+--- Runtime Variables
+"""
 var active: bool = false
 var mouseHover: bool = false
 var inRadius: bool = false
@@ -18,13 +21,25 @@ var inRadius: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	interactable_info_setup()
+	setup_timeline_info()
+	setup_interactable_info()
 	local_ready()
 
-func interactable_info_setup() -> void:
+func setup_interactable_info() -> void:
 	if interactable_resource:
-		$Labels/Label.text = tr(interactable_resource.item_name)
 		name = interactable_resource.item_name
+		$Labels/Label.text = tr(interactable_resource.item_name)
+
+func setup_timeline_info() -> void:
+	var parent:Node = get_parent()
+	while parent != null:
+		if parent is TimelineState:
+			break
+		parent = parent.get_parent()
+	if parent == null:
+		interactable_resource.timeline = "null"
+	elif parent is TimelineState:
+		interactable_resource.timeline = parent.name
 
 # Local ready function for instantiated objects
 func local_ready() -> void:
@@ -34,7 +49,6 @@ func local_ready() -> void:
 """
 --- Runtime functions
 """
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if mouseHover and inRadius:

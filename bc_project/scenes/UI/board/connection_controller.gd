@@ -40,9 +40,9 @@ func import_clues() -> void:
 		printerr("This level does not contain clue combinations.")
 		return
 	
-	if resource.case != Global.Case:
-		printerr("The global case and case clues dont match. Clue loading stopped.")
-		return
+	#if resource.case != Global.Case:
+	#	printerr("The global case and case clues dont match. Clue loading stopped.")
+	#	return
 	
 	for clue in resource.clues:
 		caseClues[clue.combination] = clue

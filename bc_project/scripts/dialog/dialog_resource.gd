@@ -1,6 +1,6 @@
 class_name DialogResource extends Resource
 
-@export_group("Dialog Resources")
+@export_category("Dialog Resources")
 @export var dialog: DialogueResource
 @export var titleName: String
 

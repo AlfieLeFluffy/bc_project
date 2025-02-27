@@ -15,10 +15,10 @@ var textViewInstance: Node
 #func local_ready() -> void:
 #	pass
 
-func interactable_info_setup() -> void:
+func setup_interactable_info() -> void:
 	if textRosource:
-		$Labels/Label.text = tr(textRosource.textName)
 		name = textRosource.textName
+		$Labels/Label.text = tr(textRosource.textName)
 
 # Active function if no dialog detected
 func interact_function(event: InputEvent) -> void:
