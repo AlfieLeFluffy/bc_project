@@ -34,5 +34,4 @@ func interact_function(event: InputEvent) -> void:
 
 # Active function if no dialog detected
 func add_board_element(event: InputEvent) -> void:
-	Signals.emit_signal('create_item_element',get_sprite_from_current_frame(),textRosource.textName,textRosource.textContents)
-	AudioManager.play_sound("ding")
+	Signals.emit_signal('create_board_element',BoardElementResource.elementType.TEXT,textRosource.textName,interactable_resource.timeline,get_sprite_from_current_frame(),textRosource.textContents)

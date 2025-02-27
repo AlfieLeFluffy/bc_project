@@ -36,9 +36,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 	elif event.is_action_released("drag_element"):
 		dragged = false
-	elif active and event.is_action_pressed("destroy_board_element") and not Global.FocusSet:
+	elif active and event.is_action_pressed("destroy_board_element") and not GameController.FocusSet:
 		GameController.release_focus()
-		Signals.emit_signal('delete_element',self)
+		Signals.emit_signal('delete_board_element',self)
 		get_viewport().set_input_as_handled()
 
 func _physics_process(delta: float) -> void:

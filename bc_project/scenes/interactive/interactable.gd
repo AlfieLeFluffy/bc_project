@@ -84,8 +84,7 @@ func local_process(delta: float) -> void:
 
 # Active function if no dialog detected
 func add_board_element(event: InputEvent) -> void:
-	Signals.emit_signal('create_item_element',get_sprite_from_current_frame(), interactable_resource.item_name,interactable_resource.description)
-	AudioManager.play_sound("ding")
+	Signals.emit_signal('create_board_element',BoardElementResource.elementType.OBJECT,interactable_resource.item_name,interactable_resource.timeline,get_sprite_from_current_frame(),interactable_resource.description)
 
 
 # Returns current sprite from interactable item's sprite sheet
@@ -119,9 +118,11 @@ func deactivate_hover() -> void:
 func activate_interactivity() -> void:
 	$Labels.visible = true
 	Global.Active_Interactive_Item = self
+	Signals.emit_signal("input_help_set",GameController.get_input_key_list("add_to_board"),"ADD_TO_BOARD_INPUT_HELP")
 	Signals.emit_signal("input_help_set",GameController.get_input_key_list("interact"),"INTERACT_INPUT_HELP")
 
 func deactivate_interactivity() -> void:
 	$Labels.visible = false
 	Global.Active_Interactive_Item = null
+	Signals.emit_signal("input_help_delete","ADD_TO_BOARD_INPUT_HELP")
 	Signals.emit_signal("input_help_delete","INTERACT_INPUT_HELP")

@@ -21,9 +21,9 @@ var element1 = null
 --- Runtime Methods
 """
 func _input(event: InputEvent) -> void:
-	if active and event.is_action_pressed("destroy_board_element") and not Global.FocusSet:
-		Global.release_focus()
-		Signals.emit_signal('delete_line',self)
+	if active and event.is_action_pressed("destroy_board_element") and not GameController.FocusSet:
+		GameController.release_focus()
+		Signals.emit_signal('delete_board_line',self)
 
 func _process(delta: float) -> void:
 	if not element0 and Global.board_elements.has(element0Name):

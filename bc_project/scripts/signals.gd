@@ -20,12 +20,11 @@ signal toggle_light(circuitSignal)
 signal scene_loaded()
 signal game_loaded()
 
-# Signals for deleting board elements
-signal delete_line(line)
-signal delete_element(element)
-
-# Signals for creating board elements
-signal create_item_element(texture,lable,text)
+# Signals for creating and deleting board elements
+signal create_board_element(elementType,elementName,elementTexture,elementDescription)
+signal delete_board_element(element)
+# Signals for deleteing line elements
+signal delete_board_line(line)
 
 # Signals for input help setting
 signal input_help_set(input,description)

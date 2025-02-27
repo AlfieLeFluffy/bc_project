@@ -27,7 +27,7 @@ func _ready() -> void:
 	
 	import_clues()
 	
-	Signals.connect('delete_line', delete_line_element)
+	Signals.connect('delete_board_line', delete_line_element)
 
 func import_clues() -> void:
 	var resource
