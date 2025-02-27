@@ -9,7 +9,6 @@ var inRadius: bool = false
 --- Exported Variables
 """
 
-@export_group("Interactable Resource")
 @export var interactable_resource: InteractableResource
 @export var dialog_resource: DialogResource
 
@@ -47,17 +46,19 @@ func _process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and active:
 		if dialog_resource:
-			DialogScripts.start_dialog(dialog_resource.dialog,dialog_resource.titleName)
-			Signals.setup_conversation_profile.emit("right", interactable_resource.item_name, get_sprite_from_current_frame())
+			interact_conversation(event)
 		else:
 			interact_function(event)
 	elif event.is_action_pressed("add_to_board") and active:
-		Signals.emit_signal('create_item_element',get_sprite_from_current_frame(), interactable_resource.item_name,interactable_resource.description)
-		AudioManager.play_sound("ding")
+		add_board_element(event)
 
 """
 --- Custom functions
 """
+# Active function if no dialog detected
+func interact_conversation(event: InputEvent) -> void:
+	DialogScripts.start_dialog(dialog_resource.dialog,dialog_resource.titleName)
+	Signals.setup_conversation_profile.emit("right", interactable_resource.item_name, get_sprite_from_current_frame())
 
 # Active function if no dialog detected
 func interact_function(event: InputEvent) -> void:
@@ -66,6 +67,12 @@ func interact_function(event: InputEvent) -> void:
 # Active function if no dialog detected
 func local_process(delta: float) -> void:
 	pass
+
+# Active function if no dialog detected
+func add_board_element(event: InputEvent) -> void:
+	Signals.emit_signal('create_item_element',get_sprite_from_current_frame(), interactable_resource.item_name,interactable_resource.description)
+	AudioManager.play_sound("ding")
+
 
 # Returns current sprite from interactable item's sprite sheet
 func get_sprite_from_current_frame() -> Texture2D:

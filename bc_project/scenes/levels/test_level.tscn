@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=4 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=94 format=4 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Texture2D" uid="uid://f5ht0q2x8m04" path="res://textures/flatTileset-Sheet.png" id="1_n5x54"]
 [ext_resource type="Script" path="res://scenes/levels/level_controller.gd" id="1_t01cb"]
@@ -22,6 +22,8 @@
 [ext_resource type="PackedScene" uid="uid://xdset1j1nj24" path="res://scenes/interactive/doors/door_sideways.tscn" id="18_caylh"]
 [ext_resource type="PackedScene" uid="uid://doxp2j8t2vs5a" path="res://scenes/characters/npcs/npc_versions/npc_standing.tscn" id="18_tveke"]
 [ext_resource type="Texture2D" uid="uid://dqnha5ktnesai" path="res://textures/characters/test_npc_1.png" id="19_0f3pa"]
+[ext_resource type="PackedScene" uid="uid://bn8qfludml1yc" path="res://scenes/interactive/texts/instances/paper_on_wall.tscn" id="23_l5ajp"]
+[ext_resource type="Script" path="res://scenes/interactive/texts/text_object_resource.gd" id="24_frqwj"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_sh7fj"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -373,7 +375,7 @@ script = ExtResource("15_p50u5")
 dialog = ExtResource("10_wnetc")
 titleName = "test"
 
-[sub_resource type="Resource" id="Resource_thosf"]
+[sub_resource type="Resource" id="Resource_exlli"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
@@ -385,7 +387,7 @@ dialogs = Array[ExtResource("9_0c4pi")]([])
 titleIndex = 0
 titles = PackedStringArray()
 
-[sub_resource type="Resource" id="Resource_l1m77"]
+[sub_resource type="Resource" id="Resource_cck4w"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
@@ -397,7 +399,7 @@ dialogs = Array[ExtResource("9_0c4pi")]([])
 titleIndex = 0
 titles = PackedStringArray()
 
-[sub_resource type="Resource" id="Resource_raehp"]
+[sub_resource type="Resource" id="Resource_rlogf"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
@@ -409,7 +411,7 @@ dialogs = Array[ExtResource("9_0c4pi")]([])
 titleIndex = 0
 titles = PackedStringArray()
 
-[sub_resource type="Resource" id="Resource_724mq"]
+[sub_resource type="Resource" id="Resource_u8ek6"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
@@ -421,7 +423,7 @@ dialogs = Array[ExtResource("9_0c4pi")]([])
 titleIndex = 0
 titles = PackedStringArray()
 
-[sub_resource type="Resource" id="Resource_yoj1k"]
+[sub_resource type="Resource" id="Resource_ymsdf"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
@@ -433,7 +435,7 @@ dialogs = Array[ExtResource("9_0c4pi")]([])
 titleIndex = 0
 titles = PackedStringArray()
 
-[sub_resource type="Resource" id="Resource_wqn6h"]
+[sub_resource type="Resource" id="Resource_nt2x1"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
@@ -492,7 +494,7 @@ dialogs = Array[ExtResource("9_0c4pi")]([ExtResource("10_wnetc")])
 titleIndex = 0
 titles = PackedStringArray("test")
 
-[sub_resource type="Resource" id="Resource_yytkb"]
+[sub_resource type="Resource" id="Resource_4jhqx"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
@@ -504,7 +506,7 @@ dialogs = Array[ExtResource("9_0c4pi")]([])
 titleIndex = 0
 titles = PackedStringArray()
 
-[sub_resource type="Resource" id="Resource_nsdyp"]
+[sub_resource type="Resource" id="Resource_th81y"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
@@ -516,7 +518,7 @@ dialogs = Array[ExtResource("9_0c4pi")]([])
 titleIndex = 0
 titles = PackedStringArray()
 
-[sub_resource type="Resource" id="Resource_l1aug"]
+[sub_resource type="Resource" id="Resource_m36fw"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
@@ -528,7 +530,7 @@ dialogs = Array[ExtResource("9_0c4pi")]([])
 titleIndex = 0
 titles = PackedStringArray()
 
-[sub_resource type="Resource" id="Resource_8dk46"]
+[sub_resource type="Resource" id="Resource_yeje4"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
@@ -540,7 +542,7 @@ dialogs = Array[ExtResource("9_0c4pi")]([])
 titleIndex = 0
 titles = PackedStringArray()
 
-[sub_resource type="Resource" id="Resource_h4k0f"]
+[sub_resource type="Resource" id="Resource_p773y"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
@@ -552,7 +554,7 @@ dialogs = Array[ExtResource("9_0c4pi")]([])
 titleIndex = 0
 titles = PackedStringArray()
 
-[sub_resource type="Resource" id="Resource_n8bgn"]
+[sub_resource type="Resource" id="Resource_que0f"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
@@ -564,7 +566,7 @@ dialogs = Array[ExtResource("9_0c4pi")]([])
 titleIndex = 0
 titles = PackedStringArray()
 
-[sub_resource type="Resource" id="Resource_34n2n"]
+[sub_resource type="Resource" id="Resource_fvbml"]
 resource_local_to_scene = true
 script = ExtResource("16_2qb3d")
 npcName = "Eifla"
@@ -574,6 +576,24 @@ frameVector = Vector2(1, 1)
 script = ExtResource("15_p50u5")
 dialog = ExtResource("17_xjj1n")
 titleName = "this_is_a_node_title"
+
+[sub_resource type="Resource" id="Resource_usj6m"]
+resource_local_to_scene = true
+script = ExtResource("24_frqwj")
+textName = "TEST_TEXT_NAME"
+textType = 0
+textContents = "TEST_TEXT_DESCRIPTION"
+
+[sub_resource type="Resource" id="Resource_yo6r0"]
+script = ExtResource("7_paapu")
+item_name = ""
+timeline = ""
+type = 0
+description = ""
+dialogIndex = 0
+dialogs = Array[ExtResource("9_0c4pi")]([])
+titleIndex = 0
+titles = PackedStringArray()
 
 [node name="testScene" type="Node2D"]
 script = ExtResource("1_t01cb")
@@ -676,29 +696,29 @@ metadata/Description = "Test Description"
 [node name="DoorSideways" parent="TimelineStateMachine/001/TimelineSpace001/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(504, 289)
 inverted = true
-interactable_resource = SubResource("Resource_thosf")
+interactable_resource = SubResource("Resource_exlli")
 
 [node name="DoorSideways2" parent="TimelineStateMachine/001/TimelineSpace001/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(247, 289)
-interactable_resource = SubResource("Resource_l1m77")
+interactable_resource = SubResource("Resource_cck4w")
 
 [node name="DoorSideways3" parent="TimelineStateMachine/001/TimelineSpace001/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(504, 464)
 inverted = true
-interactable_resource = SubResource("Resource_raehp")
+interactable_resource = SubResource("Resource_rlogf")
 
 [node name="DoorSideways4" parent="TimelineStateMachine/001/TimelineSpace001/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(247, 464)
-interactable_resource = SubResource("Resource_724mq")
+interactable_resource = SubResource("Resource_u8ek6")
 
 [node name="DoorSideways5" parent="TimelineStateMachine/001/TimelineSpace001/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(504, 112)
 inverted = true
-interactable_resource = SubResource("Resource_yoj1k")
+interactable_resource = SubResource("Resource_ymsdf")
 
 [node name="DoorSideways6" parent="TimelineStateMachine/001/TimelineSpace001/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(247, 112)
-interactable_resource = SubResource("Resource_wqn6h")
+interactable_resource = SubResource("Resource_nt2x1")
 
 [node name="NPCs" type="Node2D" parent="TimelineStateMachine/001/TimelineSpace001"]
 
@@ -754,29 +774,29 @@ metadata/Description = "Test Description"
 [node name="DoorSideways" parent="TimelineStateMachine/002/TimelineSpace002/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(504, 289)
 inverted = true
-interactable_resource = SubResource("Resource_yytkb")
+interactable_resource = SubResource("Resource_4jhqx")
 
 [node name="DoorSideways2" parent="TimelineStateMachine/002/TimelineSpace002/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(247, 289)
-interactable_resource = SubResource("Resource_nsdyp")
+interactable_resource = SubResource("Resource_th81y")
 
 [node name="DoorSideways3" parent="TimelineStateMachine/002/TimelineSpace002/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(504, 464)
 inverted = true
-interactable_resource = SubResource("Resource_l1aug")
+interactable_resource = SubResource("Resource_m36fw")
 
 [node name="DoorSideways4" parent="TimelineStateMachine/002/TimelineSpace002/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(247, 464)
-interactable_resource = SubResource("Resource_8dk46")
+interactable_resource = SubResource("Resource_yeje4")
 
 [node name="DoorSideways5" parent="TimelineStateMachine/002/TimelineSpace002/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(504, 112)
 inverted = true
-interactable_resource = SubResource("Resource_h4k0f")
+interactable_resource = SubResource("Resource_p773y")
 
 [node name="DoorSideways6" parent="TimelineStateMachine/002/TimelineSpace002/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(247, 112)
-interactable_resource = SubResource("Resource_n8bgn")
+interactable_resource = SubResource("Resource_que0f")
 
 [node name="NPCs" type="Node2D" parent="TimelineStateMachine/002/TimelineSpace002"]
 
@@ -784,12 +804,17 @@ interactable_resource = SubResource("Resource_n8bgn")
 position = Vector2(58, 293)
 SPEED = 60
 JUMP_VELOCITY = -200
-npc_resource = SubResource("Resource_34n2n")
+npc_resource = SubResource("Resource_fvbml")
 dialog_resource = SubResource("Resource_h871w")
 
 [node name="player" parent="." instance=ExtResource("1_wpgi4")]
 z_index = 1
 position = Vector2(360, 293)
+
+[node name="text_object_base" parent="." instance=ExtResource("23_l5ajp")]
+position = Vector2(577, 286)
+textRosource = SubResource("Resource_usj6m")
+interactable_resource = SubResource("Resource_yo6r0")
 
 [connection signal="area_entered" from="Doors/door0_0" to="Doors/door0_0" method="_on_area_entered"]
 [connection signal="area_entered" from="Doors/door0_0" to="Doors/door0_0/InteractiveHandler" method="_on_interactable_base_area_entered"]

@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwhkq2hyj1phd"]
+
+[ext_resource type="Script" path="res://scenes/interactive/texts/text_view_controller.gd" id="1_dm17i"]
+[ext_resource type="Theme" uid="uid://v6jg21kfpwcr" path="res://settings/text_view_theme.tres" id="2_plhy6"]
+[ext_resource type="PackedScene" uid="uid://bcdby6svlp0fj" path="res://scenes/UI/backgrounds/fade_background.tscn" id="2_rn6c0"]
+[ext_resource type="Texture2D" uid="uid://c8p3u734y4jeo" path="res://textures/text/paper_on_wall_view.png" id="4_uhudn"]
+
+[node name="TextView" type="CanvasLayer"]
+layer = 60
+script = ExtResource("1_dm17i")
+
+[node name="FadeBackground" parent="." instance=ExtResource("2_rn6c0")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_plhy6")
+
+[node name="TextTexture" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -273.0
+offset_top = -367.0
+offset_right = 273.0
+offset_bottom = 397.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_uhudn")
+
+[node name="TextName" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 835.0
+offset_top = 190.0
+offset_right = 1085.0
+offset_bottom = 240.0
+text = "Test
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextContents" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 835.0
+offset_top = 315.0
+offset_right = -835.0
+offset_bottom = -277.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "Test"
+
+[node name="BackButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 835.0
+offset_top = 900.0
+offset_right = -835.0
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+text = "BACK_BUTTON"
+
+[connection signal="pressed" from="Control/BackButton" to="." method="_on_back_button_pressed"]

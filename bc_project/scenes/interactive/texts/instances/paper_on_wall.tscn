@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://bn8qfludml1yc"]
+
+[ext_resource type="PackedScene" uid="uid://cok6xhqh3yqi7" path="res://scenes/interactive/texts/text_object_base.tscn" id="1_tdglm"]
+[ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="2_7tgft"]
+[ext_resource type="Texture2D" uid="uid://brhe2ymnq0vtr" path="res://textures/text/paper_on_wall.png" id="3_ucphr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vewyd"]
+resource_local_to_scene = true
+size = Vector2(17, 21)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6y67c"]
+resource_local_to_scene = true
+shader = ExtResource("2_7tgft")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+
+[node name="text_object_base" instance=ExtResource("1_tdglm")]
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_vewyd")
+
+[node name="Sprite2D" parent="." index="2"]
+material = SubResource("ShaderMaterial_6y67c")
+texture = ExtResource("3_ucphr")
