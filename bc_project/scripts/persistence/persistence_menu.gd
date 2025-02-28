@@ -9,7 +9,6 @@ const newSaveItemPreload = preload("res://scripts/persistence/prefabs/new_save_i
 const saveItemPreload = preload("res://scripts/persistence/prefabs/save_item.tscn")
 const loadItemPreload = preload("res://scripts/persistence/prefabs/load_item.tscn")
 
-
 """
 --- Signals
 """
@@ -23,6 +22,8 @@ var mode: modeEnum = modeEnum.SAVE
 
 @onready var menuLabel = $PersistenceMenu/MenuLabel
 @onready var grid = $PersistenceMenu/Grid
+
+const TIME_STRING_FORMAT:String = "%d:%d:%d - %d.%d.%d"
 
 """
 --- Setup Methods
@@ -87,8 +88,26 @@ func setup_savefile_entry(file: String) -> void:#
 		item = loadItemPreload.instantiate()
 	item.filename = file
 	item.menuNode = self
-	item.date = Time.get_datetime_string_from_unix_time(FileAccess.get_modified_time(Global.savesDirectoryPath+"/"+file))
+	var time: Dictionary = Time.get_datetime_dict_from_unix_time(FileAccess.get_modified_time(Global.savesDirectoryPath+"/"+file.rstrip(".sf")))
+	item.date = TIME_STRING_FORMAT % [int(time["hour"]),int(time["minute"]),int(time["second"]),int(time["day"]),int(time["month"]),int(time["year"])] 
+	item.dateString = Time.get_datetime_string_from_unix_time(FileAccess.get_modified_time(Global.savesDirectoryPath+"/"+file.rstrip(".sf")))
+	add_item_sorted(item)
+
+func add_item_sorted(item: Control) -> void:
+	var children = grid.get_children()
+	if children.size() == 0:
+		grid.add_child(item)
+		return
+	else:
+		for idx in range(children.size()):
+			if children[idx].dateString <= item.dateString:
+				grid.add_child(item)
+				grid.move_child(item, idx)
+				return
 	grid.add_child(item)
+	grid.move_child(item, children.size())
+	return
+	
 
 func close_menu() -> void:
 	queue_free()

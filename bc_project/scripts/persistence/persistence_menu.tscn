@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmukbxm42112v"]
+[gd_scene load_steps=4 format=3 uid="uid://bmukbxm42112v"]
 
 [ext_resource type="Script" path="res://scripts/persistence/persistence_menu.gd" id="1_re8o2"]
 [ext_resource type="PackedScene" uid="uid://bcdby6svlp0fj" path="res://scenes/UI/backgrounds/fade_background.tscn" id="2_ifd12"]
 [ext_resource type="Theme" uid="uid://d2b8574nrw82u" path="res://settings/persistence_menu_theme.tres" id="3_l1glr"]
-[ext_resource type="Theme" uid="uid://d3vcomicjy5hm" path="res://settings/settings_menu_theme.tres" id="4_epiu7"]
 
 [node name="PersistenceMenu" type="CanvasLayer"]
 layer = 100
@@ -22,213 +21,47 @@ theme = ExtResource("3_l1glr")
 
 [node name="Grid" type="GridContainer" parent="PersistenceMenu"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 508.0
-offset_top = 182.0
-offset_right = -512.0
-offset_bottom = -298.0
+anchors_preset = -1
+anchor_left = 0.265
+anchor_top = 0.166
+anchor_right = 0.733
+anchor_bottom = 0.724
+offset_left = -0.800018
+offset_top = 2.71999
+offset_right = 0.639893
+offset_bottom = 0.0799561
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CancelButton" type="Button" parent="PersistenceMenu"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 830.0
-offset_top = 800.0
-offset_right = -840.0
-offset_bottom = -210.0
+anchors_preset = -1
+anchor_left = 0.432
+anchor_top = 0.741
+anchor_right = 0.562
+anchor_bottom = 0.806
+offset_left = 0.559998
+offset_top = -0.28009
+offset_right = 0.959961
+offset_bottom = -0.480042
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
 text = "CANCEL_BUTTON"
 
 [node name="MenuLabel" type="Label" parent="PersistenceMenu"]
-layout_mode = 0
-offset_left = 508.0
-offset_top = 100.0
-offset_right = 1400.0
-offset_bottom = 179.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.265
+anchor_top = 0.093
+anchor_right = 0.729
+anchor_bottom = 0.166
+offset_left = -0.800018
+offset_top = -0.440002
+offset_right = 0.319946
+offset_bottom = -0.280014
 text = "SAVE_GAME_LABEL"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Menu" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("4_epiu7")
-
-[node name="TabContainer" type="TabContainer" parent="Menu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 508.0
-offset_top = 182.0
-offset_right = -512.0
-offset_bottom = -298.0
-grow_horizontal = 2
-grow_vertical = 2
-tab_alignment = 1
-current_tab = 0
-
-[node name="Graphics" type="TabBar" parent="Menu/TabContainer"]
-layout_mode = 2
-focus_mode = 0
-metadata/_tab_index = 0
-
-[node name="VB" type="VBoxContainer" parent="Menu/TabContainer/Graphics"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="ModeOptionButton" type="OptionButton" parent="Menu/TabContainer/Graphics/VB"]
-custom_minimum_size = Vector2(300, 25)
-layout_mode = 2
-size_flags_horizontal = 4
-selected = 0
-item_count = 5
-popup/item_0/text = "Windowed"
-popup/item_1/text = "Minimized"
-popup/item_1/id = 1
-popup/item_1/disabled = true
-popup/item_2/text = "Maximized"
-popup/item_2/id = 2
-popup/item_3/text = "Fullscreen"
-popup/item_3/id = 3
-popup/item_4/text = "Exclusive Fullscreen"
-popup/item_4/id = 4
-popup/item_4/disabled = true
-
-[node name="Label" type="Label" parent="Menu/TabContainer/Graphics/VB/ModeOptionButton"]
-layout_mode = 2
-offset_left = -122.0
-offset_top = 4.0
-offset_right = -24.0
-offset_bottom = 28.0
-text = "Window Mode:"
-
-[node name="SizeOptionButton" type="OptionButton" parent="Menu/TabContainer/Graphics/VB"]
-custom_minimum_size = Vector2(300, 25)
-layout_mode = 2
-size_flags_horizontal = 4
-selected = 0
-item_count = 4
-popup/item_0/text = "640 x 360"
-popup/item_1/text = "1280 x 720"
-popup/item_1/id = 1
-popup/item_2/text = "1920 x 1080"
-popup/item_2/id = 2
-popup/item_3/text = "2560 x 1440"
-popup/item_3/id = 3
-
-[node name="Label" type="Label" parent="Menu/TabContainer/Graphics/VB/SizeOptionButton"]
-layout_mode = 2
-offset_left = -115.0
-offset_top = 4.0
-offset_right = -24.0
-offset_bottom = 28.0
-text = "Window Size:"
-
-[node name="VsyncOptionButton" type="OptionButton" parent="Menu/TabContainer/Graphics/VB"]
-custom_minimum_size = Vector2(300, 25)
-layout_mode = 2
-size_flags_horizontal = 4
-selected = 0
-item_count = 2
-popup/item_0/text = "Disabled"
-popup/item_1/text = "Enabled"
-popup/item_1/id = 1
-
-[node name="Label" type="Label" parent="Menu/TabContainer/Graphics/VB/VsyncOptionButton"]
-layout_mode = 2
-offset_left = -70.0
-offset_top = 4.0
-offset_right = -24.0
-offset_bottom = 28.0
-text = "Vsync:"
-
-[node name="Audio" type="TabBar" parent="Menu/TabContainer"]
-visible = false
-layout_mode = 2
-focus_mode = 0
-metadata/_tab_index = 1
-
-[node name="VB" type="VBoxContainer" parent="Menu/TabContainer/Audio"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="MasterSlider" type="HSlider" parent="Menu/TabContainer/Audio/VB"]
-custom_minimum_size = Vector2(400, 25)
-layout_mode = 2
-size_flags_horizontal = 4
-max_value = 1.0
-step = 0.01
-
-[node name="Label" type="Label" parent="Menu/TabContainer/Audio/VB/MasterSlider"]
-layout_mode = 2
-offset_left = -119.0
-offset_right = -24.0
-offset_bottom = 24.0
-text = "Master Audio:"
-
-[node name="SoundSlider" type="HSlider" parent="Menu/TabContainer/Audio/VB"]
-custom_minimum_size = Vector2(400, 25)
-layout_mode = 2
-size_flags_horizontal = 4
-max_value = 1.0
-step = 0.01
-
-[node name="Label" type="Label" parent="Menu/TabContainer/Audio/VB/SoundSlider"]
-layout_mode = 2
-offset_left = -119.0
-offset_right = -24.0
-offset_bottom = 24.0
-text = "Sound Audio:"
-
-[node name="MusicSlider" type="HSlider" parent="Menu/TabContainer/Audio/VB"]
-custom_minimum_size = Vector2(400, 25)
-layout_mode = 2
-size_flags_horizontal = 4
-max_value = 1.0
-step = 0.01
-
-[node name="Label" type="Label" parent="Menu/TabContainer/Audio/VB/MusicSlider"]
-layout_mode = 2
-offset_left = -119.0
-offset_right = -24.0
-offset_bottom = 24.0
-text = "Music Audio:"
-
-[node name="DialogueSlider" type="HSlider" parent="Menu/TabContainer/Audio/VB"]
-custom_minimum_size = Vector2(400, 25)
-layout_mode = 2
-size_flags_horizontal = 4
-max_value = 1.0
-step = 0.01
-
-[node name="Label" type="Label" parent="Menu/TabContainer/Audio/VB/DialogueSlider"]
-layout_mode = 2
-offset_left = -119.0
-offset_right = -24.0
-offset_bottom = 24.0
-text = "Dialogue Audio:"
 
 [connection signal="pressed" from="PersistenceMenu/CancelButton" to="." method="_on_cancel_button_pressed"]

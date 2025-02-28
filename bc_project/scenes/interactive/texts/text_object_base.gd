@@ -27,6 +27,7 @@ func interact_function(event: InputEvent) -> void:
 	textViewInstance = preloadTextView.instantiate()
 	get_tree().current_scene.add_child(textViewInstance)
 	textViewInstance.set_text_view(textRosource.textType,textRosource.textName,textRosource.textContents)
+	textViewInstance.create_board_element.connect(add_board_element)
 
 # Active function if no dialog detected
 #func local_process(delta: float) -> void:

@@ -4,6 +4,7 @@ extends HBoxContainer
 --- Runtime Variables
 """
 var menuNode: Node
+var dateString: String = "zzzzzzzzzzzzz"
 
 """
 --- Node Signal Methods

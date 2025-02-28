@@ -7,6 +7,7 @@ extends HBoxContainer
 var menuNode: Node
 var filename: String
 var date: String
+var dateString: String
 
 """
 --- Setup Methods
