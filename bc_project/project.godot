@@ -60,6 +60,7 @@ folder_colors={
 
 Player=""
 Persistent="Group of nodes that are supposed to be saved"
+InteractiveRadius="A group specifically for the interactive radius collision"
 
 [input]
 

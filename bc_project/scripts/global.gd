@@ -22,9 +22,6 @@ var line_elements: Dictionary
 
 const BOARD_LINE_OFFSET: Vector2 = Vector2(-14,-14)
 
-# Interactable variables
-var interactive_radius_name = "interactRadius"
-
 const MaxSFXSounds:int = 5
 
 const savesDirectoryPath = "user://saves"

@@ -8,6 +8,8 @@ var active: bool = false
 var mouseHover: bool = false
 var inRadius: bool = false
 
+@onready var label: Label = $Labels/Label
+
 """
 --- Exported Variables
 """
@@ -28,7 +30,7 @@ func _ready() -> void:
 func setup_interactable_info() -> void:
 	if interactable_resource:
 		name = interactable_resource.item_name
-		$Labels/Label.text = tr(interactable_resource.item_name)
+		label.text = tr(interactable_resource.item_name)
 
 func setup_timeline_info() -> void:
 	var parent:Node = get_parent()
