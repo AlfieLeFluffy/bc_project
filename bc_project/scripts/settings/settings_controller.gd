@@ -11,6 +11,8 @@ signal saveSettings
 
 signal openSettingsMenu
 
+signal retranslate
+
 """
 --- Runtime Variables
 """
@@ -98,7 +100,12 @@ func update_settings() -> void:
 	update_audio()
 	
 func update_gameplay() -> void:
+	var toRetranslate: bool = false
+	if TranslationServer.get_locale() != config.get_value("Gameplay", "Language"):
+		toRetranslate = true
 	TranslationServer.set_locale(config.get_value("Gameplay", "Language"))
+	if toRetranslate:
+		emit_signal("retranslate")
 	
 func update_graphics() -> void:
 	DisplayServer.window_set_mode(config.get_value("Graphics", "ScreenMode"))

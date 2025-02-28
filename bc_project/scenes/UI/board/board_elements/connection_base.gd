@@ -17,6 +17,12 @@ var element1Name:String = ""
 @onready var connectionLine: Line2D = $Line2D
 
 """
+--- Setup Methods
+"""
+func _ready() -> void:
+	SettingsController.connect("retranslate",retranslate_description)
+
+"""
 --- Runtime Methods
 """
 func _unhandled_input(event: InputEvent) -> void:
@@ -63,7 +69,10 @@ func toggle_description() -> void:
 
 func set_description(text) -> void:
 	description = text
-	connectionLabel.text = tr(text)
+	connectionLabel.text = tr(description)
+
+func retranslate_description() -> void:
+	connectionLabel.text = tr(description)
 
 """
 --- Input Signal Methods

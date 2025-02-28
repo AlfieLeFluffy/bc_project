@@ -15,13 +15,15 @@ func setup_element(elementName:String, elementTimeline:String, elementTexture,el
 	label = elementName
 	timeline = elementTimeline
 	description  = elementDescription
-	
-	name = elementName  + timeline
+
+func setup_text() -> void:
+	name = label  + timeline
 	headerLabel.text = tr(label) + " : " + timeline
 	contentDescription.text = "[center]"+tr(description)
 
 func setup_element_special() -> void:
 	elementColor = Color.GREEN
+	SettingsController.connect("retranslate",setup_text)
 
 """
 --- Persistence Methods
