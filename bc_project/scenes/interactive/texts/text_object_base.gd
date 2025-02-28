@@ -18,7 +18,7 @@ var textViewInstance: Node
 func setup_interactable_info() -> void:
 	if textRosource:
 		name = textRosource.textName
-		$Labels/Label.text = tr(textRosource.textName)
+		label.text = tr(textRosource.textName)
 
 # Active function if no dialog detected
 func interact_function(event: InputEvent) -> void:
@@ -26,7 +26,7 @@ func interact_function(event: InputEvent) -> void:
 		return
 	textViewInstance = preloadTextView.instantiate()
 	get_tree().current_scene.add_child(textViewInstance)
-	textViewInstance.set_text_view(textRosource.textType,textRosource.textName,textRosource.textContents)
+	textViewInstance.setup_text_view(textRosource.textType,textRosource.textName,textRosource.textContents)
 	textViewInstance.create_board_element.connect(add_board_element)
 
 # Active function if no dialog detected

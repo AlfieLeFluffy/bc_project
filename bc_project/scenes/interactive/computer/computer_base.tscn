@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://b55y4332x8fpo"]
+
+[ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable_base.tscn" id="1_uiomx"]
+[ext_resource type="Script" path="res://scenes/interactive/computer/computer_base.gd" id="2_eomu1"]
+[ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="2_o7ltw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hp7a7"]
+resource_local_to_scene = true
+size = Vector2(12, 10)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dgv34"]
+resource_local_to_scene = true
+shader = ExtResource("2_o7ltw")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+
+[node name="ComputerBase" instance=ExtResource("1_uiomx")]
+script = ExtResource("2_eomu1")
+computerRosource = null
+interactable_resource = null
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_hp7a7")
+
+[node name="Sprite2D" parent="." index="2"]
+material = SubResource("ShaderMaterial_dgv34")

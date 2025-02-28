@@ -10,6 +10,7 @@ resource_local_to_scene = true
 script = ExtResource("4_ybn5o")
 item_name = "Door"
 description = "Test Description"
+detective_board_toggle = false
 
 [sub_resource type="Gradient" id="Gradient_kb1aw"]
 colors = PackedColorArray(0, 0, 0, 1, 0.14, 0.14, 0.14, 1)

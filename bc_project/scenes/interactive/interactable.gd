@@ -9,6 +9,7 @@ var mouseHover: bool = false
 var inRadius: bool = false
 
 @onready var label: Label = $Labels/Label
+@onready var sprite: Sprite2D = $Sprite2D
 
 """
 --- Exported Variables

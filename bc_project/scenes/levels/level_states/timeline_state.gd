@@ -41,8 +41,8 @@ func Physics_Process(delta: float) -> void:
 
 func SetAllItems(state: bool):
 	if timelineSpace:
-		if timelineSpace.get_node("Items"):
-			for item in timelineSpace.get_node("Items").get_children():
+		if timelineSpace.get_node("Objects"):
+			for item in timelineSpace.get_node("Objects").get_children():
 				item.set_process(state)
 
 func TimelineTimeout() -> void:

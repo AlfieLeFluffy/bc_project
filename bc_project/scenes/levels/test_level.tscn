@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=4 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=90 format=4 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Texture2D" uid="uid://f5ht0q2x8m04" path="res://textures/flatTileset-Sheet.png" id="1_n5x54"]
 [ext_resource type="Script" path="res://scenes/levels/level_controller.gd" id="1_t01cb"]
@@ -21,7 +21,10 @@
 [ext_resource type="PackedScene" uid="uid://xdset1j1nj24" path="res://scenes/interactive/doors/door_sideways.tscn" id="18_caylh"]
 [ext_resource type="PackedScene" uid="uid://doxp2j8t2vs5a" path="res://scenes/characters/npcs/npc_versions/npc_standing.tscn" id="18_tveke"]
 [ext_resource type="Texture2D" uid="uid://dqnha5ktnesai" path="res://textures/characters/test_npc_1.png" id="19_0f3pa"]
-[ext_resource type="PackedScene" uid="uid://bn8qfludml1yc" path="res://scenes/interactive/texts/instances/paper_on_wall.tscn" id="23_l5ajp"]
+[ext_resource type="PackedScene" uid="uid://bqm4y7yl8uqcq" path="res://scenes/static/furniture/wooden_table.tscn" id="21_auljp"]
+[ext_resource type="PackedScene" uid="uid://cqiiad58pt1w" path="res://scenes/interactive/computer/versions/tabletop_computer.tscn" id="22_maqab"]
+[ext_resource type="PackedScene" uid="uid://bn8qfludml1yc" path="res://scenes/interactive/texts/versions/paper_on_wall.tscn" id="23_l5ajp"]
+[ext_resource type="Script" path="res://scenes/interactive/computer/computer_object_resource.gd" id="23_trjr1"]
 [ext_resource type="Script" path="res://scenes/interactive/texts/text_object_resource.gd" id="24_frqwj"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_sh7fj"]
@@ -290,59 +293,68 @@ resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "Door"
 description = "Test Description"
+detective_board_toggle = false
 
 [sub_resource type="Resource" id="Resource_mhk2q"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "Door"
 description = "Test Description"
+detective_board_toggle = false
 
 [sub_resource type="Resource" id="Resource_71553"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "Door"
 description = "Test Description"
+detective_board_toggle = false
 
 [sub_resource type="Resource" id="Resource_77ss3"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "Door"
 description = "Test Description"
+detective_board_toggle = false
 
 [sub_resource type="Resource" id="Resource_tm674"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "LIGHT_SWITCH_NAME"
 description = "TEST_DESCRIPTION"
+detective_board_toggle = true
 
 [sub_resource type="Resource" id="Resource_hlgx8"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "EMPTY_PLATE_NAME"
 description = "EMPTY_PLATE_DESCRIPTION"
+detective_board_toggle = true
 
 [sub_resource type="Resource" id="Resource_a02tp"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "THICK_MUG_NAME"
 description = "THICK_MUG_DESCRIPTION"
+detective_board_toggle = true
 
 [sub_resource type="Resource" id="Resource_n5dyw"]
 script = ExtResource("15_p50u5")
 dialog = ExtResource("10_wnetc")
 titleName = "test"
 
-[sub_resource type="Resource" id="Resource_myk4b"]
+[sub_resource type="Resource" id="Resource_hy3n5"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
 description = "TEST_DESCRIPTION"
+detective_board_toggle = true
 
-[sub_resource type="Resource" id="Resource_syhr2"]
+[sub_resource type="Resource" id="Resource_8hno7"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
 description = "TEST_DESCRIPTION"
+detective_board_toggle = true
 
 [sub_resource type="Resource" id="Resource_jodhe"]
 script = ExtResource("16_2qb3d")
@@ -355,7 +367,7 @@ script = ExtResource("15_p50u5")
 dialog = ExtResource("17_ls76e")
 titleName = "Ribli"
 
-[sub_resource type="Resource" id="Resource_hnc83"]
+[sub_resource type="Resource" id="Resource_tb1m1"]
 resource_local_to_scene = true
 script = ExtResource("24_frqwj")
 textName = "TEST_TEXT_NAME"
@@ -366,38 +378,56 @@ textContents = "TEST_TEXT_DESCRIPTION"
 script = ExtResource("7_paapu")
 item_name = ""
 description = ""
+detective_board_toggle = true
+
+[sub_resource type="Resource" id="Resource_ojphn"]
+script = ExtResource("23_trjr1")
+computerName = "Test Computer"
+computerType = 0
+computerState = true
+
+[sub_resource type="Resource" id="Resource_x5xhn"]
+script = ExtResource("7_paapu")
+item_name = ""
+description = ""
+detective_board_toggle = true
 
 [sub_resource type="Resource" id="Resource_fwl2q"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "LIGHT_SWITCH_NAME"
 description = "TEST_DESCRIPTION"
+detective_board_toggle = true
 
 [sub_resource type="Resource" id="Resource_u1rjm"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "EMPTY_PLATE_NAME"
 description = "EMPTY_PLATE_DESCRIPTION"
+detective_board_toggle = true
 
 [sub_resource type="Resource" id="Resource_sl3kl"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "THICK_MUG_NAME"
 description = "THICK_MUG_DESCRIPTION"
+detective_board_toggle = true
 
-[sub_resource type="Resource" id="Resource_hh64n"]
+[sub_resource type="Resource" id="Resource_i5u3n"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
 description = "TEST_DESCRIPTION"
+detective_board_toggle = true
 
-[sub_resource type="Resource" id="Resource_t2n06"]
+[sub_resource type="Resource" id="Resource_oao6x"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
 description = "TEST_DESCRIPTION"
+detective_board_toggle = true
 
-[sub_resource type="Resource" id="Resource_sbs0b"]
+[sub_resource type="Resource" id="Resource_qbj5g"]
 resource_local_to_scene = true
 script = ExtResource("16_2qb3d")
 npcName = "Eifla"
@@ -490,13 +520,13 @@ position = Vector2(630, 187)
 [node name="ceiling_lamp3" parent="TimelineStateMachine/001/TimelineSpace001/Lights" instance=ExtResource("6_g4tah")]
 position = Vector2(123, 184)
 
-[node name="Items" type="Node2D" parent="TimelineStateMachine/001/TimelineSpace001"]
+[node name="Objects" type="Node2D" parent="TimelineStateMachine/001/TimelineSpace001"]
 
-[node name="EmptyPlate" parent="TimelineStateMachine/001/TimelineSpace001/Items" instance=ExtResource("4_w2p71")]
+[node name="EmptyPlate" parent="TimelineStateMachine/001/TimelineSpace001/Objects" instance=ExtResource("4_w2p71")]
 position = Vector2(171, 324)
 interactable_resource = SubResource("Resource_hlgx8")
 
-[node name="ThickMug" parent="TimelineStateMachine/001/TimelineSpace001/Items" instance=ExtResource("5_hqxr4")]
+[node name="ThickMug" parent="TimelineStateMachine/001/TimelineSpace001/Objects" instance=ExtResource("5_hqxr4")]
 position = Vector2(152, 324)
 interactable_resource = SubResource("Resource_a02tp")
 dialog_resource = SubResource("Resource_n5dyw")
@@ -509,11 +539,11 @@ metadata/Description = "Test Description"
 [node name="DoorSideways" parent="TimelineStateMachine/001/TimelineSpace001/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(504, 289)
 inverted = true
-interactable_resource = SubResource("Resource_myk4b")
+interactable_resource = SubResource("Resource_hy3n5")
 
 [node name="DoorSideways2" parent="TimelineStateMachine/001/TimelineSpace001/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(247, 289)
-interactable_resource = SubResource("Resource_syhr2")
+interactable_resource = SubResource("Resource_8hno7")
 
 [node name="NPCs" type="Node2D" parent="TimelineStateMachine/001/TimelineSpace001"]
 
@@ -526,8 +556,20 @@ dialog_resource = SubResource("Resource_06fav")
 
 [node name="PaperOnWall" parent="TimelineStateMachine/001/TimelineSpace001/Texts" instance=ExtResource("23_l5ajp")]
 position = Vector2(577, 286)
-textRosource = SubResource("Resource_hnc83")
+textRosource = SubResource("Resource_tb1m1")
 interactable_resource = SubResource("Resource_yo6r0")
+
+[node name="Furniture" type="Node2D" parent="TimelineStateMachine/001/TimelineSpace001"]
+
+[node name="WoodenTable" parent="TimelineStateMachine/001/TimelineSpace001/Furniture" instance=ExtResource("21_auljp")]
+position = Vector2(637, 328)
+
+[node name="Computers" type="Node2D" parent="TimelineStateMachine/001/TimelineSpace001"]
+
+[node name="TabletopComputer" parent="TimelineStateMachine/001/TimelineSpace001/Computers" instance=ExtResource("22_maqab")]
+position = Vector2(626, 298)
+computerRosource = SubResource("Resource_ojphn")
+interactable_resource = SubResource("Resource_x5xhn")
 
 [node name="002" type="Node" parent="TimelineStateMachine"]
 script = ExtResource("8_d0i2x")
@@ -557,13 +599,13 @@ position = Vector2(630, 187)
 [node name="ceiling_lamp3" parent="TimelineStateMachine/002/TimelineSpace002/Lights" instance=ExtResource("6_g4tah")]
 position = Vector2(123, 184)
 
-[node name="Items" type="Node2D" parent="TimelineStateMachine/002/TimelineSpace002"]
+[node name="Objects" type="Node2D" parent="TimelineStateMachine/002/TimelineSpace002"]
 
-[node name="EmptyPlate" parent="TimelineStateMachine/002/TimelineSpace002/Items" instance=ExtResource("4_w2p71")]
+[node name="EmptyPlate" parent="TimelineStateMachine/002/TimelineSpace002/Objects" instance=ExtResource("4_w2p71")]
 position = Vector2(152, 324)
 interactable_resource = SubResource("Resource_u1rjm")
 
-[node name="ThickMug" parent="TimelineStateMachine/002/TimelineSpace002/Items" instance=ExtResource("5_hqxr4")]
+[node name="ThickMug" parent="TimelineStateMachine/002/TimelineSpace002/Objects" instance=ExtResource("5_hqxr4")]
 position = Vector2(171, 324)
 interactable_resource = SubResource("Resource_sl3kl")
 dialog_resource = SubResource("Resource_n5dyw")
@@ -576,11 +618,11 @@ metadata/Description = "Test Description"
 [node name="DoorSideways" parent="TimelineStateMachine/002/TimelineSpace002/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(504, 289)
 inverted = true
-interactable_resource = SubResource("Resource_hh64n")
+interactable_resource = SubResource("Resource_i5u3n")
 
 [node name="DoorSideways2" parent="TimelineStateMachine/002/TimelineSpace002/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(247, 289)
-interactable_resource = SubResource("Resource_t2n06")
+interactable_resource = SubResource("Resource_oao6x")
 
 [node name="NPCs" type="Node2D" parent="TimelineStateMachine/002/TimelineSpace002"]
 
@@ -588,7 +630,7 @@ interactable_resource = SubResource("Resource_t2n06")
 position = Vector2(58, 293)
 SPEED = 60
 JUMP_VELOCITY = -200
-npc_resource = SubResource("Resource_sbs0b")
+npc_resource = SubResource("Resource_qbj5g")
 dialog_resource = SubResource("Resource_h871w")
 
 [node name="player" parent="." instance=ExtResource("1_wpgi4")]
@@ -635,22 +677,22 @@ position = Vector2(360, 293)
 [connection signal="mouse_entered" from="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch" to="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch/InteractiveHandler" method="_on_interactable_base_mouse_entered"]
 [connection signal="mouse_exited" from="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch" to="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch" method="_on_mouse_exited"]
 [connection signal="mouse_exited" from="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch" to="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch/InteractiveHandler" method="_on_interactable_base_mouse_exited"]
-[connection signal="area_entered" from="TimelineStateMachine/001/TimelineSpace001/Items/EmptyPlate" to="TimelineStateMachine/001/TimelineSpace001/Items/EmptyPlate" method="_on_area_entered"]
-[connection signal="area_entered" from="TimelineStateMachine/001/TimelineSpace001/Items/EmptyPlate" to="TimelineStateMachine/001/TimelineSpace001/Items/EmptyPlate/InteractiveHandler" method="_on_interactable_base_area_entered"]
-[connection signal="area_exited" from="TimelineStateMachine/001/TimelineSpace001/Items/EmptyPlate" to="TimelineStateMachine/001/TimelineSpace001/Items/EmptyPlate" method="_on_area_exited"]
-[connection signal="area_exited" from="TimelineStateMachine/001/TimelineSpace001/Items/EmptyPlate" to="TimelineStateMachine/001/TimelineSpace001/Items/EmptyPlate/InteractiveHandler" method="_on_interactable_base_area_exited"]
-[connection signal="mouse_entered" from="TimelineStateMachine/001/TimelineSpace001/Items/EmptyPlate" to="TimelineStateMachine/001/TimelineSpace001/Items/EmptyPlate" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="TimelineStateMachine/001/TimelineSpace001/Items/EmptyPlate" to="TimelineStateMachine/001/TimelineSpace001/Items/EmptyPlate/InteractiveHandler" method="_on_interactable_base_mouse_entered"]
-[connection signal="mouse_exited" from="TimelineStateMachine/001/TimelineSpace001/Items/EmptyPlate" to="TimelineStateMachine/001/TimelineSpace001/Items/EmptyPlate" method="_on_mouse_exited"]
-[connection signal="mouse_exited" from="TimelineStateMachine/001/TimelineSpace001/Items/EmptyPlate" to="TimelineStateMachine/001/TimelineSpace001/Items/EmptyPlate/InteractiveHandler" method="_on_interactable_base_mouse_exited"]
-[connection signal="area_entered" from="TimelineStateMachine/001/TimelineSpace001/Items/ThickMug" to="TimelineStateMachine/001/TimelineSpace001/Items/ThickMug" method="_on_area_entered"]
-[connection signal="area_entered" from="TimelineStateMachine/001/TimelineSpace001/Items/ThickMug" to="TimelineStateMachine/001/TimelineSpace001/Items/ThickMug/InteractiveHandler" method="_on_interactable_base_area_entered"]
-[connection signal="area_exited" from="TimelineStateMachine/001/TimelineSpace001/Items/ThickMug" to="TimelineStateMachine/001/TimelineSpace001/Items/ThickMug" method="_on_area_exited"]
-[connection signal="area_exited" from="TimelineStateMachine/001/TimelineSpace001/Items/ThickMug" to="TimelineStateMachine/001/TimelineSpace001/Items/ThickMug/InteractiveHandler" method="_on_interactable_base_area_exited"]
-[connection signal="mouse_entered" from="TimelineStateMachine/001/TimelineSpace001/Items/ThickMug" to="TimelineStateMachine/001/TimelineSpace001/Items/ThickMug" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="TimelineStateMachine/001/TimelineSpace001/Items/ThickMug" to="TimelineStateMachine/001/TimelineSpace001/Items/ThickMug/InteractiveHandler" method="_on_interactable_base_mouse_entered"]
-[connection signal="mouse_exited" from="TimelineStateMachine/001/TimelineSpace001/Items/ThickMug" to="TimelineStateMachine/001/TimelineSpace001/Items/ThickMug" method="_on_mouse_exited"]
-[connection signal="mouse_exited" from="TimelineStateMachine/001/TimelineSpace001/Items/ThickMug" to="TimelineStateMachine/001/TimelineSpace001/Items/ThickMug/InteractiveHandler" method="_on_interactable_base_mouse_exited"]
+[connection signal="area_entered" from="TimelineStateMachine/001/TimelineSpace001/Objects/EmptyPlate" to="TimelineStateMachine/001/TimelineSpace001/Objects/EmptyPlate" method="_on_area_entered"]
+[connection signal="area_entered" from="TimelineStateMachine/001/TimelineSpace001/Objects/EmptyPlate" to="TimelineStateMachine/001/TimelineSpace001/Objects/EmptyPlate/InteractiveHandler" method="_on_interactable_base_area_entered"]
+[connection signal="area_exited" from="TimelineStateMachine/001/TimelineSpace001/Objects/EmptyPlate" to="TimelineStateMachine/001/TimelineSpace001/Objects/EmptyPlate" method="_on_area_exited"]
+[connection signal="area_exited" from="TimelineStateMachine/001/TimelineSpace001/Objects/EmptyPlate" to="TimelineStateMachine/001/TimelineSpace001/Objects/EmptyPlate/InteractiveHandler" method="_on_interactable_base_area_exited"]
+[connection signal="mouse_entered" from="TimelineStateMachine/001/TimelineSpace001/Objects/EmptyPlate" to="TimelineStateMachine/001/TimelineSpace001/Objects/EmptyPlate" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="TimelineStateMachine/001/TimelineSpace001/Objects/EmptyPlate" to="TimelineStateMachine/001/TimelineSpace001/Objects/EmptyPlate/InteractiveHandler" method="_on_interactable_base_mouse_entered"]
+[connection signal="mouse_exited" from="TimelineStateMachine/001/TimelineSpace001/Objects/EmptyPlate" to="TimelineStateMachine/001/TimelineSpace001/Objects/EmptyPlate" method="_on_mouse_exited"]
+[connection signal="mouse_exited" from="TimelineStateMachine/001/TimelineSpace001/Objects/EmptyPlate" to="TimelineStateMachine/001/TimelineSpace001/Objects/EmptyPlate/InteractiveHandler" method="_on_interactable_base_mouse_exited"]
+[connection signal="area_entered" from="TimelineStateMachine/001/TimelineSpace001/Objects/ThickMug" to="TimelineStateMachine/001/TimelineSpace001/Objects/ThickMug" method="_on_area_entered"]
+[connection signal="area_entered" from="TimelineStateMachine/001/TimelineSpace001/Objects/ThickMug" to="TimelineStateMachine/001/TimelineSpace001/Objects/ThickMug/InteractiveHandler" method="_on_interactable_base_area_entered"]
+[connection signal="area_exited" from="TimelineStateMachine/001/TimelineSpace001/Objects/ThickMug" to="TimelineStateMachine/001/TimelineSpace001/Objects/ThickMug" method="_on_area_exited"]
+[connection signal="area_exited" from="TimelineStateMachine/001/TimelineSpace001/Objects/ThickMug" to="TimelineStateMachine/001/TimelineSpace001/Objects/ThickMug/InteractiveHandler" method="_on_interactable_base_area_exited"]
+[connection signal="mouse_entered" from="TimelineStateMachine/001/TimelineSpace001/Objects/ThickMug" to="TimelineStateMachine/001/TimelineSpace001/Objects/ThickMug" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="TimelineStateMachine/001/TimelineSpace001/Objects/ThickMug" to="TimelineStateMachine/001/TimelineSpace001/Objects/ThickMug/InteractiveHandler" method="_on_interactable_base_mouse_entered"]
+[connection signal="mouse_exited" from="TimelineStateMachine/001/TimelineSpace001/Objects/ThickMug" to="TimelineStateMachine/001/TimelineSpace001/Objects/ThickMug" method="_on_mouse_exited"]
+[connection signal="mouse_exited" from="TimelineStateMachine/001/TimelineSpace001/Objects/ThickMug" to="TimelineStateMachine/001/TimelineSpace001/Objects/ThickMug/InteractiveHandler" method="_on_interactable_base_mouse_exited"]
 [connection signal="area_entered" from="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch" to="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch" method="_on_area_entered"]
 [connection signal="area_entered" from="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch" to="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch/InteractiveHandler" method="_on_interactable_base_area_entered"]
 [connection signal="area_exited" from="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch" to="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch" method="_on_area_exited"]
@@ -659,19 +701,19 @@ position = Vector2(360, 293)
 [connection signal="mouse_entered" from="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch" to="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch/InteractiveHandler" method="_on_interactable_base_mouse_entered"]
 [connection signal="mouse_exited" from="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch" to="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch" method="_on_mouse_exited"]
 [connection signal="mouse_exited" from="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch" to="TimelineStateMachine/002/TimelineSpace002/Switches/light_switch/InteractiveHandler" method="_on_interactable_base_mouse_exited"]
-[connection signal="area_entered" from="TimelineStateMachine/002/TimelineSpace002/Items/EmptyPlate" to="TimelineStateMachine/002/TimelineSpace002/Items/EmptyPlate" method="_on_area_entered"]
-[connection signal="area_entered" from="TimelineStateMachine/002/TimelineSpace002/Items/EmptyPlate" to="TimelineStateMachine/002/TimelineSpace002/Items/EmptyPlate/InteractiveHandler" method="_on_interactable_base_area_entered"]
-[connection signal="area_exited" from="TimelineStateMachine/002/TimelineSpace002/Items/EmptyPlate" to="TimelineStateMachine/002/TimelineSpace002/Items/EmptyPlate" method="_on_area_exited"]
-[connection signal="area_exited" from="TimelineStateMachine/002/TimelineSpace002/Items/EmptyPlate" to="TimelineStateMachine/002/TimelineSpace002/Items/EmptyPlate/InteractiveHandler" method="_on_interactable_base_area_exited"]
-[connection signal="mouse_entered" from="TimelineStateMachine/002/TimelineSpace002/Items/EmptyPlate" to="TimelineStateMachine/002/TimelineSpace002/Items/EmptyPlate" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="TimelineStateMachine/002/TimelineSpace002/Items/EmptyPlate" to="TimelineStateMachine/002/TimelineSpace002/Items/EmptyPlate/InteractiveHandler" method="_on_interactable_base_mouse_entered"]
-[connection signal="mouse_exited" from="TimelineStateMachine/002/TimelineSpace002/Items/EmptyPlate" to="TimelineStateMachine/002/TimelineSpace002/Items/EmptyPlate" method="_on_mouse_exited"]
-[connection signal="mouse_exited" from="TimelineStateMachine/002/TimelineSpace002/Items/EmptyPlate" to="TimelineStateMachine/002/TimelineSpace002/Items/EmptyPlate/InteractiveHandler" method="_on_interactable_base_mouse_exited"]
-[connection signal="area_entered" from="TimelineStateMachine/002/TimelineSpace002/Items/ThickMug" to="TimelineStateMachine/002/TimelineSpace002/Items/ThickMug" method="_on_area_entered"]
-[connection signal="area_entered" from="TimelineStateMachine/002/TimelineSpace002/Items/ThickMug" to="TimelineStateMachine/002/TimelineSpace002/Items/ThickMug/InteractiveHandler" method="_on_interactable_base_area_entered"]
-[connection signal="area_exited" from="TimelineStateMachine/002/TimelineSpace002/Items/ThickMug" to="TimelineStateMachine/002/TimelineSpace002/Items/ThickMug" method="_on_area_exited"]
-[connection signal="area_exited" from="TimelineStateMachine/002/TimelineSpace002/Items/ThickMug" to="TimelineStateMachine/002/TimelineSpace002/Items/ThickMug/InteractiveHandler" method="_on_interactable_base_area_exited"]
-[connection signal="mouse_entered" from="TimelineStateMachine/002/TimelineSpace002/Items/ThickMug" to="TimelineStateMachine/002/TimelineSpace002/Items/ThickMug" method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="TimelineStateMachine/002/TimelineSpace002/Items/ThickMug" to="TimelineStateMachine/002/TimelineSpace002/Items/ThickMug/InteractiveHandler" method="_on_interactable_base_mouse_entered"]
-[connection signal="mouse_exited" from="TimelineStateMachine/002/TimelineSpace002/Items/ThickMug" to="TimelineStateMachine/002/TimelineSpace002/Items/ThickMug" method="_on_mouse_exited"]
-[connection signal="mouse_exited" from="TimelineStateMachine/002/TimelineSpace002/Items/ThickMug" to="TimelineStateMachine/002/TimelineSpace002/Items/ThickMug/InteractiveHandler" method="_on_interactable_base_mouse_exited"]
+[connection signal="area_entered" from="TimelineStateMachine/002/TimelineSpace002/Objects/EmptyPlate" to="TimelineStateMachine/002/TimelineSpace002/Objects/EmptyPlate" method="_on_area_entered"]
+[connection signal="area_entered" from="TimelineStateMachine/002/TimelineSpace002/Objects/EmptyPlate" to="TimelineStateMachine/002/TimelineSpace002/Objects/EmptyPlate/InteractiveHandler" method="_on_interactable_base_area_entered"]
+[connection signal="area_exited" from="TimelineStateMachine/002/TimelineSpace002/Objects/EmptyPlate" to="TimelineStateMachine/002/TimelineSpace002/Objects/EmptyPlate" method="_on_area_exited"]
+[connection signal="area_exited" from="TimelineStateMachine/002/TimelineSpace002/Objects/EmptyPlate" to="TimelineStateMachine/002/TimelineSpace002/Objects/EmptyPlate/InteractiveHandler" method="_on_interactable_base_area_exited"]
+[connection signal="mouse_entered" from="TimelineStateMachine/002/TimelineSpace002/Objects/EmptyPlate" to="TimelineStateMachine/002/TimelineSpace002/Objects/EmptyPlate" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="TimelineStateMachine/002/TimelineSpace002/Objects/EmptyPlate" to="TimelineStateMachine/002/TimelineSpace002/Objects/EmptyPlate/InteractiveHandler" method="_on_interactable_base_mouse_entered"]
+[connection signal="mouse_exited" from="TimelineStateMachine/002/TimelineSpace002/Objects/EmptyPlate" to="TimelineStateMachine/002/TimelineSpace002/Objects/EmptyPlate" method="_on_mouse_exited"]
+[connection signal="mouse_exited" from="TimelineStateMachine/002/TimelineSpace002/Objects/EmptyPlate" to="TimelineStateMachine/002/TimelineSpace002/Objects/EmptyPlate/InteractiveHandler" method="_on_interactable_base_mouse_exited"]
+[connection signal="area_entered" from="TimelineStateMachine/002/TimelineSpace002/Objects/ThickMug" to="TimelineStateMachine/002/TimelineSpace002/Objects/ThickMug" method="_on_area_entered"]
+[connection signal="area_entered" from="TimelineStateMachine/002/TimelineSpace002/Objects/ThickMug" to="TimelineStateMachine/002/TimelineSpace002/Objects/ThickMug/InteractiveHandler" method="_on_interactable_base_area_entered"]
+[connection signal="area_exited" from="TimelineStateMachine/002/TimelineSpace002/Objects/ThickMug" to="TimelineStateMachine/002/TimelineSpace002/Objects/ThickMug" method="_on_area_exited"]
+[connection signal="area_exited" from="TimelineStateMachine/002/TimelineSpace002/Objects/ThickMug" to="TimelineStateMachine/002/TimelineSpace002/Objects/ThickMug/InteractiveHandler" method="_on_interactable_base_area_exited"]
+[connection signal="mouse_entered" from="TimelineStateMachine/002/TimelineSpace002/Objects/ThickMug" to="TimelineStateMachine/002/TimelineSpace002/Objects/ThickMug" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="TimelineStateMachine/002/TimelineSpace002/Objects/ThickMug" to="TimelineStateMachine/002/TimelineSpace002/Objects/ThickMug/InteractiveHandler" method="_on_interactable_base_mouse_entered"]
+[connection signal="mouse_exited" from="TimelineStateMachine/002/TimelineSpace002/Objects/ThickMug" to="TimelineStateMachine/002/TimelineSpace002/Objects/ThickMug" method="_on_mouse_exited"]
+[connection signal="mouse_exited" from="TimelineStateMachine/002/TimelineSpace002/Objects/ThickMug" to="TimelineStateMachine/002/TimelineSpace002/Objects/ThickMug/InteractiveHandler" method="_on_interactable_base_mouse_exited"]

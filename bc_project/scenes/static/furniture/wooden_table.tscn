@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqm4y7yl8uqcq"]
+
+[ext_resource type="Texture2D" uid="uid://d2gxi47mh24cd" path="res://textures/furniture/wooden_table.png" id="1_jgn5b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvn7t"]
+size = Vector2(61, 4)
+
+[node name="WoodenTable" type="StaticBody2D"]
+
+[node name="WoodenTableSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("1_jgn5b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -28)
+shape = SubResource("RectangleShape2D_yvn7t")
+one_way_collision = true
