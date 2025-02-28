@@ -2,7 +2,7 @@ extends RichTextLabel
 
 func set_label(input:Array, description:String):
 	if not input or not description:
-		printerr("An error during input help label creation, either input or description are null")
+		printerr("An error during input help label creation, either input or description are null:"+str(input.size())+" "+description)
 		return
 	if input.is_empty():
 		printerr("An error during input help label creation, no input key in input array")

@@ -1,71 +1,79 @@
-extends Node2D
+extends Control
 
 """
 --- Runtime Variables
 """
-var color
-var thickness
-var lineName
-var description
+var lineName : String
+var description : String
 
 var active = false
-var drawing = true
 
-var element0Name = null
-var element1Name = null
+var element0:Control = null
+var element0Name:String = ""
+var element1:Control = null
+var element1Name:String = ""
 
-var element0 = null
-var element1 = null
+@onready var connectionLabel: Label = $HBox/Label
+@onready var connectionLine: Line2D = $Line2D
 
 """
 --- Runtime Methods
 """
-func _input(event: InputEvent) -> void:
-	if active and event.is_action_pressed("destroy_board_element") and not GameController.FocusSet:
+func _unhandled_input(event: InputEvent) -> void:
+	if active and event.is_action_pressed("delete_board_element"):
 		GameController.release_focus()
 		Signals.emit_signal('delete_board_line',self)
 
 func _process(delta: float) -> void:
 	if not element0 and Global.board_elements.has(element0Name):
-		element0 = Global.board_elements[element0Name]
+		set_element(0,Global.board_elements[element0Name])
 	if not element1 and Global.board_elements.has(element1Name):
-		element1 = Global.board_elements[element1Name]
-	if element0:
-		queue_redraw() 
+		set_element(1,Global.board_elements[element1Name])
 
 func _physics_process(delta: float) -> void:
-	if element1 != null and is_instance_valid(element0) and is_instance_valid(element1):
+	if is_instance_valid(element0) and is_instance_valid(element1):
 		position = (element0.position).lerp(element1.position, 0.5); 
-
-func _draw() -> void:
-	if drawing:
-		draw_line(element0.position-position,$".".get_local_mouse_position(), color, thickness )
+	elif is_instance_valid(element0):
+		position = element0.position
 	
-	if not drawing and element1:
-		draw_line(element0.position-position,element1.position-position, color, thickness)
+	if element0 and element1:
+		connectionLine.set_point_position(1,self.position-element0.position-Global.BOARD_LINE_OFFSET)
+		connectionLine.set_point_position(0,self.position-element1.position-Global.BOARD_LINE_OFFSET)
+	elif element0:
+		connectionLine.set_point_position(0,self.position-element0.position-Global.BOARD_LINE_OFFSET)
+		connectionLine.set_point_position(1,self.get_local_mouse_position())
 
 """
 --- General Methods
 """
+
+func set_element(idx:int,element:Control) -> void:
+	match idx:
+		0:
+			element0 = element
+			element0Name = element.elementName 
+		1:
+			element1 = element
+			element1Name = element.elementName
+			connectionLabel.visible = true
+	connectionLine.gradient.colors[idx] = element.elementColor
+
 func toggle_description() -> void:
-	$ConnectionText.visible = not $ConnectionText.visible
+	connectionLabel.visible = not connectionLabel.visible
 
 func set_description(text) -> void:
 	description = text
-	$ConnectionText.text = tr(text)
-
-func toggle_edit() -> void:
-	$ConnectionText.editable = not $ConnectionText.editable 
+	connectionLabel.text = tr(text)
 
 """
 --- Input Signal Methods
 """
 func _on_mouse_entered() -> void:
-	Signals.emit_signal("input_help_set",GameController.get_input_key_list("destroy_board_element"),"REMOVE_BOARD_ELEMENT_INPUT_HELP")
+	Signals.emit_signal("input_help_set",GameController.get_input_key_list("delete_board_element"),"REMOVE_BOARD_LINE_INPUT_HELP")
 	active = true
 
 func _on_mouse_exited() -> void:
-	Signals.emit_signal("input_help_delete","REMOVE_BOARD_ELEMENT_INPUT_HELP")
+	Signals.emit_signal("input_help_delete","REMOVE_BOARD_LINE_INPUT_HELP")
 	active = false
 
 func saving() -> Dictionary:
@@ -77,11 +85,6 @@ func saving() -> Dictionary:
 		"lineName": lineName,
 		"posX": position.x,
 		"posY": position.y,
-		"color": color.to_html(),
-		"thickness": thickness,
-		"visible": $ConnectionText.visible,
-		"text": description,
-		"editable": $ConnectionText.editable,
 		"element0": element0.elementName,
 		"element1": element1.elementName,
 	}
@@ -93,12 +96,9 @@ func loading(input: Dictionary) -> bool:
 	Global.line_elements[lineName] = self
 	position.x = input["posX"]
 	position.y = input["posY"]
-	drawing = false
-	color = Color.html(input["color"]) 
-	thickness = input["thickness"]
-	$ConnectionText.visible = input["visible"]
-	$ConnectionText.text = tr(input["text"])
-	$ConnectionText.editable = input["editable"]
 	element0Name = input["element0"]
 	element1Name = input["element1"]
+	if Global.board_elements.has_all([element0Name,element1Name]):
+		set_element(0,Global.board_elements[element0Name])
+		set_element(1,Global.board_elements[element1Name])
 	return true

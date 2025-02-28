@@ -18,7 +18,7 @@ func _ready() -> void:
 	Signals.connect('input_help_set', set_input_help_label)
 	Signals.connect('input_help_delete', delete_input_help_label)
 	
-	set_input_help_label(GameController.get_input_key_list("table_toggle"), "DETECTIVE_BOARD_INPUT_HELP")
+	
 	set_input_help_label(GameController.get_input_key_list("timeline_shift"), "TIMELINE_SHIFT_INPUT_HELP")
 
 """

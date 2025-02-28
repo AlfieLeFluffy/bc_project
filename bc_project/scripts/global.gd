@@ -14,12 +14,13 @@ const TIMELINE_SHIFT_OFFSET = 0.2
 var MainCharacterName = "Alfie"
 
 # Veriables used in board control
-var activeElement
 var Active_Interactive_Item
 
 # Board elements and lines
 var board_elements: Dictionary
 var line_elements: Dictionary
+
+const BOARD_LINE_OFFSET: Vector2 = Vector2(-14,-14)
 
 # Interactable variables
 var interactive_radius_name = "interactRadius"

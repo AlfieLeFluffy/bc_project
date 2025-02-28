@@ -3,7 +3,10 @@ extends CanvasLayer
 """
 --- Runtime Variables
 """
-var mouse_offset
+var mouse_offset: Vector2
+@onready var screenSize: Vector2 = DisplayServer.screen_get_size()
+@onready var boardControler: Control = $BoardControler
+@onready var boardBackground: TextureRect = boardControler.get_node("BoardBackground")
 
 """
 --- Setup Methods
@@ -11,15 +14,21 @@ var mouse_offset
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	visible = false
-	$BoardControler/BoardBackground.size = DisplayServer.screen_get_size()*2
-	$BoardControler.position = (DisplayServer.screen_get_size() /2) - Vector2i($BoardControler/BoardBackground.size/2)
-	
+	setup_board()
+	Signals.emit_signal("input_help_set",GameController.get_input_key_list("detective_board_toggle"), "DETECTIVE_BOARD_INPUT_HELP")
+
+func setup_board() -> void:
+	boardBackground.size = screenSize*2
+	boardControler.position = screenSize/2 - boardBackground.size/2
+
 """
 --- Runtime Methods
 """
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("table_toggle"):
+	if event.is_action_pressed("detective_board_toggle") or visible and event.is_action_pressed("ui_menu"):
 		toggle_board()
+		GameController.release_focus()
+		get_viewport().set_input_as_handled()
 """
 --- General Methods
 """

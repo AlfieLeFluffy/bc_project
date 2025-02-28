@@ -229,7 +229,7 @@ func setup_input_help_menu() -> void:
 		return
 	inputHelp = preloadInputHelp.instantiate()
 	get_tree().current_scene.add_child(inputHelp)
-	inputHelp.layer = 60
+	inputHelp.layer = 70
 	inputHelp.visible = true
 
 # Instantiates and shows the in-game menu

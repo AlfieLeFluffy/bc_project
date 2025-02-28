@@ -3,8 +3,6 @@
 [ext_resource type="Script" path="res://scenes/UI/board/board_elements/connection_base.gd" id="1_wd7yk"]
 
 [sub_resource type="Gradient" id="Gradient_2ewxf"]
-resource_local_to_scene = true
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
 [node name="ConnectionBase" type="Control" groups=["Persistent"]]
 custom_minimum_size = Vector2(125, 30)
@@ -23,7 +21,6 @@ script = ExtResource("1_wd7yk")
 position = Vector2(0.5, 0)
 points = PackedVector2Array(0, 0, 0, 0)
 width = 3.0
-default_color = Color(1, 1, 1, 0)
 gradient = SubResource("Gradient_2ewxf")
 
 [node name="HBox" type="HBoxContainer" parent="."]
@@ -38,7 +35,7 @@ alignment = 1
 [node name="Label" type="Label" parent="HBox"]
 visible = false
 layout_mode = 2
-text = "TestLine"
+text = "test"
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

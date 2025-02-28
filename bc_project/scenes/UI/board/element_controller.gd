@@ -5,8 +5,9 @@ class_name ElementControler extends Node
 """
 # Board ELements preloaded for instantiation
 const boardPreload = preload("res://scenes/UI/board/board_elements/element_base.tscn")
-const notePreload = preload("res://scenes/UI/board/board_elements/element_note.tscn")
-const itemPreload = preload("res://scenes/UI/board/board_elements/element_item.tscn")
+const preloadNoteElement = preload("res://scenes/UI/board/board_elements/element_note.tscn")
+const preloadObjectElement = preload("res://scenes/UI/board/board_elements/element_object.tscn")
+const preloadTextElement = preload("res://scenes/UI/board/board_elements/element_text.tscn")
 
 """
 --- Runtime Variables
@@ -26,66 +27,50 @@ func _ready() -> void:
 --- Element Managment Methods
 """
 func create_board_element(elementType: BoardElementResource.elementType,elementName:String, elementTimeline:String, elementTexture,elementDescription:String) -> void:
+	if check_element(elementName + elementTimeline):
+		return
 	match elementType:
 		BoardElementResource.elementType.NOTE:
 			create_note()
 		BoardElementResource.elementType.OBJECT:
-			create_item(elementName,elementTimeline,elementTexture,elementDescription)
+			create_object(elementName,elementTimeline,elementTexture,elementDescription)
 		BoardElementResource.elementType.TEXT:
 			create_text(elementName,elementTimeline,elementTexture,elementDescription)
 		BoardElementResource.elementType.PROFILE:
 			create_profile(elementName,elementTimeline,elementTexture,elementDescription)
 
+func setup_instance(label:String, timeline:String) -> void:
+	instance.elementName = label+timeline
+	Global.board_elements[instance.elementName] = instance
+	get_parent().add_child(instance)
+
+func finalize_element() -> void:
+	AudioManager.play_sound("ding")
+	var offset = Vector2(randi_range(200,-200),randi_range(200,-200))
+	instance.position = Vector2(get_parent().get_node("BoardBackground").size/2+offset)
+
 func create_note() -> void:
 	var noteName = "note"+Global.Timeline
-	if check_element(noteName):
-		return
-	
-	instance = notePreload.instantiate()
+	instance = preloadNoteElement.instantiate()
 	instance.elementName = noteName
-	
 	Global.board_elements[instance.elementName] = instance
 	finalize_element()
 	
-func create_item(label, timeline, texture, text) -> void:
-	var itemName = label+timeline
-	if check_element(itemName):
-		return
-	
-	instance = itemPreload.instantiate()
-	instance.elementName = itemName
-	
-	instance.texture = texture
-	instance.label = label
-	instance.text = text
-	
-	Global.board_elements[instance.elementName] = instance
+func create_object(label, timeline, texture, description) -> void:
+	instance = preloadObjectElement.instantiate()
+	setup_instance(label, timeline)
+	instance.setup_element(label,timeline,texture,description)
 	finalize_element()
 
-
-func create_text(label, timeline, texture, text) -> void:
-	var itemName = label+timeline
-	if check_element(itemName):
-		return
-	
-	instance = itemPreload.instantiate()
-	instance.elementName = itemName
-	
-	instance.texture = texture
-	instance.label = label
-	instance.text = text
-	
-	Global.board_elements[instance.elementName] = instance
+func create_text(label, timeline, texture, description) -> void:
+	instance = preloadTextElement.instantiate()
+	setup_instance(label, timeline)
+	instance.setup_element(label,timeline,null,description)
 	finalize_element()
 
 func create_profile(label, timeline, texture, text) -> void:
 	pass
 
-func finalize_element() -> void:
-	get_parent().add_child(instance)
-	AudioManager.play_sound("ding")
-	var offset = Vector2(randi_range(200,-200),randi_range(200,-200))
-	instance.position = Vector2(get_parent().get_node("BoardBackground").size/2+offset)
 
 func delete_board_element(element) -> void:
 	for lineKey in Global.line_elements.keys():
