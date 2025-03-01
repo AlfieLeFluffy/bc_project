@@ -3,17 +3,20 @@ extends "res://scenes/interactive/interactable.gd"
 """
 --- Preload Constants
 """
-const preloadComputerView = preload("res://scenes/interactive/computer/computer_view.tscn")
+const preloadComputerView = preload("res://scenes/interactive/computer/view/computer_view.tscn")
 
 """
 --- Runtime Variables
 """
 @export var computerRosource: ComputerObjectResource
+@export var directoryFileResource: DirectoryFileResource
+@export var applicationResource: ApplicationResource
 var computerViewInstance: Node
 
 # Local ready function for instantiated objects
 func local_ready() -> void:
 	setup_computer_status()
+	Signals.connect("shutdown_computer",shutdown_computer)
 	SettingsController.connect("retranslate",setup_interactable_info)
 
 func setup_interactable_info() -> void:
@@ -30,11 +33,24 @@ func setup_computer_status() -> void:
 
 # Active function if no dialog detected
 func interact_function(event: InputEvent) -> void:
+	if not computerRosource.computerState:
+		computerRosource.computerState = true
+		setup_computer_status()
+		return
+	else:
+		open_computer_view()
+
+func open_computer_view() -> void:
 	if GameController.check_nongameplay_scene():
 		return
 	computerViewInstance = preloadComputerView.instantiate()
 	get_tree().current_scene.add_child(computerViewInstance)
-	computerViewInstance.setup_computer_view(computerRosource.computerType,computerRosource.computerName)
+	computerViewInstance.setup_computer_view(computerRosource,directoryFileResource,applicationResource)
+
+func shutdown_computer(computerName: String) -> void:
+	if computerName == computerRosource.computerName:
+		computerRosource.computerState = false
+	setup_computer_status()
 
 # Active function if no dialog detected
 func add_board_element(event: InputEvent) -> void:

@@ -8,15 +8,16 @@ signal create_board_element()
 var type: ComputerObjectResource.computerTypeEnum
 var computerName: String
 
+
 """
 --- Setup Methods
 """
 func _ready() -> void:
 	pass
 
-func setup_computer_view(_type: ComputerObjectResource.computerTypeEnum,_computerName:String) -> void:
-	type = _type
-	computerName = _computerName
+func setup_computer_view(computerResource: ComputerObjectResource, directoryFileResource: DirectoryFileResource, applicationResource: ApplicationResource) -> void:
+	type = computerResource.computerType
+	computerName = computerResource.computerName
 	
 
 """
@@ -32,3 +33,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func exit_view() ->void:
 	queue_free()
+
+func _on_button_pressed() -> void:
+	Signals.emit_signal("shutdown_computer",computerName)
+	exit_view()

@@ -17,6 +17,8 @@ shader_parameter/line_thickness = 0.0
 [node name="ComputerBase" instance=ExtResource("1_uiomx")]
 script = ExtResource("2_eomu1")
 computerRosource = null
+directoryFileResource = null
+applicationResource = null
 interactable_resource = null
 
 [node name="CollisionShape2D" parent="." index="1"]

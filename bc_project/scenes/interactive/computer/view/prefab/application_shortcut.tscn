@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4dmwm8nm73fy"]
+
+[sub_resource type="Gradient" id="Gradient_x8j1h"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6c7b5"]
+gradient = SubResource("Gradient_x8j1h")
+
+[node name="Application" type="VBoxContainer"]
+custom_minimum_size = Vector2(130, 150)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Icon" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("GradientTexture1D_6c7b5")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Application"
+horizontal_alignment = 1
+vertical_alignment = 1

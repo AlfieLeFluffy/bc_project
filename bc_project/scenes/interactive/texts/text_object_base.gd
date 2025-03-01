@@ -3,7 +3,7 @@ extends "res://scenes/interactive/interactable.gd"
 """
 --- Preload Constants
 """
-const preloadTextView = preload("res://scenes/interactive/texts/text_view.tscn")
+const preloadTextView = preload("res://scenes/interactive/texts/view/text_view.tscn")
 
 """
 --- Runtime Variables
@@ -26,7 +26,7 @@ func interact_function(event: InputEvent) -> void:
 		return
 	textViewInstance = preloadTextView.instantiate()
 	get_tree().current_scene.add_child(textViewInstance)
-	textViewInstance.setup_text_view(textRosource.textType,textRosource.textName,textRosource.textContents)
+	textViewInstance.setup_text_view(textRosource)
 	textViewInstance.create_board_element.connect(add_board_element)
 
 # Active function if no dialog detected

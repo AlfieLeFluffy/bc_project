@@ -1,0 +1,80 @@
+[gd_scene load_steps=7 format=3 uid="uid://dmhc6up2mfkmg"]
+
+[ext_resource type="Script" path="res://scenes/interactive/computer/view/computer_view_controller.gd" id="1_3gobr"]
+[ext_resource type="PackedScene" uid="uid://bcdby6svlp0fj" path="res://scenes/UI/backgrounds/fade_background.tscn" id="2_hlmbo"]
+[ext_resource type="Theme" uid="uid://bmmbdkh0ysioo" path="res://settings/computer_view_theme.tres" id="3_3u4ub"]
+[ext_resource type="PackedScene" uid="uid://d4dmwm8nm73fy" path="res://scenes/interactive/computer/view/prefab/application_shortcut.tscn" id="4_ug082"]
+
+[sub_resource type="Gradient" id="Gradient_61o1a"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hy0s5"]
+gradient = SubResource("Gradient_61o1a")
+
+[node name="ComputerView" type="CanvasLayer"]
+layer = 60
+script = ExtResource("1_3gobr")
+
+[node name="FadeBackground" parent="." instance=ExtResource("2_hlmbo")]
+
+[node name="Computer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_3u4ub")
+
+[node name="Screen" type="TextureRect" parent="Computer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.167
+anchor_top = 0.167
+anchor_right = 0.833
+anchor_bottom = 0.833
+offset_left = -0.640015
+offset_top = -0.360016
+offset_right = 0.639893
+offset_bottom = 0.359924
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_hy0s5")
+
+[node name="Applications" type="GridContainer" parent="Computer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.193
+anchor_top = 0.19
+anchor_right = 0.807
+anchor_bottom = 0.764
+offset_left = -0.559998
+offset_top = -0.200012
+offset_right = 0.559937
+offset_bottom = -0.120056
+grow_horizontal = 2
+grow_vertical = 2
+columns = 8
+
+[node name="Application" parent="Computer/Applications" instance=ExtResource("4_ug082")]
+layout_mode = 2
+
+[node name="TaskBar" type="HBoxContainer" parent="Computer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.193
+anchor_top = 0.764
+anchor_right = 0.807
+anchor_bottom = 0.801
+offset_left = -0.559998
+offset_top = -0.120056
+offset_right = 0.559937
+offset_bottom = -0.0800781
+
+[node name="Button" type="Button" parent="Computer/TaskBar"]
+layout_mode = 2
+text = "Shutdown"
+
+[connection signal="pressed" from="Computer/TaskBar/Button" to="." method="_on_button_pressed"]

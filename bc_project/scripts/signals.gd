@@ -20,7 +20,6 @@ signal toggle_light(circuitSignal)
 signal scene_loaded()
 signal game_loaded()
 
-
 signal set_active_element(element)
 # Signals for creating and deleting board elements
 signal create_board_element(elementType,elementName,elementTexture,elementDescription)
@@ -36,3 +35,5 @@ signal input_help_delete(description)
 signal start_npc_conversation_state(npc)
 signal setup_conversation_profile(side,character_name,picture)
 signal end_npc_conversation_state()
+
+signal shutdown_computer(computerName)

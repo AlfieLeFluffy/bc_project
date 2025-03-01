@@ -18,10 +18,10 @@ var textContent: String
 func _ready() -> void:
 	Signals.emit_signal("input_help_set",GameController.get_input_key_list("add_to_board"),"ADD_TO_BOARD_INPUT_HELP")
 
-func setup_text_view(_textType: TextObjectResourse.textTypeEnum,_textName:String, _textContent:String) -> void:
-	type = _textType
-	textName = _textName
-	textContent = _textContent
+func setup_text_view(textResource: TextObjectResourse) -> void:
+	type = textResource.textType
+	textName = textResource.textName
+	textContent = textResource.textContents
 	
 	textLabel.text = tr(textName)
 	textContentsLabel.text = tr(textContent)
