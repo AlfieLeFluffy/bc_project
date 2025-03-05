@@ -1,11 +1,11 @@
 [gd_scene load_steps=14 format=3 uid="uid://73jm5qjy52vq"]
 
-[ext_resource type="Script" path="res://scripts/dialog/balloon/balloon.gd" id="1_36de5"]
+[ext_resource type="Script" uid="uid://ux0j7njukagj" path="res://scripts/dialog/balloon/balloon.gd" id="1_36de5"]
 [ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="2_7hpel"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
 [ext_resource type="PackedScene" uid="uid://bcdby6svlp0fj" path="res://scenes/UI/backgrounds/fade_background.tscn" id="2_ualdr"]
-[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="3_72ixx"]
-[ext_resource type="Script" path="res://scripts/dialog/balloon/profiles_controler.gd" id="4_f38en"]
+[ext_resource type="Script" uid="uid://c3l6agxp12w0a" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="3_72ixx"]
+[ext_resource type="Script" uid="uid://bp47xxwic23fh" path="res://scripts/dialog/balloon/profiles_controler.gd" id="4_f38en"]
 [ext_resource type="Texture2D" uid="uid://dni7o236p3am" path="res://textures/characters/mainCharacter_itt.png" id="5_ob21l"]
 [ext_resource type="Texture2D" uid="uid://b8xj6gwg3vfq2" path="res://textures/items/thickMug.png" id="6_no22r"]
 

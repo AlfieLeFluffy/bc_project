@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bmukbxm42112v"]
 
-[ext_resource type="Script" path="res://scripts/persistence/persistence_menu.gd" id="1_re8o2"]
+[ext_resource type="Script" uid="uid://338f8llylvby" path="res://scripts/persistence/persistence_menu.gd" id="1_re8o2"]
 [ext_resource type="PackedScene" uid="uid://bcdby6svlp0fj" path="res://scenes/UI/backgrounds/fade_background.tscn" id="2_ifd12"]
 [ext_resource type="Theme" uid="uid://d2b8574nrw82u" path="res://settings/persistence_menu_theme.tres" id="3_l1glr"]
 

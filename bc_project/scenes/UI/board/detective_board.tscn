@@ -1,13 +1,13 @@
 [gd_scene load_steps=20 format=3 uid="uid://c73m21uddf5ye"]
 
-[ext_resource type="Script" path="res://scenes/UI/board/board_controler.gd" id="1_hmund"]
+[ext_resource type="Script" uid="uid://cbq3jb38hm50o" path="res://scenes/UI/board/board_controler.gd" id="1_hmund"]
 [ext_resource type="PackedScene" uid="uid://bcdby6svlp0fj" path="res://scenes/UI/backgrounds/fade_background.tscn" id="2_jxns0"]
-[ext_resource type="Script" path="res://scenes/UI/board/board_movement.gd" id="3_myonu"]
+[ext_resource type="Script" uid="uid://dsqxah3531rjv" path="res://scenes/UI/board/board_movement.gd" id="3_myonu"]
 [ext_resource type="Texture2D" uid="uid://cwqhqr5tnxgpm" path="res://textures/ui/board/board_background_UI.png" id="4_l2w5m"]
-[ext_resource type="Script" path="res://scenes/UI/board/element_controller.gd" id="6_mvk05"]
-[ext_resource type="Script" path="res://scenes/UI/board/connection_controller.gd" id="7_jjw5p"]
+[ext_resource type="Script" uid="uid://dvh43md5q2nmy" path="res://scenes/UI/board/element_controller.gd" id="6_mvk05"]
+[ext_resource type="Script" uid="uid://cjt28j8mp3x8r" path="res://scenes/UI/board/connection_controller.gd" id="7_jjw5p"]
 [ext_resource type="PackedScene" uid="uid://c3cr13ksd4qam" path="res://scenes/UI/buttons/button_symbol_plus.tscn" id="8_7p7h1"]
-[ext_resource type="Script" path="res://scenes/UI/buttons/create_note_button.gd" id="9_co2af"]
+[ext_resource type="Script" uid="uid://ddprgewir1q4l" path="res://scenes/UI/buttons/create_note_button.gd" id="9_co2af"]
 [ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="10_1gtg5"]
 
 [sub_resource type="Shader" id="Shader_kj08y"]

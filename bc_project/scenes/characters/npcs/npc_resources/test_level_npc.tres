@@ -1,8 +1,9 @@
 [gd_resource type="Resource" script_class="npcResource" load_steps=2 format=3 uid="uid://yu00wqy70eyc"]
 
-[ext_resource type="Script" path="res://scenes/characters/npcs/npc_resource.gd" id="3_3ekfd"]
+[ext_resource type="Script" uid="uid://drj3o0qsip6ss" path="res://scenes/characters/npcs/npc_resource.gd" id="3_3ekfd"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("3_3ekfd")
 npcName = "Eifla"
+frameVector = Vector2(1, 1)

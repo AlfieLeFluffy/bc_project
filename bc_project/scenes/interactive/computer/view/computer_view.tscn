@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmhc6up2mfkmg"]
+[gd_scene load_steps=6 format=3 uid="uid://dmhc6up2mfkmg"]
 
-[ext_resource type="Script" path="res://scenes/interactive/computer/view/computer_view_controller.gd" id="1_3gobr"]
+[ext_resource type="Script" uid="uid://cr2qqw6fh2126" path="res://scenes/interactive/computer/view/computer_view_controller.gd" id="1_3gobr"]
 [ext_resource type="PackedScene" uid="uid://bcdby6svlp0fj" path="res://scenes/UI/backgrounds/fade_background.tscn" id="2_hlmbo"]
 [ext_resource type="Theme" uid="uid://bmmbdkh0ysioo" path="res://settings/computer_view_theme.tres" id="3_3u4ub"]
-[ext_resource type="PackedScene" uid="uid://d4dmwm8nm73fy" path="res://scenes/interactive/computer/view/prefab/application_shortcut.tscn" id="4_ug082"]
 
 [sub_resource type="Gradient" id="Gradient_61o1a"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -58,9 +57,6 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 8
 
-[node name="Application" parent="Computer/Applications" instance=ExtResource("4_ug082")]
-layout_mode = 2
-
 [node name="TaskBar" type="HBoxContainer" parent="Computer"]
 layout_mode = 1
 anchors_preset = -1
@@ -73,8 +69,8 @@ offset_top = -0.120056
 offset_right = 0.559937
 offset_bottom = -0.0800781
 
-[node name="Button" type="Button" parent="Computer/TaskBar"]
+[node name="ShutdownButton" type="Button" parent="Computer/TaskBar"]
 layout_mode = 2
 text = "Shutdown"
 
-[connection signal="pressed" from="Computer/TaskBar/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Computer/TaskBar/ShutdownButton" to="." method="_on_shutdown_button_pressed"]

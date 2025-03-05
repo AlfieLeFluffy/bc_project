@@ -1,25 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://d4dmwm8nm73fy"]
+[gd_scene load_steps=6 format=3 uid="uid://d4dmwm8nm73fy"]
 
-[sub_resource type="Gradient" id="Gradient_x8j1h"]
+[ext_resource type="Script" uid="uid://c4ff6c4il8pnd" path="res://scenes/interactive/computer/view/prefab/application_shortcut.gd" id="1_6rbl6"]
+[ext_resource type="Theme" uid="uid://cvofjgglg5okk" path="res://settings/application_shortcut_theme.tres" id="2_uobbq"]
+[ext_resource type="Shader" uid="uid://beshjcnacfelm" path="res://shaders/outline_shader.gdshader" id="3_brey1"]
+[ext_resource type="Texture2D" uid="uid://debn1njp7dxwv" path="res://textures/computer/application_icons/file_explorer_icon.png" id="4_0emby"]
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_6c7b5"]
-gradient = SubResource("Gradient_x8j1h")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hqrjx"]
+shader = ExtResource("3_brey1")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
 
 [node name="Application" type="VBoxContainer"]
-custom_minimum_size = Vector2(130, 150)
+custom_minimum_size = Vector2(110, 130)
+anchors_preset = -1
+anchor_right = 0.057
+anchor_bottom = 0.12
+offset_right = -109.44
+offset_bottom = -129.6
+script = ExtResource("1_6rbl6")
+icons = {
+"FILE_EXPLORER": ExtResource("4_0emby")
+}
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MContainer" type="MarginContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("2_uobbq")
 
-[node name="Icon" type="TextureRect" parent="MarginContainer"]
+[node name="Icon" type="TextureRect" parent="MContainer"]
+material = SubResource("ShaderMaterial_hqrjx")
 layout_mode = 2
 size_flags_vertical = 3
-texture = SubResource("GradientTexture1D_6c7b5")
-expand_mode = 2
+expand_mode = 1
 
-[node name="Label" type="Label" parent="."]
+[node name="ApplicationLabel" type="Label" parent="."]
 layout_mode = 2
 text = "Application"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -5,9 +5,12 @@ class_name ApplicationResource extends Resource
 """
 enum applicationTypes {FILE_EXPLORER}
 
-
 """
 --- Application Export
 """
 
-@export var fileExplorer: bool = true
+@export var applications: Dictionary
+
+@export var activeApplications: Dictionary = {
+	
+}

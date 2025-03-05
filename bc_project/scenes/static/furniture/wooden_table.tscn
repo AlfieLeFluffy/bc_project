@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqm4y7yl8uqcq"]
+[gd_scene load_steps=4 format=3 uid="uid://bqm4y7yl8uqcq"]
 
 [ext_resource type="Texture2D" uid="uid://d2gxi47mh24cd" path="res://textures/furniture/wooden_table.png" id="1_jgn5b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yvn7t"]
 size = Vector2(61, 4)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tr1sb"]
+polygon = PackedVector2Array(-30, -29, 29, -29, 29, -27, -30, -27)
 
 [node name="WoodenTable" type="StaticBody2D"]
 
@@ -15,3 +18,6 @@ texture = ExtResource("1_jgn5b")
 position = Vector2(-0.5, -28)
 shape = SubResource("RectangleShape2D_yvn7t")
 one_way_collision = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_tr1sb")

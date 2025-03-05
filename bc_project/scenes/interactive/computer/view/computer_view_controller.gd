@@ -1,13 +1,21 @@
 extends CanvasLayer
 
 """
+--- Preload Constants
+"""
+const preloadApplicationShortcut = preload("res://scenes/interactive/computer/view/prefab/application_shortcut.tscn")
+
+"""
 --- Runtime Variables
 """
 signal create_board_element()
 
-var type: ComputerObjectResource.computerTypeEnum
-var computerName: String
+var computerResource: ComputerObjectResource
+var directoryFileResource: DirectoryFileResource
+var applicationResource: ApplicationResource
 
+@onready var computer: Control = $Computer
+@onready var appGrid: GridContainer = computer.get_node("Applications")
 
 """
 --- Setup Methods
@@ -15,10 +23,22 @@ var computerName: String
 func _ready() -> void:
 	pass
 
-func setup_computer_view(computerResource: ComputerObjectResource, directoryFileResource: DirectoryFileResource, applicationResource: ApplicationResource) -> void:
-	type = computerResource.computerType
-	computerName = computerResource.computerName
+func setup_computer_view(_computerResource: ComputerObjectResource, _directoryFileResource: DirectoryFileResource, _applicationResource: ApplicationResource) -> void:
+	computerResource = _computerResource
+	directoryFileResource = _directoryFileResource
+	applicationResource = _applicationResource
 	
+	setup_shortcuts()
+
+func setup_shortcuts() -> void:
+	#for applicationKey in applicationResource.applications:
+	#	if applicationResource.applications[applicationKey]:
+	#		applicationResource.applicationTypes.find_key(applicationKey)
+	var applicationShortcutInstance: Node = preloadApplicationShortcut.instantiate()
+	appGrid.add_child(applicationShortcutInstance)
+	applicationShortcutInstance.setup_application_shortcut(applicationResource.applicationTypes.FILE_EXPLORER)
+	
+
 
 """
 --- Runtime Methdos
@@ -33,7 +53,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func exit_view() ->void:
 	queue_free()
+	
 
-func _on_button_pressed() -> void:
-	Signals.emit_signal("shutdown_computer",computerName)
+"""
+--- Signal Methdos
+"""
+func _on_shutdown_button_pressed() -> void:
+	Signals.emit_signal("shutdown_computer",computerResource.computerName)
 	exit_view()

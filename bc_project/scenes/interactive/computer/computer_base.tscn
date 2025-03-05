@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://b55y4332x8fpo"]
 
 [ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable_base.tscn" id="1_uiomx"]
-[ext_resource type="Script" path="res://scenes/interactive/computer/computer_base.gd" id="2_eomu1"]
-[ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="2_o7ltw"]
+[ext_resource type="Script" uid="uid://deb36kcamvccq" path="res://scenes/interactive/computer/computer_base.gd" id="2_eomu1"]
+[ext_resource type="Shader" uid="uid://beshjcnacfelm" path="res://shaders/outline_shader.gdshader" id="2_o7ltw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hp7a7"]
 resource_local_to_scene = true

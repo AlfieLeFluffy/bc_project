@@ -1,16 +1,17 @@
 [gd_scene load_steps=10 format=3 uid="uid://b6sidrweg1p0"]
 
-[ext_resource type="Script" path="res://scenes/interactive/interactable.gd" id="1_m6fs8"]
-[ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="2_5kqll"]
+[ext_resource type="Script" uid="uid://ccv0o03iblf8l" path="res://scenes/interactive/interactable.gd" id="1_m6fs8"]
+[ext_resource type="Shader" uid="uid://beshjcnacfelm" path="res://shaders/outline_shader.gdshader" id="2_5kqll"]
 [ext_resource type="Texture2D" uid="uid://bk0ke78wvceem" path="res://textures/symbols/textLable.png" id="2_igama"]
-[ext_resource type="Script" path="res://scenes/interactive/interactable_resource.gd" id="3_0x2wn"]
+[ext_resource type="Script" uid="uid://cwo1tqjwxj8gd" path="res://scenes/interactive/interactable_resource.gd" id="3_0x2wn"]
 [ext_resource type="LabelSettings" uid="uid://d1lvtjugos2m4" path="res://settings/Interactable_label_settings.tres" id="4_oco1s"]
-[ext_resource type="Script" path="res://scripts/interactive_handler.gd" id="6_wipk1"]
+[ext_resource type="Script" uid="uid://e536tfomryho" path="res://scripts/interactive_handler.gd" id="6_wipk1"]
 
 [sub_resource type="Resource" id="Resource_0mjov"]
 script = ExtResource("3_0x2wn")
 item_name = ""
 description = ""
+detective_board_toggle = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_356m4"]
 resource_local_to_scene = true

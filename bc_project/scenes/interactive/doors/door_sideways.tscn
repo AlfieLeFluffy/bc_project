@@ -1,8 +1,8 @@
 [gd_scene load_steps=27 format=3 uid="uid://xdset1j1nj24"]
 
 [ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable_base.tscn" id="1_o2gm0"]
-[ext_resource type="Script" path="res://scenes/interactive/doors/door_sideways.gd" id="2_q4uyh"]
-[ext_resource type="Shader" path="res://shaders/outline_shader.gdshader" id="4_d51ol"]
+[ext_resource type="Script" uid="uid://dr0kd3eo7hnrg" path="res://scenes/interactive/doors/door_sideways.gd" id="2_q4uyh"]
+[ext_resource type="Shader" uid="uid://beshjcnacfelm" path="res://shaders/outline_shader.gdshader" id="4_d51ol"]
 [ext_resource type="Texture2D" uid="uid://b0eois1rqs5gg" path="res://textures/doors/door_grey.png" id="6_obk3w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mq2eq"]
@@ -108,11 +108,11 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o77mj"]
 _data = {
-"RESET": SubResource("Animation_64t1r"),
-"closed": SubResource("Animation_xus3f"),
-"closing": SubResource("Animation_0sy7f"),
-"open": SubResource("Animation_fll4u"),
-"opening": SubResource("Animation_3w3h0")
+&"RESET": SubResource("Animation_64t1r"),
+&"closed": SubResource("Animation_xus3f"),
+&"closing": SubResource("Animation_0sy7f"),
+&"open": SubResource("Animation_fll4u"),
+&"opening": SubResource("Animation_3w3h0")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_flm6r"]

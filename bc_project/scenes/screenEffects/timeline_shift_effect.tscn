@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://clyigeb0nm6le"]
 
 [ext_resource type="Texture2D" uid="uid://cquvvwpt4svef" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_0.png" id="1_1vf7b"]
-[ext_resource type="Script" path="res://scenes/screenEffects/timeline_shift_effect.gd" id="1_h4pix"]
+[ext_resource type="Script" uid="uid://x1ru8myax8lm" path="res://scenes/screenEffects/timeline_shift_effect.gd" id="1_h4pix"]
 [ext_resource type="Texture2D" uid="uid://drspipthklq8n" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_1.png" id="2_xbhuf"]
 [ext_resource type="Texture2D" uid="uid://wbc03aq0aiw2" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_2.png" id="3_pks4p"]
 [ext_resource type="Texture2D" uid="uid://3lqfkr5jpx1m" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_3.png" id="4_xv3b5"]

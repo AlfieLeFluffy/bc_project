@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bt1w7rh3ist1a"]
 
-[ext_resource type="Script" path="res://scripts/persistence/prefabs/new_save_item.gd" id="1_jfb5d"]
+[ext_resource type="Script" uid="uid://dkgi8643k6cwc" path="res://scripts/persistence/prefabs/new_save_item.gd" id="1_jfb5d"]
 
 [node name="NewSaveItem" type="HBoxContainer"]
 size_flags_horizontal = 3

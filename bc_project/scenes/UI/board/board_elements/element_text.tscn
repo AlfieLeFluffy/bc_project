@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://of5gnadmmnnv"]
 
 [ext_resource type="PackedScene" uid="uid://cxwyhyyqufru4" path="res://scenes/UI/board/board_elements/element_base.tscn" id="1_vbi3x"]
-[ext_resource type="Script" path="res://scenes/UI/board/board_elements/element_text.gd" id="2_bnnxu"]
+[ext_resource type="Script" uid="uid://drie5ct5jjr5w" path="res://scenes/UI/board/board_elements/element_text.gd" id="2_bnnxu"]
 [ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="3_41ihc"]
 
 [node name="ElementText" groups=["Persistent"] instance=ExtResource("1_vbi3x")]

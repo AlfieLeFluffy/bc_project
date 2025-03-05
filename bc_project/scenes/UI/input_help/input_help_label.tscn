@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://buhgyj3o4rb2h"]
 
 [ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="1_rsg3a"]
-[ext_resource type="Script" path="res://scenes/UI/input_help/input_help_label.gd" id="2_21fmh"]
+[ext_resource type="Script" uid="uid://uvaxehsprlpr" path="res://scenes/UI/input_help/input_help_label.gd" id="2_21fmh"]
 
 [node name="InputHelpLabel" type="RichTextLabel"]
 mouse_force_pass_scroll_events = false

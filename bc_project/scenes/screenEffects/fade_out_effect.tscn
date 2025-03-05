@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bh08dg10hb1rt"]
 
-[ext_resource type="Script" path="res://scenes/screenEffects/fade_in_effect.gd" id="1_2vhfb"]
-[ext_resource type="Shader" path="res://scenes/screenEffects/fade_effect.gdshader" id="2_i0uc3"]
+[ext_resource type="Script" uid="uid://dluyx1kp1htgq" path="res://scenes/screenEffects/fade_in_effect.gd" id="1_2vhfb"]
+[ext_resource type="Shader" uid="uid://dwnw8vimin0os" path="res://scenes/screenEffects/fade_effect.gdshader" id="2_i0uc3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nfdhv"]
 shader = ExtResource("2_i0uc3")

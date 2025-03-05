@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://b6ly7p2wds1qd"]
 
-[ext_resource type="Script" path="res://scenes/audioManager/audio_manager.gd" id="1_648cp"]
-[ext_resource type="Script" path="res://scenes/audioManager/audio_track.gd" id="2_rxmlp"]
-[ext_resource type="Script" path="res://scenes/audioManager/audio_manager_resource.gd" id="3_12wdy"]
+[ext_resource type="Script" uid="uid://os1lygo5covp" path="res://scenes/audioManager/audio_manager.gd" id="1_648cp"]
+[ext_resource type="Script" uid="uid://ka36opylsexm" path="res://scenes/audioManager/audio_track.gd" id="2_rxmlp"]
+[ext_resource type="Script" uid="uid://3xfscdn7smve" path="res://scenes/audioManager/audio_manager_resource.gd" id="3_12wdy"]
 
 [sub_resource type="Resource" id="Resource_jm4yi"]
 script = ExtResource("3_12wdy")

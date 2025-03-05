@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bvxpeerpgh7a6"]
 
-[ext_resource type="Script" path="res://scenes/UI/input_help/input_help.gd" id="1_0pxsm"]
+[ext_resource type="Script" uid="uid://iy5d2tic5d7t" path="res://scenes/UI/input_help/input_help.gd" id="1_0pxsm"]
 
 [node name="InputHelp" type="CanvasLayer"]
 
