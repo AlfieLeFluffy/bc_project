@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8e6f6vgnjh52"]
+
+[ext_resource type="Script" uid="uid://bowfbht0pk73b" path="res://scenes/interactive/computer/view/prefab/application_content.gd" id="1_jmchf"]
+
+[node name="ApplicationContent" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jmchf")

@@ -36,4 +36,6 @@ signal start_npc_conversation_state(npc)
 signal setup_conversation_profile(side,character_name,picture)
 signal end_npc_conversation_state()
 
+# Singnal for updating computer interactables
 signal shutdown_computer(computerName)
+signal hide_computer_view(computerName)

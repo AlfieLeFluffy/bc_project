@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://dl4x0hvnigl4w"]
+
+[ext_resource type="PackedScene" uid="uid://c8e6f6vgnjh52" path="res://scenes/interactive/computer/view/prefab/application_content.tscn" id="1_6j8py"]
+[ext_resource type="Script" uid="uid://bj2s5yuym1f5h" path="res://scenes/interactive/computer/view/prefab/content_prefab/command_prompt_content.gd" id="2_kih3j"]
+
+[node name="ApplicationContent" instance=ExtResource("1_6j8py")]
+custom_minimum_size = Vector2(400, 0)
+script = ExtResource("2_kih3j")
+commandReverse = {
+"cat": 2,
+"cd": 1,
+"help": 3,
+"ls": 0
+}
+commandMaxArguments = {
+0: 1,
+1: 1,
+2: 99,
+3: 1
+}
+commandMethods = null
+errorMessages = {
+-99: "APPLICATION_COMMAND_ERROR_99",
+-12: "APPLICATION_COMMAND_ERROR_12",
+-11: "APPLICATION_COMMAND_ERROR_11",
+-10: "APPLICATION_COMMAND_ERROR_10",
+-3: "APPLICATION_COMMAND_ERROR_3",
+-2: "APPLICATION_COMMAND_ERROR_2",
+-1: "APPLICATION_COMMAND_ERROR_1"
+}
+helpMessages = ["APPLICATION_COMMAND_PROMPT_HELP_HELP", "APPLICATION_COMMAND_PROMPT_HELP_LS", "APPLICATION_COMMAND_PROMPT_HELP_CD", "APPLICATION_COMMAND_PROMPT_HELP_CAT"]
+commandSymbols = ["/"]
+
+[node name="ContentStructure" type="VBoxContainer" parent="." index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CommandOutput" type="RichTextLabel" parent="ContentStructure" index="0"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+scroll_following = true
+vertical_alignment = 2
+
+[node name="CommandInput" type="LineEdit" parent="ContentStructure" index="1"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+placeholder_text = "APPLICATION_COMMAND_PROMPT_INPUT_PLACEHOLDER"
+keep_editing_on_text_submit = true
+caret_blink = true
+
+[connection signal="text_submitted" from="ContentStructure/CommandInput" to="." method="_on_command_input_text_submitted"]

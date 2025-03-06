@@ -46,3 +46,6 @@ func exit_view() ->void:
 """
 func _on_back_button_pressed() -> void:
 	exit_view()
+
+func _on_background_button_pressed() -> void:
+	exit_view()

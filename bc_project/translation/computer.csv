@@ -1,3 +1,27 @@
 key,en,cz
+START_MENU_BUTTON,Start Menu,Start Menu
+SHUTDOWN_BUTTON,Shutdown,Vypnout
+FILE_EXPLORER_APPLICATION_NAME,FIle Explorer,Prohlížeč Souborů
+COMMAND_PROMPT_APPLICATION_NAME,Command Prompt,Příkazová Řádka
+TEXT_VIEW_APPLICATION_NAME,Text Viewer,Poznámkový Blok
+APPLICATION_COMMAND_PROMPT_TOAST_OS_GREET,Toast_OS Command Prompt\n\tIf you need any help you can use the command,Toast_OS Příkazová Rádka\n\tPro pomoc používejte
+APPLICATION_COMMAND_PROMPT_INPUT_PLACEHOLDER,<input command or use /help>,<vložte príkaz a nebo použijte /help>
+APPLICATION_COMMAND_PROMPT_HELP_SETUP,Available commands:,Možné příkazy
+APPLICATION_COMMAND_PROMPT_HELP_HELP,/help ,/help
+APPLICATION_COMMAND_PROMPT_HELP_LS,/ls [-r](recursive) - lists all file and directories in a directory,/ls [-r](rekurzivně) - vypíše všehcny soubory a složky ve složce
+APPLICATION_COMMAND_PROMPT_HELP_CD,/cd [filepath] - moves active directory to filepath ,/cd [filepath] - posune aktivní složku podle souborové cesty
+APPLICATION_COMMAND_PROMPT_HELP_CAT,/cat [filepath] - reads out contents of a file at filepath destination  ,/cat [filepath] - vypíš obsah souboru podle souborové cesty
 DIRECTORY_DOCUMENTS,Documents,Dokumenty
 DIRECTORY_PICTURES,Pictures,Obrazky
+FILE_TEST_NAME,Test_File,Testovní_Soubor
+FILE_TEST_CONTENTS,Test Contents,Testovní Obsah
+APPLICATION_COMMAND_ERROR_BEGINNING,Error: ,Error:
+APPLICATION_COMMAND_ERROR_ENDING, in input: , ve vstupu:
+APPLICATION_COMMAND_ERROR_1,Unrecognized command character/first character,Nerozpoznaný příkazový charakter/první charakter
+APPLICATION_COMMAND_ERROR_2,No command found,Žádný príkaz nenalezen
+APPLICATION_COMMAND_ERROR_3,Unrecognized command,Nerozpoznaný příkaz
+APPLICATION_COMMAND_ERROR_10,Exceded maximum arguments of command,Překonán maximalní počet argumentů
+APPLICATION_COMMAND_ERROR_11,Unknown or wrong arguments,Neznámé a nebo nesprávné argumenty
+APPLICATION_COMMAND_ERROR_12,Non-existent directory,Neexistující složka
+APPLICATION_COMMAND_ERROR_12,File doesn't exist,Soubor neexistuje
+APPLICATION_COMMAND_ERROR_99,Uknown error,Neznámý error

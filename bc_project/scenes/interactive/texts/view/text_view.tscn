@@ -20,6 +20,17 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_plhy6")
 
+[node name="BackgroundButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+action_mode = 0
+button_mask = 7
+flat = true
+
 [node name="TextTexture" type="TextureRect" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
@@ -69,6 +80,7 @@ bbcode_enabled = true
 text = "Test"
 
 [node name="BackButton" type="Button" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.435
@@ -84,4 +96,5 @@ grow_vertical = 2
 focus_mode = 0
 text = "BACK_BUTTON"
 
+[connection signal="pressed" from="Control/BackgroundButton" to="." method="_on_background_button_pressed"]
 [connection signal="pressed" from="Control/BackButton" to="." method="_on_back_button_pressed"]

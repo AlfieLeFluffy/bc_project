@@ -1,16 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqiiad58pt1w"]
+[gd_scene load_steps=6 format=3 uid="uid://cqiiad58pt1w"]
 
 [ext_resource type="PackedScene" uid="uid://b55y4332x8fpo" path="res://scenes/interactive/computer/computer_base.tscn" id="1_o5ktb"]
 [ext_resource type="Shader" uid="uid://beshjcnacfelm" path="res://shaders/outline_shader.gdshader" id="2_jt2m4"]
-[ext_resource type="Script" uid="uid://btpud4ox3m0dx" path="res://scenes/interactive/computer/resources/application_resource.gd" id="2_qnikm"]
 [ext_resource type="Texture2D" uid="uid://b0k24ufjpdxlt" path="res://textures/computer/tabletop_computer_base.png" id="3_g6hcw"]
-
-[sub_resource type="Resource" id="Resource_k0yy4"]
-script = ExtResource("2_qnikm")
-applications = {
-"FILE_EXPLORER": true
-}
-activeApplications = {}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q0kl2"]
 resource_local_to_scene = true
@@ -23,7 +15,6 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 
 [node name="TabletopComputer" instance=ExtResource("1_o5ktb")]
-applicationResource = SubResource("Resource_k0yy4")
 
 [node name="Labels" parent="." index="0"]
 position = Vector2(0, -38)

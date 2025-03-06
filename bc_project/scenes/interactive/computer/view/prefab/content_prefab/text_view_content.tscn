@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmgn555m15nkc"]
+
+[ext_resource type="PackedScene" uid="uid://c8e6f6vgnjh52" path="res://scenes/interactive/computer/view/prefab/application_content.tscn" id="1_pqund"]
+[ext_resource type="Script" uid="uid://lrmgrlyf7v5m" path="res://scenes/interactive/computer/view/prefab/content_prefab/text_view_content.gd" id="2_3vrag"]
+[ext_resource type="Theme" uid="uid://bhj8uwmwxha3" path="res://settings/application_text_view_theme.tres" id="2_ypfnn"]
+
+[sub_resource type="Gradient" id="Gradient_ypfnn"]
+colors = PackedColorArray(0.923873, 0.905835, 0.827821, 1, 0.879931, 0.849746, 0.730668, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d4cgp"]
+gradient = SubResource("Gradient_ypfnn")
+
+[node name="ApplicationContent" instance=ExtResource("1_pqund")]
+theme = ExtResource("2_ypfnn")
+script = ExtResource("2_3vrag")
+
+[node name="TextBackground" type="TextureRect" parent="." index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_d4cgp")
+
+[node name="TextView" type="RichTextLabel" parent="." index="1"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+bbcode_enabled = true
+selection_enabled = true

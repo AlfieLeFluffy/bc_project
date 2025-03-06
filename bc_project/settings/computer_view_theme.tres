@@ -1,7 +1,11 @@
-[gd_resource type="Theme" format=3 uid="uid://bmmbdkh0ysioo"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bmmbdkh0ysioo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i6u7g"]
 
 [resource]
 MarginContainer/constants/margin_bottom = 10
 MarginContainer/constants/margin_left = 10
 MarginContainer/constants/margin_right = 10
 MarginContainer/constants/margin_top = 10
+PanelContainer/styles/panel = SubResource("StyleBoxEmpty_i6u7g")
+VBoxContainer/constants/separation = 0

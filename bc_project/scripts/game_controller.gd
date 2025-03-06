@@ -92,6 +92,12 @@ func _unhandled_input(event: InputEvent) -> void:
 --- Gloabal Minsc Methods
 """
 
+func multiply_string(input:String,times:int) -> String:
+	var output: String = ""
+	for idx in range(times):
+		output = output + input
+	return output
+
 func change_scene(sceneName:String) -> bool:
 	sceneToLoad = Global.scenePaths[sceneName]
 	if sceneToLoad:

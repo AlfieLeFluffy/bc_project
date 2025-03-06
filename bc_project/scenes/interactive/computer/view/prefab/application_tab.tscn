@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://brmmncd6anmvi"]
+
+[ext_resource type="Script" uid="uid://c7t8nrpnag4f7" path="res://scenes/interactive/computer/view/prefab/application_tab.gd" id="1_yh6im"]
+
+[node name="ApplicationTab" type="Button"]
+anchors_preset = -1
+anchor_right = 0.106
+anchor_bottom = 0.029
+offset_right = -203.52
+offset_bottom = -31.32
+text = "APPLICATION_TAB_NAME"
+script = ExtResource("1_yh6im")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

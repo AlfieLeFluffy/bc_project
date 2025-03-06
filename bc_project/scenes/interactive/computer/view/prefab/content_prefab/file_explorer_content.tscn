@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://dywksr000ho8c"]
+
+[ext_resource type="PackedScene" uid="uid://c8e6f6vgnjh52" path="res://scenes/interactive/computer/view/prefab/application_content.tscn" id="1_0cccp"]
+[ext_resource type="Script" uid="uid://badof0we3wa41" path="res://scenes/interactive/computer/view/prefab/content_prefab/file_explorer_content.gd" id="2_3vnbd"]
+[ext_resource type="Texture2D" uid="uid://c188306nonsl3" path="res://textures/symbols/back.png" id="3_6ty7b"]
+[ext_resource type="Texture2D" uid="uid://cd3ls5ss081sy" path="res://textures/symbols/up.png" id="4_wrn72"]
+[ext_resource type="Texture2D" uid="uid://bycw3aqaetfkk" path="res://textures/symbols/find.png" id="5_ibo3j"]
+
+[node name="FileExplorerContent" instance=ExtResource("1_0cccp")]
+script = ExtResource("2_3vnbd")
+dirFileIcons = {
+0: "res://textures/computer/file_explorer_icons/folder_empty.png",
+1: "res://textures/computer/file_explorer_icons/folder_full.png",
+2: "res://textures/computer/file_explorer_icons/file.png"
+}
+
+[node name="ContentStructure" type="VBoxContainer" parent="." index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ContentTopbar" type="HBoxContainer" parent="ContentStructure" index="0"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="ContentStructure/ContentTopbar" index="0"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+icon = ExtResource("3_6ty7b")
+expand_icon = true
+
+[node name="UpButton" type="Button" parent="ContentStructure/ContentTopbar" index="1"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+icon = ExtResource("4_wrn72")
+expand_icon = true
+
+[node name="FilepathEdit" type="LineEdit" parent="ContentStructure/ContentTopbar" index="2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Filepath"
+editable = false
+
+[node name="FindButton" type="Button" parent="ContentStructure/ContentTopbar" index="3"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+disabled = true
+icon = ExtResource("5_ibo3j")
+expand_icon = true
+
+[node name="FileDirectoryList" type="ItemList" parent="ContentStructure" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+allow_reselect = true
+
+[connection signal="pressed" from="ContentStructure/ContentTopbar/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="ContentStructure/ContentTopbar/UpButton" to="." method="_on_up_button_pressed"]
+[connection signal="text_submitted" from="ContentStructure/ContentTopbar/FilepathEdit" to="." method="_on_filepath_edit_text_submitted"]
+[connection signal="pressed" from="ContentStructure/ContentTopbar/FindButton" to="." method="_on_find_button_pressed"]
+[connection signal="item_selected" from="ContentStructure/FileDirectoryList" to="." method="_on_file_directory_list_item_selected"]

@@ -46,6 +46,7 @@ func _physics_process(delta: float) -> void:
 	elif direction and Input.get_axis("ui_left", "ui_right"):
 		velocity.x = direction * walkSpeed
 	else:
+		direction = 0
 		velocity.x = move_toward(velocity.x, 0, walkSpeed)
 
 	set_direction_flip()

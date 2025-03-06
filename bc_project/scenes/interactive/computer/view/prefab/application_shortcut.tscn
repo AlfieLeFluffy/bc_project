@@ -1,43 +1,47 @@
-[gd_scene load_steps=6 format=3 uid="uid://d4dmwm8nm73fy"]
+[gd_scene load_steps=5 format=3 uid="uid://d4dmwm8nm73fy"]
 
 [ext_resource type="Script" uid="uid://c4ff6c4il8pnd" path="res://scenes/interactive/computer/view/prefab/application_shortcut.gd" id="1_6rbl6"]
 [ext_resource type="Theme" uid="uid://cvofjgglg5okk" path="res://settings/application_shortcut_theme.tres" id="2_uobbq"]
 [ext_resource type="Shader" uid="uid://beshjcnacfelm" path="res://shaders/outline_shader.gdshader" id="3_brey1"]
-[ext_resource type="Texture2D" uid="uid://debn1njp7dxwv" path="res://textures/computer/application_icons/file_explorer_icon.png" id="4_0emby"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hqrjx"]
+resource_local_to_scene = true
 shader = ExtResource("3_brey1")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 
 [node name="Application" type="VBoxContainer"]
-custom_minimum_size = Vector2(110, 130)
+custom_minimum_size = Vector2(90, 110)
 anchors_preset = -1
-anchor_right = 0.057
-anchor_bottom = 0.12
-offset_right = -109.44
-offset_bottom = -129.6
+anchor_right = 0.047
+anchor_bottom = 0.117
+offset_right = -0.240005
+offset_bottom = -0.360008
+theme = ExtResource("2_uobbq")
 script = ExtResource("1_6rbl6")
-icons = {
-"FILE_EXPLORER": ExtResource("4_0emby")
-}
 
 [node name="MContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("2_uobbq")
 
 [node name="Icon" type="TextureRect" parent="MContainer"]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_hqrjx")
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_vertical = 3
 expand_mode = 1
+stretch_mode = 5
 
 [node name="ApplicationLabel" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-text = "Application"
+size_flags_vertical = 1
+text = "APPLICATION_NAME"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

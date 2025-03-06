@@ -344,14 +344,14 @@ script = ExtResource("15_p50u5")
 dialog = ExtResource("10_wnetc")
 titleName = "test"
 
-[sub_resource type="Resource" id="Resource_vptxo"]
+[sub_resource type="Resource" id="Resource_78u6e"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
 description = "TEST_DESCRIPTION"
 detective_board_toggle = true
 
-[sub_resource type="Resource" id="Resource_0nxvq"]
+[sub_resource type="Resource" id="Resource_cj4me"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
@@ -369,7 +369,7 @@ script = ExtResource("15_p50u5")
 dialog = ExtResource("17_ls76e")
 titleName = "Ribli"
 
-[sub_resource type="Resource" id="Resource_1u7m5"]
+[sub_resource type="Resource" id="Resource_0d6o1"]
 resource_local_to_scene = true
 script = ExtResource("24_frqwj")
 textName = "TEST_TEXT_NAME"
@@ -382,22 +382,34 @@ item_name = ""
 description = ""
 detective_board_toggle = true
 
-[sub_resource type="Resource" id="Resource_l1irx"]
+[sub_resource type="Resource" id="Resource_dgc65"]
 script = ExtResource("23_trjr1")
 computerName = "Test"
 computerType = 0
 computerState = true
+metadata/_custom_type_script = "uid://cbgr7ncuyd2t0"
 
-[sub_resource type="Resource" id="Resource_l6hgs"]
+[sub_resource type="Resource" id="Resource_jlhf4"]
 script = ExtResource("24_gn46e")
+bakctrackName = "_backtrack"
 root = {
-"DIRECTORY_DOCUMENTS": {}
+"DIRECTORY_DOCUMENTS": {
+"FILE_TEST_NAME": "FILE_TEST_CONTENTS"
+},
+"DIRECTORY_PICTURES": {},
+"FILE_TEST_NAME": "FILE_TEST_CONTENTS"
 }
+metadata/_custom_type_script = "uid://rcjsy5lo00ya"
 
-[sub_resource type="Resource" id="Resource_inkyf"]
+[sub_resource type="Resource" id="Resource_gv2o7"]
 script = ExtResource("25_c6ib1")
-applications = {}
+applications = {
+0: true,
+1: true,
+2: true
+}
 activeApplications = {}
+metadata/_custom_type_script = "uid://btpud4ox3m0dx"
 
 [sub_resource type="Resource" id="Resource_x5xhn"]
 script = ExtResource("7_paapu")
@@ -426,21 +438,21 @@ item_name = "THICK_MUG_NAME"
 description = "THICK_MUG_DESCRIPTION"
 detective_board_toggle = true
 
-[sub_resource type="Resource" id="Resource_dgc65"]
+[sub_resource type="Resource" id="Resource_vptxo"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
 description = "TEST_DESCRIPTION"
 detective_board_toggle = true
 
-[sub_resource type="Resource" id="Resource_jlhf4"]
+[sub_resource type="Resource" id="Resource_0nxvq"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
 description = "TEST_DESCRIPTION"
 detective_board_toggle = true
 
-[sub_resource type="Resource" id="Resource_gv2o7"]
+[sub_resource type="Resource" id="Resource_1u7m5"]
 resource_local_to_scene = true
 script = ExtResource("16_2qb3d")
 npcName = "Eifla"
@@ -552,11 +564,11 @@ metadata/Description = "Test Description"
 [node name="DoorSideways" parent="TimelineStateMachine/001/TimelineSpace001/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(504, 289)
 inverted = true
-interactable_resource = SubResource("Resource_vptxo")
+interactable_resource = SubResource("Resource_78u6e")
 
 [node name="DoorSideways2" parent="TimelineStateMachine/001/TimelineSpace001/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(247, 289)
-interactable_resource = SubResource("Resource_0nxvq")
+interactable_resource = SubResource("Resource_cj4me")
 
 [node name="NPCs" type="Node2D" parent="TimelineStateMachine/001/TimelineSpace001"]
 
@@ -569,7 +581,7 @@ dialog_resource = SubResource("Resource_06fav")
 
 [node name="PaperOnWall" parent="TimelineStateMachine/001/TimelineSpace001/Texts" instance=ExtResource("23_l5ajp")]
 position = Vector2(577, 286)
-textRosource = SubResource("Resource_1u7m5")
+textRosource = SubResource("Resource_0d6o1")
 interactable_resource = SubResource("Resource_yo6r0")
 
 [node name="Furniture" type="Node2D" parent="TimelineStateMachine/001/TimelineSpace001"]
@@ -581,9 +593,9 @@ position = Vector2(637, 328)
 
 [node name="TabletopComputer" parent="TimelineStateMachine/001/TimelineSpace001/Computers" instance=ExtResource("22_maqab")]
 position = Vector2(626, 298)
-computerRosource = SubResource("Resource_l1irx")
-directoryFileResource = SubResource("Resource_l6hgs")
-applicationResource = SubResource("Resource_inkyf")
+compRes = SubResource("Resource_dgc65")
+dirFileRes = SubResource("Resource_jlhf4")
+appRes = SubResource("Resource_gv2o7")
 interactable_resource = SubResource("Resource_x5xhn")
 
 [node name="002" type="Node" parent="TimelineStateMachine"]
@@ -633,11 +645,11 @@ metadata/Description = "Test Description"
 [node name="DoorSideways" parent="TimelineStateMachine/002/TimelineSpace002/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(504, 289)
 inverted = true
-interactable_resource = SubResource("Resource_dgc65")
+interactable_resource = SubResource("Resource_vptxo")
 
 [node name="DoorSideways2" parent="TimelineStateMachine/002/TimelineSpace002/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(247, 289)
-interactable_resource = SubResource("Resource_jlhf4")
+interactable_resource = SubResource("Resource_0nxvq")
 
 [node name="NPCs" type="Node2D" parent="TimelineStateMachine/002/TimelineSpace002"]
 
@@ -645,7 +657,7 @@ interactable_resource = SubResource("Resource_jlhf4")
 position = Vector2(58, 293)
 SPEED = 60
 JUMP_VELOCITY = -200
-npc_resource = SubResource("Resource_gv2o7")
+npc_resource = SubResource("Resource_1u7m5")
 dialog_resource = SubResource("Resource_h871w")
 
 [node name="player" parent="." instance=ExtResource("1_wpgi4")]

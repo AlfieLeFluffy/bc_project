@@ -1,14 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmhc6up2mfkmg"]
+[gd_scene load_steps=11 format=3 uid="uid://dmhc6up2mfkmg"]
 
 [ext_resource type="Script" uid="uid://cr2qqw6fh2126" path="res://scenes/interactive/computer/view/computer_view_controller.gd" id="1_3gobr"]
 [ext_resource type="PackedScene" uid="uid://bcdby6svlp0fj" path="res://scenes/UI/backgrounds/fade_background.tscn" id="2_hlmbo"]
 [ext_resource type="Theme" uid="uid://bmmbdkh0ysioo" path="res://settings/computer_view_theme.tres" id="3_3u4ub"]
+[ext_resource type="Script" uid="uid://do02pjpmilx0p" path="res://scenes/interactive/computer/view/start_menu.gd" id="5_tyrwm"]
 
-[sub_resource type="Gradient" id="Gradient_61o1a"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+[sub_resource type="Gradient" id="Gradient_g1v4l"]
+colors = PackedColorArray(0.064, 0.073, 0.1, 1, 0.0248, 0.02936, 0.04, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_hy0s5"]
-gradient = SubResource("Gradient_61o1a")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tyrwm"]
+gradient = SubResource("Gradient_g1v4l")
+
+[sub_resource type="Gradient" id="Gradient_rnnpu"]
+colors = PackedColorArray(0.419608, 0.45098, 0.419608, 1, 0.341176, 0.372549, 0.341176, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qea6g"]
+gradient = SubResource("Gradient_rnnpu")
+
+[sub_resource type="Gradient" id="Gradient_ts3lx"]
+colors = PackedColorArray(0.321569, 0.321569, 0.392157, 1, 0.258824, 0.258824, 0.392157, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nydcq"]
+gradient = SubResource("Gradient_ts3lx")
 
 [node name="ComputerView" type="CanvasLayer"]
 layer = 60
@@ -21,56 +34,113 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -24.0
-offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_3u4ub")
 
+[node name="BackgroundButton" type="Button" parent="Computer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+action_mode = 0
+button_mask = 7
+flat = true
+
 [node name="Screen" type="TextureRect" parent="Computer"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.167
-anchor_top = 0.167
-anchor_right = 0.833
-anchor_bottom = 0.833
-offset_left = -0.640015
-offset_top = -0.360016
-offset_right = 0.639893
-offset_bottom = 0.359924
+anchor_left = 0.115
+anchor_top = 0.12
+anchor_right = 0.885
+anchor_bottom = 0.88
+offset_left = -0.800003
+offset_top = 0.399994
+offset_right = 0.799927
+offset_bottom = -0.400085
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture1D_hy0s5")
+texture = SubResource("GradientTexture1D_tyrwm")
 
-[node name="Applications" type="GridContainer" parent="Computer"]
+[node name="ScreenTextures" type="VBoxContainer" parent="Computer/Screen"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.193
-anchor_top = 0.19
-anchor_right = 0.807
-anchor_bottom = 0.764
-offset_left = -0.559998
-offset_top = -0.200012
-offset_right = 0.559937
-offset_bottom = -0.120056
+anchor_left = 0.034
+anchor_top = 0.03
+anchor_right = 0.966
+anchor_bottom = 0.97
+offset_left = -0.320004
+offset_top = 0.4
+offset_right = 0.319946
+offset_bottom = -0.400024
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ScreenSpaceTexture" type="TextureRect" parent="Computer/Screen/ScreenTextures"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("GradientTexture1D_qea6g")
+
+[node name="TaskBarTexture" type="TextureRect" parent="Computer/Screen/ScreenTextures"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+texture = SubResource("GradientTexture1D_nydcq")
+
+[node name="ScreenOrder" type="VBoxContainer" parent="Computer/Screen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.039
+anchor_top = 0.035
+anchor_right = 0.961
+anchor_bottom = 0.965
+offset_left = -7.72
+offset_top = -3.7
+offset_right = 7.71997
+offset_bottom = 3.69995
+
+[node name="ScreenSpace" type="Control" parent="Computer/Screen/ScreenOrder"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ApplicationsShortcuts" type="GridContainer" parent="Computer/Screen/ScreenOrder/ScreenSpace"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.999
+offset_bottom = -0.263062
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
 columns = 8
 
-[node name="TaskBar" type="HBoxContainer" parent="Computer"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.193
-anchor_top = 0.764
-anchor_right = 0.807
-anchor_bottom = 0.801
-offset_left = -0.559998
-offset_top = -0.120056
-offset_right = 0.559937
-offset_bottom = -0.0800781
-
-[node name="ShutdownButton" type="Button" parent="Computer/TaskBar"]
+[node name="TaskBar" type="HBoxContainer" parent="Computer/Screen/ScreenOrder"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-text = "Shutdown"
 
-[connection signal="pressed" from="Computer/TaskBar/ShutdownButton" to="." method="_on_shutdown_button_pressed"]
+[node name="MenuBar" type="MenuBar" parent="Computer/Screen/ScreenOrder/TaskBar"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="START_MENU_BUTTON" type="PopupMenu" parent="Computer/Screen/ScreenOrder/TaskBar/MenuBar"]
+position = Vector2i(0, -100)
+item_count = 1
+item_0/text = "SHUTDOWN_BUTTON"
+item_0/id = 0
+script = ExtResource("5_tyrwm")
+
+[node name="ApplicationsBar" type="HBoxContainer" parent="Computer/Screen/ScreenOrder/TaskBar"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InformationBar" type="HBoxContainer" parent="Computer/Screen/ScreenOrder/TaskBar"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[connection signal="pressed" from="Computer/BackgroundButton" to="." method="_on_background_button_pressed"]
+[connection signal="index_pressed" from="Computer/Screen/ScreenOrder/TaskBar/MenuBar/START_MENU_BUTTON" to="." method="_on_start_index_pressed"]
