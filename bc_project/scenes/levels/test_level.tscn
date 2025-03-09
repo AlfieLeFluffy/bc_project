@@ -591,7 +591,7 @@ position = Vector2(637, 328)
 
 [node name="Computers" type="Node2D" parent="TimelineStateMachine/001/TimelineSpace001"]
 
-[node name="TabletopComputer" parent="TimelineStateMachine/001/TimelineSpace001/Computers" instance=ExtResource("22_maqab")]
+[node name="TabletopComputer" parent="TimelineStateMachine/001/TimelineSpace001/Computers" groups=["CameraFocus"] instance=ExtResource("22_maqab")]
 position = Vector2(626, 298)
 compRes = SubResource("Resource_dgc65")
 dirFileRes = SubResource("Resource_jlhf4")
@@ -660,7 +660,7 @@ JUMP_VELOCITY = -200
 npc_resource = SubResource("Resource_1u7m5")
 dialog_resource = SubResource("Resource_h871w")
 
-[node name="player" parent="." instance=ExtResource("1_wpgi4")]
+[node name="player" parent="." groups=["CameraFocus"] instance=ExtResource("1_wpgi4")]
 z_index = 1
 position = Vector2(360, 293)
 

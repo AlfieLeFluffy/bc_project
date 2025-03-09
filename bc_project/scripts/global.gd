@@ -14,6 +14,9 @@ const TIMELINE_SHIFT_OFFSET = 0.2
 @onready var playerCharacterNode: Node = get_tree().get_first_node_in_group("Player")
 const mainCharacterName = "Alfie"
 
+# Main character info
+const cameraFocusName = "CameraFocus"
+
 # Veriables used in board control
 var Active_Interactive_Item
 

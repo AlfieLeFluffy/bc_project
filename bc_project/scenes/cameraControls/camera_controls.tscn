@@ -6,6 +6,7 @@
 script = ExtResource("1_0hybq")
 
 [node name="MainCamera" type="Camera2D" parent="."]
+unique_name_in_owner = true
 offset = Vector2(0, -40)
 zoom = Vector2(3.5, 3.5)
 process_callback = 0

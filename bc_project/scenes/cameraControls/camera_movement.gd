@@ -4,7 +4,7 @@ extends Node2D
 --- Runtime Variables
 """
 @onready var trackedNode: Node
-@onready var mainCemara: Camera2D = get_node("MainCamera")
+var mouse_position: Vector2
 
 """
 --- Setup Methods
@@ -17,7 +17,9 @@ func _ready() -> void:
 	else:
 		trackedNode = get_tree().current_scene
 	
-	Signals.connect("set_tracked_node",set_tracked_node)
+	Signals.connect("cemera_tracked_node_set",set_camera_tracked_node)
+	Signals.connect("cemera_tracked_node_set_by_name", set_camera_tracked_node_by_name)
+	Signals.connect("cemera_tracked_node_set_player", set_camera_tracked_node_player)
 
 
 """
@@ -25,19 +27,26 @@ func _ready() -> void:
 """
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event:
-		global_position = trackedNode.position.lerp(get_global_mouse_position(), 0.2); 
+	mouse_position = get_global_mouse_position() 
 
-#func _physics_process(delta: float) -> void:
-#	global_position = trackedNode.position.lerp(get_global_mouse_position(), 0.2); 
+func _physics_process(delta: float) -> void:
+	global_position = trackedNode.position.lerp(mouse_position, 0.2); 
 
 """
 --- Set Methods
 """
-func set_tracked_node(node: Node) -> void:
+func set_camera_tracked_node(node: Node) -> void:
 	if node is Node:
 		trackedNode = node
 
+func set_camera_tracked_node_by_name(nodeName: String) -> void:
+	var nodes: Array = get_tree().get_nodes_in_group(Global.cameraFocusName)
+	var node: Node = GameController.find_node_by_name_in_array(nodes, nodeName)
+	if node != null:
+		set_camera_tracked_node(node)
+
+func set_camera_tracked_node_player() -> void:
+	set_camera_tracked_node(Global.playerCharacterNode)
 
 """
 --- Persistence Methods
@@ -49,13 +58,13 @@ func saving() -> Dictionary:
 		"parent": get_parent().get_path(),
 		"posConX": position.x,
 		"posConY": position.y,
-		"posCamX": mainCemara.position.x,
-		"posCamY": mainCemara.position.y,
+		"posCamX": %MainCamera.position.x,
+		"posCamY": %MainCamera.position.y,
 	}
 	return output
 
 func loading(input: Dictionary) -> bool:
 	if input.has_all(["posConX","posConY","posCamX","posCamY"]):
 		position = Vector2(input["posConX"],input["posConY"])
-		mainCemara.position = Vector2(input["posCamX"],input["posCamY"])
+		%MainCamera.position = Vector2(input["posCamX"],input["posCamY"])
 	return true
