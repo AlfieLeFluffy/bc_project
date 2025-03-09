@@ -11,8 +11,8 @@ const line_element = preload("res://scenes/UI/board/board_elements/connection_ba
 """
 var drawing: bool = false
 
-var activeElement: Control
-var instance: Control
+var activeElement: ElementBase
+var instance: ConnectionBase
 
 var clues: Dictionary
 
@@ -74,17 +74,17 @@ func start_drawing() -> void:
 func end_drawing() -> void:
 	if activeElement == null:
 		instance.queue_free()
-	elif activeElement == instance.element0:
+	elif activeElement == instance.resource.start:
 		instance.queue_free()
 	elif activeElement != null:
 		instance.set_element(1,activeElement)
-		instance.lineName = combine_strings(instance.element0.resource.id, instance.element1.resource.id)
-		instance.name = instance.lineName
-		if Global.line_elements.has(instance.lineName):
+		instance.resource.id = combine_strings(instance.resource.start.resource.id, instance.resource.end.resource.id)
+		instance.name = instance.resource.id
+		if Global.line_elements.has(instance.resource.id):
 			instance.queue_free()
 		else:
-			Global.line_elements[instance.lineName] = instance
-			var clue = check_for_clue(instance.lineName)
+			Global.line_elements[instance.resource.id] = instance
+			var clue = check_for_clue(instance.resource.id)
 			if clue != "":
 				instance.set_description(clue)
 				AudioManager.play_sound("ding")
@@ -99,7 +99,7 @@ func check_for_clue(combination:String) -> String:
 --- Connection Managment Methods
 """
 func delete_line_element(line) -> void:
-	Global.line_elements.erase(line.lineName)
+	Global.line_elements.erase(line.resource.id)
 	line.queue_free()
 	Signals.emit_signal("input_help_delete","REMOVE_BOARD_LINE_INPUT_HELP")
 

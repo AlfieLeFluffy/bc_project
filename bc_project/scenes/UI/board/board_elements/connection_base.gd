@@ -3,23 +3,14 @@ class_name ConnectionBase extends Control
 """
 --- Runtime Variables
 """
-var lineName : String
-var description : String
-
 var active = false
-
-var element0: ElementBase = null
-var element0Name:String = ""
-var element1:ElementBase = null
-var element1Name:String = ""
-
-@onready var connectionLabel: Label = $HBox/Label
-@onready var connectionLine: Line2D = $Line2D
+var resource: ConnectionResource
 
 """
 --- Setup Methods
 """
 func _ready() -> void:
+	resource = ConnectionResource.new()
 	SettingsController.connect("retranslate",retranslate_description)
 
 """
@@ -31,48 +22,48 @@ func _unhandled_input(event: InputEvent) -> void:
 		Signals.emit_signal('delete_board_line',self)
 
 func _process(delta: float) -> void:
-	if not element0 and Global.board_elements.has(element0Name):
-		set_element(0,Global.board_elements[element0Name])
-	if not element1 and Global.board_elements.has(element1Name):
-		set_element(1,Global.board_elements[element1Name])
+	if not resource.start and Global.board_elements.has(resource.startId):
+		set_element(0,Global.board_elements[resource.startId])
+	if not resource.end and Global.board_elements.has(resource.endId):
+		set_element(1,Global.board_elements[resource.endId])
 
 func _physics_process(delta: float) -> void:
-	if is_instance_valid(element0) and is_instance_valid(element1):
-		position = (element0.position).lerp(element1.position, 0.5); 
-	elif is_instance_valid(element0):
-		position = element0.position
+	if is_instance_valid(resource.start) and is_instance_valid(resource.end):
+		position = (resource.start.position).lerp(resource.end.position, 0.5); 
+	elif is_instance_valid(resource.start):
+		position = resource.start.position
 	
-	if element0 and element1:
-		connectionLine.set_point_position(1,self.position-element0.position-Global.BOARD_LINE_OFFSET)
-		connectionLine.set_point_position(0,self.position-element1.position-Global.BOARD_LINE_OFFSET)
-	elif element0:
-		connectionLine.set_point_position(0,self.position-element0.position-Global.BOARD_LINE_OFFSET)
-		connectionLine.set_point_position(1,self.get_local_mouse_position())
+	if resource.start and resource.end:
+		%Line.set_point_position(1,self.position-resource.start.position-Global.BOARD_LINE_OFFSET)
+		%Line.set_point_position(0,self.position-resource.end.position-Global.BOARD_LINE_OFFSET)
+	elif resource.start:
+		%Line.set_point_position(0,self.position-resource.start.position-Global.BOARD_LINE_OFFSET)
+		%Line.set_point_position(1,self.get_local_mouse_position())
 
 """
 --- General Methods
 """
 
-func set_element(idx:int,element:Control) -> void:
+func set_element(idx:int,element:ElementBase) -> void:
 	match idx:
 		0:
-			element0 = element
-			element0Name = element.resource.id 
+			resource.start = element
+			resource.startId = element.resource.id 
 		1:
-			element1 = element
-			element1Name = element.resource.id 
-			connectionLabel.visible = true
-	connectionLine.gradient.colors[idx] = element.resource.color
+			resource.end = element
+			resource.endId = element.resource.id 
+			%Label.visible = true
+	%Line.gradient.colors[idx] = element.resource.color
 
 func toggle_description() -> void:
-	connectionLabel.visible = not connectionLabel.visible
+	%Label.visible = not %Label.visible
 
 func set_description(text) -> void:
-	description = text
-	connectionLabel.text = tr(description)
+	resource.description = text
+	%Label.text = tr(resource.description)
 
 func retranslate_description() -> void:
-	connectionLabel.text = tr(description)
+	%Label.text = tr(resource.description)
 
 """
 --- Input Signal Methods
@@ -90,24 +81,31 @@ func saving() -> Dictionary:
 		"node": "res://scenes/UI/board/board_elements/connection_base.tscn",
 		"nodepath": get_path(),
 		"parent": get_parent().get_path(),
-		"name": name,
-		"lineName": lineName,
 		"posX": position.x,
 		"posY": position.y,
-		"element0": element0.resource.id,
-		"element1": element1.resource.id,
+		"resource" : {
+			"id" : resource.id,
+			"description" : resource.description,
+			"startId": resource.start.resource.id,
+			"endId": resource.end.resource.id,
+		}
 	}
 	return output
 
 func loading(input: Dictionary) -> bool:
-	name = input["name"]
-	lineName = input["lineName"]
-	Global.line_elements[lineName] = self
 	position.x = input["posX"]
 	position.y = input["posY"]
-	element0Name = input["element0"]
-	element1Name = input["element1"]
-	if Global.board_elements.has_all([element0Name,element1Name]):
-		set_element(0,Global.board_elements[element0Name])
-		set_element(1,Global.board_elements[element1Name])
+	resource = ConnectionResource.new()
+	resource.id = input["resource"]["id"]
+	resource.description = input["resource"]["description"]
+	resource.startId = input["resource"]["startId"]
+	resource.endId = input["resource"]["endId"]
+	
+	name = resource.id
+	
+	if Global.board_elements.has_all([resource.startId,resource.endId]):
+		set_element(0,Global.board_elements[resource.startId])
+		set_element(1,Global.board_elements[resource.endId])
+	
+	Global.line_elements[resource.id] = self
 	return true
