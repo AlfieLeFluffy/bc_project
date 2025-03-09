@@ -3,11 +3,10 @@ class_name ElementBase extends Control
 """
 --- Runtime Variables
 """
+var resource: ElementResource
+
 var active = false
 var dragged = false
-
-var elementName: String
-var elementColor: Color = Color.WHITE
 var mouseOffset: Vector2
 
 @onready var parent: Node = get_parent()
@@ -20,14 +19,15 @@ var mouseOffset: Vector2
 """
 --- Setup Methods
 """
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	setup_element_special()
+	if resource:
+		name = resource.id
+		headerLabel.text = "%s : %s" % [tr(resource.name), resource.timeline]
+		_setup_element()
 
-func setup_element(elementName:String, elementTimeline:String, elementTexture,elementDescription:String) -> void:
-	pass
-
-func setup_element_special() -> void:
+func _setup_element() -> void:
 	pass
 
 """
@@ -79,3 +79,42 @@ func _on_mouse_exited() -> void:
 	active = false
 	Signals.emit_signal("set_active_element",null)
 	Signals.emit_signal("input_help_delete","REMOVE_BOARD_ELEMENT_INPUT_HELP")
+
+
+"""
+--- Persistence Constants
+"""
+const elementFilepath: Dictionary = {
+	ElementResource.elementType.NOTE : "res://scenes/UI/board/board_elements/element_note.tscn",
+	ElementResource.elementType.OBJECT : "res://scenes/UI/board/board_elements/element_object.tscn",
+	ElementResource.elementType.TEXT : "res://scenes/UI/board/board_elements/element_text.tscn",
+}
+"""
+--- Persistence Methods
+"""
+func saving() -> Dictionary:
+	var output: Dictionary = {
+		"node": elementFilepath[resource.type],
+		"nodepath": get_path(),
+		"parent": get_parent().get_path(),
+		"posX": position.x,
+		"posY": position.y,
+		"resource": {
+			"type": resource.type,
+			"name": resource.name,
+			"timeline": resource.timeline,
+			"description": resource.description,
+		},
+		"img": resource.texture
+	}
+	return output
+
+func loading(input: Dictionary) -> bool:
+	position.x = input["posX"]
+	position.y = input["posY"]
+	var res: Dictionary = input["resource"]
+	resource = ElementResource.new(res["type"],res["name"],res["timeline"],res["description"],input["img"])
+	_ready()
+	_setup_element()
+	Global.board_elements[resource.id] = self
+	return true

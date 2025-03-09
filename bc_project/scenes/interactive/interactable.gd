@@ -87,7 +87,7 @@ func local_process(delta: float) -> void:
 
 # Active function if no dialog detected
 func add_board_element(event: InputEvent) -> void:
-	Signals.emit_signal('create_board_element',BoardElementResource.elementType.OBJECT,interactable_resource.item_name,interactable_resource.timeline,get_sprite_from_current_frame(),interactable_resource.description)
+	Signals.emit_signal('create_board_element',ElementResource.new(ElementResource.elementType.OBJECT,interactable_resource.item_name,interactable_resource.timeline,interactable_resource.description,get_sprite_from_current_frame()))
 
 
 # Returns current sprite from interactable item's sprite sheet

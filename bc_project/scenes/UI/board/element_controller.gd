@@ -1,19 +1,25 @@
 class_name ElementControler extends Node
 
+#region Varibles, Constants and Enums
 """
 --- Scene Preloads
 """
 # Board ELements preloaded for instantiation
 const boardPreload = preload("res://scenes/UI/board/board_elements/element_base.tscn")
-const preloadNoteElement = preload("res://scenes/UI/board/board_elements/element_note.tscn")
-const preloadObjectElement = preload("res://scenes/UI/board/board_elements/element_object.tscn")
-const preloadTextElement = preload("res://scenes/UI/board/board_elements/element_text.tscn")
+
+const preloadElement: Dictionary = {
+	ElementResource.elementType.NOTE : preload("res://scenes/UI/board/board_elements/element_note.tscn"),
+	ElementResource.elementType.OBJECT : preload("res://scenes/UI/board/board_elements/element_object.tscn"),
+	ElementResource.elementType.TEXT : preload("res://scenes/UI/board/board_elements/element_text.tscn"),
+}
 
 """
 --- Runtime Variables
 """
-var instance
+var instance: ElementBase
+#endregion
 
+#region Setup Methods
 """
 --- Setup Methods
 """
@@ -21,27 +27,25 @@ var instance
 func _ready() -> void:
 	Signals.connect('create_board_element', create_board_element)
 	Signals.connect('delete_board_element', delete_board_element)
+#endregion
 
 
 """
 --- Element Managment Methods
 """
-func create_board_element(elementType: BoardElementResource.elementType,elementName:String, elementTimeline:String, elementTexture,elementDescription:String) -> void:
-	if check_element(elementName + elementTimeline):
+func create_board_element(elementResource: ElementResource) -> void:
+	if check_element(elementResource.name + elementResource.timeline):
 		return
-	match elementType:
-		BoardElementResource.elementType.NOTE:
-			create_note()
-		BoardElementResource.elementType.OBJECT:
-			create_object(elementName,elementTimeline,elementTexture,elementDescription)
-		BoardElementResource.elementType.TEXT:
-			create_text(elementName,elementTimeline,elementTexture,elementDescription)
-		BoardElementResource.elementType.PROFILE:
-			create_profile(elementName,elementTimeline,elementTexture,elementDescription)
+	create_element(elementResource)
 
-func setup_instance(label:String, timeline:String) -> void:
-	instance.elementName = label+timeline
-	Global.board_elements[instance.elementName] = instance
+func create_element(elementResource: ElementResource) -> void:
+	instance = preloadElement[elementResource.type].instantiate()
+	instance.resource = elementResource
+	setup_instance(elementResource)
+	finalize_element()
+
+func setup_instance(elementResource: ElementResource) -> void:
+	Global.board_elements[elementResource.id] = instance
 	get_parent().add_child(instance)
 
 func finalize_element() -> void:
@@ -49,34 +53,11 @@ func finalize_element() -> void:
 	var offset = Vector2(randi_range(200,-200),randi_range(200,-200))
 	instance.position = Vector2(get_parent().get_node("BoardBackground").size/2+offset)
 
-func create_note() -> void:
-	var noteName = "note"+Global.Timeline
-	instance = preloadNoteElement.instantiate()
-	instance.elementName = noteName
-	Global.board_elements[instance.elementName] = instance
-	finalize_element()
-	
-func create_object(label, timeline, texture, description) -> void:
-	instance = preloadObjectElement.instantiate()
-	setup_instance(label, timeline)
-	instance.setup_element(label,timeline,texture,description)
-	finalize_element()
-
-func create_text(label, timeline, texture, description) -> void:
-	instance = preloadTextElement.instantiate()
-	setup_instance(label, timeline)
-	instance.setup_element(label,timeline,null,description)
-	finalize_element()
-
-func create_profile(label, timeline, texture, text) -> void:
-	pass
-
-
 func delete_board_element(element) -> void:
 	for lineKey in Global.line_elements.keys():
-		if lineKey.contains(element.elementName):
+		if lineKey.contains(element.resource.id):
 			Signals.emit_signal('delete_board_line',Global.line_elements[lineKey])
-	Global.board_elements.erase(element.elementName)
+	Global.board_elements.erase(element.resource.id)
 	element.queue_free()
 	Signals.emit_signal("input_help_delete","REMOVE_BOARD_ELEMENT_INPUT_HELP")
 
@@ -92,4 +73,4 @@ func check_element(key:String) -> bool:
 --- Input Signal Methods
 """
 func _on_button_symbol_plus_pressed() -> void:
-	create_note()
+	create_element(ElementResource.new(ElementResource.elementType.NOTE,"note",Global.Timeline,"",null))

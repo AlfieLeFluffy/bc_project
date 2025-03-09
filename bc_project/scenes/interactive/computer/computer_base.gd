@@ -78,5 +78,5 @@ func hide_computer_view(computerName: String) -> void:
 # Active function if no dialog detected
 func add_board_element(event: InputEvent) -> void:
 	pass
-	#Signals.emit_signal('create_board_element',BoardElementResource.elementType.TEXT,textRosource.textName,interactable_resource.timeline,get_sprite_from_current_frame(),textRosource.textContents)
+	#Signals.emit_signal('create_board_element',ElementResource.elementType.TEXT,textRosource.textName,interactable_resource.timeline,get_sprite_from_current_frame(),textRosource.textContents)
 #endregion

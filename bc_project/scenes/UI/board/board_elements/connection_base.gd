@@ -8,9 +8,9 @@ var description : String
 
 var active = false
 
-var element0:Control = null
+var element0: ElementBase = null
 var element0Name:String = ""
-var element1:Control = null
+var element1:ElementBase = null
 var element1Name:String = ""
 
 @onready var connectionLabel: Label = $HBox/Label
@@ -57,12 +57,12 @@ func set_element(idx:int,element:Control) -> void:
 	match idx:
 		0:
 			element0 = element
-			element0Name = element.elementName 
+			element0Name = element.resource.id 
 		1:
 			element1 = element
-			element1Name = element.elementName
+			element1Name = element.resource.id 
 			connectionLabel.visible = true
-	connectionLine.gradient.colors[idx] = element.elementColor
+	connectionLine.gradient.colors[idx] = element.resource.color
 
 func toggle_description() -> void:
 	connectionLabel.visible = not connectionLabel.visible
@@ -94,8 +94,8 @@ func saving() -> Dictionary:
 		"lineName": lineName,
 		"posX": position.x,
 		"posY": position.y,
-		"element0": element0.elementName,
-		"element1": element1.elementName,
+		"element0": element0.resource.id,
+		"element1": element1.resource.id,
 	}
 	return output
 

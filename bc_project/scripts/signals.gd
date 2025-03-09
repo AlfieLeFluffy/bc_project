@@ -24,8 +24,8 @@ signal game_loaded()
 
 signal set_active_element(element)
 # Signals for creating and deleting board elements
-signal create_board_element(elementType,elementName,elementTexture,elementDescription)
-signal delete_board_element(element)
+signal create_board_element(elementResource)
+signal delete_board_element(elementName)
 # Signals for deleteing line elements
 signal delete_board_line(line)
 

@@ -1,34 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://b46knckxjdkiq"]
+[gd_scene load_steps=6 format=3 uid="uid://b46knckxjdkiq"]
 
 [ext_resource type="PackedScene" uid="uid://cxwyhyyqufru4" path="res://scenes/UI/board/board_elements/element_base.tscn" id="1_b036v"]
 [ext_resource type="Script" uid="uid://bl67smyc6mcs6" path="res://scenes/UI/board/board_elements/element_note.gd" id="2_v5rdk"]
-[ext_resource type="Texture2D" uid="uid://b4w0x7f4tp3vy" path="res://textures/ui/board/board_note_UI.png" id="3_27n8h"]
 [ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="4_xg50t"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gdcp7"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4vmk5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w6uyw"]
-resource_local_to_scene = true
-size = Vector2(218, 220)
-
 [node name="element_note" groups=["Persistent"] instance=ExtResource("1_b036v")]
 script = ExtResource("2_v5rdk")
 
-[node name="element_texture" parent="." index="0"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -80.0
-offset_top = -81.0
-offset_right = 80.0
-offset_bottom = 79.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_27n8h")
-
 [node name="NoteName" type="LineEdit" parent="." index="1"]
+layout_mode = 0
 offset_left = -98.0
 offset_top = -101.0
 offset_right = -12.0
@@ -44,6 +28,7 @@ placeholder_text = "Note name"
 expand_to_text_length = true
 
 [node name="NoteText" type="TextEdit" parent="." index="2"]
+layout_mode = 0
 offset_left = -98.0
 offset_top = -61.0
 offset_right = 95.0
@@ -57,6 +42,3 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_4vmk5")
 placeholder_text = "Note text"
 wrap_mode = 1
 scroll_past_end_of_file = true
-
-[node name="CollisionShape2D" parent="." index="3"]
-shape = SubResource("RectangleShape2D_w6uyw")

@@ -308,17 +308,22 @@ func open_persistence_menu(mode: int = 0) -> void:
 """ Methods for saving and loading images in safe nodes """
 # Saves an image in a dictionary into the img directory inside a savefile and sets flag to load it once loading
 func save_img(key:String ,safeDirPath:String, dictionary:Dictionary) -> void:
-	dictionary[key].get_image().save_png(safeDirPath.path_join("img").path_join(key+"_"+dictionary["name"])+".png")
-	dictionary[key] = true
+	var imageName: String = str(dictionary[key].get_rid())
+	var imagePath: String = safeDirPath.path_join("img").path_join(imageName)+".png"
+	dictionary[key].get_image().save_png(imagePath)
+	dictionary[key] = imageName
 
 # Loads an image from the img directory if given flag is present in dictionary
 func load_img(key, safeDirPath:String, dictionary: Dictionary) -> void:
 	if not dictionary[key]:
 		return
-	if FileAccess.file_exists(safeDirPath.path_join("img").path_join(key+"_"+dictionary["name"])+".png"):
-		var image = Image.load_from_file(safeDirPath.path_join("img").path_join(key+"_"+dictionary["name"])+".png")
-		var texture = ImageTexture.create_from_image(image)
+	var imagePath: String = safeDirPath.path_join("img").path_join(dictionary[key])+".png"
+	if FileAccess.file_exists(imagePath):
+		var image: Image = Image.load_from_file(imagePath)
+		var texture: ImageTexture = ImageTexture.create_from_image(image)
 		dictionary[key] = texture
+	else:
+		dictionary[key] = false
 
 """ Methods for saving and loading one node dictonary as a JSON line """
 # Takes a node dictionary, checks and saves any images, stringfies the node dictionary and writes into the savefile as a line

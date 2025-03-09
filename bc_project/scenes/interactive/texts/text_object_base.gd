@@ -27,7 +27,7 @@ func interact_function(event: InputEvent) -> void:
 	textViewInstance = preloadTextView.instantiate()
 	get_tree().current_scene.add_child(textViewInstance)
 	textViewInstance.setup_text_view(textRosource)
-	textViewInstance.create_board_element.connect(add_board_element)
+	textViewInstance.create_board_element_text.connect(add_board_element)
 
 # Active function if no dialog detected
 #func local_process(delta: float) -> void:
@@ -35,4 +35,4 @@ func interact_function(event: InputEvent) -> void:
 
 # Active function if no dialog detected
 func add_board_element(event: InputEvent) -> void:
-	Signals.emit_signal('create_board_element',BoardElementResource.elementType.TEXT,textRosource.textName,interactable_resource.timeline,get_sprite_from_current_frame(),textRosource.textContents)
+	Signals.emit_signal('create_board_element',ElementResource.new(ElementResource.elementType.TEXT,textRosource.textName,interactable_resource.timeline,textRosource.textContents,get_sprite_from_current_frame()))
