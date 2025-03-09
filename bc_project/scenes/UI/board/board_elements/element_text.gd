@@ -1,4 +1,4 @@
-extends "res://scenes/UI/board/board_elements/element_base.gd"
+extends ElementBase
 
 """
 --- Runtime Variables
