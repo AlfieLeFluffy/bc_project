@@ -28,10 +28,6 @@ var computer: ComputerBase
 	ApplicationResource.applicationTypes.TEXT_VIEW : ["TEXT_VIEW_APPLICATION_NAME","res://textures/computer/application_icons/text_viewer_icon.png",],
 }
 
-@export var application_views: Dictionary = {
-	
-}
-
 #endregion
 
 #region Setup Methods
@@ -102,8 +98,8 @@ func open_application(_type: ApplicationResource.applicationTypes, arguments: Di
 		application_set.emit(_type, true)
 		return
 	create_application_instance(_type, arguments)
-	order_application(_type)
 	application_set.emit(_type, true)
+	order_application(_type)
 
 func toggle_application(_type: ApplicationResource.applicationTypes) -> void:
 	if not computer.appRes.activeApplications.has(_type):
@@ -115,7 +111,7 @@ func toggle_application(_type: ApplicationResource.applicationTypes) -> void:
 func set_application(_type: ApplicationResource.applicationTypes, state: bool) -> void:
 	order_application(_type)
 
-func exit_application(_type: ApplicationResource.applicationTypes, state:bool) -> void:
+func exit_application(_type: ApplicationResource.applicationTypes) -> void:
 	if not computer.appRes.activeApplications.has(_type):
 		printerr("Error: cannot EXIT application that isn't part of active applications dictionary, type:" + str(_type))
 		return
@@ -124,6 +120,9 @@ func exit_application(_type: ApplicationResource.applicationTypes, state:bool) -
 func order_application(_type: ApplicationResource.applicationTypes) -> void:
 	if not computer.appRes.activeApplications.has(_type):
 		printerr("Error: cannot ORDER application that isn't part of active applications dictionary, type:" + str(_type))
+		return
+	if not computer.appRes.activeApplications[_type].has("view"):
+		printerr("Error: cannot ORDER application that doesn't have a view in the active applications dictionary, type:" + str(_type))
 		return
 	var appView: ApplicationView = computer.appRes.activeApplications[_type]["view"]
 	appView.move_to_front()
