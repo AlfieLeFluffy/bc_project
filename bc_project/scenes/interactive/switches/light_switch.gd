@@ -1,4 +1,4 @@
-extends "res://scenes/interactive/interactable.gd"
+class_name LightSwitch extends Interactable
 
 """
 --- Setup Exported Variables

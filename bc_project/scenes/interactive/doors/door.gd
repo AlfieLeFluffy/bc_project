@@ -1,4 +1,4 @@
-extends "res://scenes/interactive/interactable.gd"
+class_name DoorTeleport extends Interactable
 
 var player
 

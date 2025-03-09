@@ -1,4 +1,4 @@
-class_name ComputerBase extends "res://scenes/interactive/interactable.gd"
+class_name ComputerBase extends Interactable
 
 #region Variables, Constants, Signals and such
 """

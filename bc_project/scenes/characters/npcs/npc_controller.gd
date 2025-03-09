@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name NPC extends CharacterBody2D
 
 """
 --- Exported Physics Constants

@@ -1,4 +1,4 @@
-extends "res://scenes/interactive/interactable.gd"
+class_name DoorSideways extends Interactable
 
 @export_category("Door Information")
 @export var opened:bool = false
