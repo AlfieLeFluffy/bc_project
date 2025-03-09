@@ -13,6 +13,13 @@ const elementColor: Dictionary = {
 	ElementResource.elementType.PROFILE : Color.WHITE,
 }
 
+const elementContent: Dictionary = {
+	ElementResource.elementType.NOTE : "res://scenes/UI/board/board_elements/elementContent/content_note.tscn",
+	ElementResource.elementType.OBJECT : "res://scenes/UI/board/board_elements/elementContent/content_object.tscn",
+	ElementResource.elementType.TEXT : "res://scenes/UI/board/board_elements/elementContent/content_text.tscn",
+	ElementResource.elementType.FILE : null,
+	ElementResource.elementType.PROFILE : null,
+}
 """
 --- Board Element Varibles
 """

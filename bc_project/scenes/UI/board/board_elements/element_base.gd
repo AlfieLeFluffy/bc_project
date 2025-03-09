@@ -9,12 +9,10 @@ var active = false
 var dragged = false
 var mouseOffset: Vector2
 
+var content: ElementContentBase
+
 @onready var parent: Node = get_parent()
 @onready var boardSize: Vector2 = parent.get_node("BoardBackground").size
-
-@onready var header: Node = $Stack/Header
-@onready var headerLabel: Label = header.get_node("ElementLabel")
-@onready var content: Node = $Stack/Content
 
 """
 --- Setup Methods
@@ -24,11 +22,13 @@ var mouseOffset: Vector2
 func _ready() -> void:
 	if resource:
 		name = resource.id
-		headerLabel.text = "%s : %s" % [tr(resource.name), resource.timeline]
+		%ElementLabel.text = "%s : %s" % [tr(resource.name), resource.timeline]
 		_setup_element()
 
 func _setup_element() -> void:
-	pass
+	content = load(resource.elementContent[resource.type]).instantiate()
+	content._setup_content(resource)
+	%Stack.add_child(content)
 
 """
 --- Runtime Methods
@@ -94,7 +94,7 @@ const elementFilepath: Dictionary = {
 """
 func saving() -> Dictionary:
 	var output: Dictionary = {
-		"node": elementFilepath[resource.type],
+		"node":"res://scenes/UI/board/board_elements/element_base.tscn",
 		"nodepath": get_path(),
 		"parent": get_parent().get_path(),
 		"posX": position.x,
@@ -115,6 +115,5 @@ func loading(input: Dictionary) -> bool:
 	var res: Dictionary = input["resource"]
 	resource = ElementResource.new(res["type"],res["name"],res["timeline"],res["description"],input["img"])
 	_ready()
-	_setup_element()
 	Global.board_elements[resource.id] = self
 	return true

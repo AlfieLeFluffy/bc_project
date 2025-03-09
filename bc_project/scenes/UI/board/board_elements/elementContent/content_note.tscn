@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://2gxj01ouoq4u"]
+
+[ext_resource type="PackedScene" uid="uid://ds31req2ok3p" path="res://scenes/UI/board/board_elements/content_base.tscn" id="1_1rjox"]
+[ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="2_v1v2a"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xmi8i"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pofq4"]
+
+[node name="ContentNote" instance=ExtResource("1_1rjox")]
+
+[node name="NoteName" type="LineEdit" parent="." index="0"]
+layout_mode = 2
+theme_override_colors/selection_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_v1v2a")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_xmi8i")
+placeholder_text = "Note name"
+expand_to_text_length = true
+
+[node name="NoteText" type="TextEdit" parent="." index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/current_line_color = Color(0, 0, 0, 0)
+theme_override_colors/background_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = ExtResource("2_v1v2a")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_pofq4")
+placeholder_text = "Note text"
+wrap_mode = 1
+scroll_past_end_of_file = true

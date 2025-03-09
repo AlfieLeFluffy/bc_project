@@ -6,12 +6,7 @@ class_name ElementControler extends Node
 """
 # Board ELements preloaded for instantiation
 const boardPreload = preload("res://scenes/UI/board/board_elements/element_base.tscn")
-
-const preloadElement: Dictionary = {
-	ElementResource.elementType.NOTE : preload("res://scenes/UI/board/board_elements/element_note.tscn"),
-	ElementResource.elementType.OBJECT : preload("res://scenes/UI/board/board_elements/element_object.tscn"),
-	ElementResource.elementType.TEXT : preload("res://scenes/UI/board/board_elements/element_text.tscn"),
-}
+const elementPreload = preload("res://scenes/UI/board/board_elements/element_base.tscn")
 
 """
 --- Runtime Variables
@@ -39,7 +34,7 @@ func create_board_element(elementResource: ElementResource) -> void:
 	create_element(elementResource)
 
 func create_element(elementResource: ElementResource) -> void:
-	instance = preloadElement[elementResource.type].instantiate()
+	instance = elementPreload.instantiate()
 	instance.resource = elementResource
 	setup_instance(elementResource)
 	finalize_element()

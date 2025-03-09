@@ -66,6 +66,8 @@ func saving() -> Dictionary:
 		"nodepath": get_path(),
 		"parent": get_parent().get_path(),
 	}
+	board_elements.clear()
+	line_elements.clear()
 	return output
 
 func loading(input: Dictionary) -> bool:

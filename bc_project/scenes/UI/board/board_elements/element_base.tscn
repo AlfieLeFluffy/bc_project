@@ -10,7 +10,7 @@ gradient = SubResource("Gradient_y8ieu")
 width = 28
 height = 28
 
-[node name="ElementBase" type="Control"]
+[node name="ElementBase" type="Control" groups=["Persistent"]]
 z_index = 1
 layout_mode = 3
 anchors_preset = 0
@@ -20,6 +20,7 @@ theme = ExtResource("2_0w3jl")
 script = ExtResource("1_4ifnd")
 
 [node name="Stack" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,6 +30,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Header" type="HBoxContainer" parent="Stack"]
+unique_name_in_owner = true
 z_index = 10
 layout_mode = 2
 size_flags_vertical = 3
@@ -40,6 +42,7 @@ layout_mode = 2
 texture = SubResource("GradientTexture2D_adj55")
 
 [node name="ElementLabel" type="Label" parent="Stack/Header"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 28)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -51,9 +54,6 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(28, 28)
 layout_mode = 2
 text = "X"
-
-[node name="Content" type="HBoxContainer" parent="Stack"]
-layout_mode = 2
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
