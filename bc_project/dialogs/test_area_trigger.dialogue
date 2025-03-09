@@ -1,4 +1,12 @@
 ~ start
+if DialogueVariables.vars["trigger_met"] == true
+	=> already_met
 Trigger Are: Hello, I am trigger area that can be used many times
 Alfie: Nice to meet you
+do DialogueVariables.vars["trigger_met"] = true
+=> END
+
+~ already_met
+Trigger Are: We have already met
+Alfie: Yes we had
 => END

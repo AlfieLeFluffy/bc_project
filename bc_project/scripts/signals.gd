@@ -34,6 +34,7 @@ signal input_help_set(input,description)
 signal input_help_delete(description)
 
 # Singnal for notifying npc state machine about conversation starting/ending
+signal setup_level_dialogue_variables(variables)
 signal start_npc_conversation_state(npc)
 signal setup_conversation_profile(side,character_name,picture)
 signal end_npc_conversation_state()

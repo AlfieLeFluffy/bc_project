@@ -1,10 +1,10 @@
-extends Node
+class_name DialogueVaribles extends Node
 
 """
 --- Dialogue Variables
 """
 
-var dict: Dictionary = {}
+var vars: Dictionary = {}
 
 """
 --- Setup Methods
@@ -14,6 +14,10 @@ func _ready() -> void:
 	
 	# Added group tag for persistence purposes
 	add_to_group("Persistent")
+	Signals.connect("setup_level_dialogue_variables",setup_dialogue_variables)
+
+func setup_dialogue_variables(variables: Dictionary) -> void:
+	vars = variables
 
 """
 --- Persistence Methods
@@ -23,12 +27,12 @@ func saving() -> Dictionary:
 		"persistent": true,
 		"nodepath": get_path(),
 		"parent": get_parent().get_path(),
-		"dict": dict
+		"vars": vars
 	}
 	return output
 
 func loading(input: Dictionary) -> bool:
 	if input.has("dic"):
-		dict = input["dict"]
+		vars = input["vars"]
 		return true
 	return false

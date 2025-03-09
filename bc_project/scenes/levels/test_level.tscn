@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=4 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=94 format=4 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Texture2D" uid="uid://f5ht0q2x8m04" path="res://textures/flatTileset-Sheet.png" id="1_n5x54"]
 [ext_resource type="Script" uid="uid://cmlgg6dxih77f" path="res://scenes/levels/level_controller.gd" id="1_t01cb"]
@@ -14,7 +14,6 @@
 [ext_resource type="Script" uid="uid://dubjlbc5x1hpi" path="res://scenes/levels/level_states/timeline_state.gd" id="8_d0i2x"]
 [ext_resource type="Resource" uid="uid://bmxx1uimby337" path="res://dialogs/test_dialogue.dialogue" id="10_wnetc"]
 [ext_resource type="PackedScene" uid="uid://ntmpwduq5xno" path="res://scenes/characters/npcs/npc.tscn" id="11_lkrka"]
-[ext_resource type="Script" uid="uid://diyv0mbiysdf6" path="res://scripts/dialog/dialog_resource.gd" id="15_p50u5"]
 [ext_resource type="Script" uid="uid://drj3o0qsip6ss" path="res://scenes/characters/npcs/npc_resource.gd" id="16_2qb3d"]
 [ext_resource type="Resource" uid="uid://p2pgjby8025n" path="res://dialogs/ribli.dialogue" id="17_ls76e"]
 [ext_resource type="Resource" uid="uid://cibt63o4kpss8" path="res://dialogs/test_npc.dialogue" id="17_xjj1n"]
@@ -29,6 +28,7 @@
 [ext_resource type="Script" uid="uid://rcjsy5lo00ya" path="res://scenes/interactive/computer/resources/directory_file_resource.gd" id="24_gn46e"]
 [ext_resource type="Script" uid="uid://btpud4ox3m0dx" path="res://scenes/interactive/computer/resources/application_resource.gd" id="25_c6ib1"]
 [ext_resource type="Script" uid="uid://bip873am5kgyj" path="res://scenes/triggers/versions/area_trigger_dialogue.gd" id="26_0nxvq"]
+[ext_resource type="Resource" uid="uid://1lie11h7rb0x" path="res://dialogs/test_area_trigger_one_use.dialogue" id="27_1u7m5"]
 [ext_resource type="Resource" uid="uid://dvnwynrbbuwdw" path="res://dialogs/test_area_trigger.dialogue" id="28_dgc65"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_sh7fj"]
@@ -341,19 +341,14 @@ item_name = "THICK_MUG_NAME"
 description = "THICK_MUG_DESCRIPTION"
 detective_board_toggle = true
 
-[sub_resource type="Resource" id="Resource_n5dyw"]
-script = ExtResource("15_p50u5")
-dialog = ExtResource("10_wnetc")
-titleName = "test"
-
-[sub_resource type="Resource" id="Resource_mrmmo"]
+[sub_resource type="Resource" id="Resource_1u7m5"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
 description = "TEST_DESCRIPTION"
 detective_board_toggle = true
 
-[sub_resource type="Resource" id="Resource_y0fbb"]
+[sub_resource type="Resource" id="Resource_mrmmo"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
@@ -366,12 +361,7 @@ npcName = "Ribli"
 spritesheet = ExtResource("19_0f3pa")
 frameVector = Vector2(1, 1)
 
-[sub_resource type="Resource" id="Resource_06fav"]
-script = ExtResource("15_p50u5")
-dialog = ExtResource("17_ls76e")
-titleName = "Ribli"
-
-[sub_resource type="Resource" id="Resource_6g246"]
+[sub_resource type="Resource" id="Resource_y0fbb"]
 resource_local_to_scene = true
 script = ExtResource("24_frqwj")
 textName = "TEST_TEXT_NAME"
@@ -419,12 +409,6 @@ item_name = ""
 description = ""
 detective_board_toggle = true
 
-[sub_resource type="Resource" id="Resource_1u7m5"]
-script = ExtResource("15_p50u5")
-dialog = ExtResource("28_dgc65")
-titleName = "start"
-metadata/_custom_type_script = "uid://diyv0mbiysdf6"
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0nxvq"]
 size = Vector2(40, 40)
 
@@ -449,34 +433,32 @@ item_name = "THICK_MUG_NAME"
 description = "THICK_MUG_DESCRIPTION"
 detective_board_toggle = true
 
-[sub_resource type="Resource" id="Resource_rnt0l"]
+[sub_resource type="Resource" id="Resource_0myxw"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
 description = "TEST_DESCRIPTION"
 detective_board_toggle = true
 
-[sub_resource type="Resource" id="Resource_ve23l"]
+[sub_resource type="Resource" id="Resource_5vl2c"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
 description = "TEST_DESCRIPTION"
 detective_board_toggle = true
 
-[sub_resource type="Resource" id="Resource_jigj2"]
+[sub_resource type="Resource" id="Resource_6g246"]
 resource_local_to_scene = true
 script = ExtResource("16_2qb3d")
 npcName = "Eifla"
 frameVector = Vector2(1, 1)
 
-[sub_resource type="Resource" id="Resource_h871w"]
-script = ExtResource("15_p50u5")
-dialog = ExtResource("17_xjj1n")
-titleName = "this_is_a_node_title"
-
 [node name="testScene" type="Node2D"]
 script = ExtResource("1_t01cb")
 caseClues = ExtResource("2_6di2b")
+dialogueVaribles = {
+"trigger_met": false
+}
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.21, 0.2505, 0.3, 1)
@@ -565,8 +547,7 @@ interactable_resource = SubResource("Resource_hlgx8")
 [node name="ThickMug" parent="TimelineStateMachine/001/TimelineSpace001/Objects" instance=ExtResource("5_hqxr4")]
 position = Vector2(152, 324)
 interactable_resource = SubResource("Resource_a02tp")
-dialog_resource = SubResource("Resource_n5dyw")
-metadata/Type = "Interactable"
+dialog_resource = ExtResource("10_wnetc")
 metadata/PlayerNodeName = "player"
 metadata/Description = "Test Description"
 
@@ -575,24 +556,24 @@ metadata/Description = "Test Description"
 [node name="DoorSideways" parent="TimelineStateMachine/001/TimelineSpace001/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(504, 289)
 inverted = true
-interactable_resource = SubResource("Resource_mrmmo")
+interactable_resource = SubResource("Resource_1u7m5")
 
 [node name="DoorSideways2" parent="TimelineStateMachine/001/TimelineSpace001/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(247, 289)
-interactable_resource = SubResource("Resource_y0fbb")
+interactable_resource = SubResource("Resource_mrmmo")
 
 [node name="NPCs" type="Node2D" parent="TimelineStateMachine/001/TimelineSpace001"]
 
 [node name="NPC_Ribli" parent="TimelineStateMachine/001/TimelineSpace001/NPCs" instance=ExtResource("18_tveke")]
 position = Vector2(108, 294)
 npc_resource = SubResource("Resource_jodhe")
-dialog_resource = SubResource("Resource_06fav")
+dialog_resource = ExtResource("17_ls76e")
 
 [node name="Texts" type="Node2D" parent="TimelineStateMachine/001/TimelineSpace001"]
 
 [node name="PaperOnWall" parent="TimelineStateMachine/001/TimelineSpace001/Texts" instance=ExtResource("23_l5ajp")]
 position = Vector2(577, 286)
-textRosource = SubResource("Resource_6g246")
+textRosource = SubResource("Resource_y0fbb")
 interactable_resource = SubResource("Resource_yo6r0")
 
 [node name="Furniture" type="Node2D" parent="TimelineStateMachine/001/TimelineSpace001"]
@@ -616,9 +597,8 @@ position = Vector2(200, 112)
 collision_layer = 16
 collision_mask = 16
 script = ExtResource("26_0nxvq")
-dialogResource = SubResource("Resource_1u7m5")
+dialogueResource = ExtResource("27_1u7m5")
 collisionShape = SubResource("RectangleShape2D_0nxvq")
-triggerOn = 2
 metadata/_custom_type_script = "uid://bip873am5kgyj"
 
 [node name="AreaTriggerDialogueNone" type="Area2D" parent="TimelineStateMachine/001/TimelineSpace001/Triggers"]
@@ -626,7 +606,7 @@ position = Vector2(120, 112)
 collision_layer = 16
 collision_mask = 16
 script = ExtResource("26_0nxvq")
-dialogResource = SubResource("Resource_1u7m5")
+dialogueResource = ExtResource("27_1u7m5")
 metadata/_custom_type_script = "uid://bip873am5kgyj"
 
 [node name="AreaTriggerDialogueInfinite" type="Area2D" parent="TimelineStateMachine/001/TimelineSpace001/Triggers"]
@@ -634,7 +614,7 @@ position = Vector2(39, 112)
 collision_layer = 16
 collision_mask = 16
 script = ExtResource("26_0nxvq")
-dialogResource = SubResource("Resource_1u7m5")
+dialogueResource = ExtResource("28_dgc65")
 maxUses = -1
 collisionShape = SubResource("RectangleShape2D_0nxvq")
 metadata/_custom_type_script = "uid://bip873am5kgyj"
@@ -676,7 +656,7 @@ interactable_resource = SubResource("Resource_u1rjm")
 [node name="ThickMug" parent="TimelineStateMachine/002/TimelineSpace002/Objects" instance=ExtResource("5_hqxr4")]
 position = Vector2(171, 324)
 interactable_resource = SubResource("Resource_sl3kl")
-dialog_resource = SubResource("Resource_n5dyw")
+dialog_resource = ExtResource("10_wnetc")
 metadata/Type = "Interactable"
 metadata/PlayerNodeName = "player"
 metadata/Description = "Test Description"
@@ -686,11 +666,11 @@ metadata/Description = "Test Description"
 [node name="DoorSideways" parent="TimelineStateMachine/002/TimelineSpace002/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(504, 289)
 inverted = true
-interactable_resource = SubResource("Resource_rnt0l")
+interactable_resource = SubResource("Resource_0myxw")
 
 [node name="DoorSideways2" parent="TimelineStateMachine/002/TimelineSpace002/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(247, 289)
-interactable_resource = SubResource("Resource_ve23l")
+interactable_resource = SubResource("Resource_5vl2c")
 
 [node name="NPCs" type="Node2D" parent="TimelineStateMachine/002/TimelineSpace002"]
 
@@ -698,8 +678,8 @@ interactable_resource = SubResource("Resource_ve23l")
 position = Vector2(58, 293)
 SPEED = 60
 JUMP_VELOCITY = -200
-npc_resource = SubResource("Resource_jigj2")
-dialog_resource = SubResource("Resource_h871w")
+npc_resource = SubResource("Resource_6g246")
+dialog_resource = ExtResource("17_xjj1n")
 
 [node name="player" parent="." groups=["CameraFocus"] instance=ExtResource("1_wpgi4")]
 z_index = 1

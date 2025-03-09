@@ -5,4 +5,4 @@
 
 [node name="AreaTriggerDialogue" instance=ExtResource("1_x8etq")]
 script = ExtResource("2_t30wr")
-dialogResource = null
+dialogueResource = null

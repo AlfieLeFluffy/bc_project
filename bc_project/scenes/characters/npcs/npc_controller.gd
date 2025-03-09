@@ -14,7 +14,7 @@ class_name NPC extends CharacterBody2D
 
 @export_group("Resources")
 @export var npc_resource: npcResource
-@export var dialog_resource: DialogResource
+@export var dialog_resource: DialogueResource
 
 var active: bool = false
 var mouseHover: bool = false
@@ -46,7 +46,7 @@ func npc_info_setup() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and dialog_resource and active:
 		Signals.start_npc_conversation_state.emit(self)
-		DialogScripts.start_dialog(dialog_resource.dialog,dialog_resource.titleName)
+		CustomDialogueScripts.start_dialogue(dialog_resource)
 		Signals.setup_conversation_profile.emit("right", name, get_sprite_from_current_frame())
 
 """

@@ -16,7 +16,7 @@ var inRadius: bool = false
 """
 
 @export var interactable_resource: InteractableResource
-@export var dialog_resource: DialogResource
+@export var dialog_resource: DialogueResource
 
 """
 --- Setup functions
@@ -74,7 +74,7 @@ func _unhandled_input(event: InputEvent) -> void:
 """
 # Active function if no dialog detected
 func interact_conversation(event: InputEvent) -> void:
-	DialogScripts.start_dialog(dialog_resource.dialog,dialog_resource.titleName)
+	CustomDialogueScripts.start_dialogue(dialog_resource)
 	Signals.setup_conversation_profile.emit("right", interactable_resource.item_name, get_sprite_from_current_frame())
 
 # Active function if no dialog detected
