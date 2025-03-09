@@ -120,6 +120,14 @@ func get_input_key_count(inputName: String) -> int:
 		return InputMap.action_get_events(inputName).size()
 	return -1
 
+func find_node_by_name_in_array(nodeArray: Array, nodeName: String) -> Node:
+	for node in nodeArray:
+		if node is Node:
+			if node.name == nodeName:
+				return node
+	printerr("Error: Could not find node %s in array %s" % [nodeName,nodeArray])
+	return null
+
 """
 --- Input Key Map Methods
 """
