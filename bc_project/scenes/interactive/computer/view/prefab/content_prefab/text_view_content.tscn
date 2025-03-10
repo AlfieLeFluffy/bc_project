@@ -34,3 +34,6 @@ grow_vertical = 2
 focus_mode = 2
 bbcode_enabled = true
 selection_enabled = true
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

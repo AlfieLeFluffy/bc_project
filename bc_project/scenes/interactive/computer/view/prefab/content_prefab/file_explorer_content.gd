@@ -83,7 +83,7 @@ func open_filepath(item: String) -> void:
 		currentDirectory = currentDirectory[item]
 		setup_current_state()
 	elif currentDirectory[item] is String:
-		computer.view.application_open.emit(computer.appRes.applicationTypes.TEXT_VIEW,{"text":currentDirectory[item]})
+		computer.view.application_open.emit(computer.appRes.applicationTypes.TEXT_VIEW,{"name": item,"text":currentDirectory[item]})
 
 func up_directory() -> void:
 	var upDirectory: Array
