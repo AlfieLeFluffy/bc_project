@@ -23,12 +23,15 @@ func _ready() -> void:
 	if resource:
 		name = resource.id
 		%ElementLabel.text = "%s : %s" % [tr(resource.name), resource.timeline]
+		%ElementTypeLabel.text = ElementResource.elementType.keys()[resource.type]
+		%CenterColor.texture.gradient.colors[0] = resource.color
 		_setup_element()
 
 func _setup_element() -> void:
 	content = load(resource.elementContent[resource.type]).instantiate()
 	content._setup_content(resource)
 	%Stack.add_child(content)
+	%Stack.move_child(content,1)
 
 """
 --- Runtime Methods

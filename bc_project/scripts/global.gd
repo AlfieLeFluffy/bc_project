@@ -24,7 +24,7 @@ var Active_Interactive_Item
 var board_elements: Dictionary
 var line_elements: Dictionary
 
-const BOARD_LINE_OFFSET: Vector2 = Vector2(-14,-14)
+const BOARD_LINE_OFFSET: Vector2 = Vector2(-16,-16)
 
 const MaxSFXSounds:int = 5
 
