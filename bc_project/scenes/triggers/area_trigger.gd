@@ -21,6 +21,7 @@ const EXITED_TRIGGER_BIT = 0b10
 
 #region Setup Methods
 func _ready() -> void:
+	self.add_to_group("Persistent")
 	if collisionShape:
 		colisionShapeInstance = CollisionShape2D.new()
 		colisionShapeInstance.set_shape(collisionShape)
@@ -69,3 +70,17 @@ func _on_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, l
 #endregion
 
 #region Persistence Methods
+func saving() -> Dictionary:
+	return {
+		"persistent": true,
+		"nodepath": get_path(),
+		"parent": get_parent().get_path(),
+		"timesUsed": timesUsed,
+	}
+
+func loading(input:Dictionary) -> bool:
+	if input.has_all(["timesUsed"]):
+		timesUsed = input["timesUsed"]
+		return true
+	return false
+#endregion
