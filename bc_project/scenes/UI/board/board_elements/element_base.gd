@@ -1,8 +1,6 @@
 class_name ElementBase extends Control
 
-"""
---- Runtime Variables
-"""
+#region Varibles
 var resource: ElementResource
 
 var active = false
@@ -13,12 +11,9 @@ var content: ElementContentBase
 
 @onready var parent: Node = get_parent()
 @onready var boardSize: Vector2 = parent.get_node("BoardBackground").size
+#endregion
 
-"""
---- Setup Methods
-"""
-
-# Called when the node enters the scene tree for the first time.
+#region Setup Methods
 func _ready() -> void:
 	if resource:
 		name = resource.id
@@ -32,10 +27,9 @@ func _setup_element() -> void:
 	content._setup_content(resource)
 	%Stack.add_child(content)
 	%Stack.move_child(content,1)
+#endregion
 
-"""
---- Runtime Methods
-"""
+#region Runtime Methods
 func _gui_input(event: InputEvent) -> void:
 	if active and event.is_action_pressed("drag_board_element"):
 		mouseOffset = position - get_global_mouse_position()
@@ -56,20 +50,17 @@ func delete_element() -> void:
 	GameController.release_focus()
 	Signals.emit_signal('delete_board_element',self)
 	get_viewport().set_input_as_handled()
+#endregion
 
-"""
---- Restrain on Board Methods
-"""
+#region Restrain Methods
 func restrain_element() -> void:
 	position.x = max(position.x,0)
 	position.y = max(position.y,0)
 	position.x = min(position.x,boardSize.x - self.size.x)
 	position.y = min(position.y,boardSize.y - self.size.y)
+#endregion
 
-"""
---- Input Signal Methods
-"""
-
+#region Signal Methods
 func _on_delete_button_pressed() -> void:
 	delete_element()
 
@@ -82,19 +73,9 @@ func _on_mouse_exited() -> void:
 	active = false
 	Signals.emit_signal("set_active_element",null)
 	Signals.emit_signal("input_help_delete","REMOVE_BOARD_ELEMENT_INPUT_HELP")
+#endregion
 
-
-"""
---- Persistence Constants
-"""
-const elementFilepath: Dictionary = {
-	ElementResource.elementType.NOTE : "res://scenes/UI/board/board_elements/element_note.tscn",
-	ElementResource.elementType.OBJECT : "res://scenes/UI/board/board_elements/element_object.tscn",
-	ElementResource.elementType.TEXT : "res://scenes/UI/board/board_elements/element_text.tscn",
-}
-"""
---- Persistence Methods
-"""
+#region Persitence Methods
 func saving() -> Dictionary:
 	var output: Dictionary = {
 		"node":"res://scenes/UI/board/board_elements/element_base.tscn",
@@ -120,3 +101,4 @@ func loading(input: Dictionary) -> bool:
 	_ready()
 	Global.board_elements[resource.id] = self
 	return true
+#endregion

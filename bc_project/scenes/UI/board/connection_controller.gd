@@ -1,25 +1,20 @@
 class_name ConnectionControler extends Node
 
-"""
---- Scene Preloads
-"""
-# Line ELements preloaded for instantiation
-const line_element = preload("res://scenes/UI/board/board_elements/connection_base.tscn")
+#region Constants
 
-"""
---- Runtime Variables
-"""
+const preloadLineElement = preload("res://scenes/UI/board/board_elements/connection_base.tscn")
+#endregion
+
+#region Varibles
 var drawing: bool = false
 
 var activeElement: ElementBase
 var instance: ConnectionBase
 
 var clues: Dictionary
+#endregion
 
-"""
---- Setup Methods
-"""
-# Called when the node enters the scene tree for the first time.
+#region Setup Methods
 func _ready() -> void:
 	
 	import_clues()
@@ -31,6 +26,7 @@ func set_active_element(element:Control) -> void:
 	activeElement = element
 
 func import_clues() -> void:
+#endregion
 	var resource
 	for child in get_tree().root.get_children():
 		if child is LevelController:
@@ -48,9 +44,7 @@ func import_clues() -> void:
 	for clue in resource.clues:
 		clues[clue.combination] = clue
 
-"""
---- Runtime Methods
-"""
+#region Runtime Methods
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("create_line") and activeElement != null and not drawing:
 		GameController.release_focus()
@@ -61,13 +55,12 @@ func _input(event: InputEvent) -> void:
 	
 	if (event.is_action_pressed("ui_cancel") or event.is_action_released("create_line")) and drawing:
 		end_drawing()
+#endregion
 
-"""
---- Drawing Methods
-"""
+#region Drawing Methods
 func start_drawing() -> void:
 	drawing = true
-	instance = line_element.instantiate()
+	instance = preloadLineElement.instantiate()
 	get_parent().add_child(instance)
 	instance.set_element(0,activeElement)
 
@@ -94,18 +87,16 @@ func check_for_clue(combination:String) -> String:
 	if clues.has(combination):
 		return clues[combination].clueString
 	return ""
+#endregion
 
-"""
---- Connection Managment Methods
-"""
+#region Connection Managment Methods
 func delete_line_element(line) -> void:
 	Global.line_elements.erase(line.resource.id)
 	line.queue_free()
 	Signals.emit_signal("input_help_delete","REMOVE_BOARD_LINE_INPUT_HELP")
+#endregion
 
-"""
---- General Methods
-"""
+#region General Methods
 func combine_strings(a:String, b:String) -> String:
 	if not (a and b):
 		printerr("Combining strings can't be done.")
@@ -114,9 +105,9 @@ func combine_strings(a:String, b:String) -> String:
 	if a < b:
 		return a+b
 	return b+a
+#endregion
 
-"""
---- Input Signal Methods
-"""
+#region Signal Methods
 func _on_color_picker_item_selected(index: int) -> void:
 	pass
+#endregion

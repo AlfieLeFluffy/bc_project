@@ -1,33 +1,22 @@
 class_name ElementControler extends Node
 
-#region Varibles, Constants and Enums
-"""
---- Scene Preloads
-"""
-# Board ELements preloaded for instantiation
+#region Constants
 const boardPreload = preload("res://scenes/UI/board/board_elements/element_base.tscn")
 const elementPreload = preload("res://scenes/UI/board/board_elements/element_base.tscn")
+#endregion
 
-"""
---- Runtime Variables
-"""
+#region Varibles
 var instance: ElementBase
 #endregion
 
 #region Setup Methods
-"""
---- Setup Methods
-"""
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Signals.connect('create_board_element', create_board_element)
 	Signals.connect('delete_board_element', delete_board_element)
 #endregion
 
-
-"""
---- Element Managment Methods
-"""
+#region Element Management Methods
 func create_board_element(elementResource: ElementResource) -> void:
 	if check_element(elementResource.name + elementResource.timeline):
 		return
@@ -56,16 +45,13 @@ func delete_board_element(element) -> void:
 	element.queue_free()
 	Signals.emit_signal("input_help_delete","REMOVE_BOARD_ELEMENT_INPUT_HELP")
 
-"""
---- Element Creation Methods
-"""
 func check_element(key:String) -> bool:
 	if Global.board_elements.has(key):
 		return true
 	return false
+#endregion
 
-"""
---- Input Signal Methods
-"""
+#region Signal Methods
 func _on_button_symbol_plus_pressed() -> void:
 	create_element(ElementResource.new(ElementResource.elementType.NOTE,"note",Global.Timeline,"",null))
+#endregion

@@ -1,21 +1,17 @@
 class_name ConnectionBase extends Control
 
-"""
---- Runtime Variables
-"""
+#region Varibles
 var active = false
 var resource: ConnectionResource
+#endregion
 
-"""
---- Setup Methods
-"""
+#region Setup Methods
 func _ready() -> void:
 	resource = ConnectionResource.new()
 	SettingsController.connect("retranslate",retranslate_description)
+#endregion
 
-"""
---- Runtime Methods
-"""
+#region Runtime Methods
 func _unhandled_input(event: InputEvent) -> void:
 	if active and event.is_action_pressed("delete_board_element"):
 		GameController.release_focus()
@@ -39,11 +35,9 @@ func _physics_process(delta: float) -> void:
 	elif resource.start:
 		%Line.set_point_position(0,self.position-resource.start.position-Global.BOARD_LINE_OFFSET)
 		%Line.set_point_position(1,self.get_local_mouse_position())
+#endregion
 
-"""
---- General Methods
-"""
-
+#region General Methods
 func set_element(idx:int,element:ElementBase) -> void:
 	match idx:
 		0:
@@ -64,10 +58,9 @@ func set_description(text) -> void:
 
 func retranslate_description() -> void:
 	%Label.text = tr(resource.description)
+#endregion
 
-"""
---- Input Signal Methods
-"""
+#region Signal Methods
 func _on_mouse_entered() -> void:
 	Signals.emit_signal("input_help_set",GameController.get_input_key_list("delete_board_element"),"REMOVE_BOARD_LINE_INPUT_HELP")
 	active = true
@@ -75,7 +68,9 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	Signals.emit_signal("input_help_delete","REMOVE_BOARD_LINE_INPUT_HELP")
 	active = false
+#endregion
 
+#region Persitence Methods
 func saving() -> Dictionary:
 	var output: Dictionary = {
 		"node": "res://scenes/UI/board/board_elements/connection_base.tscn",
@@ -109,3 +104,4 @@ func loading(input: Dictionary) -> bool:
 	
 	Global.line_elements[resource.id] = self
 	return true
+#endregion

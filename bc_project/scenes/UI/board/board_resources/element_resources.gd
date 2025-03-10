@@ -1,8 +1,6 @@
 class_name ElementResource extends Resource
 
-"""
---- Board Element Types
-"""
+#region Constants
 enum elementType {NOTE,OBJECT,TEXT,FILE,PROFILE}
 
 const elementColor: Dictionary = {
@@ -20,9 +18,9 @@ const elementContent: Dictionary = {
 	ElementResource.elementType.FILE : "res://scenes/UI/board/board_elements/elementContent/content_file.tscn",
 	ElementResource.elementType.PROFILE : null,
 }
-"""
---- Board Element Varibles
-"""
+#endregion
+
+#region Variables
 var type: elementType
 var id: String
 var name: String
@@ -30,7 +28,9 @@ var timeline: String
 var description: String
 var texture
 var color: Color
+#endregion
 
+#region Resource Methods
 func _init(_type: elementType, _name: StringName = "", _timeline: String = "", _description: String = "", _texture = null) -> void:
 	type = _type
 	id = create_id(_name,_timeline)
@@ -45,3 +45,4 @@ func create_id(_name: StringName, _timeline: String) -> String:
 
 func get_color(_type: elementType) -> Color:
 	return elementColor[_type]
+#endregion
