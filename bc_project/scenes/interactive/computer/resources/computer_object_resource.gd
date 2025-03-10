@@ -1,14 +1,19 @@
 class_name ComputerObjectResource extends Resource
 
 """
---- Text Object Enum
+--- Computer Object Enum
 """
 enum computerTypeEnum {COMPUTER,TABLET}
 
 """
---- Text Resourses
+--- Computer Resourses
 """
-@export_category("Text Information")
-@export var computerName: String = ""
-@export var computerType: computerTypeEnum = computerTypeEnum.COMPUTER
-@export var computerState: bool = true
+@export_group("Computer Information")
+@export var name: String = ""
+@export var type: computerTypeEnum = computerTypeEnum.COMPUTER
+@export var state: bool = true
+
+@export_group("Login Information")
+@export var login: bool = false
+@export var locked: bool = false
+@export var password: String = ""

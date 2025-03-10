@@ -43,8 +43,8 @@ func _ready() -> void:
 func setup_computer_view(_computer:ComputerBase) -> void:
 	computer = _computer
 	
-	if computer.compRes.computerName:
-		name = "Computer_View_"+ computer.compRes.computerName
+	if computer.compRes.name:
+		name = "Computer_View_"+ computer.compRes.name
 	
 	setup_shortcuts()
 
@@ -150,7 +150,7 @@ func create_application_tab(_type: ApplicationResource.applicationTypes) -> Appl
 
 """ View Control Methods """
 func exit_view() ->void:
-	Signals.emit_signal("hide_computer_view",computer.compRes.computerName)
+	Signals.emit_signal("hide_computer_view",computer.compRes.name)
 
 func shutdown_computer() -> void:
 	computer.appRes.activeApplications.clear()
@@ -167,7 +167,7 @@ func _on_background_button_pressed() -> void:
 func _on_start_index_pressed(index: int) -> void:
 	match index:
 		0:
-			Signals.emit_signal("shutdown_computer",computer.compRes.computerName)
+			Signals.emit_signal("shutdown_computer",computer.compRes.name)
 			shutdown_computer()
 		_:
 			printerr("Start menu index out of bounds")

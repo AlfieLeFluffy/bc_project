@@ -376,9 +376,12 @@ detective_board_toggle = true
 
 [sub_resource type="Resource" id="Resource_dgc65"]
 script = ExtResource("23_trjr1")
-computerName = "Test"
-computerType = 0
-computerState = true
+name = "Test Computer"
+type = 0
+state = true
+login = true
+locked = true
+password = "test"
 metadata/_custom_type_script = "uid://cbgr7ncuyd2t0"
 
 [sub_resource type="Resource" id="Resource_jlhf4"]

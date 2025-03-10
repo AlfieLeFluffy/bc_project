@@ -28,11 +28,11 @@ func local_ready() -> void:
 
 func setup_interactable_info() -> void:
 	if compRes:
-		name = compRes.computerName
-		label.text = tr(compRes.computerName)
+		name = compRes.name
+		label.text = tr(compRes.name)
 
 func setup_computer_status() -> void:
-	if compRes.computerState:
+	if compRes.state:
 		sprite.frame = 0
 		return
 	sprite.frame = 1
@@ -46,8 +46,8 @@ func setup_computer_status() -> void:
 """
 # Active function if no dialog detected
 func interact_function(event: InputEvent) -> void:
-	if not compRes.computerState:
-		compRes.computerState = true
+	if not compRes.state:
+		compRes.state = true
 		setup_computer_status()
 		return
 	else:
@@ -67,12 +67,12 @@ func create_computer_view() -> void:
 	view.setup_computer_view(self)
 
 func shutdown_computer(computerName: String) -> void:
-	if computerName == compRes.computerName:
-		compRes.computerState = false
+	if computerName == compRes.name:
+		compRes.state = false
 	setup_computer_status()
 
 func hide_computer_view(computerName: String) -> void:
-	if computerName == compRes.computerName and is_instance_valid(view):
+	if computerName == compRes.name and is_instance_valid(view):
 		view.visible = not view.visible
 
 # Active function if no dialog detected
