@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://x2db3an72yru"]
+
+[ext_resource type="Script" uid="uid://c1x4u1uwglbxa" path="res://scenes/interactive/buttons/elevatorMenu/prefab/elevator_menu_button.gd" id="1_7ybmn"]
+
+[node name="ElevatorMenuButton" type="Button"]
+text = "test"
+script = ExtResource("1_7ybmn")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
