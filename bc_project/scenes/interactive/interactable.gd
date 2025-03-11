@@ -119,7 +119,8 @@ func deactivate_hover() -> void:
 	$Sprite2D.material.set("shader_parameter/line_thickness",0)
 
 func activate_interactivity() -> void:
-	$Labels.visible = true
+	if interactable_resource.show_labels:
+		$Labels.visible = true
 	Global.Active_Interactive_Item = self
 	Signals.emit_signal("input_help_set",GameController.get_input_key_list("add_to_board"),"ADD_TO_BOARD_INPUT_HELP")
 	Signals.emit_signal("input_help_set",GameController.get_input_key_list("interact"),"INTERACT_INPUT_HELP")

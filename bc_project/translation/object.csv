@@ -8,3 +8,5 @@ THICK_MUG_NAME,Thick Mug,Bujny Hrnek
 THICK_MUG_DESCRIPTION,Test Description,Testovaci Popisek
 DOOR_NAME,Door,Dvere
 DISHES_CLUE,Dishes,Nadoby
+ELEVATOR_BUTTONS_NAME,Elevator Buttons,Tlacitka Vytahu
+ELEVATOR_BUTTONS_DESCRIPTION,Buttons for selecting to which floor the elevator will go to.,Tlacitka na vyber poschodi pro vytah.

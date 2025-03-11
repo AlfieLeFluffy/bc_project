@@ -12,6 +12,7 @@ script = ExtResource("3_0x2wn")
 item_name = ""
 description = ""
 detective_board_toggle = true
+show_labels = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_356m4"]
 resource_local_to_scene = true
