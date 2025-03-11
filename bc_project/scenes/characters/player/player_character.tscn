@@ -49,7 +49,6 @@ color = Color(0.382407, 0.46982, 0.61435, 1)
 energy = 0.8
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.313726)
-shadow_item_cull_mask = 6
 texture = ExtResource("3_66w77")
 texture_scale = 0.5
 
