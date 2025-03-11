@@ -322,8 +322,8 @@ currentStop = ""
 movingToStop = ""
 stops = {
 "1": Vector2(0, 0),
-"2": Vector2(0, -179),
-"3": Vector2(0, -358)
+"2": Vector2(0, -176),
+"3": Vector2(0, -352)
 }
 metadata/_custom_type_script = "uid://bm15idovcdu8y"
 
@@ -587,7 +587,7 @@ z_index = 1
 position = Vector2(85, 476)
 
 [node name="Elevator" parent="." instance=ExtResource("29_0nxvq")]
-position = Vector2(-50, 515)
+position = Vector2(-50, 512)
 resource = SubResource("Resource_5vl2c")
 
 [connection signal="area_entered" from="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch" to="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch" method="_on_area_entered"]
