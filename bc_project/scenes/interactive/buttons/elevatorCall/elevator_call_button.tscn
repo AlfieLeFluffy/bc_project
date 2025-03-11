@@ -1,0 +1,39 @@
+[gd_scene load_steps=9 format=3 uid="uid://c4br56b34o2el"]
+
+[ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable_base.tscn" id="1_ferne"]
+[ext_resource type="Script" uid="uid://ctrli6k2nidqx" path="res://scenes/interactive/buttons/elevatorCall/elevator_call_button.gd" id="2_ewimi"]
+[ext_resource type="Shader" uid="uid://beshjcnacfelm" path="res://shaders/outline_shader.gdshader" id="2_od2ls"]
+[ext_resource type="Script" uid="uid://cwo1tqjwxj8gd" path="res://scenes/interactive/interactable_resource.gd" id="3_qx727"]
+[ext_resource type="Texture2D" uid="uid://ccpyl10gd3y4a" path="res://textures/buttons/elevator_call_button_object.png" id="4_ewimi"]
+
+[sub_resource type="Resource" id="Resource_miypb"]
+script = ExtResource("3_qx727")
+item_name = "ELEVATOR_CALL_BUTTON_NAME"
+description = "ELEVATOR_CALL_BUTTON_DESCRIPTION"
+detective_board_toggle = false
+show_labels = true
+metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ewimi"]
+resource_local_to_scene = true
+size = Vector2(12, 13)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qx727"]
+resource_local_to_scene = true
+shader = ExtResource("2_od2ls")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+
+[node name="ElevatorCallButton" instance=ExtResource("1_ferne")]
+script = ExtResource("2_ewimi")
+key = ""
+resource = null
+interactable_resource = SubResource("Resource_miypb")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_ewimi")
+
+[node name="Sprite2D" parent="." index="2"]
+material = SubResource("ShaderMaterial_qx727")
+texture = ExtResource("4_ewimi")

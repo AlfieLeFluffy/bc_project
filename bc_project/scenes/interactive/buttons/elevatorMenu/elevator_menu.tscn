@@ -9,8 +9,8 @@
 
 [sub_resource type="Resource" id="Resource_0gjei"]
 script = ExtResource("3_q3ui7")
-item_name = "ELEVATOR_BUTTONS_NAME"
-description = "ELEVATOR_BUTTONS_DESCRIPTION"
+item_name = "ELEVATOR_MENU_NAME"
+description = "ELEVATOR_MENU_DESCRIPTION"
 detective_board_toggle = false
 show_labels = false
 metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oq3834bxwm7m"
-path="res://.godot/imported/elevator_buttons_object.png-a2fd6e2a1521f2886f8ff236ae90cec3.ctex"
+uid="uid://ccpyl10gd3y4a"
+path="res://.godot/imported/elevator_call_button_object.png-9b624086fb48a9ea51bdecdfda7c6e03.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/elevator_buttons_object.png"
-dest_files=["res://.godot/imported/elevator_buttons_object.png-a2fd6e2a1521f2886f8ff236ae90cec3.ctex"]
+source_file="res://textures/buttons/elevator_call_button_object.png"
+dest_files=["res://.godot/imported/elevator_call_button_object.png-9b624086fb48a9ea51bdecdfda7c6e03.ctex"]
 
 [params]
 
