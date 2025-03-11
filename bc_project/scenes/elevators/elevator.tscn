@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://532uypmhsvde"]
+
+[ext_resource type="Script" uid="uid://dnshcxe2qnfyb" path="res://scenes/elevators/elevator.gd" id="1_5ow4g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vptxo"]
+size = Vector2(100, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnt0l"]
+size = Vector2(100, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6g246"]
+size = Vector2(5, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ve23l"]
+size = Vector2(5, 100)
+
+[node name="Elevator" type="Node2D" groups=["Persistent"]]
+script = ExtResource("1_5ow4g")
+
+[node name="ElevatorCabin" type="AnimatableBody2D" parent="."]
+unique_name_in_owner = true
+sync_to_physics = false
+
+[node name="FloorCollision" type="CollisionShape2D" parent="ElevatorCabin"]
+shape = SubResource("RectangleShape2D_vptxo")
+
+[node name="CeilingCollision" type="CollisionShape2D" parent="ElevatorCabin"]
+position = Vector2(0, -100)
+shape = SubResource("RectangleShape2D_rnt0l")
+
+[node name="DoorLeftCollision" type="CollisionShape2D" parent="ElevatorCabin"]
+unique_name_in_owner = true
+position = Vector2(-50, -50)
+shape = SubResource("RectangleShape2D_6g246")
+
+[node name="DoorsRightCollision" type="CollisionShape2D" parent="ElevatorCabin"]
+unique_name_in_owner = true
+position = Vector2(50, -50)
+shape = SubResource("RectangleShape2D_ve23l")

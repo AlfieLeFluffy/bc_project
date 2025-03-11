@@ -42,3 +42,6 @@ signal end_npc_conversation_state()
 # Singnal for updating computer interactables
 signal shutdown_computer(computerName)
 signal hide_computer_view(computerName)
+
+signal elevator_move_to_key(id,key)
+signal elevator_move_to_vector(id,vector)
