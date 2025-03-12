@@ -25,7 +25,6 @@ const screenEffects: Dictionary = {
 #endregion
 
 #region Profile and  Saves Variables and Constants
-const achievementsFolderPath: String = "user://achievements"
 const savefileFolderPath: String = "user://saves"
 
 var profile: ProfileResource
@@ -35,6 +34,9 @@ var profile: ProfileResource
 signal profileCreate(profileName)
 signal profileSet(profile)
 signal profileLoaded()
+
+signal achievementsLoaded()
+
 
 signal openPersistenceMenu(mode)
 signal saveGame(filename)
@@ -141,17 +143,26 @@ func create_new_profile(_profileName: String) -> ProfileResource:
 	return newProfile
 
 #endregion
-	
-func create_profile_filepath_filename(filename: String) -> String:
-	return profileFolderPath.path_join(filename)
 
-func get_available_profile_dict() -> Dictionary:
-	var output: Dictionary = {}
-	for filename in DirAccess.get_files_at(profileFolderPath):
-		var loadedProfile = load(create_profile_filepath_filename(filename))
-		if loadedProfile is ProfileResource:
-			output[loadedProfile.id] = loadedProfile
-	return output
+#region Achievements Methods
+func load_achievements() -> void:
+	check_create_directory(AchievementsResource.achievementsFolderPath)
+	
+	if not check_file_exists(AchievementsResource.create_filepath_id(profile.id)):
+		create_set_save_new_achievements()
+
+func set_achievements(_achievements: AchievementsResource) -> void:
+	profile.achivements = _achievements
+	achievementsLoaded.emit()
+
+func create_set_save_new_achievements() -> void:
+	set_achievements(create_new_achievements())
+	profile.achivements.save(profile.id)
+
+func create_new_achievements() -> AchievementsResource:
+	var newAchievements: AchievementsResource = AchievementsResource.new()
+	return newAchievements
+	
 #endregion
 
 #region Global Minsc Methods
