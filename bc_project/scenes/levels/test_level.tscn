@@ -313,10 +313,10 @@ metadata/_custom_type_script = "uid://bip873am5kgyj"
 
 [node name="player" parent="." groups=["CameraFocus"] instance=ExtResource("1_wpgi4")]
 z_index = 1
-position = Vector2(384, 299)
+position = Vector2(61, 476)
 
 [node name="Elevator" parent="." instance=ExtResource("29_0nxvq")]
-position = Vector2(-63, 512)
+position = Vector2(-64, 512)
 resource = SubResource("Resource_5vl2c")
 
 [connection signal="area_entered" from="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch" to="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch" method="_on_area_entered"]

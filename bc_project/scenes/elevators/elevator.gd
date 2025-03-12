@@ -14,7 +14,7 @@ func _ready():
 	Signals.connect("elevator_move_to_key",move_to_stop_key)
 	Signals.connect("elevator_move_to_vector",move_to_stop_vector)
 	
-	setup_cabin(resource.active, true)
+	setup_cabin()
 #endregion
 
 #region Runtime Methods
@@ -55,27 +55,37 @@ func move_to_stop_vector(id:String, vector: Vector2) -> void:
 #region Elevator Managment Methods
 func move_to_stop(key: String) -> void:
 	resource.movingToStop = key
-	await setup_cabin(true)
+	await set_cabin(true)
 	setup_tween(%ElevatorCabin.position, resource.stops[key])
 	await run_tween()
 	resource.currentStop = key
-	await setup_cabin(false)
+	await set_cabin(false)
 
 func move_to_vector(vector: Vector2) -> void:
 	resource.stops["vector"] = vector
 	resource.movingToStop = "vector"
-	await setup_cabin(true)
+	await set_cabin(true)
 	setup_tween(%ElevatorCabin.position, vector)
 	await run_tween()
 	resource.currentStop = "vector"
-	await setup_cabin(false)
+	await set_cabin(false)
 
-func setup_cabin(state: bool, setupTimeoutSkip: bool = false) -> bool:
+func setup_cabin() -> void:
+	%DoorLeftCollision.disabled = (resource.openning & resource.OPENNING_LEFT) and not resource.active
+	%DoorsRightCollision.disabled = (resource.openning & resource.OPENNING_RIGHT) and not resource.active
+	%LeftOccluder.visible = not (resource.openning & resource.OPENNING_LEFT)
+	%RightOccluder.visible = not (resource.openning & resource.OPENNING_RIGHT)
+	%LeftWallSprite.visible = not (resource.openning & resource.OPENNING_LEFT)
+	%RightWallSprite.visible = not (resource.openning & resource.OPENNING_RIGHT)
+
+func set_cabin(state: bool) -> bool:
 	resource.set_active(state)
-	if resource.startupTimeout and not setupTimeoutSkip:
+	if resource.startupTimeout:
 		await get_tree().create_timer(resource.startupTimeoutDuration).timeout
 	%DoorLeftCollision.disabled = (resource.openning & resource.OPENNING_LEFT) and not resource.active
 	%DoorsRightCollision.disabled = (resource.openning & resource.OPENNING_RIGHT) and not resource.active
+	%LeftOccluder.visible = resource.active or not (resource.openning & resource.OPENNING_LEFT)
+	%RightOccluder.visible = resource.active or not (resource.openning & resource.OPENNING_RIGHT)
 	return true
 
 func setup_tween(start: Vector2, end: Vector2) -> void:
@@ -116,9 +126,9 @@ func loading(input:Dictionary) -> bool:
 		resource.active = input["active"]
 		resource.currentStop = input["currentStop"]
 		resource.movingToStop = input["movingToStop"]
-		if input["cabin"].has_all(["posX","posY"]):
+		if input["cabin"].has_all(["posX","posY","lightOccluderVisibleLeft","lightOccluderVisibleRight"]):
 			%ElevatorCabin.position = Vector2(input["cabin"]["posX"],input["cabin"]["posY"])
-		setup_cabin(resource.active,true)
+		setup_cabin()
 		if resource.active:
 			move_to_stop(resource.movingToStop)
 		return true
