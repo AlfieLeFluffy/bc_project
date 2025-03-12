@@ -79,7 +79,6 @@ func _ready() -> void:
 	
 	profileCreate.connect(create_set_save_new_profile)
 	profileSet.connect(set_profile)
-	profileLoaded.connect(load_achievements)
 	
 	DialogueManager.connect("dialogue_ended",release_focus)
 	DialogueManager.connect("got_dialogue",dialogue_voice_check)
@@ -131,11 +130,30 @@ func load_profile_from_path(filepath: String) -> void:
 	profileLoaded.emit()
 
 func save_profile() -> void:
-	profile.save()
+	if profile:
+		profile.save()
 
 func set_profile(_profile: ProfileResource) -> void:
 	profile = _profile
+	SettingsController.set_profile_id(profile.id)
 	profileLoaded.emit()
+
+func clear_profile():
+	profile = null
+	profileLoaded.emit()
+
+func delete_profile(_id: String):
+	if profile.id == _id:
+		clear_profile()
+	var profiles: Dictionary = ProfileResource.get_available_profile_dict()
+	if profiles.has(_id):
+		profiles[_id].delete()
+	profileLoaded.emit()
+
+
+func create_save_new_profile(_profileName) -> void:
+	var newProfile: ProfileResource = create_new_profile(_profileName)
+	newProfile.save()
 
 func create_set_save_new_profile(_profileName) -> void:
 	set_profile(create_new_profile(_profileName))
@@ -149,36 +167,6 @@ func create_new_profile(_profileName: String) -> ProfileResource:
 #endregion
 
 #region Achievements Methods
-func load_achievements() -> void:
-	check_create_directory(AchievementsResource.achievementsFolderPath)
-	
-	if not profile:
-		printerr("Error: Missing profile during loading achievements")
-		return
-	
-	if not check_file_exists(AchievementsResource.create_filepath_id(profile.id)):
-		create_set_save_new_achievements()
-	
-	load_achievements_from_path(AchievementsResource.create_filepath_id(profile.id))
-
-func load_achievements_from_path(_filepath: String) -> void:
-	if not check_file_exists(_filepath):
-		printerr("Error: Cannot find achievements file for filepath '%s'" % _filepath)
-		return
-	set_achievements(ResourceLoader.load(_filepath))
-
-func set_achievements(_achievements: AchievementsResource) -> void:
-	profile.achivements = _achievements
-	achievementsLoaded.emit()
-
-func create_set_save_new_achievements() -> void:
-	set_achievements(create_new_achievements())
-	profile.achivements.save(profile.id)
-
-func create_new_achievements() -> AchievementsResource:
-	var newAchievements: AchievementsResource = AchievementsResource.new()
-	return newAchievements
-	
 #endregion
 
 #region Global Minsc Methods

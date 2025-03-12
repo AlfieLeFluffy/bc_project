@@ -78,6 +78,10 @@ func get_profile_id() -> String:
 		return config.get_value("Profile", "ID")
 	return ""
 
+func set_profile_id(_id: String) -> void:
+	config.set_value("Profile","ID",_id)
+	save_settings()
+
 func open_settings_menu() -> void:
 	var menu = preloadSettingsMenu.instantiate()
 	get_tree().current_scene.add_child(menu)
@@ -103,6 +107,7 @@ func update_settings() -> void:
 	update_gameplay()
 	update_graphics()
 	update_audio()
+	save_settings()
 	
 func update_gameplay() -> void:
 	var toRetranslate: bool = false

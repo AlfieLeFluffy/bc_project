@@ -1,9 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2vbyl6277p6b"]
+[gd_scene load_steps=4 format=3 uid="uid://b2vbyl6277p6b"]
 
 [ext_resource type="Script" uid="uid://cyp36x1yqve82" path="res://scenes/menus/main_menu.gd" id="1_7ttt2"]
 [ext_resource type="Theme" uid="uid://f6rijghqdfrw" path="res://settings/main_menu_theme.tres" id="1_c65hb"]
-[ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="1_fnumv"]
-[ext_resource type="LabelSettings" uid="uid://dpdrbm7tfimf4" path="res://settings/main_menu_buttons_settings.tres" id="6_gi2p0"]
 
 [sub_resource type="GDScript" id="GDScript_0itgy"]
 script/source = "extends Label
@@ -31,124 +29,167 @@ grow_vertical = 2
 theme = ExtResource("1_c65hb")
 script = ExtResource("1_7ttt2")
 
-[node name="VB" type="VBoxContainer" parent="MainMenu"]
+[node name="MainActions" type="VBoxContainer" parent="MainMenu"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.062
-anchor_top = 0.117
-anchor_right = 0.206
-anchor_bottom = 0.889
-offset_left = 0.959991
-offset_top = -0.360016
-offset_right = 0.47998
-offset_bottom = -0.119995
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -470.0
+offset_right = 300.0
+offset_bottom = -50.0
+grow_vertical = 0
 alignment = 2
 
-[node name="VBButtons" type="VBoxContainer" parent="MainMenu/VB"]
+[node name="MainButtons" type="VBoxContainer" parent="MainMenu/MainActions"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="TestSceneButton" type="Button" parent="MainMenu/VB/VBButtons"]
+[node name="TestSceneButton" type="Button" parent="MainMenu/MainActions/MainButtons"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
-focus_mode = 0
+focus_neighbor_bottom = NodePath("../LoadButton")
 disabled = true
-
-[node name="Label" type="Label" parent="MainMenu/VB/VBButtons/TestSceneButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 4.0
-grow_horizontal = 2
-grow_vertical = 2
 text = "TEST_SCENE"
-label_settings = ExtResource("6_gi2p0")
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="LoadButton" type="Button" parent="MainMenu/VB/VBButtons"]
+[node name="LoadButton" type="Button" parent="MainMenu/MainActions/MainButtons"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
-focus_mode = 0
-
-[node name="Label" type="Label" parent="MainMenu/VB/VBButtons/LoadButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 4.0
-grow_horizontal = 2
-grow_vertical = 2
+focus_neighbor_top = NodePath("../TestSceneButton")
+focus_neighbor_bottom = NodePath("../AchievementsButton")
 text = "LOAD_BUTTON"
-label_settings = ExtResource("6_gi2p0")
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="AchievementsButton" type="Button" parent="MainMenu/VB/VBButtons"]
+[node name="AchievementsButton" type="Button" parent="MainMenu/MainActions/MainButtons"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
-focus_mode = 0
+focus_neighbor_top = NodePath("../LoadButton")
+focus_neighbor_bottom = NodePath("../SettingsButton")
 disabled = true
-
-[node name="Label" type="Label" parent="MainMenu/VB/VBButtons/AchievementsButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 4.0
-grow_horizontal = 2
-grow_vertical = 2
 text = "ACHIEVEMENTS_BUTTON"
-label_settings = ExtResource("6_gi2p0")
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="SettingsButton" type="Button" parent="MainMenu/VB/VBButtons"]
+[node name="SettingsButton" type="Button" parent="MainMenu/MainActions/MainButtons"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
-focus_mode = 0
-
-[node name="Label" type="Label" parent="MainMenu/VB/VBButtons/SettingsButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 4.0
-grow_horizontal = 2
-grow_vertical = 2
+focus_neighbor_top = NodePath("../AchievementsButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
 text = "SETTINGS_BUTTON"
-label_settings = ExtResource("6_gi2p0")
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="QuitButton" type="Button" parent="MainMenu/VB/VBButtons"]
+[node name="QuitButton" type="Button" parent="MainMenu/MainActions/MainButtons"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
-focus_mode = 0
-
-[node name="Label" type="Label" parent="MainMenu/VB/VBButtons/QuitButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 4.0
-grow_horizontal = 2
-grow_vertical = 2
+focus_neighbor_top = NodePath("../SettingsButton")
 text = "QUIT_BUTTON"
-label_settings = ExtResource("6_gi2p0")
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="Version" type="Label" parent="MainMenu/VB"]
+[node name="VersionLabel" type="Label" parent="MainMenu/MainActions"]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_fnumv")
-theme_override_font_sizes/font_size = 24
 text = "VERSION_LABEL - 0.0.0"
 script = SubResource("GDScript_0itgy")
 
-[connection signal="pressed" from="MainMenu/VB/VBButtons/TestSceneButton" to="MainMenu" method="_on_test_scene_button_pressed"]
-[connection signal="pressed" from="MainMenu/VB/VBButtons/LoadButton" to="MainMenu" method="_on_load_button_pressed"]
-[connection signal="pressed" from="MainMenu/VB/VBButtons/AchievementsButton" to="MainMenu" method="_on_achievements_button_pressed"]
-[connection signal="pressed" from="MainMenu/VB/VBButtons/SettingsButton" to="MainMenu" method="_on_settings_button_pressed"]
-[connection signal="pressed" from="MainMenu/VB/VBButtons/QuitButton" to="MainMenu" method="_on_quit_button_pressed"]
+[node name="Profiles" type="Control" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ProfileMenu" type="VBoxContainer" parent="MainMenu/Profiles"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -225.0
+offset_top = -150.0
+offset_right = -25.0
+offset_bottom = -14.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.8, 0.8)
+alignment = 2
+
+[node name="ProfileLabel" type="RichTextLabel" parent="MainMenu/Profiles/ProfileMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "Profile:
+Test"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ChooseProfileButton" type="Button" parent="MainMenu/Profiles/ProfileMenu"]
+unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+text = "CHOOSE_PROFILE_BUTTON"
+clip_text = true
+
+[node name="CreateProfileButton" type="Button" parent="MainMenu/Profiles/ProfileMenu"]
+unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+text = "CREATE_PROFILE_BUTTON"
+clip_text = true
+
+[node name="ProfilesList" type="ItemList" parent="MainMenu/Profiles"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -246.0
+offset_top = -184.0
+offset_right = -46.0
+offset_bottom = -164.0
+grow_horizontal = 0
+grow_vertical = 0
+auto_height = true
+
+[node name="ProfileDeletionConfirmation" type="ConfirmationDialog" parent="MainMenu"]
+unique_name_in_owner = true
+initial_position = 5
+dialog_text = "PROFILE_DELETION_CONFIRMATION"
+
+[node name="ProfileCreationConfirmation" type="ConfirmationDialog" parent="MainMenu"]
+unique_name_in_owner = true
+title = "PROFILE_CREACTION_CONFIRMATION"
+initial_position = 5
+
+[node name="ProfileCreationLineEdit" type="LineEdit" parent="MainMenu/ProfileCreationConfirmation"]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -34.2813
+offset_right = 34.2813
+offset_bottom = 31.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="pressed" from="MainMenu/MainActions/MainButtons/TestSceneButton" to="MainMenu" method="_on_test_scene_button_pressed"]
+[connection signal="pressed" from="MainMenu/MainActions/MainButtons/LoadButton" to="MainMenu" method="_on_load_button_pressed"]
+[connection signal="pressed" from="MainMenu/MainActions/MainButtons/AchievementsButton" to="MainMenu" method="_on_achievements_button_pressed"]
+[connection signal="pressed" from="MainMenu/MainActions/MainButtons/SettingsButton" to="MainMenu" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MainMenu/MainActions/MainButtons/QuitButton" to="MainMenu" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MainMenu/Profiles/ProfileMenu/ChooseProfileButton" to="MainMenu" method="_on_choose_profile_button_pressed"]
+[connection signal="pressed" from="MainMenu/Profiles/ProfileMenu/CreateProfileButton" to="MainMenu" method="_on_create_profile_button_pressed"]
+[connection signal="item_clicked" from="MainMenu/Profiles/ProfilesList" to="MainMenu" method="_on_profiles_list_item_clicked"]
+[connection signal="canceled" from="MainMenu/ProfileDeletionConfirmation" to="MainMenu" method="_on_profile_deletion_confirmation_canceled"]
+[connection signal="confirmed" from="MainMenu/ProfileDeletionConfirmation" to="MainMenu" method="_on_profile_deletion_confirmation_confirmed"]
+[connection signal="confirmed" from="MainMenu/ProfileCreationConfirmation" to="MainMenu" method="_on_profile_creation_confirmation_confirmed"]
+[connection signal="text_submitted" from="MainMenu/ProfileCreationConfirmation/ProfileCreationLineEdit" to="MainMenu" method="_on_profile_creation_line_edit_text_submitted"]

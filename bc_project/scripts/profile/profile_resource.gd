@@ -5,26 +5,26 @@ class_name ProfileResource extends Resource
 @export var profileName: StringName
 
 @export_group("Profile Achievemnts")
-@export var achivements: AchievementsResource
+@export var achievements: Array = []
 
 #region Constants
 const folderPath: String = "user://profiles"
 #endregion
 
-#region Setup Methods
+#region Setup
 func setup(_profileName: StringName) -> void:
 	id = create_id(_profileName)
 	profileName = _profileName
 #endregion
 
-#region Save Methods
+#region Save and Delete Methods
 func save() -> void:
-	if achivements:
-		achivements.save(id)
-		achivements = null
 	var error = ResourceSaver.save(self, create_filepath_id(id))
 	if error:
 		printerr("Error: During saving of profile '%s' occured and error: " + str(error))
+
+func delete() -> void:
+	DirAccess.remove_absolute(create_filepath_id(id))
 #endregion
 
 #region Static Profile Menagment Methods

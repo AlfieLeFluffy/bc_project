@@ -47,7 +47,9 @@ SAVE_GAME_LABEL,Save Game,Ulozžt Hru
 LOAD_GAME_LABEL,Load Game,Načist Hru
 SAVEFILE_DELELTE_CONFIRMATION,Do you wish to DELETE this save?,Přejete si SMAZAT uloženou hru?
 SAVEFILE_LOAD_CONFIRMATION,Do you wish to load this save?,Přejete si načist uloženou hru?
-SAVEFILE_OVERWRITE_CONFIRMATION,Do you wish to overwrite this file?,Přejete si prřpsat uloženou hru?
+SAVEFILE_OVERWRITE_CONFIRMATION,Do you wish to overwrite this file?,Přejete si přepsat uloženou hru?
+PROFILE_CREACTION_CONFIRMATION,Create a Profile,Vytvořit Profil
+PROFILE_DELETION_CONFIRMATION,Do you wish to DELETE this profile?,Přejete si SMAZAT tent profil?
 TIMELINE_UI,Timeline: ,Časová linka:
 TALK_INPUT_HELP,Talk,Mluvit
 OPEN_INPUT_HELP,Open,Otevřít
