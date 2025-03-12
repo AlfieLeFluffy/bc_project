@@ -1,55 +1,60 @@
 key,en,cz
-TEST_SCENE,Test Scene,Testovaci Scena
-CONTINUE_BUTTON,Continue,Pokracovat
-SAVE_BUTTON,Save Game,Ulozit Hru
-LOAD_BUTTON,Load save,Nacist Hru
+TEST_SCENE,Test Scene,Testovací Scéna
+CONTINUE_BUTTON,Continue,Pokračovat
+SAVE_BUTTON,Save Game,Uložit Hru
+LOAD_BUTTON,Load save,Načíst Hru
 ACHIEVEMENTS_BUTTON,Achievements,Úspěchy
-SETTINGS_BUTTON,Settings,Nastaveni
-QUIT_BUTTON,Quit,Ukoncit
-QUIT__TO_MAIN_MENU_BUTTON,Quit to Main Menu,Zpet do Hlavniho Menu
-BACK_BUTTON,Back,Zpet
-CANCEL_BUTTON,Cancel,Zrusit
-CLOSE_BUTTON,Close,Zavrit
-SAVE_AND_CLOSE_BUTTON,Save & Close,Ulozit & Zavrit
+SETTINGS_BUTTON,Settings,Nastavení
+QUIT_BUTTON,Quit,Vypnout
+CHOOSE_PROFILE_BUTTON,Choose a Profile,Vybrat profil
+CREATE_PROFILE_BUTTON,Create a Profile,Vytvořit profil
+QUIT__TO_MAIN_MENU_BUTTON,Quit to Main Menu,Zpět do Hlavního Menu
+BACK_BUTTON,Back,Zpět
+CANCEL_BUTTON,Cancel,Zrušit
+CLOSE_BUTTON,Close,Zavřít
+SAVE_AND_CLOSE_BUTTON,Save & Close,Uložit a Zavřít
 APPLY_BUTTON,Apply,Aplikovat
-SAVE_BUTTON,Save,Ulozit
-LOAD_BUTTON,Load,Nacist
-REWRITE_BUTTON,Rewrite,Prepsat
+SAVE_BUTTON,Save,Uložit
+LOAD_BUTTON,Load,Načíst
+REWRITE_BUTTON,Rewrite,Přepsat
 DELETE_BUTTON,Delete,Smazat
 VERSION_LABEL,Version,Verze
-ENGLISH_LANGUAGE,English,Anglictina
-CZECH_LANGUAGE,Czech,Cestina
+PROFILE_LABEL,Profile:,Profil:
+PROFILE_MISSING_LABEL,No profile selected,Nevybrán žádný profil
+PROFILE_REQUIRED_TOOLTIP,This feature requires a profile. Profiles keeps track of not only save files but also achievements.,Tahle akce vyžaduje profil. Profil uchovává nejen uložené hry ale také úspěchy.
+ENGLISH_LANGUAGE,English,Angličtina
+CZECH_LANGUAGE,Czech,Čěština
 GAMEPLAY_TAB,Gameplay,Hratelnost
 GRAPHICS_TAB,Graphics,Grafika
 AUDIO_TAB,Audio,Zvuk
 TEXT_TAB,Text,Text
 LANGUAGE_SETTING,Language:,Jazyk:
-WIN_MODE_SETTING,Window Mode:,Mod Okna:
-WIN_SIZE_SETTING,Window Size:,Rozliseni:
+WIN_MODE_SETTING,Window Mode:,Mód Okna
+WIN_SIZE_SETTING,Window Size:,Rozlišení:
 VSYNC_SETTING,Vsync:,Vsync:
 AUDIO_MASTER_SETTING,Master:,Master:
 AUDIO_SOUND_SETTING,Sounds:,Zvuky:
 AUDIO_MUSIC_SETTING,Music:,Hudba:
 AUDIO_DIALOGUE_SETTING,Dialogue:,Konverzace:
-DISABLED_OPTION,Disabled,Vypnute
-ENABLED_OPTION,Enabled,Zapnute
-WINDOWED_OPTION,Windowed,V Okne
-MINIMEZED_OPTION,Minimized,Minimalizovane
-MAXIMIZED_OPTION,Maximized,Maximalizovane
-FULLSCREEN_OPTION,Fullscreen,V Plnem Okne
-EXCLUSIVE_FULLSCREEN_OPTION,Exclusive Fullscreen,Exlusivne V Plne Okne
-SAVE_GAME_LABEL,Save Game,Ulozit Hru
-LOAD_GAME_LABEL,Load Game,Nacist Hru
-SAVEFILE_DELELTE_CONFIRMATION,Do you wish to DELETE this save?,Prejete si SMAZAT ulozenou hru?
-SAVEFILE_LOAD_CONFIRMATION,Do you wish to load this save?,Prejete si nacist ulozenou hru?
-SAVEFILE_OVERWRITE_CONFIRMATION,Do you wish to overwrite this file?,Prejete si prepsat ulozenou hru?
-TIMELINE_UI,Timeline: ,Casova linka: 
+DISABLED_OPTION,Disabled,Vypnuté
+ENABLED_OPTION,Enabled,Zapnuté
+WINDOWED_OPTION,Windowed,V Okně
+MINIMEZED_OPTION,Minimized,Minimalizované
+MAXIMIZED_OPTION,Maximized,Maximalizované
+FULLSCREEN_OPTION,Fullscreen,V Plném Okně
+EXCLUSIVE_FULLSCREEN_OPTION,Exclusive Fullscreen,Exlusivne V Plné Okně
+SAVE_GAME_LABEL,Save Game,Ulozžt Hru
+LOAD_GAME_LABEL,Load Game,Načist Hru
+SAVEFILE_DELELTE_CONFIRMATION,Do you wish to DELETE this save?,Přejete si SMAZAT uloženou hru?
+SAVEFILE_LOAD_CONFIRMATION,Do you wish to load this save?,Přejete si načist uloženou hru?
+SAVEFILE_OVERWRITE_CONFIRMATION,Do you wish to overwrite this file?,Přejete si prřpsat uloženou hru?
+TIMELINE_UI,Timeline: ,Časová linka:
 TALK_INPUT_HELP,Talk,Mluvit
-OPEN_INPUT_HELP,Open,Otevrit
-GO_THROUGH_DOOR_INPUT_HELP,Go Through Door,Projit Dvermy
+OPEN_INPUT_HELP,Open,Otevřít
+GO_THROUGH_DOOR_INPUT_HELP,Go Through Door,Projit Dveřmy
 REMOVE_BOARD_ELEMENT_INPUT_HELP,Remove Element,Odstranit Element
 REMOVE_BOARD_LINE_INPUT_HELP,Remove Line,Dostranit Linku
-DETECTIVE_BOARD_INPUT_HELP,Detective Board,Detektivni Nastenka
-TIMELINE_SHIFT_INPUT_HELP,Timeline Shift,Posunuti Casoprostoru
+DETECTIVE_BOARD_INPUT_HELP,Detective Board,Detektivní Nástěnka
+TIMELINE_SHIFT_INPUT_HELP,Timeline Shift,Posunutií Časoprostoru
 INTERACT_INPUT_HELP,Interact,Interagovat
-ADD_TO_BOARD_INPUT_HELP,Add to Detective Board,Pridat do Detektivni Nastenky
+ADD_TO_BOARD_INPUT_HELP,Add to Detective Board,Pridat do Detektivní Nástěnky
