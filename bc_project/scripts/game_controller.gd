@@ -37,7 +37,6 @@ signal profileLoaded()
 
 signal achievementsLoaded()
 
-
 signal openPersistenceMenu(mode)
 signal saveGame(filename)
 signal loadGame(filename)
@@ -107,6 +106,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 #region Game Managment Methods
 func quit_game() -> void:
+	profile.save()
 	get_tree().quit(0)
 #endregion
 
@@ -148,8 +148,20 @@ func create_new_profile(_profileName: String) -> ProfileResource:
 func load_achievements() -> void:
 	check_create_directory(AchievementsResource.achievementsFolderPath)
 	
+	if not profile:
+		printerr("Error: Missing profile during loading achievements")
+		return
+	
 	if not check_file_exists(AchievementsResource.create_filepath_id(profile.id)):
 		create_set_save_new_achievements()
+	
+	load_achievements_from_path(AchievementsResource.create_filepath_id(profile.id))
+
+func load_achievements_from_path(_filepath: String) -> void:
+	if not check_file_exists(_filepath):
+		printerr("Error: Cannot find achievements file for filepath '%s'" % _filepath)
+		return
+	set_achievements(ResourceLoader.load(_filepath))
 
 func set_achievements(_achievements: AchievementsResource) -> void:
 	profile.achivements = _achievements

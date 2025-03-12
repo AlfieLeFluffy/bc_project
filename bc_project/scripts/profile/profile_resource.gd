@@ -7,17 +7,27 @@ class_name ProfileResource extends Resource
 @export_group("Profile Achievemnts")
 @export var achivements: AchievementsResource
 
+#region Constants
 const folderPath: String = "user://profiles"
+#endregion
 
+#region Setup Methods
 func setup(_profileName: StringName) -> void:
 	id = create_id(_profileName)
 	profileName = _profileName
+#endregion
 
+#region Save Methods
 func save() -> void:
+	if achivements:
+		achivements.save(id)
+		achivements = null
 	var error = ResourceSaver.save(self, create_filepath_id(id))
 	if error:
 		printerr("Error: During saving of profile '%s' occured and error: " + str(error))
+#endregion
 
+#region Static Profile Menagment Methods
 static func create_id(_profileName: String) -> String:
 	return _profileName.strip_edges().to_lower().replace(" ","_").replace("/","_").replace(".","_")
 
@@ -34,3 +44,4 @@ static func get_available_profile_dict() -> Dictionary:
 		if loadedProfile is ProfileResource:
 			output[loadedProfile.id] = loadedProfile
 	return output
+#endregion
