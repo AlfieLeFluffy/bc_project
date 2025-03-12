@@ -30,7 +30,7 @@ func setup_text_view(textResource: TextObjectResourse) -> void:
 --- Runtime Methdos
 """
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_menu"):
+	if visible and (event.is_action_pressed("ui_menu") or event.is_action_pressed("detective_board_toggle")):
 		exit_view()
 		get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("add_to_board"):

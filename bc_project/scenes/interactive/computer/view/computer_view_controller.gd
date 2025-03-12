@@ -66,7 +66,7 @@ func create_application_shortcut(key: ApplicationResource.applicationTypes) -> v
 --- Runtime Methdos
 """
 func _unhandled_input(event: InputEvent) -> void:
-	if visible and event.is_action_pressed("ui_menu"):
+	if visible and (event.is_action_pressed("ui_menu") or event.is_action_pressed("detective_board_toggle")):
 		exit_view()
 		get_viewport().set_input_as_handled()
 	if visible:
