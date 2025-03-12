@@ -37,6 +37,10 @@ signal achievementsLoaded()
 signal setMainOverlayVisibility(state)
 
 signal playScreenEffect(effect)
+
+# Signals for updating player overlay
+signal sceneLoaded()
+signal gameLoaded()
 #endregion
 
 #region Runtime Variables
@@ -70,14 +74,15 @@ func _ready() -> void:
 	profileCreate.connect(create_set_save_new_profile)
 	profileSet.connect(set_profile)
 	
+	sceneLoaded.connect(play_fade_in_effect)
+	sceneLoaded.connect(setup_main_overlay_menu)
+	sceneLoaded.connect(setup_input_help_menu)
+	sceneLoaded.connect(setup_detective_board_menu)
+	sceneLoaded.connect(setup_camera_controls)
+	
 	DialogueManager.connect("dialogue_ended",release_focus)
 	DialogueManager.connect("got_dialogue",dialogue_voice_check)
 	
-	Signals.connect("scene_loaded",play_fade_in_effect)
-	Signals.connect("scene_loaded",setup_main_overlay_menu)
-	Signals.connect("scene_loaded",setup_input_help_menu)
-	Signals.connect("scene_loaded",setup_detective_board_menu)
-	Signals.connect("scene_loaded",setup_camera_controls)
 	
 	load_config_profile()
 

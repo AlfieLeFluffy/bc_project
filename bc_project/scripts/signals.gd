@@ -18,10 +18,6 @@ signal menu_clear()
 signal set_light(circuitSignal,state)
 signal toggle_light(circuitSignal)
 
-# Signals for updating player overlay
-signal scene_loaded()
-signal game_loaded()
-
 signal set_active_element(element)
 # Signals for creating and deleting board elements
 signal create_board_element(elementResource)

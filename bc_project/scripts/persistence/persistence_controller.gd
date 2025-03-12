@@ -154,7 +154,7 @@ func load_game(filename:String) -> void:
 	# Starts process for loading a scene
 	GameController.change_scene(data["scene"])
 	# Waits till the scene loads
-	await Signals.scene_loaded
+	await GameController.sceneLoaded
 	
 	# Loads up all persistent nodes in the scene (and globals)
 	var persistentNodes = get_tree().get_nodes_in_group("Persistent")
@@ -180,7 +180,7 @@ func load_game(filename:String) -> void:
 				parent.add_child(node)
 				node.loading(data)
 			
-	Signals.emit_signal("game_loaded")
+	GameController.gameLoaded.emit()
 #endregion
 	
 #region Delete Savefiles and Profile Savefiles Methods
