@@ -4,7 +4,6 @@ extends Node
 #region Preload Scene Constants
 
 const preloadInGameMenu = preload("res://scenes/menus/ingame_menu.tscn")
-const preloadPersistenceMenu = preload("res://scripts/persistence/persistence_menu.tscn")
 const preloadDetectiveBoardMenu = preload("res://scenes/UI/board/detective_board.tscn")
 const preloadMainOverlay = preload("res://scenes/UI/overlay/main_overlay.tscn")
 const preloadInputHelp = preload("res://scenes/UI/input_help/input_help.tscn")
@@ -25,8 +24,6 @@ const screenEffects: Dictionary = {
 #endregion
 
 #region Profile and  Saves Variables and Constants
-const savefileFolderPath: String = "user://saves"
-
 var profile: ProfileResource
 #endregion
 
@@ -36,10 +33,6 @@ signal profileSet(profile)
 signal profileLoaded()
 
 signal achievementsLoaded()
-
-signal openPersistenceMenu(mode)
-signal saveGame(filename)
-signal loadGame(filename)
 
 signal setMainOverlayVisibility(state)
 
@@ -71,9 +64,6 @@ func _ready() -> void:
 	get_viewport().gui_focus_changed.connect(_on_focus_changed)
 	get_viewport().tree_exiting.connect(save_profile)
 	
-	openPersistenceMenu.connect(open_persistence_menu)
-	saveGame.connect(save_game)
-	loadGame.connect(load_game)
 	setMainOverlayVisibility.connect(set_main_overlay_visibility)
 	playScreenEffect.connect(play_screen_effect)
 	
@@ -112,7 +102,7 @@ func quit_game() -> void:
 
 #region Profile Methods
 func load_config_profile() -> void:
-	check_create_directory(ProfileResource.folderPath)
+	Global.check_create_directory(ProfileResource.folderPath)
 	var id: String = SettingsController.get_profile_id()
 	if id == "":
 		return
@@ -120,7 +110,7 @@ func load_config_profile() -> void:
 
 func load_profile(id: String) -> void:
 	var profilePath = ProfileResource.create_filepath_id(id)
-	if not check_file_exists(profilePath):
+	if not Global.check_file_exists(profilePath):
 		printerr("Error: Profile ID '%s' saved in config doesn't have existing profile resource file" % id)
 		return
 	load_profile_from_path(profilePath)
@@ -147,6 +137,7 @@ func delete_profile(_id: String):
 		clear_profile()
 	var profiles: Dictionary = ProfileResource.get_available_profile_dict()
 	if profiles.has(_id):
+		PersistenceController.deleteProfileSavefiles.emit(_id)
 		profiles[_id].delete()
 	profileLoaded.emit()
 
@@ -343,163 +334,6 @@ func open_ingame_menu() -> void:
 func dialogue_voice_check(line: DialogueLine) -> void:
 	if line.translation_key:
 		AudioManager.play_dialogue(line.translation_key)
-#endregion
-
-#region File and Directory Manipulation Methods
-# Checks if a directory exists and creates one if not
-func check_create_directory(directory:String) -> void:
-	var dir = DirAccess.open(directory)
-	if not dir:
-		DirAccess.make_dir_absolute(directory)
-
-# Checks if a directory exists and creates one if not
-func check_file_exists(filepath:String) -> bool:
-	return FileAccess.file_exists(filepath)
-
-# Deletes a directory and anything within said directory
-func delete_directory_recurse(directoryPath:String) -> void:
-	# Checks if directory exists, if not then exists
-	if not DirAccess.dir_exists_absolute(directoryPath):
-		return
-	
-	var dir = DirAccess.open(directoryPath)
-	for file in dir.get_files():
-		dir.remove(file)
-	for directory in dir.get_directories():
-		delete_directory_recurse(directoryPath.path_join(directory))
-	DirAccess.remove_absolute(directoryPath)
-#endregion
-
-#region Persistence Managment Methods
-# Opens persistence menu either in save or load mode
-func open_persistence_menu(mode: int = 0) -> void:
-	if mode > 1 or mode < 0:
-		printerr("Wrong Persistence Mode Parameter")
-		return
-	var menu = preloadPersistenceMenu.instantiate()
-	menu.mode = mode
-	get_tree().current_scene.add_child(menu)
-	menu.layer = 100
-	Signals.emit_signal("menu_clear")
-
-""" Methods for saving and loading images in safe nodes """
-# Saves an image in a dictionary into the img directory inside a savefile and sets flag to load it once loading
-func save_img(key:String ,safeDirPath:String, dictionary:Dictionary) -> void:
-	var imageName: String = str(dictionary[key].get_rid())
-	var imagePath: String = safeDirPath.path_join("img").path_join(imageName)+".png"
-	dictionary[key].get_image().save_png(imagePath)
-	dictionary[key] = imageName
-
-# Loads an image from the img directory if given flag is present in dictionary
-func load_img(key, safeDirPath:String, dictionary: Dictionary) -> void:
-	if not dictionary[key]:
-		return
-	var imagePath: String = safeDirPath.path_join("img").path_join(dictionary[key])+".png"
-	if FileAccess.file_exists(imagePath):
-		var image: Image = Image.load_from_file(imagePath)
-		var texture: ImageTexture = ImageTexture.create_from_image(image)
-		dictionary[key] = texture
-	else:
-		dictionary[key] = false
-
-""" Methods for saving and loading one node dictonary as a JSON line """
-# Takes a node dictionary, checks and saves any images, stringfies the node dictionary and writes into the savefile as a line
-func save_line(safeFile, saveDirPath:String, dictionary:Dictionary) -> void:
-	if dictionary.has("img"):
-		save_img("img",saveDirPath,dictionary)
-	var json = JSON.stringify(dictionary)
-	safeFile.store_line(json)
-
-# Reads one line of the savefile, parses the string into a dictionary, checks and laods any images and return node dictionary
-func load_line(safeFile, safeDirPath:String) -> Dictionary:
-	var json = safeFile.get_line()
-	var parse =  JSON.parse_string(json)
-	if parse.has("img"):
-		load_img("img",safeDirPath, parse)
-	return parse
-
-""" Methods for saving and loading the game """
-func save_game(filename:String) -> void:
-	var safeDirPath = Global.savesDirectoryPath.path_join(filename.rstrip(".sf"))
-	var safeFilePath = safeDirPath.path_join(filename.rstrip(".sf")+".sf")
-	
-	delete_directory_recurse(safeDirPath)
-	check_create_directory(safeDirPath)
-	check_create_directory(safeDirPath.path_join("img"))
-	
-	# Opens and prepares the savefile
-	var saveFile = FileAccess.open(safeFilePath, FileAccess.WRITE)
-	
-	# Saves current scene first so it can be loaded first
-	var sceneDictionary: Dictionary = {
-		"scene" = Global.currentScene
-	}
-	save_line(saveFile, safeDirPath, sceneDictionary)
-	
-	# Loads up all persistent nodes in the scene (and globals)
-	var persistentNodes = get_tree().get_nodes_in_group("Persistent")
-	for node in persistentNodes:
-		# Check the node has a save function.
-		if !node.has_method("saving"):
-			printerr("persistent node '%s' is missing a save() function, skipped" % node.name)
-			continue
-			
-		# Calls for node's saving method and the stores is as a line in the savefile
-		save_line(saveFile, safeDirPath, node.saving())
-
-func load_game(filename:String) -> void:
-	var safeDirPath = Global.savesDirectoryPath.path_join(filename.rstrip(".sf"))
-	var safeFilePath = safeDirPath.path_join(filename)
-	
-	# Checks if savefile exists
-	if not FileAccess.file_exists(safeFilePath):
-		printerr("Load game method cannot locate given save file: "+filename)
-		return
-	
-	# Opens savefile
-	var saveFile = FileAccess.open(safeFilePath, FileAccess.READ)
-	
-	# Retrives first json line that should be the scene
-	var data = load_line(saveFile,safeDirPath)
-	
-	# Loads current scene
-	if not data.has("scene"):
-		printerr("Savefile doesn't have a scene to load.")
-		return
-	
-	# Starts process for loading a scene
-	change_scene(data["scene"])
-	# Waits till the scene loads
-	await Signals.scene_loaded
-	
-	# Loads up all persistent nodes in the scene (and globals)
-	var persistentNodes = get_tree().get_nodes_in_group("Persistent")
-	
-	while saveFile.get_position() < saveFile.get_length():
-		data = load_line(saveFile,safeDirPath)
-	
-		if not data.has("nodepath"):
-			printerr("Loaded entry has no nodepath")
-			continue
-		
-		if data.has("persistent"):
-			for i in max(persistentNodes.size()-1,1):
-				if data["nodepath"] == String(persistentNodes[i].get_path()):
-					persistentNodes[i].loading(data)
-					persistentNodes.pop_at(i)
-					break
-		else:
-			if data.has("node"):
-				var node = load(data["node"])
-				node = node.instantiate()
-				var parent = get_node(data["parent"])
-				parent.add_child(node)
-				node.loading(data)
-			
-	Signals.emit_signal("game_loaded")
-	
-func delete_savefile(filename:String) -> void:
-	delete_directory_recurse(Global.savesDirectoryPath.path_join(filename.rstrip(".sf")))
 #endregion
 
 #region Persistence Methods

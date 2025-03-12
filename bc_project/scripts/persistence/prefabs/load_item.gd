@@ -26,7 +26,7 @@ func _on_button_pressed() -> void:
 func _on_confirmation_dialog_confirmed() -> void:
 	if not filename:
 		return
-	GameController.emit_signal("loadGame",filename)
+	PersistenceController.loadGame.emit(filename)
 	menuNode.emit_signal("closeMenu")
 
 
@@ -34,5 +34,5 @@ func _on_delete_button_pressed() -> void:
 	$DeleteConfirmationDialog.popup()
 
 func _on_delete_confirmation_dialog_confirmed() -> void:
-	GameController.delete_savefile(filename)
+	PersistenceController.deleteSavefile.emit(filename)
 	queue_free()

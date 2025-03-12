@@ -25,7 +25,7 @@ func _on_quit_button_pressed() -> void:
 	GameController.change_scene("main_menu")
 
 func _on_save_button_pressed() -> void:
-	GameController.emit_signal("openPersistenceMenu",0)
+	PersistenceController.emit_signal("openPersistenceMenu",PersistenceMenu.modeEnum.SAVE)
 
 func _on_load_button_pressed() -> void:
-	GameController.emit_signal("openPersistenceMenu",1)
+	PersistenceController.emit_signal("openPersistenceMenu",PersistenceMenu.modeEnum.LOAD)

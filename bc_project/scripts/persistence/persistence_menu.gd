@@ -1,4 +1,4 @@
-extends CanvasLayer
+class_name PersistenceMenu extends CanvasLayer
 
 enum modeEnum {SAVE,LOAD}
 
@@ -66,7 +66,8 @@ func setup_base_items() -> void:
 		grid.add_child(newSaveItem)
 
 func setup_savefiles() -> void:
-	var directory = DirAccess.open(Global.savesDirectoryPath)
+	var folderpath: String = PersistenceController.create_profile_savefile_folderpath(GameController.profile.id)
+	var directory = DirAccess.open(folderpath)
 	if directory:
 		var dirs = directory.get_directories()
 		for dir in dirs:
@@ -75,7 +76,8 @@ func setup_savefiles() -> void:
 		printerr("Could not load saves directory.")
 
 func setup_savefile_directory(directory: String) -> void:
-	var files = DirAccess.open(Global.savesDirectoryPath+"/"+directory).get_files()
+	var folderpath: String = PersistenceController.create_profile_savefile_folderpath(GameController.profile.id)
+	var files = DirAccess.open(folderpath.path_join(directory)).get_files()
 	for file in files:
 		if file.ends_with(".sf"):
 			setup_savefile_entry(file)
@@ -88,9 +90,11 @@ func setup_savefile_entry(file: String) -> void:#
 		item = loadItemPreload.instantiate()
 	item.filename = file
 	item.menuNode = self
-	var time: Dictionary = Time.get_datetime_dict_from_unix_time(FileAccess.get_modified_time(Global.savesDirectoryPath+"/"+file.rstrip(".sf")))
+	var folderpath: String = PersistenceController.create_profile_savefile_folderpath(GameController.profile.id)
+	var filepath: String = folderpath.path_join(file.rstrip(".sf"))
+	var time: Dictionary = Time.get_datetime_dict_from_unix_time(FileAccess.get_modified_time(filepath))
 	item.date = TIME_STRING_FORMAT % [int(time["hour"]),int(time["minute"]),int(time["second"]),int(time["day"]),int(time["month"]),int(time["year"])] 
-	item.dateString = Time.get_datetime_string_from_unix_time(FileAccess.get_modified_time(Global.savesDirectoryPath+"/"+file.rstrip(".sf")))
+	item.dateString = Time.get_datetime_string_from_unix_time(FileAccess.get_modified_time(filepath))
 	add_item_sorted(item)
 
 func add_item_sorted(item: Control) -> void:

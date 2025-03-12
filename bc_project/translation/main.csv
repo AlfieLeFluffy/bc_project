@@ -22,6 +22,7 @@ VERSION_LABEL,Version,Verze
 PROFILE_LABEL,Profile:,Profil:
 PROFILE_MISSING_LABEL,No profile selected,Nevybrán žádný profil
 PROFILE_REQUIRED_TOOLTIP,This feature requires a profile. Profiles keeps track of not only save files but also achievements.,Tahle akce vyžaduje profil. Profil uchovává nejen uložené hry ale také úspěchy.
+PROFILE_NO_SAVEFILES_TOOLTIP,This profiles has no saved games to load.,"Tento profil nemá žádné uložené hry, které by mohl načíst."
 ENGLISH_LANGUAGE,English,Angličtina
 CZECH_LANGUAGE,Czech,Čěština
 GAMEPLAY_TAB,Gameplay,Hratelnost

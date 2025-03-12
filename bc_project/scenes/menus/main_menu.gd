@@ -20,7 +20,7 @@ func _on_test_scene_button_pressed() -> void:
 	GameController.change_scene("test_level")
 
 func _on_load_button_pressed() -> void:
-	GameController.emit_signal("openPersistenceMenu",1)
+	PersistenceController.emit_signal("openPersistenceMenu",PersistenceMenu.modeEnum.LOAD)
 
 func _on_achievements_button_pressed() -> void:
 	pass # Replace with function body.
@@ -50,6 +50,8 @@ func setup_profile() -> void:
 		%TestSceneButton.tooltip_text = "PROFILE_REQUIRED_TOOLTIP"
 		%AchievementsButton.disabled = true
 		%AchievementsButton.tooltip_text = "PROFILE_REQUIRED_TOOLTIP"
+		%LoadButton.tooltip_text = "PROFILE_REQUIRED_TOOLTIP"
+		%LoadButton.disabled = true
 		return
 	
 	%ProfileLabel.text = "[font_size=14][color=WEB_GRAY] %s\n [/color][font_size=24] %s" % [tr("PROFILE_LABEL"),GameController.profile.profileName]
@@ -57,6 +59,14 @@ func setup_profile() -> void:
 	%TestSceneButton.tooltip_text = ""
 	%AchievementsButton.disabled = false
 	%AchievementsButton.tooltip_text = ""
+	
+	if GameController.profile:
+		if PersistenceController.get_profile_savefile_count(GameController.profile.id) > 0:
+			%LoadButton.tooltip_text = ""
+			%LoadButton.disabled = false
+		else:
+			%LoadButton.tooltip_text = "PROFILE_NO_SAVEFILES_TOOLTIP"
+			%LoadButton.disabled = true
 
 func _on_choose_profile_button_pressed() -> void:
 	%ProfilesList.visible = not %ProfilesList.visible
