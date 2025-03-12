@@ -6,6 +6,8 @@ class_name Light extends Node2D
 @export_category("Light Setup")
 @export var circuit: int = 0
 @export var initialState: bool = true
+@export var lightColor: Color
+@export var lightEnergy: float
 
 """
 --- Setup Method
@@ -14,6 +16,10 @@ class_name Light extends Node2D
 func _ready() -> void:
 	Signals.connect("set_light",set_state)
 	Signals.connect("toggle_light",toggle_state)
+	_local_ready()
+
+func _local_ready() -> void:
+	pass
 
 """
 --- Override Methods

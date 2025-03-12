@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://bh6uc1j2up7ya"]
+
+[ext_resource type="Script" uid="uid://dstaqgp1v1tlb" path="res://scenes/lighting/ceiling_light_flat/ceiling_light_flat.gd" id="1_7k2vl"]
+[ext_resource type="Texture2D" uid="uid://x05lt4ipw1ch" path="res://textures/furniture/ceiling_light_flat.png" id="2_bbaji"]
+
+[sub_resource type="Gradient" id="Gradient_oyqiw"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u5b16"]
+gradient = SubResource("Gradient_oyqiw")
+width = 255
+height = 255
+fill = 1
+fill_from = Vector2(0.5, 0.3)
+fill_to = Vector2(0.5, 0.8)
+
+[node name="ceiling_light_flat" type="Node2D" groups=["Light"]]
+script = ExtResource("1_7k2vl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 8)
+texture = ExtResource("2_bbaji")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 1)
+color = Color(0.433911, 0.501877, 0.671738, 1)
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_filter = 2
+shadow_item_cull_mask = 3
+texture = SubResource("GradientTexture2D_u5b16")
+offset = Vector2(0, 45)
+texture_scale = 0.5
