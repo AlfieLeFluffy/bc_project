@@ -1,18 +1,17 @@
 extends Node
 
-"""
---- Preload Scenes
-"""
+#region Veriables, Constants, Preloads, Enums
+#region Preload Scene Constants
+
 const preloadInGameMenu = preload("res://scenes/menus/ingame_menu.tscn")
 const preloadPersistenceMenu = preload("res://scripts/persistence/persistence_menu.tscn")
 const preloadDetectiveBoardMenu = preload("res://scenes/UI/board/detective_board.tscn")
 const preloadMainOverlay = preload("res://scenes/UI/overlay/main_overlay.tscn")
 const preloadInputHelp = preload("res://scenes/UI/input_help/input_help.tscn")
 const preloadCameraControls = preload("res://scenes/cameraControls/camera_controls.tscn")
+#endregion
 
-"""
---- Preload ScreenEffects
-"""
+#region Preload ScreenEffects scenes, Enums and Constants
 const preloadTimelineShiftEffect = preload("res://scenes/screenEffects/timeline_shift_effect.tscn")
 const preloadFadeInEffect = preload("res://scenes/screenEffects/fade_in_effect.tscn")
 const preloadFadeOutEffect = preload("res://scenes/screenEffects/fade_out_effect.tscn")
@@ -23,10 +22,9 @@ const screenEffects: Dictionary = {
 	screenEffectEnum.FADE_IN: preloadFadeInEffect,
 	screenEffectEnum.FADE_OUT: preloadFadeOutEffect,
 }
+#endregion
 
-"""
---- Signals
-"""
+#region Signals
 signal openPersistenceMenu(mode)
 signal saveGame(filename)
 signal loadGame(filename)
@@ -34,10 +32,9 @@ signal loadGame(filename)
 signal setMainOverlayVisibility(state)
 
 signal playScreenEffect(effect)
+#endregion
 
-"""
---- Runtime Variables
-"""
+#region Runtime Variables
 # Flag for if focus is set
 var FocusSet:bool = false
 
@@ -48,10 +45,10 @@ var mainOverlay: Node
 var inputHelp: Node
 var detectiveBoard: Node
 var cameraControls: Node
+#endregion
+#endregion
 
-"""
---- Setup Methods
-"""
+#region Setup Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
@@ -75,10 +72,9 @@ func _ready() -> void:
 	Signals.connect("scene_loaded",setup_camera_controls)
 	connect("setMainOverlayVisibility",set_main_overlay_visibility)
 	connect("playScreenEffect",play_screen_effect)
+#endregion
 
-"""
---- Runtime Methods
-"""
+#region Runtime Methods
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
@@ -87,11 +83,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_menu"):
 		open_ingame_menu()
 		get_viewport().set_input_as_handled()
+#endregion
 
-"""
---- Gloabal Minsc Methods
-"""
-
+#region Global Minsc Methods
 func multiply_string(input:String,times:int) -> String:
 	var output: String = ""
 	for idx in range(times):
@@ -127,10 +121,9 @@ func find_node_by_name_in_array(nodeArray: Array, nodeName: String) -> Node:
 				return node
 	printerr("Error: Could not find node %s in array %s" % [nodeName,nodeArray])
 	return null
+#endregion
 
-"""
---- Input Key Map Methods
-"""
+#region Input Key Methods
 # Returns key bound to input map by index
 # Default index is 0
 func get_input_key(inputName: String, index: int = 0) -> String:
@@ -160,10 +153,9 @@ func get_input_key_list(inputName: String) -> Array:
 	for x in range(get_input_key_count(inputName)):
 		output.append(get_input_key(inputName,x))
 	return output
+#endregion
 
-"""
---- Focus Methods
-"""
+#region Focus Methods
 # Called if focus has been set
 func _on_focus_changed(control:Control) -> void:
 	if control:
@@ -181,10 +173,9 @@ func release_focus(resource = null) -> void:
 	if FocusSet:
 		get_viewport().gui_release_focus()
 		FocusSet = false
+#endregion
 
-"""
---- Camera Control Methods
-"""
+#region Camera Constrols Methods
 # Instantiates and shows the in-game menu
 func setup_camera_controls() -> void:
 	# Checks if the scene name is in the nongameplay scenes
@@ -194,10 +185,9 @@ func setup_camera_controls() -> void:
 	cameraControls = preloadCameraControls.instantiate()
 	cameraControls.position = get_tree().get_first_node_in_group("Player").position
 	get_tree().current_scene.add_child(cameraControls)
+#endregion
 
-"""
---- Detective Board Methods
-"""
+#region Detective Board Methods
 # Instantiates and shows the in-game menu
 func setup_detective_board_menu() -> void:
 	# Checks if the scene name is in the nongameplay scenes
@@ -208,10 +198,9 @@ func setup_detective_board_menu() -> void:
 	get_tree().current_scene.add_child(detectiveBoard)
 	detectiveBoard.layer = 60
 	detectiveBoard.visible = false
+#endregion
 
-"""
---- Screen Effect Methods
-"""
+#region Screen Effects Methods
 func play_screen_effect(effect: screenEffectEnum) -> void:
 	var screenEffect = screenEffects[effect].instantiate()
 	get_tree().current_scene.add_child(screenEffect)
@@ -220,10 +209,9 @@ func play_screen_effect(effect: screenEffectEnum) -> void:
 
 func play_fade_in_effect() -> void:
 	play_screen_effect(screenEffectEnum.FADE_IN)
+#endregion
 
-"""
---- Overlay Methods
-"""
+#region Overlay Methods
 # Instantiates and shows the in-game menu
 func setup_main_overlay_menu() -> void:
 	# Checks if the scene name is in the nongameplay scenes
@@ -246,6 +234,11 @@ func setup_input_help_menu() -> void:
 	inputHelp.layer = 70
 	inputHelp.visible = true
 
+func set_main_overlay_visibility(state: bool) -> void:
+	mainOverlay.visibility = state
+#endregion
+
+#region In-game Menu Methods
 # Instantiates and shows the in-game menu
 func open_ingame_menu() -> void:
 	# Checks if the scene name or filename is in the nongameplay scenes
@@ -257,20 +250,15 @@ func open_ingame_menu() -> void:
 	menu.layer = 90
 	menu.visible = true
 	Signals.emit_signal("menu_clear")
+#endregion
 
-func set_main_overlay_visibility(state: bool) -> void:
-	mainOverlay.visibility = state
-
-"""
---- Dialogue Methods
-"""
+#region Dialogue Voice Acting Methods
 func dialogue_voice_check(line: DialogueLine) -> void:
 	if line.translation_key:
 		AudioManager.play_dialogue(line.translation_key)
+#endregion
 
-"""
---- Directory Methods
-"""
+#region File Directory Methods
 # Checks if a directory exists and creates one if not
 func check_directory(directory:String) -> void:
 	var dir = DirAccess.open(directory)
@@ -289,11 +277,9 @@ func delete_directory_recurse(directoryPath:String) -> void:
 	for directory in dir.get_directories():
 		delete_directory_recurse(directoryPath.path_join(directory))
 	DirAccess.remove_absolute(directoryPath)
+#endregion
 
-"""
---- Save and Load Methods
-"""
-
+#region Persistence Managment Methods
 # Opens persistence menu either in save or load mode
 func open_persistence_menu(mode: int = 0) -> void:
 	if mode > 1 or mode < 0:
@@ -423,7 +409,9 @@ func load_game(filename:String) -> void:
 	
 func delete_savefile(filename:String) -> void:
 	delete_directory_recurse(Global.savesDirectoryPath.path_join(filename.rstrip(".sf")))
+#endregion
 
+#region Persistence Methods
 """
 --- Persistence Methods
 """
@@ -437,3 +425,4 @@ func saving() -> Dictionary:
 
 func loading(input: Dictionary) -> bool:
 	return true
+#endregion
