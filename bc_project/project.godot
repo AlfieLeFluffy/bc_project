@@ -19,11 +19,11 @@ config/icon="res://textures/icon.svg"
 
 [autoload]
 
-GameController="*res://scripts/game_controller.gd"
 Global="*res://scripts/global.gd"
 Signals="*res://scripts/signals.gd"
-AudioManager="*res://scenes/audioManager/audio_manager.tscn"
 SettingsController="*res://scripts/settings/settings_controller.gd"
+GameController="*res://scripts/game_controller.gd"
+AudioManager="*res://scenes/audioManager/audio_manager.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 CustomDialogueScripts="*res://scripts/dialog/custom_dialogue_scripts.gd"
 DialogueVariables="*res://scripts/dialog/dialogue_variables.gd"

@@ -24,7 +24,18 @@ const screenEffects: Dictionary = {
 }
 #endregion
 
+#region Profile and  Saves Variables and Constants
+const achievementsFolderPath: String = "user://achievements"
+const savefileFolderPath: String = "user://saves"
+
+var profile: ProfileResource
+#endregion
+
 #region Signals
+signal profileCreate(profileName)
+signal profileSet(profile)
+signal profileLoaded()
+
 signal openPersistenceMenu(mode)
 signal saveGame(filename)
 signal loadGame(filename)
@@ -55,23 +66,30 @@ func _ready() -> void:
 	# Added group tag for persistence purposes
 	add_to_group("Persistent")
 	
-	# File and folder integrity checks
-	check_directory(Global.savesDirectoryPath)
-	
 	# Connecting signals
-	get_viewport().connect("gui_focus_changed", _on_focus_changed)
+	get_viewport().gui_focus_changed.connect(_on_focus_changed)
+	
+	openPersistenceMenu.connect(open_persistence_menu)
+	saveGame.connect(save_game)
+	loadGame.connect(load_game)
+	setMainOverlayVisibility.connect(set_main_overlay_visibility)
+	playScreenEffect.connect(play_screen_effect)
+	
+	profileCreate.connect(create_set_save_new_profile)
+	profileSet.connect(set_profile)
+	profileLoaded.connect(load_achievements)
+	
 	DialogueManager.connect("dialogue_ended",release_focus)
 	DialogueManager.connect("got_dialogue",dialogue_voice_check)
-	connect("openPersistenceMenu",open_persistence_menu)
-	connect("saveGame", save_game)
-	connect("loadGame", load_game)
+	
 	Signals.connect("scene_loaded",play_fade_in_effect)
 	Signals.connect("scene_loaded",setup_main_overlay_menu)
 	Signals.connect("scene_loaded",setup_input_help_menu)
 	Signals.connect("scene_loaded",setup_detective_board_menu)
 	Signals.connect("scene_loaded",setup_camera_controls)
-	connect("setMainOverlayVisibility",set_main_overlay_visibility)
-	connect("playScreenEffect",play_screen_effect)
+	
+	load_config_profile()
+
 #endregion
 
 #region Runtime Methods
@@ -88,6 +106,52 @@ func _unhandled_input(event: InputEvent) -> void:
 #region Game Managment Methods
 func quit_game() -> void:
 	get_tree().quit(0)
+#endregion
+
+#region Profile Methods
+func load_config_profile() -> void:
+	check_create_directory(ProfileResource.folderPath)
+	var id: String = SettingsController.get_profile_id()
+	if id == "":
+		return
+	load_profile(id)
+
+func load_profile(id: String) -> void:
+	var profilePath = ProfileResource.create_filepath_id(id)
+	if not check_file_exists(profilePath):
+		printerr("Error: Profile ID '%s' saved in config doesn't have existing profile resource file" % id)
+		return
+	load_profile_from_path(profilePath)
+	
+func load_profile_from_path(filepath: String) -> void:
+	profile = ResourceLoader.load(filepath)
+	profileLoaded.emit()
+
+func set_profile(_profile: ProfileResource) -> void:
+	profile = _profile
+	profileLoaded.emit()
+
+func create_set_save_new_profile(_profileName) -> void:
+	set_profile(create_new_profile(_profileName))
+	profile.save()
+
+func create_new_profile(_profileName: String) -> ProfileResource:
+	var newProfile: ProfileResource = ProfileResource.new()
+	newProfile.setup(_profileName)
+	return newProfile
+
+#endregion
+	
+func create_profile_filepath_filename(filename: String) -> String:
+	return profileFolderPath.path_join(filename)
+
+func get_available_profile_dict() -> Dictionary:
+	var output: Dictionary = {}
+	for filename in DirAccess.get_files_at(profileFolderPath):
+		var loadedProfile = load(create_profile_filepath_filename(filename))
+		if loadedProfile is ProfileResource:
+			output[loadedProfile.id] = loadedProfile
+	return output
 #endregion
 
 #region Global Minsc Methods
@@ -266,12 +330,16 @@ func dialogue_voice_check(line: DialogueLine) -> void:
 		AudioManager.play_dialogue(line.translation_key)
 #endregion
 
-#region File Directory Methods
+#region File and Directory Manipulation Methods
 # Checks if a directory exists and creates one if not
-func check_directory(directory:String) -> void:
+func check_create_directory(directory:String) -> void:
 	var dir = DirAccess.open(directory)
 	if not dir:
 		DirAccess.make_dir_absolute(directory)
+
+# Checks if a directory exists and creates one if not
+func check_file_exists(filepath:String) -> bool:
+	return FileAccess.file_exists(filepath)
 
 # Deletes a directory and anything within said directory
 func delete_directory_recurse(directoryPath:String) -> void:
@@ -341,8 +409,8 @@ func save_game(filename:String) -> void:
 	var safeFilePath = safeDirPath.path_join(filename.rstrip(".sf")+".sf")
 	
 	delete_directory_recurse(safeDirPath)
-	check_directory(safeDirPath)
-	check_directory(safeDirPath.path_join("img"))
+	check_create_directory(safeDirPath)
+	check_create_directory(safeDirPath.path_join("img"))
 	
 	# Opens and prepares the savefile
 	var saveFile = FileAccess.open(safeFilePath, FileAccess.WRITE)

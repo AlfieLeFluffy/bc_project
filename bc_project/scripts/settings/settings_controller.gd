@@ -17,7 +17,7 @@ signal retranslate
 --- Runtime Variables
 """
 
-var config
+var config: ConfigFile
 
 const preloadSettingsMenu = preload("res://scripts/settings/settings_menu.tscn")
 
@@ -72,7 +72,12 @@ func create_new_config() -> ConfigFile:
 func get_default_config_file(config: ConfigFile) -> ConfigFile:
 	config.load("res://scripts/settings/default_config.cfg")
 	return config
-	
+
+func get_profile_id() -> String:
+	if config.has_section_key("Profile","ID"):
+		return config.get_value("Profile", "ID")
+	return ""
+
 func open_settings_menu() -> void:
 	var menu = preloadSettingsMenu.instantiate()
 	get_tree().current_scene.add_child(menu)
