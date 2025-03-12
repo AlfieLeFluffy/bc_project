@@ -85,6 +85,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 #endregion
 
+#region Game Managment Methods
+func quit_game() -> void:
+	get_tree().quit(0)
+#endregion
+
 #region Global Minsc Methods
 func multiply_string(input:String,times:int) -> String:
 	var output: String = ""
@@ -187,6 +192,8 @@ func setup_camera_controls() -> void:
 	get_tree().current_scene.add_child(cameraControls)
 #endregion
 
+#region UI/Menu Methods
+
 #region Detective Board Methods
 # Instantiates and shows the in-game menu
 func setup_detective_board_menu() -> void:
@@ -250,6 +257,7 @@ func open_ingame_menu() -> void:
 	menu.layer = 90
 	menu.visible = true
 	Signals.emit_signal("menu_clear")
+#endregion
 #endregion
 
 #region Dialogue Voice Acting Methods

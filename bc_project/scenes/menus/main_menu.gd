@@ -15,7 +15,7 @@ func _on_test_scene_button_pressed() -> void:
 	GameController.change_scene("test_level")
 
 func _on_quit_button_pressed() -> void:
-	get_tree().quit(0)
+	GameController.quit_game()
 
 func _on_settings_button_pressed() -> void:
 	SettingsController.emit_signal("openSettingsMenu")
