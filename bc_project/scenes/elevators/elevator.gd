@@ -126,7 +126,7 @@ func loading(input:Dictionary) -> bool:
 		resource.active = input["active"]
 		resource.currentStop = input["currentStop"]
 		resource.movingToStop = input["movingToStop"]
-		if input["cabin"].has_all(["posX","posY","lightOccluderVisibleLeft","lightOccluderVisibleRight"]):
+		if input["cabin"].has_all(["posX","posY"]):
 			%ElevatorCabin.position = Vector2(input["cabin"]["posX"],input["cabin"]["posY"])
 		setup_cabin()
 		if resource.active:
