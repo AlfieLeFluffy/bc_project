@@ -69,6 +69,7 @@ func _ready() -> void:
 	
 	# Connecting signals
 	get_viewport().gui_focus_changed.connect(_on_focus_changed)
+	get_viewport().tree_exiting.connect(save_profile)
 	
 	openPersistenceMenu.connect(open_persistence_menu)
 	saveGame.connect(save_game)
@@ -106,7 +107,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 #region Game Managment Methods
 func quit_game() -> void:
-	profile.save()
+	save_profile()
 	get_tree().quit(0)
 #endregion
 
@@ -128,6 +129,9 @@ func load_profile(id: String) -> void:
 func load_profile_from_path(filepath: String) -> void:
 	profile = ResourceLoader.load(filepath)
 	profileLoaded.emit()
+
+func save_profile() -> void:
+	profile.save()
 
 func set_profile(_profile: ProfileResource) -> void:
 	profile = _profile

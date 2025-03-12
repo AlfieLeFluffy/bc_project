@@ -14,11 +14,14 @@ func _ready() -> void:
 func _on_test_scene_button_pressed() -> void:
 	GameController.change_scene("test_level")
 
-func _on_quit_button_pressed() -> void:
-	GameController.quit_game()
+func _on_load_button_pressed() -> void:
+	GameController.emit_signal("openPersistenceMenu",1)
+
+func _on_achievements_button_pressed() -> void:
+	pass # Replace with function body.
 
 func _on_settings_button_pressed() -> void:
 	SettingsController.emit_signal("openSettingsMenu")
-
-func _on_load_button_pressed() -> void:
-	GameController.emit_signal("openPersistenceMenu",1)
+	
+func _on_quit_button_pressed() -> void:
+	GameController.quit_game()

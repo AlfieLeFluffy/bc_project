@@ -3,6 +3,7 @@ TEST_SCENE,Test Scene,Testovaci Scena
 CONTINUE_BUTTON,Continue,Pokracovat
 SAVE_BUTTON,Save Game,Ulozit Hru
 LOAD_BUTTON,Load save,Nacist Hru
+ACHIEVEMENTS_BUTTON,Achievements,Úspěchy
 SETTINGS_BUTTON,Settings,Nastaveni
 QUIT_BUTTON,Quit,Ukoncit
 QUIT__TO_MAIN_MENU_BUTTON,Quit to Main Menu,Zpet do Hlavniho Menu

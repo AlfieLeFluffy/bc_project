@@ -1,12 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2vbyl6277p6b"]
+[gd_scene load_steps=6 format=3 uid="uid://b2vbyl6277p6b"]
 
 [ext_resource type="Script" uid="uid://cyp36x1yqve82" path="res://scenes/menus/main_menu.gd" id="1_7ttt2"]
 [ext_resource type="Theme" uid="uid://f6rijghqdfrw" path="res://settings/main_menu_theme.tres" id="1_c65hb"]
 [ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="1_fnumv"]
-[ext_resource type="Texture2D" uid="uid://dliqg0viaccks" path="res://textures/ui/button/button_normal.png" id="2_d8s78"]
-[ext_resource type="Texture2D" uid="uid://daddylvcavti6" path="res://textures/ui/button/button_click.png" id="3_7i62j"]
-[ext_resource type="Texture2D" uid="uid://c47g2unwgbyl0" path="res://textures/ui/button/button_hover.png" id="4_2ncbb"]
-[ext_resource type="Texture2D" uid="uid://cpo5dwxmo24wo" path="res://textures/ui/button/button_disabled.png" id="5_v6ax4"]
 [ext_resource type="LabelSettings" uid="uid://dpdrbm7tfimf4" path="res://settings/main_menu_buttons_settings.tres" id="6_gi2p0"]
 
 [sub_resource type="GDScript" id="GDScript_0itgy"]
@@ -40,31 +36,23 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.062
 anchor_top = 0.117
-anchor_right = 0.216
+anchor_right = 0.206
 anchor_bottom = 0.889
 offset_left = 0.959991
-offset_top = -0.360008
-offset_right = -44.72
+offset_top = -0.360016
+offset_right = 0.47998
 offset_bottom = -0.119995
-
-[node name="ExpandBox" type="VBoxContainer" parent="MainMenu/VB"]
-layout_mode = 2
-size_flags_vertical = 3
+alignment = 2
 
 [node name="VBButtons" type="VBoxContainer" parent="MainMenu/VB"]
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_constants/separation = 12
 
-[node name="TestSceneButton" type="TextureButton" parent="MainMenu/VB/VBButtons"]
+[node name="TestSceneButton" type="Button" parent="MainMenu/VB/VBButtons"]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
-texture_normal = ExtResource("2_d8s78")
-texture_pressed = ExtResource("3_7i62j")
-texture_hover = ExtResource("4_2ncbb")
-texture_disabled = ExtResource("5_v6ax4")
-texture_focused = ExtResource("4_2ncbb")
-stretch_mode = 0
+focus_mode = 0
+disabled = true
 
 [node name="Label" type="Label" parent="MainMenu/VB/VBButtons/TestSceneButton"]
 layout_mode = 1
@@ -79,15 +67,10 @@ label_settings = ExtResource("6_gi2p0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LoadButton" type="TextureButton" parent="MainMenu/VB/VBButtons"]
+[node name="LoadButton" type="Button" parent="MainMenu/VB/VBButtons"]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
-texture_normal = ExtResource("2_d8s78")
-texture_pressed = ExtResource("3_7i62j")
-texture_hover = ExtResource("4_2ncbb")
-texture_disabled = ExtResource("5_v6ax4")
-texture_focused = ExtResource("4_2ncbb")
-stretch_mode = 0
+focus_mode = 0
 
 [node name="Label" type="Label" parent="MainMenu/VB/VBButtons/LoadButton"]
 layout_mode = 1
@@ -102,15 +85,29 @@ label_settings = ExtResource("6_gi2p0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SettingsButton" type="TextureButton" parent="MainMenu/VB/VBButtons"]
+[node name="AchievementsButton" type="Button" parent="MainMenu/VB/VBButtons"]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
-texture_normal = ExtResource("2_d8s78")
-texture_pressed = ExtResource("3_7i62j")
-texture_hover = ExtResource("4_2ncbb")
-texture_disabled = ExtResource("5_v6ax4")
-texture_focused = ExtResource("4_2ncbb")
-stretch_mode = 0
+focus_mode = 0
+disabled = true
+
+[node name="Label" type="Label" parent="MainMenu/VB/VBButtons/AchievementsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "ACHIEVEMENTS_BUTTON"
+label_settings = ExtResource("6_gi2p0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsButton" type="Button" parent="MainMenu/VB/VBButtons"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+focus_mode = 0
 
 [node name="Label" type="Label" parent="MainMenu/VB/VBButtons/SettingsButton"]
 layout_mode = 1
@@ -125,15 +122,10 @@ label_settings = ExtResource("6_gi2p0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="QuitButton" type="TextureButton" parent="MainMenu/VB/VBButtons"]
+[node name="QuitButton" type="Button" parent="MainMenu/VB/VBButtons"]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
-texture_normal = ExtResource("2_d8s78")
-texture_pressed = ExtResource("3_7i62j")
-texture_hover = ExtResource("4_2ncbb")
-texture_disabled = ExtResource("5_v6ax4")
-texture_focused = ExtResource("4_2ncbb")
-stretch_mode = 0
+focus_mode = 0
 
 [node name="Label" type="Label" parent="MainMenu/VB/VBButtons/QuitButton"]
 layout_mode = 1
@@ -148,10 +140,6 @@ label_settings = ExtResource("6_gi2p0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ExpandBox2" type="VBoxContainer" parent="MainMenu/VB"]
-layout_mode = 2
-size_flags_vertical = 3
-
 [node name="Version" type="Label" parent="MainMenu/VB"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_fnumv")
@@ -161,5 +149,6 @@ script = SubResource("GDScript_0itgy")
 
 [connection signal="pressed" from="MainMenu/VB/VBButtons/TestSceneButton" to="MainMenu" method="_on_test_scene_button_pressed"]
 [connection signal="pressed" from="MainMenu/VB/VBButtons/LoadButton" to="MainMenu" method="_on_load_button_pressed"]
+[connection signal="pressed" from="MainMenu/VB/VBButtons/AchievementsButton" to="MainMenu" method="_on_achievements_button_pressed"]
 [connection signal="pressed" from="MainMenu/VB/VBButtons/SettingsButton" to="MainMenu" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="MainMenu/VB/VBButtons/QuitButton" to="MainMenu" method="_on_quit_button_pressed"]
