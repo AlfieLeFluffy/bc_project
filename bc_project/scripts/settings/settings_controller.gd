@@ -83,9 +83,11 @@ func set_profile_id(_id: String) -> void:
 	save_settings()
 
 func open_settings_menu() -> void:
-	var menu = preloadSettingsMenu.instantiate()
-	get_tree().current_scene.add_child(menu)
-	menu.layer = 100
+	var settingsMenu = preloadSettingsMenu.instantiate()
+	var loadPopupMenu = load("res://scenes/menus/popup_menu_controller.tscn")
+	var popupMenu: PopupMenuController = loadPopupMenu.instantiate()
+	get_tree().current_scene.add_child(popupMenu)
+	popupMenu.setup(settingsMenu)
 	Signals.emit_signal("menu_clear")
 	
 func save_settings() -> void:

@@ -1,14 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhkkp4e7bahhf"]
+[gd_scene load_steps=3 format=3 uid="uid://dhkkp4e7bahhf"]
 
-[ext_resource type="PackedScene" uid="uid://bcdby6svlp0fj" path="res://scenes/UI/backgrounds/fade_background.tscn" id="2_31i6t"]
 [ext_resource type="Script" uid="uid://dni4wn1vjhgx7" path="res://scripts/settings/settings_menu_controller.gd" id="2_tdx4y"]
 [ext_resource type="Theme" uid="uid://d3vcomicjy5hm" path="res://settings/settings_menu_theme.tres" id="3_kptt6"]
 
 [node name="SettingsMenu" type="CanvasLayer"]
 layer = 100
 script = ExtResource("2_tdx4y")
-
-[node name="FadeBackground" parent="." instance=ExtResource("2_31i6t")]
 
 [node name="Menu" type="Control" parent="."]
 layout_mode = 3
@@ -23,13 +20,13 @@ theme = ExtResource("3_kptt6")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.547
-anchor_top = 0.787
+anchor_top = 0.898
 anchor_right = 0.677
-anchor_bottom = 0.852
+anchor_bottom = 0.963
 offset_left = -0.240112
-offset_top = 0.039917
-offset_right = 0.159912
-offset_bottom = -0.160034
+offset_top = 0.159912
+offset_right = 0.160034
+offset_bottom = -0.0400391
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
@@ -39,13 +36,13 @@ text = "SAVE_AND_CLOSE_BUTTON"
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.312
-anchor_top = 0.787
+anchor_top = 0.898
 anchor_right = 0.443
-anchor_bottom = 0.852
+anchor_bottom = 0.963
 offset_left = 0.959961
-offset_top = 0.039917
-offset_right = 0.440002
-offset_bottom = -0.160034
+offset_top = 0.159912
+offset_right = 0.439941
+offset_bottom = -0.0400391
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
@@ -54,14 +51,10 @@ text = "APPLY_BUTTON"
 [node name="TabContainer" type="TabContainer" parent="Menu"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.266
-anchor_top = 0.222
-anchor_right = 0.734
-anchor_bottom = 0.758
-offset_left = -0.720001
-offset_top = 0.239975
-offset_right = 0.719971
-offset_bottom = 21.36
+anchor_right = 0.997
+anchor_bottom = 0.859
+offset_right = 5.75989
+offset_bottom = 0.279968
 grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
@@ -86,6 +79,7 @@ grow_vertical = 2
 alignment = 1
 
 [node name="LanguageOptionButton" type="OptionButton" parent="Menu/TabContainer/GAMEPLAY_TAB/VB"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 25)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -124,6 +118,7 @@ grow_vertical = 2
 alignment = 1
 
 [node name="ModeOptionButton" type="OptionButton" parent="Menu/TabContainer/GRAPHICS_TAB/VB"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 25)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -151,6 +146,7 @@ offset_bottom = 28.0
 text = "WIN_MODE_SETTING"
 
 [node name="SizeOptionButton" type="OptionButton" parent="Menu/TabContainer/GRAPHICS_TAB/VB"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 25)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -175,6 +171,7 @@ offset_bottom = 28.0
 text = "WIN_SIZE_SETTING"
 
 [node name="VsyncOptionButton" type="OptionButton" parent="Menu/TabContainer/GRAPHICS_TAB/VB"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 25)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -210,6 +207,7 @@ grow_vertical = 2
 alignment = 1
 
 [node name="MasterSlider" type="HSlider" parent="Menu/TabContainer/AUDIO_TAB/VB"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 25)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -224,6 +222,7 @@ offset_bottom = 24.0
 text = "AUDIO_MASTER_SETTING"
 
 [node name="SoundSlider" type="HSlider" parent="Menu/TabContainer/AUDIO_TAB/VB"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 25)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -238,6 +237,7 @@ offset_bottom = 24.0
 text = "AUDIO_SOUND_SETTING"
 
 [node name="MusicSlider" type="HSlider" parent="Menu/TabContainer/AUDIO_TAB/VB"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 25)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -252,6 +252,7 @@ offset_bottom = 24.0
 text = "AUDIO_MUSIC_SETTING"
 
 [node name="DialogueSlider" type="HSlider" parent="Menu/TabContainer/AUDIO_TAB/VB"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 25)
 layout_mode = 2
 size_flags_horizontal = 4
