@@ -83,21 +83,18 @@ func saving() -> Dictionary:
 		"parent": get_parent().get_path(),
 		"posX": position.x,
 		"posY": position.y,
-		"resource": {
-			"type": resource.type,
-			"name": resource.name,
-			"timeline": resource.timeline,
-			"description": resource.description,
-		},
-		"img": resource.texture
+		"resources" : {
+			"resource": resource
+		}
 	}
 	return output
 
 func loading(input: Dictionary) -> bool:
 	position.x = input["posX"]
 	position.y = input["posY"]
-	var res: Dictionary = input["resource"]
-	resource = ElementResource.new(res["type"],res["name"],res["timeline"],res["description"],input["img"])
+	var res: Dictionary = input["resources"]
+	if res.has("resource"):
+		resource = res["resource"]
 	_ready()
 	Global.board_elements[resource.id] = self
 	return true

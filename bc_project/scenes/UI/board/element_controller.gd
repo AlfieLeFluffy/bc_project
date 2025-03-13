@@ -53,5 +53,5 @@ func check_element(key:String) -> bool:
 
 #region Signal Methods
 func _on_button_symbol_plus_pressed() -> void:
-	create_element(ElementResource.new(ElementResource.elementType.NOTE,"note",Global.Timeline,"",null))
+	create_element(ElementResource.new().setup(ElementResource.elementType.NOTE,"note",Global.Timeline,"",null))
 #endregion

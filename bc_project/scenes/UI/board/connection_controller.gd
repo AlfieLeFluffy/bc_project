@@ -73,6 +73,7 @@ func end_drawing() -> void:
 		instance.set_element(1,activeElement)
 		instance.resource.id = combine_strings(instance.resource.start.resource.id, instance.resource.end.resource.id)
 		instance.name = instance.resource.id
+		instance.resource.name = instance.resource.id
 		if Global.line_elements.has(instance.resource.id):
 			instance.queue_free()
 		else:

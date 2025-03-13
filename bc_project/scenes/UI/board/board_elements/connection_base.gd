@@ -78,11 +78,8 @@ func saving() -> Dictionary:
 		"parent": get_parent().get_path(),
 		"posX": position.x,
 		"posY": position.y,
-		"resource" : {
-			"id" : resource.id,
-			"description" : resource.description,
-			"startId": resource.start.resource.id,
-			"endId": resource.end.resource.id,
+		"resources" : {
+			"resource": resource,
 		}
 	}
 	return output
@@ -90,11 +87,9 @@ func saving() -> Dictionary:
 func loading(input: Dictionary) -> bool:
 	position.x = input["posX"]
 	position.y = input["posY"]
-	resource = ConnectionResource.new()
-	resource.id = input["resource"]["id"]
-	resource.description = input["resource"]["description"]
-	resource.startId = input["resource"]["startId"]
-	resource.endId = input["resource"]["endId"]
+	if input.has("resources"):
+		if input["resources"].has("resource"):
+			resource = input["resources"]["resource"]
 	
 	name = resource.id
 	

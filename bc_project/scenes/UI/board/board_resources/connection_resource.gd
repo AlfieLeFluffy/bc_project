@@ -1,11 +1,12 @@
 class_name ConnectionResource extends Resource
 
 #region Varibles
-var id : String
-var description : String
+@export var id : String
+@export var name: String
+@export var description : String
 
 var start: ElementBase = null
 var end:ElementBase = null
-var startId:String = ""
-var endId:String = ""
+@export var startId:String = ""
+@export var endId:String = ""
 #endregion

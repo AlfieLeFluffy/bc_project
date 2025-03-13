@@ -63,52 +63,59 @@ func open_persistence_menu(mode: PersistenceMenu.modeEnum) -> void:
 #region Saving and Loading Images Methods
 
 # Saves an image in a dictionary into the img directory inside a savefile and sets flag to load it once loading
-func save_img(key:String ,safeDirPath:String, dictionary:Dictionary) -> void:
-	var imageName: String = str(dictionary[key].get_rid())
-	var imagePath: String = safeDirPath.path_join("img").path_join(imageName)+".png"
-	dictionary[key].get_image().save_png(imagePath)
-	dictionary[key] = imageName
+func save_resource(key:String ,safeDirPath:String, dictionary:Dictionary) -> void:
+	var resourceName: String = str(dictionary[key].name)+".tres"
+	var resourcePath: String = safeDirPath.path_join("resources").path_join(resourceName)
+	var error = ResourceSaver.save(dictionary[key],resourcePath)
+	if error:
+		printerr("Error: During saving of resource '%s' if path '%s' occured error: " % [resourceName,resourcePath] + str(error))
+		dictionary.erase(key)
+		return
+	dictionary[key] = resourceName
 
 # Loads an image from the img directory if given flag is present in dictionary
-func load_img(key, safeDirPath:String, dictionary: Dictionary) -> void:
+func load_resource(key, safeDirPath:String, dictionary: Dictionary) -> void:
 	if not dictionary[key]:
 		return
-	var imagePath: String = safeDirPath.path_join("img").path_join(dictionary[key])+".png"
-	if FileAccess.file_exists(imagePath):
-		var image: Image = Image.load_from_file(imagePath)
-		var texture: ImageTexture = ImageTexture.create_from_image(image)
-		dictionary[key] = texture
-	else:
-		dictionary[key] = false
+	var imagePath: String = safeDirPath.path_join("resources").path_join(dictionary[key])
+	dictionary[key] = ResourceLoader.load(imagePath)
+	if dictionary[key] is int:
+		dictionary.erase(key)
 #endregion
 
 #region Saving and Loading Single JSON Line Methods
 
 # Takes a node dictionary, checks and saves any images, stringfies the node dictionary and writes into the savefile as a line
 func save_line(safeFile, saveDirPath:String, dictionary:Dictionary) -> void:
-	if dictionary.has("img"):
-		save_img("img",saveDirPath,dictionary)
+	if dictionary.has("resources"):
+		if not dictionary["resources"] is Dictionary:
+			return
+		for resource in dictionary["resources"].keys():
+			save_resource(resource,saveDirPath,dictionary["resources"])
 	var json = JSON.stringify(dictionary)
 	safeFile.store_line(json)
 
 # Reads one line of the savefile, parses the string into a dictionary, checks and laods any images and return node dictionary
-func load_line(safeFile, safeDirPath:String) -> Dictionary:
+func load_line(safeFile, saveDirPath:String) -> Dictionary:
 	var json = safeFile.get_line()
 	var parse =  JSON.parse_string(json)
-	if parse.has("img"):
-		load_img("img",safeDirPath, parse)
+	
+	if parse.has("resources"):
+		if parse["resources"] is Dictionary: 
+			for resource in parse["resources"].keys():
+				load_resource(resource,saveDirPath,parse["resources"])
 	return parse
 #endregion
 
 #region Save and Load Game Methods
 func save_game(filename:String) -> void:
-	var folderpath: String = PersistenceController.create_profile_savefile_folderpath(GameController.profile.id)
-	var safeDirPath = folderpath.path_join(filename.rstrip(".sf"))
-	var safeFilePath = safeDirPath.path_join(filename.rstrip(".sf")+".sf")
+	var folderpath: String = create_profile_savefile_folderpath(GameController.profile.id)
+	var saveDirPath = folderpath.path_join(filename.rstrip(".sf"))
+	var safeFilePath = saveDirPath.path_join(filename.rstrip(".sf")+".sf")
 	
-	Global.delete_directory_recurse(safeDirPath)
-	Global.check_create_directory(safeDirPath)
-	Global.check_create_directory(safeDirPath.path_join("img"))
+	Global.delete_directory_recurse(saveDirPath)
+	Global.check_create_directory(saveDirPath)
+	Global.check_create_directory(saveDirPath.path_join("resources"))
 	
 	# Opens and prepares the savefile
 	var saveFile = FileAccess.open(safeFilePath, FileAccess.WRITE)
@@ -117,7 +124,7 @@ func save_game(filename:String) -> void:
 	var sceneDictionary: Dictionary = {
 		"scene" = Global.currentScene
 	}
-	save_line(saveFile, safeDirPath, sceneDictionary)
+	save_line(saveFile, saveDirPath, sceneDictionary)
 	
 	# Loads up all persistent nodes in the scene (and globals)
 	var persistentNodes = get_tree().get_nodes_in_group("Persistent")
@@ -128,10 +135,10 @@ func save_game(filename:String) -> void:
 			continue
 			
 		# Calls for node's saving method and the stores is as a line in the savefile
-		save_line(saveFile, safeDirPath, node.saving())
+		save_line(saveFile, saveDirPath, node.saving())
 
 func load_game(filename:String) -> void:
-	var folderpath: String = PersistenceController.create_profile_savefile_folderpath(GameController.profile.id)
+	var folderpath: String = create_profile_savefile_folderpath(GameController.profile.id)
 	var safeDirPath = folderpath.path_join(filename.rstrip(".sf"))
 	var safeFilePath = safeDirPath.path_join(filename)
 	
@@ -185,7 +192,7 @@ func load_game(filename:String) -> void:
 	
 #region Delete Savefiles and Profile Savefiles Methods
 func delete_savefile(filename:String) -> void:
-	var folderpath: String = PersistenceController.create_profile_savefile_folderpath(GameController.profile.id)
+	var folderpath: String = create_profile_savefile_folderpath(GameController.profile.id)
 	Global.delete_directory_recurse(folderpath.path_join(filename.rstrip(".sf")))
 	
 func delete_profile_savefiles(_id:String) -> void:

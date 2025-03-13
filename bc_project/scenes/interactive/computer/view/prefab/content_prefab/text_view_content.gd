@@ -12,7 +12,7 @@ func _setup_arguments() -> void:
 #region Runtime Methods
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("add_to_board") and arguments.has_all(["name","text"]):
-		Signals.emit_signal('create_board_element',ElementResource.new(ElementResource.elementType.FILE,arguments["name"],computer.interactable_resource.timeline,arguments["text"],null))
+		Signals.emit_signal('create_board_element',ElementResource.new().setup(ElementResource.elementType.FILE,arguments["name"],computer.interactable_resource.timeline,arguments["text"],null))
 		Signals.emit_signal("input_help_delete","INTERACT_INPUT_HELP")
 #endregion
 

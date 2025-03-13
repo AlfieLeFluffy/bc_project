@@ -21,17 +21,17 @@ const elementContent: Dictionary = {
 #endregion
 
 #region Variables
-var type: elementType
-var id: String
-var name: String
-var timeline: String
-var description: String
-var texture
-var color: Color
+@export var type: elementType
+@export var id: String
+@export var name: String
+@export var timeline: String
+@export var description: String
+@export var texture: CompressedTexture2D
+@export var color: Color
 #endregion
 
 #region Resource Methods
-func _init(_type: elementType, _name: StringName = "", _timeline: String = "", _description: String = "", _texture = null) -> void:
+func setup(_type: elementType, _name: StringName = "", _timeline: String = "", _description: String = "", _texture = null) -> ElementResource:
 	type = _type
 	id = create_id(_name,_timeline)
 	name = _name
@@ -39,6 +39,7 @@ func _init(_type: elementType, _name: StringName = "", _timeline: String = "", _
 	description = _description
 	texture = _texture
 	color = get_color(_type)
+	return self
 
 func create_id(_name: StringName, _timeline: String) -> String:
 	return _name + _timeline
