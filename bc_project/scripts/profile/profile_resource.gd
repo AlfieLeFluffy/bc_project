@@ -1,11 +1,14 @@
 class_name ProfileResource extends Resource
 
-@export_group("Profile Informations")
+@export_category("Informations")
 @export var id: StringName
 @export var profileName: StringName
 
-@export_group("Profile Achievemnts")
-@export var achievements: Array = []
+@export_category("Achievemnts")
+@export var achievements: AchievementsResource = AchievementsResource.new()
+
+@export_category("Statistics")
+@export var statistics: StatisticsResource = StatisticsResource.new()
 
 #region Constants
 const folderPath: String = "user://profiles"
