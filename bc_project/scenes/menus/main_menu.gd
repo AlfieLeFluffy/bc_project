@@ -20,19 +20,20 @@ func _on_test_scene_button_pressed() -> void:
 	GameController.change_scene("test_level")
 
 func _on_load_button_pressed() -> void:
-	PersistenceController.emit_signal("openPersistenceMenu",PersistenceMenu.modeEnum.LOAD)
+	PersistenceController.openPersistenceMenu.emit(PersistenceMenu.modeEnum.LOAD)
 
 func _on_achievements_button_pressed() -> void:
-	pass # Replace with function body.
+	pass
+	
 
 func _on_settings_button_pressed() -> void:
-	SettingsController.emit_signal("openSettingsMenu")
+	SettingsController.openSettingsMenu.emit()
 	
 func _on_quit_button_pressed() -> void:
 	GameController.quit_game()
 #endregion
 
-#region Profile Managemnt and Signal Methods
+#region Profile Managemnt Methods
 func setup_profile() -> void:
 	var profiles: Dictionary = ProfileResource.get_available_profile_dict()
 	if profiles.is_empty():
@@ -68,6 +69,19 @@ func setup_profile() -> void:
 			%LoadButton.tooltip_text = "PROFILE_NO_SAVEFILES_TOOLTIP"
 			%LoadButton.disabled = true
 
+func create_profile() -> void:
+	if %ProfileCreationLineEdit.text == "":
+		return
+	if not GameController.profile:
+		GameController.create_set_save_new_profile(%ProfileCreationLineEdit.text)
+	else:
+		GameController.create_save_new_profile(%ProfileCreationLineEdit.text)
+	%ProfileCreationLineEdit.text = ""
+	setup_profile()
+
+#endregion
+
+#region Control Signal Methods
 func _on_choose_profile_button_pressed() -> void:
 	%ProfilesList.visible = not %ProfilesList.visible
 
@@ -96,14 +110,4 @@ func _on_profile_creation_confirmation_confirmed() -> void:
 func _on_profile_creation_line_edit_text_submitted(new_text: String) -> void:
 	%ProfileCreationConfirmation.confirmed.emit()
 	%ProfileCreationConfirmation.hide()
-
-func create_profile() -> void:
-	if %ProfileCreationLineEdit.text == "":
-		return
-	if not GameController.profile:
-		GameController.create_set_save_new_profile(%ProfileCreationLineEdit.text)
-	else:
-		GameController.create_save_new_profile(%ProfileCreationLineEdit.text)
-	%ProfileCreationLineEdit.text = ""
-	setup_profile()
 #endregion

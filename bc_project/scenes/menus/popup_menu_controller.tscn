@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx7gcwlih3mmg"]
+
+[ext_resource type="Script" uid="uid://gxnkmmmle2mi" path="res://scenes/menus/popup_menu_controller.gd" id="1_htjkf"]
+
+[node name="PopupMenuController" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_htjkf")
+
+[node name="PopupMenu" type="Window" parent="."]
+unique_name_in_owner = true
+auto_translate_mode = 1
+size = Vector2i(500, 500)
+visible = false
+wrap_controls = true
+borderless = true
+extend_to_title = true
+content_scale_mode = 1
+
+[node name="Content" type="Control" parent="PopupMenu"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="close_requested" from="PopupMenu" to="." method="_on_popup_menu_close_requested"]
+[connection signal="child_exiting_tree" from="PopupMenu/Content" to="." method="_on_content_child_exiting_tree"]

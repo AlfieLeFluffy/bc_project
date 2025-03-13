@@ -29,68 +29,6 @@ grow_vertical = 2
 theme = ExtResource("1_c65hb")
 script = ExtResource("1_7ttt2")
 
-[node name="MainActions" type="VBoxContainer" parent="MainMenu"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 50.0
-offset_top = -470.0
-offset_right = 300.0
-offset_bottom = -50.0
-grow_vertical = 0
-alignment = 2
-
-[node name="MainButtons" type="VBoxContainer" parent="MainMenu/MainActions"]
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="TestSceneButton" type="Button" parent="MainMenu/MainActions/MainButtons"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 50)
-layout_mode = 2
-focus_neighbor_bottom = NodePath("../LoadButton")
-disabled = true
-text = "TEST_SCENE"
-
-[node name="LoadButton" type="Button" parent="MainMenu/MainActions/MainButtons"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 50)
-layout_mode = 2
-focus_neighbor_top = NodePath("../TestSceneButton")
-focus_neighbor_bottom = NodePath("../AchievementsButton")
-text = "LOAD_BUTTON"
-
-[node name="AchievementsButton" type="Button" parent="MainMenu/MainActions/MainButtons"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 50)
-layout_mode = 2
-focus_neighbor_top = NodePath("../LoadButton")
-focus_neighbor_bottom = NodePath("../SettingsButton")
-disabled = true
-text = "ACHIEVEMENTS_BUTTON"
-
-[node name="SettingsButton" type="Button" parent="MainMenu/MainActions/MainButtons"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 50)
-layout_mode = 2
-focus_neighbor_top = NodePath("../AchievementsButton")
-focus_neighbor_bottom = NodePath("../QuitButton")
-text = "SETTINGS_BUTTON"
-
-[node name="QuitButton" type="Button" parent="MainMenu/MainActions/MainButtons"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 50)
-layout_mode = 2
-focus_neighbor_top = NodePath("../SettingsButton")
-text = "QUIT_BUTTON"
-
-[node name="VersionLabel" type="Label" parent="MainMenu/MainActions"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "VERSION_LABEL - 0.0.0"
-script = SubResource("GDScript_0itgy")
-
 [node name="Profiles" type="Control" parent="MainMenu"]
 layout_mode = 1
 anchors_preset = 15
@@ -159,6 +97,69 @@ grow_horizontal = 0
 grow_vertical = 0
 auto_height = true
 
+[node name="MainActions" type="VBoxContainer" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -470.0
+offset_right = 300.0
+offset_bottom = -50.0
+grow_vertical = 0
+alignment = 2
+
+[node name="MainButtons" type="VBoxContainer" parent="MainMenu/MainActions"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TestSceneButton" type="Button" parent="MainMenu/MainActions/MainButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../LoadButton")
+disabled = true
+text = "TEST_SCENE"
+
+[node name="LoadButton" type="Button" parent="MainMenu/MainActions/MainButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../TestSceneButton")
+focus_neighbor_bottom = NodePath("../AchievementsButton")
+disabled = true
+text = "LOAD_BUTTON"
+
+[node name="AchievementsButton" type="Button" parent="MainMenu/MainActions/MainButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../LoadButton")
+focus_neighbor_bottom = NodePath("../SettingsButton")
+disabled = true
+text = "ACHIEVEMENTS_BUTTON"
+
+[node name="SettingsButton" type="Button" parent="MainMenu/MainActions/MainButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../AchievementsButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+text = "SETTINGS_BUTTON"
+
+[node name="QuitButton" type="Button" parent="MainMenu/MainActions/MainButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../SettingsButton")
+text = "QUIT_BUTTON"
+
+[node name="VersionLabel" type="Label" parent="MainMenu/MainActions"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "VERSION_LABEL - 0.0.0"
+script = SubResource("GDScript_0itgy")
+
 [node name="ProfileDeletionConfirmation" type="ConfirmationDialog" parent="MainMenu"]
 unique_name_in_owner = true
 initial_position = 5
@@ -181,14 +182,14 @@ grow_horizontal = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[connection signal="pressed" from="MainMenu/Profiles/ProfileMenu/ChooseProfileButton" to="MainMenu" method="_on_choose_profile_button_pressed"]
+[connection signal="pressed" from="MainMenu/Profiles/ProfileMenu/CreateProfileButton" to="MainMenu" method="_on_create_profile_button_pressed"]
+[connection signal="item_clicked" from="MainMenu/Profiles/ProfilesList" to="MainMenu" method="_on_profiles_list_item_clicked"]
 [connection signal="pressed" from="MainMenu/MainActions/MainButtons/TestSceneButton" to="MainMenu" method="_on_test_scene_button_pressed"]
 [connection signal="pressed" from="MainMenu/MainActions/MainButtons/LoadButton" to="MainMenu" method="_on_load_button_pressed"]
 [connection signal="pressed" from="MainMenu/MainActions/MainButtons/AchievementsButton" to="MainMenu" method="_on_achievements_button_pressed"]
 [connection signal="pressed" from="MainMenu/MainActions/MainButtons/SettingsButton" to="MainMenu" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="MainMenu/MainActions/MainButtons/QuitButton" to="MainMenu" method="_on_quit_button_pressed"]
-[connection signal="pressed" from="MainMenu/Profiles/ProfileMenu/ChooseProfileButton" to="MainMenu" method="_on_choose_profile_button_pressed"]
-[connection signal="pressed" from="MainMenu/Profiles/ProfileMenu/CreateProfileButton" to="MainMenu" method="_on_create_profile_button_pressed"]
-[connection signal="item_clicked" from="MainMenu/Profiles/ProfilesList" to="MainMenu" method="_on_profiles_list_item_clicked"]
 [connection signal="canceled" from="MainMenu/ProfileDeletionConfirmation" to="MainMenu" method="_on_profile_deletion_confirmation_canceled"]
 [connection signal="confirmed" from="MainMenu/ProfileDeletionConfirmation" to="MainMenu" method="_on_profile_deletion_confirmation_confirmed"]
 [connection signal="confirmed" from="MainMenu/ProfileCreationConfirmation" to="MainMenu" method="_on_profile_creation_confirmation_confirmed"]
