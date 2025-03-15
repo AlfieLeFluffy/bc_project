@@ -13,3 +13,7 @@ class_name LevelController extends Node2D
 func _ready() -> void:
 	GameController.sceneLoaded.emit()
 	Signals.setup_level_dialogue_variables.emit(dialogueVaribles)
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact"):
+		Signals.camera_tracked_node_set_empty.emit()

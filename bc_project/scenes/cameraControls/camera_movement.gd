@@ -3,23 +3,24 @@ extends Node2D
 """
 --- Runtime Variables
 """
-@onready var trackedNode: Node
-var mouse_position: Vector2
+@onready var trackedNode: Node2D
+var mousePossition: Vector2
+var emptyPossition: Vector2
 
 """
 --- Setup Methods
 """
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var playerGroup = get_tree().get_nodes_in_group("Player")
-	if not playerGroup.is_empty():
-		trackedNode = playerGroup[0]
+	if get_tree().get_node_count_in_group("Player") > 0:
+		trackedNode = get_tree().get_first_node_in_group("Player")
 	else:
 		trackedNode = get_tree().current_scene
 	
-	Signals.connect("cemera_tracked_node_set",set_camera_tracked_node)
-	Signals.connect("cemera_tracked_node_set_by_name", set_camera_tracked_node_by_name)
-	Signals.connect("cemera_tracked_node_set_player", set_camera_tracked_node_player)
+	Signals.camera_tracked_node_set.connect(set_camera_tracked_node)
+	Signals.camera_tracked_node_set_by_name.connect(set_camera_tracked_node_by_name)
+	Signals.camera_tracked_node_set_player.connect(set_camera_tracked_node_player)
+	Signals.camera_tracked_node_set_empty.connect(set_camera_tracked_node_empty)
 
 
 """
@@ -27,17 +28,19 @@ func _ready() -> void:
 """
 
 func _unhandled_input(event: InputEvent) -> void:
-	mouse_position = get_global_mouse_position() 
+	mousePossition = get_local_mouse_position()
 
 func _physics_process(delta: float) -> void:
-	global_position = trackedNode.position.lerp(mouse_position, 0.2); 
+	if trackedNode != null:
+		global_position = trackedNode.position.lerp(to_global(mousePossition), 0.2)
+	else:
+		global_position = emptyPossition.lerp(to_global(mousePossition), 0.2)
 
 """
 --- Set Methods
 """
 func set_camera_tracked_node(node: Node) -> void:
-	if node is Node:
-		trackedNode = node
+	trackedNode = node
 
 func set_camera_tracked_node_by_name(nodeName: String) -> void:
 	var nodes: Array = get_tree().get_nodes_in_group(Global.cameraFocusName)
@@ -47,6 +50,12 @@ func set_camera_tracked_node_by_name(nodeName: String) -> void:
 
 func set_camera_tracked_node_player() -> void:
 	set_camera_tracked_node(Global.playerCharacterNode)
+
+func set_camera_tracked_node_empty() -> void:
+	if not trackedNode:
+		return
+	emptyPossition = trackedNode.global_position
+	set_camera_tracked_node(null)
 
 """
 --- Persistence Methods

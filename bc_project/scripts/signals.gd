@@ -4,9 +4,10 @@ extends Node
 signal timeline_shift()
 
 # Signals for setting what node the camera is following
-signal cemera_tracked_node_set(node)
-signal cemera_tracked_node_set_by_name(nodeName)
-signal cemera_tracked_node_set_player()
+signal camera_tracked_node_set(node)
+signal camera_tracked_node_set_by_name(nodeName)
+signal camera_tracked_node_set_player()
+signal camera_tracked_node_set_empty()
 
 # Signals for updating player overlay
 signal update_overlay()
