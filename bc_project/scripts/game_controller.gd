@@ -8,6 +8,7 @@ const preloadDetectiveBoardMenu = preload("res://scenes/UI/board/detective_board
 const preloadMainOverlay = preload("res://scenes/UI/overlay/main_overlay.tscn")
 const preloadInputHelp = preload("res://scenes/UI/input_help/input_help.tscn")
 const preloadCameraControls = preload("res://scenes/cameraControls/camera_controls.tscn")
+const preloadAchievementsMenu = preload("res://scripts/profile/achievements_menu.tscn")
 #endregion
 
 #region Preload ScreenEffects scenes, Enums and Constants
@@ -31,8 +32,7 @@ var profile: ProfileResource
 signal profileCreate(profileName)
 signal profileSet(profile)
 signal profileLoaded()
-
-signal achievementsLoaded()
+signal openAchievementsMenu()
 
 signal setMainOverlayVisibility(state)
 
@@ -54,6 +54,7 @@ var mainOverlay: Node
 var inputHelp: Node
 var detectiveBoard: Node
 var cameraControls: Node
+var achievementsMenu: AchievementsMenu 
 #endregion
 #endregion
 
@@ -73,6 +74,7 @@ func _ready() -> void:
 	
 	profileCreate.connect(create_set_save_new_profile)
 	profileSet.connect(set_profile)
+	openAchievementsMenu.connect(open_achievements_menu)
 	
 	sceneLoaded.connect(play_fade_in_effect)
 	sceneLoaded.connect(setup_main_overlay_menu)
@@ -163,6 +165,16 @@ func create_new_profile(_profileName: String) -> ProfileResource:
 #endregion
 
 #region Achievements Methods
+func open_achievements_menu() -> void:
+	achievementsMenu = preloadAchievementsMenu.instantiate()
+	var loadPopupMenu = load("res://scenes/menus/popup_menu_controller.tscn")
+	var popupMenu: PopupMenuController = loadPopupMenu.instantiate()
+	achievementsMenu.profile = profile
+	get_tree().current_scene.add_child(popupMenu)
+	popupMenu.setup(achievementsMenu)
+	popupMenu.popup.emit()
+	Signals.emit_signal("menu_clear")
+
 #endregion
 
 #region Global Minsc Methods

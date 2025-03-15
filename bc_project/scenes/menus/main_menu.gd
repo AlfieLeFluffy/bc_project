@@ -23,8 +23,8 @@ func _on_load_button_pressed() -> void:
 	PersistenceController.openPersistenceMenu.emit(PersistenceMenu.modeEnum.LOAD)
 
 func _on_achievements_button_pressed() -> void:
-	pass
-	
+	%AchievementsFlair.visible = false
+	GameController.openAchievementsMenu.emit()
 
 func _on_settings_button_pressed() -> void:
 	SettingsController.openSettingsMenu.emit()
@@ -60,6 +60,8 @@ func setup_profile() -> void:
 	%TestSceneButton.tooltip_text = ""
 	%AchievementsButton.disabled = false
 	%AchievementsButton.tooltip_text = ""
+	if GameController.profile.achievements.get_new_achievements_count() > 0:
+		%AchievementsFlair.visible = true
 	
 	if GameController.profile:
 		if PersistenceController.get_profile_savefile_count(GameController.profile.id) > 0:

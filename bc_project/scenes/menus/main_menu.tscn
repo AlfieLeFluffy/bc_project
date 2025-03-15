@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2vbyl6277p6b"]
+[gd_scene load_steps=5 format=3 uid="uid://b2vbyl6277p6b"]
 
 [ext_resource type="Script" uid="uid://cyp36x1yqve82" path="res://scenes/menus/main_menu.gd" id="1_7ttt2"]
 [ext_resource type="Theme" uid="uid://f6rijghqdfrw" path="res://settings/main_menu_theme.tres" id="1_c65hb"]
+[ext_resource type="Texture2D" uid="uid://c4d1odq88m3nh" path="res://textures/symbols/asterisk.png" id="3_2o76q"]
 
 [sub_resource type="GDScript" id="GDScript_0itgy"]
 script/source = "extends Label
@@ -138,6 +139,19 @@ focus_neighbor_top = NodePath("../LoadButton")
 focus_neighbor_bottom = NodePath("../SettingsButton")
 disabled = true
 text = "ACHIEVEMENTS_BUTTON"
+
+[node name="AchievementsFlair" type="TextureRect" parent="MainMenu/MainActions/MainButtons/AchievementsButton"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.956
+anchor_top = -0.12
+anchor_right = 1.02
+anchor_bottom = 0.2
+offset_right = -3.05176e-05
+texture = ExtResource("3_2o76q")
+stretch_mode = 3
 
 [node name="SettingsButton" type="Button" parent="MainMenu/MainActions/MainButtons"]
 unique_name_in_owner = true

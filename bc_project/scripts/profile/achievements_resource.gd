@@ -1,11 +1,13 @@
 class_name AchievementsResource extends Resource
 
 enum type {
+	HOW_DID_WE_GET_HERE,
 	RETIREMENT,
 }
 
 const information: Dictionary = {
-	type.RETIREMENT: {"name": "ACHIEVEMENT_RETIREMENT_NAME", "description": "ACHIEVEMENT_RETIREMENT_DESCRIPTION", "icon": null},
+	type.HOW_DID_WE_GET_HERE : {"name": "ACHIEVEMENT_HOW_DID_NAME", "name_color": "CYAN", "description": "ACHIEVEMENT_HOW_DID_DESCRIPTION", "icon": null},
+	type.RETIREMENT: {"name": "ACHIEVEMENT_RETIREMENT_NAME", "name_color": "YELLOW", "description": "ACHIEVEMENT_RETIREMENT_DESCRIPTION", "icon": null},
 }
 
 @export var acquiredAchievements: Array[AchievementsResource.type] = []

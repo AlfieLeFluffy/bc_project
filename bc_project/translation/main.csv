@@ -28,6 +28,8 @@ CZECH_LANGUAGE,Czech,Čěština
 GAMEPLAY_TAB,Gameplay,Hratelnost
 GRAPHICS_TAB,Graphics,Grafika
 AUDIO_TAB,Audio,Zvuk
+ACHIEVEMENTS_TAB,Achievements,Úspěchy
+STATISTICS_TAB,Statistics,Statistiky
 TEXT_TAB,Text,Text
 LANGUAGE_SETTING,Language:,Jazyk:
 WIN_MODE_SETTING,Window Mode:,Mód Okna
