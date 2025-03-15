@@ -1,14 +1,11 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://d3vcomicjy5hm"]
-
-[ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="1_6nkym"]
+[gd_resource type="Theme" format=3 uid="uid://d3vcomicjy5hm"]
 
 [resource]
-default_font = ExtResource("1_6nkym")
-default_font_size = 24
+default_font_size = 16
 HBoxContainer/constants/separation = 24
 MarginContainer/constants/margin_bottom = 100
 MarginContainer/constants/margin_left = 300
 MarginContainer/constants/margin_right = 300
 MarginContainer/constants/margin_top = 100
-TabContainer/font_sizes/font_size = 48
+TabContainer/font_sizes/font_size = 32
 VBoxContainer/constants/separation = 24
