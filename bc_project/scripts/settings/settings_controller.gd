@@ -88,6 +88,7 @@ func open_settings_menu() -> void:
 	var popupMenu: PopupMenuController = loadPopupMenu.instantiate()
 	get_tree().current_scene.add_child(popupMenu)
 	popupMenu.setup(settingsMenu)
+	popupMenu.popup.emit()
 	Signals.emit_signal("menu_clear")
 	
 func save_settings() -> void:

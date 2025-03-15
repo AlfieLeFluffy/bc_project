@@ -22,17 +22,11 @@ var popupMenu: PopupMenuController
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	get_popup_menu()
+	popupMenu = PopupMenuController.get_popup_menu(self)
 	
 	setup_gameplay()
 	setup_graphics()
 	setup_sound()
-
-func get_popup_menu() -> void:
-	var check = get_parent().get_parent().get_parent()
-	if check is PopupMenuController:
-		popupMenu = check
-		return
 
 """
 --- Runtime Methods
@@ -40,13 +34,13 @@ func get_popup_menu() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_menu"):
+	if event.is_action_pressed("ui_menu") or event.is_action_pressed("detective_board_toggle"):
 		close_menu()
 
 func close_menu() -> void:
 	GameController.release_focus()
 	if popupMenu:
-		popupMenu.closeMenu.emit()
+		popupMenu.popdownKill.emit()
 	else:
 		queue_free()
 

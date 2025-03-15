@@ -53,10 +53,13 @@ func open_persistence_menu(mode: PersistenceMenu.modeEnum) -> void:
 	if mode > 1 or mode < 0:
 		printerr("Wrong Persistence Mode Parameter")
 		return
-	var menu = preloadPersistenceMenu.instantiate()
-	menu.mode = mode
-	get_tree().current_scene.add_child(menu)
-	menu.layer = 100
+	var percistenceMenu: PersistenceMenu = preloadPersistenceMenu.instantiate()
+	var loadPopupMenu = load("res://scenes/menus/popup_menu_controller.tscn")
+	var popupMenu: PopupMenuController = loadPopupMenu.instantiate()
+	percistenceMenu.mode = mode
+	get_tree().current_scene.add_child(popupMenu)
+	popupMenu.setup(percistenceMenu)
+	popupMenu.popup.emit()
 	Signals.emit_signal("menu_clear")
 #endregion
 

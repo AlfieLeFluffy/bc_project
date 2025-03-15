@@ -15,12 +15,15 @@ script = ExtResource("1_htjkf")
 [node name="PopupMenu" type="Window" parent="."]
 unique_name_in_owner = true
 auto_translate_mode = 1
+transparent_bg = true
 size = Vector2i(500, 500)
 visible = false
 wrap_controls = true
 borderless = true
+transparent = true
 extend_to_title = true
 content_scale_mode = 1
+content_scale_aspect = 4
 
 [node name="Content" type="Control" parent="PopupMenu"]
 unique_name_in_owner = true

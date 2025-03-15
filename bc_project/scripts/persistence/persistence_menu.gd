@@ -19,6 +19,7 @@ signal closeMenu
 --- Runtime Variables
 """
 var mode: modeEnum = modeEnum.SAVE
+var popupMenu: PopupMenuController
 
 @onready var menuLabel = $PersistenceMenu/MenuLabel
 @onready var grid = $PersistenceMenu/Grid
@@ -30,6 +31,8 @@ const TIME_STRING_FORMAT:String = "%d:%d:%d - %d.%d.%d"
 """
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	popupMenu = PopupMenuController.get_popup_menu(self)
+	
 	setup_ui()
 	setup_base_items()
 	setup_savefiles()
@@ -39,15 +42,18 @@ func _ready() -> void:
 """
 --- Runtime Methods
 """
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_menu"):
-		GameController.release_focus()
+	if event.is_action_pressed("ui_menu") or event.is_action_pressed("detective_board_toggle"):
+		close_menu()
+	if visible:
+		get_viewport().set_input_as_handled()
+
+func close_menu() -> void:
+	GameController.release_focus()
+	if popupMenu:
+		popupMenu.popdownKill.emit()
+	else:
 		queue_free()
-	get_viewport().set_input_as_handled()
 
 """
 --- Persistence Methods
@@ -55,9 +61,9 @@ func _unhandled_input(event: InputEvent) -> void:
 func setup_ui() -> void:
 	match mode:
 		modeEnum.SAVE:
-			menuLabel.text = tr("SAVE_GAME_LABEL")
+			menuLabel.text = tr("SAVE_MENU_LABEL")
 		modeEnum.LOAD:
-			menuLabel.text = tr("LOAD_GAME_LABEL")
+			menuLabel.text = tr("LOAD_MENU_LABEL")
 
 func setup_base_items() -> void:
 	if mode == modeEnum.SAVE:
@@ -111,16 +117,12 @@ func add_item_sorted(item: Control) -> void:
 	grid.add_child(item)
 	grid.move_child(item, children.size())
 	return
-	
-
-func close_menu() -> void:
-	queue_free()
 
 """
 --- Node Signal Methods
 """
 func _on_cancel_button_pressed() -> void:
-	queue_free()
+	close_menu()
 
 func _on_active_button_pressed() -> void:
 	pass # Replace with function body.

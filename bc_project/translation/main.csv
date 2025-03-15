@@ -44,8 +44,10 @@ MINIMEZED_OPTION,Minimized,Minimalizované
 MAXIMIZED_OPTION,Maximized,Maximalizované
 FULLSCREEN_OPTION,Fullscreen,V Plném Okně
 EXCLUSIVE_FULLSCREEN_OPTION,Exclusive Fullscreen,Exlusivne V Plné Okně
-SAVE_GAME_LABEL,Save Game,Ulozžt Hru
-LOAD_GAME_LABEL,Load Game,Načist Hru
+SAVE_MENU_LABEL,Save Game,Ulozžt Hru
+LOAD_MENU_LABEL,Load Game,Načist Hru
+SETTINGS_MENU_LABEL,Settings,Nastavení
+ACHIEVEMENTS_MENU_LABEL,Achievements,Úspěchy
 SAVEFILE_DELELTE_CONFIRMATION,Do you wish to DELETE this save?,Přejete si SMAZAT uloženou hru?
 SAVEFILE_LOAD_CONFIRMATION,Do you wish to load this save?,Přejete si načist uloženou hru?
 SAVEFILE_OVERWRITE_CONFIRMATION,Do you wish to overwrite this file?,Přejete si přepsat uloženou hru?
