@@ -3,6 +3,7 @@ class_name ProfileResource extends Resource
 @export_category("Informations")
 @export var id: StringName
 @export var profileName: StringName
+@export var seed: int
 
 @export_category("Achievemnts")
 @export var achievements: AchievementsResource = AchievementsResource.new()
@@ -18,6 +19,10 @@ const folderPath: String = "user://profiles"
 func setup(_profileName: StringName) -> void:
 	id = create_id(_profileName)
 	profileName = _profileName
+	seed = generate_seed()
+
+func generate_seed() -> int:
+	return hash( profileName )
 #endregion
 
 #region Save and Delete Methods
