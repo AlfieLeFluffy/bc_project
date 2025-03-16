@@ -1,13 +1,10 @@
 class_name ComputerObjectResource extends Resource
 
-"""
---- Computer Object Enum
-"""
+#region Type
 enum computerTypeEnum {COMPUTER,TABLET}
+#endregion
 
-"""
---- Computer Resourses
-"""
+#region Exported Varible
 @export_group("Computer Information")
 @export var name: String = ""
 @export var type: computerTypeEnum = computerTypeEnum.COMPUTER
@@ -16,4 +13,9 @@ enum computerTypeEnum {COMPUTER,TABLET}
 @export_group("Login Information")
 @export var login: bool = false
 @export var locked: bool = false
-@export var password: String = ""
+@export var currentUser: UserResource
+@export var users: Array[UserResource]
+#endregion
+
+func set_current_user(resource: UserResource) -> void:
+	currentUser = resource

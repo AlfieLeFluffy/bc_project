@@ -13,6 +13,8 @@ const preloadComputerView = preload("res://scenes/interactive/computer/view/comp
 @export var dirFileRes: DirectoryFileResource
 @export var appRes: ApplicationResource
 var view: ComputerView
+var usersDictionary: Dictionary
+
 #endregion
 
 #region Setup Methods
@@ -22,6 +24,7 @@ var view: ComputerView
 # Local ready function for instantiated objects
 func local_ready() -> void:
 	setup_computer_status()
+	setup_users_dictionary()
 	Signals.connect("shutdown_computer",shutdown_computer)
 	Signals.connect("hide_computer_view",hide_computer_view)
 	SettingsController.connect("retranslate",setup_interactable_info)
@@ -38,7 +41,16 @@ func setup_computer_status() -> void:
 	sprite.frame = 1
 	return
 
+func setup_users_dictionary() -> void:
+	for user in compRes.users:
+		if not user is UserResource:
+			continue
+		if user.username == null:
+			continue
+		usersDictionary[user.username] = user
 #endregion
+
+
 
 #region Runtime Methods
 """
@@ -63,8 +75,9 @@ func open_computer_view() -> void:
 
 func create_computer_view() -> void:
 	view = preloadComputerView.instantiate()
+	view.computer = self
 	get_tree().current_scene.add_child(view)
-	view.setup_computer_view(self)
+	view.setup_computer_view()
 
 func shutdown_computer(computerName: String) -> void:
 	if computerName == compRes.name:

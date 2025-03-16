@@ -121,7 +121,7 @@ func toggle_applicatiion(_type: ApplicationResource.applicationTypes) -> void:
 		visible = not visible
 
 func exit_applicatiion(_type: ApplicationResource.applicationTypes) -> void:
-	if type == _type:
+	if type == _type or _type == -1:
 		queue_free()
 #endregion
 
