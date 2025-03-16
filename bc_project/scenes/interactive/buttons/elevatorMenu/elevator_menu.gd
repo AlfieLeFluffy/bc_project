@@ -5,37 +5,55 @@ const preloadElevatorMenuButton = preload("res://scenes/interactive/buttons/elev
 #endregion
 
 #region Variables
-var resource: ElevatorResource
+@export var offset: Vector2 = Vector2i(6,6)
+var elevator: Elevator
 var scaling: float
+var buttons: Dictionary
 #endregion
 
 #region Setup Methods
 func local_ready() -> void:
-	if get_elevator_resource():
+	if get_elevator():
 		setup_menu_buttons()
+		if elevator.resource.movingToStop != null:
+			setup_buttons_status(elevator.resource.id, elevator.resource.movingToStop)
+		else:
+			setup_buttons_status(elevator.resource.id, elevator.resource.currentStop)
+	
 	Signals.elevator_move_to_key.connect(hide_menu)
+	Signals.elevator_move_to_key.connect(setup_buttons_status)
 
-func get_elevator_resource() -> bool:
+func get_elevator() -> bool:
 	var parent: Node = get_parent()
 	while parent != null:
 		if parent is Elevator:
-			resource = parent.resource
+			elevator = parent
 			return true
 		parent = parent.get_parent()
 	return false
 
 func setup_menu_buttons() -> void:
-	for key in resource.stops:
+	for key in elevator.resource.stops:
 		var button: ElevatorMenuButton = preloadElevatorMenuButton.instantiate()
 		%StopButtons.add_child(button)
 		button.name = "ElevatorMenuButton_key:%s" % key
-		button.setup_button(resource.id,key)
+		button.setup_button(elevator.resource.id,key)
+		buttons[key] = button
 		%StopButtons.move_child(button,0)
+
+func setup_buttons_status(_id: String, _key: String, _force: bool = false) -> void:
+	if elevator.resource.id != _id:
+		return
+	for key in buttons.keys():
+		if key == _key:
+			buttons[key].disabled = true
+		else:
+			buttons[key].disabled = false
 
 func setup_menu_size_position() -> void:
 	scaling = %ButtonMenu.scale.x
-	%ButtonMenu.size = %StopButtons.size
-	%ButtonMenu.position = Vector2.ZERO - %StopButtons.size/(2*(1/scaling))
+	%ButtonMenu.size = %StopButtons.size + offset
+	%ButtonMenu.position = Vector2.ZERO - %StopButtons.size/(2*(1/scaling)) - offset / 2
 #endregion
 
 #region Runtime Methods
@@ -45,10 +63,10 @@ func local_process(delta: float) -> void:
 			$ButtonMenu.visible = false
 
 func interact_function(event: InputEvent) -> void:
-	if not resource.active:
+	if not elevator.resource.active:
 		$ButtonMenu.visible = true
 		setup_menu_size_position()
 
-func hide_menu(id,key) -> void:
+func hide_menu(id:String,stop,force:bool = false) -> void:
 	$ButtonMenu.visible = false
 #endregion
