@@ -9,6 +9,7 @@ const preloadMainOverlay = preload("res://scenes/UI/overlay/main_overlay.tscn")
 const preloadInputHelp = preload("res://scenes/UI/input_help/input_help.tscn")
 const preloadCameraControls = preload("res://scenes/cameraControls/camera_controls.tscn")
 const preloadAchievementsMenu = preload("res://scripts/profile/achievements_menu.tscn")
+const prelaodGameOverScreen = preload("res://scenes/gameOver/game_over_screen.tscn")
 #endregion
 
 #region Preload ScreenEffects scenes, Enums and Constants
@@ -32,7 +33,9 @@ var profile: ProfileResource
 signal profileCreate(profileName)
 signal profileSet(profile)
 signal profileLoaded()
+
 signal openAchievementsMenu()
+signal setAchievement(type)
 
 signal setMainOverlayVisibility(state)
 
@@ -41,6 +44,8 @@ signal playScreenEffect(effect)
 # Signals for updating player overlay
 signal sceneLoaded()
 signal gameLoaded()
+
+signal gameOver(type)
 #endregion
 
 #region Runtime Variables
@@ -74,7 +79,11 @@ func _ready() -> void:
 	
 	profileCreate.connect(create_set_save_new_profile)
 	profileSet.connect(set_profile)
+	
+	setAchievement.connect(set_achievement)
 	openAchievementsMenu.connect(open_achievements_menu)
+	
+	gameOver.connect(game_over)
 	
 	sceneLoaded.connect(play_fade_in_effect)
 	sceneLoaded.connect(setup_main_overlay_menu)
@@ -105,6 +114,11 @@ func _unhandled_input(event: InputEvent) -> void:
 func quit_game() -> void:
 	save_profile()
 	get_tree().quit(0)
+
+func game_over(type: GameOverResource.type) -> void:
+	var gameOverScreen: GameOverScreen = prelaodGameOverScreen.instantiate()
+	gameOverScreen.info = GameOverResource.info[type]
+	get_tree().current_scene.add_child(gameOverScreen)
 #endregion
 
 #region Profile Methods
@@ -174,6 +188,9 @@ func open_achievements_menu() -> void:
 	popupMenu.setup(achievementsMenu)
 	popupMenu.popup.emit()
 	Signals.emit_signal("menu_clear")
+
+func set_achievement(_type: AchievementsResource.type) -> void:
+	profile.achievements.set_achievement(_type)
 
 #endregion
 

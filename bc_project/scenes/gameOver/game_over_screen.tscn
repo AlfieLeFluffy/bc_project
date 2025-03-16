@@ -1,0 +1,108 @@
+[gd_scene load_steps=8 format=3 uid="uid://fsjxx8xynty8"]
+
+[ext_resource type="Script" uid="uid://b0412pr1cj8ug" path="res://scenes/gameOver/game_over_screen.gd" id="1_rrw8v"]
+[ext_resource type="Shader" uid="uid://dxfj0o43t2h3w" path="res://scenes/gameOver/game_over_screen.gdshader" id="2_4qxvc"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4qxvc"]
+noise_type = 0
+frequency = 0.02
+fractal_type = 0
+fractal_gain = 0.6
+domain_warp_enabled = true
+domain_warp_type = 2
+domain_warp_amplitude = 40.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bu1uy"]
+noise = SubResource("FastNoiseLite_4qxvc")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bu1uy"]
+shader = ExtResource("2_4qxvc")
+shader_parameter/color = Color(0.878473, 0, 0.117334, 1)
+shader_parameter/genTexture = SubResource("NoiseTexture2D_bu1uy")
+
+[sub_resource type="Gradient" id="Gradient_4qxvc"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0, 0, 0, 0.352941, 1, 1, 1, 0.0784314, 0, 0, 0, 0.392157)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bu1uy"]
+gradient = SubResource("Gradient_4qxvc")
+fill_to = Vector2(0, 1)
+
+[node name="GameOverScreen" type="CanvasLayer"]
+script = ExtResource("1_rrw8v")
+
+[node name="Screen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="Screen"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_bu1uy")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = SubResource("GradientTexture2D_bu1uy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.5
+offset_top = -71.0
+offset_right = 153.5
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverText" type="RichTextLabel" parent="Screen/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=52]GAME_OVER"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="Screen/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="OptionButtons" type="VBoxContainer" parent="Screen/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.5
+offset_top = -33.0
+offset_right = 130.5
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoadButton" type="Button" parent="Screen/VBoxContainer/Control/OptionButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "LOAD_BUTTON"
+
+[node name="MainMenuButton" type="Button" parent="Screen/VBoxContainer/Control/OptionButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "QUIT__TO_MAIN_MENU_BUTTON"
+
+[connection signal="pressed" from="Screen/VBoxContainer/Control/OptionButtons/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="Screen/VBoxContainer/Control/OptionButtons/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhfcdpaldvsbm"]
+
+[ext_resource type="PackedScene" uid="uid://cgnj6okm4sogh" path="res://scenes/triggers/area_trigger.tscn" id="1_83jq7"]
+[ext_resource type="Script" uid="uid://bi25vgavxjlp6" path="res://scenes/triggers/versions/area_trigger_game_over.gd" id="2_ssqy1"]
+
+[node name="AreaTriggerGameOver" instance=ExtResource("1_83jq7")]
+script = ExtResource("2_ssqy1")
+gameOverType = 0

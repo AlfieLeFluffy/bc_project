@@ -15,5 +15,4 @@ func _ready() -> void:
 	Signals.setup_level_dialogue_variables.emit(dialogueVaribles)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact"):
-		Signals.camera_tracked_node_set_empty.emit()
+	pass
