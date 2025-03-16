@@ -90,11 +90,11 @@ func calculate_positions() -> void:
 			startPosition = Vector2i((screenSize.x + 50),(screenSize.y-$PopupMenu.size.y)/2)
 			endPosition = startPosition - Vector2i($PopupMenu.size.x+100,0)
 		popupDirection.DOWN:
-			startPosition = Vector2i((screenSize.x-$PopupMenu.size.x)/2,-$PopupMenu.size.y-50)
-			endPosition = startPosition + Vector2i(0,$PopupMenu.size.x+100)
+			startPosition = Vector2i((screenSize.x-$PopupMenu.size.x)/2,-$PopupMenu.size.y)
+			endPosition = startPosition + Vector2i(0,$PopupMenu.size.y)
 		popupDirection.UP:
-			startPosition = Vector2i((screenSize.x-$PopupMenu.size.x)/2,screenSize.y+50)
-			endPosition = startPosition - Vector2i(0,$PopupMenu.size.x+100)
+			startPosition = Vector2i((screenSize.x-$PopupMenu.size.x)/2,screenSize.y)
+			endPosition = startPosition - Vector2i(0,$PopupMenu.size.y+25)
 
 func recalculate_menu() -> void:
 	$PopupMenu.size = Vector2i(Vector2(get_viewport().size) * ratio)
