@@ -21,14 +21,15 @@ func setup_menu():
 	
 	achievements = profile.achievements
 	
-	var all = achievements.information.duplicate()
+	var all = achievements.type.duplicate()
 	for attained in achievements.acquiredAchievements:
 		add_line(attained, all, true)
 	
-	var separator = HSeparator.new()
-	%AchievementsList.add_child(separator)
+	if not achievements.acquiredAchievements.is_empty():
+		var separator = HSeparator.new()
+		%AchievementsList.add_child(separator)
 	
-	for notattained in all:
+	for notattained in all.values():
 		add_line(notattained, all, false)
 	
 func add_line(type: AchievementsResource.type, all: Dictionary, attained:bool) -> void:
@@ -38,7 +39,7 @@ func add_line(type: AchievementsResource.type, all: Dictionary, attained:bool) -
 	if attained:
 		if achievements.newAchievements.has(type):
 			line.flair = true
-	all.erase(type)
+	all.erase(all.find_key(type))
 	lines[type] = line
 	profile.achievements.reset_new_achievements()
 	%AchievementsList.add_child(line)
