@@ -1,9 +1,38 @@
-[gd_scene load_steps=2 format=3 uid="uid://x2db3an72yru"]
+[gd_scene load_steps=7 format=3 uid="uid://x2db3an72yru"]
 
 [ext_resource type="Script" uid="uid://c1x4u1uwglbxa" path="res://scenes/interactive/buttons/elevatorMenu/prefab/elevator_menu_button.gd" id="1_7ybmn"]
+[ext_resource type="StyleBox" uid="uid://dfgt355yn6pt4" path="res://scenes/interactive/buttons/elevatorMenu/prefab/elevator_menu_button_disabled.tres" id="1_v55hs"]
+[ext_resource type="StyleBox" uid="uid://bxrrrrewcb80r" path="res://scenes/interactive/buttons/elevatorMenu/prefab/elevator_menu_button_normal.tres" id="2_chpva"]
+[ext_resource type="StyleBox" uid="uid://cmwtq02udr83c" path="res://scenes/interactive/buttons/elevatorMenu/prefab/elevator_menu_button_hover.tres" id="3_fa6ax"]
+[ext_resource type="StyleBox" uid="uid://byvyhn8n85w6l" path="res://scenes/interactive/buttons/elevatorMenu/prefab/elevator_menu_button_pressed.tres" id="4_83dvo"]
+
+[sub_resource type="Theme" id="Theme_034x1"]
+default_font_size = 16
+Button/colors/font_color = Color(0.051971, 0.051971, 0.051971, 1)
+Button/colors/font_disabled_color = Color(0, 0, 0, 0.5)
+Button/colors/font_focus_color = Color(0.0846893, 0.0846901, 0.0846902, 1)
+Button/colors/font_hover_color = Color(0.0605298, 0.0605305, 0.0605306, 1)
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/font_outline_color = Color(0.412152, 0.412152, 0.412152, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/constants/h_separation = 0
+Button/constants/line_spacing = 0
+Button/constants/outline_size = 1
+Button/styles/disabled = ExtResource("1_v55hs")
+Button/styles/focus = ExtResource("2_chpva")
+Button/styles/hover = ExtResource("3_fa6ax")
+Button/styles/normal = ExtResource("2_chpva")
+Button/styles/pressed = ExtResource("4_83dvo")
 
 [node name="ElevatorMenuButton" type="Button"]
-text = "test"
+custom_minimum_size = Vector2(24, 24)
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+theme = SubResource("Theme_034x1")
+text = "1
+"
 script = ExtResource("1_7ybmn")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
