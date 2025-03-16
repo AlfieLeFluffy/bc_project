@@ -57,6 +57,7 @@ folder_colors={
 "res://audio/": "orange",
 "res://dialogs/": "purple",
 "res://scenes/": "green",
+"res://scenes/interactive/": "pink",
 "res://scripts/": "teal",
 "res://textures/": "yellow",
 "res://translation/": "pink"

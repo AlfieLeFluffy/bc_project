@@ -67,7 +67,13 @@ func open_persistence_menu(mode: PersistenceMenu.modeEnum) -> void:
 
 # Saves an image in a dictionary into the img directory inside a savefile and sets flag to load it once loading
 func save_resource(key:String ,safeDirPath:String, dictionary:Dictionary) -> void:
-	var resourceName: String = str(dictionary[key].name)+".tres"
+	var resourceName: String
+	if "name" in dictionary[key]:
+		resourceName = str(dictionary[key].name)+".tres"
+	elif "id" in dictionary[key]:
+		resourceName = str(dictionary[key].id)+".tres"
+	else:
+		resourceName = str(randi_range(00000,99999))+".tres"
 	var resourcePath: String = safeDirPath.path_join("resources").path_join(resourceName)
 	var error = ResourceSaver.save(dictionary[key],resourcePath)
 	if error:
