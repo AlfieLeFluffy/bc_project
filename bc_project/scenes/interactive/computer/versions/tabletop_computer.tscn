@@ -14,7 +14,7 @@ shader = ExtResource("2_jt2m4")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 
-[node name="TabletopComputer" instance=ExtResource("1_o5ktb")]
+[node name="TabletopComputer" groups=["Persistent"] instance=ExtResource("1_o5ktb")]
 
 [node name="Labels" parent="." index="0"]
 position = Vector2(0, -38)

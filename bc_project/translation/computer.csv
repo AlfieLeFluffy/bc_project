@@ -1,5 +1,6 @@
 key,en,cz
 START_MENU_BUTTON,Start Menu,Start Menu
+LOGOUT_BUTTON,Logout,Odhlásit
 SHUTDOWN_BUTTON,Shutdown,Vypnout
 FILE_EXPLORER_APPLICATION_NAME,FIle Explorer,Prohlížeč Souborů
 COMMAND_PROMPT_APPLICATION_NAME,Command Prompt,Příkazová Řádka

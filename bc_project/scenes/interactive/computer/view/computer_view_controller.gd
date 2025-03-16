@@ -1,34 +1,26 @@
 class_name ComputerView extends CanvasLayer
 
-#region Variables, Constans, Signals and such
-"""
---- Preload Constants
-"""
+
+#region Scene Preload Constants
 const preloadApplicationShortcut = preload("res://scenes/interactive/computer/view/prefab/application_shortcut.tscn")
 const preloadApplicationTab = preload("res://scenes/interactive/computer/view/prefab/application_tab.tscn")
 const preloadApplicationView = preload("res://scenes/interactive/computer/view/prefab/application_view.tscn")
+#endregion
 
-"""
---- Signals
-"""
+#region Signals
 signal application_open(type: ApplicationResource.applicationTypes, arguments: Dictionary)
 signal application_arguments(type: ApplicationResource.applicationTypes, arguments: Dictionary)
 signal application_set(type: ApplicationResource.applicationTypes, state: bool)
 signal application_toggle(type: ApplicationResource.applicationTypes)
 signal application_exit(type: ApplicationResource.applicationTypes)
 
-"""
---- Runtime Variables
-"""
-var computer: ComputerBase
-
-@export var appInfo: Dictionary = {
-	ApplicationResource.applicationTypes.FILE_EXPLORER : ["FILE_EXPLORER_APPLICATION_NAME","res://textures/computer/application_icons/file_explorer_icon.png"],
-	ApplicationResource.applicationTypes.COMMAND_PROMPT : ["COMMAND_PROMPT_APPLICATION_NAME", "res://textures/computer/application_icons/command_prompt_icon.png",],
-	ApplicationResource.applicationTypes.TEXT_VIEW : ["TEXT_VIEW_APPLICATION_NAME","res://textures/computer/application_icons/text_viewer_icon.png",],
-}
-
+signal computer_lock()
 #endregion
+
+#region Runtime Variables
+var computer: ComputerBase
+#endregion
+
 
 #region Setup Methods
 """
@@ -40,8 +32,10 @@ func _ready() -> void:
 	application_set.connect(set_application)
 	application_exit.connect(exit_application)
 
-func setup_computer_view(_computer:ComputerBase) -> void:
-	computer = _computer
+func setup_computer_view() -> void:
+	if not computer:
+		printerr("Error during computer view creation, no computer object given.")
+		return
 	
 	if computer.compRes.name:
 		name = "Computer_View_"+ computer.compRes.name
@@ -61,6 +55,8 @@ func create_application_shortcut(key: ApplicationResource.applicationTypes) -> v
 	applicationShortcutInstance.setup_application_shortcut(key, computer)
 #endregion
 
+
+
 #region Runtime and Other Methods
 """
 --- Runtime Methdos
@@ -78,16 +74,16 @@ func _unhandled_input(event: InputEvent) -> void:
 """ Loading application names and icons """
 func load_name(key: ApplicationResource.applicationTypes) -> String:
 	var appName: String = "missing_name"
-	if appInfo.has(key):
-		if appInfo[key].size() >= 1:
-			appName = appInfo[key][0]
+	if ApplicationResource.information.has(key):
+		if ApplicationResource.information[key].size() >= 1:
+			appName = ApplicationResource.information[key][0]
 	return appName
 
 func load_icon(key: ApplicationResource.applicationTypes) -> CompressedTexture2D:
 	var compTexture: CompressedTexture2D
-	if appInfo.has(key):
-		if appInfo[key].size() >= 2:
-			compTexture = load(appInfo[key][1])
+	if ApplicationResource.information.has(key):
+		if ApplicationResource.information[key].size() >= 2:
+			compTexture = load(ApplicationResource.information[key][1])
 	return compTexture
 
 """ Application Signal Methods """
@@ -112,6 +108,8 @@ func set_application(_type: ApplicationResource.applicationTypes, state: bool) -
 	order_application(_type)
 
 func exit_application(_type: ApplicationResource.applicationTypes) -> void:
+	if _type == -1:
+		return
 	if not computer.appRes.activeApplications.has(_type):
 		printerr("Error: cannot EXIT application that isn't part of active applications dictionary, type:" + str(_type))
 		return
@@ -150,12 +148,15 @@ func create_application_tab(_type: ApplicationResource.applicationTypes) -> Appl
 
 """ View Control Methods """
 func exit_view() ->void:
-	Signals.emit_signal("hide_computer_view",computer.compRes.name)
+	Signals.hide_computer_view.emit(computer.compRes.name)
 
 func shutdown_computer() -> void:
+	computer_lock.emit()
 	computer.appRes.activeApplications.clear()
 	queue_free()
 #endregion
+
+
 
 #region Signal Methods
 """
@@ -167,8 +168,16 @@ func _on_background_button_pressed() -> void:
 func _on_start_index_pressed(index: int) -> void:
 	match index:
 		0:
+			computer_lock.emit()
+			application_exit.emit(-1)
+		1:
 			Signals.emit_signal("shutdown_computer",computer.compRes.name)
 			shutdown_computer()
 		_:
 			printerr("Start menu index out of bounds")
+
+func _on_start_menu_button_about_to_popup() -> void:
+	%START_MENU_BUTTON.position = %MenuBar.global_position
+	%START_MENU_BUTTON.position.y -= %START_MENU_BUTTON.size.y
+	%START_MENU_BUTTON.position += Vector2i(4,-4)
 #endregion

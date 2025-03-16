@@ -1,0 +1,101 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3fue5rnmrx6k"]
+
+[ext_resource type="Script" uid="uid://dp74edsr1gwd" path="res://scenes/interactive/computer/view/login_screen.gd" id="1_twcmb"]
+
+[sub_resource type="Gradient" id="Gradient_tyrwm"]
+colors = PackedColorArray(0.317903, 0.345986, 0.426854, 1, 0.2624, 0.2993, 0.41, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rnnpu"]
+gradient = SubResource("Gradient_tyrwm")
+
+[sub_resource type="Theme" id="Theme_g1v4l"]
+VBoxContainer/constants/separation = 10
+
+[sub_resource type="Theme" id="Theme_tyrwm"]
+VBoxContainer/constants/separation = 2
+
+[node name="LoginScreen" type="Control"]
+layout_mode = 3
+anchor_left = 0.034
+anchor_top = 0.03
+anchor_right = 0.966
+anchor_bottom = 0.97
+offset_left = -0.320004
+offset_top = 0.4
+offset_right = 0.319946
+offset_bottom = -0.400085
+script = ExtResource("1_twcmb")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_rnnpu")
+
+[node name="LoginMenu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -35.0
+offset_right = 34.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_g1v4l")
+
+[node name="LoginLabel" type="RichTextLabel" parent="LoginMenu"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=34]Login Screen"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Login Information" type="VBoxContainer" parent="LoginMenu"]
+layout_mode = 2
+theme = SubResource("Theme_tyrwm")
+
+[node name="Account" type="LineEdit" parent="LoginMenu/Login Information"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+placeholder_text = "Username"
+context_menu_enabled = false
+
+[node name="Password" type="LineEdit" parent="LoginMenu/Login Information"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+placeholder_text = "Password"
+context_menu_enabled = false
+caret_blink = true
+secret = true
+secret_character = "*"
+
+[node name="ErrorText" type="RichTextLabel" parent="LoginMenu/Login Information"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[color=red][font_size=12][center]Wrong username or password."
+fit_content = true
+
+[node name="LoginButton" type="Button" parent="LoginMenu/Login Information"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Login"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="text_submitted" from="LoginMenu/Login Information/Account" to="." method="_on_account_text_submitted"]
+[connection signal="text_submitted" from="LoginMenu/Login Information/Password" to="." method="_on_password_text_submitted"]
+[connection signal="pressed" from="LoginMenu/Login Information/LoginButton" to="." method="_on_login_button_pressed"]

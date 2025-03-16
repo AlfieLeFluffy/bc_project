@@ -26,7 +26,7 @@ const elementContent: Dictionary = {
 @export var name: String
 @export var timeline: String
 @export var description: String
-@export var texture: CompressedTexture2D
+@export var texture: Texture
 @export var color: Color
 #endregion
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=49 format=4 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Script" uid="uid://cmlgg6dxih77f" path="res://scenes/levels/level_controller.gd" id="1_t01cb"]
 [ext_resource type="PackedScene" uid="uid://ddrrl1gryxkup" path="res://scenes/characters/player/player_character.tscn" id="1_wpgi4"]
@@ -24,6 +24,7 @@
 [ext_resource type="Script" uid="uid://cbgr7ncuyd2t0" path="res://scenes/interactive/computer/resources/computer_object_resource.gd" id="23_trjr1"]
 [ext_resource type="Script" uid="uid://chrjh43tmrigw" path="res://scenes/interactive/texts/resources/text_object_resource.gd" id="24_frqwj"]
 [ext_resource type="Script" uid="uid://rcjsy5lo00ya" path="res://scenes/interactive/computer/resources/directory_file_resource.gd" id="24_gn46e"]
+[ext_resource type="Script" uid="uid://dr74pa52badlv" path="res://scenes/interactive/computer/resources/user_resource.gd" id="24_jlhf4"]
 [ext_resource type="Script" uid="uid://btpud4ox3m0dx" path="res://scenes/interactive/computer/resources/application_resource.gd" id="25_c6ib1"]
 [ext_resource type="Script" uid="uid://bip873am5kgyj" path="res://scenes/triggers/versions/area_trigger_dialogue.gd" id="26_0nxvq"]
 [ext_resource type="Resource" uid="uid://1lie11h7rb0x" path="res://dialogs/test_area_trigger_one_use.dialogue" id="27_1u7m5"]
@@ -39,8 +40,8 @@ timeline = ""
 openning = 2
 speed = 70.0
 active = false
-startupTimeout = false
-startupTimeoutDuration = 1.0
+startupTimeout = true
+startupTimeoutDuration = 0.3
 movementJitters = false
 movementJitterFrequency = 20.0
 movementJittersOffset = Vector2(-5, 5)
@@ -113,6 +114,12 @@ description = ""
 detective_board_toggle = true
 show_labels = true
 
+[sub_resource type="Resource" id="Resource_6g246"]
+script = ExtResource("24_jlhf4")
+username = "admin"
+password = "admin"
+metadata/_custom_type_script = "uid://dr74pa52badlv"
+
 [sub_resource type="Resource" id="Resource_dgc65"]
 script = ExtResource("23_trjr1")
 name = "Test Computer"
@@ -120,7 +127,7 @@ type = 0
 state = true
 login = true
 locked = true
-password = "test"
+users = Array[ExtResource("24_jlhf4")]([SubResource("Resource_6g246")])
 metadata/_custom_type_script = "uid://cbgr7ncuyd2t0"
 
 [sub_resource type="Resource" id="Resource_jlhf4"]
@@ -147,8 +154,8 @@ metadata/_custom_type_script = "uid://btpud4ox3m0dx"
 
 [sub_resource type="Resource" id="Resource_x5xhn"]
 script = ExtResource("7_paapu")
-item_name = ""
-description = ""
+item_name = "TEST_COMPUTER_NAME"
+description = "TEST_COMPUTER_DESCRIPTION"
 detective_board_toggle = true
 show_labels = true
 
@@ -316,14 +323,15 @@ metadata/_custom_type_script = "uid://bip873am5kgyj"
 
 [node name="player" parent="." groups=["CameraFocus"] instance=ExtResource("1_wpgi4")]
 z_index = 1
-position = Vector2(211, 297)
+position = Vector2(568, 299)
 
 [node name="Elevator" parent="." instance=ExtResource("29_0nxvq")]
 position = Vector2(-64, 512)
 resource = SubResource("Resource_5vl2c")
 
-[node name="AreaTriggerGameOver" parent="." instance=ExtResource("31_dgc65")]
+[node name="WorldBorderKillBox" parent="." instance=ExtResource("31_dgc65")]
 position = Vector2(0, 700)
+maxUses = -1
 collisionShape = SubResource("WorldBoundaryShape2D_5vl2c")
 
 [connection signal="area_entered" from="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch" to="TimelineStateMachine/001/TimelineSpace001/Switches/light_switch" method="_on_area_entered"]

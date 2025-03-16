@@ -91,5 +91,26 @@ func hide_computer_view(computerName: String) -> void:
 # Active function if no dialog detected
 func add_board_element(event: InputEvent) -> void:
 	pass
-	#Signals.emit_signal('create_board_element',ElementResource.elementType.TEXT,textRosource.textName,interactable_resource.timeline,get_sprite_from_current_frame(),textRosource.textContents)
+	Signals.create_board_element.emit(ElementResource.new().setup(ElementResource.elementType.OBJECT,interactable_resource.item_name,interactable_resource.timeline,interactable_resource.description,get_sprite_from_current_frame()))
+#endregion
+
+
+
+#region Persistence Methods
+func saving() -> Dictionary:
+	return {
+		"persistent": true,
+		"nodepath": get_path(),
+		"parent": get_parent().get_path(),
+		"resources": {
+			"computerResource": compRes,
+		},
+	}
+
+func loading(input:Dictionary) -> bool:
+	if input.has_all(["resources"]):
+		if input["resources"].has("computerResource"):
+			compRes = input["resources"]["computerResource"]
+		return true
+	return false
 #endregion
