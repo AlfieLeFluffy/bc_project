@@ -6,3 +6,4 @@
 [node name="AreaTriggerGameOver" instance=ExtResource("1_83jq7")]
 script = ExtResource("2_ssqy1")
 gameOverType = 0
+triggerObject = 1
