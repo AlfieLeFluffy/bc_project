@@ -18,6 +18,7 @@ SAVE_BUTTON,Save,Uložit
 LOAD_BUTTON,Load,Načíst
 REWRITE_BUTTON,Rewrite,Přepsat
 DELETE_BUTTON,Delete,Smazat
+SUBMIT_BUTTON,Submit,Vyzkoušet
 VERSION_LABEL,Version,Verze
 PROFILE_LABEL,Profile:,Profil:
 PROFILE_MISSING_LABEL,No profile selected,Nevybrán žádný profil

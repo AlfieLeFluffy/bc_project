@@ -1,0 +1,105 @@
+[gd_scene load_steps=6 format=3 uid="uid://de84kpt4g6w0a"]
+
+[ext_resource type="Script" uid="uid://bijh41m8gg6yi" path="res://scenes/interactive/combination/view/combination_lock_view.gd" id="1_k8b6e"]
+[ext_resource type="Texture2D" uid="uid://cssvhdqn25b4v" path="res://textures/backgrounds/combination_lock_mechanism_background.png" id="2_hdd3l"]
+
+[sub_resource type="Theme" id="Theme_aad5p"]
+MarginContainer/constants/margin_bottom = 10
+MarginContainer/constants/margin_left = 10
+MarginContainer/constants/margin_right = 10
+MarginContainer/constants/margin_top = 10
+
+[sub_resource type="Gradient" id="Gradient_hdd3l"]
+offsets = PackedFloat32Array(0.173913, 1)
+colors = PackedColorArray(0.0846899, 0.0846899, 0.0846899, 1, 0.176419, 0.176419, 0.176419, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_aad5p"]
+gradient = SubResource("Gradient_hdd3l")
+width = 1080
+height = 1080
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="CombinationLockView" type="CanvasLayer"]
+script = ExtResource("1_k8b6e")
+
+[node name="Controller" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Content" type="Control" parent="Controller"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Lock" type="Control" parent="Controller"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_aad5p")
+
+[node name="Background" type="TextureRect" parent="Controller/Lock"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_aad5p")
+
+[node name="MarginContainer" type="MarginContainer" parent="Controller/Lock"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MachnismBackground" type="NinePatchRect" parent="Controller/Lock/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_hdd3l")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="Controller/Lock/MarginContainer"]
+layout_mode = 2
+
+[node name="Controls" type="HBoxContainer" parent="Controller/Lock/MarginContainer/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+alignment = 1
+
+[node name="Inputs" type="HBoxContainer" parent="Controller/Lock/MarginContainer/MarginContainer/Controls"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="SubmitButton" type="Button" parent="Controller/Lock/MarginContainer/MarginContainer/Controls"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "SUBMIT_BUTTON"
+
+[connection signal="pressed" from="Controller/Lock/MarginContainer/MarginContainer/Controls/SubmitButton" to="." method="_on_submit_button_pressed"]

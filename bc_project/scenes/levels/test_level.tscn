@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=54 format=4 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Script" uid="uid://cmlgg6dxih77f" path="res://scenes/levels/level_controller.gd" id="1_t01cb"]
 [ext_resource type="PackedScene" uid="uid://ddrrl1gryxkup" path="res://scenes/characters/player/player_character.tscn" id="1_wpgi4"]
@@ -32,6 +32,8 @@
 [ext_resource type="PackedScene" uid="uid://532uypmhsvde" path="res://scenes/elevators/elevator.tscn" id="29_0nxvq"]
 [ext_resource type="Script" uid="uid://bm15idovcdu8y" path="res://scenes/elevators/elevator_resource.gd" id="30_1u7m5"]
 [ext_resource type="PackedScene" uid="uid://dhfcdpaldvsbm" path="res://scenes/triggers/versions/area_trigger_game_over.tscn" id="31_dgc65"]
+[ext_resource type="PackedScene" uid="uid://cst1rqp3mow71" path="res://scenes/interactive/combination/combination_locked_base.tscn" id="32_mrmmo"]
+[ext_resource type="Script" uid="uid://dumlknmceceuw" path="res://scenes/interactive/combination/resource/combination_lock_resource.gd" id="33_y0fbb"]
 
 [sub_resource type="Resource" id="Resource_5vl2c"]
 script = ExtResource("30_1u7m5")
@@ -161,6 +163,30 @@ show_labels = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0nxvq"]
 size = Vector2(40, 40)
+
+[sub_resource type="Resource" id="Resource_jigj2"]
+script = ExtResource("33_y0fbb")
+combination = "012345"
+locked = true
+override = false
+size = 5
+metadata/_custom_type_script = "uid://dumlknmceceuw"
+
+[sub_resource type="Resource" id="Resource_smp8r"]
+script = ExtResource("7_paapu")
+item_name = "test"
+description = "test"
+detective_board_toggle = true
+show_labels = true
+metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
+
+[sub_resource type="Resource" id="Resource_rnt0l"]
+script = ExtResource("33_y0fbb")
+combination = "test"
+locked = true
+override = false
+size = 5
+metadata/_custom_type_script = "uid://dumlknmceceuw"
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5vl2c"]
 
@@ -328,6 +354,16 @@ position = Vector2(568, 299)
 [node name="Elevator" parent="." instance=ExtResource("29_0nxvq")]
 position = Vector2(-64, 512)
 resource = SubResource("Resource_5vl2c")
+
+[node name="CombinationLockBase" parent="." instance=ExtResource("32_mrmmo")]
+position = Vector2(384, 314)
+resource = SubResource("Resource_jigj2")
+interactable_resource = SubResource("Resource_smp8r")
+
+[node name="CombinationLockBase2" parent="." instance=ExtResource("32_mrmmo")]
+position = Vector2(413, 314)
+resource = SubResource("Resource_rnt0l")
+interactable_resource = SubResource("Resource_smp8r")
 
 [node name="WorldBorderKillBox" parent="." instance=ExtResource("31_dgc65")]
 position = Vector2(0, 700)
