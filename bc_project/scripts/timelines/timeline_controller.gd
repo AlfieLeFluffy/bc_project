@@ -1,8 +1,11 @@
 class_name TimelineController extends Node
 
+const preloadTimelineForesee = preload("res://scripts/timelines/foresee/timeline_foresee.tscn")
+
 @export var current: Timeline
 @export var timelines: Array[Timeline]
 var timelinesDictionary: Dictionary
+var timelineForesee: TimelineForesee
 
 func _ready() -> void:
 	setup_timelines_dictionary()
@@ -21,21 +24,41 @@ func setup_timelines_dictionary() -> void:
 		timelinesDictionary[timeline.resource.name] = timeline
 
 func _unhandled_input(event: InputEvent) -> void:
-	if current and event.is_action_pressed("timeline_shift") and Global.TimelineShiftReady:
+	if event.is_action_pressed("timeline_shift") and Global.TimelineShiftReady:
 		shift()
+	if event.is_action_pressed("timeline_foresee"):
+		start_foresee()
+	if event.is_action_released("timeline_foresee"):
+		end_foresee()
+		
 		
 func shift() -> void:
-	if timelinesDictionary.has(current.resource.next):
-		await get_tree().create_timer(Global.TIMELINE_SHIFT_OFFSET).timeout
-		var destination: Timeline = timelinesDictionary[current.resource.next]
-		Signals.timeline_shift.emit()
-		update_timeline_info(destination)
-		move_player(current, destination)
-		move_camera_controls(current, destination)
-		current.set_active(false)
-		destination.set_active(true)
-		current = destination
-		shift_timeout()
+	if not timelinesDictionary.has(current.resource.next):
+		return
+	
+	
+	await get_tree().create_timer(Global.TIMELINE_SHIFT_OFFSET).timeout
+	if timelineForesee:
+		timelineForesee.queue_free()
+	var destination: Timeline = timelinesDictionary[current.resource.next]
+	Signals.timeline_shift.emit()
+	update_timeline_info(destination)
+	move_player(current, destination)
+	move_camera_controls(current, destination)
+	current.set_active(false)
+	destination.set_active(true)
+	current = destination
+	shift_timeout()
+
+func start_foresee() -> void:
+	timelineForesee = preloadTimelineForesee.instantiate()
+	timelineForesee.from = current
+	timelineForesee.to = timelinesDictionary[current.resource.next]
+	add_child(timelineForesee)
+
+func end_foresee() -> void:
+	if timelineForesee:
+		timelineForesee.queue_free()
 
 func move_player(start: Timeline, end: Timeline) -> void:
 	var player: Player = get_tree().get_first_node_in_group("Player")
