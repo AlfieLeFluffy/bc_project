@@ -1,4 +1,4 @@
-extends Node2D
+class_name CameraControls extends Node2D
 
 """
 --- Runtime Variables
@@ -39,6 +39,11 @@ func _physics_process(delta: float) -> void:
 """
 --- Set Methods
 """
+func set_camera_global_position(vector: Vector2) -> void:
+	global_position = vector
+	%MainCamera.global_position = vector
+	%MainCamera.reset_smoothing()
+
 func set_camera_tracked_node(node: Node) -> void:
 	trackedNode = node
 

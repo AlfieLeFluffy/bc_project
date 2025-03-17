@@ -36,13 +36,12 @@ func setup_interactable_info() -> void:
 func setup_timeline_info() -> void:
 	var parent:Node = get_parent()
 	while parent != null:
-		if parent is TimelineState:
-			break
+		if parent is Timeline:
+			interactable_resource.timeline = parent.resource.name
+			return
 		parent = parent.get_parent()
-	if parent == null:
-		interactable_resource.timeline = "null"
-	elif parent is TimelineState:
-		interactable_resource.timeline = parent.name
+	
+	interactable_resource.timeline = "null"
 
 # Local ready function for instantiated objects
 func local_ready() -> void:
