@@ -17,6 +17,7 @@ shader_parameter/line_thickness = 0.0
 [node name="CombinationLockBase" groups=["Persistent"] instance=ExtResource("1_es4xg")]
 script = ExtResource("2_dephq")
 resource = null
+popupSize = Vector2i(600, 300)
 interactable_resource = null
 
 [node name="CollisionShape2D" parent="." index="1"]

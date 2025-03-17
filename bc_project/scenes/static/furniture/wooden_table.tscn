@@ -21,3 +21,4 @@ one_way_collision = true
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_tr1sb")
+occluder_light_mask = 6

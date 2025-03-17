@@ -3,6 +3,7 @@ class_name CombinationLockBase extends Interactable
 const preloadCombinationLockView = preload("res://scenes/interactive/combination/view/combination_lock_view.tscn")
 
 @export var resource: CombinationLockResource
+@export var popupSize: Vector2i = Vector2i(600,300)
 
 var view: CombinationLockView
 var popup: PopupMenuController
@@ -32,7 +33,7 @@ func create_combination_lock_view() -> void:
 	view = preloadCombinationLockView.instantiate()
 	view.base = self
 	get_tree().current_scene.add_child(popup)
-	popup.setup(view,false,PopupMenuController.popupDirection.UP,Vector2i(400,300))
+	popup.setup(view,false,PopupMenuController.popupDirection.UP,popupSize)
 	popup.popup.emit()
 
 func _interact_function_unlocked() -> void:

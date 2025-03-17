@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=55 format=4 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Script" uid="uid://cmlgg6dxih77f" path="res://scenes/levels/level_controller.gd" id="1_t01cb"]
 [ext_resource type="PackedScene" uid="uid://ddrrl1gryxkup" path="res://scenes/characters/player/player_character.tscn" id="1_wpgi4"]
@@ -32,7 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://532uypmhsvde" path="res://scenes/elevators/elevator.tscn" id="29_0nxvq"]
 [ext_resource type="Script" uid="uid://bm15idovcdu8y" path="res://scenes/elevators/elevator_resource.gd" id="30_1u7m5"]
 [ext_resource type="PackedScene" uid="uid://dhfcdpaldvsbm" path="res://scenes/triggers/versions/area_trigger_game_over.tscn" id="31_dgc65"]
-[ext_resource type="PackedScene" uid="uid://cst1rqp3mow71" path="res://scenes/interactive/combination/combination_locked_base.tscn" id="32_mrmmo"]
+[ext_resource type="PackedScene" uid="uid://cs1y6cfdd6whw" path="res://scenes/interactive/combination/version/small_safe.tscn" id="33_mrmmo"]
 [ext_resource type="Script" uid="uid://dumlknmceceuw" path="res://scenes/interactive/combination/resource/combination_lock_resource.gd" id="33_y0fbb"]
 
 [sub_resource type="Resource" id="Resource_5vl2c"]
@@ -80,7 +80,7 @@ description = "THICK_MUG_DESCRIPTION"
 detective_board_toggle = true
 show_labels = true
 
-[sub_resource type="Resource" id="Resource_mrmmo"]
+[sub_resource type="Resource" id="Resource_y0fbb"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
@@ -88,7 +88,7 @@ description = "TEST_DESCRIPTION"
 detective_board_toggle = true
 show_labels = true
 
-[sub_resource type="Resource" id="Resource_y0fbb"]
+[sub_resource type="Resource" id="Resource_0myxw"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
@@ -102,7 +102,7 @@ npcName = "Ribli"
 spritesheet = ExtResource("19_0f3pa")
 frameVector = Vector2(1, 1)
 
-[sub_resource type="Resource" id="Resource_0myxw"]
+[sub_resource type="Resource" id="Resource_rnt0l"]
 resource_local_to_scene = true
 script = ExtResource("24_frqwj")
 textName = "TEST_TEXT_NAME"
@@ -164,29 +164,37 @@ show_labels = true
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0nxvq"]
 size = Vector2(40, 40)
 
-[sub_resource type="Resource" id="Resource_jigj2"]
+[sub_resource type="Resource" id="Resource_ve23l"]
 script = ExtResource("33_y0fbb")
-combination = "012345"
+combination = "01234"
 locked = true
 override = false
 size = 5
 metadata/_custom_type_script = "uid://dumlknmceceuw"
 
-[sub_resource type="Resource" id="Resource_smp8r"]
+[sub_resource type="Resource" id="Resource_jigj2"]
 script = ExtResource("7_paapu")
-item_name = "test"
+item_name = "SafeNumbers"
 description = "test"
 detective_board_toggle = true
 show_labels = true
 metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
 
-[sub_resource type="Resource" id="Resource_rnt0l"]
+[sub_resource type="Resource" id="Resource_smp8r"]
 script = ExtResource("33_y0fbb")
 combination = "test"
 locked = true
 override = false
 size = 5
 metadata/_custom_type_script = "uid://dumlknmceceuw"
+
+[sub_resource type="Resource" id="Resource_4g8k6"]
+script = ExtResource("7_paapu")
+item_name = "SafeCharacters"
+description = "test"
+detective_board_toggle = true
+show_labels = true
+metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5vl2c"]
 
@@ -284,11 +292,11 @@ metadata/Description = "Test Description"
 [node name="DoorSideways" parent="TimelineStateMachine/001/TimelineSpace001/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(512, 297)
 inverted = true
-interactable_resource = SubResource("Resource_mrmmo")
+interactable_resource = SubResource("Resource_y0fbb")
 
 [node name="DoorSideways2" parent="TimelineStateMachine/001/TimelineSpace001/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(255, 297)
-interactable_resource = SubResource("Resource_y0fbb")
+interactable_resource = SubResource("Resource_0myxw")
 
 [node name="NPCs" type="Node2D" parent="TimelineStateMachine/001/TimelineSpace001"]
 
@@ -301,13 +309,16 @@ dialog_resource = ExtResource("17_ls76e")
 
 [node name="PaperOnWall" parent="TimelineStateMachine/001/TimelineSpace001/Texts" instance=ExtResource("23_l5ajp")]
 position = Vector2(585, 294)
-textRosource = SubResource("Resource_0myxw")
+textRosource = SubResource("Resource_rnt0l")
 interactable_resource = SubResource("Resource_yo6r0")
 
 [node name="Furniture" type="Node2D" parent="TimelineStateMachine/001/TimelineSpace001"]
 
 [node name="WoodenTable" parent="TimelineStateMachine/001/TimelineSpace001/Furniture" instance=ExtResource("21_auljp")]
 position = Vector2(645, 336)
+
+[node name="WoodenTable2" parent="TimelineStateMachine/001/TimelineSpace001/Furniture" instance=ExtResource("21_auljp")]
+position = Vector2(720, 336)
 
 [node name="Computers" type="Node2D" parent="TimelineStateMachine/001/TimelineSpace001"]
 
@@ -347,6 +358,18 @@ maxUses = -1
 collisionShape = SubResource("RectangleShape2D_0nxvq")
 metadata/_custom_type_script = "uid://bip873am5kgyj"
 
+[node name="CombinationLocks" type="Node2D" parent="TimelineStateMachine/001/TimelineSpace001"]
+
+[node name="CombinationLockBase" parent="TimelineStateMachine/001/TimelineSpace001/CombinationLocks" instance=ExtResource("33_mrmmo")]
+position = Vector2(711, 298)
+resource = SubResource("Resource_ve23l")
+interactable_resource = SubResource("Resource_jigj2")
+
+[node name="CombinationLockBase2" parent="TimelineStateMachine/001/TimelineSpace001/CombinationLocks" instance=ExtResource("33_mrmmo")]
+position = Vector2(731, 298)
+resource = SubResource("Resource_smp8r")
+interactable_resource = SubResource("Resource_4g8k6")
+
 [node name="player" parent="." groups=["CameraFocus"] instance=ExtResource("1_wpgi4")]
 z_index = 1
 position = Vector2(568, 299)
@@ -354,16 +377,6 @@ position = Vector2(568, 299)
 [node name="Elevator" parent="." instance=ExtResource("29_0nxvq")]
 position = Vector2(-64, 512)
 resource = SubResource("Resource_5vl2c")
-
-[node name="CombinationLockBase" parent="." instance=ExtResource("32_mrmmo")]
-position = Vector2(384, 314)
-resource = SubResource("Resource_jigj2")
-interactable_resource = SubResource("Resource_smp8r")
-
-[node name="CombinationLockBase2" parent="." instance=ExtResource("32_mrmmo")]
-position = Vector2(413, 314)
-resource = SubResource("Resource_rnt0l")
-interactable_resource = SubResource("Resource_smp8r")
 
 [node name="WorldBorderKillBox" parent="." instance=ExtResource("31_dgc65")]
 position = Vector2(0, 700)
