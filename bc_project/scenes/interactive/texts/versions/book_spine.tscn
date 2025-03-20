@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://co868n2ppblh5"]
+
+[ext_resource type="PackedScene" uid="uid://cok6xhqh3yqi7" path="res://scenes/interactive/texts/text_object_base.tscn" id="1_muy6y"]
+[ext_resource type="Texture2D" uid="uid://btbvxwxoylxhi" path="res://textures/text/book_spine.png" id="3_f0abk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uriu6"]
+resource_local_to_scene = true
+size = Vector2(8, 17)
+
+[node name="BookSpine" instance=ExtResource("1_muy6y")]
+
+[node name="Labels" parent="." index="0"]
+position = Vector2(0, -20)
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_uriu6")
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("3_f0abk")

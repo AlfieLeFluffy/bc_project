@@ -2,25 +2,22 @@
 
 [ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable_base.tscn" id="1_au0p8"]
 [ext_resource type="Script" uid="uid://suum5fm74bwt" path="res://scenes/interactive/texts/text_object_base.gd" id="2_ids22"]
-[ext_resource type="Shader" uid="uid://beshjcnacfelm" path="res://shaders/outline_shader.gdshader" id="4_i6pl5"]
+[ext_resource type="Script" uid="uid://chrjh43tmrigw" path="res://scenes/interactive/texts/resources/text_object_resource.gd" id="3_cimul"]
+
+[sub_resource type="Resource" id="Resource_sr3fy"]
+script = ExtResource("3_cimul")
+textName = ""
+textType = 0
+textContents = ""
+metadata/_custom_type_script = "uid://chrjh43tmrigw"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gg0db"]
 resource_local_to_scene = true
 size = Vector2(12, 10)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3lbfu"]
-resource_local_to_scene = true
-shader = ExtResource("4_i6pl5")
-shader_parameter/line_color = Color(1, 1, 1, 1)
-shader_parameter/line_thickness = 0.0
-
 [node name="text_object_base" instance=ExtResource("1_au0p8")]
 script = ExtResource("2_ids22")
-textRosource = null
-interactable_resource = null
+textRosource = SubResource("Resource_sr3fy")
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("RectangleShape2D_gg0db")
-
-[node name="Sprite2D" parent="." index="2"]
-material = SubResource("ShaderMaterial_3lbfu")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=4 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=65 format=4 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Script" uid="uid://cmlgg6dxih77f" path="res://scenes/levels/level_controller.gd" id="1_t01cb"]
 [ext_resource type="PackedScene" uid="uid://ddrrl1gryxkup" path="res://scenes/characters/player/player_character.tscn" id="1_wpgi4"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://c4br56b34o2el" path="res://scenes/interactive/buttons/elevatorCall/elevator_call_button.tscn" id="8_dgc65"]
 [ext_resource type="Resource" uid="uid://bmxx1uimby337" path="res://dialogs/test_dialogue.dialogue" id="10_wnetc"]
 [ext_resource type="Script" uid="uid://drj3o0qsip6ss" path="res://scenes/characters/npcs/npc_resource.gd" id="16_2qb3d"]
+[ext_resource type="PackedScene" uid="uid://co868n2ppblh5" path="res://scenes/interactive/texts/versions/book_spine.tscn" id="17_0myxw"]
 [ext_resource type="Resource" uid="uid://p2pgjby8025n" path="res://dialogs/ribli.dialogue" id="17_ls76e"]
 [ext_resource type="PackedScene" uid="uid://xdset1j1nj24" path="res://scenes/interactive/doors/door_sideways.tscn" id="18_caylh"]
 [ext_resource type="PackedScene" uid="uid://doxp2j8t2vs5a" path="res://scenes/characters/npcs/npc_versions/npc_standing.tscn" id="18_tveke"]
@@ -88,23 +89,23 @@ description = "THICK_MUG_DESCRIPTION"
 detective_board_toggle = true
 show_labels = true
 
-[sub_resource type="Resource" id="Resource_y0fbb"]
-resource_local_to_scene = true
-script = ExtResource("7_paapu")
-item_name = "DOOR_NAME"
-description = "TEST_DESCRIPTION"
-detective_board_toggle = true
-show_labels = true
-
-[sub_resource type="Resource" id="Resource_0myxw"]
-resource_local_to_scene = true
-script = ExtResource("7_paapu")
-item_name = "DOOR_NAME"
-description = "TEST_DESCRIPTION"
-detective_board_toggle = true
-show_labels = true
-
 [sub_resource type="Resource" id="Resource_0e4k1"]
+resource_local_to_scene = true
+script = ExtResource("7_paapu")
+item_name = "DOOR_NAME"
+description = "TEST_DESCRIPTION"
+detective_board_toggle = true
+show_labels = true
+
+[sub_resource type="Resource" id="Resource_gsoyx"]
+resource_local_to_scene = true
+script = ExtResource("7_paapu")
+item_name = "DOOR_NAME"
+description = "TEST_DESCRIPTION"
+detective_board_toggle = true
+show_labels = true
+
+[sub_resource type="Resource" id="Resource_4wpc7"]
 resource_local_to_scene = true
 script = ExtResource("24_frqwj")
 textName = "TEST_TEXT_NAME"
@@ -117,6 +118,21 @@ item_name = ""
 description = ""
 detective_board_toggle = true
 show_labels = true
+
+[sub_resource type="Resource" id="Resource_26rt0"]
+script = ExtResource("24_frqwj")
+textName = ""
+textType = 1
+textContents = ""
+metadata/_custom_type_script = "uid://chrjh43tmrigw"
+
+[sub_resource type="Resource" id="Resource_e6x8h"]
+script = ExtResource("7_paapu")
+item_name = ""
+description = ""
+detective_board_toggle = true
+show_labels = true
+metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
 
 [sub_resource type="Resource" id="Resource_6g246"]
 script = ExtResource("24_jlhf4")
@@ -240,7 +256,7 @@ description = "TEST_DESCRIPTION"
 detective_board_toggle = true
 show_labels = true
 
-[sub_resource type="Resource" id="Resource_gsoyx"]
+[sub_resource type="Resource" id="Resource_yguda"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
@@ -248,7 +264,7 @@ description = "TEST_DESCRIPTION"
 detective_board_toggle = true
 show_labels = true
 
-[sub_resource type="Resource" id="Resource_26rt0"]
+[sub_resource type="Resource" id="Resource_nci5d"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
@@ -350,18 +366,26 @@ metadata/Description = "Test Description"
 [node name="DoorSideways" parent="Timeline001/Interactive/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(512, 297)
 inverted = true
-interactable_resource = SubResource("Resource_y0fbb")
+interactable_resource = SubResource("Resource_0e4k1")
 
 [node name="DoorSideways2" parent="Timeline001/Interactive/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(255, 297)
-interactable_resource = SubResource("Resource_0myxw")
+interactable_resource = SubResource("Resource_gsoyx")
 
 [node name="Texts" type="Node2D" parent="Timeline001/Interactive"]
 
 [node name="PaperOnWall" parent="Timeline001/Interactive/Texts" instance=ExtResource("23_l5ajp")]
 position = Vector2(585, 294)
-textRosource = SubResource("Resource_0e4k1")
+textRosource = SubResource("Resource_4wpc7")
 interactable_resource = SubResource("Resource_yo6r0")
+
+[node name="BookSpine" parent="Timeline001/Interactive/Texts" instance=ExtResource("17_0myxw")]
+position = Vector2(666, 301)
+textRosource = SubResource("Resource_26rt0")
+interactable_resource = SubResource("Resource_e6x8h")
+
+[node name="BookSpine2" parent="Timeline001/Interactive/Texts" instance=ExtResource("17_0myxw")]
+position = Vector2(658, 301)
 
 [node name="Computers" type="Node2D" parent="Timeline001/Interactive"]
 
@@ -506,11 +530,11 @@ metadata/Description = "Test Description"
 [node name="DoorSideways" parent="Timeline002/Interactive/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(512, 297)
 inverted = true
-interactable_resource = SubResource("Resource_gsoyx")
+interactable_resource = SubResource("Resource_yguda")
 
 [node name="DoorSideways2" parent="Timeline002/Interactive/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(255, 297)
-interactable_resource = SubResource("Resource_26rt0")
+interactable_resource = SubResource("Resource_nci5d")
 
 [node name="Elevators" type="Node2D" parent="Timeline002"]
 
