@@ -86,10 +86,10 @@ func _ready() -> void:
 	gameOver.connect(game_over)
 	
 	sceneLoaded.connect(play_fade_in_effect)
+	sceneLoaded.connect(setup_camera_controls)
 	sceneLoaded.connect(setup_main_overlay_menu)
 	sceneLoaded.connect(setup_input_help_menu)
 	sceneLoaded.connect(setup_detective_board_menu)
-	sceneLoaded.connect(setup_camera_controls)
 	
 	DialogueManager.connect("dialogue_ended",release_focus)
 	DialogueManager.connect("got_dialogue",dialogue_voice_check)
