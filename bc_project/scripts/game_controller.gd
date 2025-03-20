@@ -154,8 +154,9 @@ func clear_profile():
 	profileLoaded.emit()
 
 func delete_profile(_id: String):
-	if profile.id == _id:
-		clear_profile()
+	if profile:
+		if profile.id == _id:
+			clear_profile()
 	var profiles: Dictionary = ProfileResource.get_available_profile_dict()
 	if profiles.has(_id):
 		PersistenceController.deleteProfileSavefiles.emit(_id)

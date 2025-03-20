@@ -181,7 +181,7 @@ metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
 
 [sub_resource type="Resource" id="Resource_smp8r"]
 script = ExtResource("33_y0fbb")
-combination = "test"
+combination = "testing"
 locked = true
 override = false
 size = 5

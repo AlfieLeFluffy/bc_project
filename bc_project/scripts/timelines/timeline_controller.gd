@@ -51,14 +51,18 @@ func shift() -> void:
 	shift_timeout()
 
 func start_foresee() -> void:
-	timelineForesee = preloadTimelineForesee.instantiate()
+	if not timelineForesee:
+		timelineForesee = preloadTimelineForesee.instantiate()
 	timelineForesee.from = current
 	timelineForesee.to = timelinesDictionary[current.resource.next]
-	add_child(timelineForesee)
+	if not timelineForesee.get_parent():
+		add_child(timelineForesee)
+	if not timelineForesee.visible:
+		timelineForesee.visible = true
 
 func end_foresee() -> void:
 	if timelineForesee:
-		timelineForesee.queue_free()
+		timelineForesee.visible = false
 
 func move_player(start: Timeline, end: Timeline) -> void:
 	var player: Player = get_tree().get_first_node_in_group("Player")
