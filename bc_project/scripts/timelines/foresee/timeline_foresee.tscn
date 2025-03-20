@@ -1,27 +1,68 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvhide1mb0gkt"]
+[gd_scene load_steps=4 format=3 uid="uid://cvhide1mb0gkt"]
 
 [ext_resource type="Script" uid="uid://bxg55yecn0b7u" path="res://scripts/timelines/foresee/timeline_foresee.gd" id="1_8juck"]
+[ext_resource type="Texture2D" uid="uid://dsp7r1b4yxcpa" path="res://textures/foresee/foresee_nine_patch.png" id="2_flkn6"]
+
+[sub_resource type="Theme" id="Theme_i0eqt"]
+MarginContainer/constants/margin_bottom = 50
+MarginContainer/constants/margin_left = 50
+MarginContainer/constants/margin_right = 50
+MarginContainer/constants/margin_top = 50
 
 [node name="TimelineForesee" type="Node2D"]
 script = ExtResource("1_8juck")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-clip_contents = true
-offset_left = -75.0
-offset_top = -50.0
-offset_right = 75.0
-offset_bottom = 50.0
+[node name="Control" type="Control" parent="."]
+z_index = 150
+layout_mode = 3
+anchors_preset = 0
+offset_left = -80.0
+offset_top = -55.0
+offset_right = 80.0
+offset_bottom = 55.0
+mouse_filter = 2
+theme = SubResource("Theme_i0eqt")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_flkn6")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1440.0
+offset_bottom = 990.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.1, 0.1)
+mouse_filter = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control/MarginContainer"]
+light_mask = 524288
+visibility_layer = 524288
+clip_contents = true
+layout_mode = 2
 mouse_filter = 2
 mouse_target = true
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="Control/MarginContainer/SubViewportContainer"]
 unique_name_in_owner = true
 handle_input_locally = false
 size = Vector2i(1500, 1000)
 render_target_update_mode = 4
 
-[node name="ForeseeCamera" type="Camera2D" parent="SubViewportContainer/SubViewport"]
+[node name="ForeseeCamera" type="Camera2D" parent="Control/MarginContainer/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
-position = Vector2(75, 50)
+position = Vector2(750, 500)
 zoom = Vector2(10, 10)
