@@ -17,8 +17,9 @@ var textViewInstance: Node
 
 func setup_interactable_info() -> void:
 	if textRosource:
-		name = textRosource.textName
-		label.text = tr(textRosource.textName)
+		if textRosource.textName:
+			name = textRosource.textName
+			label.text = tr(textRosource.textName)
 
 # Active function if no dialog detected
 func interact_function(event: InputEvent) -> void:
