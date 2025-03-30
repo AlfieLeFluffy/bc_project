@@ -177,6 +177,11 @@ func create_new_profile(_profileName: String) -> ProfileResource:
 	newProfile.setup(_profileName)
 	return newProfile
 
+func get_profile_seed() -> int:
+	if profile:
+		return profile.seed
+	return 000000
+
 #endregion
 
 #region Achievements Methods
@@ -368,7 +373,7 @@ func open_ingame_menu() -> void:
 #region Dialogue Voice Acting Methods
 func dialogue_voice_check(line: DialogueLine) -> void:
 	if line.translation_key:
-		AudioManager.play_dialogue(line.translation_key)
+		AudioManager.play_dialogue("dialogue/"+line.translation_key)
 #endregion
 
 #region Persistence Methods

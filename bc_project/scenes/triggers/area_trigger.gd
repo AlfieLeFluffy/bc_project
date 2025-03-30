@@ -26,8 +26,10 @@ func _ready() -> void:
 		colisionShapeInstance = CollisionShape2D.new()
 		colisionShapeInstance.set_shape(collisionShape)
 		self.add_child(colisionShapeInstance)
-		self.body_shape_entered.connect(_on_body_shape_entered)
-		self.body_shape_exited.connect(_on_body_shape_exited)
+		if not self.body_shape_entered.has_connections():
+			self.body_shape_entered.connect(_on_body_shape_entered)
+		if not self.body_shape_exited.has_connections():
+			self.body_shape_exited.connect(_on_body_shape_exited)
 #endregion
 
 #region Runtime Methods

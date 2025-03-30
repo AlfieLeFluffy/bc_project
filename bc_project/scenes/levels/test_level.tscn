@@ -89,6 +89,14 @@ description = "THICK_MUG_DESCRIPTION"
 detective_board_toggle = true
 show_labels = true
 
+[sub_resource type="Resource" id="Resource_0myxw"]
+resource_local_to_scene = true
+script = ExtResource("7_paapu")
+item_name = "DOOR_NAME"
+description = "TEST_DESCRIPTION"
+detective_board_toggle = true
+show_labels = true
+
 [sub_resource type="Resource" id="Resource_0e4k1"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
@@ -98,14 +106,6 @@ detective_board_toggle = true
 show_labels = true
 
 [sub_resource type="Resource" id="Resource_gsoyx"]
-resource_local_to_scene = true
-script = ExtResource("7_paapu")
-item_name = "DOOR_NAME"
-description = "TEST_DESCRIPTION"
-detective_board_toggle = true
-show_labels = true
-
-[sub_resource type="Resource" id="Resource_4wpc7"]
 resource_local_to_scene = true
 script = ExtResource("24_frqwj")
 textName = "TEST_TEXT_NAME"
@@ -256,7 +256,7 @@ description = "TEST_DESCRIPTION"
 detective_board_toggle = true
 show_labels = true
 
-[sub_resource type="Resource" id="Resource_yguda"]
+[sub_resource type="Resource" id="Resource_4wpc7"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
@@ -264,7 +264,7 @@ description = "TEST_DESCRIPTION"
 detective_board_toggle = true
 show_labels = true
 
-[sub_resource type="Resource" id="Resource_nci5d"]
+[sub_resource type="Resource" id="Resource_ib3ll"]
 resource_local_to_scene = true
 script = ExtResource("7_paapu")
 item_name = "DOOR_NAME"
@@ -314,10 +314,10 @@ tile_set = ExtResource("3_1u7m5")
 [node name="Furniture" type="Node2D" parent="Timeline001/Static"]
 
 [node name="WoodenTable" parent="Timeline001/Static/Furniture" instance=ExtResource("21_auljp")]
-position = Vector2(645, 336)
+position = Vector2(616, 304)
 
 [node name="WoodenTable2" parent="Timeline001/Static/Furniture" instance=ExtResource("21_auljp")]
-position = Vector2(720, 336)
+position = Vector2(691, 304)
 
 [node name="Interactive" type="Node2D" parent="Timeline001"]
 
@@ -366,17 +366,17 @@ metadata/Description = "Test Description"
 [node name="DoorSideways" parent="Timeline001/Interactive/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(512, 297)
 inverted = true
-interactable_resource = SubResource("Resource_0e4k1")
+interactable_resource = SubResource("Resource_0myxw")
 
 [node name="DoorSideways2" parent="Timeline001/Interactive/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(255, 297)
-interactable_resource = SubResource("Resource_gsoyx")
+interactable_resource = SubResource("Resource_0e4k1")
 
 [node name="Texts" type="Node2D" parent="Timeline001/Interactive"]
 
 [node name="PaperOnWall" parent="Timeline001/Interactive/Texts" instance=ExtResource("23_l5ajp")]
 position = Vector2(585, 294)
-textRosource = SubResource("Resource_4wpc7")
+textRosource = SubResource("Resource_gsoyx")
 interactable_resource = SubResource("Resource_yo6r0")
 
 [node name="BookSpine" parent="Timeline001/Interactive/Texts" instance=ExtResource("17_0myxw")]
@@ -417,13 +417,13 @@ resource = SubResource("Resource_5vl2c")
 [node name="Lights" type="Node2D" parent="Timeline001"]
 
 [node name="ceiling_lamp" parent="Timeline001/Lights" instance=ExtResource("6_g4tah")]
-position = Vector2(384, 192)
+position = Vector2(366, 192)
 
 [node name="ceiling_lamp2" parent="Timeline001/Lights" instance=ExtResource("6_g4tah")]
-position = Vector2(638, 195)
+position = Vector2(620, 195)
 
 [node name="ceiling_lamp3" parent="Timeline001/Lights" instance=ExtResource("6_g4tah")]
-position = Vector2(131, 192)
+position = Vector2(113, 192)
 
 [node name="NPCs" type="Node2D" parent="Timeline001"]
 
@@ -530,11 +530,11 @@ metadata/Description = "Test Description"
 [node name="DoorSideways" parent="Timeline002/Interactive/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(512, 297)
 inverted = true
-interactable_resource = SubResource("Resource_yguda")
+interactable_resource = SubResource("Resource_4wpc7")
 
 [node name="DoorSideways2" parent="Timeline002/Interactive/Doors" instance=ExtResource("18_caylh")]
 position = Vector2(255, 297)
-interactable_resource = SubResource("Resource_nci5d")
+interactable_resource = SubResource("Resource_ib3ll")
 
 [node name="Elevators" type="Node2D" parent="Timeline002"]
 
@@ -568,7 +568,7 @@ metadata/_custom_type_script = "uid://wob4dkroqdok"
 
 [node name="player" parent="." groups=["CameraFocus"] instance=ExtResource("1_wpgi4")]
 z_index = 1
-position = Vector2(569, 300)
+position = Vector2(72, 296)
 
 [node name="WorldBorderKillBox" parent="." instance=ExtResource("31_dgc65")]
 position = Vector2(0, 700)
