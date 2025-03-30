@@ -1,25 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6ly7p2wds1qd"]
+[gd_scene load_steps=2 format=3 uid="uid://b6ly7p2wds1qd"]
 
 [ext_resource type="Script" uid="uid://os1lygo5covp" path="res://scenes/audioManager/audio_manager.gd" id="1_648cp"]
-[ext_resource type="Script" uid="uid://ka36opylsexm" path="res://scenes/audioManager/audio_track.gd" id="2_rxmlp"]
-[ext_resource type="Script" uid="uid://3xfscdn7smve" path="res://scenes/audioManager/audio_manager_resource.gd" id="3_12wdy"]
-
-[sub_resource type="Resource" id="Resource_jm4yi"]
-script = ExtResource("3_12wdy")
-importTracks = true
-pitchRange = Vector2(0.95, 1.05)
-sfxTracks = Array[ExtResource("2_rxmlp")]([])
-musicTracks = Array[ExtResource("2_rxmlp")]([])
-dialogueTracks = Array[ExtResource("2_rxmlp")]([])
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_648cp")
-audioManRes = SubResource("Resource_jm4yi")
 
 [node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 bus = &"Music"
 
 [node name="DialogAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 bus = &"Dialogue"
 
 [connection signal="finished" from="DialogAudioStreamPlayer" to="." method="_on_dialog_audio_stream_player_finished"]

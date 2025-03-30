@@ -81,7 +81,7 @@ func end_drawing() -> void:
 			var clue = check_for_clue(instance.resource.id)
 			if clue != "":
 				instance.set_description(clue)
-				AudioManager.play_sound("ding")
+				AudioManager.play_sound("sfx/ding")
 	drawing = false
 
 func check_for_clue(combination:String) -> String:

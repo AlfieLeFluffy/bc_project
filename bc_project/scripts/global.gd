@@ -26,8 +26,6 @@ var line_elements: Dictionary
 
 const BOARD_LINE_OFFSET: Vector2 = Vector2(-16,-16)
 
-const MaxSFXSounds:int = 5
-
 """
 --- Scene variables
 """

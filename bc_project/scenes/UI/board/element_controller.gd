@@ -33,7 +33,7 @@ func setup_instance(elementResource: ElementResource) -> void:
 	get_parent().add_child(instance)
 
 func finalize_element() -> void:
-	AudioManager.play_sound("ding")
+	AudioManager.play_sound("sfx/ding")
 	var offset = Vector2(randi_range(200,-200),randi_range(200,-200))
 	instance.position = Vector2(get_parent().get_node("BoardBackground").size/2+offset)
 
