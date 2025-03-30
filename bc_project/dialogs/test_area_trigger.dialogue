@@ -1,9 +1,9 @@
 ~ start
-if DialogueVariables.vars["trigger_met"] == true
+if DialogueVariables.check_variable("trigger_met") == true
 	=> already_met
 Trigger Are: Hello, I am trigger area that can be used many times
 Alfie: Nice to meet you
-do DialogueVariables.vars["trigger_met"] = true
+do DialogueVariables.set_variable("trigger_met", true)
 => END
 
 ~ already_met

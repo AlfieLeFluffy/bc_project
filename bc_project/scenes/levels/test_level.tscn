@@ -277,9 +277,6 @@ show_labels = true
 [node name="testScene" type="Node2D"]
 script = ExtResource("1_t01cb")
 caseClues = ExtResource("2_6di2b")
-dialogueVaribles = {
-"trigger_met": false
-}
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.21, 0.2505, 0.3, 1)
