@@ -10,13 +10,13 @@ class_name LightSwitch extends Interactable
 """
 --- Setup Methods
 """
-func local_ready() -> void:
+func _local_ready() -> void:
 	pass
 
 """
 --- Interact Methods
 """
-func interact_function(event: InputEvent) -> void:
+func _interact_function(event: InputEvent) -> void:
 	# Set animation frame to opposite
 	$Sprite2D.frame = ($Sprite2D.frame + 1) % 2
 	# Inverts state for persistence
@@ -42,6 +42,6 @@ func saving() -> Dictionary:
 func loading(input: Dictionary) -> bool:
 	if input.has("state"):
 		state = input["state"]
-		local_ready()
+		_local_ready()
 		return true
 	return false

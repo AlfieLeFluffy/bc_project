@@ -1,9 +1,25 @@
-[gd_scene load_steps=27 format=3 uid="uid://xdset1j1nj24"]
+[gd_scene load_steps=29 format=3 uid="uid://xdset1j1nj24"]
 
-[ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable_base.tscn" id="1_o2gm0"]
+[ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable.tscn" id="1_o2gm0"]
+[ext_resource type="Shader" uid="uid://dcwirhvnici6e" path="res://shaders/outline_recolor.gdshader" id="2_k54h1"]
 [ext_resource type="Script" uid="uid://dr0kd3eo7hnrg" path="res://scenes/interactive/doors/door_sideways.gd" id="2_q4uyh"]
-[ext_resource type="Shader" uid="uid://beshjcnacfelm" path="res://shaders/outline_shader.gdshader" id="4_d51ol"]
+[ext_resource type="Script" uid="uid://cwo1tqjwxj8gd" path="res://scenes/interactive/interactable_resource.gd" id="4_5q8mf"]
 [ext_resource type="Texture2D" uid="uid://b0eois1rqs5gg" path="res://textures/doors/door_grey.png" id="6_obk3w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y7plp"]
+resource_local_to_scene = true
+shader = ExtResource("2_k54h1")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/row = -1
+
+[sub_resource type="Resource" id="Resource_oeasd"]
+script = ExtResource("4_5q8mf")
+item_name = "DOOR_NAME"
+description = "TEST_DESCRIPTION"
+detective_board_toggle = false
+show_labels = false
+metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mq2eq"]
 resource_local_to_scene = true
@@ -18,12 +34,6 @@ polygon = PackedVector2Array(0, -55, 0, 35)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ar21o"]
 size = Vector2(10, 78)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0pxaw"]
-resource_local_to_scene = true
-shader = ExtResource("4_d51ol")
-shader_parameter/line_color = Color(1, 1, 1, 1)
-shader_parameter/line_thickness = 0.0
 
 [sub_resource type="Animation" id="Animation_64t1r"]
 length = 0.001
@@ -159,14 +169,18 @@ transitions = ["open", "closing", SubResource("AnimationNodeStateMachineTransiti
 graph_offset = Vector2(-146, -6)
 
 [node name="DoorSideways" groups=["Persistent"] instance=ExtResource("1_o2gm0")]
+material = SubResource("ShaderMaterial_y7plp")
 script = ExtResource("2_q4uyh")
 opened = false
 locked = false
 inverted = false
-interactable_resource = null
+interactableResource = SubResource("Resource_oeasd")
 
 [node name="Labels" parent="." index="0"]
-position = Vector2(0, -55)
+offset_left = 0.0
+offset_top = -55.0
+offset_right = 48.0
+offset_bottom = -45.0
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("RectangleShape2D_mq2eq")
@@ -193,7 +207,6 @@ collision_mask = 768
 shape = SubResource("RectangleShape2D_ar21o")
 
 [node name="Sprite2D" parent="." index="6"]
-material = SubResource("ShaderMaterial_0pxaw")
 position = Vector2(-16, 2)
 texture = ExtResource("6_obk3w")
 hframes = 4

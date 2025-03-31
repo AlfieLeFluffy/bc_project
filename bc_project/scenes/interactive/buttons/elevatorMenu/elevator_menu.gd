@@ -12,7 +12,7 @@ var buttons: Dictionary
 #endregion
 
 #region Setup Methods
-func local_ready() -> void:
+func _local_ready() -> void:
 	if get_elevator():
 		setup_menu_buttons()
 		if elevator.resource.movingToStop != null:
@@ -57,12 +57,12 @@ func setup_menu_size_position() -> void:
 #endregion
 
 #region Runtime Methods
-func local_process(delta: float) -> void:
+func _local_process(delta: float) -> void:
 	if %ButtonMenu.visible:
 		if not Rect2(Vector2(),$ButtonMenu.size).has_point($ButtonMenu.get_local_mouse_position()):
 			$ButtonMenu.visible = false
 
-func interact_function(event: InputEvent) -> void:
+func _interact_function(event: InputEvent) -> void:
 	if not elevator.resource.active:
 		$ButtonMenu.visible = true
 		setup_menu_size_position()

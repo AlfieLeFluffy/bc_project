@@ -22,7 +22,7 @@ var usersDictionary: Dictionary
 --- Setup Methods
 """
 # Local ready function for instantiated objects
-func local_ready() -> void:
+func _local_ready() -> void:
 	setup_computer_status()
 	setup_users_dictionary()
 	Signals.connect("shutdown_computer",shutdown_computer)
@@ -32,13 +32,13 @@ func local_ready() -> void:
 func setup_interactable_info() -> void:
 	if compRes:
 		name = compRes.name
-		label.text = tr(compRes.name)
+		%Label.text = tr(compRes.name)
 
 func setup_computer_status() -> void:
 	if compRes.state:
-		sprite.frame = 0
+		%Sprite2D.frame = 0
 		return
-	sprite.frame = 1
+	%Sprite2D.frame = 1
 	return
 
 func setup_users_dictionary() -> void:
@@ -57,7 +57,7 @@ func setup_users_dictionary() -> void:
 --- Runtime Methods
 """
 # Active function if no dialog detected
-func interact_function(event: InputEvent) -> void:
+func _interact_function(event: InputEvent) -> void:
 	if not compRes.state:
 		compRes.state = true
 		setup_computer_status()
@@ -91,7 +91,7 @@ func hide_computer_view(computerName: String) -> void:
 # Active function if no dialog detected
 func add_board_element(event: InputEvent) -> void:
 	pass
-	Signals.create_board_element.emit(ElementResource.new().setup(ElementResource.elementType.OBJECT,interactable_resource.item_name,interactable_resource.timeline,interactable_resource.description,get_sprite_from_current_frame()))
+	Signals.create_board_element.emit(ElementResource.new().setup(ElementResource.elementType.OBJECT,interactableResource.item_name,interactableResource.timeline,interactableResource.description,get_sprite_from_current_frame()))
 #endregion
 
 

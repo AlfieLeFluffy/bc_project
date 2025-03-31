@@ -9,11 +9,11 @@ var view: CombinationLockView
 var popup: PopupMenuController
 
 # Local ready function for instantiated objects
-func local_ready() -> void:
+func _local_ready() -> void:
 	pass
 
 # Active function if no dialog detected
-func interact_function(event: InputEvent) -> void:
+func _interact_function(event: InputEvent) -> void:
 	if not resource.locked and resource.override:
 		_interact_function_unlocked()
 	else:
@@ -40,12 +40,12 @@ func _interact_function_unlocked() -> void:
 	pass
 
 # Active function if no dialog detected
-func local_process(delta: float) -> void:
+func _local_process(delta: float) -> void:
 	pass
 
 # Active function if no dialog detected
 func add_board_element(event: InputEvent) -> void:
-	Signals.create_board_element.emit(ElementResource.new().setup(ElementResource.elementType.OBJECT,interactable_resource.item_name,interactable_resource.timeline,interactable_resource.description,get_sprite_from_current_frame()))
+	Signals.create_board_element.emit(ElementResource.new().setup(ElementResource.elementType.OBJECT,interactableResource.item_name,interactableResource.timeline,interactableResource.description,get_sprite_from_current_frame()))
 
 
 

@@ -1,8 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://cs1y6cfdd6whw"]
+[gd_scene load_steps=10 format=3 uid="uid://cs1y6cfdd6whw"]
 
 [ext_resource type="PackedScene" uid="uid://cst1rqp3mow71" path="res://scenes/interactive/combination/combination_locked_base.tscn" id="1_0tg7b"]
+[ext_resource type="Shader" uid="uid://dcwirhvnici6e" path="res://shaders/outline_recolor.gdshader" id="2_p2b0s"]
 [ext_resource type="Shader" uid="uid://beshjcnacfelm" path="res://shaders/outline_shader.gdshader" id="2_t8lcp"]
+[ext_resource type="Script" uid="uid://cwo1tqjwxj8gd" path="res://scenes/interactive/interactable_resource.gd" id="3_lp65v"]
 [ext_resource type="Texture2D" uid="uid://bex5mh0ke8li8" path="res://textures/combination/small_safe.png" id="3_p2b0s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vq887"]
+resource_local_to_scene = true
+shader = ExtResource("2_p2b0s")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/row = -1
+
+[sub_resource type="Resource" id="Resource_thjvf"]
+script = ExtResource("3_lp65v")
+item_name = "TEST_NAME"
+description = "TEST_DESCRIPTION"
+detective_board_toggle = true
+show_labels = true
+metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lp65v"]
 resource_local_to_scene = true
@@ -15,7 +32,8 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 
 [node name="CombinationLockBase" instance=ExtResource("1_0tg7b")]
-popupSize = Vector2i(600, 300)
+material = SubResource("ShaderMaterial_vq887")
+interactableResource = SubResource("Resource_thjvf")
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("RectangleShape2D_lp65v")

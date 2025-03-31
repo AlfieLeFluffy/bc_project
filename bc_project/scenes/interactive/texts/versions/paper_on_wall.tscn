@@ -1,28 +1,40 @@
-[gd_scene load_steps=6 format=3 uid="uid://bn8qfludml1yc"]
+[gd_scene load_steps=8 format=3 uid="uid://bn8qfludml1yc"]
 
 [ext_resource type="PackedScene" uid="uid://cok6xhqh3yqi7" path="res://scenes/interactive/texts/text_object_base.tscn" id="1_tdglm"]
-[ext_resource type="Shader" uid="uid://beshjcnacfelm" path="res://shaders/outline_shader.gdshader" id="2_7tgft"]
+[ext_resource type="Shader" uid="uid://dcwirhvnici6e" path="res://shaders/outline_recolor.gdshader" id="2_dhonr"]
+[ext_resource type="Script" uid="uid://cwo1tqjwxj8gd" path="res://scenes/interactive/interactable_resource.gd" id="3_n0875"]
 [ext_resource type="Texture2D" uid="uid://brhe2ymnq0vtr" path="res://textures/text/paper_on_wall.png" id="3_ucphr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jok7w"]
+resource_local_to_scene = true
+shader = ExtResource("2_dhonr")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/row = -1
+
+[sub_resource type="Resource" id="Resource_472xg"]
+script = ExtResource("3_n0875")
+item_name = ""
+description = ""
+detective_board_toggle = true
+show_labels = true
+metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vewyd"]
 resource_local_to_scene = true
 size = Vector2(17, 21)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6y67c"]
-resource_local_to_scene = true
-shader = ExtResource("2_7tgft")
-shader_parameter/line_color = Color(1, 1, 1, 1)
-shader_parameter/line_thickness = 0.0
-
 [node name="PaperOnWall" instance=ExtResource("1_tdglm")]
+material = SubResource("ShaderMaterial_jok7w")
+interactableResource = SubResource("Resource_472xg")
 
 [node name="Labels" parent="." index="0"]
-position = Vector2(0, -20)
+offset_top = -21.0
+offset_bottom = -11.0
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_vewyd")
 
 [node name="Sprite2D" parent="." index="2"]
-material = SubResource("ShaderMaterial_6y67c")
 texture = ExtResource("3_ucphr")

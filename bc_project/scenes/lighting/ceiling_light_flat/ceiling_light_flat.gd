@@ -1,6 +1,6 @@
 extends Light
 
-func _local_ready() -> void:
+func __local_ready() -> void:
 	if lightColor:
 		%PointLight2D.color = lightColor
 	if lightEnergy:

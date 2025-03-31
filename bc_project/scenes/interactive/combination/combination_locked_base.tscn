@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cst1rqp3mow71"]
 
-[ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable_base.tscn" id="1_es4xg"]
+[ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable.tscn" id="1_es4xg"]
 [ext_resource type="Shader" uid="uid://beshjcnacfelm" path="res://shaders/outline_shader.gdshader" id="2_bl1r8"]
 [ext_resource type="Script" uid="uid://ba65q6w118vvh" path="res://scenes/interactive/combination/combination_locked_base.gd" id="2_dephq"]
 

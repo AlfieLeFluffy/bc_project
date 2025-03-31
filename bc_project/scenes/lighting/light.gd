@@ -16,9 +16,9 @@ class_name Light extends Node2D
 func _ready() -> void:
 	Signals.connect("set_light",set_state)
 	Signals.connect("toggle_light",toggle_state)
-	_local_ready()
+	__local_ready()
 
-func _local_ready() -> void:
+func __local_ready() -> void:
 	pass
 
 """

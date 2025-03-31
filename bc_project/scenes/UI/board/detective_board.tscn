@@ -153,6 +153,7 @@ selected = 0
 item_count = 3
 popup/item_0/text = "Red"
 popup/item_0/icon = SubResource("GradientTexture2D_b8f32")
+popup/item_0/id = 0
 popup/item_1/text = "Green"
 popup/item_1/icon = SubResource("GradientTexture2D_8n1dx")
 popup/item_1/id = 1

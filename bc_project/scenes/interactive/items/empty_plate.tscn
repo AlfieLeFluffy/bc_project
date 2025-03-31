@@ -1,35 +1,37 @@
 [gd_scene load_steps=8 format=3 uid="uid://chgj487p1bpqi"]
 
-[ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable_base.tscn" id="1_quxmj"]
+[ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable.tscn" id="1_quxmj"]
+[ext_resource type="Shader" uid="uid://dcwirhvnici6e" path="res://shaders/outline_recolor.gdshader" id="2_00tp1"]
 [ext_resource type="Texture2D" uid="uid://b4lgho32xwd8w" path="res://textures/items/emptyPlate.png" id="2_qpsot"]
-[ext_resource type="Shader" uid="uid://beshjcnacfelm" path="res://shaders/outline_shader.gdshader" id="2_xq1fx"]
 [ext_resource type="Script" uid="uid://cwo1tqjwxj8gd" path="res://scenes/interactive/interactable_resource.gd" id="3_uqlsw"]
 
-[sub_resource type="Resource" id="Resource_78cg6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_emmrd"]
 resource_local_to_scene = true
+shader = ExtResource("2_00tp1")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/row = -1
+
+[sub_resource type="Resource" id="Resource_4012r"]
 script = ExtResource("3_uqlsw")
-item_name = "Empty Plate"
-description = "Test Description"
+item_name = "EMPTY_PLATE_NAME"
+description = "EMPTY_PLATE_DESCRIPTION"
 detective_board_toggle = true
+show_labels = true
+metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q715m"]
 resource_local_to_scene = true
 size = Vector2(16, 9)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i2h7a"]
-resource_local_to_scene = true
-shader = ExtResource("2_xq1fx")
-shader_parameter/line_color = Color(1, 1, 1, 1)
-shader_parameter/line_thickness = 0.0
-
 [node name="EmptyPlate" instance=ExtResource("1_quxmj")]
-interactable_resource = SubResource("Resource_78cg6")
+material = SubResource("ShaderMaterial_emmrd")
+interactableResource = SubResource("Resource_4012r")
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_q715m")
 
 [node name="Sprite2D" parent="." index="2"]
-material = SubResource("ShaderMaterial_i2h7a")
 position = Vector2(0, -3)
 texture = ExtResource("2_qpsot")

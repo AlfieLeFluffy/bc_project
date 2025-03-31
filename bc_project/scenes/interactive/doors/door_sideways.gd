@@ -10,7 +10,7 @@ class_name DoorSideways extends Interactable
 var timelineSpace
 
 # Local ready function for instantiated objects
-func local_ready(startup:bool = true) -> void:
+func _local_ready(startup:bool = true) -> void:
 	timelineSpace = get_parent().get_parent()
 	
 	if opened:
@@ -24,7 +24,7 @@ func local_ready(startup:bool = true) -> void:
 		$Sprite2D.position.x = $Sprite2D.position.x * -1
 		$CollisionShape2D2.position.x = $CollisionShape2D2.position.x * -1
 
-func local_process(delta: float):
+func _local_process(delta: float):
 	if not timelineSpace.visible and not $StaticBody2D/CollisionShape2D.disabled:
 		$StaticBody2D/CollisionShape2D.set_deferred("disabled",true)
 	elif timelineSpace.visible and not opened and $StaticBody2D/CollisionShape2D.disabled:
@@ -33,7 +33,7 @@ func local_process(delta: float):
 		$StaticBody2D/CollisionShape2D.set_deferred("disabled",true)
 
 # Active function if no dialog detected
-func interact_function(event: InputEvent) -> void:
+func _interact_function(event: InputEvent) -> void:
 	if locked:
 		return
 	
@@ -58,10 +58,10 @@ func toggle_lock() -> void:
 """
 
 func activate_hover() -> void:
-	$Sprite2D.material.set("shader_parameter/line_thickness",1)
+	material.set("shader_parameter/line_thickness",1)
 
 func deactivate_hover() -> void:
-	$Sprite2D.material.set("shader_parameter/line_thickness",0)
+	material.set("shader_parameter/line_thickness",0)
 
 
 func activate_interactivity() -> void:
@@ -89,6 +89,6 @@ func loading(input: Dictionary) -> bool:
 	if input.has("opened") and input.has("locked"):
 		opened = input["opened"]
 		locked = input["locked"]
-		local_ready(false)
+		_local_ready(false)
 		return true
 	return false

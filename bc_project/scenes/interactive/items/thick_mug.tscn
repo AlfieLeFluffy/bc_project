@@ -1,33 +1,35 @@
 [gd_scene load_steps=8 format=3 uid="uid://c4x1ywanodayi"]
 
-[ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable_base.tscn" id="1_wjbls"]
+[ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable.tscn" id="1_wjbls"]
 [ext_resource type="Texture2D" uid="uid://b8xj6gwg3vfq2" path="res://textures/items/thickMug.png" id="2_k4yty"]
-[ext_resource type="Shader" uid="uid://beshjcnacfelm" path="res://shaders/outline_shader.gdshader" id="2_skodu"]
+[ext_resource type="Shader" uid="uid://dcwirhvnici6e" path="res://shaders/outline_recolor.gdshader" id="2_nqewc"]
 [ext_resource type="Script" uid="uid://cwo1tqjwxj8gd" path="res://scenes/interactive/interactable_resource.gd" id="3_35s1i"]
 
-[sub_resource type="Resource" id="Resource_4i138"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n0t1b"]
 resource_local_to_scene = true
+shader = ExtResource("2_nqewc")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/row = -1
+
+[sub_resource type="Resource" id="Resource_joblu"]
 script = ExtResource("3_35s1i")
-item_name = "Thick Mug"
-description = "Test Description"
+item_name = "THICK_MUG_NAME"
+description = "THICK_MUG_DESCRIPTION"
 detective_board_toggle = true
+show_labels = true
+metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ujfcp"]
 resource_local_to_scene = true
 size = Vector2(14, 10)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_07lic"]
-resource_local_to_scene = true
-shader = ExtResource("2_skodu")
-shader_parameter/line_color = Color(1, 1, 1, 1)
-shader_parameter/line_thickness = 0.0
-
 [node name="ThickMug" instance=ExtResource("1_wjbls")]
-interactable_resource = SubResource("Resource_4i138")
+material = SubResource("ShaderMaterial_n0t1b")
+interactableResource = SubResource("Resource_joblu")
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("RectangleShape2D_ujfcp")
 
 [node name="Sprite2D" parent="." index="2"]
-material = SubResource("ShaderMaterial_07lic")
 texture = ExtResource("2_k4yty")

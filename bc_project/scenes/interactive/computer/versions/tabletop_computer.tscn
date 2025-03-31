@@ -1,8 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://cqiiad58pt1w"]
+[gd_scene load_steps=10 format=3 uid="uid://cqiiad58pt1w"]
 
 [ext_resource type="PackedScene" uid="uid://b55y4332x8fpo" path="res://scenes/interactive/computer/computer_base.tscn" id="1_o5ktb"]
+[ext_resource type="Shader" uid="uid://dcwirhvnici6e" path="res://shaders/outline_recolor.gdshader" id="2_h85nd"]
 [ext_resource type="Shader" uid="uid://beshjcnacfelm" path="res://shaders/outline_shader.gdshader" id="2_jt2m4"]
 [ext_resource type="Texture2D" uid="uid://b0k24ufjpdxlt" path="res://textures/computer/tabletop_computer_base.png" id="3_g6hcw"]
+[ext_resource type="Script" uid="uid://cwo1tqjwxj8gd" path="res://scenes/interactive/interactable_resource.gd" id="3_iceja"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q3g8t"]
+resource_local_to_scene = true
+shader = ExtResource("2_h85nd")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/row = -1
+
+[sub_resource type="Resource" id="Resource_2y3u8"]
+script = ExtResource("3_iceja")
+item_name = ""
+description = ""
+detective_board_toggle = true
+show_labels = true
+metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q0kl2"]
 resource_local_to_scene = true
@@ -15,9 +32,20 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 
 [node name="TabletopComputer" groups=["Persistent"] instance=ExtResource("1_o5ktb")]
+material = SubResource("ShaderMaterial_q3g8t")
+interactableResource = SubResource("Resource_2y3u8")
 
 [node name="Labels" parent="." index="0"]
-position = Vector2(0, -38)
+offset_left = 0.0
+offset_top = -38.0
+offset_right = 48.0
+offset_bottom = -28.0
+
+[node name="Label" parent="Labels" index="1"]
+offset_left = -24.0
+offset_top = -2.0
+offset_right = -24.0
+offset_bottom = -0.300001
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, -14)

@@ -9,3 +9,6 @@ class_name InteractableResource extends Resource
 @export var detective_board_toggle: bool = true
 @export var show_labels: bool = true
 var timeline: String
+
+@export_category("Item Information")
+@export var dialogueResource: DialogueResource
