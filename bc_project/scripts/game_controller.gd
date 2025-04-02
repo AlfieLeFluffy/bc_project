@@ -13,6 +13,9 @@ const prelaodGameOverScreen = preload("res://scenes/gameOver/game_over_screen.ts
 #endregion
 
 #region Preload ScreenEffects scenes, Enums and Constants
+
+const preloadScreenTextEffect = preload("res://scenes/screenEffects/screen_text_effect.tscn")
+
 const preloadTimelineShiftEffect = preload("res://scenes/screenEffects/timeline_shift_effect.tscn")
 const preloadFadeInEffect = preload("res://scenes/screenEffects/fade_in_effect.tscn")
 const preloadFadeOutEffect = preload("res://scenes/screenEffects/fade_out_effect.tscn")
@@ -316,14 +319,24 @@ func setup_detective_board_menu() -> void:
 #endregion
 
 #region Screen Effects Methods
-func play_screen_effect(effect: screenEffectEnum) -> void:
-	var screenEffect = screenEffects[effect].instantiate()
+func play_screen_effect(_effect: screenEffectEnum) -> void:
+	var screenEffect = screenEffects[_effect].instantiate()
 	get_tree().current_scene.add_child(screenEffect)
 	screenEffect.visible = true
 
 
 func play_fade_in_effect() -> void:
 	play_screen_effect(screenEffectEnum.FADE_IN)
+	
+func play_screen_text_effect(_input: String, _lineTimeout: float = 0.2, _characterTimeout: float = 0.1, _finishTimeout: float = 3.0) -> void:
+	var effect: ScreenTextEffect = preloadScreenTextEffect.instantiate()
+	effect.input = _input
+	effect.lineTimeout = _lineTimeout
+	effect.characterTimeout = _characterTimeout
+	effect.finishTimeout = _finishTimeout
+	get_tree().current_scene.add_child(effect)
+	effect.visible = true
+
 ## Overrides [peram node] [memeber node.material] with a fade object shader. [br]
 ## Sets starting and ending alpha value based on [param start] paramenter. [br]
 ## Through tween fades [CanvasItem] object to desired aplha value (fade in/out).
