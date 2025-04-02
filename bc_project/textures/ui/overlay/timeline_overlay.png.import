@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dutut208e6hui"
-path="res://.godot/imported/timelineUI.png-9150b524f5e7ae3f49f727472127e919.ctex"
+uid="uid://13o6ipn5e7pq"
+path="res://.godot/imported/timeline_overlay.png-9529d781064c3ca9d5dc2fe3ad050777.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/ui/overlay/timelineUI.png"
-dest_files=["res://.godot/imported/timelineUI.png-9150b524f5e7ae3f49f727472127e919.ctex"]
+source_file="res://textures/ui/overlay/timeline_overlay.png"
+dest_files=["res://.godot/imported/timeline_overlay.png-9529d781064c3ca9d5dc2fe3ad050777.ctex"]
 
 [params]
 

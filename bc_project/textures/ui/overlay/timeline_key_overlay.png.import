@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7ef3jtpje8iw"
-path="res://.godot/imported/timelineKeyUI-Sheet.png-239a2875fd65680539cd6fac0ab6287b.ctex"
+uid="uid://bmquopeoglj67"
+path="res://.godot/imported/timeline_key_overlay.png-1ba6a4c7323a00e2e6421d4624789b68.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/ui/overlay/timelineKeyUI-Sheet.png"
-dest_files=["res://.godot/imported/timelineKeyUI-Sheet.png-239a2875fd65680539cd6fac0ab6287b.ctex"]
+source_file="res://textures/ui/overlay/timeline_key_overlay.png"
+dest_files=["res://.godot/imported/timeline_key_overlay.png-1ba6a4c7323a00e2e6421d4624789b68.ctex"]
 
 [params]
 
