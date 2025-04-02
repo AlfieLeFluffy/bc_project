@@ -341,14 +341,21 @@ func play_screen_text_effect(_input: String, _lineTimeout: float = 0.2, _charact
 ## Sets starting and ending alpha value based on [param start] paramenter. [br]
 ## Through tween fades [CanvasItem] object to desired aplha value (fade in/out).
 func fade_object(node : CanvasItem, start: float = 1.0) -> bool:
+	## Constraints the input with a range of 0.0-1.0
 	var constrainedStart: float = min(1.0,max(0.0,start))
+	
+	## Overrides input [param node] [CanvasItem] material with a fade object shader and sets the start aplha value
 	var overrideShader = ShaderMaterial.new()
 	overrideShader.shader = load("res://shaders/fade_object.gdshader")
 	node.material = overrideShader
 	node.material.set("shader_parameter/value",constrainedStart)
+	
+	## Creates a tween, connects it with the shader and then waits till until tween finishes
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(node.material,"shader_parameter/value",1.0-constrainedStart,0.5).set_ease(Tween.EASE_IN_OUT)
 	await tween.finished
+	
+	## Returns true for possible await
 	return true
 #endregion
 

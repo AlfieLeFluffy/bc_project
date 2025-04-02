@@ -36,12 +36,12 @@ func shift() -> void:
 	if not timelinesDictionary.has(current.resource.next):
 		return
 	
-	
 	await get_tree().create_timer(Global.TIMELINE_SHIFT_OFFSET).timeout
 	if timelineForesee:
 		timelineForesee.queue_free()
 	var destination: Timeline = timelinesDictionary[current.resource.next]
 	Signals.timeline_shift.emit()
+	GameController.emit_signal("playScreenEffect",GameController.screenEffectEnum.TIMELINE_SHIFT)
 	update_timeline_info(destination)
 	move_player(current, destination)
 	move_camera_controls(current, destination)

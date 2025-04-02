@@ -26,14 +26,14 @@ func set_label(_input:Array, _description:String):
 	setup_label()
 
 func setup_label() -> void:
+	var keys: String = ""
 	if input.size() == 1:
-		text = "[right][color=lightblue]"+input[0]+"[/color] - "+ tr(name)
-		return
-	
-	var keys: String = input.pop_front()
-	for key in input:
-		keys = keys + " / " + key
-	text = "[right][color=lightblue]"+keys+"[/color] - "+ tr(name)
+		keys = input.pop_front()
+	else:
+		keys = input.pop_front()
+		for key in input:
+			keys = keys + " / " + key
+	text = "[right][color=#%s]%s[/color] [color=#%s] - %s[/color]" % [Global.color_TextHighlight.to_html(),keys,Global.color_TextBright.to_html(),tr(name)]
 
 """
 --- Signal Methods
