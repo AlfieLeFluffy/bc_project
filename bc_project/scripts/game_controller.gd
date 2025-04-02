@@ -312,7 +312,7 @@ func setup_detective_board_menu() -> void:
 	if check_nongameplay_scene():
 		return
 	detectiveBoard = preloadDetectiveBoardMenu.instantiate()
-	get_tree().current_scene.add_child(detectiveBoard)
+	mainOverlay.add_child(detectiveBoard)
 	detectiveBoard.layer = 60
 	detectiveBoard.visible = false
 #endregion
@@ -347,7 +347,7 @@ func setup_input_help_menu() -> void:
 	if check_nongameplay_scene():
 		return
 	inputHelp = preloadInputHelp.instantiate()
-	get_tree().current_scene.add_child(inputHelp)
+	mainOverlay.add_child(inputHelp)
 	inputHelp.layer = 70
 	inputHelp.visible = true
 
