@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://x3lasufaexva"]
+[gd_scene load_steps=3 format=3 uid="uid://x3lasufaexva"]
 
 [ext_resource type="Script" uid="uid://c1vqa2fdidxf6" path="res://scenes/cameraControls/camera_movement.gd" id="1_0hybq"]
+[ext_resource type="Script" uid="uid://dwlbgegveoyo0" path="res://scenes/cameraControls/camera_zoom.gd" id="2_tphas"]
 
 [node name="CameraControls" type="Node2D" groups=["CameraControls", "Persistent"]]
 script = ExtResource("1_0hybq")
@@ -12,3 +13,4 @@ zoom = Vector2(3.5, 3.5)
 process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 4.0
+script = ExtResource("2_tphas")
