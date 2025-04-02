@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://532uypmhsvde"]
+[gd_scene load_steps=19 format=3 uid="uid://532uypmhsvde"]
 
 [ext_resource type="Script" uid="uid://dnshcxe2qnfyb" path="res://scenes/elevators/elevator.gd" id="1_5ow4g"]
 [ext_resource type="Texture2D" uid="uid://j4ta2nqnwu7p" path="res://textures/elevator/elevator_cabin.png" id="2_5ow4g"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://3yf1o1vsjr65" path="res://scenes/interactive/buttons/elevatorMenu/elevator_menu.tscn" id="3_tvmrj"]
 [ext_resource type="Texture2D" uid="uid://c85uohh8rar6l" path="res://textures/elevator/elevator_cabin_right_wall.png" id="4_s2aph"]
 [ext_resource type="PackedScene" uid="uid://bh6uc1j2up7ya" path="res://scenes/lighting/ceiling_light_flat/ceiling_light_flat.tscn" id="6_d1wvi"]
+[ext_resource type="Shader" uid="uid://dcwirhvnici6e" path="res://shaders/outline_recolor.gdshader" id="7_kdwdv"]
+[ext_resource type="Script" uid="uid://cwo1tqjwxj8gd" path="res://scenes/interactive/interactable_resource.gd" id="8_1i5pn"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kdwdv"]
 polygon = PackedVector2Array(53, 0, 51, 0, 51, 1, -51, 1, -51, 0, -53, 0, -53, 4, -51, 4, -51, 5, -49, 5, -49, 6, -47, 6, -47, 7, -29, 7, -29, 9, -28, 9, -28, 11, -27, 11, -27, 12, -28, 12, -28, 13, -27, 13, -27, 14, -26, 14, -26, 16, -22, 16, -22, 14, -21, 14, -21, 13, -20, 13, -20, 12, -21, 12, -21, 11, -20, 11, -20, 9, -19, 9, -19, 7, -16, 7, -16, 9, -15, 9, -15, 10, -14, 10, -14, 11, 14, 11, 14, 10, 15, 10, 15, 9, 16, 9, 16, 7, 19, 7, 19, 9, 20, 9, 20, 11, 21, 11, 21, 12, 20, 12, 20, 13, 21, 13, 21, 14, 22, 14, 22, 16, 26, 16, 26, 14, 27, 14, 27, 13, 28, 13, 28, 12, 27, 12, 27, 11, 28, 11, 28, 9, 29, 9, 29, 7, 47, 7, 47, 6, 49, 6, 49, 5, 51, 5, 51, 4, 53, 4)
@@ -30,6 +32,21 @@ size = Vector2(2, 85)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ve23l"]
 size = Vector2(2, 85)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x8lrt"]
+resource_local_to_scene = true
+shader = ExtResource("7_kdwdv")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/row = -1
+
+[sub_resource type="Resource" id="Resource_3fr4o"]
+script = ExtResource("8_1i5pn")
+item_name = "ELEVATOR_MENU_NAME"
+description = "ELEVATOR_MENU_DESCRIPTION"
+detective_board_toggle = false
+show_labels = false
+metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
 
 [node name="Elevator" type="Node2D" groups=["Persistent"]]
 script = ExtResource("1_5ow4g")
@@ -102,4 +119,6 @@ position = Vector2(52, -42.5)
 shape = SubResource("RectangleShape2D_ve23l")
 
 [node name="ElevatorButton" parent="ElevatorCabin" instance=ExtResource("3_tvmrj")]
+material = SubResource("ShaderMaterial_x8lrt")
 position = Vector2(0, -31)
+interactableResource = SubResource("Resource_3fr4o")
