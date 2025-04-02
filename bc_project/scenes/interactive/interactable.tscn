@@ -50,6 +50,7 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="Labels"]
 unique_name_in_owner = true
+z_index = 255
 material = SubResource("ShaderMaterial_qalw0")
 layout_mode = 1
 anchors_preset = 15
