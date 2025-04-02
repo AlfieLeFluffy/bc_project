@@ -302,8 +302,6 @@ func setup_camera_controls() -> void:
 	get_tree().current_scene.add_child(cameraControls)
 #endregion
 
-#region UI/Menu Methods
-
 #region Detective Board Methods
 # Instantiates and shows the in-game menu
 func setup_detective_board_menu() -> void:
@@ -326,6 +324,19 @@ func play_screen_effect(effect: screenEffectEnum) -> void:
 
 func play_fade_in_effect() -> void:
 	play_screen_effect(screenEffectEnum.FADE_IN)
+## Overrides [peram node] [memeber node.material] with a fade object shader. [br]
+## Sets starting and ending alpha value based on [param start] paramenter. [br]
+## Through tween fades [CanvasItem] object to desired aplha value (fade in/out).
+func fade_object(node : CanvasItem, start: float = 1.0) -> bool:
+	var constrainedStart: float = min(1.0,max(0.0,start))
+	var overrideShader = ShaderMaterial.new()
+	overrideShader.shader = load("res://shaders/fade_object.gdshader")
+	node.material = overrideShader
+	node.material.set("shader_parameter/value",constrainedStart)
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(node.material,"shader_parameter/value",1.0-constrainedStart,0.5).set_ease(Tween.EASE_IN_OUT)
+	await tween.finished
+	return true
 #endregion
 
 #region Overlay Methods
@@ -367,7 +378,6 @@ func open_ingame_menu() -> void:
 	menu.layer = 90
 	menu.visible = true
 	Signals.emit_signal("menu_clear")
-#endregion
 #endregion
 
 #region Dialogue Voice Acting Methods
