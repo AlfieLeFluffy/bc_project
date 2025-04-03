@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=4 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=76 format=4 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Script" uid="uid://cmlgg6dxih77f" path="res://scenes/levels/level_controller.gd" id="1_t01cb"]
 [ext_resource type="PackedScene" uid="uid://ddrrl1gryxkup" path="res://scenes/characters/player/player_character.tscn" id="1_wpgi4"]
@@ -310,6 +310,20 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/row = -1
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y80st"]
+resource_local_to_scene = true
+shader = ExtResource("8_0myxw")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/row = -1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t8w0x"]
+resource_local_to_scene = true
+shader = ExtResource("8_0myxw")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/row = -1
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5vl2c"]
 
 [node name="testScene" type="Node2D"]
@@ -579,12 +593,12 @@ metadata/Description = "Test Description"
 [node name="Doors" type="Node2D" parent="Timeline002/Interactive"]
 
 [node name="DoorSideways" parent="Timeline002/Interactive/Doors" instance=ExtResource("18_caylh")]
-material = null
+material = SubResource("ShaderMaterial_y80st")
 position = Vector2(512, 297)
 inverted = true
 
 [node name="DoorSideways2" parent="Timeline002/Interactive/Doors" instance=ExtResource("18_caylh")]
-material = null
+material = SubResource("ShaderMaterial_t8w0x")
 position = Vector2(255, 297)
 
 [node name="Elevators" type="Node2D" parent="Timeline002"]
@@ -619,7 +633,7 @@ metadata/_custom_type_script = "uid://wob4dkroqdok"
 
 [node name="player" parent="." groups=["CameraFocus"] instance=ExtResource("1_wpgi4")]
 z_index = 1
-position = Vector2(72, 296)
+position = Vector2(72, 301)
 
 [node name="WorldBorderKillBox" parent="." instance=ExtResource("31_dgc65")]
 position = Vector2(0, 1080)

@@ -31,7 +31,7 @@ func _ready() -> void:
 func setup_interactable_info() -> void:
 	if interactableResource:
 		name = interactableResource.item_name
-		%Label.text = tr(interactableResource.item_name)
+		%Label.text = "[font_size=24][color=#%s]%s" % [Global.color_Highlight.to_html(),tr(interactableResource.item_name)]
 
 func setup_timeline_info() -> void:
 	var parent:Node = get_parent()
@@ -74,11 +74,31 @@ func _local_process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and active:
 		if interactableResource.dialogueResource:
-			interact_conversation(event)
+			if check_line_of_sight():
+				interact_conversation(event)
 		else:
-			_interact_function(event)
+			if check_line_of_sight():
+				_interact_function(event)
 	elif event.is_action_pressed("add_to_board") and active:
 		add_board_element(event)
+
+func check_line_of_sight() -> bool:
+	var raycast: RayCast2D = RayCast2D.new()
+	var player: Player = get_tree().get_first_node_in_group("Player")
+	if not player:
+		raycast.queue_free()
+		return false
+	raycast.target_position = to_local(player.position)
+	raycast.set_collision_mask_value(5,true)
+	raycast.set_collision_mask_value(9,true)
+	add_child(raycast)
+	raycast.force_raycast_update()
+	if raycast.is_colliding():
+		if raycast.get_collider() is Player:
+			raycast.queue_free()
+			return true
+	raycast.queue_free()
+	return false
 
 # Active function if no dialog detected
 func _interact_function(event: InputEvent) -> void:

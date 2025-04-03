@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b6sidrweg1p0"]
+[gd_scene load_steps=8 format=3 uid="uid://b6sidrweg1p0"]
 
 [ext_resource type="Shader" uid="uid://dcwirhvnici6e" path="res://shaders/outline_recolor.gdshader" id="1_720lx"]
 [ext_resource type="Script" uid="uid://ccv0o03iblf8l" path="res://scenes/interactive/interactable.gd" id="1_m6fs8"]
 [ext_resource type="Shader" uid="uid://ce8d8jdvcd6aa" path="res://shaders/text_highlight.gdshader" id="3_720lx"]
-[ext_resource type="LabelSettings" uid="uid://d1lvtjugos2m4" path="res://settings/Interactable_label_settings.tres" id="4_oco1s"]
 [ext_resource type="Script" uid="uid://e536tfomryho" path="res://scripts/interactive_handler.gd" id="6_wipk1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5j7o3"]
@@ -13,10 +12,8 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/row = -1
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qalw0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rltxn"]
 shader = ExtResource("3_720lx")
-shader_parameter/ratio = 0.8
-shader_parameter/offset = 0.2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_356m4"]
 resource_local_to_scene = true
@@ -41,26 +38,29 @@ grow_horizontal = 2
 size_flags_horizontal = 3
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Labels"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+layout_mode = 2
+offset_right = 48.0
+offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Labels"]
+[node name="Label" type="RichTextLabel" parent="Labels"]
 unique_name_in_owner = true
 z_index = 255
-material = SubResource("ShaderMaterial_qalw0")
+material = SubResource("ShaderMaterial_rltxn")
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 144.0
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.25, 0.25)
 size_flags_horizontal = 3
-text = "Test"
-label_settings = ExtResource("4_oco1s")
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 

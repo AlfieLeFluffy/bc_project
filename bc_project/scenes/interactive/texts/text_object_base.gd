@@ -19,7 +19,7 @@ func setup_interactable_info() -> void:
 	if textRosource:
 		if textRosource.textName:
 			name = textRosource.textName
-			%Label.text = tr(textRosource.textName)
+			%Label.text = "[font_size=24][color=#%s]%s" % [Global.color_Highlight.to_html(),tr(textRosource.textName)]
 
 # Active function if no dialog detected
 func _interact_function(event: InputEvent) -> void:

@@ -36,16 +36,8 @@ material = SubResource("ShaderMaterial_q3g8t")
 interactableResource = SubResource("Resource_2y3u8")
 
 [node name="Labels" parent="." index="0"]
-offset_left = 0.0
-offset_top = -38.0
-offset_right = 48.0
-offset_bottom = -28.0
-
-[node name="Label" parent="Labels" index="1"]
-offset_left = -24.0
-offset_top = -2.0
-offset_right = -24.0
-offset_bottom = -0.300001
+offset_top = -39.0
+offset_bottom = -29.0
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, -14)
