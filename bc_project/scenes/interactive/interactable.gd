@@ -151,6 +151,7 @@ func deactivate_hover() -> void:
 	material.set("shader_parameter/line_thickness",0)
 
 func activate_interactivity() -> void:
+	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 	if interactableResource:
 		if interactableResource.show_labels:
 			$Labels.visible = true
@@ -159,6 +160,7 @@ func activate_interactivity() -> void:
 	Signals.emit_signal("input_help_set",GameController.get_input_key_list("interact"),"INTERACT_INPUT_HELP")
 
 func deactivate_interactivity() -> void:
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	if interactableResource:
 		if interactableResource.show_labels:
 			$Labels.visible = false
