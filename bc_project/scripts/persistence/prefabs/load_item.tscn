@@ -3,36 +3,43 @@
 [ext_resource type="Script" uid="uid://c51bjntfiwfhh" path="res://scripts/persistence/prefabs/load_item.gd" id="1_e4mlv"]
 
 [node name="LoadItem" type="HBoxContainer"]
+offset_right = 314.0
+offset_bottom = 31.0
 size_flags_horizontal = 3
 script = ExtResource("1_e4mlv")
 
 [node name="Name" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Load Name
-"
+size_flags_vertical = 1
+text = "Load Name"
+vertical_alignment = 1
+text_overrun_behavior = 1
 
 [node name="Date" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Load Date"
+text_overrun_behavior = 1
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
 initial_position = 4
+size = Vector2i(266, 100)
 dialog_text = "SAVEFILE_LOAD_CONFIRMATION"
 
 [node name="DeleteConfirmationDialog" type="ConfirmationDialog" parent="."]
 auto_translate_mode = 1
 initial_position = 4
+size = Vector2i(288, 100)
 dialog_text = "SAVEFILE_DELELTE_CONFIRMATION"
 
 [node name="Button" type="Button" parent="."]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "LOAD_BUTTON"
 
 [node name="DeleteButton" type="Button" parent="."]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "DELETE_BUTTON"
 

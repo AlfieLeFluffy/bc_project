@@ -1,4 +1,4 @@
-class_name AchievementsMenu extends CanvasLayer
+class_name AchievementsMenu extends Control
 
 const preloadAchievementLine = preload("res://scripts/profile/prefab/achievement_line.tscn")
 

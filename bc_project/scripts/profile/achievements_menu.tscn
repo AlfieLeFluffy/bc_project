@@ -2,19 +2,16 @@
 
 [ext_resource type="Script" uid="uid://bh4awym0lijjs" path="res://scripts/profile/achievements_menu.gd" id="1_11rla"]
 
-[node name="AchievementsMenu" type="CanvasLayer"]
-layer = 80
-script = ExtResource("1_11rla")
-
-[node name="AchievementsMenu" type="Control" parent="."]
+[node name="AchievementsMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_11rla")
 
-[node name="Tabs" type="TabContainer" parent="AchievementsMenu"]
+[node name="Tabs" type="TabContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -25,12 +22,12 @@ grow_vertical = 2
 tab_alignment = 1
 current_tab = 0
 
-[node name="ACHIEVEMENTS_TAB" type="TabBar" parent="AchievementsMenu/Tabs"]
+[node name="ACHIEVEMENTS_TAB" type="TabBar" parent="Tabs"]
 layout_mode = 2
 tab_alignment = 1
 metadata/_tab_index = 0
 
-[node name="AchievementsList" type="VBoxContainer" parent="AchievementsMenu/Tabs/ACHIEVEMENTS_TAB"]
+[node name="AchievementsList" type="VBoxContainer" parent="Tabs/ACHIEVEMENTS_TAB"]
 unique_name_in_owner = true
 clip_contents = true
 layout_mode = 1
@@ -40,13 +37,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="STATISTICS_TAB" type="TabBar" parent="AchievementsMenu/Tabs"]
+[node name="STATISTICS_TAB" type="TabBar" parent="Tabs"]
 visible = false
 layout_mode = 2
 tab_alignment = 1
 metadata/_tab_index = 1
 
-[node name="CancelButton" type="Button" parent="AchievementsMenu"]
+[node name="CancelButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.926
@@ -58,7 +55,7 @@ grow_vertical = 2
 focus_mode = 0
 text = "CANCEL_BUTTON"
 
-[node name="MenuLabel" type="Label" parent="AchievementsMenu"]
+[node name="MenuLabel" type="Label" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -69,4 +66,4 @@ text = "ACHIEVEMENTS_MENU_LABEL"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="AchievementsMenu/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="CancelButton" to="." method="_on_cancel_button_pressed"]

@@ -1,12 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bx7gcwlih3mmg"]
+[gd_scene load_steps=3 format=3 uid="uid://bx7gcwlih3mmg"]
 
 [ext_resource type="Script" uid="uid://gxnkmmmle2mi" path="res://scenes/menus/popup_menu_controller.gd" id="1_htjkf"]
-
-[sub_resource type="Gradient" id="Gradient_htjkf"]
-colors = PackedColorArray(0.35, 0.35, 0.35, 1, 0.400698, 0.400698, 0.400698, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_7rqdm"]
-gradient = SubResource("Gradient_htjkf")
+[ext_resource type="Texture2D" uid="uid://6hnc5ahodgw8" path="res://textures/ui/popup/poopup_menu_background_ninepitch.png" id="2_7rqdm"]
 
 [node name="PopupMenuController" type="Control"]
 layout_mode = 3
@@ -23,31 +18,36 @@ unique_name_in_owner = true
 auto_translate_mode = 1
 transparent_bg = true
 size = Vector2i(500, 500)
-visible = false
-wrap_controls = true
 borderless = true
 transparent = true
 extend_to_title = true
 content_scale_mode = 1
 content_scale_aspect = 4
 
-[node name="Content" type="Control" parent="PopupMenu"]
-unique_name_in_owner = true
-layout_mode = 3
+[node name="MarginContainer" type="MarginContainer" parent="PopupMenu"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Background" type="TextureRect" parent="PopupMenu/Content"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture1D_7rqdm")
+[node name="NinePatchRect" type="NinePatchRect" parent="PopupMenu/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_7rqdm")
+region_rect = Rect2(10, 0, 70, 112)
+patch_margin_left = 22
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="Content" type="MarginContainer" parent="PopupMenu/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
 
 [connection signal="close_requested" from="PopupMenu" to="." method="_on_popup_menu_close_requested"]
-[connection signal="child_exiting_tree" from="PopupMenu/Content" to="." method="_on_content_child_exiting_tree"]

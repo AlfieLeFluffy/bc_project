@@ -3,11 +3,7 @@
 [ext_resource type="Script" uid="uid://dni4wn1vjhgx7" path="res://scripts/settings/settings_menu_controller.gd" id="2_tdx4y"]
 [ext_resource type="Theme" uid="uid://d3vcomicjy5hm" path="res://settings/settings_menu_theme.tres" id="3_kptt6"]
 
-[node name="SettingsMenu" type="CanvasLayer"]
-layer = 100
-script = ExtResource("2_tdx4y")
-
-[node name="Menu" type="Control" parent="."]
+[node name="Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,8 +11,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_kptt6")
+script = ExtResource("2_tdx4y")
 
-[node name="SaveButton" type="Button" parent="Menu"]
+[node name="SaveButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -29,7 +26,7 @@ grow_vertical = 2
 focus_mode = 0
 text = "SAVE_AND_CLOSE_BUTTON"
 
-[node name="ApplyButton" type="Button" parent="Menu"]
+[node name="ApplyButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.907
@@ -41,7 +38,7 @@ grow_vertical = 2
 focus_mode = 0
 text = "APPLY_BUTTON"
 
-[node name="TabContainer" type="TabContainer" parent="Menu"]
+[node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -53,12 +50,12 @@ grow_vertical = 2
 tab_alignment = 1
 current_tab = 0
 
-[node name="GAMEPLAY_TAB" type="TabBar" parent="Menu/TabContainer"]
+[node name="GAMEPLAY_TAB" type="TabBar" parent="TabContainer"]
 layout_mode = 2
 focus_mode = 0
 metadata/_tab_index = 0
 
-[node name="VB" type="VBoxContainer" parent="Menu/TabContainer/GAMEPLAY_TAB"]
+[node name="VB" type="VBoxContainer" parent="TabContainer/GAMEPLAY_TAB"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = -0.063
@@ -71,15 +68,15 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="LanguageLine" type="HBoxContainer" parent="Menu/TabContainer/GAMEPLAY_TAB/VB"]
+[node name="LanguageLine" type="HBoxContainer" parent="TabContainer/GAMEPLAY_TAB/VB"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="Menu/TabContainer/GAMEPLAY_TAB/VB/LanguageLine"]
+[node name="Label" type="Label" parent="TabContainer/GAMEPLAY_TAB/VB/LanguageLine"]
 layout_mode = 2
 text = "LANGUAGE_SETTING"
 
-[node name="LanguageOptionButton" type="OptionButton" parent="Menu/TabContainer/GAMEPLAY_TAB/VB/LanguageLine"]
+[node name="LanguageOptionButton" type="OptionButton" parent="TabContainer/GAMEPLAY_TAB/VB/LanguageLine"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 25)
 layout_mode = 2
@@ -91,13 +88,13 @@ popup/item_0/id = 0
 popup/item_1/text = "CZECH_LANGUAGE"
 popup/item_1/id = 1
 
-[node name="GRAPHICS_TAB" type="TabBar" parent="Menu/TabContainer"]
+[node name="GRAPHICS_TAB" type="TabBar" parent="TabContainer"]
 visible = false
 layout_mode = 2
 focus_mode = 0
 metadata/_tab_index = 1
 
-[node name="VB" type="VBoxContainer" parent="Menu/TabContainer/GRAPHICS_TAB"]
+[node name="VB" type="VBoxContainer" parent="TabContainer/GRAPHICS_TAB"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -107,15 +104,15 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="ModeLine" type="HBoxContainer" parent="Menu/TabContainer/GRAPHICS_TAB/VB"]
+[node name="ModeLine" type="HBoxContainer" parent="TabContainer/GRAPHICS_TAB/VB"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="Menu/TabContainer/GRAPHICS_TAB/VB/ModeLine"]
+[node name="Label" type="Label" parent="TabContainer/GRAPHICS_TAB/VB/ModeLine"]
 layout_mode = 2
 text = "WIN_MODE_SETTING"
 
-[node name="ModeOptionButton" type="OptionButton" parent="Menu/TabContainer/GRAPHICS_TAB/VB/ModeLine"]
+[node name="ModeOptionButton" type="OptionButton" parent="TabContainer/GRAPHICS_TAB/VB/ModeLine"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 25)
 layout_mode = 2
@@ -135,15 +132,15 @@ popup/item_4/text = "EXCLUSIVE_FULLSCREEN_OPTION"
 popup/item_4/id = 4
 popup/item_4/disabled = true
 
-[node name="SizeLine" type="HBoxContainer" parent="Menu/TabContainer/GRAPHICS_TAB/VB"]
+[node name="SizeLine" type="HBoxContainer" parent="TabContainer/GRAPHICS_TAB/VB"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="Menu/TabContainer/GRAPHICS_TAB/VB/SizeLine"]
+[node name="Label" type="Label" parent="TabContainer/GRAPHICS_TAB/VB/SizeLine"]
 layout_mode = 2
 text = "WIN_SIZE_SETTING"
 
-[node name="SizeOptionButton" type="OptionButton" parent="Menu/TabContainer/GRAPHICS_TAB/VB/SizeLine"]
+[node name="SizeOptionButton" type="OptionButton" parent="TabContainer/GRAPHICS_TAB/VB/SizeLine"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 25)
 layout_mode = 2
@@ -160,15 +157,15 @@ popup/item_2/id = 2
 popup/item_3/text = "2560 x 1440"
 popup/item_3/id = 3
 
-[node name="VsyncLine" type="HBoxContainer" parent="Menu/TabContainer/GRAPHICS_TAB/VB"]
+[node name="VsyncLine" type="HBoxContainer" parent="TabContainer/GRAPHICS_TAB/VB"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="Menu/TabContainer/GRAPHICS_TAB/VB/VsyncLine"]
+[node name="Label" type="Label" parent="TabContainer/GRAPHICS_TAB/VB/VsyncLine"]
 layout_mode = 2
 text = "VSYNC_SETTING"
 
-[node name="VsyncOptionButton" type="OptionButton" parent="Menu/TabContainer/GRAPHICS_TAB/VB/VsyncLine"]
+[node name="VsyncOptionButton" type="OptionButton" parent="TabContainer/GRAPHICS_TAB/VB/VsyncLine"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 25)
 layout_mode = 2
@@ -180,13 +177,13 @@ popup/item_0/id = 0
 popup/item_1/text = "ENABLED_OPTION"
 popup/item_1/id = 1
 
-[node name="AUDIO_TAB" type="TabBar" parent="Menu/TabContainer"]
+[node name="AUDIO_TAB" type="TabBar" parent="TabContainer"]
 visible = false
 layout_mode = 2
 focus_mode = 0
 metadata/_tab_index = 2
 
-[node name="VB" type="VBoxContainer" parent="Menu/TabContainer/AUDIO_TAB"]
+[node name="VB" type="VBoxContainer" parent="TabContainer/AUDIO_TAB"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -196,71 +193,67 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="MasterLine" type="HBoxContainer" parent="Menu/TabContainer/AUDIO_TAB/VB"]
+[node name="MasterLine" type="HBoxContainer" parent="TabContainer/AUDIO_TAB/VB"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="Menu/TabContainer/AUDIO_TAB/VB/MasterLine"]
+[node name="Label" type="Label" parent="TabContainer/AUDIO_TAB/VB/MasterLine"]
 layout_mode = 2
 text = "AUDIO_MASTER_SETTING"
 
-[node name="MasterSlider" type="HSlider" parent="Menu/TabContainer/AUDIO_TAB/VB/MasterLine"]
+[node name="MasterSlider" type="HSlider" parent="TabContainer/AUDIO_TAB/VB/MasterLine"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 25)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-size_flags_horizontal = 4
 max_value = 1.0
 step = 0.01
 
-[node name="SoundLine" type="HBoxContainer" parent="Menu/TabContainer/AUDIO_TAB/VB"]
+[node name="SoundLine" type="HBoxContainer" parent="TabContainer/AUDIO_TAB/VB"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="Menu/TabContainer/AUDIO_TAB/VB/SoundLine"]
+[node name="Label" type="Label" parent="TabContainer/AUDIO_TAB/VB/SoundLine"]
 layout_mode = 2
 text = "AUDIO_SOUND_SETTING"
 
-[node name="SoundSlider" type="HSlider" parent="Menu/TabContainer/AUDIO_TAB/VB/SoundLine"]
+[node name="SoundSlider" type="HSlider" parent="TabContainer/AUDIO_TAB/VB/SoundLine"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 25)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-size_flags_horizontal = 4
 max_value = 1.0
 step = 0.01
 
-[node name="MusicLine" type="HBoxContainer" parent="Menu/TabContainer/AUDIO_TAB/VB"]
+[node name="MusicLine" type="HBoxContainer" parent="TabContainer/AUDIO_TAB/VB"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="Menu/TabContainer/AUDIO_TAB/VB/MusicLine"]
+[node name="Label" type="Label" parent="TabContainer/AUDIO_TAB/VB/MusicLine"]
 layout_mode = 2
 text = "AUDIO_MUSIC_SETTING"
 
-[node name="MusicSlider" type="HSlider" parent="Menu/TabContainer/AUDIO_TAB/VB/MusicLine"]
+[node name="MusicSlider" type="HSlider" parent="TabContainer/AUDIO_TAB/VB/MusicLine"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 25)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-size_flags_horizontal = 4
 max_value = 1.0
 step = 0.01
 
-[node name="DialogueLine" type="HBoxContainer" parent="Menu/TabContainer/AUDIO_TAB/VB"]
+[node name="DialogueLine" type="HBoxContainer" parent="TabContainer/AUDIO_TAB/VB"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="Menu/TabContainer/AUDIO_TAB/VB/DialogueLine"]
+[node name="Label" type="Label" parent="TabContainer/AUDIO_TAB/VB/DialogueLine"]
 layout_mode = 2
 text = "AUDIO_DIALOGUE_SETTING"
 
-[node name="DialogueSlider" type="HSlider" parent="Menu/TabContainer/AUDIO_TAB/VB/DialogueLine"]
+[node name="DialogueSlider" type="HSlider" parent="TabContainer/AUDIO_TAB/VB/DialogueLine"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 25)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-size_flags_horizontal = 4
 max_value = 1.0
 step = 0.01
 
-[node name="MenuLabel" type="Label" parent="Menu"]
+[node name="MenuLabel" type="Label" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -270,14 +263,3 @@ offset_bottom = 0.0800018
 text = "SETTINGS_MENU_LABEL"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[connection signal="pressed" from="Menu/SaveButton" to="." method="_on_save_button_pressed"]
-[connection signal="pressed" from="Menu/ApplyButton" to="." method="_on_apply_button_pressed"]
-[connection signal="item_selected" from="Menu/TabContainer/GAMEPLAY_TAB/VB/LanguageLine/LanguageOptionButton" to="." method="_on_language_option_button_item_selected"]
-[connection signal="item_selected" from="Menu/TabContainer/GRAPHICS_TAB/VB/ModeLine/ModeOptionButton" to="." method="_on_mode_option_button_item_selected"]
-[connection signal="item_selected" from="Menu/TabContainer/GRAPHICS_TAB/VB/SizeLine/SizeOptionButton" to="." method="_on_size_option_button_item_selected"]
-[connection signal="item_selected" from="Menu/TabContainer/GRAPHICS_TAB/VB/VsyncLine/VsyncOptionButton" to="." method="_on_vsync_option_button_item_selected"]
-[connection signal="drag_ended" from="Menu/TabContainer/AUDIO_TAB/VB/MasterLine/MasterSlider" to="." method="_on_master_slider_drag_ended"]
-[connection signal="drag_ended" from="Menu/TabContainer/AUDIO_TAB/VB/SoundLine/SoundSlider" to="." method="_on_sound_slider_drag_ended"]
-[connection signal="drag_ended" from="Menu/TabContainer/AUDIO_TAB/VB/MusicLine/MusicSlider" to="." method="_on_music_slider_drag_ended"]
-[connection signal="drag_ended" from="Menu/TabContainer/AUDIO_TAB/VB/DialogueLine/DialogueSlider" to="." method="_on_dialogue_slider_drag_ended"]

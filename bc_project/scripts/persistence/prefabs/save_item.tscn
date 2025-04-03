@@ -10,11 +10,13 @@ script = ExtResource("1_o32js")
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Save Name"
+text_overrun_behavior = 1
 
 [node name="Date" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Save Date"
+text_overrun_behavior = 1
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
 initial_position = 4
@@ -27,12 +29,12 @@ initial_position = 4
 dialog_text = "SAVEFILE_DELELTE_CONFIRMATION"
 
 [node name="Button" type="Button" parent="."]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "REWRITE_BUTTON"
 
 [node name="DeleteButton" type="Button" parent="."]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "DELETE_BUTTON"
 
