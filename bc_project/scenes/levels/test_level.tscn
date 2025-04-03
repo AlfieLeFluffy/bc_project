@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=4 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=78 format=4 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Script" uid="uid://cmlgg6dxih77f" path="res://scenes/levels/level_controller.gd" id="1_t01cb"]
 [ext_resource type="PackedScene" uid="uid://ddrrl1gryxkup" path="res://scenes/characters/player/player_character.tscn" id="1_wpgi4"]
@@ -34,10 +34,11 @@
 [ext_resource type="Resource" uid="uid://dvnwynrbbuwdw" path="res://dialogs/test_area_trigger.dialogue" id="28_dgc65"]
 [ext_resource type="PackedScene" uid="uid://532uypmhsvde" path="res://scenes/elevators/elevator.tscn" id="29_0nxvq"]
 [ext_resource type="Script" uid="uid://bm15idovcdu8y" path="res://scenes/elevators/elevator_resource.gd" id="30_1u7m5"]
-[ext_resource type="PackedScene" uid="uid://dhfcdpaldvsbm" path="res://scenes/triggers/versions/area_trigger_game_over.tscn" id="31_dgc65"]
 [ext_resource type="PackedScene" uid="uid://cs1y6cfdd6whw" path="res://scenes/interactive/combination/version/small_safe.tscn" id="33_mrmmo"]
 [ext_resource type="Script" uid="uid://dumlknmceceuw" path="res://scenes/interactive/combination/resource/combination_lock_resource.gd" id="33_y0fbb"]
 [ext_resource type="Script" uid="uid://dpd17umyvuqu3" path="res://scenes/triggers/versions/screen_text_trigger_area.gd" id="35_6g246"]
+[ext_resource type="Script" uid="uid://bo8kxkmnuh65x" path="res://scenes/triggers/versions/area_trigger_autosave.gd" id="36_rnt0l"]
+[ext_resource type="Script" uid="uid://bi25vgavxjlp6" path="res://scenes/triggers/versions/area_trigger_game_over.gd" id="38_6g246"]
 
 [sub_resource type="Resource" id="Resource_rnt0l"]
 script = ExtResource("5_y0fbb")
@@ -254,6 +255,9 @@ size = Vector2(40, 40)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6g246"]
 size = Vector2(40, 40)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ve23l"]
+size = Vector2(40, 40)
+
 [sub_resource type="Resource" id="Resource_y80st"]
 script = ExtResource("5_y0fbb")
 name = "002"
@@ -324,7 +328,7 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/row = -1
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5vl2c"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rnt0l"]
 
 [node name="testScene" type="Node2D"]
 script = ExtResource("1_t01cb")
@@ -523,6 +527,12 @@ Baf"
 collisionShape = SubResource("RectangleShape2D_6g246")
 metadata/_custom_type_script = "uid://dpd17umyvuqu3"
 
+[node name="AreaTriggerAutoSave" type="Area2D" parent="Timeline001/Triggers"]
+position = Vector2(556, 476)
+script = ExtResource("36_rnt0l")
+collisionShape = SubResource("RectangleShape2D_ve23l")
+metadata/_custom_type_script = "uid://bo8kxkmnuh65x"
+
 [node name="Timeline002" type="Node2D" parent="."]
 position = Vector2(2000, 0)
 script = ExtResource("4_y0fbb")
@@ -633,12 +643,14 @@ metadata/_custom_type_script = "uid://wob4dkroqdok"
 
 [node name="player" parent="." groups=["CameraFocus"] instance=ExtResource("1_wpgi4")]
 z_index = 1
-position = Vector2(72, 301)
+position = Vector2(416, 476)
 
-[node name="WorldBorderKillBox" parent="." instance=ExtResource("31_dgc65")]
+[node name="AreaTriggerGameOver" type="Area2D" parent="."]
 position = Vector2(0, 1080)
+script = ExtResource("38_6g246")
 maxUses = -1
-collisionShape = SubResource("WorldBoundaryShape2D_5vl2c")
+collisionShape = SubResource("WorldBoundaryShape2D_rnt0l")
+metadata/_custom_type_script = "uid://bi25vgavxjlp6"
 
 [connection signal="area_entered" from="Timeline001/Interactive/Switches/light_switch" to="Timeline001/Interactive/Switches/light_switch" method="_on_area_entered"]
 [connection signal="area_entered" from="Timeline001/Interactive/Switches/light_switch" to="Timeline001/Interactive/Switches/light_switch/InteractiveHandler" method="_on_interactable_base_area_entered"]

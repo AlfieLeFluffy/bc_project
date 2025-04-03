@@ -2,14 +2,17 @@ extends Node
 
 #region Preloads and Constants
 const preloadPersistenceMenu = preload("res://scripts/persistence/persistence_menu.tscn")
+const preloadSavingAnimation = preload("res://scripts/persistence/saving_animation.tscn")
 
 const savefileFolderPath: String = "user://saves"
+const autosaveFormat: String = "autosave_%s"
 #endregion
 
 #region Signals
 signal openPersistenceMenu(mode)
 
 signal saveGame(filename)
+signal autosaveGame()
 signal loadGame(filename)
 
 signal deleteSavefile(filename)
@@ -20,6 +23,7 @@ signal deleteProfileSavefiles(id)
 func _ready() -> void:
 	openPersistenceMenu.connect(open_persistence_menu)
 	saveGame.connect(save_game)
+	autosaveGame.connect(autosave_game)
 	loadGame.connect(load_game)
 	deleteSavefile.connect(delete_savefile)
 	deleteProfileSavefiles.connect(delete_profile_savefiles)
@@ -118,6 +122,9 @@ func load_line(safeFile, saveDirPath:String) -> Dictionary:
 
 #region Save and Load Game Methods
 func save_game(filename:String) -> void:
+	var animation: SavingAnimation = preloadSavingAnimation.instantiate()
+	get_tree().current_scene.add_child(animation)
+	
 	var folderpath: String = create_profile_savefile_folderpath(GameController.profile.id)
 	var saveDirPath = folderpath.path_join(filename.rstrip(".sf"))
 	var safeFilePath = saveDirPath.path_join(filename.rstrip(".sf")+".sf")
@@ -145,6 +152,12 @@ func save_game(filename:String) -> void:
 			
 		# Calls for node's saving method and the stores is as a line in the savefile
 		save_line(saveFile, saveDirPath, node.saving())
+	
+	if animation:
+		animation.done = true
+
+func autosave_game() -> void:
+	save_game(autosaveFormat % [Time.get_datetime_string_from_system().replace("-","_").replace(":","_")])
 
 func load_game(filename:String) -> void:
 	var folderpath: String = create_profile_savefile_folderpath(GameController.profile.id)

@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbqd53jnufihj"]
-
-[ext_resource type="PackedScene" uid="uid://cgnj6okm4sogh" path="res://scenes/triggers/area_trigger.tscn" id="1_vpdqi"]
-[ext_resource type="Script" uid="uid://dpd17umyvuqu3" path="res://scenes/triggers/versions/screen_text_trigger_area.gd" id="2_w6k6q"]
-
-[node name="ScreenTextTriggerArea" instance=ExtResource("1_vpdqi")]
-script = ExtResource("2_w6k6q")
-ScreenTextString = ""
-triggerObject = 1

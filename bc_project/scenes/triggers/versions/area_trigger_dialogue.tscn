@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6t6lls6leu4w"]
-
-[ext_resource type="PackedScene" uid="uid://cgnj6okm4sogh" path="res://scenes/triggers/area_trigger.tscn" id="1_x8etq"]
-[ext_resource type="Script" uid="uid://bip873am5kgyj" path="res://scenes/triggers/versions/area_trigger_dialogue.gd" id="2_t30wr"]
-
-[node name="AreaTriggerDialogue" instance=ExtResource("1_x8etq")]
-script = ExtResource("2_t30wr")
-dialogueResource = null

@@ -1,0 +1,74 @@
+[gd_scene load_steps=15 format=3 uid="uid://debkdfxk02eva"]
+
+[ext_resource type="Script" uid="uid://bacuqdldnio21" path="res://scripts/persistence/saving_animation.gd" id="1_eak8e"]
+[ext_resource type="Texture2D" uid="uid://be53rv7m5poe8" path="res://textures/ui/animations/saving_animation_frames/saving_animation1.png" id="1_jns1p"]
+[ext_resource type="Texture2D" uid="uid://csn3mem1u05uj" path="res://textures/ui/animations/saving_animation_frames/saving_animation2.png" id="2_eak8e"]
+[ext_resource type="Texture2D" uid="uid://v0umukums7u5" path="res://textures/ui/animations/saving_animation_frames/saving_animation11.png" id="3_erf32"]
+[ext_resource type="Texture2D" uid="uid://dwb6q36676q0v" path="res://textures/ui/animations/saving_animation_frames/saving_animation12.png" id="4_5lrs2"]
+[ext_resource type="Texture2D" uid="uid://cju4gs137vov7" path="res://textures/ui/animations/saving_animation_frames/saving_animation3.png" id="5_wsuuv"]
+[ext_resource type="Texture2D" uid="uid://b3lw8gryslfku" path="res://textures/ui/animations/saving_animation_frames/saving_animation4.png" id="6_0a88s"]
+[ext_resource type="Texture2D" uid="uid://dxnppnjntc6q8" path="res://textures/ui/animations/saving_animation_frames/saving_animation5.png" id="7_lumdm"]
+[ext_resource type="Texture2D" uid="uid://chpaodf3mgbhq" path="res://textures/ui/animations/saving_animation_frames/saving_animation6.png" id="8_f4cdm"]
+[ext_resource type="Texture2D" uid="uid://byxmulhqe6y0l" path="res://textures/ui/animations/saving_animation_frames/saving_animation7.png" id="9_f5mbl"]
+[ext_resource type="Texture2D" uid="uid://blw3jmqsa8or4" path="res://textures/ui/animations/saving_animation_frames/saving_animation8.png" id="10_rsrb6"]
+[ext_resource type="Texture2D" uid="uid://cng32fv0bwgbo" path="res://textures/ui/animations/saving_animation_frames/saving_animation9.png" id="11_4biei"]
+[ext_resource type="Texture2D" uid="uid://ctkglvmop20lk" path="res://textures/ui/animations/saving_animation_frames/saving_animation10.png" id="12_lf0cl"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_00rcg"]
+frames = 12
+speed_scale = 1.2
+frame_0/texture = ExtResource("1_jns1p")
+frame_0/duration = 0.4
+frame_1/texture = ExtResource("2_eak8e")
+frame_1/duration = 0.3
+frame_2/texture = ExtResource("5_wsuuv")
+frame_2/duration = 0.2
+frame_3/texture = ExtResource("6_0a88s")
+frame_3/duration = 0.2
+frame_4/texture = ExtResource("7_lumdm")
+frame_4/duration = 0.2
+frame_5/texture = ExtResource("8_f4cdm")
+frame_5/duration = 0.2
+frame_6/texture = ExtResource("9_f5mbl")
+frame_6/duration = 0.2
+frame_7/texture = ExtResource("10_rsrb6")
+frame_7/duration = 0.2
+frame_8/texture = ExtResource("11_4biei")
+frame_8/duration = 0.2
+frame_9/texture = ExtResource("12_lf0cl")
+frame_9/duration = 0.3
+frame_10/texture = ExtResource("3_erf32")
+frame_10/duration = 0.4
+frame_11/texture = ExtResource("4_5lrs2")
+frame_11/duration = 0.5
+
+[node name="SavingAnimations" type="CanvasLayer"]
+layer = 128
+script = ExtResource("1_eak8e")
+
+[node name="SavingAnimation" type="Control" parent="."]
+z_index = 255
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AnimationRect" type="TextureRect" parent="SavingAnimation"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.95
+anchor_top = 0.03
+anchor_right = 0.983
+anchor_bottom = 0.089
+offset_left = -0.00012207
+offset_top = -0.400002
+offset_right = 0.639893
+offset_bottom = -0.120003
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AnimatedTexture_00rcg")

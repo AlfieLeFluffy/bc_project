@@ -8,7 +8,7 @@ class_name AreaTrigger extends Area2D
 @export var collisionShape: Shape2D
 @export_category("Trigger Flags")
 @export_flags("Entered","Exited") var triggerOn = 1
-@export_flags("Player Collision","Npc Collision") var triggerObject = 3
+@export_flags("Player Collision","Npc Collision") var triggerObject = 1
 
 var colisionShapeInstance: CollisionShape2D
 
