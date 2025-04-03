@@ -41,15 +41,15 @@ mouse_filter = 2
 
 [node name="ProfileMenu" type="VBoxContainer" parent="MainMenu/Profiles"]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -225.0
-offset_top = -150.0
-offset_right = -25.0
-offset_bottom = -14.0
+anchors_preset = -1
+anchor_left = 0.883
+anchor_top = 0.861
+anchor_right = 0.963
+anchor_bottom = 0.954
+offset_left = -0.359985
+offset_top = 0.119934
+offset_right = 46.0399
+offset_bottom = 35.6799
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.8, 0.8)
@@ -100,13 +100,15 @@ auto_height = true
 
 [node name="MainActions" type="VBoxContainer" parent="MainMenu"]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 50.0
-offset_top = -470.0
-offset_right = 300.0
-offset_bottom = -50.0
+anchors_preset = -1
+anchor_left = 0.026
+anchor_top = 0.565
+anchor_right = 0.156
+anchor_bottom = 0.954
+offset_left = 0.079998
+offset_top = -0.200012
+offset_right = 0.47998
+offset_bottom = -0.320068
 grow_vertical = 0
 alignment = 2
 
@@ -196,6 +198,7 @@ grow_horizontal = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[connection signal="focus_entered" from="MainMenu" to="MainMenu" method="_on_focus_entered"]
 [connection signal="pressed" from="MainMenu/Profiles/ProfileMenu/ChooseProfileButton" to="MainMenu" method="_on_choose_profile_button_pressed"]
 [connection signal="pressed" from="MainMenu/Profiles/ProfileMenu/CreateProfileButton" to="MainMenu" method="_on_create_profile_button_pressed"]
 [connection signal="item_clicked" from="MainMenu/Profiles/ProfilesList" to="MainMenu" method="_on_profiles_list_item_clicked"]

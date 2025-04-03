@@ -44,6 +44,8 @@ func _ready() -> void:
 	## Checks for existence of a [PopupMenuController] parent
 	popupMenu = PopupMenuController.get_popup_menu(self)
 	
+	$CancelButton.grab_focus()
+	
 	## Setup of the menu broken down into individual steps
 	setup_ui()
 	setup_base_items()
@@ -70,7 +72,6 @@ func _unhandled_input(event: InputEvent) -> void:
 #region Menu Methods
 ## Method for closing the menu. Release any existing focus, checks for existing [PopupMenuController] parent, otherwise queues free.
 func close_menu() -> void:
-	GameController.release_focus()
 	if popupMenu:
 		popupMenu.popdownKill.emit()
 	else:

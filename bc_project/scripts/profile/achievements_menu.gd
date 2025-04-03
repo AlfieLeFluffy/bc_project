@@ -11,6 +11,8 @@ var lines: Dictionary
 func _ready() -> void:
 	popupMenu = PopupMenuController.get_popup_menu(self)
 	
+	%CancelButton.grab_focus()
+	
 	setup_menu()
 
 func setup_menu():
@@ -31,6 +33,10 @@ func setup_menu():
 	
 	for notattained in all.values():
 		add_line(notattained, all, false)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_menu"):
+		close_menu()
 	
 func add_line(type: AchievementsResource.type, all: Dictionary, attained:bool) -> void:
 	var line = preloadAchievementLine.instantiate()

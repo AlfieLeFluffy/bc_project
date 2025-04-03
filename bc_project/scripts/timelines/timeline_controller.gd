@@ -36,7 +36,6 @@ func shift() -> void:
 	if not timelinesDictionary.has(current.resource.next):
 		return
 	
-	await get_tree().create_timer(Global.TIMELINE_SHIFT_OFFSET).timeout
 	if timelineForesee:
 		timelineForesee.queue_free()
 	var destination: Timeline = timelinesDictionary[current.resource.next]

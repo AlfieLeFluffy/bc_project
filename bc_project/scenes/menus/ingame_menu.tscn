@@ -37,9 +37,9 @@ layout_mode = 2
 alignment = 1
 
 [node name="ContinueButton" type="TextureButton" parent="MenuContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
-focus_mode = 0
 texture_normal = ExtResource("2_21epg")
 texture_pressed = ExtResource("3_4cisa")
 texture_hover = ExtResource("4_ah7om")
@@ -63,7 +63,6 @@ vertical_alignment = 1
 [node name="SaveButton" type="TextureButton" parent="MenuContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
-focus_mode = 0
 texture_normal = ExtResource("2_21epg")
 texture_pressed = ExtResource("3_4cisa")
 texture_hover = ExtResource("4_ah7om")
@@ -87,7 +86,6 @@ vertical_alignment = 1
 [node name="LoadButton" type="TextureButton" parent="MenuContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
-focus_mode = 0
 texture_normal = ExtResource("2_21epg")
 texture_pressed = ExtResource("3_4cisa")
 texture_hover = ExtResource("4_ah7om")
@@ -111,7 +109,6 @@ vertical_alignment = 1
 [node name="SettingsButton" type="TextureButton" parent="MenuContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
-focus_mode = 0
 texture_normal = ExtResource("2_21epg")
 texture_pressed = ExtResource("3_4cisa")
 texture_hover = ExtResource("4_ah7om")
@@ -135,7 +132,6 @@ vertical_alignment = 1
 [node name="QuitButton" type="TextureButton" parent="MenuContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
-focus_mode = 0
 texture_normal = ExtResource("2_21epg")
 texture_pressed = ExtResource("3_4cisa")
 texture_hover = ExtResource("4_ah7om")

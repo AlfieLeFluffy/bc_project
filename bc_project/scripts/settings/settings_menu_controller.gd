@@ -24,6 +24,8 @@ var popupMenu: PopupMenuController
 func _ready() -> void:
 	popupMenu = PopupMenuController.get_popup_menu(self)
 	
+	%SaveButton.grab_focus()
+	
 	setup_gameplay()
 	setup_graphics()
 	setup_sound()
@@ -38,7 +40,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		close_menu()
 
 func close_menu() -> void:
-	GameController.release_focus()
 	if popupMenu:
 		popupMenu.popdownKill.emit()
 	else:

@@ -4,6 +4,8 @@ extends CanvasLayer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	visible = false
+	
+	%ContinueButton.grab_focus()
 
 func _input(event: InputEvent) -> void:
 	pass

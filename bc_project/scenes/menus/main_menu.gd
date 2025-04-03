@@ -13,6 +13,8 @@ func _ready() -> void:
 	GameController.profileLoaded.connect(setup_profile)
 	SettingsController.retranslate.connect(setup_profile)
 	
+	%TestSceneButton.grab_focus()
+	
 	setup_profile()
 
 #region Main Actions Managment and Signal Methods
@@ -113,3 +115,7 @@ func _on_profile_creation_line_edit_text_submitted(new_text: String) -> void:
 	%ProfileCreationConfirmation.confirmed.emit()
 	%ProfileCreationConfirmation.hide()
 #endregion
+
+
+func _on_focus_entered() -> void:
+	%TestSceneButton.grab_focus()
