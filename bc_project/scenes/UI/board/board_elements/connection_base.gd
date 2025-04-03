@@ -24,16 +24,17 @@ func _process(delta: float) -> void:
 		set_element(1,Global.board_elements[resource.endId])
 
 func _physics_process(delta: float) -> void:
-	if is_instance_valid(resource.start) and is_instance_valid(resource.end):
-		position = (resource.start.position).lerp(resource.end.position, 0.5); 
-	elif is_instance_valid(resource.start):
-		position = resource.start.position
-	
+	position = resource.start.position
 	if resource.start and resource.end:
-		%Line.set_point_position(1,self.position-resource.start.position-Global.BOARD_LINE_OFFSET)
-		%Line.set_point_position(0,self.position-resource.end.position-Global.BOARD_LINE_OFFSET)
+		var endPosition = resource.end.position - self.position + get_edge_position_element_to_element(resource.end,resource.start)
+		var startPosition = resource.start.position - self.position + get_edge_position_element_to_element(resource.start,resource.end)
+		
+		%ConnectionLabel.position = startPosition.lerp(endPosition, 0.5) - %ConnectionLabel.size/2
+		%Line.set_point_position(1,startPosition)
+		%Line.set_point_position(0,endPosition)
+		
 	elif resource.start:
-		%Line.set_point_position(0,self.position-resource.start.position-Global.BOARD_LINE_OFFSET)
+		%Line.set_point_position(0, resource.start.size / 2)
 		%Line.set_point_position(1,self.get_local_mouse_position())
 #endregion
 
@@ -46,11 +47,11 @@ func set_element(idx:int,element:ElementBase) -> void:
 		1:
 			resource.end = element
 			resource.endId = element.resource.id 
-			%Label.visible = true
-	%Line.gradient.colors[idx] = element.resource.color
+			%ConnectionLabel.visible = true
+	%Line.gradient.colors[idx] = Global.color_TextHighlight.lerp(element.resource.color,0.3)
 
 func toggle_description() -> void:
-	%Label.visible = not %Label.visible
+	%ConnectionLabel.visible = not %ConnectionLabel.visible
 
 func set_description(text) -> void:
 	resource.description = text
@@ -58,6 +59,13 @@ func set_description(text) -> void:
 
 func retranslate_description() -> void:
 	%Label.text = tr(resource.description)
+
+func get_edge_position_element_to_element(start: ElementBase, end: ElementBase) -> Vector2:
+	var output: Vector2 = Vector2(0,0)
+	var vector: Vector2 = (end.position + (end.size / 2)) - (start.position + (start.size / 2))
+	output.x = (vector.x + (start.size.x / 2))
+	output.y = (vector.y + (start.size.y / 2))
+	return output
 #endregion
 
 #region Signal Methods

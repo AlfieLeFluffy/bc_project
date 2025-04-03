@@ -1,77 +1,39 @@
-[gd_scene load_steps=14 format=3 uid="uid://cxwyhyyqufru4"]
+[gd_scene load_steps=6 format=3 uid="uid://cxwyhyyqufru4"]
 
 [ext_resource type="Script" uid="uid://bu2tskkmlia67" path="res://scenes/UI/board/board_elements/element_base.gd" id="1_4ifnd"]
 [ext_resource type="Theme" uid="uid://ch43e5d5tnkt5" path="res://settings/board_element_theme.tres" id="2_0w3jl"]
-[ext_resource type="Texture2D" uid="uid://b1cedp00xgli0" path="res://textures/symbols/center.png" id="3_t42qt"]
+[ext_resource type="Texture2D" uid="uid://bumyc8cysxeh8" path="res://textures/ui/board/board_element_background_ninepatch.png" id="3_7fry0"]
 [ext_resource type="Theme" uid="uid://cfxllwqxrt7me" path="res://settings/close_button_theme.tres" id="3_w4uih"]
 [ext_resource type="Texture2D" uid="uid://bmif84bbjv732" path="res://textures/symbols/close.png" id="4_t42qt"]
 
-[sub_resource type="Gradient" id="Gradient_w4uih"]
-offsets = PackedFloat32Array(0.00561798, 1)
-colors = PackedColorArray(0.22, 0.22, 0.22, 0.784314, 0.201527, 0.201527, 0.201527, 0.784314)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_t42qt"]
-gradient = SubResource("Gradient_w4uih")
-
-[sub_resource type="Gradient" id="Gradient_t42qt"]
-colors = PackedColorArray(0.3, 0.3, 0.3, 0.784314, 0.35, 0.35, 0.35, 0.784314)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_7fry0"]
-gradient = SubResource("Gradient_t42qt")
-
-[sub_resource type="Gradient" id="Gradient_7fry0"]
-colors = PackedColorArray(0.219608, 0.219608, 0.219608, 0.784314, 0.219608, 0.219608, 0.219608, 0.784314)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_71u52"]
-gradient = SubResource("Gradient_7fry0")
-
-[sub_resource type="Gradient" id="Gradient_71u52"]
-resource_local_to_scene = true
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_vlpwe"]
-resource_local_to_scene = true
-gradient = SubResource("Gradient_71u52")
-width = 12
-height = 12
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[node name="ElementBase" type="Control" groups=["Persistent"]]
+[node name="ElementBase" type="MarginContainer" groups=["Persistent"]]
 z_index = 1
+clip_contents = true
 custom_minimum_size = Vector2(32, 32)
-layout_mode = 3
-anchors_preset = 0
-offset_right = 272.0
-offset_bottom = 68.0
+anchors_preset = -1
+anchor_right = 0.142
+anchor_bottom = 0.063
+offset_right = -2.64001
+offset_bottom = 1.96
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("2_0w3jl")
 script = ExtResource("1_4ifnd")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-offset_right = 272.0
-offset_bottom = 68.0
+layout_mode = 2
 
-[node name="Texture" type="VBoxContainer" parent="MarginContainer"]
+[node name="Texture" type="NinePatchRect" parent="MarginContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-
-[node name="HeaderTexture" type="TextureRect" parent="MarginContainer/Texture"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-texture = SubResource("GradientTexture1D_t42qt")
-
-[node name="ContentTexture" type="TextureRect" parent="MarginContainer/Texture"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-size_flags_vertical = 3
-texture = SubResource("GradientTexture1D_7fry0")
-
-[node name="FooterTexture" type="TextureRect" parent="MarginContainer/Texture"]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-texture = SubResource("GradientTexture1D_71u52")
+texture = ExtResource("3_7fry0")
+patch_margin_left = 16
+patch_margin_top = 32
+patch_margin_right = 16
+patch_margin_bottom = 16
 
 [node name="Stack" type="VBoxContainer" parent="MarginContainer"]
 unique_name_in_owner = true
@@ -80,31 +42,8 @@ layout_mode = 2
 
 [node name="Header" type="HBoxContainer" parent="MarginContainer/Stack"]
 unique_name_in_owner = true
-z_index = 10
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-alignment = 1
-
-[node name="PointTexture" type="TextureRect" parent="MarginContainer/Stack/Header"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-texture = ExtResource("3_t42qt")
-
-[node name="CenterColor" type="TextureRect" parent="MarginContainer/Stack/Header/PointTexture"]
-unique_name_in_owner = true
-z_index = -1
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.062
-anchor_top = 0.042
-anchor_right = 0.937
-anchor_bottom = 0.937
-offset_left = 0.0159999
-offset_top = 0.656
-offset_right = 0.0159988
-offset_bottom = 0.0159988
-texture = SubResource("GradientTexture2D_vlpwe")
-expand_mode = 1
 
 [node name="ElementLabel" type="Label" parent="MarginContainer/Stack/Header"]
 unique_name_in_owner = true
@@ -116,11 +55,15 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DeleteButton" type="Button" parent="MarginContainer/Stack/Header"]
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(28, 28)
 layout_mode = 2
 theme = ExtResource("3_w4uih")
 icon = ExtResource("4_t42qt")
+icon_alignment = 1
 expand_icon = true
+
+[node name="Buffer" type="Control" parent="MarginContainer/Stack/Header"]
+layout_mode = 2
 
 [node name="Footer" type="HBoxContainer" parent="MarginContainer/Stack"]
 custom_minimum_size = Vector2(24, 24)

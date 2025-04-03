@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjjxv3j838ah6"
-path="res://.godot/imported/board_tabUI.png-fa9abcb571b342ccb8878340ab600bfc.ctex"
+uid="uid://defe8iqk81l0f"
+path="res://.godot/imported/detective_board_background_ninepatch.png-efd8a70b38fad90c427c79c1e3508c54.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/ui/overlay/board_tabUI.png"
-dest_files=["res://.godot/imported/board_tabUI.png-fa9abcb571b342ccb8878340ab600bfc.ctex"]
+source_file="res://textures/ui/board/detective_board_background_ninepatch.png"
+dest_files=["res://.godot/imported/detective_board_background_ninepatch.png-efd8a70b38fad90c427c79c1e3508c54.ctex"]
 
 [params]
 

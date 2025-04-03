@@ -1,10 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bt27y2pw7u6a7"]
+[gd_scene load_steps=4 format=3 uid="uid://bt27y2pw7u6a7"]
 
 [ext_resource type="Script" uid="uid://bw57ivxo0xa62" path="res://scenes/UI/board/board_elements/connection_base.gd" id="1_wd7yk"]
+[ext_resource type="Texture2D" uid="uid://tmcvq7t25mp" path="res://textures/ui/board/board_connection_background_ninepatch.png" id="2_i4s8x"]
 
 [sub_resource type="Gradient" id="Gradient_2ewxf"]
 resource_local_to_scene = true
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+colors = PackedColorArray(0.635294, 0.921569, 0.980392, 1, 0.635294, 0.921569, 0.980392, 1)
 
 [node name="ConnectionBase" type="Control" groups=["Persistent"]]
 custom_minimum_size = Vector2(125, 30)
@@ -27,20 +28,50 @@ width = 3.0
 default_color = Color(1, 1, 1, 0)
 gradient = SubResource("Gradient_2ewxf")
 
-[node name="HBox" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="HBox"]
+[node name="ConnectionLabel" type="MarginContainer" parent="."]
 unique_name_in_owner = true
 visible = false
+z_index = 5
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.04
+anchor_right = 0.2
+anchor_bottom = 1.0
+offset_left = 67.5
+offset_top = 40.0
+offset_right = 77.5
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="ConnectionLabel"]
 layout_mode = 2
-text = "TestLine"
+texture = ExtResource("2_i4s8x")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="ConnectionLabel"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 0
+
+[node name="Label" type="RichTextLabel" parent="ConnectionLabel/MarginContainer"]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 2
+bbcode_enabled = true
+text = "null"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

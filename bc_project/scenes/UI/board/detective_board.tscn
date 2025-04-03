@@ -1,78 +1,94 @@
-[gd_scene load_steps=20 format=3 uid="uid://c73m21uddf5ye"]
+[gd_scene load_steps=16 format=3 uid="uid://c73m21uddf5ye"]
 
 [ext_resource type="Script" uid="uid://cbq3jb38hm50o" path="res://scenes/UI/board/board_controler.gd" id="1_hmund"]
 [ext_resource type="PackedScene" uid="uid://bcdby6svlp0fj" path="res://scenes/UI/backgrounds/fade_background.tscn" id="2_jxns0"]
+[ext_resource type="Script" uid="uid://dwlbgegveoyo0" path="res://scenes/cameraControls/camera_zoom.gd" id="2_ssjns"]
 [ext_resource type="Script" uid="uid://dsqxah3531rjv" path="res://scenes/UI/board/board_movement.gd" id="3_myonu"]
-[ext_resource type="Texture2D" uid="uid://cwqhqr5tnxgpm" path="res://textures/ui/board/board_background_UI.png" id="4_l2w5m"]
+[ext_resource type="Texture2D" uid="uid://ov52sf3gkbgu" path="res://textures/backgrounds/detective_board_background_ninepatch.png" id="3_oylrx"]
 [ext_resource type="Script" uid="uid://dvh43md5q2nmy" path="res://scenes/UI/board/element_controller.gd" id="6_mvk05"]
+[ext_resource type="Texture2D" uid="uid://c5hefu3y1csgu" path="res://textures/ui/board/board_background.png" id="6_oylrx"]
 [ext_resource type="Script" uid="uid://cjt28j8mp3x8r" path="res://scenes/UI/board/connection_controller.gd" id="7_jjw5p"]
-[ext_resource type="PackedScene" uid="uid://c3cr13ksd4qam" path="res://scenes/UI/buttons/button_symbol_plus.tscn" id="8_7p7h1"]
-[ext_resource type="Script" uid="uid://ddprgewir1q4l" path="res://scenes/UI/buttons/create_note_button.gd" id="9_co2af"]
-[ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/test_font.otf" id="10_1gtg5"]
+[ext_resource type="Texture2D" uid="uid://c42n2b2rvmi26" path="res://textures/backgrounds/detective_board_background_ninepatch_empty.png" id="9_lwc1k"]
+[ext_resource type="Texture2D" uid="uid://cxrko8ebkgmti" path="res://textures/ui/board/board_label_background_ninepatch.png" id="10_c77tf"]
 
-[sub_resource type="Shader" id="Shader_kj08y"]
+[sub_resource type="Theme" id="Theme_nx2o1"]
+MarginContainer/constants/margin_bottom = 50
+MarginContainer/constants/margin_left = 50
+MarginContainer/constants/margin_right = 50
+MarginContainer/constants/margin_top = 50
+
+[sub_resource type="Shader" id="Shader_oylrx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ja2cj"]
 render_priority = 0
-shader = SubResource("Shader_kj08y")
+shader = SubResource("Shader_oylrx")
 
-[sub_resource type="Gradient" id="Gradient_ffl47"]
-offsets = PackedFloat32Array(0.420091, 0.812785, 1)
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.236344, 0, 0, 0, 0.6)
+[sub_resource type="Gradient" id="Gradient_lwc1k"]
+offsets = PackedFloat32Array(0, 0.504348, 0.626087)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.215686, 0, 0, 0, 0.313726)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_5jfcx"]
-gradient = SubResource("Gradient_ffl47")
-width = 255
-height = 255
+gradient = SubResource("Gradient_lwc1k")
+width = 512
+height = 512
 fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="Gradient" id="Gradient_rfis8"]
-offsets = PackedFloat32Array(0.491979, 1)
-colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_b8f32"]
-gradient = SubResource("Gradient_rfis8")
-width = 16
-height = 16
-fill = 1
-fill_from = Vector2(0.512821, 0.495726)
-
-[sub_resource type="Gradient" id="Gradient_mfdub"]
-offsets = PackedFloat32Array(0.465241, 1)
-colors = PackedColorArray(3.27289e-06, 0.656007, 0.950405, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8n1dx"]
-gradient = SubResource("Gradient_mfdub")
-width = 16
-height = 16
-fill = 1
-fill_from = Vector2(0.487179, 0.491453)
-
-[sub_resource type="Gradient" id="Gradient_1jnkq"]
-offsets = PackedFloat32Array(0.593583, 1)
-colors = PackedColorArray(0.187074, 0.732006, 3.85046e-07, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_1iujs"]
-gradient = SubResource("Gradient_1jnkq")
-width = 16
-height = 16
-fill = 1
-fill_from = Vector2(0.5, 0.504274)
+fill_from = Vector2(0.5, 0.4)
+fill_to = Vector2(0.5, 1)
 
 [node name="DetectiveBoardMenu" type="CanvasLayer"]
 script = ExtResource("1_hmund")
 
 [node name="FadeBackground" parent="." instance=ExtResource("2_jxns0")]
 
-[node name="BoardControler" type="Control" parent="."]
+[node name="BoardFraming" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_nx2o1")
+
+[node name="NinePatchClip" type="NinePatchRect" parent="BoardFraming"]
+clip_children = 2
+clip_contents = true
+layout_mode = 2
+texture = ExtResource("3_oylrx")
+patch_margin_left = 48
+patch_margin_top = 48
+patch_margin_right = 48
+patch_margin_bottom = 48
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="BoardFraming/NinePatchClip"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="BoardFraming/NinePatchClip/SubViewportContainer"]
+unique_name_in_owner = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1820, 980)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="BoardFraming/NinePatchClip/SubViewportContainer/SubViewport"]
+position = Vector2(960, 540)
+script = ExtResource("2_ssjns")
+minZoom = Vector2(0.5, 0.5)
+maxZoom = Vector2(1.5, 1.5)
+
+[node name="BoardControler" type="Control" parent="BoardFraming/NinePatchClip/SubViewportContainer/SubViewport"]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 1
 script = ExtResource("3_myonu")
 metadata/TextureSize = Vector2(1200, 800)
 
-[node name="BoardBackground" type="TextureRect" parent="BoardControler"]
+[node name="BoardBackground" type="TextureRect" parent="BoardFraming/NinePatchClip/SubViewportContainer/SubViewport/BoardControler"]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_ja2cj")
 layout_mode = 1
 anchors_preset = 15
@@ -83,85 +99,83 @@ offset_bottom = 2160.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 6
-texture = ExtResource("4_l2w5m")
+texture = ExtResource("6_oylrx")
 stretch_mode = 1
 
-[node name="BorderShadow" type="TextureRect" parent="BoardControler/BoardBackground"]
+[node name="BorderShadow" type="TextureRect" parent="BoardFraming/NinePatchClip/SubViewportContainer/SubViewport/BoardControler/BoardBackground"]
 modulate = Color(0, 0, 0, 0.92549)
-layout_mode = 0
-offset_right = 3840.0
-offset_bottom = 2160.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1474.0
+offset_top = -943.0
+offset_right = 2366.0
+offset_bottom = 1217.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = SubResource("GradientTexture2D_5jfcx")
 
-[node name="ElementController" type="Node" parent="BoardControler"]
+[node name="BoardBackground" type="TextureRect" parent="BoardFraming/NinePatchClip/SubViewportContainer/SubViewport/BoardControler/BoardBackground"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1474.0
+offset_top = -943.0
+offset_right = 2366.0
+offset_bottom = 1217.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 6
+texture = ExtResource("6_oylrx")
+stretch_mode = 1
+
+[node name="ElementController" type="Node" parent="BoardFraming/NinePatchClip/SubViewportContainer/SubViewport/BoardControler"]
 script = ExtResource("6_mvk05")
 
-[node name="ConnectionController" type="Node" parent="BoardControler"]
+[node name="ConnectionController" type="Node" parent="BoardFraming/NinePatchClip/SubViewportContainer/SubViewport/BoardControler"]
 script = ExtResource("7_jjw5p")
 
-[node name="ButtonContainer" type="MarginContainer" parent="."]
-visible = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -45.0
-offset_right = 45.0
-offset_bottom = 90.0
-grow_horizontal = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
-
-[node name="CreateNoteButton" parent="ButtonContainer" instance=ExtResource("8_7p7h1")]
+[node name="NinePatchFrame" type="NinePatchRect" parent="BoardFraming"]
+clip_children = 2
+clip_contents = true
 layout_mode = 2
-script = ExtResource("9_co2af")
+texture = ExtResource("9_lwc1k")
+patch_margin_left = 48
+patch_margin_top = 48
+patch_margin_right = 48
+patch_margin_bottom = 48
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ButtonContainer/CreateNoteButton"]
-visible = false
-layout_mode = 0
-offset_left = -53.0
-offset_top = 40.0
-offset_right = 93.0
-offset_bottom = 74.0
-theme_override_fonts/normal_font = ExtResource("10_1gtg5")
-theme_override_font_sizes/normal_font_size = 32
-bbcode_enabled = true
-text = "[center] Create note"
-
-[node name="ColorSetterContainer" type="MarginContainer" parent="."]
-visible = false
-anchors_preset = 2
-anchor_top = 1.0
+[node name="DetectiveBoardLabel" type="MarginContainer" parent="."]
+anchors_preset = -1
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -81.0
-offset_right = 203.0
-grow_vertical = 0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_left = 35
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 35
+offset_left = 93.0
+offset_top = 8.0
+offset_right = -1779.0
+offset_bottom = -1024.0
 
-[node name="ColorPicker" type="OptionButton" parent="ColorSetterContainer"]
+[node name="NinePatchRect" type="NinePatchRect" parent="DetectiveBoardLabel"]
 layout_mode = 2
-focus_mode = 0
-selected = 0
-item_count = 3
-popup/item_0/text = "Red"
-popup/item_0/icon = SubResource("GradientTexture2D_b8f32")
-popup/item_0/id = 0
-popup/item_1/text = "Green"
-popup/item_1/icon = SubResource("GradientTexture2D_8n1dx")
-popup/item_1/id = 1
-popup/item_2/text = "Blue"
-popup/item_2/icon = SubResource("GradientTexture2D_1iujs")
-popup/item_2/id = 2
+texture = ExtResource("10_c77tf")
+patch_margin_left = 16
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 16
 
-[connection signal="mouse_entered" from="ButtonContainer/CreateNoteButton" to="ButtonContainer/CreateNoteButton" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="ButtonContainer/CreateNoteButton" to="ButtonContainer/CreateNoteButton" method="_on_mouse_exited"]
-[connection signal="pressed" from="ButtonContainer/CreateNoteButton" to="BoardControler/ElementController" method="_on_button_symbol_plus_pressed"]
-[connection signal="item_selected" from="ColorSetterContainer/ColorPicker" to="BoardControler/ConnectionController" method="_on_color_picker_item_selected"]
+[node name="TextAlign" type="MarginContainer" parent="DetectiveBoardLabel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 0
+
+[node name="DetectiveBoardLabelText" type="RichTextLabel" parent="DetectiveBoardLabel/TextAlign"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=32]DETECTIVE_BOARD_LABEL"
+fit_content = true
+autowrap_mode = 0

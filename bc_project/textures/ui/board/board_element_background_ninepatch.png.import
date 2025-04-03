@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c73e8062ccnlk"
-path="res://.godot/imported/board_item_note_UI.png-c43940313e0660ae9938cb146f4ccda9.ctex"
+uid="uid://bumyc8cysxeh8"
+path="res://.godot/imported/board_element_background_ninepatch.png-a79333311ca146e1e4b0eb832f856214.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/ui/board/board_item_note_UI.png"
-dest_files=["res://.godot/imported/board_item_note_UI.png-c43940313e0660ae9938cb146f4ccda9.ctex"]
+source_file="res://textures/ui/board/board_element_background_ninepatch.png"
+dest_files=["res://.godot/imported/board_element_background_ninepatch.png-a79333311ca146e1e4b0eb832f856214.ctex"]
 
 [params]
 

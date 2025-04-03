@@ -622,7 +622,7 @@ z_index = 1
 position = Vector2(72, 296)
 
 [node name="WorldBorderKillBox" parent="." instance=ExtResource("31_dgc65")]
-position = Vector2(0, 700)
+position = Vector2(0, 1080)
 maxUses = -1
 collisionShape = SubResource("WorldBoundaryShape2D_5vl2c")
 

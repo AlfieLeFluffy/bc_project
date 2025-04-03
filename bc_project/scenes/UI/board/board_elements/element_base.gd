@@ -1,4 +1,4 @@
-class_name ElementBase extends Control
+class_name ElementBase extends MarginContainer
 
 #region Varibles
 var resource: ElementResource
@@ -19,7 +19,7 @@ func _ready() -> void:
 		name = resource.id
 		%ElementLabel.text = "%s : %s" % [tr(resource.name), resource.timeline]
 		%ElementTypeLabel.text = ElementResource.elementType.keys()[resource.type]
-		%CenterColor.texture.gradient.colors[0] = resource.color
+		%Texture.modulate = %Texture.modulate.lerp(resource.color,0.2)
 		_setup_element()
 
 func _setup_element() -> void:
