@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://cssvhdqn25b4v" path="res://textures/backgrounds/combination_lock_mechanism_background.png" id="2_hdd3l"]
 
 [sub_resource type="Theme" id="Theme_aad5p"]
-MarginContainer/constants/margin_bottom = 10
-MarginContainer/constants/margin_left = 10
-MarginContainer/constants/margin_right = 10
-MarginContainer/constants/margin_top = 10
+MarginContainer/constants/margin_bottom = 25
+MarginContainer/constants/margin_left = 25
+MarginContainer/constants/margin_right = 25
+MarginContainer/constants/margin_top = 25
 
 [sub_resource type="Gradient" id="Gradient_hdd3l"]
 offsets = PackedFloat32Array(0.173913, 1)
@@ -76,10 +76,10 @@ grow_vertical = 2
 [node name="MachnismBackground" type="NinePatchRect" parent="Controller/Lock/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("2_hdd3l")
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
+patch_margin_left = 19
+patch_margin_top = 19
+patch_margin_right = 19
+patch_margin_bottom = 19
 
 [node name="MarginContainer" type="MarginContainer" parent="Controller/Lock/MarginContainer"]
 layout_mode = 2
