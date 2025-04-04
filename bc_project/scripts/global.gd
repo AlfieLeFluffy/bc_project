@@ -51,6 +51,7 @@ const color_White: Color = Color("e1f6fa")
 const color_TextBright: Color = Color("a2ebfa")
 const color_TextHighlight: Color = Color("5fcfe6")
 const color_Highlight: Color = Color("b334a4")
+const color_MediumBackground: Color = Color("373747")
 const color_DarkBackground: Color = Color("2c2c39")
 #endregion
 

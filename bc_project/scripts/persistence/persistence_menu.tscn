@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmukbxm42112v"]
+[gd_scene load_steps=5 format=3 uid="uid://bmukbxm42112v"]
 
 [ext_resource type="Script" uid="uid://338f8llylvby" path="res://scripts/persistence/persistence_menu.gd" id="1_re8o2"]
+[ext_resource type="Theme" uid="uid://qd54fsrw70mj" path="res://settings/tab_container_theme.tres" id="3_67567"]
+[ext_resource type="Theme" uid="uid://bqtjul82stgbk" path="res://settings/button_theme.tres" id="3_ccj3h"]
 [ext_resource type="Theme" uid="uid://d2b8574nrw82u" path="res://settings/persistence_menu_theme.tres" id="3_l1glr"]
 
 [node name="PersistenceMenu" type="Control"]
@@ -13,17 +15,33 @@ grow_vertical = 2
 theme = ExtResource("3_l1glr")
 script = ExtResource("1_re8o2")
 
-[node name="Grid" type="GridContainer" parent="."]
+[node name="TabContainer" type="TabContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.075
 anchor_right = 1.0
 anchor_bottom = 0.926
-offset_top = -1.0
 offset_bottom = -0.0800781
+theme = ExtResource("3_67567")
+tab_alignment = 1
+current_tab = 0
+
+[node name="SAVE_MENU_LABEL" type="TabBar" parent="TabContainer"]
+layout_mode = 2
+tab_alignment = 1
+metadata/_tab_index = 0
+
+[node name="Grid" type="GridContainer" parent="TabContainer/SAVE_MENU_LABEL"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.051
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.0620041
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 2
 
 [node name="CancelButton" type="Button" parent="."]
 layout_mode = 1
@@ -34,17 +52,7 @@ anchor_bottom = 1.0
 offset_top = -0.0800781
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_ccj3h")
 text = "CANCEL_BUTTON"
-
-[node name="MenuLabel" type="Label" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.074
-offset_bottom = 0.0800018
-text = "SAVE_MENU_LABEL"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [connection signal="pressed" from="CancelButton" to="." method="_on_cancel_button_pressed"]

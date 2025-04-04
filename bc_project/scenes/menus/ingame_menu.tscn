@@ -1,12 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://fbx8e7x0hb"]
+[gd_scene load_steps=5 format=3 uid="uid://fbx8e7x0hb"]
 
 [ext_resource type="Script" uid="uid://cu7vi7tu2ob4j" path="res://scenes/menus/ingame_menu.gd" id="1_rriae"]
-[ext_resource type="Texture2D" uid="uid://dliqg0viaccks" path="res://textures/ui/button/button_normal.png" id="2_21epg"]
 [ext_resource type="PackedScene" uid="uid://bcdby6svlp0fj" path="res://scenes/UI/backgrounds/fade_background.tscn" id="2_ckiny"]
-[ext_resource type="Texture2D" uid="uid://daddylvcavti6" path="res://textures/ui/button/button_click.png" id="3_4cisa"]
-[ext_resource type="Texture2D" uid="uid://c47g2unwgbyl0" path="res://textures/ui/button/button_hover.png" id="4_ah7om"]
-[ext_resource type="Texture2D" uid="uid://cpo5dwxmo24wo" path="res://textures/ui/button/button_disabled.png" id="5_gwmlc"]
-[ext_resource type="LabelSettings" uid="uid://c2bxjbp8lpkw3" path="res://settings/ingame_menu_buttons_settings.tres" id="6_sk1el"]
+[ext_resource type="Theme" uid="uid://hj1r2r6llhmk" path="res://settings/ingame_menu_button_theme.tres" id="3_0rsoi"]
+[ext_resource type="Script" uid="uid://cv5mje71vm85n" path="res://scripts/button/stretch_button.gd" id="4_hs1qs"]
 
 [node name="ingame_menu" type="CanvasLayer"]
 layer = 90
@@ -14,143 +11,62 @@ script = ExtResource("1_rriae")
 
 [node name="FadeBackground" parent="." instance=ExtResource("2_ckiny")]
 
-[node name="MenuContainer" type="MarginContainer" parent="."]
-anchors_preset = -1
-anchor_right = 0.165
+[node name="MenuContainer" type="Control" parent="."]
+layout_mode = 3
+anchor_right = 0.992
 anchor_bottom = 1.0
-offset_right = 1603.2
+offset_right = 15.3599
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuContainer"]
 layout_mode = 2
+anchor_right = 0.132
+anchor_bottom = 1.0
+offset_right = 0.559998
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 alignment = 1
 
-[node name="ContinueButton" type="TextureButton" parent="MenuContainer/HBoxContainer/VBoxContainer"]
+[node name="ContinueButton" type="Button" parent="MenuContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
-texture_normal = ExtResource("2_21epg")
-texture_pressed = ExtResource("3_4cisa")
-texture_hover = ExtResource("4_ah7om")
-texture_disabled = ExtResource("5_gwmlc")
-texture_focused = ExtResource("4_ah7om")
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="MenuContainer/HBoxContainer/VBoxContainer/ContinueButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 4.0
-grow_horizontal = 2
-grow_vertical = 2
+theme = ExtResource("3_0rsoi")
 text = "CONTINUE_BUTTON"
-label_settings = ExtResource("6_sk1el")
-horizontal_alignment = 1
-vertical_alignment = 1
+script = ExtResource("4_hs1qs")
 
-[node name="SaveButton" type="TextureButton" parent="MenuContainer/HBoxContainer/VBoxContainer"]
+[node name="SaveButton" type="Button" parent="MenuContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
-texture_normal = ExtResource("2_21epg")
-texture_pressed = ExtResource("3_4cisa")
-texture_hover = ExtResource("4_ah7om")
-texture_disabled = ExtResource("5_gwmlc")
-texture_focused = ExtResource("4_ah7om")
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="MenuContainer/HBoxContainer/VBoxContainer/SaveButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 4.0
-grow_horizontal = 2
-grow_vertical = 2
+theme = ExtResource("3_0rsoi")
 text = "SAVE_BUTTON"
-label_settings = ExtResource("6_sk1el")
-horizontal_alignment = 1
-vertical_alignment = 1
+script = ExtResource("4_hs1qs")
 
-[node name="LoadButton" type="TextureButton" parent="MenuContainer/HBoxContainer/VBoxContainer"]
+[node name="LoadButton" type="Button" parent="MenuContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
-texture_normal = ExtResource("2_21epg")
-texture_pressed = ExtResource("3_4cisa")
-texture_hover = ExtResource("4_ah7om")
-texture_disabled = ExtResource("5_gwmlc")
-texture_focused = ExtResource("4_ah7om")
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="MenuContainer/HBoxContainer/VBoxContainer/LoadButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 4.0
-grow_horizontal = 2
-grow_vertical = 2
+theme = ExtResource("3_0rsoi")
 text = "LOAD_BUTTON"
-label_settings = ExtResource("6_sk1el")
-horizontal_alignment = 1
-vertical_alignment = 1
+script = ExtResource("4_hs1qs")
 
-[node name="SettingsButton" type="TextureButton" parent="MenuContainer/HBoxContainer/VBoxContainer"]
+[node name="SettingsButton" type="Button" parent="MenuContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
-texture_normal = ExtResource("2_21epg")
-texture_pressed = ExtResource("3_4cisa")
-texture_hover = ExtResource("4_ah7om")
-texture_disabled = ExtResource("5_gwmlc")
-texture_focused = ExtResource("4_ah7om")
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="MenuContainer/HBoxContainer/VBoxContainer/SettingsButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 4.0
-grow_horizontal = 2
-grow_vertical = 2
+theme = ExtResource("3_0rsoi")
 text = "SETTINGS_BUTTON"
-label_settings = ExtResource("6_sk1el")
-horizontal_alignment = 1
-vertical_alignment = 1
+script = ExtResource("4_hs1qs")
 
-[node name="QuitButton" type="TextureButton" parent="MenuContainer/HBoxContainer/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="MenuContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
-texture_normal = ExtResource("2_21epg")
-texture_pressed = ExtResource("3_4cisa")
-texture_hover = ExtResource("4_ah7om")
-texture_disabled = ExtResource("5_gwmlc")
-texture_focused = ExtResource("4_ah7om")
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="MenuContainer/HBoxContainer/VBoxContainer/QuitButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 4.0
-grow_horizontal = 2
-grow_vertical = 2
+theme = ExtResource("3_0rsoi")
 text = "QUIT__TO_MAIN_MENU_BUTTON"
-label_settings = ExtResource("6_sk1el")
-horizontal_alignment = 1
-vertical_alignment = 1
+script = ExtResource("4_hs1qs")
 
 [connection signal="pressed" from="MenuContainer/HBoxContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="MenuContainer/HBoxContainer/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]

@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://de2xh76moav6q"]
+[gd_scene load_steps=4 format=3 uid="uid://de2xh76moav6q"]
 
 [ext_resource type="Script" uid="uid://bh4awym0lijjs" path="res://scripts/profile/achievements_menu.gd" id="1_11rla"]
+[ext_resource type="Theme" uid="uid://bqtjul82stgbk" path="res://settings/button_theme.tres" id="2_0124g"]
+[ext_resource type="Theme" uid="uid://qd54fsrw70mj" path="res://settings/tab_container_theme.tres" id="2_j15uf"]
 
 [node name="AchievementsMenu" type="Control"]
 layout_mode = 3
@@ -19,6 +21,7 @@ anchor_bottom = 0.926
 offset_bottom = -0.0800781
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_j15uf")
 tab_alignment = 1
 current_tab = 0
 
@@ -53,6 +56,7 @@ anchor_bottom = 1.0
 offset_top = -0.0800781
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_0124g")
 text = "CANCEL_BUTTON"
 
 [node name="MenuLabel" type="Label" parent="."]

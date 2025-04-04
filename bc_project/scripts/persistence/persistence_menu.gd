@@ -85,9 +85,9 @@ func close_menu() -> void:
 func setup_ui() -> void:
 	match mode:
 		modeEnum.SAVE:
-			%MenuLabel.text = tr("SAVE_MENU_LABEL")
+			%TabContainer.get_child(0).name = tr("SAVE_MENU_LABEL")
 		modeEnum.LOAD:
-			%MenuLabel.text = tr("LOAD_MENU_LABEL")
+			%TabContainer.get_child(0).name = tr("LOAD_MENU_LABEL")
 
 ## Sets up basic list items present in a specific persistence menu type. [br]
 ## For example for a save persistence type sets up new save list item.
@@ -96,6 +96,9 @@ func setup_base_items() -> void:
 		var newSaveItem = newSaveItemPreload.instantiate()
 		newSaveItem.menuNode = self
 		%Grid.add_child(newSaveItem)
+		var separator: HSeparator = HSeparator.new()
+		separator.theme = load("res://settings/hseparator_theme.tres")
+		%Grid.add_child(separator)
 
 ## Sets up list items from the savefile folder.
 func setup_savefiles() -> void:
@@ -138,12 +141,20 @@ func add_item_sorted(item: Control) -> void:
 	if children.size() == 0:
 		%Grid.add_child(item)
 		return
+		
+	var amount: Array
+	if mode == modeEnum.SAVE:
+		amount = range(children.size())
+		amount.pop_front()
+		amount.pop_front()
 	else:
-		for idx in range(children.size()):
-			if children[idx].dateString <= item.dateString:
-				%Grid.add_child(item)
-				%Grid.move_child(item, idx)
-				return
+		amount = range(children.size())
+		
+	for idx in amount:
+		if children[idx].dateString <= item.dateString:
+			%Grid.add_child(item)
+			%Grid.move_child(item, idx)
+			return
 	%Grid.add_child(item)
 	%Grid.move_child(item, children.size())
 	return

@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://lmkvu66l8pq0"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_stkut"]
+color = Color(0.635294, 0.921569, 0.980392, 1)
+
+[resource]
+HSeparator/constants/separation = 8
+HSeparator/styles/separator = SubResource("StyleBoxLine_stkut")

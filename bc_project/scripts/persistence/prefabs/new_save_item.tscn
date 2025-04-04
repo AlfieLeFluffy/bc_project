@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bt1w7rh3ist1a"]
+[gd_scene load_steps=3 format=3 uid="uid://bt1w7rh3ist1a"]
 
 [ext_resource type="Script" uid="uid://dkgi8643k6cwc" path="res://scripts/persistence/prefabs/new_save_item.gd" id="1_jfb5d"]
+[ext_resource type="Theme" uid="uid://bqtjul82stgbk" path="res://settings/button_theme.tres" id="2_digl6"]
 
 [node name="NewSaveItem" type="HBoxContainer"]
 size_flags_horizontal = 3
+focus_mode = 2
 script = ExtResource("1_jfb5d")
 
 [node name="Name" type="LineEdit" parent="."]
@@ -20,6 +22,7 @@ text = "---"
 [node name="Button" type="Button" parent="."]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+theme = ExtResource("2_digl6")
 text = "SAVE_BUTTON"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

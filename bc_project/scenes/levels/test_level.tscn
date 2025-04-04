@@ -643,7 +643,7 @@ metadata/_custom_type_script = "uid://wob4dkroqdok"
 
 [node name="player" parent="." groups=["CameraFocus"] instance=ExtResource("1_wpgi4")]
 z_index = 1
-position = Vector2(416, 476)
+position = Vector2(415, 298)
 
 [node name="AreaTriggerGameOver" type="Area2D" parent="."]
 position = Vector2(0, 1080)

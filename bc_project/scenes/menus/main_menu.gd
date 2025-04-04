@@ -8,7 +8,6 @@ var selectedProfile: ProfileResource
 """
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	%VersionLabel.text = tr("VERSION_LABEL") + ": " + ProjectSettings.get_setting("application/config/version")
 	
 	GameController.profileLoaded.connect(setup_profile)
 	SettingsController.retranslate.connect(setup_profile)
@@ -57,7 +56,7 @@ func setup_profile() -> void:
 		%LoadButton.disabled = true
 		return
 	
-	%ProfileLabel.text = "[font_size=14][color=WEB_GRAY] %s\n [/color][font_size=24] %s" % [tr("PROFILE_LABEL"),GameController.profile.profileName]
+	%ProfileLabel.text = "[font_size=14][color=#%s]%s\n[/color][font_size=20][color=#%s]%s[/color]" % [Global.color_White.to_html(),tr("PROFILE_LABEL"),Global.color_TextHighlight.to_html(),GameController.profile.profileName]
 	%TestSceneButton.disabled = false
 	%TestSceneButton.tooltip_text = ""
 	%AchievementsButton.disabled = false

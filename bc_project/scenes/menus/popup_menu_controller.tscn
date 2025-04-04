@@ -3,7 +3,11 @@
 [ext_resource type="Script" uid="uid://gxnkmmmle2mi" path="res://scenes/menus/popup_menu_controller.gd" id="1_htjkf"]
 [ext_resource type="Texture2D" uid="uid://6hnc5ahodgw8" path="res://textures/ui/popup/poopup_menu_background_ninepitch.png" id="2_7rqdm"]
 
-[node name="PopupMenuController" type="Control"]
+[node name="PopupMenu" type="CanvasLayer"]
+layer = 100
+script = ExtResource("1_htjkf")
+
+[node name="PopupMenuController" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,9 +15,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-script = ExtResource("1_htjkf")
 
-[node name="PopupMenu" type="Window" parent="."]
+[node name="PopupMenu" type="Window" parent="PopupMenuController"]
 unique_name_in_owner = true
 auto_translate_mode = 1
 transparent_bg = true
@@ -24,7 +27,7 @@ extend_to_title = true
 content_scale_mode = 1
 content_scale_aspect = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="PopupMenu"]
+[node name="MarginContainer" type="MarginContainer" parent="PopupMenuController/PopupMenu"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -33,7 +36,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="NinePatchRect" type="NinePatchRect" parent="PopupMenu/MarginContainer"]
+[node name="NinePatchRect" type="NinePatchRect" parent="PopupMenuController/PopupMenu/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("2_7rqdm")
 region_rect = Rect2(10, 0, 70, 112)
@@ -42,7 +45,7 @@ patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 32
 
-[node name="Content" type="MarginContainer" parent="PopupMenu/MarginContainer"]
+[node name="Content" type="MarginContainer" parent="PopupMenuController/PopupMenu/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/margin_left = 32
@@ -50,4 +53,4 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[connection signal="close_requested" from="PopupMenu" to="." method="_on_popup_menu_close_requested"]
+[connection signal="close_requested" from="PopupMenuController/PopupMenu" to="PopupMenuController" method="_on_popup_menu_close_requested"]
