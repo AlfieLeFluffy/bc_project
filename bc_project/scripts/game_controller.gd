@@ -6,7 +6,7 @@ extends Node
 const preloadInGameMenu = preload("res://scenes/menus/ingame_menu.tscn")
 const preloadDetectiveBoardMenu = preload("res://scenes/UI/board/detective_board.tscn")
 const preloadMainOverlay = preload("res://scenes/UI/overlay/main_overlay.tscn")
-const preloadInputHelp = preload("res://scenes/UI/input_help/input_help.tscn")
+const preloadInputHelp = preload("res://scenes/UI/overlay/input_help_overlay.tscn")
 const preloadCameraControls = preload("res://scenes/cameraControls/camera_controls.tscn")
 const preloadAchievementsMenu = preload("res://scripts/profile/achievements_menu.tscn")
 const prelaodGameOverScreen = preload("res://scenes/gameOver/game_over_screen.tscn")
@@ -314,7 +314,6 @@ func setup_detective_board_menu() -> void:
 		return
 	detectiveBoard = preloadDetectiveBoardMenu.instantiate()
 	mainOverlay.add_child(detectiveBoard)
-	detectiveBoard.layer = 60
 	detectiveBoard.visible = false
 #endregion
 
@@ -379,7 +378,6 @@ func setup_input_help_menu() -> void:
 		return
 	inputHelp = preloadInputHelp.instantiate()
 	mainOverlay.add_child(inputHelp)
-	inputHelp.layer = 70
 	inputHelp.visible = true
 
 func set_main_overlay_visibility(state: bool) -> void:

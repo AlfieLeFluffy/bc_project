@@ -1,4 +1,4 @@
-extends CanvasLayer
+class_name DetectiveBoardMenu extends Control
 
 #region Variables
 var mouse_offset: Vector2

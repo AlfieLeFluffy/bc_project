@@ -35,12 +35,20 @@ fill = 1
 fill_from = Vector2(0.5, 0.4)
 fill_to = Vector2(0.5, 1)
 
-[node name="DetectiveBoardMenu" type="CanvasLayer"]
+[node name="DetectiveBoardMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_hmund")
 
 [node name="FadeBackground" parent="." instance=ExtResource("2_jxns0")]
+layout_mode = 1
 
 [node name="BoardFraming" type="MarginContainer" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -148,34 +156,37 @@ patch_margin_top = 48
 patch_margin_right = 48
 patch_margin_bottom = 48
 
-[node name="DetectiveBoardLabel" type="MarginContainer" parent="."]
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 93.0
+[node name="CenterContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+offset_left = 99.0
 offset_top = 8.0
-offset_right = -1779.0
-offset_bottom = -1024.0
+offset_right = 556.0
+offset_bottom = 56.0
 
-[node name="NinePatchRect" type="NinePatchRect" parent="DetectiveBoardLabel"]
+[node name="DetectiveBoardLabel" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CenterContainer/DetectiveBoardLabel"]
 layout_mode = 2
 texture = ExtResource("10_c77tf")
-patch_margin_left = 16
+patch_margin_left = 32
 patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 16
 
-[node name="TextAlign" type="MarginContainer" parent="DetectiveBoardLabel"]
+[node name="TextAlign" type="MarginContainer" parent="CenterContainer/DetectiveBoardLabel"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 0
 
-[node name="DetectiveBoardLabelText" type="RichTextLabel" parent="DetectiveBoardLabel/TextAlign"]
+[node name="DetectiveBoardLabelText" type="RichTextLabel" parent="CenterContainer/DetectiveBoardLabel/TextAlign"]
 unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 text = "[font_size=32]DETECTIVE_BOARD_LABEL"
 fit_content = true
 autowrap_mode = 0
+horizontal_alignment = 1

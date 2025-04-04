@@ -10,8 +10,6 @@ VBoxContainer/constants/separation = 4
 
 [node name="MainOverlay" type="CanvasLayer"]
 layer = 50
-scale = Vector2(1.5, 1.5)
-transform = Transform2D(1.5, 0, 0, 1.5, 0, 0)
 
 [node name="Overlay" type="Control" parent="."]
 layout_mode = 3
@@ -28,12 +26,13 @@ script = ExtResource("1_ptuwb")
 layout_mode = 2
 anchor_left = 0.008
 anchor_top = 0.012
-anchor_right = 0.142
-anchor_bottom = 0.043
+anchor_right = 0.168
+anchor_bottom = 0.049
 offset_left = 0.639999
-offset_top = 0.04
-offset_right = -0.640015
-offset_bottom = -0.440002
+offset_top = 3.04
+offset_right = -50.56
+offset_bottom = -3.92
+scale = Vector2(1.2, 1.2)
 
 [node name="Timeline" type="HBoxContainer" parent="Overlay/MainInfo"]
 layout_mode = 2
