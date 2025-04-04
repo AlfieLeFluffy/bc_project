@@ -327,7 +327,7 @@ func play_screen_effect(_effect: screenEffectEnum) -> void:
 func play_fade_in_effect() -> void:
 	play_screen_effect(screenEffectEnum.FADE_IN)
 	
-func play_screen_text_effect(_input: String, _lineTimeout: float = 0.2, _characterTimeout: float = 0.1, _finishTimeout: float = 3.0) -> void:
+func play_screen_text_effect(_input: String, _lineTimeout: float = 0.1, _characterTimeout: float = 0.06, _finishTimeout: float = 3.0) -> void:
 	var effect: ScreenTextEffect = preloadScreenTextEffect.instantiate()
 	effect.input = _input
 	effect.lineTimeout = _lineTimeout

@@ -6,9 +6,9 @@ class_name ScreenTextEffect extends CanvasLayer
 ## BBCode is enabled and can be used withint the text.
 @export var input: String
 ## Time between each line appearing.
-@export var lineTimeout: float = 0.2
+@export var lineTimeout: float = 0.1
 ## Time between each character in a line appearing.
-@export var characterTimeout: float = 0.1
+@export var characterTimeout: float = 0.06
 ## Time after text finishes.
 @export var finishTimeout: float = 3.0
 
@@ -36,7 +36,7 @@ func _ready() -> void:
 	## Waits on screen for a moment.
 	await get_tree().create_timer(finishTimeout).timeout
 	## Fades out text.
-	await GameController.fade_object(%Control)
+	await fade_out()
 	## Queues free
 	queue_free()
 
@@ -66,6 +66,16 @@ func setup_line(line: String) -> bool:
 		label.parse_bbcode(text)
 		if not bbcodeSkip:
 			await get_tree().create_timer(characterTimeout).timeout
+	return true
+
+func fade_out() -> bool:
+	var tween: Tween
+	if not is_inside_tree():
+		return true
+	tween = get_tree().create_tween()
+	tween.tween_property(%Control,"modulate", Color("ffffff00") , 1.0)
+	await tween.finished
+	tween.kill()
 	return true
 #endregion
 
