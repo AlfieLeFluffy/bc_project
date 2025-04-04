@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://iy5d2tic5d7t" path="res://scenes/UI/overlay/input_help_overlay.gd" id="1_elxnq"]
 
 [node name="InputHelpOverlay" type="Control"]
+z_index = 150
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

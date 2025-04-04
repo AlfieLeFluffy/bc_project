@@ -102,6 +102,8 @@ func recalculate_menu() -> void:
 	%PopupMenu.position = endPosition
 
 func setup_tween(start: Vector2i, end: Vector2i) -> void:
+	if not is_inside_tree():
+		return
 	tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.set_loops(1).set_parallel(1)
 	tween.tween_property(%PopupMenu, "position",start, duration)

@@ -28,7 +28,7 @@ func _ready() -> void:
 func set_input_help_label(input:Array,description:String) -> void:
 	if labels.has(description):
 		return
-	var label = preloadHelpLabel.instantiate()
+	var label: InputHelpLabel = preloadHelpLabel.instantiate()
 	labels[description] = label
 	$".".add_child(label)
 	$".".move_child(label,0)

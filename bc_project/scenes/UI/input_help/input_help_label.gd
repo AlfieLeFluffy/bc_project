@@ -1,4 +1,4 @@
-extends RichTextLabel
+class_name InputHelpLabel extends RichTextLabel
 
 """
 --- Setup Methods
@@ -33,7 +33,7 @@ func setup_label() -> void:
 		keys = input.pop_front()
 		for key in input:
 			keys = keys + " / " + key
-	text = "[right][color=#%s]%s[/color] [color=#%s] - %s[/color]" % [Global.color_TextHighlight.to_html(),keys,Global.color_TextBright.to_html(),tr(name)]
+	text = "[right][color=#%s]%s[/color] [color=#%s] - %s[/color]" % [Global.color_TextHighlight.to_html(),keys,Global.color_TextBright.to_html(),tr(description)]
 
 """
 --- Signal Methods
