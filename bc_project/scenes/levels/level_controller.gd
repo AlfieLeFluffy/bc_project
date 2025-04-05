@@ -4,6 +4,7 @@ class_name LevelController extends Node2D
 --- Level/Case Variables
 """
 @export var caseClues: ClueCombinaions
+@export var tasks: TaskLevelResource
 
 """
 --- Setup functions

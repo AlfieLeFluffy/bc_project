@@ -8,7 +8,7 @@ var selectedProfile: ProfileResource
 """
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
+	GameController.sceneLoaded.emit()
 	GameController.profileLoaded.connect(setup_profile)
 	SettingsController.retranslate.connect(setup_profile)
 	

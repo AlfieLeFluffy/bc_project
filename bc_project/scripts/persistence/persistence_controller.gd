@@ -124,6 +124,7 @@ func load_line(safeFile, saveDirPath:String) -> Dictionary:
 func save_game(filename:String) -> void:
 	var animation: SavingAnimation = preloadSavingAnimation.instantiate()
 	get_tree().current_scene.add_child(animation)
+	Input.set_default_cursor_shape(Input.CURSOR_BUSY)
 	
 	var folderpath: String = create_profile_savefile_folderpath(GameController.profile.id)
 	var saveDirPath = folderpath.path_join(filename.rstrip(".sf"))
@@ -155,6 +156,7 @@ func save_game(filename:String) -> void:
 	
 	if animation:
 		animation.done = true
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 
 func autosave_game() -> void:
 	save_game(autosaveFormat % [Time.get_datetime_string_from_system().replace("-","_").replace(":","_")])

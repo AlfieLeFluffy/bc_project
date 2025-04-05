@@ -33,6 +33,7 @@ ACHIEVEMENTS_TAB,Achievements,Úspěchy
 STATISTICS_TAB,Statistics,Statistiky
 TEXT_TAB,Text,Text
 LANGUAGE_SETTING,Language:,Jazyk:
+TASK_KEEP_VISIBLE_SETTING,Keep Task Visible:,Neschovávat úkol:
 WIN_MODE_SETTING,Window Mode:,Mód Okna
 WIN_SIZE_SETTING,Window Size:,Rozlišení:
 VSYNC_SETTING,Vsync:,Vsync:
@@ -67,3 +68,9 @@ TIMELINE_SHIFT_INPUT_HELP,Timeline Shift,Posunutií Časoprostoru
 INTERACT_INPUT_HELP,Interact,Interagovat
 ADD_TO_BOARD_INPUT_HELP,Add to Detective Board,Pridat do Detektivní Nástěnky
 DETECTIVE_BOARD_LABEL,Detective Board,Detektivní Nástěnka
+TASK_OVERLAY_LABEL,Task,Úkol
+TASK_OVERLAY_COMPLETE_LABEL,Task Completed,Úkol Dokončen
+TASK_OVERLAY_FAILED_LABEL,Task Failed,Úkol Nepodařen
+STEP_OVERLAY_LABEL,Step,Krok
+STEP_OVERLAY_COMPLETE_LABEL,Step Completed,Krok Dokončen
+STEP_OVERLAY_FAILED_LABEL,Step Failed,Krok Nepodařen

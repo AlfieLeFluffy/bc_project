@@ -63,6 +63,15 @@ func _process(delta: float) -> void:
 --- Custom Methods
 """
 
+func get_setting(category: String, key: String):
+	if not config:
+		return null
+	
+	if not config.has_section_key(category,key):
+		return null
+	
+	return config.get_value(category,key)
+
 func create_new_config() -> ConfigFile:
 	var newConfig = ConfigFile.new()
 	newConfig = get_default_config_file(newConfig)

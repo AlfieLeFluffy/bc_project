@@ -31,16 +31,19 @@ layout_mode = 2
 tab_alignment = 1
 metadata/_tab_index = 0
 
-[node name="Grid" type="GridContainer" parent="TabContainer/SAVE_MENU_LABEL"]
-unique_name_in_owner = true
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/SAVE_MENU_LABEL"]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.051
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -0.0620041
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Grid" type="GridContainer" parent="TabContainer/SAVE_MENU_LABEL/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 focus_mode = 2
 
 [node name="CancelButton" type="Button" parent="."]

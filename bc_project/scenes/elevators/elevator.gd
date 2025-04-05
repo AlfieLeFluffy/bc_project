@@ -14,13 +14,14 @@ func _ready():
 	Signals.connect("elevator_move_to_key",move_to_stop_key)
 	Signals.connect("elevator_move_to_vector",move_to_stop_vector)
 	
+	setup_cabin()
+	
 	if resource.currentStop and resource.movingToStop:
 		var timeout: float = resource.startupTimeout
 		resource.startupTimeout = 0.0
 		move_to_stop(resource.movingToStop)
-		resource.startupTimeout = resource.startupTimeout
+		resource.startupTimeout = timeout
 	
-	setup_cabin()
 #endregion
 
 #region Runtime Methods

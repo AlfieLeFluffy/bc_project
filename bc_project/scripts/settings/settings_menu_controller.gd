@@ -50,6 +50,7 @@ func close_menu() -> void:
 """
 func setup_gameplay() -> void:
 	%LanguageOptionButton.selected = LANG_DICT.find_key(config.get_value("Gameplay", "Language"))
+	%TaskKeepVisibleButton.selected = config.get_value("Gameplay", "KeepTaskVisible")
 
 func setup_graphics() -> void:
 	%ModeOptionButton.selected = config.get_value("Graphics", "ScreenMode")
@@ -76,7 +77,10 @@ func _on_apply_button_pressed() -> void:
 
 func _on_language_option_button_item_selected(index: int) -> void:
 	if LANG_DICT.has(index):
-		config.set_value("Gameplay", "Language", LANG_DICT[index])
+		config.set_value("Gameplay", "KeepTaskVisible", LANG_DICT[index])
+
+func _on_task_keep_visible_button_item_selected(index: int) -> void:
+	config.set_value("Gameplay", "KeepTaskVisible", index)
 
 func _on_mode_option_button_item_selected(index: int) -> void:
 	config.set_value("Graphics", "ScreenMode", index)

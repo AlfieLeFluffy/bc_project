@@ -320,12 +320,13 @@ func setup_detective_board_menu() -> void:
 #region Screen Effects Methods
 func play_screen_effect(_effect: screenEffectEnum) -> void:
 	var screenEffect = screenEffects[_effect].instantiate()
-	get_tree().current_scene.add_child(screenEffect)
+	get_tree().current_scene.add_child.call_deferred(screenEffect)
 	screenEffect.visible = true
 
 
 func play_fade_in_effect() -> void:
-	play_screen_effect(screenEffectEnum.FADE_IN)
+	if not GameController.check_nongameplay_scene():
+		play_screen_effect(screenEffectEnum.FADE_IN)
 	
 func play_screen_text_effect(_input: String, _lineTimeout: float = 0.1, _characterTimeout: float = 0.06, _finishTimeout: float = 3.0) -> void:
 	var effect: ScreenTextEffect = preloadScreenTextEffect.instantiate()
