@@ -3,6 +3,7 @@ class_name TaskStepResource extends Resource
 @export var name: String
 
 @export var next: Array[TaskStepResource]
+@export var failed: bool = false
 
 @export var object: String
 @export var callable: String
@@ -17,3 +18,9 @@ func run_command(base: Node) -> void:
 			node.call(callable)
 		else:
 			node.call(callable,parameters)
+
+func get_color() -> Color:
+	var output: Color = Global.color_TextBright
+	if failed:
+		output = Color.DARK_RED
+	return output

@@ -18,16 +18,12 @@ signal s_QueueUpdateStep(task, previousStep, step, failed)
 
 var active: bool = false
 var queue: Array[QueueItem]
-var colorTween: Tween
-var fadeTween: Tween
 
 func _ready() -> void:
 	
 	s_QueueUpdateTask.connect(queue_task_update)
 	s_QueueUpdateStep.connect(queue_step_update)
 	s_NextUpdate.connect(update)
-	
-	hide_all()
 
 func queue_task_update(task: TaskResource, step: TaskStepResource, failed: bool) -> void:
 	queue.append(QueueTask.new(task, step, failed))
@@ -60,12 +56,12 @@ func update() -> void:
 func show_line(node: RichTextLabel, string: String, color: Color) -> bool:
 	node.clear()
 	node.parse_bbcode(string)
-	await fade_to_color(node.get_parent().get_parent(),color)
+	await GameController.fade_to_color(node.get_parent().get_parent(),color)
 	return true
 
 func hide_line(node: RichTextLabel) -> bool:
 	if node.get_parent().get_parent().modulate != Color.TRANSPARENT:
-		await fade_to_color(node.get_parent().get_parent(),Color.TRANSPARENT)
+		await GameController.fade_to_color(node.get_parent().get_parent(),Color.TRANSPARENT)
 	node.clear()
 	return true
 
@@ -90,9 +86,9 @@ func show_task_update(item: QueueTask) -> bool:
 	
 	if item.complete:
 		color = item.get_color()
-		await fade_to_color(%TaskStepLabel,color)
-		await fade_to_color(%TaskNameLabel,color)
-		await fade_to_color(%TaskHeaderLabel,color)
+		await GameController.fade_to_color(%TaskStepLabel,color)
+		await GameController.fade_to_color(%TaskNameLabel,color)
+		await GameController.fade_to_color(%TaskHeaderLabel,color)
 	
 	await get_tree().create_timer(fadeTimeout).timeout
 	
@@ -107,7 +103,7 @@ func show_step_update(item: QueueStep) -> bool:
 	
 	if item.complete:
 		color = item.get_color()
-		await fade_to_color(%TaskPreviousStepLabel,color)
+		await GameController.fade_to_color(%TaskPreviousStepLabel,color)
 		await get_tree().create_timer(0.5).timeout
 		color = Color.WHITE
 		await show_line(%TaskStepLabel,TEXT_FORMAT % [str(stepFontSize),Global.color_TextBright.to_html(),tr(item.get_step_name())],color)
@@ -119,17 +115,6 @@ func show_step_update(item: QueueStep) -> bool:
 	
 	return true
 
-func fade_to_color(item: CanvasItem, color: Color) -> bool:
-	if not is_inside_tree():
-		return false
-	if fadeTween:
-		fadeTween.kill()
-	fadeTween = get_tree().create_tween()
-	fadeTween.tween_property(item,"modulate", color, 0.3)
-	await fadeTween.finished
-	fadeTween.kill()
-	return true
-
 func overlay_fade_out_timeout() -> void:
 	if not is_inside_tree():
 		return
@@ -137,7 +122,7 @@ func overlay_fade_out_timeout() -> void:
 	
 	if not is_inside_tree():
 		return
-	fade_to_color(self, Color("#ffffff00"))
+	GameController.fade_to_color(self, Color("#ffffff00"))
 
 class QueueItem:
 	var task: TaskResource
