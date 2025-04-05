@@ -29,6 +29,17 @@ func setup(_content, _pernament: bool = false, _direction: popupDirection = popu
 		%Content.add_child(_content)
 	
 	ratio = Vector2(%PopupMenu.size) / Vector2(get_viewport().size)
+	
+	setup_background()
+
+func setup_background() -> void:
+	match direction:
+		popupDirection.LEFT:
+			%NinePatchLeft.visible = true
+		popupDirection.RIGHT:
+			%NinePatchRight.visible = true
+		_:
+			%NinePatchLeft.visible = true
 
 static func get_popup_menu(start: Node) -> PopupMenuController:
 	var parent = start.get_parent()

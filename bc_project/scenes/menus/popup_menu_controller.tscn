@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bx7gcwlih3mmg"]
+[gd_scene load_steps=4 format=3 uid="uid://bx7gcwlih3mmg"]
 
 [ext_resource type="Script" uid="uid://gxnkmmmle2mi" path="res://scenes/menus/popup_menu_controller.gd" id="1_htjkf"]
-[ext_resource type="Texture2D" uid="uid://6hnc5ahodgw8" path="res://textures/ui/popup/poopup_menu_background_ninepitch.png" id="2_7rqdm"]
+[ext_resource type="Texture2D" uid="uid://ckw2njft53f6m" path="res://textures/ui/popup/poopup_menu_background_ninepitch_left.png" id="2_7rqdm"]
+[ext_resource type="Texture2D" uid="uid://dpowov8n46nbr" path="res://textures/ui/popup/poopup_menu_background_ninepitch_right.png" id="3_7kovl"]
 
 [node name="PopupMenu" type="CanvasLayer"]
 layer = 100
@@ -36,13 +37,26 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="NinePatchRect" type="NinePatchRect" parent="PopupMenuController/PopupMenu/MarginContainer"]
+[node name="NinePatchLeft" type="NinePatchRect" parent="PopupMenuController/PopupMenu/MarginContainer"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 texture = ExtResource("2_7rqdm")
 region_rect = Rect2(10, 0, 70, 112)
 patch_margin_left = 22
 patch_margin_top = 32
 patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="NinePatchRight" type="NinePatchRect" parent="PopupMenuController/PopupMenu/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = ExtResource("3_7kovl")
+region_rect = Rect2(0, 0, 70, 112)
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 22
 patch_margin_bottom = 32
 
 [node name="Content" type="MarginContainer" parent="PopupMenuController/PopupMenu/MarginContainer"]

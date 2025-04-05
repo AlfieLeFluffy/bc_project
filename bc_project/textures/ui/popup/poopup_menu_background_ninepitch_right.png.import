@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6hnc5ahodgw8"
-path="res://.godot/imported/poopup_menu_background_ninepitch.png-9812cacacdd2b324dff5dfc0571df6cb.ctex"
+uid="uid://dpowov8n46nbr"
+path="res://.godot/imported/poopup_menu_background_ninepitch_right.png-6cf210dc560d48ce4e44e08b86c024c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/ui/popup/poopup_menu_background_ninepitch.png"
-dest_files=["res://.godot/imported/poopup_menu_background_ninepitch.png-9812cacacdd2b324dff5dfc0571df6cb.ctex"]
+source_file="res://textures/ui/popup/poopup_menu_background_ninepitch_right.png"
+dest_files=["res://.godot/imported/poopup_menu_background_ninepitch_right.png-6cf210dc560d48ce4e44e08b86c024c3.ctex"]
 
 [params]
 
