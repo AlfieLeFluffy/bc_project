@@ -1,0 +1,178 @@
+[gd_scene load_steps=8 format=3 uid="uid://d21dedeho13ye"]
+
+[ext_resource type="Script" uid="uid://dmgjjaip0nkdt" path="res://scenes/UI/journal/journal_menu.gd" id="1_lgoao"]
+[ext_resource type="Texture2D" uid="uid://dpowov8n46nbr" path="res://textures/ui/popup/poopup_menu_background_ninepitch_right.png" id="2_xrg8k"]
+[ext_resource type="Theme" uid="uid://qd54fsrw70mj" path="res://settings/tab_container_theme.tres" id="3_tdnax"]
+[ext_resource type="Theme" uid="uid://bqtjul82stgbk" path="res://settings/button_theme.tres" id="4_h62w4"]
+[ext_resource type="Texture2D" uid="uid://tmcvq7t25mp" path="res://textures/ui/board/board_connection_background_ninepatch.png" id="4_tdnax"]
+[ext_resource type="Theme" uid="uid://lmkvu66l8pq0" path="res://settings/hseparator_theme.tres" id="5_h62w4"]
+
+[sub_resource type="Theme" id="Theme_lgoao"]
+MarginContainer/constants/margin_bottom = 20
+MarginContainer/constants/margin_left = 20
+MarginContainer/constants/margin_right = 20
+MarginContainer/constants/margin_top = 20
+
+[node name="JournalMenu" type="Control"]
+z_index = 300
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1170.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lgoao")
+
+[node name="MenuMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_lgoao")
+
+[node name="Background" type="NinePatchRect" parent="MenuMargin"]
+layout_mode = 2
+texture = ExtResource("2_xrg8k")
+region_rect = Rect2(0, 0, 70, 112)
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="ContentMargin" type="MarginContainer" parent="MenuMargin"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuMargin/ContentMargin"]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="MenuMargin/ContentMargin/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_tdnax")
+tab_alignment = 1
+current_tab = 0
+
+[node name="TASKS_TAB" type="TabBar" parent="MenuMargin/ContentMargin/VBoxContainer/TabContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuMargin/ContentMargin/VBoxContainer/TabContainer/TASKS_TAB"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuMargin/ContentMargin/VBoxContainer/TabContainer/TASKS_TAB/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("4_tdnax")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuMargin/ContentMargin/VBoxContainer/TabContainer/TASKS_TAB/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MenuMargin/ContentMargin/VBoxContainer/TabContainer/TASKS_TAB/MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ListOrdering" type="VBoxContainer" parent="MenuMargin/ContentMargin/VBoxContainer/TabContainer/TASKS_TAB/MarginContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ActiveTasks" type="VBoxContainer" parent="MenuMargin/ContentMargin/VBoxContainer/TabContainer/TASKS_TAB/MarginContainer/MarginContainer/ScrollContainer/ListOrdering"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuMargin/ContentMargin/VBoxContainer/TabContainer/TASKS_TAB/MarginContainer/MarginContainer/ScrollContainer/ListOrdering/ActiveTasks"]
+layout_mode = 2
+
+[node name="ActiveTasksLabel" type="RichTextLabel" parent="MenuMargin/ContentMargin/VBoxContainer/TabContainer/TASKS_TAB/MarginContainer/MarginContainer/ScrollContainer/ListOrdering/ActiveTasks/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "Active Tasks
+"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActiveCollapseButton" type="Button" parent="MenuMargin/ContentMargin/VBoxContainer/TabContainer/TASKS_TAB/MarginContainer/MarginContainer/ScrollContainer/ListOrdering/ActiveTasks/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_h62w4")
+text = "CLOSE_BUTTON"
+
+[node name="ActiveTaskList" type="VBoxContainer" parent="MenuMargin/ContentMargin/VBoxContainer/TabContainer/TASKS_TAB/MarginContainer/MarginContainer/ScrollContainer/ListOrdering/ActiveTasks"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSeparator" type="HSeparator" parent="MenuMargin/ContentMargin/VBoxContainer/TabContainer/TASKS_TAB/MarginContainer/MarginContainer/ScrollContainer/ListOrdering"]
+layout_mode = 2
+theme = ExtResource("5_h62w4")
+
+[node name="FinishedTasks" type="VBoxContainer" parent="MenuMargin/ContentMargin/VBoxContainer/TabContainer/TASKS_TAB/MarginContainer/MarginContainer/ScrollContainer/ListOrdering"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuMargin/ContentMargin/VBoxContainer/TabContainer/TASKS_TAB/MarginContainer/MarginContainer/ScrollContainer/ListOrdering/FinishedTasks"]
+layout_mode = 2
+
+[node name="FinishedTasksLabel" type="RichTextLabel" parent="MenuMargin/ContentMargin/VBoxContainer/TabContainer/TASKS_TAB/MarginContainer/MarginContainer/ScrollContainer/ListOrdering/FinishedTasks/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "Active Tasks
+"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FinishedCollapseButton" type="Button" parent="MenuMargin/ContentMargin/VBoxContainer/TabContainer/TASKS_TAB/MarginContainer/MarginContainer/ScrollContainer/ListOrdering/FinishedTasks/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_h62w4")
+text = "CLOSE_BUTTON"
+
+[node name="FinishedTaskList" type="VBoxContainer" parent="MenuMargin/ContentMargin/VBoxContainer/TabContainer/TASKS_TAB/MarginContainer/MarginContainer/ScrollContainer/ListOrdering/FinishedTasks"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="JOURNAL_TAB" type="TabBar" parent="MenuMargin/ContentMargin/VBoxContainer/TabContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+mouse_filter = 1
+metadata/_tab_index = 1
+
+[node name="Button" type="Button" parent="MenuMargin/ContentMargin/VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_h62w4")
+text = "CLOSE_BUTTON"
+
+[connection signal="pressed" from="MenuMargin/ContentMargin/VBoxContainer/TabContainer/TASKS_TAB/MarginContainer/MarginContainer/ScrollContainer/ListOrdering/ActiveTasks/HBoxContainer/ActiveCollapseButton" to="." method="_on_active_collapse_button_pressed"]
+[connection signal="pressed" from="MenuMargin/ContentMargin/VBoxContainer/TabContainer/TASKS_TAB/MarginContainer/MarginContainer/ScrollContainer/ListOrdering/FinishedTasks/HBoxContainer/FinishedCollapseButton" to="." method="_on_finished_collapse_button_pressed"]
+[connection signal="pressed" from="MenuMargin/ContentMargin/VBoxContainer/Button" to="." method="_on_button_pressed"]

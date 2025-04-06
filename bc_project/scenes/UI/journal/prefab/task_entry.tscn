@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://rw5glvrhu0kd"]
+
+[ext_resource type="Texture2D" uid="uid://chfullbussy1q" path="res://textures/backgrounds/entry_background_ninepatch.png" id="1_itpwo"]
+[ext_resource type="Script" uid="uid://e5yxcl4eypp" path="res://scenes/UI/journal/prefab/task_entry.gd" id="1_shpcu"]
+[ext_resource type="Theme" uid="uid://bqtjul82stgbk" path="res://settings/button_theme.tres" id="3_opci4"]
+
+[sub_resource type="Theme" id="Theme_shpcu"]
+
+[node name="TaskEntry" type="MarginContainer"]
+offset_right = 164.0
+offset_bottom = 35.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_shpcu")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_itpwo")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="Entry" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Structure" type="VBoxContainer" parent="Entry"]
+layout_mode = 2
+theme = SubResource("Theme_shpcu")
+
+[node name="Header" type="HBoxContainer" parent="Entry/Structure"]
+layout_mode = 2
+
+[node name="TaskNameLabel" type="RichTextLabel" parent="Entry/Structure/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "Task Name
+"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollapseButton" type="Button" parent="Entry/Structure/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_opci4")
+text = "Collapse"
+
+[node name="Content" type="VBoxContainer" parent="Entry/Structure"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StepList" type="RichTextLabel" parent="Entry/Structure/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+
+[connection signal="pressed" from="Entry/Structure/Header/CollapseButton" to="." method="_on_collapse_button_pressed"]

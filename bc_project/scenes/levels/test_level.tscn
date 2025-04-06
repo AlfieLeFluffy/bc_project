@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=4 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=96 format=4 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Script" uid="uid://cmlgg6dxih77f" path="res://scenes/levels/level_controller.gd" id="1_t01cb"]
 [ext_resource type="PackedScene" uid="uid://ddrrl1gryxkup" path="res://scenes/characters/player/player_character.tscn" id="1_wpgi4"]
@@ -46,28 +46,31 @@
 [ext_resource type="Script" uid="uid://71eolmvkpl1e" path="res://scenes/triggers/versions/area_trigger_next_step.gd" id="41_y80st"]
 [ext_resource type="Script" uid="uid://ca8p4syf56fpg" path="res://scenes/triggers/versions/area_trigger_go_to_step.gd" id="42_t8w0x"]
 
+[sub_resource type="Resource" id="Resource_ib3ll"]
+script = ExtResource("4_y80st")
+name = "Test2"
+next = Array[ExtResource("4_y80st")]([])
+failed = false
+object = ""
+callable = ""
+parameters = []
+metadata/_custom_type_script = "uid://dxxmbh080lv02"
+
 [sub_resource type="Resource" id="Resource_2orbd"]
 script = ExtResource("4_y80st")
 name = "Test1"
 next = Array[ExtResource("4_y80st")]([])
-object = "PersistenceController"
-callable = "autosave_game"
-parameters = []
+failed = false
+object = "TaskController"
+callable = "set_task_active_name"
+parameters = ["Another Task"]
 metadata/_custom_type_script = "uid://dxxmbh080lv02"
 
 [sub_resource type="Resource" id="Resource_e6x8h"]
 script = ExtResource("4_y80st")
 name = "Test0"
 next = Array[ExtResource("4_y80st")]([SubResource("Resource_2orbd")])
-object = ""
-callable = ""
-parameters = []
-metadata/_custom_type_script = "uid://dxxmbh080lv02"
-
-[sub_resource type="Resource" id="Resource_ib3ll"]
-script = ExtResource("4_y80st")
-name = "Test2"
-next = Array[ExtResource("4_y80st")]([])
+failed = false
 object = ""
 callable = ""
 parameters = []
@@ -79,13 +82,45 @@ name = "A Fresh Start"
 finished = false
 failed = false
 steps = Array[ExtResource("4_y80st")]([SubResource("Resource_e6x8h"), SubResource("Resource_2orbd"), SubResource("Resource_ib3ll")])
-endSteps = Array[ExtResource("4_y80st")]([])
+history = Array[ExtResource("4_y80st")]([])
+endSteps = Array[ExtResource("4_y80st")]([SubResource("Resource_ib3ll")])
+stepsDict = {}
+metadata/_custom_type_script = "uid://ds72smecbd0k0"
+
+[sub_resource type="Resource" id="Resource_yguda"]
+script = ExtResource("4_y80st")
+name = "Test2"
+next = Array[ExtResource("4_y80st")]([])
+failed = false
+object = ""
+callable = ""
+parameters = []
+metadata/_custom_type_script = "uid://dxxmbh080lv02"
+
+[sub_resource type="Resource" id="Resource_nci5d"]
+script = ExtResource("4_y80st")
+name = "A new step"
+next = Array[ExtResource("4_y80st")]([])
+failed = false
+object = ""
+callable = ""
+parameters = []
+metadata/_custom_type_script = "uid://dxxmbh080lv02"
+
+[sub_resource type="Resource" id="Resource_pxiqt"]
+script = ExtResource("4_4g8k6")
+name = "Another Task"
+finished = false
+failed = false
+steps = Array[ExtResource("4_y80st")]([SubResource("Resource_nci5d")])
+history = Array[ExtResource("4_y80st")]([])
+endSteps = Array[ExtResource("4_y80st")]([SubResource("Resource_yguda")])
 stepsDict = {}
 metadata/_custom_type_script = "uid://ds72smecbd0k0"
 
 [sub_resource type="Resource" id="Resource_0e4k1"]
 script = ExtResource("3_smp8r")
-tasks = Array[ExtResource("4_4g8k6")]([SubResource("Resource_gsoyx")])
+tasks = Array[ExtResource("4_4g8k6")]([SubResource("Resource_gsoyx"), SubResource("Resource_pxiqt")])
 tasksDict = {}
 activeTasks = {}
 initialTask = SubResource("Resource_gsoyx")

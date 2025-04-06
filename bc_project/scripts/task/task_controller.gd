@@ -1,10 +1,15 @@
 extends Node
 
 const preloadTaskOverlay = preload("res://scenes/UI/overlay/task_overlay.tscn")
+const preloadJournalMenu = preload("res://scenes/UI/journal/journal_menu.tscn")
 
 @export var res: TaskLevelResource
 
 var overlay: TaskOverlay
+var journal: JournalMenu
+
+signal s_TasksLoaded()
+signal s_TaskActiavted()
 
 signal s_CurrentNextStep(next)
 signal s_NextStep(task,next)
@@ -14,13 +19,16 @@ signal s_GoToStep(task,next)
 
 signal s_ChangeTask(task)
 signal s_CompleteTask(task, failed)
+signal s_TaskChangeStatus(task)
 
 func _ready() -> void:
 	self.add_to_group("Persistent")
 	
 	setup_task_overlay()
+	setup_journal_menu()
 	
 	GameController.sceneLoaded.connect(setup_task_overlay)
+	GameController.sceneLoaded.connect(setup_journal_menu)
 	GameController.sceneLoaded.connect(import_level_tasks)
 	
 	s_CurrentNextStep.connect(current_next_step)
@@ -33,10 +41,23 @@ func _ready() -> void:
 	
 
 func setup_task_overlay() -> void:
+	# Checks if the scene name is in the nongameplay scenes
+	# If the scene is a non gameplay one this menu cannot open
+	if GameController.check_nongameplay_scene():
+		return
 	overlay = preloadTaskOverlay.instantiate()
-	if not GameController.check_nongameplay_scene():
-		if GameController.mainOverlay:
-			GameController.mainOverlay.add_child(overlay)
+	if GameController.mainOverlay:
+		GameController.mainOverlay.add_child(overlay)
+	
+
+func setup_journal_menu() -> void:
+	# Checks if the scene name is in the nongameplay scenes
+	# If the scene is a non gameplay one this menu cannot open
+	if GameController.check_nongameplay_scene():
+		return
+	journal = preloadJournalMenu.instantiate()
+	if GameController.mainOverlay:
+		GameController.mainOverlay.add_child(journal)
 
 func import_level_tasks() -> void:
 	if overlay:
@@ -50,6 +71,8 @@ func import_level_tasks() -> void:
 	else:
 		if res:
 			res = null
+	
+	s_TasksLoaded.emit()
 
 func setup_level_tasks(_resource: TaskLevelResource) -> void:
 	res = _resource
@@ -57,16 +80,25 @@ func setup_level_tasks(_resource: TaskLevelResource) -> void:
 	if res.initialTask and not res.currentTask:
 		res.currentTask = res.initialTask
 		set_task_active(res.currentTask)
-		if overlay:
-			overlay.s_QueueUpdateTask.emit(res.currentTask,res.currentTask.currentStep,false)
 
 func set_task_active(task: TaskResource) -> void:
-	res.currentTask.setup()
+	if res.activeTasks.has(task.name):
+		return
+	task.setup()
 	res.activeTasks.set(task.name, task)
+	s_TaskActiavted.emit()
+	if overlay:
+		overlay.s_QueueUpdateTask.emit(res.currentTask,res.currentTask.currentStep,false)
 
+func set_task_active_name(taskName: String) -> void:
+	if not res.tasksDict.has(taskName):
+		return
+	set_task_active(res.tasksDict[taskName])
+	
 func set_task_complete(task: TaskResource, failed: bool = false) -> void:
 	task.finished = true
 	task.failed = failed
+	task.emit_changed()
 
 func current_next_step(stepName: String = "") -> void:
 	next_step(res.currentTask.name, stepName)
@@ -97,16 +129,16 @@ func go_to_step(taskName: String,stepName: String = "") -> void:
 	if task.go_to_step(stepName):
 		task.currentStep.run_command(self)
 		overlay.s_QueueUpdateStep.emit(task, previousStep,task.currentStep,false)
-		check_ending(task)
 	else:
 		check_ending(task)
 
-func check_ending(task: TaskResource) -> void:
+func check_ending(task: TaskResource) -> bool:
 	if task.currentStep.next:
 		if task.currentStep.next.size() > 0:
-			return
+			return false
 	else:
 		complete_task(task.name, task.endSteps.find(task.currentStep) < 0)
+	return true
 
 func complete_task(taskName: String, failed: bool = false) -> void:
 	if not res.tasksDict.has(taskName):
@@ -116,6 +148,7 @@ func complete_task(taskName: String, failed: bool = false) -> void:
 	var previousStep: TaskStepResource = task.currentStep
 	
 	set_task_complete(task,failed)
+	s_TaskChangeStatus.emit(task)
 	
 	if overlay:
 		overlay.s_QueueUpdateTask.emit(task,previousStep,task.failed)
