@@ -13,6 +13,7 @@ func _ready() -> void:
 	setup_login_status()
 	if visible:
 		%Account.grab_focus()
+		%Account.grab_click_focus()
 
 func setup_login_status() -> void:
 	if view.computer.compRes.login:

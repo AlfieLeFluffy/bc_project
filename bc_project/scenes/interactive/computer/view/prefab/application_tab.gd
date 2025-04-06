@@ -33,11 +33,11 @@ func setup_application_tab(_type: ApplicationResource.applicationTypes, _compute
 
 func set_tab(_type: ApplicationResource.applicationTypes, state: bool) -> void:
 	if type == _type:
-		self.flat = not state
+		self.button_pressed = state
 
 func toggle_tab(_type: ApplicationResource.applicationTypes) -> void:
 	if type == _type:
-		self.flat = not self.flat
+		self.button_pressed = not self.button_pressed
 
 func exit_tab(_type: ApplicationResource.applicationTypes) -> void:
 	if type == _type:
@@ -50,4 +50,5 @@ func exit_tab(_type: ApplicationResource.applicationTypes) -> void:
 """
 func _on_pressed() -> void:
 	computer.view.application_toggle.emit(type)
+	self.button_pressed = not self.button_pressed
 #endregion

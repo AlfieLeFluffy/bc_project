@@ -68,6 +68,9 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_bottom = NodePath("../Password")
+focus_next = NodePath("../Password")
+focus_previous = NodePath("../LoginButton")
 placeholder_text = "Username"
 context_menu_enabled = false
 
@@ -76,6 +79,10 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../Account")
+focus_neighbor_bottom = NodePath("../LoginButton")
+focus_next = NodePath("../LoginButton")
+focus_previous = NodePath("../Account")
 placeholder_text = "Password"
 context_menu_enabled = false
 caret_blink = true
@@ -93,6 +100,9 @@ fit_content = true
 [node name="LoginButton" type="Button" parent="LoginMenu/Login Information"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../Password")
+focus_next = NodePath("../Account")
+focus_previous = NodePath("../Password")
 text = "Login"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

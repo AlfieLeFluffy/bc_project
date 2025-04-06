@@ -62,14 +62,16 @@ func create_application_shortcut(key: ApplicationResource.applicationTypes) -> v
 --- Runtime Methdos
 """
 func _unhandled_input(event: InputEvent) -> void:
+	if visible and event is InputEventMouseButton:
+		if not Rect2(Vector2(),%ComputerFrame.size).has_point(%ComputerFrame.get_local_mouse_position()):
+			exit_view()
+			get_viewport().set_input_as_handled()
 	if visible and (event.is_action_pressed("ui_menu") or event.is_action_pressed("detective_board_toggle")):
 		exit_view()
 		get_viewport().set_input_as_handled()
 	if visible:
 		get_viewport().set_input_as_handled()
-	"""elif event.is_action_pressed("add_to_board"):
-		emit_signal("create_board_element", null)
-		exit_view()"""
+
 
 """ Loading application names and icons """
 func load_name(key: ApplicationResource.applicationTypes) -> String:
@@ -175,9 +177,11 @@ func _on_start_index_pressed(index: int) -> void:
 			shutdown_computer()
 		_:
 			printerr("Start menu index out of bounds")
+#endregion
 
-func _on_start_menu_button_about_to_popup() -> void:
+
+func _on_menu_bar_toggled(toggled_on: bool) -> void:
 	%START_MENU_BUTTON.position = %MenuBar.global_position
 	%START_MENU_BUTTON.position.y -= %START_MENU_BUTTON.size.y
 	%START_MENU_BUTTON.position += Vector2i(4,-4)
-#endregion
+	%START_MENU_BUTTON.visible = toggled_on

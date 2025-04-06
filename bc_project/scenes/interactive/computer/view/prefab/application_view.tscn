@@ -1,25 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://bqlgq52chuge6"]
+[gd_scene load_steps=11 format=3 uid="uid://bqlgq52chuge6"]
 
 [ext_resource type="Theme" uid="uid://baa3ykptg6tmu" path="res://settings/application_view_theme.tres" id="1_v1b6g"]
 [ext_resource type="Script" uid="uid://dxa5fsxrd2a50" path="res://scenes/interactive/computer/view/prefab/application_view.gd" id="2_77npm"]
+[ext_resource type="Texture2D" uid="uid://7nw8qv27uppu" path="res://textures/computer/backgrounds/application_background_ninepatch.png" id="3_frrxt"]
 [ext_resource type="Texture2D" uid="uid://4puwmh7vfnsf" path="res://textures/symbols/minimize.png" id="3_u5d5b"]
 [ext_resource type="Texture2D" uid="uid://b1bc6esjs5fse" path="res://textures/symbols/maximize.png" id="4_q0dke"]
 [ext_resource type="Texture2D" uid="uid://bmif84bbjv732" path="res://textures/symbols/close.png" id="5_frrxt"]
 [ext_resource type="Texture2D" uid="uid://bqipgmisl7jca" path="res://textures/symbols/resize.png" id="6_q0dke"]
-
-[sub_resource type="Gradient" id="Gradient_2wdci"]
-offsets = PackedFloat32Array(0.00913242, 1)
-colors = PackedColorArray(0.22, 0.22, 0.22, 1, 0.28, 0.28, 0.28, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_u5d5b"]
-gradient = SubResource("Gradient_2wdci")
-
-[sub_resource type="Gradient" id="Gradient_q0dke"]
-colors = PackedColorArray(0.16, 0.16, 0.16, 1, 0.18, 0.18, 0.18, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_frrxt"]
-gradient = SubResource("Gradient_q0dke")
-width = 300
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3apw"]
 bg_color = Color(0.784314, 0.0392157, 0.0392157, 1)
@@ -33,14 +20,14 @@ bg_color = Color(0.588235, 0.0392157, 0.0392157, 1)
 [node name="ApplicationView" type="Control"]
 custom_minimum_size = Vector2(450, 300)
 layout_mode = 3
-anchor_right = 0.208
-anchor_bottom = 0.231
-offset_right = -99.36
-offset_bottom = -49.48
+anchor_right = 0.234
+anchor_bottom = 0.278
+offset_right = -149.28
+offset_bottom = -100.24
 theme = ExtResource("1_v1b6g")
 script = ExtResource("2_77npm")
 
-[node name="ApplicationTextures" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,38 +35,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TopBarTexture" type="TextureRect" parent="ApplicationTextures"]
-custom_minimum_size = Vector2(0, 32)
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
 layout_mode = 2
-texture = SubResource("GradientTexture1D_u5d5b")
+texture = ExtResource("3_frrxt")
+patch_margin_left = 16
+patch_margin_top = 32
+patch_margin_right = 16
+patch_margin_bottom = 24
 
-[node name="ContentTexture" type="TextureRect" parent="ApplicationTextures"]
-layout_mode = 2
-size_flags_vertical = 3
-texture = SubResource("GradientTexture1D_frrxt")
-
-[node name="Application" type="VBoxContainer" parent="."]
+[node name="Application" type="VBoxContainer" parent="MarginContainer"]
 custom_minimum_size = Vector2(300, 200)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 
-[node name="TopBar" type="HBoxContainer" parent="Application"]
+[node name="TopBar" type="HBoxContainer" parent="MarginContainer/Application"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 13
 
-[node name="Icon" type="TextureRect" parent="Application/TopBar"]
+[node name="Icon" type="TextureRect" parent="MarginContainer/Application/TopBar"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 expand_mode = 4
 stretch_mode = 3
 
-[node name="ApplicationName" type="Label" parent="Application/TopBar"]
+[node name="ApplicationName" type="Label" parent="MarginContainer/Application/TopBar"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -88,23 +68,26 @@ text = "APPLICATION_NAME"
 vertical_alignment = 1
 clip_text = true
 
-[node name="MinimizeButton" type="Button" parent="Application/TopBar"]
-custom_minimum_size = Vector2(32, 32)
+[node name="MinimizeButton" type="Button" parent="MarginContainer/Application/TopBar"]
+custom_minimum_size = Vector2(28, 28)
 layout_mode = 2
+size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 icon = ExtResource("3_u5d5b")
 expand_icon = true
 
-[node name="MaximizeButton" type="Button" parent="Application/TopBar"]
-custom_minimum_size = Vector2(32, 32)
+[node name="MaximizeButton" type="Button" parent="MarginContainer/Application/TopBar"]
+custom_minimum_size = Vector2(28, 28)
 layout_mode = 2
+size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 icon = ExtResource("4_q0dke")
 expand_icon = true
 
-[node name="CloseButton" type="Button" parent="Application/TopBar"]
-custom_minimum_size = Vector2(32, 32)
+[node name="CloseButton" type="Button" parent="MarginContainer/Application/TopBar"]
+custom_minimum_size = Vector2(28, 28)
 layout_mode = 2
+size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 theme_override_styles/hover = SubResource("StyleBoxFlat_t3apw")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_1wiys")
@@ -112,16 +95,16 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ynela")
 icon = ExtResource("5_frrxt")
 expand_icon = true
 
-[node name="Content" type="Control" parent="Application"]
+[node name="Content" type="Control" parent="MarginContainer/Application"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="BottomBar" type="HBoxContainer" parent="Application"]
+[node name="BottomBar" type="HBoxContainer" parent="MarginContainer/Application"]
 layout_mode = 2
 alignment = 2
 
-[node name="ResizeButton" type="Button" parent="Application/BottomBar"]
+[node name="ResizeButton" type="Button" parent="MarginContainer/Application/BottomBar"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 12
@@ -130,10 +113,10 @@ flat = true
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="Application/TopBar" to="." method="_on_top_bar_mouse_entered"]
-[connection signal="mouse_exited" from="Application/TopBar" to="." method="_on_top_bar_mouse_exited"]
-[connection signal="pressed" from="Application/TopBar/MinimizeButton" to="." method="_on_minimize_button_pressed"]
-[connection signal="pressed" from="Application/TopBar/MaximizeButton" to="." method="_on_maximize_button_pressed"]
-[connection signal="pressed" from="Application/TopBar/CloseButton" to="." method="_on_close_button_pressed"]
-[connection signal="button_down" from="Application/BottomBar/ResizeButton" to="." method="_on_resize_button_button_down"]
-[connection signal="button_up" from="Application/BottomBar/ResizeButton" to="." method="_on_resize_button_button_up"]
+[connection signal="mouse_entered" from="MarginContainer/Application/TopBar" to="." method="_on_top_bar_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/Application/TopBar" to="." method="_on_top_bar_mouse_exited"]
+[connection signal="pressed" from="MarginContainer/Application/TopBar/MinimizeButton" to="." method="_on_minimize_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Application/TopBar/MaximizeButton" to="." method="_on_maximize_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Application/TopBar/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="button_down" from="MarginContainer/Application/BottomBar/ResizeButton" to="." method="_on_resize_button_button_down"]
+[connection signal="button_up" from="MarginContainer/Application/BottomBar/ResizeButton" to="." method="_on_resize_button_button_up"]

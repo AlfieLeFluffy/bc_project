@@ -1,13 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://brmmncd6anmvi"]
+[gd_scene load_steps=3 format=3 uid="uid://brmmncd6anmvi"]
 
+[ext_resource type="Theme" uid="uid://dbcwmpxvgbjr8" path="res://settings/application_tab_theme.tres" id="1_oy458"]
 [ext_resource type="Script" uid="uid://c7t8nrpnag4f7" path="res://scenes/interactive/computer/view/prefab/application_tab.gd" id="1_yh6im"]
 
 [node name="ApplicationTab" type="Button"]
 anchors_preset = -1
 anchor_right = 0.106
 anchor_bottom = 0.029
-offset_right = -203.52
-offset_bottom = -31.32
+offset_right = 0.479996
+offset_bottom = -0.32
+focus_mode = 0
+theme = ExtResource("1_oy458")
+toggle_mode = true
 text = "APPLICATION_TAB_NAME"
 script = ExtResource("1_yh6im")
 
