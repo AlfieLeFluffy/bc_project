@@ -1,29 +1,31 @@
 class_name NPC extends CharacterBody2D
 
 """
---- Exported Physics Constants
+--- Variables
 """
-
+#region Exported Physics Variables
 @export_group("Character Body Constants")
 @export var SPEED: int = 300.0
 @export var JUMP_VELOCITY: int = -400.0
+#endregion
 
-"""
---- Exported Variables
-"""
-
+#region Exported Resources
 @export_group("Resources")
 @export var npc_resource: npcResource
 @export var dialog_resource: DialogueResource
+#endregion
 
+#region Variables
 var active: bool = false
 var mouseHover: bool = false
 var inRadius: bool = false
+var highlight: bool = false
+#endregion
 
 """
 --- Setup functions
 """
-
+#region Setup Methods
 func _ready() -> void:
 	npc_info_setup()
 
@@ -37,23 +39,34 @@ func npc_info_setup() -> void:
 			$Sprite2D.material = ShaderMaterial.new()
 			$Sprite2D.material.shader = load("res://shaders/outline_shader.gdshader")
 			$Sprite2D.material.set("shader_parameter/line_thickness",0)
-			
+#endregion
+
+
 
 """
---- Input functions
+--- Runtime functions
 """
+#region Input Methods
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("highlight"):
+		highlight = true
+		if not mouseHover:
+			activate_hover()
+	if event.is_action_released("highlight"):
+		highlight = false
+		if not mouseHover:
+			deactivate_hover()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and dialog_resource and active:
 		Signals.start_npc_conversation_state.emit(self)
 		CustomDialogueScripts.start_dialogue(dialog_resource)
 		Signals.setup_conversation_profile.emit("right", name, get_sprite_from_current_frame())
+#endregion
 
-"""
---- Runtime functions
-"""
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+#region Process Methods
 func _process(delta: float) -> void:
 	if mouseHover and inRadius:
 		active = true
@@ -70,12 +83,11 @@ func _physics_process(delta: float) -> void:
 		$Sprite2D.flip_h = false
 
 	move_and_slide()
+#endregion
 
-"""
--- Custom functions
-"""
 
-# Returns current sprite from interactable item's sprite sheet
+
+#region Sprite Methods
 func get_sprite_from_current_frame() -> Texture2D:
 	if $Sprite2D.texture:
 		var texture = $Sprite2D.texture
@@ -92,11 +104,12 @@ func get_sprite_from_current_frame() -> Texture2D:
 	#	return currentSprite
 		
 	return load("res://textures/icon.svg")
+#endregion
 
 """
 --- Activate/deactivate interactivity
 """
-
+#region Interactivity Methods
 func activate_hover() -> void:
 	$Sprite2D.material.set("shader_parameter/line_thickness",1)
 
@@ -108,10 +121,14 @@ func activate_interactivity() -> void:
 
 func deactivate_interactivity() -> void:
 	Signals.emit_signal("input_help_delete","TALK_INPUT_HELP")
+#endregion
+
+
 
 """
 --- Persistence Methods
 """
+#region Persistence Methods
 func saving() -> Dictionary:
 	var output: Dictionary = {
 		"persistent": true,
@@ -131,3 +148,4 @@ func loading(input: Dictionary) -> bool:
 	if $StateMachine.states.has(input["currentState"]):
 		$StateMachine.currentState = $StateMachine.states[input["currentState"]]
 	return true
+#endregion

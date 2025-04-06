@@ -17,6 +17,9 @@ func _ready() -> void:
 	TaskController.s_TasksLoaded.connect(setup_tasks)
 	TaskController.s_TaskActiavted.connect(setup_tasks)
 	TaskController.s_TaskChangeStatus.connect(change_task_status)
+	
+	Signals.input_help_set.emit(GameController.get_input_key_list("journal_toggle"), "JOURNAL_INPUT_HELP")
+
 
 func setup_tasks() -> void:
 	if not TaskController.res:

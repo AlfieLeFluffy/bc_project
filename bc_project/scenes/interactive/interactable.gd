@@ -8,6 +8,7 @@ class_name Interactable extends Node2D
 var active: bool = false
 var mouseHover: bool = false
 var inRadius: bool = false
+var highlight: bool = false
 #endregion
 
 
@@ -71,6 +72,16 @@ func _local_process(delta: float) -> void:
 
 
 #region Input Methods
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("highlight"):
+		highlight = true
+		if not mouseHover:
+			activate_hover()
+	if event.is_action_released("highlight"):
+		highlight = false
+		if not mouseHover:
+			deactivate_hover()
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and active:
 		if interactableResource.dialogueResource:

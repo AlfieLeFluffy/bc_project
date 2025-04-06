@@ -3,14 +3,26 @@ class_name InputHelpLabel extends RichTextLabel
 """
 --- Setup Methods
 """
+@export_range(1.0,10.0,0.1) var fadeTimeout: float = 3.0
+@export_range(1.0,10.0,0.1) var activeTimeout: float = 1.0
+
+#region Variables
 var input:Array
 var description:String
+
+var active: bool = false
+var highlight: bool = false
+#endregion
+
+
 
 """
 --- Setup Methods
 """
+#region Setup Methods
 func _ready() -> void:
 	SettingsController.connect("retranslate",retranslate_label)
+	fade.call_deferred()
 
 func set_label(_input:Array, _description:String):
 	if not _input or not _description:
@@ -34,9 +46,43 @@ func setup_label() -> void:
 		for key in input:
 			keys = keys + " / " + key
 	text = "[right][color=#%s]%s[/color] [color=#%s] - %s[/color]" % [Global.color_TextHighlight.to_html(),keys,Global.color_TextBright.to_html(),tr(description)]
+#endregion
 
-"""
---- Signal Methods
-"""
+
+
+#region Input Methods
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("highlight"):
+		highlight = true
+		visible = true
+		active_timer()
+		GameController.fade_to_color(self, Color.WHITE)
+	if event.is_action_released("highlight"):
+		highlight = false
+#endregion
+
+
+
+#region Visibility Methods
+func active_timer() -> void:
+	await get_tree().create_timer(activeTimeout).timeout
+	if highlight:
+		active_timer.call_deferred()
+		return
+	fade.call_deferred()
+
+func fade() -> void:
+	await get_tree().create_timer(fadeTimeout).timeout
+	if highlight:
+		return
+		
+	await GameController.fade_to_color(self, Color.TRANSPARENT)
+	visible = false
+#endregion
+
+
+
+#region Signal Methods
 func retranslate_label() -> void:
 	setup_label()
+#endregion
