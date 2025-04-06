@@ -40,7 +40,7 @@ const scenePaths: Dictionary = {
 	"main_menu": "res://scenes/menus/main_menu.tscn",
 	"test_level": "res://scenes/levels/test_level.tscn"
 }
-const nongameplayScenes: Array[String] = ["MainMenu"]
+const nongameplayScenes: Array[String] = ["MainMenuRoot"]
 #endregion
 
 """

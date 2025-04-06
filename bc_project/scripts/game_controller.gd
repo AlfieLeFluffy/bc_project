@@ -360,14 +360,14 @@ func fade_object(node : CanvasItem, start: float = 1.0) -> bool:
 	
 
 
-func fade_to_color(item: CanvasItem, color: Color) -> bool:
+func fade_to_color(item: CanvasItem, color: Color, duration: float = 0.3) -> bool:
 	var tween: Tween = create_tween()
 	if not is_inside_tree():
 		return false
 	if tween:
 		tween.kill()
 	tween = get_tree().create_tween()
-	tween.tween_property(item,"modulate", color, 0.3)
+	tween.tween_property(item,"modulate", color, duration)
 	await tween.finished
 	tween.kill()
 	return true

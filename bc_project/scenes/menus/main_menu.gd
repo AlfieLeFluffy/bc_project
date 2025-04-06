@@ -1,13 +1,21 @@
-extends Node
+class_name MainMenuControl extends Control
+
+@export_range(0.0,5.0,0.1) var fadeInTimeout: float = 0.5
+@export_range(0.0,5.0,0.1) var fadeInDuration: float = 0.5
 
 var profileMirror: Dictionary = {}
 var selectedProfile: ProfileResource
+
+signal s_CameraTweenFinished()
 
 """
 --- Setup functions
 """
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	modulate = Color.TRANSPARENT
+	s_CameraTweenFinished.connect(fade_in)
+	
 	GameController.sceneLoaded.emit()
 	GameController.profileLoaded.connect(setup_profile)
 	SettingsController.retranslate.connect(setup_profile)
@@ -15,6 +23,15 @@ func _ready() -> void:
 	%TestSceneButton.grab_focus()
 	
 	setup_profile()
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton or event.is_action_pressed("interact") or event.is_action_pressed("ui_menu"):
+		fade_in(true)
+
+func fade_in(skip: bool = false) -> void:
+	if not skip:
+		await get_tree().create_timer(fadeInTimeout).timeout
+	GameController.fade_to_color(self,Color.WHITE,fadeInDuration)
 
 #region Main Actions Managment and Signal Methods
 func _on_test_scene_button_pressed() -> void:
