@@ -1,27 +1,33 @@
-extends HBoxContainer
+class_name LoadItem extends MarginContainer
 
 
 """
 --- Runtime Variables
 """
+#region Variables
 var menuNode: Node
 var filename: String
 var date: String
 var dateString: String
+#endregion
 
 """
 --- Setup Methods
 """
-# Called when the node enters the scene tree for the first time.
+#region Setup Methods
 func _ready() -> void:
-	$Name.text = filename.rstrip(".sf")
-	$Date.text = date
+	%Name.text = filename.rstrip(".sf")
+	%Date.text = date
+#endregion
+
+
 
 """
 --- Node Signal Methods
 """
+#region Node Signal Methods
 func _on_button_pressed() -> void:
-	$ConfirmationDialog.popup()
+	%ConfirmationDialog.popup()
 
 func _on_confirmation_dialog_confirmed() -> void:
 	if not filename:
@@ -29,10 +35,10 @@ func _on_confirmation_dialog_confirmed() -> void:
 	PersistenceController.loadGame.emit(filename)
 	menuNode.emit_signal("closeMenu")
 
-
 func _on_delete_button_pressed() -> void:
-	$DeleteConfirmationDialog.popup()
+	%DeleteConfirmationDialog.popup()
 
 func _on_delete_confirmation_dialog_confirmed() -> void:
 	PersistenceController.deleteSavefile.emit(filename)
 	queue_free()
+#endregion

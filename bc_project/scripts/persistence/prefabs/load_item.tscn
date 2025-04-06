@@ -1,16 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7qy77jtoc4nt"]
+[gd_scene load_steps=5 format=3 uid="uid://b7qy77jtoc4nt"]
 
 [ext_resource type="Script" uid="uid://c51bjntfiwfhh" path="res://scripts/persistence/prefabs/load_item.gd" id="1_e4mlv"]
+[ext_resource type="Texture2D" uid="uid://chfullbussy1q" path="res://textures/backgrounds/entry_background_ninepatch.png" id="2_gjrql"]
 [ext_resource type="Theme" uid="uid://bqtjul82stgbk" path="res://settings/button_theme.tres" id="2_plabf"]
+[ext_resource type="Theme" uid="uid://cekoodp7oprwo" path="res://settings/popup_dialog_theme.tres" id="2_rbbfb"]
 
-[node name="LoadItem" type="HBoxContainer"]
+[node name="LoadItem" type="MarginContainer"]
 offset_right = 314.0
 offset_bottom = 31.0
 size_flags_horizontal = 3
 focus_mode = 2
 script = ExtResource("1_e4mlv")
 
-[node name="Name" type="Label" parent="."]
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_gjrql")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 21
+patch_margin_bottom = 12
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -18,36 +39,43 @@ text = "Load Name"
 vertical_alignment = 1
 text_overrun_behavior = 1
 
-[node name="Date" type="Label" parent="."]
+[node name="Date" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Load Date"
 text_overrun_behavior = 1
 
-[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 initial_position = 4
 size = Vector2i(266, 100)
+theme = ExtResource("2_rbbfb")
 dialog_text = "SAVEFILE_LOAD_CONFIRMATION"
 
-[node name="DeleteConfirmationDialog" type="ConfirmationDialog" parent="."]
+[node name="DeleteConfirmationDialog" type="ConfirmationDialog" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 auto_translate_mode = 1
 initial_position = 4
 size = Vector2i(288, 100)
+theme = ExtResource("2_rbbfb")
 dialog_text = "SAVEFILE_DELELTE_CONFIRMATION"
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme = ExtResource("2_plabf")
 text = "LOAD_BUTTON"
 
-[node name="DeleteButton" type="Button" parent="."]
+[node name="DeleteButton" type="Button" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme = ExtResource("2_plabf")
 text = "DELETE_BUTTON"
 
-[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
-[connection signal="confirmed" from="DeleteConfirmationDialog" to="." method="_on_delete_confirmation_dialog_confirmed"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="DeleteButton" to="." method="_on_delete_button_pressed"]
+[connection signal="confirmed" from="MarginContainer/HBoxContainer/ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
+[connection signal="confirmed" from="MarginContainer/HBoxContainer/DeleteConfirmationDialog" to="." method="_on_delete_confirmation_dialog_confirmed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/DeleteButton" to="." method="_on_delete_button_pressed"]
