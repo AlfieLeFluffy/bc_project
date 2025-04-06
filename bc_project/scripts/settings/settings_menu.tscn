@@ -92,26 +92,6 @@ popup/item_0/id = 0
 popup/item_1/text = "CZECH_LANGUAGE"
 popup/item_1/id = 1
 
-[node name="TaskKeepVisible" type="HBoxContainer" parent="TabContainer/GAMEPLAY_TAB/VB"]
-layout_mode = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="TabContainer/GAMEPLAY_TAB/VB/TaskKeepVisible"]
-layout_mode = 2
-text = "TASK_KEEP_VISIBLE_SETTING"
-
-[node name="TaskKeepVisibleButton" type="OptionButton" parent="TabContainer/GAMEPLAY_TAB/VB/TaskKeepVisible"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 25)
-layout_mode = 2
-size_flags_horizontal = 4
-selected = 0
-item_count = 2
-popup/item_0/text = "DISABLED_OPTION"
-popup/item_0/id = 0
-popup/item_1/text = "ENABLED_OPTION"
-popup/item_1/id = 1
-
 [node name="GRAPHICS_TAB" type="TabBar" parent="TabContainer"]
 visible = false
 layout_mode = 2
@@ -290,4 +270,11 @@ vertical_alignment = 1
 
 [connection signal="pressed" from="SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="ApplyButton" to="." method="_on_apply_button_pressed"]
-[connection signal="item_selected" from="TabContainer/GAMEPLAY_TAB/VB/TaskKeepVisible/TaskKeepVisibleButton" to="." method="_on_task_keep_visible_button_item_selected"]
+[connection signal="item_selected" from="TabContainer/GAMEPLAY_TAB/VB/LanguageLine/LanguageOptionButton" to="." method="_on_language_option_button_item_selected"]
+[connection signal="item_selected" from="TabContainer/GRAPHICS_TAB/VB/ModeLine/ModeOptionButton" to="." method="_on_mode_option_button_item_selected"]
+[connection signal="item_selected" from="TabContainer/GRAPHICS_TAB/VB/SizeLine/SizeOptionButton" to="." method="_on_size_option_button_item_selected"]
+[connection signal="item_selected" from="TabContainer/GRAPHICS_TAB/VB/VsyncLine/VsyncOptionButton" to="." method="_on_vsync_option_button_item_selected"]
+[connection signal="value_changed" from="TabContainer/AUDIO_TAB/VB/MasterLine/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="TabContainer/AUDIO_TAB/VB/SoundLine/SoundSlider" to="." method="_on_sound_slider_value_changed"]
+[connection signal="value_changed" from="TabContainer/AUDIO_TAB/VB/MusicLine/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="TabContainer/AUDIO_TAB/VB/DialogueLine/DialogueSlider" to="." method="_on_dialogue_slider_value_changed"]
