@@ -3,6 +3,7 @@ class_name PopupMenuController extends CanvasLayer
 enum popupDirection {LEFT,RIGHT,UP,DOWN}
 
 var  tween: Tween
+@export var open: bool = false
 @export var pernament: bool
 @export var direction: popupDirection
 @export var duration: float
@@ -31,6 +32,7 @@ func setup(_content, _pernament: bool = false, _direction: popupDirection = popu
 	ratio = Vector2(%PopupMenu.size) / Vector2(get_viewport().size)
 	
 	setup_background()
+	
 
 func setup_background() -> void:
 	match direction:
@@ -71,23 +73,29 @@ func pop_down() -> void:
 
 func pop_down_kill() -> void:
 	close_menu()
-	await tween.finished
+	if tween:
+		await tween.finished
 	kill_menu()
 
 func open_menu() -> void: 
+	open = true
 	calculate_positions()
+	%PopupMenuController.mouse_filter = Control.MOUSE_FILTER_PASS
 	%PopupMenu.position = centerPosition
 	%PopupMenu.popup()
 	%PopupMenu.position = startPosition
 	setup_tween(startPosition,endPosition)
 
 func close_menu() -> void:
+	open = false
+	%PopupMenuController.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	if not tween:
 		return
 	setup_tween(endPosition,startPosition)
 
 func kill_menu() -> void:
-	tween.kill()
+	if tween:
+		tween.kill()
 	queue_free()
 
 func calculate_positions() -> void:
@@ -95,10 +103,10 @@ func calculate_positions() -> void:
 	centerPosition = Vector2i((screenSize - %PopupMenu.position) / 2)
 	match direction:
 		popupDirection.LEFT:
-			startPosition = Vector2i((-%PopupMenu.size.x - 50),(screenSize.y-%PopupMenu.size.y)/2)
+			startPosition = Vector2i((-%PopupMenu.size.x),(screenSize.y-%PopupMenu.size.y)/2)
 			endPosition = startPosition + Vector2i(%PopupMenu.size.x+100,0)
 		popupDirection.RIGHT:
-			startPosition = Vector2i((screenSize.x + 50),(screenSize.y-%PopupMenu.size.y)/2)
+			startPosition = Vector2i((screenSize.x),(screenSize.y-%PopupMenu.size.y)/2)
 			endPosition = startPosition - Vector2i(%PopupMenu.size.x+100,0)
 		popupDirection.DOWN:
 			startPosition = Vector2i((screenSize.x-%PopupMenu.size.x)/2,-%PopupMenu.size.y)

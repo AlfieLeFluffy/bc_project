@@ -115,7 +115,8 @@ func setup_tween(start: Vector2, end: Vector2) -> void:
 func run_tween() -> bool:
 	resource.tween.play()
 	await resource.tween.finished
-	resource.tween.kill()
+	if resource.tween:
+		resource.tween.kill()
 	return true
 
 func culculate_duration(x: float, y: float) -> float:

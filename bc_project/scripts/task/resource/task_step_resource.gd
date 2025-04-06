@@ -17,7 +17,7 @@ func run_command(base: Node) -> void:
 		if not parameters:
 			node.call(callable)
 		else:
-			node.call(callable,parameters)
+			node.callv(callable,parameters)
 
 func get_color() -> Color:
 	var output: Color = Global.color_TextBright
