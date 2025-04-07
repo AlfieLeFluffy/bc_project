@@ -32,9 +32,9 @@ func update_UI (timeline: String = "") -> void:
 	else:
 		timelineString = Global.Timeline
 	
-	%TimelineLabel.text = "[color=#%s]%s[/color][color=#%s]%s[/color]" % [Global.color_White.to_html(),tr("TIMELINE_UI"),Global.color_White.to_html(), timelineString]
+	%TimelineLabel.text = "[font_size=32][color=#%s]%s[/color][color=#%s]%s[/color]" % [Global.color_White.to_html(),tr("TIMELINE_UI"),Global.color_White.to_html(), timelineString]
 	
-	%TimelineKeyLabel.text = "[color=#%s]%s[/color]" % [Global.color_White.to_html(),GameController.get_input_key("timeline_shift")]
+	%TimelineKeyLabel.text = "[font_size=32][color=#%s]%s[/color]" % [Global.color_White.to_html(),GameController.get_input_key("timeline_shift")]
 
 """
 --- Timeline shit Methods

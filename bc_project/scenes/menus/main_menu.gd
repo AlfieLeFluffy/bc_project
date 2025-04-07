@@ -13,6 +13,7 @@ signal s_CameraTweenFinished()
 """
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	%MainMenuControl.visible = true
 	modulate = Color.TRANSPARENT
 	s_CameraTweenFinished.connect(fade_in)
 	
@@ -73,7 +74,7 @@ func setup_profile() -> void:
 		%LoadButton.disabled = true
 		return
 	
-	%ProfileLabel.text = "[font_size=14][color=#%s]%s\n[/color][font_size=20][color=#%s]%s[/color]" % [Global.color_White.to_html(),tr("PROFILE_LABEL"),Global.color_TextHighlight.to_html(),GameController.profile.profileName]
+	%ProfileLabel.text = "[font_size=20][color=#%s]%s\n[/color][font_size=28][color=#%s]%s[/color]" % [Global.color_White.to_html(),tr("PROFILE_LABEL"),Global.color_TextHighlight.to_html(),GameController.profile.profileName]
 	%TestSceneButton.disabled = false
 	%TestSceneButton.tooltip_text = ""
 	%AchievementsButton.disabled = false

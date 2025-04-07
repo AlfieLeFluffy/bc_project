@@ -2,7 +2,7 @@ class_name DetectiveBoardMenu extends Control
 
 #region Variables
 var mouse_offset: Vector2
-@onready var screenSize: Vector2 = DisplayServer.screen_get_size()
+@onready var screenSize: Vector2 = get_viewport().size
 #endregion
 
 #region Setup Methods

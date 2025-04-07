@@ -11,6 +11,8 @@ func _ready() -> void:
 	
 	self.mouse_entered.connect(stretch)
 	self.mouse_exited.connect(reset)
+	
+	get_viewport().size_changed.connect(reset)
 
 func stretch() -> void:
 	if tween:

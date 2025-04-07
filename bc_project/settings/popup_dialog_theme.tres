@@ -136,6 +136,7 @@ expand_margin_right = 20.0
 expand_margin_bottom = 20.0
 
 [resource]
+default_font_size = 28
 AcceptDialog/styles/panel = SubResource("StyleBoxFlat_2nr7g")
 Button/styles/disabled = SubResource("StyleBoxFlat_io1li")
 Button/styles/focus = SubResource("StyleBoxFlat_kmkuj")

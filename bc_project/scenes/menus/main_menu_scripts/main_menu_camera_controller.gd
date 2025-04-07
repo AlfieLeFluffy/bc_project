@@ -11,6 +11,9 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouse:
 		mousePosition = get_local_mouse_position()
 
+func _process(delta: float) -> void:
+	pass
+
 func _physics_process(delta: float) -> void:
 	## Positions the camera controller between the center of the screen and the last know [param mousePosition][br]
 	## This is weighted by the parameter [param ration] to keep the camera overall centered.

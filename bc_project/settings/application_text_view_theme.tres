@@ -4,7 +4,9 @@
 bg_color = Color(0.912289, 0.912289, 0.912289, 1)
 
 [resource]
+default_font_size = 20
 RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
 RichTextLabel/colors/font_outline_color = Color(1, 1, 1, 1)
 RichTextLabel/constants/line_separation = 2
+RichTextLabel/font_sizes/normal_font_size = 20
 RichTextLabel/styles/background = SubResource("StyleBoxFlat_nrkji")

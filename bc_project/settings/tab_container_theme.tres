@@ -74,7 +74,7 @@ corner_radius_top_right = 5
 corner_detail = 1
 
 [resource]
-TabContainer/font_sizes/font_size = 24
+default_font_size = 32
 TabContainer/styles/panel = SubResource("StyleBoxFlat_1hdvp")
 TabContainer/styles/tab_disabled = SubResource("StyleBoxFlat_rqd01")
 TabContainer/styles/tab_focus = SubResource("StyleBoxFlat_3us78")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c73m21uddf5ye"]
+[gd_scene load_steps=14 format=3 uid="uid://c73m21uddf5ye"]
 
 [ext_resource type="Script" uid="uid://cbq3jb38hm50o" path="res://scenes/UI/board/board_controler.gd" id="1_hmund"]
 [ext_resource type="PackedScene" uid="uid://bcdby6svlp0fj" path="res://scenes/UI/backgrounds/fade_background.tscn" id="2_jxns0"]
@@ -16,12 +16,6 @@ MarginContainer/constants/margin_bottom = 50
 MarginContainer/constants/margin_left = 50
 MarginContainer/constants/margin_right = 50
 MarginContainer/constants/margin_top = 50
-
-[sub_resource type="Shader" id="Shader_oylrx"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ja2cj"]
-render_priority = 0
-shader = SubResource("Shader_oylrx")
 
 [sub_resource type="Gradient" id="Gradient_lwc1k"]
 offsets = PackedFloat32Array(0, 0.504348, 0.626087)
@@ -68,11 +62,18 @@ patch_margin_bottom = 48
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="BoardFraming/NinePatchClip"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = -0.027
+anchor_top = -0.043
+anchor_right = 1.027
+anchor_bottom = 1.051
+offset_left = 49.14
+offset_top = 42.14
+offset_right = -49.1401
+offset_bottom = -49.98
 grow_horizontal = 2
 grow_vertical = 2
+stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="BoardFraming/NinePatchClip/SubViewportContainer"]
 unique_name_in_owner = true
@@ -84,7 +85,7 @@ render_target_update_mode = 4
 [node name="Camera2D" type="Camera2D" parent="BoardFraming/NinePatchClip/SubViewportContainer/SubViewport"]
 position = Vector2(960, 540)
 script = ExtResource("2_ssjns")
-minZoom = Vector2(0.5, 0.5)
+minZoom = Vector2(0.8, 0.8)
 maxZoom = Vector2(1.5, 1.5)
 
 [node name="BoardControler" type="Control" parent="BoardFraming/NinePatchClip/SubViewportContainer/SubViewport"]
@@ -97,15 +98,9 @@ metadata/TextureSize = Vector2(1200, 800)
 
 [node name="BoardBackground" type="TextureRect" parent="BoardFraming/NinePatchClip/SubViewportContainer/SubViewport/BoardControler"]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_ja2cj")
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
 offset_right = 3840.0
 offset_bottom = 2160.0
-grow_horizontal = 2
-grow_vertical = 2
 mouse_default_cursor_shape = 6
 texture = ExtResource("6_oylrx")
 stretch_mode = 1

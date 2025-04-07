@@ -1,6 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://cvofjgglg5okk"]
 
 [resource]
+default_font_size = 20
 GridContainer/constants/h_separation = 10
 GridContainer/constants/v_separation = 10
 Label/font_sizes/font_size = 12

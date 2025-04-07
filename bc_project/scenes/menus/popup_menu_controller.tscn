@@ -26,6 +26,7 @@ size = Vector2i(500, 500)
 borderless = true
 transparent = true
 extend_to_title = true
+mouse_passthrough = true
 content_scale_mode = 1
 content_scale_aspect = 4
 

@@ -21,55 +21,57 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuContainer"]
-layout_mode = 2
-anchor_right = 0.132
-anchor_bottom = 1.0
-offset_right = 0.559998
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+anchor_right = 0.182
+anchor_bottom = 1.0
+offset_right = 0.559998
 alignment = 1
 
-[node name="ContinueButton" type="Button" parent="MenuContainer/HBoxContainer/VBoxContainer"]
+[node name="ContinueButton" type="Button" parent="MenuContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme = ExtResource("3_0rsoi")
 text = "CONTINUE_BUTTON"
+clip_text = true
 script = ExtResource("4_hs1qs")
 
-[node name="SaveButton" type="Button" parent="MenuContainer/HBoxContainer/VBoxContainer"]
+[node name="SaveButton" type="Button" parent="MenuContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme = ExtResource("3_0rsoi")
 text = "SAVE_BUTTON"
+clip_text = true
 script = ExtResource("4_hs1qs")
 
-[node name="LoadButton" type="Button" parent="MenuContainer/HBoxContainer/VBoxContainer"]
+[node name="LoadButton" type="Button" parent="MenuContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme = ExtResource("3_0rsoi")
 text = "LOAD_BUTTON"
+clip_text = true
 script = ExtResource("4_hs1qs")
 
-[node name="SettingsButton" type="Button" parent="MenuContainer/HBoxContainer/VBoxContainer"]
+[node name="SettingsButton" type="Button" parent="MenuContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme = ExtResource("3_0rsoi")
 text = "SETTINGS_BUTTON"
+clip_text = true
 script = ExtResource("4_hs1qs")
 
-[node name="QuitButton" type="Button" parent="MenuContainer/HBoxContainer/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="MenuContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme = ExtResource("3_0rsoi")
 text = "QUIT__TO_MAIN_MENU_BUTTON"
+clip_text = true
 script = ExtResource("4_hs1qs")
 
-[connection signal="pressed" from="MenuContainer/HBoxContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
-[connection signal="pressed" from="MenuContainer/HBoxContainer/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
-[connection signal="pressed" from="MenuContainer/HBoxContainer/VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
-[connection signal="pressed" from="MenuContainer/HBoxContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="MenuContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MenuContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="MenuContainer/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="MenuContainer/VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="MenuContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MenuContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

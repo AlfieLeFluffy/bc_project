@@ -3,5 +3,6 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i6u7g"]
 
 [resource]
+default_font_size = 20
 PanelContainer/styles/panel = SubResource("StyleBoxEmpty_i6u7g")
 VBoxContainer/constants/separation = 0

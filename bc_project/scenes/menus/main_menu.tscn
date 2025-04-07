@@ -1,17 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://b2vbyl6277p6b"]
+[gd_scene load_steps=14 format=4 uid="uid://b2vbyl6277p6b"]
 
 [ext_resource type="Script" uid="uid://cyp36x1yqve82" path="res://scenes/menus/main_menu.gd" id="1_7ttt2"]
 [ext_resource type="Script" uid="uid://cekilgjtyqkou" path="res://scenes/menus/main_menu_scripts/camera_tween_controller.gd" id="1_50h1w"]
 [ext_resource type="Theme" uid="uid://f6rijghqdfrw" path="res://settings/main_menu_theme.tres" id="1_c65hb"]
 [ext_resource type="Script" uid="uid://h63rr3xy1iy4" path="res://scenes/menus/main_menu_scripts/main_menu_camera_controller.gd" id="2_bre17"]
-[ext_resource type="Texture2D" uid="uid://b0rsxtokf5a6q" path="res://textures/icon.svg" id="2_euy4r"]
 [ext_resource type="Texture2D" uid="uid://c4d1odq88m3nh" path="res://textures/symbols/asterisk.png" id="3_2o76q"]
 [ext_resource type="Theme" uid="uid://c74vqer2j3y74" path="res://settings/main_menu_button_theme.tres" id="3_6bivr"]
+[ext_resource type="TileSet" uid="uid://bs7h6id5vs50s" path="res://tilesets/background_apartment_building_close.tres" id="3_88kup"]
 [ext_resource type="Script" uid="uid://cv5mje71vm85n" path="res://scripts/button/stretch_button.gd" id="4_8r73w"]
 [ext_resource type="Script" uid="uid://bw0qpyt0ke700" path="res://scenes/menus/main_menu_version_label.tres.gd" id="5_imvie"]
 [ext_resource type="Theme" uid="uid://583q85mv5ni" path="res://settings/main_menu_profile_label_theme.tres" id="5_ng0o5"]
 [ext_resource type="Texture2D" uid="uid://buovekmkjq4fv" path="res://textures/icon/icon.svg" id="6_88kup"]
 [ext_resource type="Script" uid="uid://ddxatermq2axu" path="res://scenes/menus/main_menu_scripts/title_text.gd" id="7_bh4e2"]
+
+[sub_resource type="Theme" id="Theme_88kup"]
+RichTextLabel/constants/shadow_offset_x = 4
+RichTextLabel/constants/shadow_offset_y = 4
+RichTextLabel/constants/shadow_outline_size = 6
 
 [node name="MainMenuRoot" type="Node"]
 
@@ -26,6 +31,7 @@ position = Vector2(0, -2)
 script = ExtResource("2_bre17")
 
 [node name="Camera2D" type="Camera2D" parent="MainMenu2DSpace/CameraTweenController/MainMenuCameraController"]
+zoom = Vector2(1.5, 1.5)
 limit_left = -2120
 limit_top = -2120
 limit_right = 2120
@@ -33,8 +39,38 @@ limit_bottom = 2120
 limit_smoothed = true
 position_smoothing_enabled = true
 
-[node name="Icon" type="Sprite2D" parent="MainMenu2DSpace"]
-texture = ExtResource("2_euy4r")
+[node name="ParallaxBackground" type="ParallaxBackground" parent="MainMenu2DSpace"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="MainMenu2DSpace/ParallaxBackground"]
+color = Color(0.666569, 0.666569, 0.666569, 1)
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="MainMenu2DSpace/ParallaxBackground"]
+modulate = Color(0.560955, 0.560955, 0.560955, 1)
+motion_scale = Vector2(0.7, 0.7)
+motion_offset = Vector2(75, 0)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="MainMenu2DSpace/ParallaxBackground/ParallaxLayer3"]
+tile_set = ExtResource("3_88kup")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="MainMenu2DSpace/ParallaxBackground"]
+modulate = Color(0.5, 0.5, 0.5, 1)
+motion_scale = Vector2(0.8, 0.8)
+motion_offset = Vector2(50, 0)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="MainMenu2DSpace/ParallaxBackground/ParallaxLayer"]
+position = Vector2(0, -2)
+tile_map_data = PackedByteArray("AAD3/wAAAgAEAAEAAAD3/wEAAgASAAkAAAD3/wIAAgASAAoAAAD3/wMAAgASAAoAAAD3/wQAAgASAAoAAAD3/wUAAgASAAoAAAD4/wAAAgAFAAEAAAD4/wEAAgAOAAMAAAD4/wIAAgAOAAYAAAD4/wMAAgAOAAcAAAD4/wQAAgAOAAUAAAD4/wUAAgAOAAQAAAD5/wAAAgAFAAEAAAD5/wEAAgASAAMAAAD5/wIAAgASAAYAAAD5/wMAAgASAAcAAAD5/wQAAgASAAUAAAD5/wUAAgASAAQAAAD6/wAAAgAFAAEAAAD6/wEAAgAOAAMAAAD6/wIAAgAOAAYAAAD6/wMAAgAOAAcAAAD6/wQAAgAOAAUAAAD6/wUAAgAOAAQAAAD7/wAAAgAFAAEAAAD7/wEAAgAOAAMAAAD7/wIAAgAOAAYAAAD7/wMAAgAOAAcAAAD7/wQAAgAOAAUAAAD7/wUAAgAOAAQAAAD8/wAAAgAGAAEAAAD8/wEAAgATAAkAAAD8/wIAAgATAAoAAAD8/wMAAgATAAoAAAD8/wQAAgATAAoAAAD8/wUAAgATAAoAAAAEAAMAAgAEAAkAAAAEAAQAAgAEAAoAAAAEAAUAAgAEAAoAAAAFAAIAAgAEAA0AAAAFAAMAAgACAAMAAAAFAAQAAgADAAYAAAAFAAUAAgAAAAcAAAAGAAIAAgAEAA0AAAAGAAMAAgADAAMAAAAGAAQAAgABAAYAAAAGAAUAAgACAAcAAAAHAAIAAgAEAA0AAAAHAAMAAgABAAMAAAAHAAQAAgACAAYAAAAHAAUAAgABAAcAAAAIAAMAAgAFAAkAAAAIAAQAAgAFAAoAAAAIAAUAAgAFAAoAAAD3/wYAAgASAAoAAAD3/wcAAgASAAsAAAD4/wYAAgAOAAgAAAD4/wcAAgAQAAkAAAD5/wYAAgASAAgAAAD5/wcAAgAQAAkAAAD6/wYAAgAOAAgAAAD6/wcAAgAOAAkAAAD7/wYAAgAOAAgAAAD7/wcAAgAPAAkAAAD8/wYAAgATAAoAAAD8/wcAAgATAAsAAAAEAAYAAgAEAAoAAAAEAAcAAgAEAAsAAAAFAAYAAgAAAAgAAAAFAAcAAgADAAkAAAAGAAYAAgAAAAgAAAAGAAcAAgAAAAkAAAAHAAYAAgAAAAgAAAAHAAcAAgADAAkAAAAIAAYAAgAFAAoAAAAIAAcAAgAFAAsAAAA=")
+tile_set = ExtResource("3_88kup")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="MainMenu2DSpace/ParallaxBackground"]
+modulate = Color(0.9, 0.9, 0.9, 1)
+motion_scale = Vector2(0.9, 0.9)
+motion_offset = Vector2(25, 0)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="MainMenu2DSpace/ParallaxBackground/ParallaxLayer2"]
+position = Vector2(0, -2)
+tile_map_data = PackedByteArray("AAD0////AgAIAAAAAAD0/wAAAgAEAAkAAAD0/wEAAgAEAAoAAAD0/wIAAgAEAAoAAAD0/wMAAgAEAAoAAAD0/wQAAgAEAAoAAAD0/wUAAgAEAAoAAAD0/wYAAgAEAAsAAAD1////AgAJAAAAAAD1/wAAAgADAAMAAAD1/wEAAgAAAAQAAAD1/wIAAgADAAUAAAD1/wMAAgAAAAYAAAD1/wQAAgADAAcAAAD1/wUAAgABAAgAAAD1/wYAAgABAAoAAAD2////AgAKAAAAAAD2/wAAAgACAAMAAAD2/wEAAgABAAQAAAD2/wIAAgACAAUAAAD2/wMAAgADAAYAAAD2/wQAAgABAAcAAAD2/wUAAgACAAgAAAD2/wYAAgACAAkAAAD3////AgAJAAAAAAD3/wAAAgADAAMAAAD3/wEAAgABAAQAAAD3/wIAAgABAAUAAAD3/wMAAgACAAYAAAD3/wQAAgACAAcAAAD3/wUAAgACAAgAAAD3/wYAAgAAAAkAAAD4////AgAKAAAAAAD4/wAAAgAEAAMAAAD4/wEAAgAFAAQAAAD4/wIAAgAEAAUAAAD4/wMAAgAFAAYAAAD4/wQAAgAFAAcAAAD4/wUAAgAFAAgAAAD4/wYAAgABAAkAAAD5////AgAJAAAAAAD5/wAAAgAAAAMAAAD5/wEAAgADAAQAAAD5/wIAAgACAAUAAAD5/wMAAgADAAYAAAD5/wQAAgAAAAcAAAD5/wUAAgADAAgAAAD5/wYAAgACAAkAAAD6////AgALAAAAAAD6/wAAAgAFAAkAAAD6/wEAAgAFAAoAAAD6/wIAAgAFAAoAAAD6/wMAAgAFAAoAAAD6/wQAAgAFAAoAAAD6/wUAAgAFAAoAAAD6/wYAAgAFAAsAAAAGAAAAAgALAAkAAAAGAAEAAgALAAoAAAAGAAIAAgALAAoAAAAGAAMAAgALAAoAAAAGAAQAAgALAAoAAAAGAAUAAgALAAoAAAAGAAYAAgALAAsAAAAHAP//AgALAA0AAAAHAAAAAgAJAAUAAAAHAAEAAgAJAAYAAAAHAAIAAgAJAAcAAAAHAAMAAgAHAAYAAAAHAAQAAgAIAAcAAAAHAAUAAgAJAAgAAAAHAAYAAgAIAAkAAAAIAP//AgALAA0AAAAIAAAAAgAKAAUAAAAIAAEAAgAKAAYAAAAIAAIAAgAHAAcAAAAIAAMAAgAKAAYAAAAIAAQAAgAHAAcAAAAIAAUAAgAKAAgAAAAIAAYAAgAHAAoAAAAJAP7/AgAAAAAAAAAJAP//AgALAAwAAAAJAAAAAgAKAAUAAAAJAAEAAgAHAAYAAAAJAAIAAgAHAAcAAAAJAAMAAgAKAAYAAAAJAAQAAgAHAAcAAAAJAAUAAgAKAAgAAAAJAAYAAgAIAAoAAAAKAP7/AgABAAAAAAAKAP//AgAJAAMAAAAKAAAAAgAJAAUAAAAKAAEAAgAJAAYAAAAKAAIAAgAKAAcAAAAKAAMAAgAHAAYAAAAKAAQAAgAHAAcAAAAKAAUAAgAJAAgAAAAKAAYAAgAJAAkAAAALAP7/AgABAAAAAAALAP//AgALAAMAAAALAAAAAgALAAUAAAALAAEAAgALAAYAAAALAAIAAgALAAcAAAALAAMAAgALAAYAAAALAAQAAgALAAcAAAALAAUAAgAMAAgAAAALAAYAAgAIAAkAAAAMAP7/AgADAAAAAAAMAP//AgAMAAkAAAAMAAAAAgAMAAoAAAAMAAEAAgAMAAoAAAAMAAIAAgAMAAoAAAAMAAMAAgAMAAoAAAAMAAQAAgAMAAoAAAAMAAUAAgAMAAoAAAAMAAYAAgAMAAsAAAA=")
+tile_set = ExtResource("3_88kup")
 
 [node name="MainMenuCanvasLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -53,9 +89,11 @@ script = ExtResource("1_7ttt2")
 [node name="LeftColumn" type="VBoxContainer" parent="MainMenuCanvasLayer/MainMenuControl"]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.133
+anchor_top = -0.002
+anchor_right = 0.182
 anchor_bottom = 1.0
-offset_right = -5.36
+offset_top = 2.16
+offset_right = 0.559967
 grow_vertical = 0
 alignment = 1
 
@@ -63,18 +101,20 @@ alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TitleScreen" type="VBoxContainer" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn"]
+[node name="TitleOrder" type="VBoxContainer" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn"]
 layout_mode = 2
 
-[node name="Icon" type="TextureRect" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn/TitleScreen"]
-custom_minimum_size = Vector2(0, 100)
+[node name="Icon" type="TextureRect" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn/TitleOrder"]
+custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
 texture = ExtResource("6_88kup")
+expand_mode = 3
 stretch_mode = 5
 
-[node name="TitleText" type="RichTextLabel" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn/TitleScreen"]
+[node name="TitleText" type="RichTextLabel" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn/TitleOrder"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = SubResource("Theme_88kup")
 bbcode_enabled = true
 fit_content = true
 horizontal_alignment = 1
@@ -96,6 +136,7 @@ focus_neighbor_bottom = NodePath("../LoadButton")
 theme = ExtResource("3_6bivr")
 disabled = true
 text = "TEST_SCENE"
+clip_text = true
 script = ExtResource("4_8r73w")
 
 [node name="LoadButton" type="Button" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn/MainButtons"]
@@ -107,6 +148,7 @@ focus_neighbor_bottom = NodePath("../AchievementsButton")
 theme = ExtResource("3_6bivr")
 disabled = true
 text = "LOAD_BUTTON"
+clip_text = true
 script = ExtResource("4_8r73w")
 
 [node name="AchievementsButton" type="Button" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn/MainButtons"]
@@ -118,6 +160,7 @@ focus_neighbor_bottom = NodePath("../SettingsButton")
 theme = ExtResource("3_6bivr")
 disabled = true
 text = "ACHIEVEMENTS_BUTTON"
+clip_text = true
 script = ExtResource("4_8r73w")
 
 [node name="AchievementsFlair" type="TextureRect" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn/MainButtons/AchievementsButton"]
@@ -141,6 +184,7 @@ focus_neighbor_top = NodePath("../AchievementsButton")
 focus_neighbor_bottom = NodePath("../QuitButton")
 theme = ExtResource("3_6bivr")
 text = "SETTINGS_BUTTON"
+clip_text = true
 script = ExtResource("4_8r73w")
 
 [node name="QuitButton" type="Button" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn/MainButtons"]
@@ -150,6 +194,7 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../SettingsButton")
 theme = ExtResource("3_6bivr")
 text = "QUIT_BUTTON"
+clip_text = true
 script = ExtResource("4_8r73w")
 
 [node name="Fill3" type="Control" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn"]
@@ -182,22 +227,20 @@ auto_height = true
 
 [node name="ChooseProfileButton" type="Button" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn/ProfileMenu"]
 unique_name_in_owner = true
-clip_contents = true
 custom_minimum_size = Vector2(100, 35)
 layout_mode = 2
 theme = ExtResource("3_6bivr")
+theme_override_font_sizes/font_size = 24
 text = "CHOOSE_PROFILE_BUTTON"
-clip_text = true
 script = ExtResource("4_8r73w")
 
 [node name="CreateProfileButton" type="Button" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn/ProfileMenu"]
 unique_name_in_owner = true
-clip_contents = true
 custom_minimum_size = Vector2(100, 35)
 layout_mode = 2
 theme = ExtResource("3_6bivr")
+theme_override_font_sizes/font_size = 24
 text = "CREATE_PROFILE_BUTTON"
-clip_text = true
 script = ExtResource("4_8r73w")
 
 [node name="Fill4" type="Control" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn"]
@@ -208,19 +251,25 @@ size_flags_stretch_ratio = 0.25
 [node name="RightColumn" type="VBoxContainer" parent="MainMenuCanvasLayer/MainMenuControl"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.87
+anchor_left = 0.792
+anchor_top = -0.002
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -0.400146
+offset_left = -0.640137
+offset_top = 2.16
+offset_right = 0.00012207
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
 
-[node name="VersionLabel" type="Label" parent="MainMenuCanvasLayer/MainMenuControl/RightColumn"]
+[node name="VersionLabel" type="RichTextLabel" parent="MainMenuCanvasLayer/MainMenuControl/RightColumn"]
 unique_name_in_owner = true
 layout_mode = 2
+bbcode_enabled = true
 text = "VERSION_LABEL - 0.0.0"
+fit_content = true
 horizontal_alignment = 2
+vertical_alignment = 2
 script = ExtResource("5_imvie")
 
 [node name="ProfileDeletionConfirmation" type="ConfirmationDialog" parent="MainMenuCanvasLayer/MainMenuControl"]
