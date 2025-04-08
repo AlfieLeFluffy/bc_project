@@ -30,7 +30,7 @@ func import_clues() -> void:
 	var resource
 	for child in get_tree().root.get_children():
 		if child is LevelController:
-			resource = child.caseClues
+			resource = child.clues
 			break
 	
 	if not resource:
@@ -78,16 +78,18 @@ func end_drawing() -> void:
 			instance.queue_free()
 		else:
 			Global.line_elements[instance.resource.id] = instance
-			var clue = check_for_clue(instance.resource.id)
-			if clue != "":
-				instance.set_description(clue)
+			var clue: ClueResource = check_for_clue(instance.resource.id)
+			if clue != null:
+				instance.set_description(clue.label)
+				for callable in clue.callables:
+					callable.run(self)
 				AudioManager.play_sound("sfx/ding")
 	drawing = false
 
-func check_for_clue(combination:String) -> String:
+func check_for_clue(combination:String) -> ClueResource:
 	if clues.has(combination):
-		return clues[combination].clueString
-	return ""
+		return clues[combination]
+	return null
 #endregion
 
 #region Connection Managment Methods

@@ -20,7 +20,7 @@ func run(base: Node):
 	
 	match callableType:
 		CALLABLE_TYPE.METHOD:
-			return run_method(base)
+			return await run_method(base)
 		CALLABLE_TYPE.SIGNAL:
 			return run_signal(base)
 		_:
@@ -36,7 +36,7 @@ func run_method(base: Node):
 	if not parameters:
 		return node.call(methodName)
 	else:
-		return node.callv(methodName,parameters)
+		return await node.callv(methodName,parameters)
 
 func run_signal(base: Node):
 	var node = check_callable(base, signalName)

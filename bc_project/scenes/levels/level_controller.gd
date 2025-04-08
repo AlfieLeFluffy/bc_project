@@ -3,7 +3,7 @@ class_name LevelController extends Node2D
 """
 --- Level/Case Variables
 """
-@export var caseClues: ClueCombinaions
+@export var clues: CluesLevelResource
 @export var tasks: TaskLevelResource
 
 """
