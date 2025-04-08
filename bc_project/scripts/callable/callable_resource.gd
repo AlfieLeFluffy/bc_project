@@ -1,69 +1,45 @@
 class_name CallableResource extends Resource
 
-enum NODE_TYPE {DYNAMIC,STATIC}
-enum CALLABLE_TYPE {METHOD,SIGNAL}
-
 @export_category("Callable Information")
-@export var nodeType: NODE_TYPE
-@export var nodeName: String
-@export var nodePath: NodePath
-@export var callableType: CALLABLE_TYPE
-@export var methodName: String
-@export var signalName: String
 @export var parameters: Array
 
 func run(base: Node):
-	if (nodeType == NODE_TYPE.DYNAMIC and not nodePath) or (nodeType == NODE_TYPE.STATIC and not nodeName):
-		printerr("Error: No nodepath for callable resource of name: '%s'" % [resource_name])
-		return null
-		
-	
-	match callableType:
-		CALLABLE_TYPE.METHOD:
-			return await run_method(base)
-		CALLABLE_TYPE.SIGNAL:
-			return run_signal(base)
-		_:
-			printerr("Error: No callable type selected for callable resource of of name: '%s'" % [resource_name])
-			return null
+	pass
 
-func run_method(base: Node):
-	var node = check_callable(base, methodName)
-	
+func check_target_path(tagetPath) -> bool:
+	if not tagetPath:
+		printerr("Error: No nodepath/nodename for callable resource of name: '%s'" % [resource_name])
+		return false
+	return true
+
+func run_method(node: Node, _methodName: String):
 	if not node:
 		return null
 	
-	if not parameters:
-		return node.call(methodName)
-	else:
-		return await node.callv(methodName,parameters)
+	return await node.callv(_methodName,parameters)
 
-func run_signal(base: Node):
-	var node = check_callable(base, signalName)
-	
+func run_signal(node: Node, _signalName: String):
 	if not node:
 		return null
 		
 	if not parameters:
-		return node.emit_signal(signalName)
+		return node.emit_signal(_signalName)
 	else:
-		return node.emit_signal(signalName,parameters)
+		return node.emit_signal(_signalName,parameters)
 
-func check_callable(base: Node, callableName: String) -> Node:
-	if not callableName:
-		printerr("Error: No method name for callable resource of name: '%s'" % [resource_name])
+func get_node_by_name(base: Node, nodeName: String) -> Node:
+	if not nodeName:
+		printerr("Error: No node name for callable resource of name: '%s'" % [resource_name])
 		return null
-	
-	var node
-	match nodeType:
-		NODE_TYPE.STATIC:
-			node = base.get_tree().get_root().get_node(nodeName)
-		NODE_TYPE.DYNAMIC:
-			node = base.get_node(nodePath)
-		_:
-			printerr("Error: No node type selected for callable resource of of name: '%s'" % [resource_name])
-			return null
-	
+	return base.get_tree().get_root().get_node(nodeName)
+
+func get_node_by_nodepath(base: Node, nodePath: NodePath) -> Node:
+	if not nodePath:
+		printerr("Error: No node path for callable resource of name: '%s'" % [resource_name])
+		return null
+	return base.get_node(nodePath)
+
+func check_node_callable(node: Node, callableName: String) -> Node:	
 	if not node:
 		printerr("Error: No node has been found for callable resource of of name: '%s'" % [resource_name])
 		return null

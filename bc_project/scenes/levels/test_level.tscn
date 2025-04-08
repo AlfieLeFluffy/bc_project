@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=4 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=106 format=4 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Script" uid="uid://cmlgg6dxih77f" path="res://scenes/levels/level_controller.gd" id="1_t01cb"]
 [ext_resource type="PackedScene" uid="uid://ddrrl1gryxkup" path="res://scenes/characters/player/player_character.tscn" id="1_wpgi4"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://dkvl1inu1enr8" path="res://scenes/interactive/switches/light_switch.tscn" id="7_wo4n4"]
 [ext_resource type="Shader" uid="uid://dcwirhvnici6e" path="res://shaders/outline_recolor.gdshader" id="8_0myxw"]
 [ext_resource type="PackedScene" uid="uid://c4br56b34o2el" path="res://scenes/interactive/buttons/elevatorCall/elevator_call_button.tscn" id="8_dgc65"]
+[ext_resource type="Script" uid="uid://cigg6mv4soq7y" path="res://scripts/callable/static_method_callable_resource.gd" id="8_gsoyx"]
 [ext_resource type="TileSet" uid="uid://bs7h6id5vs50s" path="res://tilesets/background_apartment_building_close.tres" id="8_t8w0x"]
 [ext_resource type="Resource" uid="uid://bmxx1uimby337" path="res://dialogs/test_dialogue.dialogue" id="10_wnetc"]
 [ext_resource type="Script" uid="uid://drj3o0qsip6ss" path="res://scenes/characters/npcs/npc_resource.gd" id="16_2qb3d"]
@@ -26,7 +27,7 @@
 [ext_resource type="Resource" uid="uid://p2pgjby8025n" path="res://dialogs/ribli.dialogue" id="17_ls76e"]
 [ext_resource type="PackedScene" uid="uid://xdset1j1nj24" path="res://scenes/interactive/doors/door.tscn" id="18_caylh"]
 [ext_resource type="PackedScene" uid="uid://doxp2j8t2vs5a" path="res://scenes/characters/npcs/npc_versions/npc_standing.tscn" id="18_tveke"]
-[ext_resource type="Texture2D" uid="uid://b8xj6gwg3vfq2" path="res://textures/items/thickMug.png" id="19_gsoyx"]
+[ext_resource type="Script" uid="uid://dsq6w2r2l8ydw" path="res://scripts/callable/dynamic_method_callable_resource.gd" id="19_gsoyx"]
 [ext_resource type="PackedScene" uid="uid://bqm4y7yl8uqcq" path="res://scenes/static/furniture/wooden_table.tscn" id="21_auljp"]
 [ext_resource type="PackedScene" uid="uid://cqiiad58pt1w" path="res://scenes/interactive/computer/versions/tabletop_computer.tscn" id="22_maqab"]
 [ext_resource type="PackedScene" uid="uid://bn8qfludml1yc" path="res://scenes/interactive/texts/versions/paper_on_wall.tscn" id="23_l5ajp"]
@@ -50,15 +51,11 @@
 [ext_resource type="Script" uid="uid://ca8p4syf56fpg" path="res://scenes/triggers/versions/area_trigger_go_to_step.gd" id="42_t8w0x"]
 
 [sub_resource type="Resource" id="Resource_ywsp3"]
-script = ExtResource("4_0e4k1")
-nodeType = 1
+script = ExtResource("8_gsoyx")
 nodeName = "AudioManager"
-nodePath = NodePath("")
-callableType = 0
 methodName = "play_sound"
-signalName = ""
 parameters = ["sfx/ding"]
-metadata/_custom_type_script = "uid://djuch7xw2rnf2"
+metadata/_custom_type_script = "uid://cigg6mv4soq7y"
 
 [sub_resource type="Resource" id="Resource_7sogp"]
 script = ExtResource("2_2orbd")
@@ -82,15 +79,11 @@ callables = Array[ExtResource("4_0e4k1")]([])
 metadata/_custom_type_script = "uid://dxxmbh080lv02"
 
 [sub_resource type="Resource" id="Resource_a7wlb"]
-script = ExtResource("4_0e4k1")
-nodeType = 1
+script = ExtResource("8_gsoyx")
 nodeName = "TaskController"
-nodePath = NodePath("")
-callableType = 0
 methodName = "set_task_active_name"
-signalName = ""
 parameters = ["Another Task"]
-metadata/_custom_type_script = "uid://djuch7xw2rnf2"
+metadata/_custom_type_script = "uid://cigg6mv4soq7y"
 
 [sub_resource type="Resource" id="Resource_2orbd"]
 script = ExtResource("4_y80st")
@@ -218,15 +211,11 @@ shader_parameter/line_thickness = 0.0
 shader_parameter/row = -1
 
 [sub_resource type="Resource" id="Resource_wgpnu"]
-script = ExtResource("4_0e4k1")
-nodeType = 0
-nodeName = ""
+script = ExtResource("19_gsoyx")
 nodePath = NodePath("../../Doors/DoorSideways")
-callableType = 0
 methodName = "toggle_lock"
-signalName = ""
 parameters = []
-metadata/_custom_type_script = "uid://djuch7xw2rnf2"
+metadata/_custom_type_script = "uid://dsq6w2r2l8ydw"
 
 [sub_resource type="Resource" id="Resource_1oo6r"]
 resource_local_to_scene = true
@@ -246,15 +235,11 @@ shader_parameter/line_thickness = 0.0
 shader_parameter/row = -1
 
 [sub_resource type="Resource" id="Resource_4wpc7"]
-script = ExtResource("4_0e4k1")
-nodeType = 1
+script = ExtResource("8_gsoyx")
 nodeName = "CustomDialogueScripts"
-nodePath = NodePath("")
-callableType = 0
 methodName = "start_dialogue"
-signalName = ""
-parameters = [ExtResource("10_wnetc"), "Thick Mug", ExtResource("19_gsoyx")]
-metadata/_custom_type_script = "uid://djuch7xw2rnf2"
+parameters = [ExtResource("10_wnetc")]
+metadata/_custom_type_script = "uid://cigg6mv4soq7y"
 
 [sub_resource type="Resource" id="Resource_jigj2"]
 script = ExtResource("7_paapu")
@@ -390,15 +375,11 @@ size = 5
 metadata/_custom_type_script = "uid://dumlknmceceuw"
 
 [sub_resource type="Resource" id="Resource_g6skm"]
-script = ExtResource("4_0e4k1")
-nodeType = 1
+script = ExtResource("8_gsoyx")
 nodeName = "CustomDialogueScripts"
-nodePath = NodePath("")
-callableType = 0
 methodName = "start_dialogue"
-signalName = ""
-parameters = [ExtResource("17_ls76e"), "Ribli", ExtResource("36_0e4k1")]
-metadata/_custom_type_script = "uid://djuch7xw2rnf2"
+parameters = [ExtResource("17_ls76e")]
+metadata/_custom_type_script = "uid://cigg6mv4soq7y"
 
 [sub_resource type="Resource" id="Resource_3s0xg"]
 script = ExtResource("16_2qb3d")
@@ -562,6 +543,17 @@ position = Vector2(691, 304)
 
 [node name="Interactive" type="Node2D" parent="Timeline001"]
 
+[node name="Lights" type="Node2D" parent="Timeline001/Interactive"]
+
+[node name="ceiling_lamp" parent="Timeline001/Interactive/Lights" instance=ExtResource("6_g4tah")]
+position = Vector2(366, 192)
+
+[node name="ceiling_lamp2" parent="Timeline001/Interactive/Lights" instance=ExtResource("6_g4tah")]
+position = Vector2(620, 195)
+
+[node name="ceiling_lamp3" parent="Timeline001/Interactive/Lights" instance=ExtResource("6_g4tah")]
+position = Vector2(113, 192)
+
 [node name="Buttons" type="Node2D" parent="Timeline001/Interactive"]
 
 [node name="ElevatorCallButton" parent="Timeline001/Interactive/Buttons" instance=ExtResource("8_dgc65")]
@@ -660,17 +652,6 @@ resource = SubResource("Resource_smp8r")
 [node name="Elevator" parent="Timeline001/Elevators" instance=ExtResource("29_0nxvq")]
 position = Vector2(-64, 512)
 resource = SubResource("Resource_5vl2c")
-
-[node name="Lights" type="Node2D" parent="Timeline001"]
-
-[node name="ceiling_lamp" parent="Timeline001/Lights" instance=ExtResource("6_g4tah")]
-position = Vector2(366, 192)
-
-[node name="ceiling_lamp2" parent="Timeline001/Lights" instance=ExtResource("6_g4tah")]
-position = Vector2(620, 195)
-
-[node name="ceiling_lamp3" parent="Timeline001/Lights" instance=ExtResource("6_g4tah")]
-position = Vector2(113, 192)
 
 [node name="NPCs" type="Node2D" parent="Timeline001"]
 
