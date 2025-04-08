@@ -13,6 +13,7 @@ class_name Player extends CharacterBody2D
 """
 var jump: bool = false
 var direction: float
+var mousePosition: Vector2
 
 """
 --- Setup Methods
@@ -24,6 +25,7 @@ func _ready() -> void:
 --- Runtime Methods
 """
 func _unhandled_input(event: InputEvent) -> void:
+	mousePosition = get_global_mouse_position()
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		jump = true
 
@@ -55,7 +57,7 @@ func _physics_process(delta: float) -> void:
 # Depending on the current velocity either flips character towards the current diraction or towards the mouse if standing still
 func set_direction_flip() -> void:
 	if velocity.x == 0:
-		if global_position.x - get_global_mouse_position().x > 0:
+		if global_position.x - mousePosition.x > 0:
 			$AnimatedSprite2D.flip_h = true
 		else:
 			$AnimatedSprite2D.flip_h = false
