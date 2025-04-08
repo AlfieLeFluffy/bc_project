@@ -1,6 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bcdby6svlp0fj"]
 
 [sub_resource type="Gradient" id="Gradient_h1lcr"]
+offsets = PackedFloat32Array(0, 0.698795)
 colors = PackedColorArray(0, 0, 0, 0.501961, 0, 0, 0, 0.752941)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_567bq"]
@@ -9,6 +10,8 @@ width = 1920
 height = 1080
 use_hdr = true
 fill = 1
+fill_from = Vector2(1, 1)
+fill_to = Vector2(0, 0)
 
 [node name="FadeBackground" type="MarginContainer"]
 anchors_preset = 15

@@ -1,9 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://xdset1j1nj24"]
+[gd_scene load_steps=29 format=3 uid="uid://xdset1j1nj24"]
 
 [ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable.tscn" id="1_o2gm0"]
 [ext_resource type="Shader" uid="uid://dcwirhvnici6e" path="res://shaders/outline_recolor.gdshader" id="2_k54h1"]
 [ext_resource type="Script" uid="uid://dr0kd3eo7hnrg" path="res://scenes/interactive/doors/door.gd" id="2_q4uyh"]
 [ext_resource type="Script" uid="uid://cwo1tqjwxj8gd" path="res://scenes/interactive/interactable_resource.gd" id="4_5q8mf"]
+[ext_resource type="Script" uid="uid://djuch7xw2rnf2" path="res://scripts/callable/callable_resource.gd" id="4_pddn1"]
 [ext_resource type="Texture2D" uid="uid://b0eois1rqs5gg" path="res://textures/doors/door_grey.png" id="6_obk3w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y7plp"]
@@ -19,6 +20,7 @@ item_name = "DOOR_NAME"
 description = "TEST_DESCRIPTION"
 detective_board_toggle = false
 show_labels = false
+callables = Array[ExtResource("4_pddn1")]([])
 metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mq2eq"]

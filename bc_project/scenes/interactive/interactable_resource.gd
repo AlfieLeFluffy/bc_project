@@ -10,5 +10,5 @@ class_name InteractableResource extends Resource
 @export var show_labels: bool = true
 var timeline: String
 
-@export_category("Item Information")
-@export var dialogueResource: DialogueResource
+@export_category("Callable Resource List")
+@export var callables: Array[CallableResource]

@@ -111,7 +111,7 @@ func next_step(taskName: String,stepName: String = "") -> void:
 	var previousStep: TaskStepResource = task.currentStep
 	
 	if task.next_step(stepName):
-		task.currentStep.run_command(self)
+		task.currentStep.run_commands(self)
 		overlay.s_QueueUpdateStep.emit(task, previousStep,task.currentStep,false)
 	else:
 		check_ending(task)
@@ -127,7 +127,7 @@ func go_to_step(taskName: String,stepName: String = "") -> void:
 	var previousStep: TaskStepResource = task.currentStep
 	
 	if task.go_to_step(stepName):
-		task.currentStep.run_command(self)
+		task.currentStep.run_commands(self)
 		overlay.s_QueueUpdateStep.emit(task, previousStep,task.currentStep,false)
 	else:
 		check_ending(task)

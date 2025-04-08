@@ -11,8 +11,7 @@ class_name NPC extends CharacterBody2D
 
 #region Exported Resources
 @export_group("Resources")
-@export var npc_resource: npcResource
-@export var dialog_resource: DialogueResource
+@export var npcResource: NPCResource
 #endregion
 
 #region Variables
@@ -30,12 +29,12 @@ func _ready() -> void:
 	npc_info_setup()
 
 func npc_info_setup() -> void:
-	if npc_resource:
-		name = npc_resource.npcName
-		if npc_resource.spritesheet:
-			$Sprite2D.texture = npc_resource.spritesheet
-			$Sprite2D.hframes = npc_resource.frameVector.x
-			$Sprite2D.vframes = npc_resource.frameVector.y
+	if npcResource:
+		name = npcResource.npcName
+		if npcResource.spritesheet:
+			$Sprite2D.texture = npcResource.spritesheet
+			$Sprite2D.hframes = npcResource.frameVector.x
+			$Sprite2D.vframes = npcResource.frameVector.y
 			$Sprite2D.material = ShaderMaterial.new()
 			$Sprite2D.material.shader = load("res://shaders/outline_shader.gdshader")
 			$Sprite2D.material.set("shader_parameter/line_thickness",0)
@@ -58,10 +57,11 @@ func _input(event: InputEvent) -> void:
 			deactivate_hover()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact") and dialog_resource and active:
-		Signals.start_npc_conversation_state.emit(self)
-		CustomDialogueScripts.start_dialogue(dialog_resource)
-		Signals.setup_conversation_profile.emit("right", name, get_sprite_from_current_frame())
+	if event.is_action_pressed("interact") and active:
+		for callable in npcResource.callables:
+			if callable.methodName == "start_dialogue":
+				Signals.start_npc_conversation_state.emit(self)
+			callable.run(self)
 #endregion
 
 

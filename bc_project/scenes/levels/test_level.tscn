@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=4 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=99 format=4 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Script" uid="uid://cmlgg6dxih77f" path="res://scenes/levels/level_controller.gd" id="1_t01cb"]
 [ext_resource type="PackedScene" uid="uid://ddrrl1gryxkup" path="res://scenes/characters/player/player_character.tscn" id="1_wpgi4"]
@@ -25,7 +25,7 @@
 [ext_resource type="Resource" uid="uid://p2pgjby8025n" path="res://dialogs/ribli.dialogue" id="17_ls76e"]
 [ext_resource type="PackedScene" uid="uid://xdset1j1nj24" path="res://scenes/interactive/doors/door.tscn" id="18_caylh"]
 [ext_resource type="PackedScene" uid="uid://doxp2j8t2vs5a" path="res://scenes/characters/npcs/npc_versions/npc_standing.tscn" id="18_tveke"]
-[ext_resource type="Texture2D" uid="uid://dqnha5ktnesai" path="res://textures/characters/test_npc_1.png" id="19_0f3pa"]
+[ext_resource type="Texture2D" uid="uid://b8xj6gwg3vfq2" path="res://textures/items/thickMug.png" id="19_gsoyx"]
 [ext_resource type="PackedScene" uid="uid://bqm4y7yl8uqcq" path="res://scenes/static/furniture/wooden_table.tscn" id="21_auljp"]
 [ext_resource type="PackedScene" uid="uid://cqiiad58pt1w" path="res://scenes/interactive/computer/versions/tabletop_computer.tscn" id="22_maqab"]
 [ext_resource type="PackedScene" uid="uid://bn8qfludml1yc" path="res://scenes/interactive/texts/versions/paper_on_wall.tscn" id="23_l5ajp"]
@@ -42,6 +42,7 @@
 [ext_resource type="PackedScene" uid="uid://cs1y6cfdd6whw" path="res://scenes/interactive/combination/version/small_safe.tscn" id="33_mrmmo"]
 [ext_resource type="Script" uid="uid://dumlknmceceuw" path="res://scenes/interactive/combination/resource/combination_lock_resource.gd" id="33_y0fbb"]
 [ext_resource type="Script" uid="uid://dpd17umyvuqu3" path="res://scenes/triggers/versions/screen_text_trigger_area.gd" id="35_6g246"]
+[ext_resource type="Texture2D" uid="uid://dlo6oyplrtp4v" path="res://textures/characters/test_npc_0.png" id="36_0e4k1"]
 [ext_resource type="Script" uid="uid://bo8kxkmnuh65x" path="res://scenes/triggers/versions/area_trigger_autosave.gd" id="36_rnt0l"]
 [ext_resource type="Script" uid="uid://bi25vgavxjlp6" path="res://scenes/triggers/versions/area_trigger_game_over.gd" id="38_6g246"]
 [ext_resource type="Script" uid="uid://71eolmvkpl1e" path="res://scenes/triggers/versions/area_trigger_next_step.gd" id="41_y80st"]
@@ -198,13 +199,24 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/row = -1
 
+[sub_resource type="Resource" id="Resource_4wpc7"]
+script = ExtResource("4_0e4k1")
+nodeType = 1
+nodeName = "CustomDialogueScripts"
+nodePath = NodePath("")
+callableType = 0
+methodName = "start_dialogue"
+signalName = ""
+parameters = [ExtResource("10_wnetc"), "Thick Mug", ExtResource("19_gsoyx")]
+metadata/_custom_type_script = "uid://djuch7xw2rnf2"
+
 [sub_resource type="Resource" id="Resource_jigj2"]
 script = ExtResource("7_paapu")
 item_name = "THICK_MUG_NAME"
 description = "THICK_MUG_DESCRIPTION"
 detective_board_toggle = true
 show_labels = true
-dialogueResource = ExtResource("10_wnetc")
+callables = Array[ExtResource("4_0e4k1")]([SubResource("Resource_4wpc7")])
 metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4g8k6"]
@@ -228,7 +240,7 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/row = -1
 
-[sub_resource type="Resource" id="Resource_4wpc7"]
+[sub_resource type="Resource" id="Resource_wgpnu"]
 resource_local_to_scene = true
 script = ExtResource("24_frqwj")
 textName = "TEST_TEXT_NAME"
@@ -331,11 +343,24 @@ override = false
 size = 5
 metadata/_custom_type_script = "uid://dumlknmceceuw"
 
-[sub_resource type="Resource" id="Resource_jodhe"]
+[sub_resource type="Resource" id="Resource_g6skm"]
+script = ExtResource("4_0e4k1")
+nodeType = 1
+nodeName = "CustomDialogueScripts"
+nodePath = NodePath("")
+callableType = 0
+methodName = "start_dialogue"
+signalName = ""
+parameters = [ExtResource("17_ls76e"), "Ribli", ExtResource("36_0e4k1")]
+metadata/_custom_type_script = "uid://djuch7xw2rnf2"
+
+[sub_resource type="Resource" id="Resource_3s0xg"]
 script = ExtResource("16_2qb3d")
 npcName = "Ribli"
-spritesheet = ExtResource("19_0f3pa")
+spritesheet = ExtResource("36_0e4k1")
 frameVector = Vector2(1, 1)
+callables = Array[ExtResource("4_0e4k1")]([SubResource("Resource_g6skm")])
+metadata/_custom_type_script = "uid://drj3o0qsip6ss"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0nxvq"]
 size = Vector2(40, 40)
@@ -540,19 +565,17 @@ metadata/Description = "Test Description"
 material = SubResource("ShaderMaterial_4g8k6")
 position = Vector2(512, 297)
 inverted = true
-collisionChange = Vector2(18, 0)
 
 [node name="DoorSideways2" parent="Timeline001/Interactive/Doors" instance=ExtResource("18_caylh")]
 material = SubResource("ShaderMaterial_gsoyx")
 position = Vector2(255, 297)
-collisionChange = Vector2(18, 0)
 
 [node name="Texts" type="Node2D" parent="Timeline001/Interactive"]
 
 [node name="PaperOnWall" parent="Timeline001/Interactive/Texts" instance=ExtResource("23_l5ajp")]
 material = SubResource("ShaderMaterial_ib3ll")
 position = Vector2(585, 294)
-textRosource = SubResource("Resource_4wpc7")
+textRosource = SubResource("Resource_wgpnu")
 
 [node name="BookSpine" parent="Timeline001/Interactive/Texts" instance=ExtResource("17_0myxw")]
 material = SubResource("ShaderMaterial_nci5d")
@@ -605,8 +628,7 @@ position = Vector2(113, 192)
 
 [node name="NPC_Ribli" parent="Timeline001/NPCs" instance=ExtResource("18_tveke")]
 position = Vector2(116, 302)
-npc_resource = SubResource("Resource_jodhe")
-dialog_resource = ExtResource("17_ls76e")
+npcResource = SubResource("Resource_3s0xg")
 
 [node name="Triggers" type="Node2D" parent="Timeline001"]
 
@@ -747,12 +769,10 @@ metadata/Description = "Test Description"
 material = SubResource("ShaderMaterial_y80st")
 position = Vector2(512, 297)
 inverted = true
-collisionChange = Vector2(18, 0)
 
 [node name="DoorSideways2" parent="Timeline002/Interactive/Doors" instance=ExtResource("18_caylh")]
 material = SubResource("ShaderMaterial_t8w0x")
 position = Vector2(255, 297)
-collisionChange = Vector2(18, 0)
 
 [node name="Elevators" type="Node2D" parent="Timeline002"]
 

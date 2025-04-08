@@ -84,14 +84,13 @@ func _input(event: InputEvent) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and active:
-		if interactableResource.dialogueResource:
-			if check_line_of_sight():
-				interact_conversation(event)
-		else:
-			if check_line_of_sight():
-				_interact_function(event)
+		if check_line_of_sight():
+			for callable in interactableResource.callables:
+				callable.run(self)
+			_interact_function(event)
 	elif event.is_action_pressed("add_to_board") and active:
-		add_board_element(event)
+		if check_line_of_sight():
+			add_board_element(event)
 
 func check_line_of_sight() -> bool:
 	var raycast: RayCast2D = RayCast2D.new()
@@ -119,12 +118,6 @@ func _interact_function(event: InputEvent) -> void:
 
 
 #region Global Call Methods
-# Active function if no dialog detected
-func interact_conversation(event: InputEvent) -> void:
-	CustomDialogueScripts.start_dialogue(interactableResource.dialogueResource)
-	Signals.setup_conversation_profile.emit("right", interactableResource.item_name, get_sprite_from_current_frame())
-
-
 # Active function if no dialog detected
 func add_board_element(event: InputEvent) -> void:
 	Signals.emit_signal('create_board_element',ElementResource.new().setup(ElementResource.elementType.OBJECT,interactableResource.item_name,interactableResource.timeline,interactableResource.description,get_sprite_from_current_frame()))
