@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=4 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=101 format=4 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Script" uid="uid://cmlgg6dxih77f" path="res://scenes/levels/level_controller.gd" id="1_t01cb"]
 [ext_resource type="PackedScene" uid="uid://ddrrl1gryxkup" path="res://scenes/characters/player/player_character.tscn" id="1_wpgi4"]
@@ -192,6 +192,27 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/row = -1
 
+[sub_resource type="Resource" id="Resource_wgpnu"]
+script = ExtResource("4_0e4k1")
+nodeType = 0
+nodeName = ""
+nodePath = NodePath("../../Doors/DoorSideways")
+callableType = 0
+methodName = "toggle_lock"
+signalName = ""
+parameters = []
+metadata/_custom_type_script = "uid://djuch7xw2rnf2"
+
+[sub_resource type="Resource" id="Resource_1oo6r"]
+resource_local_to_scene = true
+script = ExtResource("7_paapu")
+item_name = "EMPTY_PLATE_NAME"
+description = "EMPTY_PLATE_DESCRIPTION"
+detective_board_toggle = true
+show_labels = true
+callables = Array[ExtResource("4_0e4k1")]([SubResource("Resource_wgpnu")])
+metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_smp8r"]
 resource_local_to_scene = true
 shader = ExtResource("8_0myxw")
@@ -240,7 +261,7 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/row = -1
 
-[sub_resource type="Resource" id="Resource_wgpnu"]
+[sub_resource type="Resource" id="Resource_12lfy"]
 resource_local_to_scene = true
 script = ExtResource("24_frqwj")
 textName = "TEST_TEXT_NAME"
@@ -551,6 +572,7 @@ metadata/Description = "Test Description"
 [node name="EmptyPlate" parent="Timeline001/Interactive/Objects" instance=ExtResource("4_w2p71")]
 material = SubResource("ShaderMaterial_jigj2")
 position = Vector2(179, 332)
+interactableResource = SubResource("Resource_1oo6r")
 
 [node name="ThickMug" parent="Timeline001/Interactive/Objects" instance=ExtResource("5_hqxr4")]
 material = SubResource("ShaderMaterial_smp8r")
@@ -564,6 +586,7 @@ metadata/Description = "Test Description"
 [node name="DoorSideways" parent="Timeline001/Interactive/Doors" instance=ExtResource("18_caylh")]
 material = SubResource("ShaderMaterial_4g8k6")
 position = Vector2(512, 297)
+locked = true
 inverted = true
 
 [node name="DoorSideways2" parent="Timeline001/Interactive/Doors" instance=ExtResource("18_caylh")]
@@ -575,7 +598,7 @@ position = Vector2(255, 297)
 [node name="PaperOnWall" parent="Timeline001/Interactive/Texts" instance=ExtResource("23_l5ajp")]
 material = SubResource("ShaderMaterial_ib3ll")
 position = Vector2(585, 294)
-textRosource = SubResource("Resource_wgpnu")
+textRosource = SubResource("Resource_12lfy")
 
 [node name="BookSpine" parent="Timeline001/Interactive/Texts" instance=ExtResource("17_0myxw")]
 material = SubResource("ShaderMaterial_nci5d")

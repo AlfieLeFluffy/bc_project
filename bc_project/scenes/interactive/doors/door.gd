@@ -14,8 +14,8 @@ var openedCollision: bool = false
 func _local_ready(startup:bool = true) -> void:
 	Signals.s_OpenDoor.connect(toggle_lock)
 	Signals.s_CloseDoor.connect(set_lock)
-	Signals.s_ToggleDoorLock.connect(toggle_lock)
-	Signals.s_SetDoorLock.connect(set_lock)
+	Signals.s_ToggleDoorLock.connect(toggle_lock_id)
+	Signals.s_SetDoorLock.connect(set_lock_id)
 	
 	if opened:
 		state_machine.start("open")
@@ -71,11 +71,17 @@ func close_door(id: String) -> void:
 		opened = false
 		update_door()
 
-func toggle_lock(id: String) -> void:
+func toggle_lock() -> void:
+	locked = not locked
+
+func set_lock(state: bool = false) -> void:
+	locked = state
+
+func toggle_lock_id(id: String) -> void:
 	if name == id:
 		locked = not locked
 
-func set_lock(id: String, state: bool = false) -> void:
+func set_lock_id(id: String, state: bool = false) -> void:
 	if name == id:
 		locked = state
 

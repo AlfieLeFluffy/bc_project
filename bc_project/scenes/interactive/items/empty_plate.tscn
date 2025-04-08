@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://chgj487p1bpqi"]
+[gd_scene load_steps=9 format=3 uid="uid://chgj487p1bpqi"]
 
 [ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable.tscn" id="1_quxmj"]
 [ext_resource type="Shader" uid="uid://dcwirhvnici6e" path="res://shaders/outline_recolor.gdshader" id="2_00tp1"]
 [ext_resource type="Texture2D" uid="uid://b4lgho32xwd8w" path="res://textures/items/emptyPlate.png" id="2_qpsot"]
+[ext_resource type="Script" uid="uid://djuch7xw2rnf2" path="res://scripts/callable/callable_resource.gd" id="3_emmrd"]
 [ext_resource type="Script" uid="uid://cwo1tqjwxj8gd" path="res://scenes/interactive/interactable_resource.gd" id="3_uqlsw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_emmrd"]
@@ -13,11 +14,13 @@ shader_parameter/line_thickness = 0.0
 shader_parameter/row = -1
 
 [sub_resource type="Resource" id="Resource_4012r"]
+resource_local_to_scene = true
 script = ExtResource("3_uqlsw")
 item_name = "EMPTY_PLATE_NAME"
 description = "EMPTY_PLATE_DESCRIPTION"
 detective_board_toggle = true
 show_labels = true
+callables = Array[ExtResource("3_emmrd")]([])
 metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q715m"]

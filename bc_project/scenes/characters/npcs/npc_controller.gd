@@ -30,7 +30,6 @@ func _ready() -> void:
 
 func npc_info_setup() -> void:
 	if npcResource:
-		name = npcResource.npcName
 		if npcResource.spritesheet:
 			$Sprite2D.texture = npcResource.spritesheet
 			$Sprite2D.hframes = npcResource.frameVector.x

@@ -10,6 +10,9 @@ class_name AreaTrigger extends Area2D
 @export_flags("Entered","Exited") var triggerOn = 1
 @export_flags("Player Collision","Npc Collision") var triggerObject = 1
 
+@export_category("Callable Resource List")
+@export var callables: Array[CallableResource]
+
 var colisionShapeInstance: CollisionShape2D
 
 const PLAYER_COLLISION_BIT = 0b01

@@ -31,7 +31,6 @@ func _ready() -> void:
 
 func setup_interactable_info() -> void:
 	if interactableResource:
-		name = interactableResource.item_name
 		%Label.text = "[font_size=24][color=#%s]%s" % [Global.color_Highlight.to_html(),tr(interactableResource.item_name)]
 
 func setup_timeline_info() -> void:

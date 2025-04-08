@@ -29,7 +29,10 @@ func run(base: Node):
 
 func run_method(base: Node):
 	var node = check_callable(base, methodName)
-		
+	
+	if not node:
+		return null
+	
 	if not parameters:
 		return node.call(methodName)
 	else:
@@ -37,6 +40,9 @@ func run_method(base: Node):
 
 func run_signal(base: Node):
 	var node = check_callable(base, signalName)
+	
+	if not node:
+		return null
 		
 	if not parameters:
 		return node.emit_signal(signalName)
@@ -53,10 +59,14 @@ func check_callable(base: Node, callableName: String) -> Node:
 		NODE_TYPE.STATIC:
 			node = base.get_tree().get_root().get_node(nodeName)
 		NODE_TYPE.DYNAMIC:
-			node = base.get_tree().get_root().get_node(nodePath)
+			node = base.get_node(nodePath)
 		_:
 			printerr("Error: No node type selected for callable resource of of name: '%s'" % [resource_name])
 			return null
+	
+	if not node:
+		printerr("Error: No node has been found for callable resource of of name: '%s'" % [resource_name])
+		return null
 	
 	if not callableName in node:
 		printerr("Error: No method/signal of name '%s' for callable resource of name: '%s'" % [resource_name])
