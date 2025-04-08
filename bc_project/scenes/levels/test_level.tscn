@@ -637,8 +637,8 @@ metadata/_custom_type_script = "uid://bip873am5kgyj"
 z_index = 255
 position = Vector2(-64, 368)
 script = ExtResource("35_6g246")
-ScreenTextString = "[font_size=32][color=#b334a4]Welcome to the Test Level;
-[font_size=16][color=#5fcfe6]Glados would be proud"
+ScreenTextString = "[font_size=64][color=#b334a4]Welcome to the Test Level;
+[font_size=48][color=#5fcfe6]Glados would be proud"
 collisionShape = SubResource("RectangleShape2D_4g8k6")
 metadata/_custom_type_script = "uid://dpd17umyvuqu3"
 
@@ -780,7 +780,7 @@ metadata/_custom_type_script = "uid://wob4dkroqdok"
 
 [node name="player" parent="." groups=["CameraFocus"] instance=ExtResource("1_wpgi4")]
 z_index = 1
-position = Vector2(56, 294)
+position = Vector2(-88, 476)
 
 [node name="AreaTriggerGameOver" type="Area2D" parent="."]
 position = Vector2(0, 1080)

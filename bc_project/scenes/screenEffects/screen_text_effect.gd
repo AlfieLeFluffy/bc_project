@@ -51,7 +51,7 @@ func setup_line(line: String) -> bool:
 	label.autowrap_mode = TextServer.AUTOWRAP_OFF
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	label.use_parent_material = true
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var characters: PackedStringArray = line.strip_edges().split("")
 	%LineBox.add_child(label)
 	for character in characters:

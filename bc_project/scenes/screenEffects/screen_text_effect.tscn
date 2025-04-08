@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxb0k5impu62l"]
+[gd_scene load_steps=3 format=3 uid="uid://dxb0k5impu62l"]
 
 [ext_resource type="Script" uid="uid://nui42sndxfbe" path="res://scenes/screenEffects/screen_text_effect.gd" id="1_dugnu"]
+
+[sub_resource type="Theme" id="Theme_dugnu"]
+RichTextLabel/constants/shadow_offset_x = 4
+RichTextLabel/constants/shadow_offset_y = 4
+RichTextLabel/constants/shadow_outline_size = 4
 
 [node name="ScreenTextEffect" type="CanvasLayer"]
 layer = 120
@@ -15,6 +20,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = SubResource("Theme_dugnu")
 
 [node name="LineBox" type="VBoxContainer" parent="Control"]
 unique_name_in_owner = true

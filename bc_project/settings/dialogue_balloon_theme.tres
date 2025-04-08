@@ -75,6 +75,10 @@ corner_radius_bottom_left = 5
 corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uy0d5"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
 bg_color = Color(0.266667, 0.270588, 0.270588, 1)
 border_width_left = 6
 border_width_top = 6
@@ -94,7 +98,7 @@ shadow_size = 6
 shadow_offset = Vector2(6, 6)
 
 [resource]
-default_font_size = 48
+default_font_size = 32
 Button/styles/disabled = SubResource("StyleBoxFlat_io1li")
 Button/styles/focus = SubResource("StyleBoxFlat_kmkuj")
 Button/styles/hover = SubResource("StyleBoxFlat_mx22a")

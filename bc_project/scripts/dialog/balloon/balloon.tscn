@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://kvjsk0o7firt"]
+[gd_scene load_steps=10 format=3 uid="uid://kvjsk0o7firt"]
 
 [ext_resource type="Script" uid="uid://bnrcco68hc5bb" path="res://scripts/dialog/balloon/balloon.gd" id="1_36de5"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
@@ -8,6 +8,9 @@
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_72ixx"]
 [ext_resource type="Texture2D" uid="uid://dni7o236p3am" path="res://textures/characters/mainCharacter_itt.png" id="5_ob21l"]
 [ext_resource type="Texture2D" uid="uid://b8xj6gwg3vfq2" path="res://textures/items/thickMug.png" id="6_no22r"]
+
+[sub_resource type="Theme" id="Theme_0lg70"]
+default_font_size = 28
 
 [node name="ExampleBalloon" type="CanvasLayer"]
 layer = 100
@@ -32,6 +35,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("3_7poa5")
 offsetTalking = 35.0
 
@@ -39,32 +43,34 @@ offsetTalking = 35.0
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.196
+anchor_left = 0.145
 anchor_top = 0.644
-anchor_right = 0.196
+anchor_right = 0.145
 anchor_bottom = 0.644
-offset_left = -127.32
+offset_left = -128.4
 offset_top = -320.52
-offset_right = -96.32
-offset_bottom = -249.52
+offset_right = -96.4
+offset_bottom = -240.52
 scale = Vector2(8, 8)
+mouse_filter = 2
 texture = ExtResource("5_ob21l")
 
 [node name="CharacterRight" type="TextureRect" parent="Balloon/Profiles"]
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.795
-anchor_top = 0.661
-anchor_right = 0.795
-anchor_bottom = 0.661
-offset_left = -127.4
-offset_top = -338.88
-offset_right = -95.4
-offset_bottom = -258.88
+anchor_left = 0.855
+anchor_top = 0.644
+anchor_right = 0.855
+anchor_bottom = 0.644
+offset_left = -127.6
+offset_top = -320.52
+offset_right = -95.6001
+offset_bottom = -240.52
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(8, 8)
+mouse_filter = 2
 texture = ExtResource("6_no22r")
 stretch_mode = 3
 flip_h = true
@@ -101,6 +107,7 @@ unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 2
 mouse_filter = 1
+theme = SubResource("Theme_0lg70")
 bbcode_enabled = true
 text = "Character"
 fit_content = true

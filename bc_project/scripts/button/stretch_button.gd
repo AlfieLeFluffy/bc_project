@@ -15,6 +15,8 @@ func _ready() -> void:
 	get_viewport().size_changed.connect(reset)
 
 func stretch() -> void:
+	if self.has_focus():
+		self.release_focus()
 	if tween:
 		tween.kill()
 	tween = create_tween()
