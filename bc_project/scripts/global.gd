@@ -5,9 +5,8 @@ extends Node
 """
 #region Timeshift Variables
 # Veriables used in timeline hoping and UI elements
-var Timeline = "___"
+var currentTimeline: Timeline = Timeline.new()
 
-var TimelineShiftReady = true
 const TIMELINE_TIMEOUT = 1.0
 const TIMELINE_SHIFT_OFFSET = 0.2
 #endregion

@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://c8gc77afih362"]
+
+[ext_resource type="Script" uid="uid://duuq07q3ypwxv" path="res://scripts/timelines/selection/timeline_selection.gd" id="1_crtyg"]
+
+[sub_resource type="Gradient" id="Gradient_crtyg"]
+colors = PackedColorArray(0.369, 0.8115, 0.9, 0.196078, 0.369, 0.8115, 0.9, 0.784314)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ls4fo"]
+gradient = SubResource("Gradient_crtyg")
+width = 1920
+height = 1080
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_crtyg"]
+bg_color = Color(0.369, 0.8115, 0.9, 0.392157)
+border_width_left = 25
+border_width_top = 25
+border_width_right = 25
+border_width_bottom = 25
+border_color = Color(0.369, 0.8115, 0.9, 0)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rypj7"]
+bg_color = Color(0.7, 0.203, 0.642017, 0.588235)
+border_width_left = 50
+border_width_top = 50
+border_width_right = 50
+border_width_bottom = 50
+border_color = Color(0.7, 0.203, 0.642017, 0)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvjkp"]
+bg_color = Color(0.637, 0.922833, 0.98, 0.196078)
+border_width_left = 25
+border_width_top = 25
+border_width_right = 25
+border_width_bottom = 25
+border_color = Color(0.637, 0.922833, 0.98, 0)
+border_blend = true
+
+[sub_resource type="Theme" id="Theme_crtyg"]
+default_font_size = 24
+Button/font_sizes/font_size = 48
+Button/styles/disabled = SubResource("StyleBoxFlat_crtyg")
+Button/styles/focus = SubResource("StyleBoxFlat_rypj7")
+Button/styles/hover = SubResource("StyleBoxFlat_rypj7")
+Button/styles/normal = SubResource("StyleBoxFlat_lvjkp")
+Button/styles/pressed = SubResource("StyleBoxFlat_rypj7")
+HBoxContainer/constants/separation = 10
+
+[node name="TimelineSelection" type="Control"]
+z_index = 250
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_crtyg")
+
+[node name="Background" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_ls4fo")
+
+[node name="Buttons" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.078
+anchor_top = 0.139
+anchor_right = 0.908
+anchor_bottom = 0.861
+offset_left = 0.23999
+offset_top = -0.12001
+offset_right = 26.6399
+offset_bottom = 0.119934
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_crtyg")
+alignment = 1

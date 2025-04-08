@@ -30,7 +30,7 @@ func update_UI (timeline: String = "") -> void:
 	if timeline != "":
 		timelineString = timeline
 	else:
-		timelineString = Global.Timeline
+		timelineString = Global.currentTimeline.resource.name
 	
 	%TimelineLabel.text = "[font_size=32][color=#%s]%s[/color][color=#%s]%s[/color]" % [Global.color_White.to_html(),tr("TIMELINE_UI"),Global.color_White.to_html(), timelineString]
 	

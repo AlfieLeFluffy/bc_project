@@ -1,0 +1,85 @@
+[gd_scene load_steps=5 format=3 uid="uid://doxqxjydb3gth"]
+
+[ext_resource type="Script" uid="uid://cptjvgnct574d" path="res://scripts/timelines/selection/prefab/timeline_selection_button.gd" id="1_j6v0y"]
+[ext_resource type="Texture2D" uid="uid://c1mdbqytlsdw1" path="res://textures/symbols/mouse_click_left.png" id="2_sjc7w"]
+[ext_resource type="Texture2D" uid="uid://13p788gydb6o" path="res://textures/symbols/mouse_click_right.png" id="3_6rgrj"]
+
+[sub_resource type="Theme" id="Theme_j6v0y"]
+default_font_size = 16
+HBoxContainer/constants/separation = 10
+
+[node name="TimelineSelectionButton" type="Button"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 1
+action_mode = 0
+button_mask = 5
+script = ExtResource("1_j6v0y")
+
+[node name="Hints" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -1.0
+offset_right = 960.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_j6v0y")
+alignment = 1
+
+[node name="Left" type="MarginContainer" parent="Hints"]
+layout_mode = 2
+
+[node name="LeftStructure" type="VBoxContainer" parent="Hints/Left"]
+layout_mode = 2
+
+[node name="TimelineShiftTexture" type="TextureRect" parent="Hints/Left/LeftStructure"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+texture = ExtResource("2_sjc7w")
+stretch_mode = 5
+
+[node name="LeftLabelMargin" type="MarginContainer" parent="Hints/Left/LeftStructure"]
+layout_mode = 2
+
+[node name="LeftLabel" type="RichTextLabel" parent="Hints/Left/LeftStructure/LeftLabelMargin"]
+layout_mode = 2
+text = "TIMELINESHFT_HINT"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Right" type="MarginContainer" parent="Hints"]
+layout_mode = 2
+
+[node name="RightStructure" type="VBoxContainer" parent="Hints/Right"]
+layout_mode = 2
+
+[node name="TimelineForeseeTexture" type="TextureRect" parent="Hints/Right/RightStructure"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+texture = ExtResource("3_6rgrj")
+stretch_mode = 5
+
+[node name="RightLabelMargin" type="MarginContainer" parent="Hints/Right/RightStructure"]
+layout_mode = 2
+
+[node name="RightLabel" type="RichTextLabel" parent="Hints/Right/RightStructure/RightLabelMargin"]
+layout_mode = 2
+text = "FORESEE_HINT"
+fit_content = true
+autowrap_mode = 0
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

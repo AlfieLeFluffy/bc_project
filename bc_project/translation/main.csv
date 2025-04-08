@@ -80,3 +80,5 @@ STEP_OVERLAY_COMPLETE_LABEL,Step Completed,Krok Dokončen
 STEP_OVERLAY_FAILED_LABEL,Step Failed,Krok Nepodařen
 ACTIVE_TASK_LABEL,Active Tasks,Aktivní Úkoly
 FINISHED_TASK_LABEL,Finished Tasks,Hotové Úkoly
+TIMELINESHFT_HINT,Timeline Shift,Skok na Linku
+FORESEE_HINT,Timeline Foresee,Prohlédnout do Linky
