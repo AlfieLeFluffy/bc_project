@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=4 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=96 format=4 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Script" uid="uid://cmlgg6dxih77f" path="res://scenes/levels/level_controller.gd" id="1_t01cb"]
 [ext_resource type="PackedScene" uid="uid://ddrrl1gryxkup" path="res://scenes/characters/player/player_character.tscn" id="1_wpgi4"]
@@ -6,6 +6,7 @@
 [ext_resource type="TileSet" uid="uid://hplkdx21bhqq" path="res://tilesets/apartment_building_tileset.tres" id="3_1u7m5"]
 [ext_resource type="Script" uid="uid://wob4dkroqdok" path="res://scripts/timelines/timeline_controller.gd" id="3_mrmmo"]
 [ext_resource type="Script" uid="uid://cx1ggvtqu0gyp" path="res://scripts/task/resource/task_level_resource.gd" id="3_smp8r"]
+[ext_resource type="Script" uid="uid://djuch7xw2rnf2" path="res://scripts/callable/callable_resource.gd" id="4_0e4k1"]
 [ext_resource type="Script" uid="uid://ds72smecbd0k0" path="res://scripts/task/resource/task_resource.gd" id="4_4g8k6"]
 [ext_resource type="PackedScene" uid="uid://chgj487p1bpqi" path="res://scenes/interactive/items/empty_plate.tscn" id="4_w2p71"]
 [ext_resource type="Script" uid="uid://m3nuowesx2nl" path="res://scripts/timelines/timeline.gd" id="4_y0fbb"]
@@ -22,7 +23,7 @@
 [ext_resource type="Script" uid="uid://drj3o0qsip6ss" path="res://scenes/characters/npcs/npc_resource.gd" id="16_2qb3d"]
 [ext_resource type="PackedScene" uid="uid://co868n2ppblh5" path="res://scenes/interactive/texts/versions/book_spine.tscn" id="17_0myxw"]
 [ext_resource type="Resource" uid="uid://p2pgjby8025n" path="res://dialogs/ribli.dialogue" id="17_ls76e"]
-[ext_resource type="PackedScene" uid="uid://xdset1j1nj24" path="res://scenes/interactive/doors/door_sideways.tscn" id="18_caylh"]
+[ext_resource type="PackedScene" uid="uid://xdset1j1nj24" path="res://scenes/interactive/doors/door.tscn" id="18_caylh"]
 [ext_resource type="PackedScene" uid="uid://doxp2j8t2vs5a" path="res://scenes/characters/npcs/npc_versions/npc_standing.tscn" id="18_tveke"]
 [ext_resource type="Texture2D" uid="uid://dqnha5ktnesai" path="res://textures/characters/test_npc_1.png" id="19_0f3pa"]
 [ext_resource type="PackedScene" uid="uid://bqm4y7yl8uqcq" path="res://scenes/static/furniture/wooden_table.tscn" id="21_auljp"]
@@ -51,19 +52,26 @@ script = ExtResource("4_y80st")
 name = "Test2"
 next = Array[ExtResource("4_y80st")]([])
 failed = false
-object = ""
-callable = ""
-parameters = []
+callables = Array[ExtResource("4_0e4k1")]([])
 metadata/_custom_type_script = "uid://dxxmbh080lv02"
+
+[sub_resource type="Resource" id="Resource_a7wlb"]
+script = ExtResource("4_0e4k1")
+nodeType = 1
+nodeName = "TaskController"
+nodePath = NodePath("")
+callableType = 0
+methodName = "set_task_active_name"
+signalName = ""
+parameters = ["Another Task"]
+metadata/_custom_type_script = "uid://djuch7xw2rnf2"
 
 [sub_resource type="Resource" id="Resource_2orbd"]
 script = ExtResource("4_y80st")
 name = "Test1"
 next = Array[ExtResource("4_y80st")]([])
 failed = false
-object = "TaskController"
-callable = "set_task_active_name"
-parameters = ["Another Task"]
+callables = Array[ExtResource("4_0e4k1")]([SubResource("Resource_a7wlb")])
 metadata/_custom_type_script = "uid://dxxmbh080lv02"
 
 [sub_resource type="Resource" id="Resource_e6x8h"]
@@ -71,9 +79,7 @@ script = ExtResource("4_y80st")
 name = "Test0"
 next = Array[ExtResource("4_y80st")]([SubResource("Resource_2orbd")])
 failed = false
-object = ""
-callable = ""
-parameters = []
+callables = Array[ExtResource("4_0e4k1")]([])
 metadata/_custom_type_script = "uid://dxxmbh080lv02"
 
 [sub_resource type="Resource" id="Resource_gsoyx"]
@@ -92,9 +98,7 @@ script = ExtResource("4_y80st")
 name = "Test2"
 next = Array[ExtResource("4_y80st")]([])
 failed = false
-object = ""
-callable = ""
-parameters = []
+callables = Array[ExtResource("4_0e4k1")]([])
 metadata/_custom_type_script = "uid://dxxmbh080lv02"
 
 [sub_resource type="Resource" id="Resource_nci5d"]
@@ -102,9 +106,7 @@ script = ExtResource("4_y80st")
 name = "A new step"
 next = Array[ExtResource("4_y80st")]([])
 failed = false
-object = ""
-callable = ""
-parameters = []
+callables = Array[ExtResource("4_0e4k1")]([])
 metadata/_custom_type_script = "uid://dxxmbh080lv02"
 
 [sub_resource type="Resource" id="Resource_pxiqt"]
@@ -538,10 +540,12 @@ metadata/Description = "Test Description"
 material = SubResource("ShaderMaterial_4g8k6")
 position = Vector2(512, 297)
 inverted = true
+collisionChange = Vector2(18, 0)
 
 [node name="DoorSideways2" parent="Timeline001/Interactive/Doors" instance=ExtResource("18_caylh")]
 material = SubResource("ShaderMaterial_gsoyx")
 position = Vector2(255, 297)
+collisionChange = Vector2(18, 0)
 
 [node name="Texts" type="Node2D" parent="Timeline001/Interactive"]
 
@@ -743,10 +747,12 @@ metadata/Description = "Test Description"
 material = SubResource("ShaderMaterial_y80st")
 position = Vector2(512, 297)
 inverted = true
+collisionChange = Vector2(18, 0)
 
 [node name="DoorSideways2" parent="Timeline002/Interactive/Doors" instance=ExtResource("18_caylh")]
 material = SubResource("ShaderMaterial_t8w0x")
 position = Vector2(255, 297)
+collisionChange = Vector2(18, 0)
 
 [node name="Elevators" type="Node2D" parent="Timeline002"]
 

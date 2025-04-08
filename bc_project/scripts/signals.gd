@@ -42,3 +42,8 @@ signal hide_computer_view(computerName)
 
 signal elevator_move_to_key(id,key)
 signal elevator_move_to_vector(id,vector)
+
+signal s_OpenDoor(id: String)
+signal s_CloseDoor(id: String)
+signal s_ToggleDoorLock(id: String)
+signal s_SetDoorLock(id: String, state: bool)

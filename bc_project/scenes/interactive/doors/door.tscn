@@ -1,51 +1,229 @@
-[gd_scene load_steps=10 format=3 uid="uid://baw3h6q2ebxe6"]
+[gd_scene load_steps=28 format=3 uid="uid://xdset1j1nj24"]
 
-[ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable.tscn" id="1_a4r6l"]
-[ext_resource type="Shader" uid="uid://beshjcnacfelm" path="res://shaders/outline_shader.gdshader" id="2_08q5s"]
-[ext_resource type="Script" uid="uid://ca8ymdmse04n8" path="res://scenes/interactive/doors/door.gd" id="2_q50el"]
-[ext_resource type="Script" uid="uid://cwo1tqjwxj8gd" path="res://scenes/interactive/interactable_resource.gd" id="4_ybn5o"]
+[ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable.tscn" id="1_o2gm0"]
+[ext_resource type="Shader" uid="uid://dcwirhvnici6e" path="res://shaders/outline_recolor.gdshader" id="2_k54h1"]
+[ext_resource type="Script" uid="uid://dr0kd3eo7hnrg" path="res://scenes/interactive/doors/door.gd" id="2_q4uyh"]
+[ext_resource type="Script" uid="uid://cwo1tqjwxj8gd" path="res://scenes/interactive/interactable_resource.gd" id="4_5q8mf"]
+[ext_resource type="Texture2D" uid="uid://b0eois1rqs5gg" path="res://textures/doors/door_grey.png" id="6_obk3w"]
 
-[sub_resource type="Resource" id="Resource_slcme"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y7plp"]
 resource_local_to_scene = true
-script = ExtResource("4_ybn5o")
-item_name = "Door"
-description = "Test Description"
-detective_board_toggle = false
-
-[sub_resource type="Gradient" id="Gradient_kb1aw"]
-colors = PackedColorArray(0, 0, 0, 1, 0.14, 0.14, 0.14, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ciaiw"]
-gradient = SubResource("Gradient_kb1aw")
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0, 0.0042735)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kp8uv"]
-resource_local_to_scene = true
-size = Vector2(47, 82)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4qd0g"]
-resource_local_to_scene = true
-shader = ExtResource("2_08q5s")
+shader = ExtResource("2_k54h1")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
+shader_parameter/row = -1
 
-[node name="door" instance=ExtResource("1_a4r6l")]
-script = ExtResource("2_q50el")
-interactable_resource = SubResource("Resource_slcme")
+[sub_resource type="Resource" id="Resource_oeasd"]
+script = ExtResource("4_5q8mf")
+item_name = "DOOR_NAME"
+description = "TEST_DESCRIPTION"
+detective_board_toggle = false
+show_labels = false
+metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
 
-[node name="Sprite2D2" type="Sprite2D" parent="." index="0"]
-z_index = -5
-z_as_relative = false
-position = Vector2(-2.38419e-07, 0.499998)
-scale = Vector2(0.75, 1.29688)
-texture = SubResource("GradientTexture2D_ciaiw")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mq2eq"]
+resource_local_to_scene = true
+size = Vector2(32, 84)
 
-[node name="Labels" parent="." index="1"]
-position = Vector2(0, -51)
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_p4doa"]
+closed = false
+polygon = PackedVector2Array(0, -41, 0, 35)
 
-[node name="CollisionShape2D" parent="." index="2"]
-shape = SubResource("RectangleShape2D_kp8uv")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ar21o"]
+size = Vector2(10, 78)
 
-[node name="Sprite2D" parent="." index="3"]
-material = SubResource("ShaderMaterial_4qd0g")
+[sub_resource type="Animation" id="Animation_64t1r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_xus3f"]
+resource_name = "closed"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_0sy7f"]
+resource_name = "closing"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_fll4u"]
+resource_name = "open"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_3w3h0"]
+resource_name = "opening"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 10, 11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o77mj"]
+_data = {
+&"RESET": SubResource("Animation_64t1r"),
+&"closed": SubResource("Animation_xus3f"),
+&"closing": SubResource("Animation_0sy7f"),
+&"open": SubResource("Animation_fll4u"),
+&"opening": SubResource("Animation_3w3h0")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_flm6r"]
+animation = &"closed"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_recg0"]
+animation = &"closing"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wr1pb"]
+animation = &"open"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2dl3h"]
+animation = &"opening"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dali8"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6c24n"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pfmai"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ew67v"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_olvo5"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fq2xt"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_223ic"]
+states/Start/position = Vector2(138, 91)
+states/closed/node = SubResource("AnimationNodeAnimation_flm6r")
+states/closed/position = Vector2(439, 158)
+states/closing/node = SubResource("AnimationNodeAnimation_recg0")
+states/closing/position = Vector2(537, 100)
+states/open/node = SubResource("AnimationNodeAnimation_wr1pb")
+states/open/position = Vector2(429, 32)
+states/opening/node = SubResource("AnimationNodeAnimation_2dl3h")
+states/opening/position = Vector2(345, 100)
+transitions = ["open", "closing", SubResource("AnimationNodeStateMachineTransition_dali8"), "closing", "closed", SubResource("AnimationNodeStateMachineTransition_6c24n"), "closed", "opening", SubResource("AnimationNodeStateMachineTransition_pfmai"), "opening", "open", SubResource("AnimationNodeStateMachineTransition_ew67v"), "Start", "open", SubResource("AnimationNodeStateMachineTransition_olvo5"), "Start", "closed", SubResource("AnimationNodeStateMachineTransition_fq2xt")]
+graph_offset = Vector2(-146, -6)
+
+[node name="Door" groups=["Persistent"] instance=ExtResource("1_o2gm0")]
+material = SubResource("ShaderMaterial_y7plp")
+script = ExtResource("2_q4uyh")
+opened = false
+locked = false
+inverted = false
+collisionChange = Vector2(18, 0)
+interactableResource = SubResource("Resource_oeasd")
+
+[node name="Labels" parent="." index="0"]
+offset_left = 0.0
+offset_top = -55.0
+offset_right = 48.0
+offset_bottom = -45.0
+
+[node name="CollisionShape2D" parent="." index="1"]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_mq2eq")
+
+[node name="LightColiders" type="Node2D" parent="." index="2"]
+
+[node name="ClosedOccluder" type="LightOccluder2D" parent="LightColiders" index="0"]
+unique_name_in_owner = true
+position = Vector2(0, 5)
+occluder = SubResource("OccluderPolygon2D_p4doa")
+occluder_light_mask = 7
+
+[node name="OpenedOccluder" type="LightOccluder2D" parent="LightColiders" index="1"]
+unique_name_in_owner = true
+position = Vector2(0, 5)
+occluder = SubResource("OccluderPolygon2D_p4doa")
+occluder_light_mask = 6
+
+[node name="StaticCollision" type="StaticBody2D" parent="." index="3"]
+unique_name_in_owner = true
+collision_layer = 768
+collision_mask = 768
+
+[node name="StaticCollisionBox" type="CollisionShape2D" parent="StaticCollision" index="0"]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_ar21o")
+
+[node name="AnimationControls" type="Node2D" parent="." index="4"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationControls" index="0"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_o77mj")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="AnimationControls" index="1"]
+unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/../..")
+tree_root = SubResource("AnimationNodeStateMachine_223ic")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="Sprite2D" parent="." index="5"]
+position = Vector2(-16, 2)
+texture = ExtResource("6_obk3w")
+hframes = 4
+vframes = 3
+frame = 6

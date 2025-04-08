@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=3 uid="uid://baw3h6q2ebxe6"]
+
+[ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable.tscn" id="1_a4r6l"]
+[ext_resource type="Shader" uid="uid://beshjcnacfelm" path="res://shaders/outline_shader.gdshader" id="2_08q5s"]
+[ext_resource type="Script" uid="uid://ca8ymdmse04n8" path="res://scenes/interactive/doors/door_teleports.gd" id="2_q50el"]
+[ext_resource type="Script" uid="uid://cwo1tqjwxj8gd" path="res://scenes/interactive/interactable_resource.gd" id="4_ybn5o"]
+
+[sub_resource type="Resource" id="Resource_slcme"]
+resource_local_to_scene = true
+script = ExtResource("4_ybn5o")
+item_name = "Door"
+description = "Test Description"
+detective_board_toggle = false
+
+[sub_resource type="Gradient" id="Gradient_kb1aw"]
+colors = PackedColorArray(0, 0, 0, 1, 0.14, 0.14, 0.14, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ciaiw"]
+gradient = SubResource("Gradient_kb1aw")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0.0042735)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kp8uv"]
+resource_local_to_scene = true
+size = Vector2(47, 82)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4qd0g"]
+resource_local_to_scene = true
+shader = ExtResource("2_08q5s")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+
+[node name="door" instance=ExtResource("1_a4r6l")]
+script = ExtResource("2_q50el")
+interactable_resource = SubResource("Resource_slcme")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." index="0"]
+z_index = -5
+z_as_relative = false
+position = Vector2(-2.38419e-07, 0.499998)
+scale = Vector2(0.75, 1.29688)
+texture = SubResource("GradientTexture2D_ciaiw")
+
+[node name="Labels" parent="." index="1"]
+position = Vector2(0, -51)
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource("RectangleShape2D_kp8uv")
+
+[node name="Sprite2D" parent="." index="3"]
+material = SubResource("ShaderMaterial_4qd0g")
