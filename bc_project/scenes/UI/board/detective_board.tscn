@@ -185,3 +185,4 @@ text = "[font_size=32]DETECTIVE_BOARD_LABEL"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
+vertical_alignment = 1

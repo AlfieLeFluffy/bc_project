@@ -1,19 +1,17 @@
-[gd_scene load_steps=115 format=4 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=106 format=4 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Script" uid="uid://cmlgg6dxih77f" path="res://scenes/levels/level_controller.gd" id="1_t01cb"]
 [ext_resource type="PackedScene" uid="uid://ddrrl1gryxkup" path="res://scenes/characters/player/player_character.tscn" id="1_wpgi4"]
 [ext_resource type="Script" uid="uid://ds5xamger8e1m" path="res://scenes/UI/board/board_resources/clue_resource.gd" id="2_2orbd"]
 [ext_resource type="TileSet" uid="uid://hplkdx21bhqq" path="res://tilesets/apartment_building_tileset.tres" id="3_1u7m5"]
 [ext_resource type="Script" uid="uid://wob4dkroqdok" path="res://scripts/timelines/timeline_controller.gd" id="3_mrmmo"]
-[ext_resource type="Script" uid="uid://cx1ggvtqu0gyp" path="res://scripts/task/resource/task_level_resource.gd" id="3_smp8r"]
 [ext_resource type="Script" uid="uid://djuch7xw2rnf2" path="res://scripts/callable/callable_resource.gd" id="4_0e4k1"]
-[ext_resource type="Script" uid="uid://ds72smecbd0k0" path="res://scripts/task/resource/task_resource.gd" id="4_4g8k6"]
 [ext_resource type="Script" uid="uid://cbddpgqvggdxf" path="res://scenes/UI/board/board_resources/clue_level_resource.gd" id="4_26rt0"]
 [ext_resource type="PackedScene" uid="uid://chgj487p1bpqi" path="res://scenes/interactive/items/empty_plate.tscn" id="4_w2p71"]
 [ext_resource type="Script" uid="uid://m3nuowesx2nl" path="res://scripts/timelines/timeline.gd" id="4_y0fbb"]
-[ext_resource type="Script" uid="uid://dxxmbh080lv02" path="res://scripts/task/resource/task_step_resource.gd" id="4_y80st"]
 [ext_resource type="PackedScene" uid="uid://c4x1ywanodayi" path="res://scenes/interactive/items/thick_mug.tscn" id="5_hqxr4"]
 [ext_resource type="Script" uid="uid://cpmb6a1snq5oi" path="res://scripts/timelines/resource/timeline_resource.gd" id="5_y0fbb"]
+[ext_resource type="Resource" uid="uid://7dcp3hvv6ihp" path="res://scenes/levels/test_level.tres" id="6_26rt0"]
 [ext_resource type="PackedScene" uid="uid://75l81bk5wreu" path="res://scenes/lighting/ceiling_lamp/ceiling_lamp.tscn" id="6_g4tah"]
 [ext_resource type="Script" uid="uid://cwo1tqjwxj8gd" path="res://scenes/interactive/interactable_resource.gd" id="7_paapu"]
 [ext_resource type="PackedScene" uid="uid://dkvl1inu1enr8" path="res://scenes/interactive/switches/light_switch.tscn" id="7_wo4n4"]
@@ -37,7 +35,9 @@
 [ext_resource type="Script" uid="uid://dr74pa52badlv" path="res://scenes/interactive/computer/resources/user_resource.gd" id="24_jlhf4"]
 [ext_resource type="Script" uid="uid://btpud4ox3m0dx" path="res://scenes/interactive/computer/resources/application_resource.gd" id="25_c6ib1"]
 [ext_resource type="Script" uid="uid://bip873am5kgyj" path="res://scenes/triggers/versions/area_trigger_dialogue.gd" id="26_0nxvq"]
+[ext_resource type="Texture2D" uid="uid://my7io80ercjl" path="res://textures/text/recolor/book_spine_base_colors.png" id="26_e6x8h"]
 [ext_resource type="Resource" uid="uid://1lie11h7rb0x" path="res://dialogs/test_area_trigger_one_use.dialogue" id="27_1u7m5"]
+[ext_resource type="Texture2D" uid="uid://dhr1y8plgar2r" path="res://textures/text/recolor/book_spine_recolor_colors.png" id="27_4wpc7"]
 [ext_resource type="Resource" uid="uid://dvnwynrbbuwdw" path="res://dialogs/test_area_trigger.dialogue" id="28_dgc65"]
 [ext_resource type="PackedScene" uid="uid://532uypmhsvde" path="res://scenes/elevators/elevator.tscn" id="29_0nxvq"]
 [ext_resource type="Script" uid="uid://bm15idovcdu8y" path="res://scenes/elevators/elevator_resource.gd" id="30_1u7m5"]
@@ -69,83 +69,6 @@ script = ExtResource("4_26rt0")
 case = "TestLevel"
 clues = Array[ExtResource("2_2orbd")]([SubResource("Resource_7sogp")])
 metadata/_custom_type_script = "uid://cbddpgqvggdxf"
-
-[sub_resource type="Resource" id="Resource_ib3ll"]
-script = ExtResource("4_y80st")
-name = "Test2"
-next = Array[ExtResource("4_y80st")]([])
-failed = false
-callables = Array[ExtResource("4_0e4k1")]([])
-metadata/_custom_type_script = "uid://dxxmbh080lv02"
-
-[sub_resource type="Resource" id="Resource_a7wlb"]
-script = ExtResource("8_gsoyx")
-nodeName = "TaskController"
-methodName = "set_task_active_name"
-parameters = ["Another Task"]
-metadata/_custom_type_script = "uid://cigg6mv4soq7y"
-
-[sub_resource type="Resource" id="Resource_2orbd"]
-script = ExtResource("4_y80st")
-name = "Test1"
-next = Array[ExtResource("4_y80st")]([])
-failed = false
-callables = Array[ExtResource("4_0e4k1")]([SubResource("Resource_a7wlb")])
-metadata/_custom_type_script = "uid://dxxmbh080lv02"
-
-[sub_resource type="Resource" id="Resource_e6x8h"]
-script = ExtResource("4_y80st")
-name = "Test0"
-next = Array[ExtResource("4_y80st")]([SubResource("Resource_2orbd")])
-failed = false
-callables = Array[ExtResource("4_0e4k1")]([])
-metadata/_custom_type_script = "uid://dxxmbh080lv02"
-
-[sub_resource type="Resource" id="Resource_gsoyx"]
-script = ExtResource("4_4g8k6")
-name = "A Fresh Start"
-finished = false
-failed = false
-steps = Array[ExtResource("4_y80st")]([SubResource("Resource_e6x8h"), SubResource("Resource_2orbd"), SubResource("Resource_ib3ll")])
-history = Array[ExtResource("4_y80st")]([])
-endSteps = Array[ExtResource("4_y80st")]([SubResource("Resource_ib3ll")])
-stepsDict = {}
-metadata/_custom_type_script = "uid://ds72smecbd0k0"
-
-[sub_resource type="Resource" id="Resource_yguda"]
-script = ExtResource("4_y80st")
-name = "Test2"
-next = Array[ExtResource("4_y80st")]([])
-failed = false
-callables = Array[ExtResource("4_0e4k1")]([])
-metadata/_custom_type_script = "uid://dxxmbh080lv02"
-
-[sub_resource type="Resource" id="Resource_nci5d"]
-script = ExtResource("4_y80st")
-name = "A new step"
-next = Array[ExtResource("4_y80st")]([])
-failed = false
-callables = Array[ExtResource("4_0e4k1")]([])
-metadata/_custom_type_script = "uid://dxxmbh080lv02"
-
-[sub_resource type="Resource" id="Resource_pxiqt"]
-script = ExtResource("4_4g8k6")
-name = "Another Task"
-finished = false
-failed = false
-steps = Array[ExtResource("4_y80st")]([SubResource("Resource_nci5d")])
-history = Array[ExtResource("4_y80st")]([])
-endSteps = Array[ExtResource("4_y80st")]([SubResource("Resource_yguda")])
-stepsDict = {}
-metadata/_custom_type_script = "uid://ds72smecbd0k0"
-
-[sub_resource type="Resource" id="Resource_0e4k1"]
-script = ExtResource("3_smp8r")
-tasks = Array[ExtResource("4_4g8k6")]([SubResource("Resource_gsoyx"), SubResource("Resource_pxiqt")])
-tasksDict = {}
-activeTasks = {}
-initialTask = SubResource("Resource_gsoyx")
-metadata/_custom_type_script = "uid://cx1ggvtqu0gyp"
 
 [sub_resource type="Resource" id="Resource_rnt0l"]
 script = ExtResource("5_y0fbb")
@@ -271,7 +194,7 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/row = -1
 
-[sub_resource type="Resource" id="Resource_12lfy"]
+[sub_resource type="Resource" id="Resource_e6x8h"]
 resource_local_to_scene = true
 script = ExtResource("24_frqwj")
 textName = "TEST_TEXT_NAME"
@@ -283,7 +206,9 @@ resource_local_to_scene = true
 shader = ExtResource("8_0myxw")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
-shader_parameter/row = -1
+shader_parameter/row = 1
+shader_parameter/base = ExtResource("26_e6x8h")
+shader_parameter/recolor = ExtResource("27_4wpc7")
 
 [sub_resource type="Resource" id="Resource_26rt0"]
 script = ExtResource("24_frqwj")
@@ -571,7 +496,7 @@ metadata/_custom_type_script = "uid://bm15idovcdu8y"
 [node name="testScene" type="Node2D"]
 script = ExtResource("1_t01cb")
 clues = SubResource("Resource_fi7ie")
-tasks = SubResource("Resource_0e4k1")
+tasks = ExtResource("6_26rt0")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.21, 0.2505, 0.3, 1)
@@ -707,7 +632,7 @@ position = Vector2(255, 297)
 [node name="PaperOnWall" parent="Timeline001/Interactive/Texts" instance=ExtResource("23_l5ajp")]
 material = SubResource("ShaderMaterial_ib3ll")
 position = Vector2(585, 294)
-textRosource = SubResource("Resource_12lfy")
+textRosource = SubResource("Resource_e6x8h")
 
 [node name="BookSpine" parent="Timeline001/Interactive/Texts" instance=ExtResource("17_0myxw")]
 material = SubResource("ShaderMaterial_nci5d")

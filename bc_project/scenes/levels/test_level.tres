@@ -1,0 +1,84 @@
+[gd_resource type="Resource" script_class="TaskLevelResource" load_steps=14 format=3 uid="uid://7dcp3hvv6ihp"]
+
+[ext_resource type="Script" uid="uid://dxxmbh080lv02" path="res://scripts/task/resource/task_step_resource.gd" id="1_an2lq"]
+[ext_resource type="Script" uid="uid://djuch7xw2rnf2" path="res://scripts/callable/callable_resource.gd" id="2_6ywhe"]
+[ext_resource type="Script" uid="uid://ds72smecbd0k0" path="res://scripts/task/resource/task_resource.gd" id="3_6somf"]
+[ext_resource type="Script" uid="uid://cigg6mv4soq7y" path="res://scripts/callable/static_method_callable_resource.gd" id="4_hnk08"]
+[ext_resource type="Script" uid="uid://cx1ggvtqu0gyp" path="res://scripts/task/resource/task_level_resource.gd" id="5_4cn1b"]
+
+[sub_resource type="Resource" id="Resource_ib3ll"]
+script = ExtResource("1_an2lq")
+name = "Test2"
+next = Array[ExtResource("1_an2lq")]([])
+failed = false
+callables = Array[ExtResource("2_6ywhe")]([])
+metadata/_custom_type_script = "uid://dxxmbh080lv02"
+
+[sub_resource type="Resource" id="Resource_a7wlb"]
+script = ExtResource("4_hnk08")
+nodeName = "TaskController"
+methodName = "set_task_active_name"
+parameters = ["Another Task"]
+metadata/_custom_type_script = "uid://cigg6mv4soq7y"
+
+[sub_resource type="Resource" id="Resource_2orbd"]
+script = ExtResource("1_an2lq")
+name = "Test1"
+next = Array[ExtResource("1_an2lq")]([])
+failed = false
+callables = Array[ExtResource("2_6ywhe")]([SubResource("Resource_a7wlb")])
+metadata/_custom_type_script = "uid://dxxmbh080lv02"
+
+[sub_resource type="Resource" id="Resource_e6x8h"]
+script = ExtResource("1_an2lq")
+name = "Test0"
+next = Array[ExtResource("1_an2lq")]([SubResource("Resource_2orbd")])
+failed = false
+callables = Array[ExtResource("2_6ywhe")]([])
+metadata/_custom_type_script = "uid://dxxmbh080lv02"
+
+[sub_resource type="Resource" id="Resource_gsoyx"]
+script = ExtResource("3_6somf")
+name = "A Fresh Start"
+finished = false
+failed = false
+steps = Array[ExtResource("1_an2lq")]([SubResource("Resource_e6x8h"), SubResource("Resource_2orbd"), SubResource("Resource_ib3ll")])
+history = Array[ExtResource("1_an2lq")]([])
+endSteps = Array[ExtResource("1_an2lq")]([SubResource("Resource_ib3ll")])
+stepsDict = {}
+metadata/_custom_type_script = "uid://ds72smecbd0k0"
+
+[sub_resource type="Resource" id="Resource_yguda"]
+script = ExtResource("1_an2lq")
+name = "Test2"
+next = Array[ExtResource("1_an2lq")]([])
+failed = false
+callables = Array[ExtResource("2_6ywhe")]([])
+metadata/_custom_type_script = "uid://dxxmbh080lv02"
+
+[sub_resource type="Resource" id="Resource_nci5d"]
+script = ExtResource("1_an2lq")
+name = "A new step"
+next = Array[ExtResource("1_an2lq")]([])
+failed = false
+callables = Array[ExtResource("2_6ywhe")]([])
+metadata/_custom_type_script = "uid://dxxmbh080lv02"
+
+[sub_resource type="Resource" id="Resource_pxiqt"]
+script = ExtResource("3_6somf")
+name = "Another Task"
+finished = false
+failed = false
+steps = Array[ExtResource("1_an2lq")]([SubResource("Resource_nci5d")])
+history = Array[ExtResource("1_an2lq")]([])
+endSteps = Array[ExtResource("1_an2lq")]([SubResource("Resource_yguda")])
+stepsDict = {}
+metadata/_custom_type_script = "uid://ds72smecbd0k0"
+
+[resource]
+script = ExtResource("5_4cn1b")
+tasks = Array[ExtResource("3_6somf")]([SubResource("Resource_gsoyx"), SubResource("Resource_pxiqt")])
+tasksDict = {}
+activeTasks = {}
+initialTask = SubResource("Resource_gsoyx")
+metadata/_custom_type_script = "uid://cx1ggvtqu0gyp"
