@@ -26,9 +26,10 @@ var highlight: bool = false
 """
 #region Setup Methods
 func _ready() -> void:
-	npc_info_setup()
+	setup_npc_info()
+	setup_timeline_info()
 
-func npc_info_setup() -> void:
+func setup_npc_info() -> void:
 	if npcResource:
 		if npcResource.spritesheet:
 			$Sprite2D.texture = npcResource.spritesheet
@@ -37,6 +38,17 @@ func npc_info_setup() -> void:
 			$Sprite2D.material = ShaderMaterial.new()
 			$Sprite2D.material.shader = load("res://shaders/outline_shader.gdshader")
 			$Sprite2D.material.set("shader_parameter/line_thickness",0)
+
+func setup_timeline_info() -> void:
+	var parent:Node = get_parent()
+	while parent != null:
+		if parent is Timeline:
+			if npcResource:
+				npcResource.timeline = parent.resource.name
+			return
+		parent = parent.get_parent()
+	
+	npcResource.timeline = "null"
 #endregion
 
 
@@ -61,6 +73,16 @@ func _unhandled_input(event: InputEvent) -> void:
 			if callable.methodName == "start_dialogue":
 				Signals.start_npc_conversation_state.emit(self)
 			callable.run(self)
+	if event.is_action_pressed("add_to_board"):
+		add_board_element(event)
+#endregion
+
+
+
+#region Global Call Methods
+# Active function if no dialog detected
+func add_board_element(event: InputEvent) -> void:
+	Signals.create_board_element.emit(ElementResource.new().setup(ElementResource.elementType.PROFILE,npcResource.npcName,npcResource.timeline,npcResource.description,get_sprite_from_current_frame()))
 #endregion
 
 

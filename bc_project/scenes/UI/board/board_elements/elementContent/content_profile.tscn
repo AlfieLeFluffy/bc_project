@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cp8v0lsyq7kka"]
+
+[ext_resource type="PackedScene" uid="uid://ds31req2ok3p" path="res://scenes/UI/board/board_elements/content_base.tscn" id="1_kqb3m"]
+[ext_resource type="Script" uid="uid://dbab0qfxw5e0o" path="res://scenes/UI/board/board_elements/elementContent/content_profile.gd" id="2_kqb3m"]
+[ext_resource type="Texture2D" uid="uid://dlo6oyplrtp4v" path="res://textures/characters/test_npc_0.png" id="3_kqb3m"]
+
+[node name="ContentProfile" instance=ExtResource("1_kqb3m")]
+script = ExtResource("2_kqb3m")
+
+[node name="ProfileTexture" type="TextureRect" parent="." index="0"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("3_kqb3m")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="ProfileDescription" type="RichTextLabel" parent="." index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]test"
+fit_content = true
+autowrap_mode = 0
