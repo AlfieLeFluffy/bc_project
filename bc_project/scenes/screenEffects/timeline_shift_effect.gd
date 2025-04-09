@@ -2,9 +2,10 @@ extends MarginContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Animation.texture.current_frame = 0
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if $Animation.texture.current_frame == 7:
-		get_parent().queue_free()
+	%TextureOutter.modulate = Color.TRANSPARENT
+	%TextureFill.modulate = Color.TRANSPARENT
+	await GameController.fade_to_color(%TextureOutter, Color.WHITE, 0.05)
+	await GameController.fade_to_color(%TextureFill, Color.WHITE, 0.05)
+	await GameController.fade_to_color(%TextureFill, Color.TRANSPARENT, 0.05)
+	await GameController.fade_to_color(%TextureOutter, Color.TRANSPARENT, 0.05)
+	get_parent().queue_free()

@@ -1,33 +1,28 @@
-[gd_scene load_steps=10 format=3 uid="uid://clyigeb0nm6le"]
+[gd_scene load_steps=6 format=3 uid="uid://clyigeb0nm6le"]
 
-[ext_resource type="Texture2D" uid="uid://cquvvwpt4svef" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_0.png" id="1_1vf7b"]
 [ext_resource type="Script" uid="uid://x1ru8myax8lm" path="res://scenes/screenEffects/timeline_shift_effect.gd" id="1_h4pix"]
-[ext_resource type="Texture2D" uid="uid://drspipthklq8n" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_1.png" id="2_xbhuf"]
-[ext_resource type="Texture2D" uid="uid://wbc03aq0aiw2" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_2.png" id="3_pks4p"]
-[ext_resource type="Texture2D" uid="uid://3lqfkr5jpx1m" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_3.png" id="4_xv3b5"]
-[ext_resource type="Texture2D" uid="uid://bxxf8pcsu5ogr" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_4.png" id="5_svs1q"]
-[ext_resource type="Texture2D" uid="uid://8xv7mq6hrs0f" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_5.png" id="6_d14i5"]
-[ext_resource type="Texture2D" uid="uid://caq2hckrgwtc1" path="res://textures/ui/overlay/timeline_shift_sprites/timeline_shift_screen_effect_6.png" id="7_lo1pa"]
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_g4vv2"]
-frames = 8
-one_shot = true
-frame_0/texture = ExtResource("1_1vf7b")
-frame_0/duration = 0.03
-frame_1/texture = ExtResource("2_xbhuf")
-frame_1/duration = 0.03
-frame_2/texture = ExtResource("3_pks4p")
-frame_2/duration = 0.03
-frame_3/texture = ExtResource("4_xv3b5")
-frame_3/duration = 0.03
-frame_4/texture = ExtResource("5_svs1q")
-frame_4/duration = 0.03
-frame_5/texture = ExtResource("6_d14i5")
-frame_5/duration = 0.03
-frame_6/texture = ExtResource("7_lo1pa")
-frame_6/duration = 0.03
-frame_7/texture = ExtResource("1_1vf7b")
-frame_7/duration = 0.03
+[sub_resource type="Gradient" id="Gradient_dq6vk"]
+colors = PackedColorArray(1, 1, 1, 0.705882, 0.6, 0.6, 0.6, 0.784314)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f6u08"]
+gradient = SubResource("Gradient_dq6vk")
+width = 1920
+height = 1080
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_3m13h"]
+offsets = PackedFloat32Array(0, 0.00955414, 1)
+colors = PackedColorArray(0.637, 0.922833, 0.98, 0, 0.022293, 0.022293, 0.022293, 0.022293, 0.356737, 0.783586, 0.868956, 0.757361)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oddyg"]
+gradient = SubResource("Gradient_3m13h")
+width = 1920
+height = 1080
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
 
 [node name="CanvasLayer" type="CanvasLayer"]
 layer = 60
@@ -44,6 +39,12 @@ size_flags_vertical = 3
 script = ExtResource("1_h4pix")
 metadata/_edit_use_anchors_ = true
 
-[node name="Animation" type="TextureRect" parent="TimelineShiftEffect"]
+[node name="TextureFill" type="TextureRect" parent="TimelineShiftEffect"]
+unique_name_in_owner = true
 layout_mode = 2
-texture = SubResource("AnimatedTexture_g4vv2")
+texture = SubResource("GradientTexture2D_f6u08")
+
+[node name="TextureOutter" type="TextureRect" parent="TimelineShiftEffect"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("GradientTexture2D_oddyg")
