@@ -13,4 +13,4 @@ func setup_texture() -> void:
 	pass
 
 func _on_pressed() -> void:
-	Signals.emit_signal("elevator_move_to_key",id,key)
+	Signals.s_ElevatorMoveToKey.emit(id,key)

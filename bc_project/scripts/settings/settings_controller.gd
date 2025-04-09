@@ -98,7 +98,7 @@ func open_settings_menu() -> void:
 	get_tree().current_scene.add_child(popupMenu)
 	popupMenu.setup(settingsMenu)
 	popupMenu.popup.emit()
-	Signals.emit_signal("menu_clear")
+	Signals.s_MenuClear.emit()
 	
 func save_settings() -> void:
 	config.save("user://config.cfg")

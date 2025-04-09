@@ -22,5 +22,5 @@ func _local_ready() -> void:
 # Active function if no dialog detected
 func _interact_function(event: InputEvent) -> void:
 	if valid:
-		Signals.elevator_move_to_key.emit(resource.id,key)
+		Signals.s_ElevatorMoveToKey.emit(resource.id,key)
 #endregion

@@ -5,7 +5,7 @@ const GAME_OVER_TEXT_FORMAT: String = "[font_size=24]%s\n[font_size=14]%s"
 @export var info: Dictionary
 
 func _ready() -> void:
-	Signals.camera_tracked_node_set_empty.emit()
+	Signals.s_CameraTrackedNodeSetEmpty.emit()
 	
 	if info.has("achievement"):
 		GameController.setAchievement.emit(info["achievement"])

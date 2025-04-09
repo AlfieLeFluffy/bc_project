@@ -25,8 +25,8 @@ var usersDictionary: Dictionary
 func _local_ready() -> void:
 	setup_computer_status()
 	setup_users_dictionary()
-	Signals.connect("shutdown_computer",shutdown_computer)
-	Signals.connect("hide_computer_view",hide_computer_view)
+	Signals.s_ShutdownComputer.connect(shutdown_computer)
+	Signals.s_HideComputerView.connect(hide_computer_view)
 	SettingsController.connect("retranslate",setup_interactable_info)
 
 func setup_interactable_info() -> void:
@@ -91,7 +91,7 @@ func hide_computer_view(computerName: String) -> void:
 # Active function if no dialog detected
 func add_board_element(event: InputEvent) -> void:
 	pass
-	Signals.create_board_element.emit(ElementResource.new().setup(ElementResource.elementType.OBJECT,interactableResource.item_name,interactableResource.timeline,interactableResource.description,get_sprite_from_current_frame()))
+	Signals.s_CreateBoardElement.emit(ElementResource.new().setup(ElementResource.elementType.OBJECT,interactableResource.item_name,interactableResource.timeline,interactableResource.description,get_sprite_from_current_frame()))
 #endregion
 
 

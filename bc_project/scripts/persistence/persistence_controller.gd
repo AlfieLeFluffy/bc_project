@@ -64,7 +64,7 @@ func open_persistence_menu(mode: PersistenceMenu.modeEnum) -> void:
 	get_tree().current_scene.add_child(popupMenu)
 	popupMenu.setup(percistenceMenu)
 	popupMenu.popup.emit()
-	Signals.emit_signal("menu_clear")
+	Signals.s_MenuClear.emit()
 #endregion
 
 #region Saving and Loading Images Methods

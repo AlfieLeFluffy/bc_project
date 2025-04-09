@@ -15,7 +15,7 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if active and event.is_action_pressed("delete_board_element"):
 		GameController.release_focus()
-		Signals.emit_signal('delete_board_line',self)
+		Signals.s_DeleteBoardConnection.emit(self)
 
 func _process(delta: float) -> void:
 	if not resource.start and Global.board_elements.has(resource.startId):
@@ -70,11 +70,11 @@ func get_edge_position_element_to_element(start: ElementBase, end: ElementBase) 
 
 #region Signal Methods
 func _on_mouse_entered() -> void:
-	Signals.emit_signal("input_help_set",GameController.get_input_key_list("delete_board_element"),"REMOVE_BOARD_LINE_INPUT_HELP")
+	Signals.s_InputHelpSet.emit(GameController.get_input_key_list("delete_board_element"),"REMOVE_BOARD_LINE_INPUT_HELP")
 	active = true
 
 func _on_mouse_exited() -> void:
-	Signals.emit_signal("input_help_delete","REMOVE_BOARD_LINE_INPUT_HELP")
+	Signals.s_InputHelpFree.emit("REMOVE_BOARD_LINE_INPUT_HELP")
 	active = false
 #endregion
 

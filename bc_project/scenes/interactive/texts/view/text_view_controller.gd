@@ -16,7 +16,7 @@ var textContent: String
 --- Setup Methods
 """
 func _ready() -> void:
-	Signals.emit_signal("input_help_set",GameController.get_input_key_list("add_to_board"),"ADD_TO_BOARD_INPUT_HELP")
+	Signals.s_InputHelpSet.emit(GameController.get_input_key_list("add_to_board"),"ADD_TO_BOARD_INPUT_HELP")
 
 func setup_text_view(textResource: TextObjectResourse) -> void:
 	type = textResource.textType
@@ -38,7 +38,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		exit_view()
 
 func exit_view() ->void:
-	Signals.emit_signal("input_help_delete","ADD_TO_BOARD_INPUT_HELP")
+	Signals.s_InputHelpFree.emit("ADD_TO_BOARD_INPUT_HELP")
 	queue_free()
 
 """

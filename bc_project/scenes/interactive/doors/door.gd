@@ -98,11 +98,11 @@ func deactivate_hover() -> void:
 
 func activate_interactivity() -> void:
 	Global.Active_Interactive_Item = self
-	Signals.emit_signal("input_help_set",GameController.get_input_key_list("interact"),"OPEN_INPUT_HELP")
+	Signals.s_InputHelpSet.emit(GameController.get_input_key_list("interact"),"OPEN_INPUT_HELP")
 
 func deactivate_interactivity() -> void:
 	Global.Active_Interactive_Item = null
-	Signals.emit_signal("input_help_delete","OPEN_INPUT_HELP")
+	Signals.s_InputHelpFree.emit("OPEN_INPUT_HELP")
 
 """
 --- Persistence Methods

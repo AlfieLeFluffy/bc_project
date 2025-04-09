@@ -12,9 +12,9 @@ var shiftTimeout = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_UI()
-	Signals.connect("update_overlay", update_UI)
-	SettingsController.connect("retranslate", update_UI)
-	Signals.connect("timeline_shift",shift_sequence)
+	Signals.s_UpdateMainOverlay.connect(update_UI)
+	SettingsController.retranslate.connect(update_UI)
+	Signals.s_TimelineShift.connect(shift_sequence)
 
 """
 --- Runtime Methods

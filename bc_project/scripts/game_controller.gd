@@ -196,7 +196,7 @@ func open_achievements_menu() -> void:
 	get_tree().current_scene.add_child(popupMenu)
 	popupMenu.setup(achievementsMenu)
 	popupMenu.popup.emit()
-	Signals.emit_signal("menu_clear")
+	Signals.s_MenuClear.emit()
 
 func set_achievement(_type: AchievementsResource.type) -> void:
 	profile.achievements.set_achievement(_type)
@@ -410,7 +410,7 @@ func open_ingame_menu() -> void:
 	get_tree().current_scene.add_child(menu)
 	menu.layer = 90
 	menu.visible = true
-	Signals.emit_signal("menu_clear")
+	Signals.s_MenuClear.emit()
 #endregion
 
 #region Dialogue Voice Acting Methods

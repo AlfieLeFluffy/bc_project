@@ -119,7 +119,7 @@ func _interact_function(event: InputEvent) -> void:
 #region Global Call Methods
 # Active function if no dialog detected
 func add_board_element(event: InputEvent) -> void:
-	Signals.emit_signal('create_board_element',ElementResource.new().setup(ElementResource.elementType.OBJECT,interactableResource.item_name,interactableResource.timeline,interactableResource.description,get_sprite_from_current_frame()))
+	Signals.s_CreateBoardElement.emit(ElementResource.new().setup(ElementResource.elementType.OBJECT,interactableResource.item_name,interactableResource.timeline,interactableResource.description,get_sprite_from_current_frame()))
 #endregion
 
 
@@ -159,8 +159,8 @@ func activate_interactivity() -> void:
 		if interactableResource.show_labels:
 			$Labels.visible = true
 	Global.Active_Interactive_Item = self
-	Signals.emit_signal("input_help_set",GameController.get_input_key_list("add_to_board"),"ADD_TO_BOARD_INPUT_HELP")
-	Signals.emit_signal("input_help_set",GameController.get_input_key_list("interact"),"INTERACT_INPUT_HELP")
+	Signals.s_InputHelpSet.emit(GameController.get_input_key_list("add_to_board"),"ADD_TO_BOARD_INPUT_HELP")
+	Signals.s_InputHelpSet.emit(GameController.get_input_key_list("interact"),"INTERACT_INPUT_HELP")
 
 func deactivate_interactivity() -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
@@ -168,6 +168,6 @@ func deactivate_interactivity() -> void:
 		if interactableResource.show_labels:
 			$Labels.visible = false
 	Global.Active_Interactive_Item = null
-	Signals.emit_signal("input_help_delete","ADD_TO_BOARD_INPUT_HELP")
-	Signals.emit_signal("input_help_delete","INTERACT_INPUT_HELP")
+	Signals.s_InputHelpFree.emit("ADD_TO_BOARD_INPUT_HELP")
+	Signals.s_InputHelpFree.emit("INTERACT_INPUT_HELP")
 #endregion

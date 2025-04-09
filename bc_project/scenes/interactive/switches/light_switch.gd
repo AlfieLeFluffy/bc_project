@@ -22,10 +22,10 @@ func _interact_function(event: InputEvent) -> void:
 	# Inverts state for persistence
 	state = not state
 	# Toggles all lights
-	Signals.emit_signal("set_light",circuit,state)
+	Signals.s_SetLight.emit(circuit,state)
 
 func set_lights(newState: bool) -> void:
-	Signals.emit_signal("set_light",circuit,newState)
+	Signals.s_SetLight.emit(circuit,newState)
 
 """
 --- Persistence Methods

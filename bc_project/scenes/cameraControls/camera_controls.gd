@@ -2,10 +2,10 @@ class_name CameraControls extends Node2D
 
 ## A Node2D variable keeping track of what node the camera controller tracks. [br]
 ## Can be set through global signals in 'Signals' autoload script: [br]
-##	- [signal Signals.camera_tracked_node_set][br]
-##	- [signal Signals.camera_tracked_node_set_by_name][br]
-##	- [signal Signals.camera_tracked_node_set_player][br]
-##	- [signal Signals.camera_tracked_node_set_empty][br]
+##	- [signal Signals.s_CameraTrackedNodeSet][br]
+##	- [signal Signals.s_CameraTrackedNodeSetByName][br]
+##	- [signal Signals.s_CameraTrackedNodeSetPlayer][br]
+##	- [signal Signals.s_CameraTrackedNodeSetEmpty][br]
 @onready var trackedNode: Node2D
 
 ## Vector2 that keeps track of last known mouse position in the local space.
@@ -19,10 +19,10 @@ var emptyPosition: Vector2
 func _ready() -> void:
 	
 	## Connecting global signals to local methods
-	Signals.camera_tracked_node_set.connect(set_camera_tracked_node)
-	Signals.camera_tracked_node_set_by_name.connect(set_camera_tracked_node_by_name)
-	Signals.camera_tracked_node_set_player.connect(set_camera_tracked_node_player)
-	Signals.camera_tracked_node_set_empty.connect(set_camera_tracked_node_empty)
+	Signals.s_CameraTrackedNodeSet.connect(set_camera_tracked_node)
+	Signals.s_CameraTrackedNodeSetByName.connect(set_camera_tracked_node_by_name)
+	Signals.s_CameraTrackedNodeSetPlayer.connect(set_camera_tracked_node_player)
+	Signals.s_CameraTrackedNodeSetEmpty.connect(set_camera_tracked_node_empty)
 	
 	## Setting up initial tracked node (Player)
 	setup_initial_tracked_node()

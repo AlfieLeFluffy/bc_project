@@ -150,9 +150,9 @@ func create_application_tab(_type: ApplicationResource.applicationTypes) -> Appl
 
 """ View Control Methods """
 func exit_view() ->void:
-	Signals.hide_computer_view.emit(computer.compRes.name)
+	Signals.s_HideComputerView.emit(computer.compRes.name)
 
-func shutdown_computer() -> void:
+func s_ShutdownComputer() -> void:
 	computer_lock.emit()
 	computer.appRes.activeApplications.clear()
 	queue_free()
@@ -173,8 +173,8 @@ func _on_start_index_pressed(index: int) -> void:
 			computer_lock.emit()
 			application_exit.emit(-1)
 		1:
-			Signals.emit_signal("shutdown_computer",computer.compRes.name)
-			shutdown_computer()
+			Signals.s_ShutdownComputer.emit(computer.compRes.name)
+			s_ShutdownComputer()
 		_:
 			printerr("Start menu index out of bounds")
 #endregion

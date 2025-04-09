@@ -386,6 +386,7 @@ script = ExtResource("16_2qb3d")
 npcName = "Ribli"
 spritesheet = ExtResource("36_0e4k1")
 frameVector = Vector2(1, 1)
+description = ""
 callables = Array[ExtResource("4_0e4k1")]([SubResource("Resource_g6skm")])
 metadata/_custom_type_script = "uid://drj3o0qsip6ss"
 

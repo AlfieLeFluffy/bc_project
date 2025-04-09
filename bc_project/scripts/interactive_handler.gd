@@ -10,7 +10,7 @@ class_name InteractiveHandler extends Node
 """
 func _ready() -> void:
 	
-	Signals.connect("menu_clear", menu_clear)
+	Signals.s_MenuClear.connect(menu_clear)
 
 """
 --- Global signal methods

@@ -20,8 +20,8 @@ func _local_ready() -> void:
 		else:
 			setup_buttons_status(elevator.resource.id, elevator.resource.currentStop)
 	
-	Signals.elevator_move_to_key.connect(hide_menu)
-	Signals.elevator_move_to_key.connect(setup_buttons_status)
+	Signals.s_ElevatorMoveToKey.connect(hide_menu)
+	Signals.s_ElevatorMoveToKey.connect(setup_buttons_status)
 
 func get_elevator() -> bool:
 	var parent: Node = get_parent()

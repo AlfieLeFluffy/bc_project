@@ -73,7 +73,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			if callable.methodName == "start_dialogue":
 				Signals.start_npc_conversation_state.emit(self)
 			callable.run(self)
-	if event.is_action_pressed("add_to_board"):
+	if event.is_action_pressed("add_to_board") and active:
 		add_board_element(event)
 #endregion
 
@@ -82,7 +82,7 @@ func _unhandled_input(event: InputEvent) -> void:
 #region Global Call Methods
 # Active function if no dialog detected
 func add_board_element(event: InputEvent) -> void:
-	Signals.create_board_element.emit(ElementResource.new().setup(ElementResource.elementType.PROFILE,npcResource.npcName,npcResource.timeline,npcResource.description,get_sprite_from_current_frame()))
+	Signals.s_CreateBoardElement.emit(ElementResource.new().setup(ElementResource.elementType.PROFILE,npcResource.npcName,npcResource.timeline,npcResource.description,get_sprite_from_current_frame()))
 #endregion
 
 
@@ -138,10 +138,12 @@ func deactivate_hover() -> void:
 	$Sprite2D.material.set("shader_parameter/line_thickness",0)
 
 func activate_interactivity() -> void:
-	Signals.emit_signal("input_help_set",GameController.get_input_key_list("interact"),"TALK_INPUT_HELP")
+	Signals.s_InputHelpSet.emit(GameController.get_input_key_list("add_to_board"),"ADD_TO_BOARD_INPUT_HELP")
+	Signals.s_InputHelpSet.emit(GameController.get_input_key_list("interact"),"TALK_INPUT_HELP")
 
 func deactivate_interactivity() -> void:
-	Signals.emit_signal("input_help_delete","TALK_INPUT_HELP")
+	Signals.s_InputHelpFree.emit("ADD_TO_BOARD_INPUT_HELP")
+	Signals.s_InputHelpFree.emit("TALK_INPUT_HELP")
 #endregion
 
 

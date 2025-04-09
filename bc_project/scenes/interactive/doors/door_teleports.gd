@@ -17,8 +17,8 @@ func _interact_function(event: InputEvent) -> void:
 
 func activate_interactivity() -> void:
 	Global.Active_Interactive_Item = self
-	Signals.emit_signal("input_help_set",GameController.get_input_key_list("interact"),"GO_THROUGH_DOOR_INPUT_HELP")
+	Signals.s_InputHelpSet.emit(GameController.get_input_key_list("interact"),"GO_THROUGH_DOOR_INPUT_HELP")
 
 func deactivate_interactivity() -> void:
 	Global.Active_Interactive_Item = null
-	Signals.emit_signal("input_help_delete","GO_THROUGH_DOOR_INPUT_HELP")
+	Signals.s_InputHelpFree.emit("GO_THROUGH_DOOR_INPUT_HELP")

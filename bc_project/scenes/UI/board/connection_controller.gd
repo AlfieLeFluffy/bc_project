@@ -19,8 +19,8 @@ func _ready() -> void:
 	
 	import_clues()
 	
-	Signals.connect("set_active_element",set_active_element)
-	Signals.connect('delete_board_line', delete_line_element)
+	Signals.s_SetActiveBoardElement.connect(set_active_element)
+	Signals.s_DeleteBoardConnection.connect(delete_connection_element)
 
 func set_active_element(element:Control) -> void:
 	activeElement = element
@@ -93,10 +93,10 @@ func check_for_clue(combination:String) -> ClueResource:
 #endregion
 
 #region Connection Managment Methods
-func delete_line_element(line) -> void:
+func delete_connection_element(line) -> void:
 	Global.line_elements.erase(line.resource.id)
 	line.queue_free()
-	Signals.emit_signal("input_help_delete","REMOVE_BOARD_LINE_INPUT_HELP")
+	Signals.s_InputHelpFree.emit("REMOVE_BOARD_LINE_INPUT_HELP")
 #endregion
 
 #region General Methods

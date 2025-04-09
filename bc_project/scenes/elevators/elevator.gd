@@ -11,8 +11,8 @@ func _ready():
 	if resource.currentStop != "":
 		%ElevatorCabin.position = resource.stops[resource.currentStop]
 	
-	Signals.connect("elevator_move_to_key",move_to_stop_key)
-	Signals.connect("elevator_move_to_vector",move_to_stop_vector)
+	Signals.s_ElevatorMoveToKey.connect(move_to_stop_key)
+	Signals.s_ElevatorMoveToVector.connect(move_to_stop_vector)
 	
 	setup_cabin()
 	
@@ -146,7 +146,7 @@ func loading(input:Dictionary) -> bool:
 			%ElevatorCabin.position = Vector2(input["cabin"]["posX"],input["cabin"]["posY"])
 		setup_cabin()
 		if resource.active:
-			Signals.elevator_move_to_key.emit(resource.id,resource.movingToStop,true)
+			Signals.s_ElevatorMoveToKey.emit(resource.id,resource.movingToStop,true)
 		return true
 	return false
 #endregion

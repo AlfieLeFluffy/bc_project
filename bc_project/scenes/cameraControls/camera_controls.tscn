@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://x3lasufaexva"]
 
-[ext_resource type="Script" uid="uid://c1vqa2fdidxf6" path="res://scenes/cameraControls/camera_movement.gd" id="1_0hybq"]
+[ext_resource type="Script" uid="uid://c1vqa2fdidxf6" path="res://scenes/cameraControls/camera_controls.gd" id="1_0hybq"]
 [ext_resource type="Script" uid="uid://dwlbgegveoyo0" path="res://scenes/cameraControls/camera_zoom.gd" id="2_tphas"]
 
 [node name="CameraControls" type="Node2D" groups=["CameraControls", "Persistent"]]

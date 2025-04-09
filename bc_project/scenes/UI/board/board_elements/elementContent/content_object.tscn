@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cs7fh4y3onsb8"]
+[gd_scene load_steps=3 format=3 uid="uid://cs7fh4y3onsb8"]
 
 [ext_resource type="PackedScene" uid="uid://ds31req2ok3p" path="res://scenes/UI/board/board_elements/content_base.tscn" id="1_03kjy"]
 [ext_resource type="Script" uid="uid://bbsh5krw3fmd1" path="res://scenes/UI/board/board_elements/elementContent/content_object.gd" id="2_wh8im"]
-[ext_resource type="FontFile" uid="uid://08ws45e5yv6x" path="res://fonts/custom_font/test_font.otf" id="3_0ofx7"]
 
 [node name="ContentObject" instance=ExtResource("1_03kjy")]
 script = ExtResource("2_wh8im")
@@ -19,8 +18,6 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("3_0ofx7")
-theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
 text = "[center]test"
 fit_content = true

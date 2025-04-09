@@ -12,8 +12,8 @@ var instance: ElementBase
 #region Setup Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Signals.connect('create_board_element', create_board_element)
-	Signals.connect('delete_board_element', delete_board_element)
+	Signals.s_CreateBoardElement.connect(create_board_element)
+	Signals.s_DeleteBoardElement.connect(delete_board_element)
 #endregion
 
 #region Element Management Methods
@@ -40,10 +40,10 @@ func finalize_element() -> void:
 func delete_board_element(element) -> void:
 	for lineKey in Global.line_elements.keys():
 		if lineKey.contains(element.resource.id):
-			Signals.emit_signal('delete_board_line',Global.line_elements[lineKey])
+			Signals.s_DeleteBoardConnection.emit(Global.line_elements[lineKey])
 	Global.board_elements.erase(element.resource.id)
 	element.queue_free()
-	Signals.emit_signal("input_help_delete","REMOVE_BOARD_ELEMENT_INPUT_HELP")
+	Signals.s_InputHelpFree.emit("REMOVE_BOARD_ELEMENT_INPUT_HELP")
 
 func check_element(key:String) -> bool:
 	if Global.board_elements.has(key):

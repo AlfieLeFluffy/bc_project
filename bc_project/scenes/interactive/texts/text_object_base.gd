@@ -36,4 +36,4 @@ func _interact_function(event: InputEvent) -> void:
 
 # Active function if no dialog detected
 func add_board_element(event: InputEvent) -> void:
-	Signals.emit_signal('create_board_element',ElementResource.new().setup(ElementResource.elementType.TEXT,textRosource.textName,interactableResource.timeline,textRosource.textContents,get_sprite_from_current_frame()))
+	Signals.s_CreateBoardElement.emit(ElementResource.new().setup(ElementResource.elementType.TEXT,textRosource.textName,interactableResource.timeline,textRosource.textContents,get_sprite_from_current_frame()))

@@ -48,7 +48,7 @@ func _physics_process(delta: float) -> void:
 
 func delete_element() -> void:
 	GameController.release_focus()
-	Signals.emit_signal('delete_board_element',self)
+	Signals.s_DeleteBoardElement.emit(self)
 	get_viewport().set_input_as_handled()
 #endregion
 
@@ -66,13 +66,13 @@ func _on_delete_button_pressed() -> void:
 
 func _on_mouse_entered() -> void:
 	active = true
-	Signals.emit_signal("set_active_element",self)
-	Signals.emit_signal("input_help_set",GameController.get_input_key_list("delete_board_element"),"REMOVE_BOARD_ELEMENT_INPUT_HELP")
+	Signals.s_SetActiveBoardElement.emit(self)
+	Signals.s_InputHelpSet.emit(GameController.get_input_key_list("delete_board_element"),"REMOVE_BOARD_ELEMENT_INPUT_HELP")
 
 func _on_mouse_exited() -> void:
 	active = false
-	Signals.emit_signal("set_active_element",null)
-	Signals.emit_signal("input_help_delete","REMOVE_BOARD_ELEMENT_INPUT_HELP")
+	Signals.s_SetActiveBoardElement.emit(null)
+	Signals.s_InputHelpFree.emit("REMOVE_BOARD_ELEMENT_INPUT_HELP")
 #endregion
 
 #region Persitence Methods

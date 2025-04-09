@@ -1,34 +1,83 @@
 extends Node
+## An autoload script that hold all globally accesable signals that are not tied to another autoload script.
 
-# Signals for updating player overlay
-signal timeline_shift()
+#region Timeline Shift Signals
+## A signal that triggers the timeline shift screen effect.
+signal s_TimelineShift()
+#endregion
 
-# Signals for setting what node the camera is following
-signal camera_tracked_node_set(node)
-signal camera_tracked_node_set_by_name(nodeName)
-signal camera_tracked_node_set_player()
-signal camera_tracked_node_set_empty()
+#region Camera Controls Signals
+## Signal for setting the tracked property of the [CameraControls] to a spefic node.[br]
+##
+## - [param node] hold the Node2D class which the camera should start tracking.
+signal s_CameraTrackedNodeSet(node: Node2D)
+## Signal for setting the tracked property of the [CameraControls] to a spefic node by its name.[br]
+##
+## - [param nodeName] hold name of the Node2D the camera should start tracking. The cemara controls methods attempts to find the node.
+signal s_CameraTrackedNodeSetByName(nodeName: String)
+## Signal for setting the tracked property of the [CameraControls] to the player character.[br]
+signal s_CameraTrackedNodeSetPlayer()
+## Signal for setting the tracked property of the [CameraControls] to the last known position of the previous tracked node.[br]
+signal s_CameraTrackedNodeSetEmpty()
+#endregion
 
-# Signals for updating player overlay
-signal update_overlay()
+#region Overlay Signals
+## Signal for forcing a Main Overlay update
+signal s_UpdateMainOverlay()
+#endregion
 
-# Signals opening of a new menu, used to clear active 
-signal menu_clear()
+#region Menu Signals
+## Signal for clearing a active state when a menu is opened.
+signal s_MenuClear()
+#endregion
 
-# Signals for updating lighting scenes
-signal set_light(circuitSignal,state)
-signal toggle_light(circuitSignal)
+#region Lights Signals
+## Signal used to set a [Light] state.[br]
+##
+## - [param circuit] is used to identify which lights are to be set.[br]
+## - [param state] is the state to which they will be set.[br]
+signal s_SetLight(circuit: String, state: bool)
+## Signal used to toggling a [Light] state.[br]
+##
+## - [param circuit] is used to identify which lights are to be toggled.[br]
+signal s_ToggleLight(circuit: String)
+#endregion
 
-signal set_active_element(element)
-# Signals for creating and deleting board elements
-signal create_board_element(elementResource)
-signal delete_board_element(elementName)
-# Signals for deleteing line elements
-signal delete_board_line(line)
+#region Board Signals
+## Signals used to set the current active element for further use.[br]
+##
+## - [param element] is the current active element.[br]
+signal s_SetActiveBoardElement(element: ElementBase)
 
-# Signals for input help setting
-signal input_help_set(input,description)
-signal input_help_delete(description)
+## Signals used to create a new board element.[br]
+##
+## - [param elementResource] is a resource of the new element.[br]
+signal s_CreateBoardElement(elementResource: ElementResource)
+
+## Signals used to delete a board element.[br]
+##
+## - [param elementName] is the name of the element to be deleted.[br]
+signal s_DeleteBoardElement(elementName: String)
+## Signals used to delete a board connection.[br]
+##
+## - [param connection] is connection instance to be deleted.[br]
+signal s_DeleteBoardConnection(connection: ConnectionBase)
+#endregion
+
+#region Input Help Signals
+## Signal for setting an input help into the overlay.[br]
+##
+## - [param input] is an array of strings holding all input keys related to the action in.[br]
+## - [param description] holds the translation key for the input help label.
+## This keys is also used for keeping track of the label.[br]
+signal s_InputHelpSet(input: Array, description: String)
+
+## Signal for free an input help label, if there is one of said description.
+##
+## - [param description] holds the translation key for the input help label. 
+## This keys is also used for keeping track of the label.[br]
+signal s_InputHelpFree(description: String)
+#endregion
 
 # Singnal for notifying npc state machine about conversation starting/ending
 signal setup_level_dialogue_variables(variables)
@@ -36,14 +85,51 @@ signal start_npc_conversation_state(npc)
 signal setup_conversation_profile(side,character_name,picture)
 signal end_npc_conversation_state()
 
-# Singnal for updating computer interactables
-signal shutdown_computer(computerName)
-signal hide_computer_view(computerName)
+#region Computer Signals
+## Signal for shutting down a computer.
+##
+## - [param computerName] is used to idenetify which computer is supposed to shutdown.
+## It is the parameter [param name] held in [ComputerObjectResource].
+signal s_ShutdownComputer(computerName: String)
+## Signal for hiding a computer view menu.
+##
+## - [param computerName] is used to idenetify which computer is supposed to shutdown.
+## It is the parameter [param name] held in [ComputerObjectResource].
+signal s_HideComputerView(computerName: String)
+#endregion
 
-signal elevator_move_to_key(id,key)
-signal elevator_move_to_vector(id,vector)
+#region Elevator Signals
+## Signal for sending an elevator to a specific stop.[br]
+###
+## - [param id] is used to identify the elevator. This is kept in the [ElevatorResource].[br]
+## - [param stop] is used to identify the stop to which the elevator should move to. Stops are kept in the [ElevatorResource].[br]
+## There are safety protections on both inputs.
+signal s_ElevatorMoveToKey(id: String, key: String)
+## Signal for sending an elevator to a specific vector.[br]
+##
+## - [param id] is used to identify the elevator. This is kept in the [ElevatorResource].[br]
+## - [param vector] is used to set a specific position to whic the elevator should move.[br]
+## There are safety protections on both inputs.
+signal s_ElevatorMoveToVector(id: String, vector: Vector2)
+#endregion
 
+#region Door Signals
+## Signal for openning a door. This does not ignore the [param locked] property.[br]
+##
+## - [param id] is used for identifing a specific door. This information is held in [InteractableResource].[br]
 signal s_OpenDoor(id: String)
+## Signal for clsoing a door. This does not ignore the [param locked] property.[br]
+##
+## - [param id] is used for identifing a specific door. This information is held in [InteractableResource].[br]
 signal s_CloseDoor(id: String)
+
+## Signal for toggling the locked property of a door.[br]
+##
+## - [param id] is used for identifing a specific door. This information is held in [InteractableResource].[br]
 signal s_ToggleDoorLock(id: String)
+## Signal for setting the locked property of a door.[br]
+##
+## - [param id] is used for identifing a specific door. This information is held in [InteractableResource].[br]
+## - [param state] is the state to which the locked property will be set.
 signal s_SetDoorLock(id: String, state: bool)
+#endregion

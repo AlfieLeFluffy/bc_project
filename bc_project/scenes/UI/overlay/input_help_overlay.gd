@@ -15,8 +15,8 @@ var labels: Dictionary = {}
 """
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Signals.connect('input_help_set', set_input_help_label)
-	Signals.connect('input_help_delete', delete_input_help_label)
+	Signals.s_InputHelpSet.connect(set_input_help_label)
+	Signals.s_InputHelpFree.connect(free_input_help_label)
 	
 	
 	set_input_help_label(GameController.get_input_key_list("timeline_shift"), "TIMELINE_SHIFT_INPUT_HELP")
@@ -25,7 +25,7 @@ func _ready() -> void:
 --- INput Help Methods
 """
 
-func set_input_help_label(input:Array,description:String) -> void:
+func set_input_help_label(input: Array,description: String) -> void:
 	if labels.has(description):
 		return
 	var label: InputHelpLabel = preloadHelpLabel.instantiate()
@@ -34,7 +34,7 @@ func set_input_help_label(input:Array,description:String) -> void:
 	$".".move_child(label,0)
 	label.set_label(input,description)
 
-func delete_input_help_label(description:String) -> void:
+func free_input_help_label(description: String) -> void:
 	if not labels.has(description):
 		return
 	labels[description].queue_free()

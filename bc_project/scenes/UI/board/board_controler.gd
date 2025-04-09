@@ -9,7 +9,7 @@ var mouse_offset: Vector2
 func _ready() -> void:
 	visible = false
 	setup_board()
-	Signals.emit_signal("input_help_set",GameController.get_input_key_list("detective_board_toggle"), "DETECTIVE_BOARD_INPUT_HELP")
+	Signals.s_InputHelpSet.emit(GameController.get_input_key_list("detective_board_toggle"), "DETECTIVE_BOARD_INPUT_HELP")
 
 func setup_board() -> void:
 	%DetectiveBoardLabelText.text = "[font_size=32]%s" % [tr("DETECTIVE_BOARD_LABEL")]
@@ -26,8 +26,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 func _process(delta: float) -> void:
-	if visible:
-		%SubViewport.size = get_viewport().size - Vector2i(100,100)
+	pass
 
 func toggle_board() -> void:
 	visible = not visible

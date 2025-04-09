@@ -89,7 +89,7 @@ func shift(_destination: Timeline) -> void:
 	if timelineForesee:
 		end_foresee()
 	
-	Signals.timeline_shift.emit()
+	Signals.s_TimelineShift.emit()
 	GameController.emit_signal("playScreenEffect",GameController.screenEffectEnum.TIMELINE_SHIFT)
 	update_timeline_info(_destination)
 	move_player(current, _destination)
@@ -128,4 +128,4 @@ func move_camera_controls(start: Timeline, end: Timeline) -> void:
 
 func update_timeline_info(timeline: Timeline) -> void:
 	Global.currentTimeline = timeline
-	Signals.update_overlay.emit()
+	Signals.s_UpdateMainOverlay.emit()

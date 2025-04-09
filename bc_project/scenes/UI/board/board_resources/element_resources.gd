@@ -16,7 +16,7 @@ const elementContent: Dictionary = {
 	ElementResource.elementType.OBJECT : "res://scenes/UI/board/board_elements/elementContent/content_object.tscn",
 	ElementResource.elementType.TEXT : "res://scenes/UI/board/board_elements/elementContent/content_text.tscn",
 	ElementResource.elementType.FILE : "res://scenes/UI/board/board_elements/elementContent/content_file.tscn",
-	ElementResource.elementType.PROFILE : null,
+	ElementResource.elementType.PROFILE : "res://scenes/UI/board/board_elements/elementContent/content_profile.tscn",
 }
 #endregion
 
