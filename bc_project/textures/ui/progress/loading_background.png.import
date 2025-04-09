@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvir6g3omwwvc"
-path="res://.godot/imported/loadingLabel.png-4c86b097da41e291b6caf1449ad09832.ctex"
+uid="uid://c130ybe5u3u55"
+path="res://.godot/imported/loading_background.png-bcd01f7ce5ee86cc6e2c294c6e9701b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/symbols/loadingLabel.png"
-dest_files=["res://.godot/imported/loadingLabel.png-4c86b097da41e291b6caf1449ad09832.ctex"]
+source_file="res://textures/ui/progress/loading_background.png"
+dest_files=["res://.godot/imported/loading_background.png-bcd01f7ce5ee86cc6e2c294c6e9701b2.ctex"]
 
 [params]
 

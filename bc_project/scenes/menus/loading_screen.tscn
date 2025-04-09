@@ -1,27 +1,62 @@
-[gd_scene load_steps=4 format=3 uid="uid://dphjswwm04byi"]
+[gd_scene load_steps=6 format=3 uid="uid://dphjswwm04byi"]
 
 [ext_resource type="Script" uid="uid://bg2qn6qaand3m" path="res://scenes/menus/loading_screen.gd" id="1_pnlos"]
-[ext_resource type="Texture2D" uid="uid://bvir6g3omwwvc" path="res://textures/symbols/loadingLabel.png" id="2_ydbir"]
-[ext_resource type="Texture2D" uid="uid://c7tsx6flmv3jf" path="res://textures/symbols/loadingProgress.png" id="3_rl4b3"]
+[ext_resource type="Theme" uid="uid://b7fqcfcxmghhe" path="res://settings/loading_menu_theme.tres" id="2_8ycgy"]
+[ext_resource type="Texture2D" uid="uid://c130ybe5u3u55" path="res://textures/ui/progress/loading_background.png" id="3_u6do7"]
+[ext_resource type="Texture2D" uid="uid://dxjei78ejlurv" path="res://textures/ui/progress/loading_fill.png" id="4_thh8i"]
+[ext_resource type="Texture2D" uid="uid://buovekmkjq4fv" path="res://textures/icon/icon.svg" id="5_q6361"]
 
-[node name="MarginContainer" type="MarginContainer"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -128.0
-offset_top = -32.0
-offset_right = 128.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/margin_left = 80
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 80
-theme_override_constants/margin_bottom = 50
+[node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_pnlos")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+[node name="MarginContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_8ycgy")
+
+[node name="ProgressBar" type="TextureProgressBar" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.656
+anchor_top = 0.861
+anchor_right = 0.969
+anchor_bottom = 0.907
+offset_left = -599.52
+offset_top = -49.8801
+offset_right = -600.48
+offset_bottom = -49.5601
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 1.0
+step = 0.01
+nine_patch_stretch = true
+stretch_margin_left = 16
+stretch_margin_top = 16
+stretch_margin_right = 16
+stretch_margin_bottom = 16
+texture_under = ExtResource("3_u6do7")
+texture_progress = ExtResource("4_thh8i")
+
+[node name="TitleOrder" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.052
+anchor_top = 0.093
+anchor_right = 0.117
+anchor_bottom = 0.208
+offset_left = 0.159996
+offset_top = 779.56
+offset_right = -24.64
+offset_bottom = 755.36
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/TitleOrder"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-texture_under = ExtResource("2_ydbir")
-texture_progress = ExtResource("3_rl4b3")
+texture = ExtResource("5_q6361")
+expand_mode = 3
+stretch_mode = 5
