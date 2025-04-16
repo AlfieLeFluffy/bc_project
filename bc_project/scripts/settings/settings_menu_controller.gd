@@ -67,12 +67,12 @@ func setup_sound() -> void:
 """
 
 func _on_save_button_pressed() -> void:
-	SettingsController.emit_signal("updateSettings")
-	SettingsController.emit_signal("saveSettings")
+	SettingsController.s_ConfigUpdate.emit()
+	SettingsController.s_ConfigSave.emit()
 	close_menu()
 
 func _on_apply_button_pressed() -> void:
-	SettingsController.emit_signal("updateSettings")
+	SettingsController.s_ConfigUpdate.emit()
 
 func _on_language_option_button_item_selected(index: int) -> void:
 	if LANG_DICT.has(index):

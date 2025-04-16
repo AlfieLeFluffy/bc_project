@@ -9,26 +9,44 @@ const autosaveFormat: String = "autosave_%s"
 #endregion
 
 #region Signals
-signal openPersistenceMenu(mode)
+## Signal for notifying [PersistenceController] to open a settings menu.[br]
+##
+## - [param mode] is a specification in which mode should the persistence menu open. 
+## The mode enum is kept inside [PersistenceMenu] class and can be either SAVE or LOAD.
+signal s_PersistenceMenuOpen(mode: PersistenceMenu.modeEnum)
 
-signal saveGame(filename)
-signal autosaveGame()
-signal loadGame(filename)
+## Signal for notifying [PersistenceController] to start the saving process that should result in a specified savefile.[br]
+##
+## - [param filename] specifies which savefile should be interacted with.
+signal s_SaveGame(filename: String)
+## Signal for notifying [PersistenceController] to start the saving process without specifying the savefile name.[br]
+## A savefile name will be genereated instead.
+signal s_AutosaveGame()
+## Signal for notifying [PersistenceController] to start the loading process with a specified savefile.
+##
+## - [param filename] specifies which savefile should be interacted with.
+signal s_LoadGame(filename: String)
 
-signal deleteSavefile(filename)
-signal deleteProfileSavefiles(id)
+## Signal for notifying [PersistenceController] to delete a specified savefile.[br]
+##
+## - [param filename] specifies which savefile should be interacted with.
+signal s_SavefileDelete(filename: String)
+## Signal for notifying [PersistenceController] to delete all savefiles of a specified profile.[br]
+##
+## - [param profileID] specifies which profile should be interacted with.
+signal s_SavefilesProfileDelete(profileID: String)
 #endregion
 
 #region Setup Methods
 func _ready() -> void:
-	openPersistenceMenu.connect(open_persistence_menu)
-	saveGame.connect(save_game)
-	autosaveGame.connect(autosave_game)
-	loadGame.connect(load_game)
-	deleteSavefile.connect(delete_savefile)
-	deleteProfileSavefiles.connect(delete_profile_savefiles)
+	s_PersistenceMenuOpen.connect(open_persistence_menu)
+	s_SaveGame.connect(save_game)
+	s_AutosaveGame.connect(autosave_game)
+	s_LoadGame.connect(load_game)
+	s_SavefileDelete.connect(delete_savefile)
+	s_SavefilesProfileDelete.connect(delete_profile_savefiles)
 	
-	GameController.profileLoaded.connect(check_profile_savefile_folder)
+	GameController.s_ProfileLoaded.connect(check_profile_savefile_folder)
 #endregion
 
 #region Folder and File Path Methods
@@ -185,7 +203,7 @@ func load_game(filename:String) -> void:
 	# Starts process for loading a scene
 	GameController.change_scene(data["scene"])
 	# Waits till the scene loads
-	await GameController.sceneLoaded
+	await GameController.s_SceneLoaded
 	
 	# Loads up all persistent nodes in the scene (and globals)
 	var persistentNodes = get_tree().get_nodes_in_group("Persistent")
@@ -211,7 +229,7 @@ func load_game(filename:String) -> void:
 				parent.add_child(node)
 				node.loading(data)
 			
-	GameController.gameLoaded.emit()
+	GameController.s_GameLoaded.emit()
 #endregion
 	
 #region Delete Savefiles and Profile Savefiles Methods

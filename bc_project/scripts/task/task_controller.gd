@@ -1,35 +1,88 @@
 extends Node
 
+#region Constants
 const preloadTaskOverlay = preload("res://scenes/UI/overlay/task_overlay.tscn")
 const preloadJournalMenu = preload("res://scenes/UI/journal/journal_menu.tscn")
+#endregion
 
+#region Variables
 @export var res: TaskLevelResource
 
 var overlay: TaskOverlay
 var journal: JournalMenu
+#endregion
 
+#region Signals
+## Signal for notifying scripts that a new task was loaded.
 signal s_TasksLoaded()
+## Signal for notifying scripts that a task was activated.
 signal s_TaskActiavted()
 
-signal s_CurrentNextStep(next)
-signal s_NextStep(task,next)
 
-signal s_CurrentGoToStep(next)
-signal s_GoToStep(task,next)
+## Signal for notifying [TaskController] to move the current tasks step forward.[br]
+##
+## - [param next] specifies which next step should be taken. 
+##	If left blank then the first step in the next array will be taken. 
+##	If no next step is pressent in the next array then the task completion script is run.[br]
+signal s_CurrentNextStep(next: String)
+## Signal for notifying [TaskController] to move the specified tasks step forward.[br]
+##
+## - [param task] specifies which task should be worked with. 
+##	If left blank then the call fails.[br]
+## - [param next] specifies which next step should be taken. 
+##	If left blank then the first step in the next array will be taken. 
+##	If no next step is pressent in the next array then the task completion script is run.[br]
+signal s_NextStep(task: String, next: String)
 
-signal s_ChangeTask(task)
-signal s_CompleteTask(task, failed)
-signal s_TaskChangeStatus(task)
 
+## Signal for notifying [TaskController] to move the current tasks step to a specified next step.[br]
+##
+## - [param next] specifies which next step should be taken. 
+##	If left blank then the call fails.
+##	If next step is not present in the task step array then the call fails.[br]
+signal s_CurrentGoToStep(next: String)
+## Signal for notifying [TaskController] to move the specified tasks step to a specified next step.[br]
+##
+## - [param task] specifies which task should be worked with. 
+##	If left blank then the call fails.[br]
+## - [param next] specifies which next step should be taken. 
+##	If left blank then the call fails.
+##	If next step is not present in the task step array then the call fails.[br]
+signal s_GoToStep(task: String, next: String)
+
+
+## Signal for notifying [TaskController] to change the current task to a specified task.[br]
+##
+## - [param task] specifies which task should be worked with. 
+##	If left blank then the call fails.[br]
+signal s_ChangeTask(task: String)
+## Signal for notifying [TaskController] to complete a task with specified status.[br]
+##
+## - [param task] specifies which task should be worked with. 
+##	If left blank then the call fails.[br]
+## - [param failed] specifies if the task was completed succesfully or failed.[br]
+signal s_CompleteTask(task: String, failed: bool)
+## Signal for notifying [TaskController] to change the statues of a task.[br]
+##
+## - [param task] specifies which task should be worked with. 
+##	If left blank then the call fails.[br]
+signal s_TaskChangeStatus(task: String)
+#endregion
+
+
+"""
+--- Setup Methods
+"""
+#region Setup Methods
 func _ready() -> void:
 	self.add_to_group("Persistent")
 	
 	setup_task_overlay()
 	setup_journal_menu()
 	
-	GameController.sceneLoaded.connect(setup_task_overlay)
-	GameController.sceneLoaded.connect(setup_journal_menu)
-	GameController.sceneLoaded.connect(import_level_tasks)
+	GameController.s_SceneLoaded.connect(setup_task_overlay)
+	GameController.s_SceneLoaded.connect(setup_journal_menu)
+	GameController.s_SceneLoaded.connect(import_level_tasks)
 	
 	s_CurrentNextStep.connect(current_next_step)
 	s_NextStep.connect(next_step)
@@ -80,7 +133,14 @@ func setup_level_tasks(_resource: TaskLevelResource) -> void:
 	if res.initialTask and not res.currentTask:
 		res.currentTask = res.initialTask
 		set_task_active(res.currentTask)
+#endregion
 
+
+
+"""
+--- Runtime Methods
+"""
+#region Task Managment Methods
 func set_task_active(task: TaskResource) -> void:
 	if res.activeTasks.has(task.name):
 		return
@@ -99,7 +159,11 @@ func set_task_complete(task: TaskResource, failed: bool = false) -> void:
 	task.finished = true
 	task.failed = failed
 	task.emit_changed()
+#endregion
 
+
+
+#region Step Managment Methods
 func current_next_step(stepName: String = "") -> void:
 	next_step(res.currentTask.name, stepName)
 
@@ -131,7 +195,11 @@ func go_to_step(taskName: String,stepName: String = "") -> void:
 		overlay.s_QueueUpdateStep.emit(task, previousStep,task.currentStep,false)
 	else:
 		check_ending(task)
+#endregion
 
+
+
+#region Task Completion Methods
 func check_ending(task: TaskResource) -> bool:
 	if task.currentStep.next:
 		if task.currentStep.next.size() > 0:
@@ -152,6 +220,9 @@ func complete_task(taskName: String, failed: bool = false) -> void:
 	
 	if overlay:
 		overlay.s_QueueUpdateTask.emit(task,previousStep,task.failed)
+#endregion
+
+
 
 #region Persistence Methods
 """

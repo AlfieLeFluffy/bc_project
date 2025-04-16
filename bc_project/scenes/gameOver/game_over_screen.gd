@@ -8,7 +8,7 @@ func _ready() -> void:
 	Signals.s_CameraTrackedNodeSetEmpty.emit()
 	
 	if info.has("achievement"):
-		GameController.setAchievement.emit(info["achievement"])
+		GameController.s_AchievementSet.emit(info["achievement"])
 	
 	if info.has_all(["name","description"]):
 		%GameOverText.text = GAME_OVER_TEXT_FORMAT % [tr(info["name"]),tr(info["description"])]
@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_load_button_pressed() -> void:
-	PersistenceController.emit_signal("openPersistenceMenu",PersistenceMenu.modeEnum.LOAD)
+	PersistenceController.s_PersistenceMenuOpen.emit(PersistenceMenu.modeEnum.LOAD)
 
 func _on_main_menu_button_pressed() -> void:
 	GameController.change_scene("main_menu")

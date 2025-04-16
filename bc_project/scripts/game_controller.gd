@@ -20,11 +20,11 @@ const preloadTimelineShiftEffect = preload("res://scenes/screenEffects/timeline_
 const preloadFadeInEffect = preload("res://scenes/screenEffects/fade_in_effect.tscn")
 const preloadFadeOutEffect = preload("res://scenes/screenEffects/fade_out_effect.tscn")
 
-enum screenEffectEnum {TIMELINE_SHIFT,FADE_IN,FADE_OUT}
+enum screenEffectType {TIMELINE_SHIFT,FADE_IN,FADE_OUT}
 const screenEffects: Dictionary = {
-	screenEffectEnum.TIMELINE_SHIFT : preloadTimelineShiftEffect,
-	screenEffectEnum.FADE_IN: preloadFadeInEffect,
-	screenEffectEnum.FADE_OUT: preloadFadeOutEffect,
+	screenEffectType.TIMELINE_SHIFT : preloadTimelineShiftEffect,
+	screenEffectType.FADE_IN: preloadFadeInEffect,
+	screenEffectType.FADE_OUT: preloadFadeOutEffect,
 }
 #endregion
 
@@ -33,22 +33,44 @@ var profile: ProfileResource
 #endregion
 
 #region Signals
-signal profileCreate(profileName)
-signal profileSet(profile)
-signal profileLoaded()
+## Signal used for creating a new game profile. 
+## If no profile is selected during profile creation the new profile set as current.[br] 
+##
+## - [param newProfileName] is a name for the new profile in [String].[br]
+signal s_ProfileCreate(newProfileName: String)
+## Signal used for setting the current profile.[br] 
+##
+## - [param profile] is a reference to an instance of a [ProfileResource].[br]
+signal s_ProfileSet(profile: ProfileResource)
+## Signal used for notifying scripts using the current profile resource that it a new profile was loaded.[br] 
+signal s_ProfileLoaded()
 
-signal openAchievementsMenu()
-signal setAchievement(type)
+## Signal used to notify [GameController] autoload script to open the achievements menu.
+signal s_AchievementsMenuOpen()
+## Signal used to set the an achievement of [param type] as acquired for the current profile.
+## If the current profile already has an achievement of [param type] acquired then nothing happens.[br]
+##
+## - [param type] is an enum type stored in the [AchievementsResource] refering to a specific achieveemnt.
+signal s_AchievementSet(type: AchievementsResource.type)
 
-signal setMainOverlayVisibility(state)
+## Signal used to set the visibility of the scene's main overlay node. [br]
+##
+## - [param state] is a bool parameter to which the visibility will be set.
+signal s_MainOverlayVisibilitySet(state: bool)
+## Signal used to trigger a screen effect to play. [br]
+##
+## - [param effectType] is an enum type that refering to a specific screen effect.
+signal s_ScreenEffectPlay(effectType: screenEffectType)
 
-signal playScreenEffect(effect)
-
-# Signals for updating player overlay
-signal sceneLoaded()
-signal gameLoaded()
-
-signal gameOver(type)
+## Signal that notifies scripts that a new current scene was loaded. 
+## This is used to update all scene dependent mechanics like UI.
+signal s_SceneLoaded()
+## Signal that notifies scripts that a game state was loaded.
+## This is used during the loading process to notify scripts that the loading mechanic changed the game state from the initial. 
+signal s_GameLoaded()
+## Signal that notifies the [GameController] autoload script that a game over trigger was reached.
+## This initializes the script to set the game into a game over state (releases camera controlls, shows a game over screen, ect.)
+signal s_GameOver(type: GameOverResource.type)
 #endregion
 
 #region Runtime Variables
@@ -77,22 +99,22 @@ func _ready() -> void:
 	get_viewport().gui_focus_changed.connect(_on_focus_changed)
 	get_viewport().tree_exiting.connect(save_profile)
 	
-	setMainOverlayVisibility.connect(set_main_overlay_visibility)
-	playScreenEffect.connect(play_screen_effect)
+	s_MainOverlayVisibilitySet.connect(set_main_overlay_visibility)
+	s_ScreenEffectPlay.connect(play_screen_effect)
 	
-	profileCreate.connect(create_set_save_new_profile)
-	profileSet.connect(set_profile)
+	s_ProfileCreate.connect(create_set_save_new_profile)
+	s_ProfileSet.connect(set_profile)
 	
-	setAchievement.connect(set_achievement)
-	openAchievementsMenu.connect(open_achievements_menu)
+	s_AchievementSet.connect(set_achievement)
+	s_AchievementsMenuOpen.connect(open_achievements_menu)
 	
-	gameOver.connect(game_over)
+	s_GameOver.connect(game_over)
 	
-	sceneLoaded.connect(play_fade_in_effect)
-	sceneLoaded.connect(setup_camera_controls)
-	sceneLoaded.connect(setup_main_overlay_menu)
-	sceneLoaded.connect(setup_input_help_menu)
-	sceneLoaded.connect(setup_detective_board_menu)
+	s_SceneLoaded.connect(play_fade_in_effect)
+	s_SceneLoaded.connect(setup_camera_controls)
+	s_SceneLoaded.connect(setup_main_overlay_menu)
+	s_SceneLoaded.connect(setup_input_help_menu)
+	s_SceneLoaded.connect(setup_detective_board_menu)
 	
 	DialogueManager.connect("dialogue_ended",release_focus)
 	DialogueManager.connect("got_dialogue",dialogue_voice_check)
@@ -141,7 +163,7 @@ func load_profile(id: String) -> void:
 	
 func load_profile_from_path(filepath: String) -> void:
 	profile = ResourceLoader.load(filepath)
-	profileLoaded.emit()
+	s_ProfileLoaded.emit()
 
 func save_profile() -> void:
 	if profile:
@@ -150,11 +172,11 @@ func save_profile() -> void:
 func set_profile(_profile: ProfileResource) -> void:
 	profile = _profile
 	SettingsController.set_profile_id(profile.id)
-	profileLoaded.emit()
+	s_ProfileLoaded.emit()
 
 func clear_profile():
 	profile = null
-	profileLoaded.emit()
+	s_ProfileLoaded.emit()
 
 func delete_profile(_id: String):
 	if profile:
@@ -162,9 +184,9 @@ func delete_profile(_id: String):
 			clear_profile()
 	var profiles: Dictionary = ProfileResource.get_available_profile_dict()
 	if profiles.has(_id):
-		PersistenceController.deleteProfileSavefiles.emit(_id)
+		PersistenceController.s_SavefilesProfileDelete.emit(_id)
 		profiles[_id].delete()
-	profileLoaded.emit()
+	s_ProfileLoaded.emit()
 
 
 func create_save_new_profile(_profileName) -> void:
@@ -215,6 +237,14 @@ func change_scene(sceneName:String) -> bool:
 	if sceneToLoad:
 		Global.currentScene = sceneName
 		get_tree().change_scene_to_packed(load("res://scenes/menus/loading_screen.tscn"))
+		return true
+	return false
+
+func change_scene_no_load(sceneName:String) -> bool:
+	sceneToLoad = Global.scenePaths[sceneName]
+	if sceneToLoad:
+		Global.currentScene = sceneName
+		get_tree().change_scene_to_packed(load(sceneToLoad))
 		return true
 	return false
 	
@@ -318,7 +348,7 @@ func setup_detective_board_menu() -> void:
 #endregion
 
 #region Screen Effects Methods
-func play_screen_effect(_effect: screenEffectEnum) -> void:
+func play_screen_effect(_effect: screenEffectType) -> void:
 	var screenEffect = screenEffects[_effect].instantiate()
 	get_tree().current_scene.add_child.call_deferred(screenEffect)
 	screenEffect.visible = true
@@ -326,7 +356,7 @@ func play_screen_effect(_effect: screenEffectEnum) -> void:
 
 func play_fade_in_effect() -> void:
 	if not GameController.check_nongameplay_scene():
-		play_screen_effect(screenEffectEnum.FADE_IN)
+		play_screen_effect(screenEffectType.FADE_IN)
 	
 func play_screen_text_effect(_input: String, _lineTimeout: float = 0.1, _characterTimeout: float = 0.06, _finishTimeout: float = 3.0) -> void:
 	var effect: ScreenTextEffect = preloadScreenTextEffect.instantiate()

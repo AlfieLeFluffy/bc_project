@@ -21,13 +21,13 @@ func _on_continue_button_pressed() -> void:
 	queue_free()
 
 func _on_settings_button_pressed() -> void:
-	SettingsController.emit_signal("openSettingsMenu")
+	SettingsController.s_SettingsMenuOpen.emit()
 
 func _on_quit_button_pressed() -> void:
 	GameController.change_scene("main_menu")
 
 func _on_save_button_pressed() -> void:
-	PersistenceController.emit_signal("openPersistenceMenu",PersistenceMenu.modeEnum.SAVE)
+	PersistenceController.s_PersistenceMenuOpen.emit(PersistenceMenu.modeEnum.SAVE)
 
 func _on_load_button_pressed() -> void:
-	PersistenceController.emit_signal("openPersistenceMenu",PersistenceMenu.modeEnum.LOAD)
+	PersistenceController.s_PersistenceMenuOpen.emit(PersistenceMenu.modeEnum.LOAD)

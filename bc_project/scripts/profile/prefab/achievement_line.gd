@@ -7,7 +7,7 @@ class_name AchievementLine extends HBoxContainer
 const ACHIEVEMENT_TEXT_FORMAT_STRING: String = "[color=%s]%s[/color]\n[font_size=14][color=%s]%s[/color]"
 
 func _ready() -> void:
-	SettingsController.retranslate.connect(setup_line)
+	SettingsController.s_Retranslate.connect(setup_line)
 	setup_line()
 	
 func setup_line() -> void:

@@ -1,15 +1,17 @@
-[gd_scene load_steps=15 format=4 uid="uid://b2vbyl6277p6b"]
+[gd_scene load_steps=17 format=4 uid="uid://b2vbyl6277p6b"]
 
 [ext_resource type="Script" uid="uid://cyp36x1yqve82" path="res://scenes/menus/main_menu.gd" id="1_7ttt2"]
 [ext_resource type="Script" uid="uid://cekilgjtyqkou" path="res://scenes/menus/main_menu_scripts/camera_tween_controller.gd" id="1_50h1w"]
 [ext_resource type="Theme" uid="uid://f6rijghqdfrw" path="res://settings/main_menu_theme.tres" id="1_c65hb"]
 [ext_resource type="Script" uid="uid://h63rr3xy1iy4" path="res://scenes/menus/main_menu_scripts/main_menu_camera_controller.gd" id="2_bre17"]
 [ext_resource type="Texture2D" uid="uid://c4d1odq88m3nh" path="res://textures/symbols/asterisk.png" id="3_2o76q"]
+[ext_resource type="Texture2D" uid="uid://c6b6kblsogr5p" path="res://textures/backgrounds/scene/sunset_background.png" id="3_3w8rc"]
 [ext_resource type="Theme" uid="uid://c74vqer2j3y74" path="res://settings/main_menu_button_theme.tres" id="3_6bivr"]
 [ext_resource type="TileSet" uid="uid://bs7h6id5vs50s" path="res://tilesets/background_apartment_building_close.tres" id="3_88kup"]
 [ext_resource type="Script" uid="uid://cv5mje71vm85n" path="res://scripts/button/stretch_button.gd" id="4_8r73w"]
 [ext_resource type="Script" uid="uid://bw0qpyt0ke700" path="res://scenes/menus/main_menu_version_label.tres.gd" id="5_imvie"]
 [ext_resource type="Theme" uid="uid://583q85mv5ni" path="res://settings/main_menu_profile_label_theme.tres" id="5_ng0o5"]
+[ext_resource type="Texture2D" uid="uid://lawvyn6lpk17" path="res://textures/backgrounds/scene/railing_foreground.png" id="5_uxao6"]
 [ext_resource type="Texture2D" uid="uid://buovekmkjq4fv" path="res://textures/icon/icon.svg" id="6_88kup"]
 [ext_resource type="Script" uid="uid://ddxatermq2axu" path="res://scenes/menus/main_menu_scripts/title_text.gd" id="7_bh4e2"]
 [ext_resource type="Theme" uid="uid://dbce18qngmr8p" path="res://settings/main_menu_profile_theme.tres" id="11_bh4e2"]
@@ -19,7 +21,7 @@ RichTextLabel/constants/shadow_offset_x = 4
 RichTextLabel/constants/shadow_offset_y = 4
 RichTextLabel/constants/shadow_outline_size = 6
 
-[node name="MainMenuRoot" type="Node"]
+[node name="MainMenuRoot" type="Node2D"]
 
 [node name="MainMenu2DSpace" type="Node2D" parent="."]
 
@@ -28,7 +30,7 @@ unique_name_in_owner = true
 script = ExtResource("1_50h1w")
 
 [node name="MainMenuCameraController" type="Node2D" parent="MainMenu2DSpace/CameraTweenController"]
-position = Vector2(0, -2)
+position = Vector2(0, -300)
 script = ExtResource("2_bre17")
 
 [node name="Camera2D" type="Camera2D" parent="MainMenu2DSpace/CameraTweenController/MainMenuCameraController"]
@@ -43,35 +45,50 @@ position_smoothing_enabled = true
 [node name="ParallaxBackground" type="ParallaxBackground" parent="MainMenu2DSpace"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="MainMenu2DSpace/ParallaxBackground"]
-color = Color(0.666569, 0.666569, 0.666569, 1)
 
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="MainMenu2DSpace/ParallaxBackground"]
+[node name="Background" type="ParallaxLayer" parent="MainMenu2DSpace/ParallaxBackground"]
+scale = Vector2(1.2, 1.2)
+motion_scale = Vector2(0.3, 0.3)
+motion_offset = Vector2(400, 300)
+
+[node name="SunsetBackground" type="Sprite2D" parent="MainMenu2DSpace/ParallaxBackground/Background"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_3w8rc")
+
+[node name="Houses3" type="ParallaxLayer" parent="MainMenu2DSpace/ParallaxBackground"]
 modulate = Color(0.560955, 0.560955, 0.560955, 1)
+motion_scale = Vector2(0.5, 0.5)
+motion_offset = Vector2(150, 150)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="MainMenu2DSpace/ParallaxBackground/Houses3"]
+tile_set = ExtResource("3_88kup")
+
+[node name="Houses2" type="ParallaxLayer" parent="MainMenu2DSpace/ParallaxBackground"]
+modulate = Color(0.3, 0.223, 0.195, 1)
 motion_scale = Vector2(0.7, 0.7)
-motion_offset = Vector2(75, 0)
+motion_offset = Vector2(100, 100)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="MainMenu2DSpace/ParallaxBackground/ParallaxLayer3"]
-tile_set = ExtResource("3_88kup")
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="MainMenu2DSpace/ParallaxBackground"]
-modulate = Color(0.5, 0.5, 0.5, 1)
-motion_scale = Vector2(0.8, 0.8)
-motion_offset = Vector2(50, 0)
-
-[node name="TileMapLayer" type="TileMapLayer" parent="MainMenu2DSpace/ParallaxBackground/ParallaxLayer"]
+[node name="TileMapLayer" type="TileMapLayer" parent="MainMenu2DSpace/ParallaxBackground/Houses2"]
 position = Vector2(0, -2)
-tile_map_data = PackedByteArray("AAD3/wAAAgAEAAEAAAD3/wEAAgASAAkAAAD3/wIAAgASAAoAAAD3/wMAAgASAAoAAAD3/wQAAgASAAoAAAD3/wUAAgASAAoAAAD4/wAAAgAFAAEAAAD4/wEAAgAOAAMAAAD4/wIAAgAOAAYAAAD4/wMAAgAOAAcAAAD4/wQAAgAOAAUAAAD4/wUAAgAOAAQAAAD5/wAAAgAFAAEAAAD5/wEAAgASAAMAAAD5/wIAAgASAAYAAAD5/wMAAgASAAcAAAD5/wQAAgASAAUAAAD5/wUAAgASAAQAAAD6/wAAAgAFAAEAAAD6/wEAAgAOAAMAAAD6/wIAAgAOAAYAAAD6/wMAAgAOAAcAAAD6/wQAAgAOAAUAAAD6/wUAAgAOAAQAAAD7/wAAAgAFAAEAAAD7/wEAAgAOAAMAAAD7/wIAAgAOAAYAAAD7/wMAAgAOAAcAAAD7/wQAAgAOAAUAAAD7/wUAAgAOAAQAAAD8/wAAAgAGAAEAAAD8/wEAAgATAAkAAAD8/wIAAgATAAoAAAD8/wMAAgATAAoAAAD8/wQAAgATAAoAAAD8/wUAAgATAAoAAAAEAAMAAgAEAAkAAAAEAAQAAgAEAAoAAAAEAAUAAgAEAAoAAAAFAAIAAgAEAA0AAAAFAAMAAgACAAMAAAAFAAQAAgADAAYAAAAFAAUAAgAAAAcAAAAGAAIAAgAEAA0AAAAGAAMAAgADAAMAAAAGAAQAAgABAAYAAAAGAAUAAgACAAcAAAAHAAIAAgAEAA0AAAAHAAMAAgABAAMAAAAHAAQAAgACAAYAAAAHAAUAAgABAAcAAAAIAAMAAgAFAAkAAAAIAAQAAgAFAAoAAAAIAAUAAgAFAAoAAAD3/wYAAgASAAoAAAD3/wcAAgASAAsAAAD4/wYAAgAOAAgAAAD4/wcAAgAQAAkAAAD5/wYAAgASAAgAAAD5/wcAAgAQAAkAAAD6/wYAAgAOAAgAAAD6/wcAAgAOAAkAAAD7/wYAAgAOAAgAAAD7/wcAAgAPAAkAAAD8/wYAAgATAAoAAAD8/wcAAgATAAsAAAAEAAYAAgAEAAoAAAAEAAcAAgAEAAsAAAAFAAYAAgAAAAgAAAAFAAcAAgADAAkAAAAGAAYAAgAAAAgAAAAGAAcAAgAAAAkAAAAHAAYAAgAAAAgAAAAHAAcAAgADAAkAAAAIAAYAAgAFAAoAAAAIAAcAAgAFAAsAAAA=")
+tile_map_data = PackedByteArray("AAD3/wEAAgASAAoAAAD3/wIAAgASAAoAAAD3/wMAAgASAAoAAAD3/wQAAgASAAoAAAD3/wUAAgASAAoAAAD3/wYAAgASAAsAAAD4/wEAAgAOAAYAAAD4/wIAAgAOAAcAAAD4/wMAAgAOAAUAAAD4/wQAAgAOAAQAAAD4/wUAAgAOAAgAAAD4/wYAAgAQAAkAAAD5/wEAAgASAAYAAAD5/wIAAgASAAcAAAD5/wMAAgASAAUAAAD5/wQAAgASAAQAAAD5/wUAAgASAAgAAAD5/wYAAgAQAAkAAAD6/wEAAgAOAAYAAAD6/wIAAgAOAAcAAAD6/wMAAgAOAAUAAAD6/wQAAgAOAAQAAAD6/wUAAgAOAAgAAAD6/wYAAgAOAAkAAAD7/wEAAgAOAAYAAAD7/wIAAgAOAAcAAAD7/wMAAgAOAAUAAAD7/wQAAgAOAAQAAAD7/wUAAgAOAAgAAAD7/wYAAgAPAAkAAAD8/wEAAgATAAoAAAD8/wIAAgATAAoAAAD8/wMAAgATAAoAAAD8/wQAAgATAAoAAAD8/wUAAgATAAoAAAD8/wYAAgATAAsAAAAEAAMAAgAEAAoAAAAEAAQAAgAEAAoAAAAEAAUAAgAEAAoAAAAEAAYAAgAEAAsAAAAFAAIAAgACAAMAAAAFAAMAAgADAAYAAAAFAAQAAgAAAAcAAAAFAAUAAgAAAAgAAAAFAAYAAgADAAkAAAAGAAIAAgADAAMAAAAGAAMAAgABAAYAAAAGAAQAAgACAAcAAAAGAAUAAgAAAAgAAAAGAAYAAgAAAAkAAAAHAAIAAgABAAMAAAAHAAMAAgACAAYAAAAHAAQAAgABAAcAAAAHAAUAAgAAAAgAAAAHAAYAAgADAAkAAAAIAAMAAgAFAAoAAAAIAAQAAgAFAAoAAAAIAAUAAgAFAAoAAAAIAAYAAgAFAAsAAAD3/wAAAgAEAAEAAAD4/wAAAgAFAAEAAAD5/wAAAgAFAAEAAAD6/wAAAgAFAAEAAAD7/wAAAgAFAAEAAAD8/wAAAgAGAAEAAAAEAAIAAgAEAAkAAAAFAAEAAgAEAA0AAAAGAAEAAgAEAA0AAAAHAAEAAgAEAA0AAAAIAAIAAgAFAAkAAAA=")
 tile_set = ExtResource("3_88kup")
 
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="MainMenu2DSpace/ParallaxBackground"]
-modulate = Color(0.9, 0.9, 0.9, 1)
+[node name="Houses1" type="ParallaxLayer" parent="MainMenu2DSpace/ParallaxBackground"]
+modulate = Color(0.5, 0.371667, 0.325, 1)
 motion_scale = Vector2(0.9, 0.9)
 motion_offset = Vector2(25, 0)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="MainMenu2DSpace/ParallaxBackground/ParallaxLayer2"]
+[node name="TileMapLayer" type="TileMapLayer" parent="MainMenu2DSpace/ParallaxBackground/Houses1"]
 position = Vector2(0, -2)
 tile_map_data = PackedByteArray("AAD0////AgAIAAAAAAD0/wAAAgAEAAkAAAD0/wEAAgAEAAoAAAD0/wIAAgAEAAoAAAD0/wMAAgAEAAoAAAD0/wQAAgAEAAoAAAD0/wUAAgAEAAoAAAD0/wYAAgAEAAsAAAD1////AgAJAAAAAAD1/wAAAgADAAMAAAD1/wEAAgAAAAQAAAD1/wIAAgADAAUAAAD1/wMAAgAAAAYAAAD1/wQAAgADAAcAAAD1/wUAAgABAAgAAAD1/wYAAgABAAoAAAD2////AgAKAAAAAAD2/wAAAgACAAMAAAD2/wEAAgABAAQAAAD2/wIAAgACAAUAAAD2/wMAAgADAAYAAAD2/wQAAgABAAcAAAD2/wUAAgACAAgAAAD2/wYAAgACAAkAAAD3////AgAJAAAAAAD3/wAAAgADAAMAAAD3/wEAAgABAAQAAAD3/wIAAgABAAUAAAD3/wMAAgACAAYAAAD3/wQAAgACAAcAAAD3/wUAAgACAAgAAAD3/wYAAgAAAAkAAAD4////AgAKAAAAAAD4/wAAAgAEAAMAAAD4/wEAAgAFAAQAAAD4/wIAAgAEAAUAAAD4/wMAAgAFAAYAAAD4/wQAAgAFAAcAAAD4/wUAAgAFAAgAAAD4/wYAAgABAAkAAAD5////AgAJAAAAAAD5/wAAAgAAAAMAAAD5/wEAAgADAAQAAAD5/wIAAgACAAUAAAD5/wMAAgADAAYAAAD5/wQAAgAAAAcAAAD5/wUAAgADAAgAAAD5/wYAAgACAAkAAAD6////AgALAAAAAAD6/wAAAgAFAAkAAAD6/wEAAgAFAAoAAAD6/wIAAgAFAAoAAAD6/wMAAgAFAAoAAAD6/wQAAgAFAAoAAAD6/wUAAgAFAAoAAAD6/wYAAgAFAAsAAAAGAAAAAgALAAkAAAAGAAEAAgALAAoAAAAGAAIAAgALAAoAAAAGAAMAAgALAAoAAAAGAAQAAgALAAoAAAAGAAUAAgALAAoAAAAGAAYAAgALAAsAAAAHAP//AgALAA0AAAAHAAAAAgAJAAUAAAAHAAEAAgAJAAYAAAAHAAIAAgAJAAcAAAAHAAMAAgAHAAYAAAAHAAQAAgAIAAcAAAAHAAUAAgAJAAgAAAAHAAYAAgAIAAkAAAAIAP//AgALAA0AAAAIAAAAAgAKAAUAAAAIAAEAAgAKAAYAAAAIAAIAAgAHAAcAAAAIAAMAAgAKAAYAAAAIAAQAAgAHAAcAAAAIAAUAAgAKAAgAAAAIAAYAAgAHAAoAAAAJAP7/AgAAAAAAAAAJAP//AgALAAwAAAAJAAAAAgAKAAUAAAAJAAEAAgAHAAYAAAAJAAIAAgAHAAcAAAAJAAMAAgAKAAYAAAAJAAQAAgAHAAcAAAAJAAUAAgAKAAgAAAAJAAYAAgAIAAoAAAAKAP7/AgABAAAAAAAKAP//AgAJAAMAAAAKAAAAAgAJAAUAAAAKAAEAAgAJAAYAAAAKAAIAAgAKAAcAAAAKAAMAAgAHAAYAAAAKAAQAAgAHAAcAAAAKAAUAAgAJAAgAAAAKAAYAAgAJAAkAAAALAP7/AgABAAAAAAALAP//AgALAAMAAAALAAAAAgALAAUAAAALAAEAAgALAAYAAAALAAIAAgALAAcAAAALAAMAAgALAAYAAAALAAQAAgALAAcAAAALAAUAAgAMAAgAAAALAAYAAgAIAAkAAAAMAP7/AgADAAAAAAAMAP//AgAMAAkAAAAMAAAAAgAMAAoAAAAMAAEAAgAMAAoAAAAMAAIAAgAMAAoAAAAMAAMAAgAMAAoAAAAMAAQAAgAMAAoAAAAMAAUAAgAMAAoAAAAMAAYAAgAMAAsAAAA=")
 tile_set = ExtResource("3_88kup")
+
+[node name="Foreground" type="ParallaxLayer" parent="MainMenu2DSpace/ParallaxBackground"]
+scale = Vector2(1.44, 1.44)
+
+[node name="SunsetBackground" type="Sprite2D" parent="MainMenu2DSpace/ParallaxBackground/Foreground"]
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("5_uxao6")
 
 [node name="MainMenuCanvasLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true

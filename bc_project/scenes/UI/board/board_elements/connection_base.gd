@@ -8,7 +8,7 @@ var resource: ConnectionResource
 #region Setup Methods
 func _ready() -> void:
 	resource = ConnectionResource.new()
-	SettingsController.connect("retranslate",retranslate_description)
+	SettingsController.connect("s_Retranslate",retranslate_description)
 #endregion
 
 #region Runtime Methods

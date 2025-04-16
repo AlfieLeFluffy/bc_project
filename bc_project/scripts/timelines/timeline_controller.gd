@@ -29,7 +29,7 @@ func _ready() -> void:
 	
 	current.set_active(true)
 	update_timeline_info(current)
-	GameController.sceneLoaded.connect(setup_timeline_selection)
+	GameController.s_SceneLoaded.connect(setup_timeline_selection)
 
 func setup_timelines_dictionary() -> void:
 	for timeline in timelines:
@@ -90,7 +90,7 @@ func shift(_destination: Timeline) -> void:
 		end_foresee()
 	
 	Signals.s_TimelineShift.emit()
-	GameController.emit_signal("playScreenEffect",GameController.screenEffectEnum.TIMELINE_SHIFT)
+	GameController.emit_signal("s_ScreenEffectPlay",GameController.screenEffectType.TIMELINE_SHIFT)
 	update_timeline_info(_destination)
 	move_player(current, _destination)
 	move_camera_controls(current, _destination)

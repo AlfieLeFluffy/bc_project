@@ -72,7 +72,7 @@ signal s_DeleteBoardConnection(connection: ConnectionBase)
 ## This keys is also used for keeping track of the label.[br]
 signal s_InputHelpSet(input: Array, description: String)
 
-## Signal for free an input help label, if there is one of said description.
+## Signal for free an input help label, if there is one of said description.[br]
 ##
 ## - [param description] holds the translation key for the input help label. 
 ## This keys is also used for keeping track of the label.[br]

@@ -13,7 +13,7 @@ var shiftTimeout = true
 func _ready() -> void:
 	update_UI()
 	Signals.s_UpdateMainOverlay.connect(update_UI)
-	SettingsController.retranslate.connect(update_UI)
+	SettingsController.s_Retranslate.connect(update_UI)
 	Signals.s_TimelineShift.connect(shift_sequence)
 
 """

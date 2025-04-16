@@ -27,7 +27,7 @@ func _local_ready() -> void:
 	setup_users_dictionary()
 	Signals.s_ShutdownComputer.connect(shutdown_computer)
 	Signals.s_HideComputerView.connect(hide_computer_view)
-	SettingsController.connect("retranslate",setup_interactable_info)
+	SettingsController.s_Retranslate.connect(setup_interactable_info)
 
 func setup_interactable_info() -> void:
 	if compRes:

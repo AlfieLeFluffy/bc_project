@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=4 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=107 format=4 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Script" uid="uid://cmlgg6dxih77f" path="res://scenes/levels/level_controller.gd" id="1_t01cb"]
 [ext_resource type="PackedScene" uid="uid://ddrrl1gryxkup" path="res://scenes/characters/player/player_character.tscn" id="1_wpgi4"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://c4br56b34o2el" path="res://scenes/interactive/buttons/elevatorCall/elevator_call_button.tscn" id="8_dgc65"]
 [ext_resource type="Script" uid="uid://cigg6mv4soq7y" path="res://scripts/callable/static_method_callable_resource.gd" id="8_gsoyx"]
 [ext_resource type="TileSet" uid="uid://bs7h6id5vs50s" path="res://tilesets/background_apartment_building_close.tres" id="8_t8w0x"]
+[ext_resource type="Texture2D" uid="uid://c6b6kblsogr5p" path="res://textures/backgrounds/scene/sunset_background.png" id="9_e6x8h"]
 [ext_resource type="Resource" uid="uid://bmxx1uimby337" path="res://dialogs/test_dialogue.dialogue" id="10_wnetc"]
 [ext_resource type="Script" uid="uid://drj3o0qsip6ss" path="res://scenes/characters/npcs/npc_resource.gd" id="16_2qb3d"]
 [ext_resource type="PackedScene" uid="uid://co868n2ppblh5" path="res://scenes/interactive/texts/versions/book_spine.tscn" id="17_0myxw"]
@@ -511,12 +512,15 @@ metadata/_custom_type_script = "uid://m3nuowesx2nl"
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Timeline001/Tilesets"]
 
 [node name="CanvasModulate2" type="CanvasModulate" parent="Timeline001/Tilesets/ParallaxBackground"]
-color = Color(0.654232, 0.654232, 0.654232, 1)
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="Timeline001/Tilesets/ParallaxBackground"]
-modulate = Color(0.605274, 0.605274, 0.605274, 1)
 motion_scale = Vector2(0.6, 0.6)
 motion_offset = Vector2(100, 100)
+
+[node name="SunsetBackground" type="Sprite2D" parent="Timeline001/Tilesets/ParallaxBackground/ParallaxLayer2"]
+position = Vector2(366, 106)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_e6x8h")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Timeline001/Tilesets/ParallaxBackground/ParallaxLayer2"]
 tile_set = ExtResource("8_t8w0x")

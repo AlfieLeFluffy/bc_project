@@ -17,9 +17,9 @@ func _ready() -> void:
 	modulate = Color.TRANSPARENT
 	s_CameraTweenFinished.connect(fade_in)
 	
-	GameController.sceneLoaded.emit()
-	GameController.profileLoaded.connect(setup_profile)
-	SettingsController.retranslate.connect(setup_profile)
+	GameController.s_SceneLoaded.emit()
+	GameController.s_ProfileLoaded.connect(setup_profile)
+	SettingsController.s_Retranslate.connect(setup_profile)
 	
 	%TestSceneButton.grab_focus()
 	
@@ -39,14 +39,14 @@ func _on_test_scene_button_pressed() -> void:
 	GameController.change_scene("test_level")
 
 func _on_load_button_pressed() -> void:
-	PersistenceController.openPersistenceMenu.emit(PersistenceMenu.modeEnum.LOAD)
+	PersistenceController.s_PersistenceMenuOpen.emit(PersistenceMenu.modeEnum.LOAD)
 
 func _on_achievements_button_pressed() -> void:
 	%AchievementsFlair.visible = false
-	GameController.openAchievementsMenu.emit()
+	GameController.s_AchievementsMenuOpen.emit()
 
 func _on_settings_button_pressed() -> void:
-	SettingsController.openSettingsMenu.emit()
+	SettingsController.s_SettingsMenuOpen.emit()
 	
 func _on_quit_button_pressed() -> void:
 	GameController.quit_game()

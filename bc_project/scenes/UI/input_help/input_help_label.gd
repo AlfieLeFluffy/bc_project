@@ -21,7 +21,7 @@ var highlight: bool = false
 """
 #region Setup Methods
 func _ready() -> void:
-	SettingsController.connect("retranslate",retranslate_label)
+	SettingsController.s_Retranslate.connect(retranslate_label)
 	fade.call_deferred()
 
 func set_label(_input:Array, _description:String):

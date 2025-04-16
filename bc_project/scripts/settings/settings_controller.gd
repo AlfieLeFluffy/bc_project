@@ -3,15 +3,17 @@ extends Node
 """
 --- Gloabal Signals
 """
+## Signal for notifying [SettingsController] to open a settings menu.
+signal s_SettingsMenuOpen
 
-signal configReady
-
-signal updateSettings
-signal saveSettings
-
-signal openSettingsMenu
-
-signal retranslate
+## Signal for notifying other scripts that a new configuration was loaded.
+signal s_ConfigLoaded
+## Signal for notifying [SettingsController] that a setting was updated.
+signal s_ConfigUpdate
+## Signal for notifying [SettingsController] to save over the config file.
+signal s_ConfigSave
+## Signal for notifying other scripts that a new language was selected. This procks all translatable text to get transalted.
+signal s_Retranslate
 
 """
 --- Runtime Variables
@@ -46,9 +48,9 @@ func _ready() -> void:
 	
 	update_settings()
 	
-	updateSettings.connect(update_settings)
-	saveSettings.connect(save_settings)
-	openSettingsMenu.connect(open_settings_menu)
+	s_ConfigUpdate.connect(update_settings)
+	s_ConfigSave.connect(save_settings)
+	s_SettingsMenuOpen.connect(open_settings_menu)
 
 
 """
@@ -127,7 +129,7 @@ func update_gameplay() -> void:
 		toRetranslate = true
 	TranslationServer.set_locale(config.get_value("Gameplay", "Language"))
 	if toRetranslate:
-		emit_signal("retranslate")
+		emit_signal("s_Retranslate")
 	
 func update_graphics() -> void:
 	DisplayServer.window_set_mode(config.get_value("Graphics", "ScreenMode"))

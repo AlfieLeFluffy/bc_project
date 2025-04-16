@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dphjswwm04byi"]
+[gd_scene load_steps=24 format=3 uid="uid://dphjswwm04byi"]
 
 [ext_resource type="Script" uid="uid://bg2qn6qaand3m" path="res://scenes/menus/loading_screen.gd" id="1_pnlos"]
 [ext_resource type="Theme" uid="uid://b7fqcfcxmghhe" path="res://settings/loading_menu_theme.tres" id="2_8ycgy"]
@@ -20,6 +20,13 @@
 [ext_resource type="Texture2D" uid="uid://blw3jmqsa8or4" path="res://textures/ui/animations/saving_animation_frames/saving_animation8.png" id="18_dpk58"]
 [ext_resource type="Texture2D" uid="uid://cng32fv0bwgbo" path="res://textures/ui/animations/saving_animation_frames/saving_animation9.png" id="19_mtwph"]
 [ext_resource type="Texture2D" uid="uid://ctkglvmop20lk" path="res://textures/ui/animations/saving_animation_frames/saving_animation10.png" id="20_43lfx"]
+
+[sub_resource type="Gradient" id="Gradient_qrqdf"]
+colors = PackedColorArray(0.154, 0.154, 0.2, 1, 0.077, 0.077, 0.1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ek4w0"]
+gradient = SubResource("Gradient_qrqdf")
+fill_to = Vector2(0, 1)
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_o62dx"]
 frames = 16
@@ -68,18 +75,27 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_8ycgy")
 
+[node name="Background" type="TextureRect" parent="MarginContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_ek4w0")
+
 [node name="ProgressBar" type="TextureProgressBar" parent="MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.656
-anchor_top = 0.861
-anchor_right = 0.969
-anchor_bottom = 0.907
-offset_left = -599.52
-offset_top = -49.8801
-offset_right = -600.48
-offset_bottom = -49.5601
+anchor_left = 0.344
+anchor_top = 0.815
+anchor_right = 0.656
+anchor_bottom = 0.861
+offset_left = -0.480042
+offset_top = -0.200195
+offset_right = 0.47998
+offset_bottom = 0.119812
 grow_horizontal = 2
 grow_vertical = 0
 max_value = 1.0
