@@ -36,10 +36,11 @@ const BOARD_LINE_OFFSET: Vector2 = Vector2(-16,-16)
 #region Scene Constants
 var currentScene: String
 const scenePaths: Dictionary = {
+	"title_screen": "res://scenes/menus/title_screen/title_screen.tscn",
 	"main_menu": "res://scenes/menus/main_menu.tscn",
 	"test_level": "res://scenes/levels/test_level.tscn"
 }
-const nongameplayScenes: Array[String] = ["MainMenuRoot"]
+const nongameplayScenes: Array[String] = ["MainMenuRoot", "TitleScreen"]
 #endregion
 
 """

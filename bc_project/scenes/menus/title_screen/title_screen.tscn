@@ -1,0 +1,267 @@
+[gd_scene load_steps=20 format=3 uid="uid://dm41tfgcyglf2"]
+
+[ext_resource type="FontFile" uid="uid://vewp8sui7lbb" path="res://fonts/anonymous_pro/AnonymousPro-Bold.ttf" id="1_byxgi"]
+[ext_resource type="Script" uid="uid://dxccw4edes7vm" path="res://scenes/menus/title_screen/title_screen.gd" id="1_qrqdf"]
+[ext_resource type="Script" uid="uid://bw570bxpjh42f" path="res://scenes/menus/title_screen/title_slide.gd" id="2_8ff8e"]
+[ext_resource type="Texture2D" uid="uid://br3r0qbbv1ck1" path="res://textures/icon/godot_simple.png" id="4_c8div"]
+[ext_resource type="Texture2D" uid="uid://buj804pefd5jw" path="res://textures/icon/vut_simple.png" id="5_3osdd"]
+[ext_resource type="Texture2D" uid="uid://x8dpmegbunxq" path="res://textures/ui/animations/title_animation_frames/title_animation1.png" id="6_1g67v"]
+[ext_resource type="Script" uid="uid://bi2bk77fahmaf" path="res://scenes/menus/title_screen/title_slide_animation.gd" id="6_1wpcv"]
+[ext_resource type="Texture2D" uid="uid://21jcfx8fot4s" path="res://textures/ui/animations/title_animation_frames/title_animation2.png" id="7_1wpcv"]
+[ext_resource type="Texture2D" uid="uid://2w8qey0r3tji" path="res://textures/ui/animations/title_animation_frames/title_animation3.png" id="8_00755"]
+[ext_resource type="Texture2D" uid="uid://rtnjcqns0apu" path="res://textures/ui/animations/title_animation_frames/title_animation4.png" id="10_00755"]
+[ext_resource type="Texture2D" uid="uid://u230vyjpxptq" path="res://textures/ui/animations/title_animation_frames/title_animation5.png" id="11_q4bmv"]
+[ext_resource type="Texture2D" uid="uid://ljddcgv4kguk" path="res://textures/ui/animations/title_animation_frames/title_animation6.png" id="12_2frhn"]
+[ext_resource type="Texture2D" uid="uid://dawa8bg6euwwh" path="res://textures/ui/animations/title_animation_frames/title_animation7.png" id="13_qsikc"]
+[ext_resource type="Texture2D" uid="uid://j52bbawff70i" path="res://textures/ui/animations/title_animation_frames/title_animation8.png" id="14_qsikc"]
+[ext_resource type="Texture2D" uid="uid://ckp6kp8iclygo" path="res://textures/ui/animations/title_animation_frames/title_animation9.png" id="15_ktm0l"]
+
+[sub_resource type="Theme" id="Theme_lksgi"]
+default_font = ExtResource("1_byxgi")
+
+[sub_resource type="Gradient" id="Gradient_qrqdf"]
+colors = PackedColorArray(0.077, 0.077, 0.1, 1, 0.0784314, 0.0784314, 0.101961, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8ff8e"]
+gradient = SubResource("Gradient_qrqdf")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_ul7sw"]
+frames = 9
+frame_0/texture = ExtResource("6_1g67v")
+frame_1/texture = ExtResource("7_1wpcv")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("8_00755")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("10_00755")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("11_q4bmv")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("12_2frhn")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("13_qsikc")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("14_qsikc")
+frame_7/duration = 1.0
+frame_8/texture = ExtResource("15_ktm0l")
+frame_8/duration = 1.0
+
+[node name="TitleScreen" type="CanvasLayer"]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="TitleScreen" type="Control" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("slides")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_lksgi")
+script = ExtResource("1_qrqdf")
+slides = [NodePath("WarningMargin"), NodePath("CreditsMargin"), NodePath("TitleMargin")]
+
+[node name="Background" type="TextureRect" parent="SubViewportContainer/SubViewport/TitleScreen"]
+layout_mode = 2
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = SubResource("GradientTexture2D_8ff8e")
+
+[node name="WarningMargin" type="MarginContainer" parent="SubViewportContainer/SubViewport/TitleScreen"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_8ff8e")
+timeout = 3.0
+
+[node name="Centering" type="HBoxContainer" parent="SubViewportContainer/SubViewport/TitleScreen/WarningMargin"]
+layout_mode = 2
+
+[node name="FillLeft" type="VBoxContainer" parent="SubViewportContainer/SubViewport/TitleScreen/WarningMargin/Centering"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="List" type="VBoxContainer" parent="SubViewportContainer/SubViewport/TitleScreen/WarningMargin/Centering"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.5
+alignment = 1
+
+[node name="WarningLabel" type="RichTextLabel" parent="SubViewportContainer/SubViewport/TitleScreen/WarningMargin/Centering/List"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+bbcode_enabled = true
+text = "EPILEPSY_SEIZURE_WARNING_NAME"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WarningText" type="RichTextLabel" parent="SubViewportContainer/SubViewport/TitleScreen/WarningMargin/Centering/List"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+bbcode_enabled = true
+text = "EPILEPSY_SEIZURE_WARNING_DECSRIPTION"
+fit_content = true
+autowrap_mode = 1
+horizontal_alignment = 1
+
+[node name="FillRight" type="VBoxContainer" parent="SubViewportContainer/SubViewport/TitleScreen/WarningMargin/Centering"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CreditsMargin" type="MarginContainer" parent="SubViewportContainer/SubViewport/TitleScreen"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_8ff8e")
+
+[node name="Centering" type="HBoxContainer" parent="SubViewportContainer/SubViewport/TitleScreen/CreditsMargin"]
+layout_mode = 2
+
+[node name="FillLeft" type="VBoxContainer" parent="SubViewportContainer/SubViewport/TitleScreen/CreditsMargin/Centering"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="List" type="VBoxContainer" parent="SubViewportContainer/SubViewport/TitleScreen/CreditsMargin/Centering"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.5
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="GodotCredit" type="VBoxContainer" parent="SubViewportContainer/SubViewport/TitleScreen/CreditsMargin/Centering/List"]
+layout_mode = 2
+
+[node name="GodotSimpleLogo" type="TextureRect" parent="SubViewportContainer/SubViewport/TitleScreen/CreditsMargin/Centering/List/GodotCredit"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+texture = ExtResource("4_c8div")
+stretch_mode = 5
+
+[node name="GodotCreditLabel" type="RichTextLabel" parent="SubViewportContainer/SubViewport/TitleScreen/CreditsMargin/Centering/List/GodotCredit"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "EPILEPSY_SEIZURE_WARNING_NAME"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UniversityCredit" type="VBoxContainer" parent="SubViewportContainer/SubViewport/TitleScreen/CreditsMargin/Centering/List"]
+layout_mode = 2
+
+[node name="UniversitySimpleLogo" type="TextureRect" parent="SubViewportContainer/SubViewport/TitleScreen/CreditsMargin/Centering/List/UniversityCredit"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+texture = ExtResource("5_3osdd")
+stretch_mode = 5
+
+[node name="UniversityCreditLabel" type="RichTextLabel" parent="SubViewportContainer/SubViewport/TitleScreen/CreditsMargin/Centering/List/UniversityCredit"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "EPILEPSY_SEIZURE_WARNING_NAME"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Fill" type="VBoxContainer" parent="SubViewportContainer/SubViewport/TitleScreen/CreditsMargin/Centering/List"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="AuthorCredit" type="VBoxContainer" parent="SubViewportContainer/SubViewport/TitleScreen/CreditsMargin/Centering/List"]
+layout_mode = 2
+
+[node name="AuthorCreditLabel" type="RichTextLabel" parent="SubViewportContainer/SubViewport/TitleScreen/CreditsMargin/Centering/List/AuthorCredit"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "EPILEPSY_SEIZURE_WARNING_NAME"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LeadCredit" type="VBoxContainer" parent="SubViewportContainer/SubViewport/TitleScreen/CreditsMargin/Centering/List"]
+layout_mode = 2
+
+[node name="LeadCreditLabel" type="RichTextLabel" parent="SubViewportContainer/SubViewport/TitleScreen/CreditsMargin/Centering/List/LeadCredit"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "EPILEPSY_SEIZURE_WARNING_NAME"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FillRight" type="VBoxContainer" parent="SubViewportContainer/SubViewport/TitleScreen/CreditsMargin/Centering"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TitleMargin" type="MarginContainer" parent="SubViewportContainer/SubViewport/TitleScreen"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_1wpcv")
+
+[node name="Ordering" type="VBoxContainer" parent="SubViewportContainer/SubViewport/TitleScreen/TitleMargin"]
+layout_mode = 2
+alignment = 1
+
+[node name="TitleAnimation" type="TextureRect" parent="SubViewportContainer/SubViewport/TitleScreen/TitleMargin/Ordering"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 450)
+layout_mode = 2
+texture = SubResource("AnimatedTexture_ul7sw")
+stretch_mode = 5
+
+[node name="TitleLabel" type="RichTextLabel" parent="SubViewportContainer/SubViewport/TitleScreen/TitleMargin/Ordering"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "EPILEPSY_SEIZURE_WARNING_NAME"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1

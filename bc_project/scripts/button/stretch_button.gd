@@ -7,14 +7,12 @@ var tween: Tween
 
 func _ready() -> void:
 	await get_tree().create_timer(0.1).timeout
-	originalSize = size
 	
 	self.mouse_entered.connect(stretch)
 	self.mouse_exited.connect(reset)
-	
-	get_viewport().size_changed.connect(reset)
 
 func stretch() -> void:
+	originalSize = size
 	if self.has_focus():
 		self.release_focus()
 	if tween:

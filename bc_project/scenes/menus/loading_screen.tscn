@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://ctkglvmop20lk" path="res://textures/ui/animations/saving_animation_frames/saving_animation10.png" id="20_43lfx"]
 
 [sub_resource type="Gradient" id="Gradient_qrqdf"]
-colors = PackedColorArray(0.154, 0.154, 0.2, 1, 0.077, 0.077, 0.1, 1)
+colors = PackedColorArray(0.0784314, 0.0784314, 0.101961, 1, 0.077, 0.077, 0.1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ek4w0"]
 gradient = SubResource("Gradient_qrqdf")

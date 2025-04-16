@@ -13,6 +13,7 @@ signal s_CameraTweenFinished()
 """
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	fade_in_intro()
 	%MainMenuControl.visible = true
 	modulate = Color.TRANSPARENT
 	s_CameraTweenFinished.connect(fade_in)
@@ -24,6 +25,11 @@ func _ready() -> void:
 	%TestSceneButton.grab_focus()
 	
 	setup_profile()
+
+func fade_in_intro() -> void:
+	await get_tree().create_timer(0.5).timeout
+	GameController.fade_to_color(%FadeInBackground,Color.TRANSPARENT,1.5)
+	
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton or event.is_action_pressed("interact") or event.is_action_pressed("ui_menu"):

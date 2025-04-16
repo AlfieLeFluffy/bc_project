@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://b2vbyl6277p6b"]
+[gd_scene load_steps=19 format=4 uid="uid://b2vbyl6277p6b"]
 
 [ext_resource type="Script" uid="uid://cyp36x1yqve82" path="res://scenes/menus/main_menu.gd" id="1_7ttt2"]
 [ext_resource type="Script" uid="uid://cekilgjtyqkou" path="res://scenes/menus/main_menu_scripts/camera_tween_controller.gd" id="1_50h1w"]
@@ -15,6 +15,15 @@
 [ext_resource type="Texture2D" uid="uid://buovekmkjq4fv" path="res://textures/icon/icon.svg" id="6_88kup"]
 [ext_resource type="Script" uid="uid://ddxatermq2axu" path="res://scenes/menus/main_menu_scripts/title_text.gd" id="7_bh4e2"]
 [ext_resource type="Theme" uid="uid://dbce18qngmr8p" path="res://settings/main_menu_profile_theme.tres" id="11_bh4e2"]
+
+[sub_resource type="Gradient" id="Gradient_uxao6"]
+colors = PackedColorArray(0.0784314, 0.0784314, 0.101961, 1, 0.0784314, 0.0784314, 0.101961, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vr0hv"]
+gradient = SubResource("Gradient_uxao6")
+width = 1920
+height = 1080
+fill_to = Vector2(0, 1)
 
 [sub_resource type="Theme" id="Theme_88kup"]
 RichTextLabel/constants/shadow_offset_x = 4
@@ -93,7 +102,30 @@ texture = ExtResource("5_uxao6")
 [node name="MainMenuCanvasLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 
-[node name="MainMenuControl" type="Control" parent="MainMenuCanvasLayer"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MainMenuCanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="MainMenuCanvasLayer/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="FadeInBackground" type="TextureRect" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_vr0hv")
+
+[node name="MainMenuControl" type="Control" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
@@ -104,7 +136,7 @@ grow_vertical = 2
 theme = ExtResource("1_c65hb")
 script = ExtResource("1_7ttt2")
 
-[node name="LeftColumn" type="VBoxContainer" parent="MainMenuCanvasLayer/MainMenuControl"]
+[node name="LeftColumn" type="VBoxContainer" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = -0.002
@@ -115,21 +147,21 @@ offset_right = 0.559967
 grow_vertical = 0
 alignment = 1
 
-[node name="Fill" type="Control" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn"]
+[node name="Fill" type="Control" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TitleOrder" type="VBoxContainer" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn"]
+[node name="TitleOrder" type="VBoxContainer" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn"]
 layout_mode = 2
 
-[node name="Icon" type="TextureRect" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn/TitleOrder"]
+[node name="Icon" type="TextureRect" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/TitleOrder"]
 custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
 texture = ExtResource("6_88kup")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="TitleText" type="RichTextLabel" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn/TitleOrder"]
+[node name="TitleText" type="RichTextLabel" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/TitleOrder"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = SubResource("Theme_88kup")
@@ -139,14 +171,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("7_bh4e2")
 
-[node name="Fill2" type="Control" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn"]
+[node name="Fill2" type="Control" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MainButtons" type="VBoxContainer" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn"]
+[node name="MainButtons" type="VBoxContainer" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn"]
 layout_mode = 2
 
-[node name="TestSceneButton" type="Button" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn/MainButtons"]
+[node name="TestSceneButton" type="Button" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/MainButtons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
@@ -157,7 +189,7 @@ text = "TEST_SCENE"
 clip_text = true
 script = ExtResource("4_8r73w")
 
-[node name="LoadButton" type="Button" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn/MainButtons"]
+[node name="LoadButton" type="Button" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/MainButtons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
@@ -169,7 +201,7 @@ text = "LOAD_BUTTON"
 clip_text = true
 script = ExtResource("4_8r73w")
 
-[node name="AchievementsButton" type="Button" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn/MainButtons"]
+[node name="AchievementsButton" type="Button" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/MainButtons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
@@ -181,7 +213,7 @@ text = "ACHIEVEMENTS_BUTTON"
 clip_text = true
 script = ExtResource("4_8r73w")
 
-[node name="AchievementsFlair" type="TextureRect" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn/MainButtons/AchievementsButton"]
+[node name="AchievementsFlair" type="TextureRect" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/MainButtons/AchievementsButton"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -194,7 +226,7 @@ offset_right = -3.05176e-05
 texture = ExtResource("3_2o76q")
 stretch_mode = 3
 
-[node name="SettingsButton" type="Button" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn/MainButtons"]
+[node name="SettingsButton" type="Button" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/MainButtons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
@@ -205,7 +237,7 @@ text = "SETTINGS_BUTTON"
 clip_text = true
 script = ExtResource("4_8r73w")
 
-[node name="QuitButton" type="Button" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn/MainButtons"]
+[node name="QuitButton" type="Button" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/MainButtons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
@@ -215,19 +247,19 @@ text = "QUIT_BUTTON"
 clip_text = true
 script = ExtResource("4_8r73w")
 
-[node name="Fill3" type="Control" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn"]
+[node name="Fill3" type="Control" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 
-[node name="ProfileMenu" type="VBoxContainer" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn"]
+[node name="ProfileMenu" type="VBoxContainer" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("11_bh4e2")
 alignment = 2
 
-[node name="ProfileLabel" type="RichTextLabel" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn/ProfileMenu"]
+[node name="ProfileLabel" type="RichTextLabel" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/ProfileMenu"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("5_ng0o5")
@@ -239,13 +271,13 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ProfilesList" type="ItemList" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn/ProfileMenu"]
+[node name="ProfilesList" type="ItemList" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/ProfileMenu"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 auto_height = true
 
-[node name="ChooseProfileButton" type="Button" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn/ProfileMenu"]
+[node name="ChooseProfileButton" type="Button" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/ProfileMenu"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 35)
 layout_mode = 2
@@ -254,7 +286,7 @@ theme_override_font_sizes/font_size = 20
 text = "CHOOSE_PROFILE_BUTTON"
 script = ExtResource("4_8r73w")
 
-[node name="CreateProfileButton" type="Button" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn/ProfileMenu"]
+[node name="CreateProfileButton" type="Button" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/ProfileMenu"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 35)
 layout_mode = 2
@@ -263,12 +295,12 @@ theme_override_font_sizes/font_size = 20
 text = "CREATE_PROFILE_BUTTON"
 script = ExtResource("4_8r73w")
 
-[node name="Fill4" type="Control" parent="MainMenuCanvasLayer/MainMenuControl/LeftColumn"]
+[node name="Fill4" type="Control" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.25
 
-[node name="RightColumn" type="VBoxContainer" parent="MainMenuCanvasLayer/MainMenuControl"]
+[node name="RightColumn" type="VBoxContainer" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.792
@@ -282,7 +314,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
 
-[node name="VersionLabel" type="RichTextLabel" parent="MainMenuCanvasLayer/MainMenuControl/RightColumn"]
+[node name="VersionLabel" type="RichTextLabel" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/RightColumn"]
 unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
@@ -292,17 +324,17 @@ horizontal_alignment = 2
 vertical_alignment = 2
 script = ExtResource("5_imvie")
 
-[node name="ProfileDeletionConfirmation" type="ConfirmationDialog" parent="MainMenuCanvasLayer/MainMenuControl"]
+[node name="ProfileDeletionConfirmation" type="ConfirmationDialog" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl"]
 unique_name_in_owner = true
 initial_position = 5
 dialog_text = "PROFILE_DELETION_CONFIRMATION"
 
-[node name="ProfileCreationConfirmation" type="ConfirmationDialog" parent="MainMenuCanvasLayer/MainMenuControl"]
+[node name="ProfileCreationConfirmation" type="ConfirmationDialog" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl"]
 unique_name_in_owner = true
 title = "PROFILE_CREACTION_CONFIRMATION"
 initial_position = 5
 
-[node name="ProfileCreationLineEdit" type="LineEdit" parent="MainMenuCanvasLayer/MainMenuControl/ProfileCreationConfirmation"]
+[node name="ProfileCreationLineEdit" type="LineEdit" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/ProfileCreationConfirmation"]
 unique_name_in_owner = true
 anchors_preset = 5
 anchor_left = 0.5
@@ -314,16 +346,16 @@ grow_horizontal = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[connection signal="focus_entered" from="MainMenuCanvasLayer/MainMenuControl" to="MainMenuCanvasLayer/MainMenuControl" method="_on_focus_entered"]
-[connection signal="pressed" from="MainMenuCanvasLayer/MainMenuControl/LeftColumn/MainButtons/TestSceneButton" to="MainMenuCanvasLayer/MainMenuControl" method="_on_test_scene_button_pressed"]
-[connection signal="pressed" from="MainMenuCanvasLayer/MainMenuControl/LeftColumn/MainButtons/LoadButton" to="MainMenuCanvasLayer/MainMenuControl" method="_on_load_button_pressed"]
-[connection signal="pressed" from="MainMenuCanvasLayer/MainMenuControl/LeftColumn/MainButtons/AchievementsButton" to="MainMenuCanvasLayer/MainMenuControl" method="_on_achievements_button_pressed"]
-[connection signal="pressed" from="MainMenuCanvasLayer/MainMenuControl/LeftColumn/MainButtons/SettingsButton" to="MainMenuCanvasLayer/MainMenuControl" method="_on_settings_button_pressed"]
-[connection signal="pressed" from="MainMenuCanvasLayer/MainMenuControl/LeftColumn/MainButtons/QuitButton" to="MainMenuCanvasLayer/MainMenuControl" method="_on_quit_button_pressed"]
-[connection signal="item_clicked" from="MainMenuCanvasLayer/MainMenuControl/LeftColumn/ProfileMenu/ProfilesList" to="MainMenuCanvasLayer/MainMenuControl" method="_on_profiles_list_item_clicked"]
-[connection signal="pressed" from="MainMenuCanvasLayer/MainMenuControl/LeftColumn/ProfileMenu/ChooseProfileButton" to="MainMenuCanvasLayer/MainMenuControl" method="_on_choose_profile_button_pressed"]
-[connection signal="pressed" from="MainMenuCanvasLayer/MainMenuControl/LeftColumn/ProfileMenu/CreateProfileButton" to="MainMenuCanvasLayer/MainMenuControl" method="_on_create_profile_button_pressed"]
-[connection signal="canceled" from="MainMenuCanvasLayer/MainMenuControl/ProfileDeletionConfirmation" to="MainMenuCanvasLayer/MainMenuControl" method="_on_profile_deletion_confirmation_canceled"]
-[connection signal="confirmed" from="MainMenuCanvasLayer/MainMenuControl/ProfileDeletionConfirmation" to="MainMenuCanvasLayer/MainMenuControl" method="_on_profile_deletion_confirmation_confirmed"]
-[connection signal="confirmed" from="MainMenuCanvasLayer/MainMenuControl/ProfileCreationConfirmation" to="MainMenuCanvasLayer/MainMenuControl" method="_on_profile_creation_confirmation_confirmed"]
-[connection signal="text_submitted" from="MainMenuCanvasLayer/MainMenuControl/ProfileCreationConfirmation/ProfileCreationLineEdit" to="MainMenuCanvasLayer/MainMenuControl" method="_on_profile_creation_line_edit_text_submitted"]
+[connection signal="focus_entered" from="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl" to="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl" method="_on_focus_entered"]
+[connection signal="pressed" from="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/MainButtons/TestSceneButton" to="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl" method="_on_test_scene_button_pressed"]
+[connection signal="pressed" from="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/MainButtons/LoadButton" to="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl" method="_on_load_button_pressed"]
+[connection signal="pressed" from="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/MainButtons/AchievementsButton" to="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl" method="_on_achievements_button_pressed"]
+[connection signal="pressed" from="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/MainButtons/SettingsButton" to="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/MainButtons/QuitButton" to="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl" method="_on_quit_button_pressed"]
+[connection signal="item_clicked" from="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/ProfileMenu/ProfilesList" to="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl" method="_on_profiles_list_item_clicked"]
+[connection signal="pressed" from="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/ProfileMenu/ChooseProfileButton" to="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl" method="_on_choose_profile_button_pressed"]
+[connection signal="pressed" from="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/ProfileMenu/CreateProfileButton" to="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl" method="_on_create_profile_button_pressed"]
+[connection signal="canceled" from="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/ProfileDeletionConfirmation" to="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl" method="_on_profile_deletion_confirmation_canceled"]
+[connection signal="confirmed" from="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/ProfileDeletionConfirmation" to="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl" method="_on_profile_deletion_confirmation_confirmed"]
+[connection signal="confirmed" from="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/ProfileCreationConfirmation" to="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl" method="_on_profile_creation_confirmation_confirmed"]
+[connection signal="text_submitted" from="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/ProfileCreationConfirmation/ProfileCreationLineEdit" to="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl" method="_on_profile_creation_line_edit_text_submitted"]
