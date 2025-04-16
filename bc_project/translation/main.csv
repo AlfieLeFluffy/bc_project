@@ -36,6 +36,7 @@ TEXT_TAB,Text,Text
 TASKS_TAB,Tasks,Úkoly
 JOURNAL_TAB,Journal,Deník
 LANGUAGE_SETTING,Language:,Jazyk:
+TEXT_SCALE_SETTING,Text Font Scale:,Měřítko Velikosti Textu:
 TASK_KEEP_VISIBLE_SETTING,Keep Task Visible:,Neschovávat úkol:
 WIN_MODE_SETTING,Window Mode:,Mód Okna
 WIN_SIZE_SETTING,Window Size:,Rozlišení:

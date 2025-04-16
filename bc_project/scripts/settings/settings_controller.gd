@@ -143,3 +143,6 @@ func update_graphics() -> void:
 func update_audio() -> void:
 	for bus in config.get_section_keys("AudioVolume"):
 		AudioManager.set_bus_volume(AudioManager.get_bus_enum(bus),config.get_value("AudioVolume", bus))
+
+func scale_font_size(base: int) -> int:
+	return int(base * config.get_value("Gameplay", "TextScale"))

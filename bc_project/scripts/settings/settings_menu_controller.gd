@@ -50,6 +50,7 @@ func close_menu() -> void:
 """
 func setup_gameplay() -> void:
 	%LanguageOptionButton.selected = LANG_DICT.find_key(config.get_value("Gameplay", "Language"))
+	%TextScaleSlider.value = config.get_value("Gameplay", "TextScale")
 
 func setup_graphics() -> void:
 	%ModeOptionButton.selected = config.get_value("Graphics", "ScreenMode")
@@ -76,7 +77,11 @@ func _on_apply_button_pressed() -> void:
 
 func _on_language_option_button_item_selected(index: int) -> void:
 	if LANG_DICT.has(index):
-		config.set_value("Gameplay", "KeepTaskVisible", LANG_DICT[index])
+		config.set_value("Gameplay", "Language", LANG_DICT[index])
+
+func _on_text_scale_slider_value_changed(value: float) -> void:
+	config.set_value("Gameplay", "TextScale", value)
+
 
 
 
@@ -94,10 +99,10 @@ func _on_master_slider_value_changed(value: float) -> void:
 	config.set_value("AudioVolume", "Master", value)
 
 func _on_sound_slider_value_changed(value: float) -> void:
-		config.set_value("AudioVolume", "SFX", value)
+	config.set_value("AudioVolume", "SFX", value)
 
 func _on_music_slider_value_changed(value: float) -> void:
-		config.set_value("AudioVolume", "Music", value)
+	config.set_value("AudioVolume", "Music", value)
 
 func _on_dialogue_slider_value_changed(value: float) -> void:
-		config.set_value("AudioVolume", "Dialogue", value)
+	config.set_value("AudioVolume", "Dialogue", value)
