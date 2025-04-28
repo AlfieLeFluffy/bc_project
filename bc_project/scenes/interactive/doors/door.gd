@@ -12,10 +12,17 @@ var openedCollision: bool = false
 
 # Local ready function for instantiated objects
 func _local_ready(startup:bool = true) -> void:
-	Signals.s_OpenDoor.connect(toggle_lock)
-	Signals.s_CloseDoor.connect(set_lock)
-	Signals.s_ToggleDoorLock.connect(toggle_lock_id)
-	Signals.s_SetDoorLock.connect(set_lock_id)
+	if not Signals.s_OpenDoor.is_connected(toggle_lock):
+		Signals.s_OpenDoor.connect(toggle_lock)
+	
+	if not Signals.s_CloseDoor.is_connected(set_lock):
+		Signals.s_CloseDoor.connect(set_lock)
+	
+	if not Signals.s_ToggleDoorLock.is_connected(toggle_lock_id):
+		Signals.s_ToggleDoorLock.connect(toggle_lock_id)
+	
+	if not Signals.s_SetDoorLock.is_connected(set_lock_id):
+		Signals.s_SetDoorLock.connect(set_lock_id)
 	
 	if opened:
 		state_machine.start("open")
