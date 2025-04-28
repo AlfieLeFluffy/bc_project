@@ -35,6 +35,13 @@ signal s_SavefileDelete(filename: String)
 ##
 ## - [param profileID] specifies which profile should be interacted with.
 signal s_SavefilesProfileDelete(profileID: String)
+
+## Signal that notifies scripts that a new current scene was loaded. 
+## This is used to update all scene dependent mechanics like UI.
+signal s_SceneLoaded()
+## Signal that notifies scripts that a game state was loaded.
+## This is used during the loading process to notify scripts that the loading mechanic changed the game state from the initial. 
+signal s_GameLoaded()
 #endregion
 
 #region Setup Methods
@@ -203,7 +210,7 @@ func load_game(filename:String) -> void:
 	# Starts process for loading a scene
 	GameController.change_scene(data["scene"])
 	# Waits till the scene loads
-	await GameController.s_SceneLoaded
+	await PersistenceController.s_SceneLoaded
 	
 	# Loads up all persistent nodes in the scene (and globals)
 	var persistentNodes = get_tree().get_nodes_in_group("Persistent")
@@ -229,7 +236,7 @@ func load_game(filename:String) -> void:
 				parent.add_child(node)
 				node.loading(data)
 			
-	GameController.s_GameLoaded.emit()
+	s_GameLoaded.emit()
 #endregion
 	
 #region Delete Savefiles and Profile Savefiles Methods

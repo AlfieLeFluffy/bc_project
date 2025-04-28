@@ -64,7 +64,7 @@ func _ready() -> void:
 	
 	# Added group tag for persistence purposes
 	add_to_group("Persistent")
-	GameController.s_SceneLoaded.connect(setup_scene_variables)
+	PersistenceController.s_SceneLoaded.connect(setup_scene_variables)
 
 """
 --- Runtime Methods

@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=4 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=105 format=4 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Script" uid="uid://cmlgg6dxih77f" path="res://scenes/levels/level_controller.gd" id="1_t01cb"]
 [ext_resource type="PackedScene" uid="uid://ddrrl1gryxkup" path="res://scenes/characters/player/player_character.tscn" id="1_wpgi4"]
@@ -18,8 +18,6 @@
 [ext_resource type="Shader" uid="uid://dcwirhvnici6e" path="res://shaders/outline_recolor.gdshader" id="8_0myxw"]
 [ext_resource type="PackedScene" uid="uid://c4br56b34o2el" path="res://scenes/interactive/buttons/elevatorCall/elevator_call_button.tscn" id="8_dgc65"]
 [ext_resource type="Script" uid="uid://cigg6mv4soq7y" path="res://scripts/callable/static_method_callable_resource.gd" id="8_gsoyx"]
-[ext_resource type="TileSet" uid="uid://bs7h6id5vs50s" path="res://tilesets/background_apartment_building_close.tres" id="8_t8w0x"]
-[ext_resource type="Texture2D" uid="uid://c6b6kblsogr5p" path="res://textures/backgrounds/scene/sunset_background.png" id="9_e6x8h"]
 [ext_resource type="Resource" uid="uid://bmxx1uimby337" path="res://dialogs/test_dialogue.dialogue" id="10_wnetc"]
 [ext_resource type="Script" uid="uid://drj3o0qsip6ss" path="res://scenes/characters/npcs/npc_resource.gd" id="16_2qb3d"]
 [ext_resource type="PackedScene" uid="uid://co868n2ppblh5" path="res://scenes/interactive/texts/versions/book_spine.tscn" id="17_0myxw"]
@@ -195,7 +193,7 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/row = -1
 
-[sub_resource type="Resource" id="Resource_e6x8h"]
+[sub_resource type="Resource" id="Resource_2orbd"]
 resource_local_to_scene = true
 script = ExtResource("24_frqwj")
 textName = "TEST_TEXT_NAME"
@@ -509,31 +507,6 @@ metadata/_custom_type_script = "uid://m3nuowesx2nl"
 
 [node name="Tilesets" type="Node2D" parent="Timeline001"]
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="Timeline001/Tilesets"]
-
-[node name="CanvasModulate2" type="CanvasModulate" parent="Timeline001/Tilesets/ParallaxBackground"]
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="Timeline001/Tilesets/ParallaxBackground"]
-motion_scale = Vector2(0.6, 0.6)
-motion_offset = Vector2(100, 100)
-
-[node name="SunsetBackground" type="Sprite2D" parent="Timeline001/Tilesets/ParallaxBackground/ParallaxLayer2"]
-position = Vector2(366, 106)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("9_e6x8h")
-
-[node name="TileMapLayer" type="TileMapLayer" parent="Timeline001/Tilesets/ParallaxBackground/ParallaxLayer2"]
-tile_set = ExtResource("8_t8w0x")
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Timeline001/Tilesets/ParallaxBackground"]
-modulate = Color(0.813258, 0.813258, 0.813258, 1)
-motion_scale = Vector2(0.8, 0.8)
-motion_offset = Vector2(20, 20)
-
-[node name="TileMapLayer" type="TileMapLayer" parent="Timeline001/Tilesets/ParallaxBackground/ParallaxLayer"]
-tile_map_data = PackedByteArray("AAD4/wgAAgAEAAoAAAD4/wkAAgAEAAsAAAD5/wYAAgADAAQAAAD5/wcAAgAAAAYAAAD5/wgAAgAAAAcAAAD5/wkAAgAAAAoAAAD6/wYAAgADAAQAAAD6/wcAAgABAAYAAAD6/wgAAgABAAcAAAD6/wkAAgABAAkAAAD7/wYAAgAAAAQAAAD7/wcAAgACAAYAAAD7/wgAAgACAAcAAAD7/wkAAgACAAkAAAD8/wYAAgAKAAYAAAD8/wcAAgAKAAcAAAD8/wgAAgAKAAgAAAD8/wkAAgAKAAkAAAD9/wcAAgAKAAcAAAD9/wgAAgAHAAgAAAD9/wkAAgAHAAoAAAD+/wcAAgAKAAcAAAD+/wgAAgAHAAgAAAD+/wkAAgAIAAoAAAD//wcAAgAMAAoAAAD//wgAAgAMAAoAAAD//wkAAgAMAAsAAAD4/wUAAgAEAAkAAAD4/wYAAgAEAAoAAAD4/wcAAgAEAAoAAAD5/wMAAgAAAAAAAAD5/wQAAgAEAAwAAAD5/wUAAgACAAUAAAD6/wMAAgACAAAAAAD6/wQAAgADAAMAAAD6/wUAAgADAAUAAAD7/wMAAgABAAAAAAD7/wQAAgABAAMAAAD7/wUAAgADAAUAAAD8/wMAAgADAAAAAAD8/wQAAgAJAAAAAAD8/wUAAgAJAAUAAAD9/wQAAgAJAAAAAAD9/wUAAgAIAAUAAAD9/wYAAgAHAAYAAAD+/wQAAgAJAAAAAAD+/wUAAgAKAAUAAAD+/wYAAgAKAAYAAAD//wQAAgALAAAAAAD//wUAAgAMAAkAAAD//wYAAgAMAAoAAAA=")
-tile_set = ExtResource("8_t8w0x")
-
 [node name="LevelTileset" type="TileMap" parent="Timeline001/Tilesets"]
 tile_set = ExtResource("3_1u7m5")
 format = 2
@@ -568,9 +541,6 @@ position = Vector2(691, 304)
 
 [node name="ceiling_lamp" parent="Timeline001/Interactive/Lights" instance=ExtResource("6_g4tah")]
 position = Vector2(366, 192)
-
-[node name="ceiling_lamp2" parent="Timeline001/Interactive/Lights" instance=ExtResource("6_g4tah")]
-position = Vector2(620, 195)
 
 [node name="ceiling_lamp3" parent="Timeline001/Interactive/Lights" instance=ExtResource("6_g4tah")]
 position = Vector2(113, 192)
@@ -636,7 +606,7 @@ position = Vector2(255, 297)
 [node name="PaperOnWall" parent="Timeline001/Interactive/Texts" instance=ExtResource("23_l5ajp")]
 material = SubResource("ShaderMaterial_ib3ll")
 position = Vector2(585, 294)
-textRosource = SubResource("Resource_e6x8h")
+textRosource = SubResource("Resource_2orbd")
 
 [node name="BookSpine" parent="Timeline001/Interactive/Texts" instance=ExtResource("17_0myxw")]
 material = SubResource("ShaderMaterial_nci5d")

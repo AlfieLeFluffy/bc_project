@@ -62,12 +62,7 @@ signal s_MainOverlayVisibilitySet(state: bool)
 ## - [param effectType] is an enum type that refering to a specific screen effect.
 signal s_ScreenEffectPlay(effectType: screenEffectType)
 
-## Signal that notifies scripts that a new current scene was loaded. 
-## This is used to update all scene dependent mechanics like UI.
-signal s_SceneLoaded()
-## Signal that notifies scripts that a game state was loaded.
-## This is used during the loading process to notify scripts that the loading mechanic changed the game state from the initial. 
-signal s_GameLoaded()
+
 ## Signal that notifies the [GameController] autoload script that a game over trigger was reached.
 ## This initializes the script to set the game into a game over state (releases camera controlls, shows a game over screen, ect.)
 signal s_GameOver(type: GameOverResource.type)
@@ -110,11 +105,11 @@ func _ready() -> void:
 	
 	s_GameOver.connect(game_over)
 	
-	s_SceneLoaded.connect(play_fade_in_effect)
-	s_SceneLoaded.connect(setup_camera_controls)
-	s_SceneLoaded.connect(setup_main_overlay_menu)
-	s_SceneLoaded.connect(setup_input_help_menu)
-	s_SceneLoaded.connect(setup_detective_board_menu)
+	PersistenceController.s_SceneLoaded.connect(play_fade_in_effect)
+	PersistenceController.s_SceneLoaded.connect(setup_camera_controls)
+	PersistenceController.s_SceneLoaded.connect(setup_main_overlay_menu)
+	PersistenceController.s_SceneLoaded.connect(setup_input_help_menu)
+	PersistenceController.s_SceneLoaded.connect(setup_detective_board_menu)
 	
 	DialogueManager.connect("dialogue_ended",release_focus)
 	DialogueManager.connect("got_dialogue",dialogue_voice_check)

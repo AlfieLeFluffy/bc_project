@@ -29,7 +29,7 @@ func _ready() -> void:
 	
 	current.set_active(true)
 	update_timeline_info(current)
-	GameController.s_SceneLoaded.connect(setup_timeline_selection)
+	PersistenceController.s_SceneLoaded.connect(setup_timeline_selection)
 
 func setup_timelines_dictionary() -> void:
 	for timeline in timelines:

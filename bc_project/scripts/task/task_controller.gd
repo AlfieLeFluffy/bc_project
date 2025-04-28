@@ -80,9 +80,9 @@ func _ready() -> void:
 	setup_task_overlay()
 	setup_journal_menu()
 	
-	GameController.s_SceneLoaded.connect(setup_task_overlay)
-	GameController.s_SceneLoaded.connect(setup_journal_menu)
-	GameController.s_SceneLoaded.connect(import_level_tasks)
+	PersistenceController.s_SceneLoaded.connect(setup_task_overlay)
+	PersistenceController.s_SceneLoaded.connect(setup_journal_menu)
+	PersistenceController.s_SceneLoaded.connect(import_level_tasks)
 	
 	s_CurrentNextStep.connect(current_next_step)
 	s_NextStep.connect(next_step)

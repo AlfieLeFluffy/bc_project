@@ -18,7 +18,7 @@ func _ready() -> void:
 	modulate = Color.TRANSPARENT
 	s_CameraTweenFinished.connect(fade_in)
 	
-	GameController.s_SceneLoaded.emit()
+	PersistenceController.s_SceneLoaded.emit()
 	GameController.s_ProfileLoaded.connect(setup_profile)
 	SettingsController.s_Retranslate.connect(setup_profile)
 	
