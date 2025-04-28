@@ -12,5 +12,5 @@ var dateString: String = "zzzzzzzzzzzzz"
 func _on_button_pressed() -> void:
 	if $Name.text == "":
 		return
-	PersistenceController.s_SaveGame.emit($Name.text)
+	PersistenceController.s_SaveGame.emit(GameController.get_profile_id(), $Name.text)
 	menuNode.emit_signal("closeMenu")

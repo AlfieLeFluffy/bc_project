@@ -28,10 +28,10 @@ signal closeMenu
 --- Runtime Variables
 """
 ## For setting up which version of the persistence menu should open.
-enum modeEnum {SAVE,LOAD}
+enum e_Mode {SAVE,LOAD}
 
 ## Variable keeping track of which type of persistence menu is open
-var mode: modeEnum = modeEnum.SAVE
+var mode: e_Mode = e_Mode.SAVE
 ## Variable keeping the parent [PopupMenuController] for menu manipulation
 var popupMenu: PopupMenuController
 
@@ -84,15 +84,15 @@ func close_menu() -> void:
 ## Sets up UI labels.
 func setup_ui() -> void:
 	match mode:
-		modeEnum.SAVE:
+		e_Mode.SAVE:
 			%TabContainer.get_child(0).name = tr("SAVE_MENU_LABEL")
-		modeEnum.LOAD:
+		e_Mode.LOAD:
 			%TabContainer.get_child(0).name = tr("LOAD_MENU_LABEL")
 
 ## Sets up basic list items present in a specific persistence menu type. [br]
 ## For example for a save persistence type sets up new save list item.
 func setup_base_items() -> void:
-	if mode == modeEnum.SAVE:
+	if mode == e_Mode.SAVE:
 		var newSaveItem = newSaveItemPreload.instantiate()
 		newSaveItem.menuNode = self
 		%Grid.add_child(newSaveItem)
@@ -122,9 +122,9 @@ func setup_savefile_directory(directory: String) -> void:
 ## Sets up a single list item entry depending on the persistence menu type.
 func setup_savefile_entry(file: String) -> void:#
 	var item
-	if mode == modeEnum.SAVE:
+	if mode == e_Mode.SAVE:
 		item = saveItemPreload.instantiate()
-	elif mode == modeEnum.LOAD:
+	elif mode == e_Mode.LOAD:
 		item = loadItemPreload.instantiate()
 	item.filename = file
 	item.menuNode = self
@@ -143,7 +143,7 @@ func add_item_sorted(item: Control) -> void:
 		return
 		
 	var amount: Array
-	if mode == modeEnum.SAVE:
+	if mode == e_Mode.SAVE:
 		amount = range(children.size())
 		amount.pop_front()
 		amount.pop_front()

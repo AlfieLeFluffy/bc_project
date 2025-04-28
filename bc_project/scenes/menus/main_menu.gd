@@ -45,7 +45,7 @@ func _on_test_scene_button_pressed() -> void:
 	GameController.change_scene("test_level")
 
 func _on_load_button_pressed() -> void:
-	PersistenceController.s_PersistenceMenuOpen.emit(PersistenceMenu.modeEnum.LOAD)
+	PersistenceController.s_PersistenceMenuOpen.emit(PersistenceMenu.e_Mode.LOAD)
 
 func _on_achievements_button_pressed() -> void:
 	%AchievementsFlair.visible = false

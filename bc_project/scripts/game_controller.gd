@@ -10,6 +10,7 @@ const preloadInputHelp = preload("res://scenes/UI/overlay/input_help_overlay.tsc
 const preloadCameraControls = preload("res://scenes/cameraControls/camera_controls.tscn")
 const preloadAchievementsMenu = preload("res://scripts/profile/achievements_menu.tscn")
 const prelaodGameOverScreen = preload("res://scenes/gameOver/game_over_screen.tscn")
+const preloadPopupMenuController = preload("res://scenes/menus/popup_menu_controller.tscn")
 #endregion
 
 #region Preload ScreenEffects scenes, Enums and Constants
@@ -99,6 +100,7 @@ func _ready() -> void:
 	
 	s_ProfileCreate.connect(create_set_save_new_profile)
 	s_ProfileSet.connect(set_profile)
+	s_ProfileLoaded.connect(check_profile_setup)
 	
 	s_AchievementSet.connect(set_achievement)
 	s_AchievementsMenuOpen.connect(open_achievements_menu)
@@ -130,6 +132,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 #endregion
 
+
+
 #region Game Managment Methods
 func quit_game() -> void:
 	save_profile()
@@ -140,6 +144,8 @@ func game_over(type: GameOverResource.type) -> void:
 	gameOverScreen.info = GameOverResource.info[type]
 	get_tree().current_scene.add_child(gameOverScreen)
 #endregion
+
+
 
 #region Profile Methods
 func load_config_profile() -> void:
@@ -163,6 +169,9 @@ func load_profile_from_path(filepath: String) -> void:
 func save_profile() -> void:
 	if profile:
 		profile.save()
+
+func check_profile_setup() -> void:
+	PersistenceController.s_CheckProfileSavefileFolder.emit(profile.id)
 
 func set_profile(_profile: ProfileResource) -> void:
 	profile = _profile
@@ -200,7 +209,14 @@ func create_new_profile(_profileName: String) -> ProfileResource:
 func get_profile_seed() -> int:
 	if profile:
 		return profile.seed
+	printerr("Error: While getting profile ID, no profile selected.")
 	return 000000
+
+func get_profile_id() -> String:
+	if profile:
+		return profile.id
+	printerr("Error: While getting profile ID, no profile selected.")
+	return ""
 
 #endregion
 
@@ -221,11 +237,21 @@ func set_achievement(_type: AchievementsResource.type) -> void:
 #endregion
 
 #region Global Minsc Methods
+func open_popup_menu(scene: Node) -> Node:
+	var popupMenu: PopupMenuController = preloadPopupMenuController.instantiate()
+	get_tree().current_scene.add_child(popupMenu)
+	popupMenu.setup(scene)
+	popupMenu.popup.emit()
+	return popupMenu
+
 func multiply_string(input:String,times:int) -> String:
 	var output: String = ""
 	for idx in range(times):
 		output = output + input
 	return output
+
+func get_current_scene() -> String:
+	return Global.currentScene
 
 func change_scene(sceneName:String) -> bool:
 	sceneToLoad = Global.scenePaths[sceneName]

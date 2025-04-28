@@ -34,13 +34,13 @@ func _on_button_pressed() -> void:
 func _on_confirmation_dialog_confirmed() -> void:
 	if not filename:
 		return
-	PersistenceController.s_SaveGame.emit(filename)
+	PersistenceController.s_SaveGame.emit(GameController.get_profile_id(), filename)
 	menuNode.emit_signal("closeMenu")
 
 func _on_delete_button_pressed() -> void:
 	%DeleteConfirmationDialog.popup()
 
 func _on_delete_confirmation_dialog_confirmed() -> void:
-	PersistenceController.s_SavefileDelete.emit(filename)
+	PersistenceController.s_SavefileDelete.emit(GameController.get_profile_id(), filename)
 	queue_free()
 #endregion

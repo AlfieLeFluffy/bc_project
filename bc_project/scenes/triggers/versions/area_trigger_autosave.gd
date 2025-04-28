@@ -4,7 +4,7 @@ class_name AreaTriggerAutoSave extends AreaTrigger
 #region Runtime Methods
 func _colision_enter_player(player: Player) -> void:
 	await get_tree().create_timer(0.1).timeout
-	PersistenceController.s_AutosaveGame.emit()
+	PersistenceController.s_AutosaveGame.emit(GameController.get_profile_id())
 
 func _colision_enter_npc(npc: NPC) -> void:
 	pass

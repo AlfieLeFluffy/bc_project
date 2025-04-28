@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_load_button_pressed() -> void:
-	PersistenceController.s_PersistenceMenuOpen.emit(PersistenceMenu.modeEnum.LOAD)
+	PersistenceController.s_PersistenceMenuOpen.emit(PersistenceMenu.e_Mode.LOAD)
 
 func _on_main_menu_button_pressed() -> void:
 	GameController.change_scene("main_menu")
