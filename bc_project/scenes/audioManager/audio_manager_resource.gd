@@ -1,15 +1,15 @@
 class_name AudioManagerResource extends Resource
 
 
-# A list of all available busses
-enum busses {MASTER, SFX, MUSIC, DIALOGUE}
+# A list of all available buses
+enum buses {MASTER, SFX, MUSIC, DIALOGUE}
 
 # Conversion dictionary from bus enum to bus address (for AudioStreamPlayer.bus variable)
 const audioBusNameDictionary: Dictionary = {
-	busses.MASTER: &"Master",
-	busses.SFX: &"SFX",
-	busses.MUSIC: &"Music",
-	busses.DIALOGUE: &"Dialogue"
+	buses.MASTER: 	&"Master",
+	buses.SFX: 		&"SFX",
+	buses.MUSIC: 	&"Music",
+	buses.DIALOGUE:	&"Dialogue",
 }
 
 # Audio folder location

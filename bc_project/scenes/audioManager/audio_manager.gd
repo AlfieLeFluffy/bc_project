@@ -1,29 +1,34 @@
 extends Node
 
 @export_category("Audio Manager Resource")
-# Exported resource for audio manager setup
-@export var res: AudioManagerResource
+## Exported [AudioManagerResource] resource
+@export var managerResource: AudioManagerResource
 
 """
 --- Setup Methods
 """
 #region Setup Methods
-# Prepares all audio clips from the resource to be called upon
+## Audio Manager setup method
 func _ready() -> void:
+	## If no [AudioManagerResource] resource has been found or created it stops with class setup and prints out an error.
 	if not setup_resource():
 		printerr("Error: Could not load or create an Audio Manager Resource.")
 		return
 	
-	if res:
-		res.import_audio_tracks()
+	## A double check if a manager resource is present
+	if managerResource:
+		## If enabled the resource prepares and imports any audio tracks that have not already been imported
+		managerResource.import_audio_tracks()
 	
+	## When a dialogue ends this signal connection makes sure any voice acting is stopped with it.
 	DialogueManager.dialogue_ended.connect(end_dialogue)
+	## Before the application is closed this coonections calls for a save of the [AudioManagerResource] resource.
 	get_viewport().tree_exiting.connect(save_resource)
 
 func setup_resource() -> bool:
 	var resourceFilepath: String = AudioManagerResource.folderPath.path_join(AudioManagerResource.resourceFilename)
 	
-	if res:
+	if managerResource:
 		return true
 	
 	if FileAccess.file_exists(resourceFilepath):
@@ -38,23 +43,23 @@ func setup_resource() -> bool:
 	return true
 
 func create_resouce(filepath: String) -> bool:
-	res = AudioManagerResource.new()
+	managerResource = AudioManagerResource.new()
 	if not save_resource():
 		return false
 	return true
 
 func save_resource() -> bool:
 	var resourceFilepath: String = AudioManagerResource.folderPath.path_join(AudioManagerResource.resourceFilename)
-	var error = ResourceSaver.save(res, resourceFilepath)
+	var error = ResourceSaver.save(managerResource, resourceFilepath)
 	if error:
 		printerr("Error: Cannot save Audio Manager Resource at location '%s'  due to error '%s'" % [resourceFilepath,str(error)])
 		return false
 	return true
 
 func load_resource(filepath: String) -> bool:
-	res = ResourceLoader.load(filepath)
-	if res == null or not res is AudioManagerResource:
-		printerr("Error: Cannot load Audio Manager Resource at location '%s' and Resource Loader returned '%s'" % [filepath, res])
+	managerResource = ResourceLoader.load(filepath)
+	if managerResource == null or not managerResource is AudioManagerResource:
+		printerr("Error: Cannot load Audio Manager Resource at location '%s' and Resource Loader returned '%s'" % [filepath, managerResource])
 		return false
 	return true
 #endregion
@@ -66,20 +71,20 @@ func load_resource(filepath: String) -> bool:
 """
 #region Audio Stream Methods
 # AudioStreamPlayer setup
-func setup_audio_player(audioPlayer: AudioStreamPlayer, trackID: String, bus: AudioManagerResource.busses = res.busses.MASTER, pitchOverride: bool = false) -> void:
-	audioPlayer.bus = res.audioBusNameDictionary[bus]
-	audioPlayer.stream = res.get_track(trackID)
+func setup_audio_player(audioPlayer: AudioStreamPlayer, trackID: String, bus: AudioManagerResource.buses = managerResource.buses.MASTER, pitchOverride: bool = false) -> void:
+	audioPlayer.bus = managerResource.audioBusNameDictionary[bus]
+	audioPlayer.stream = managerResource.get_track(trackID)
 	
-	if res.pitchVariance and not pitchOverride:
-		audioPlayer.pitch_scale = randf_range(res.pitchRange.x,res.pitchRange.y)
+	if managerResource.pitchVariance and not pitchOverride:
+		audioPlayer.pitch_scale = randf_range(managerResource.pitchRange.x,managerResource.pitchRange.y)
 
 # AudioStreamPlayer setup
-func setup_audio_player_2d(audioPlayer: AudioStreamPlayer2D, trackID: String, bus: AudioManagerResource.busses = res.busses.MASTER, pitchOverride: bool = false) -> void:
-	audioPlayer.bus = res.audioBusNameDictionary[bus]
-	audioPlayer.stream = res.get_track(trackID)
+func setup_audio_player_2d(audioPlayer: AudioStreamPlayer2D, trackID: String, bus: AudioManagerResource.buses = managerResource.buses.MASTER, pitchOverride: bool = false) -> void:
+	audioPlayer.bus = managerResource.audioBusNameDictionary[bus]
+	audioPlayer.stream = managerResource.get_track(trackID)
 	
-	if res.pitchVariance and not pitchOverride:
-		audioPlayer.pitch_scale = randf_range(res.pitchRange.x,res.pitchRange.y)
+	if managerResource.pitchVariance and not pitchOverride:
+		audioPlayer.pitch_scale = randf_range(managerResource.pitchRange.x,managerResource.pitchRange.y)
 
 # Play sound, await till end of track and free audioPlayer after audio track finishes
 func run_sound(audioPlayer, free: bool = false) -> bool:
@@ -93,17 +98,17 @@ func run_sound(audioPlayer, free: bool = false) -> bool:
 
 #region Sound Effect Restriction Methods
 func attempt_sfx() -> bool:
-	if res.sfxList.size() >= res.maxSFXSounds:
+	if managerResource.sfxList.size() >= managerResource.maxSFXSounds:
 		return false
 	return true
 #endregion
 
 
 #region Sound Effect (SFX) Methods
-# Plays specified sound flat (without being placed in the world)
-# If sound doesn't exist an error is printed and the call is terminated
-# For every sound the manager creates a new AudioStreamPlayer
-# Pitch variance option allows generation of a different pitch for given sound
+## Plays specified sound flat (without being placed in the world).
+## If sound doesn't exist an error is printed and the call is terminated.
+## For every sound the manager creates a new AudioStreamPlayer.
+## Pitch variance option allows generation of a different pitch for given sound.
 func play_sound(trackID: String) -> void:
 	
 	# Checks for sfx limit and return if exceded
@@ -113,17 +118,17 @@ func play_sound(trackID: String) -> void:
 	# AudioStreamPlayer instantiation
 	var audioPlayer = AudioStreamPlayer.new()
 	add_child(audioPlayer)
-	res.sfxList.append(audioPlayer)
+	managerResource.sfxList.append(audioPlayer)
 	
-	setup_audio_player(audioPlayer, trackID, AudioManagerResource.busses.SFX)
+	setup_audio_player(audioPlayer, trackID, AudioManagerResource.buses.SFX)
 	await run_sound(audioPlayer)
-	res.sfxList.erase(audioPlayer)
+	managerResource.sfxList.erase(audioPlayer)
 	audioPlayer.queue_free()
 
-# Plays specified sound within the world
-# If sound doesn't exist an error is printed and the call is terminated
-# For every sound the manager creates a new AudioStreamPlayer
-# Pitch variance option allows generation of a different pitch for given sound
+## Plays specified sound within the world.
+## If sound doesn't exist an error is printed and the call is terminated.
+## For every sound the manager creates a new AudioStreamPlayer.
+## Pitch variance option allows generation of a different pitch for given sound.
 func play_sound_2d(trackID: String, parent: Node2D) -> void:
 	
 	# Checks for sfx limit and return if exceded
@@ -133,11 +138,11 @@ func play_sound_2d(trackID: String, parent: Node2D) -> void:
 	# AudioStreamPlayer instantiation
 	var audioPlayer = AudioStreamPlayer2D.new()
 	parent.add_child(audioPlayer)
-	res.sfxList.append(audioPlayer)
+	managerResource.sfxList.append(audioPlayer)
 	
-	setup_audio_player_2d(audioPlayer, trackID, AudioManagerResource.busses.SFX)
+	setup_audio_player_2d(audioPlayer, trackID, AudioManagerResource.buses.SFX)
 	await run_sound(audioPlayer)
-	res.sfxList.erase(audioPlayer)
+	managerResource.sfxList.erase(audioPlayer)
 	audioPlayer.queue_free()
 #endregion
 
@@ -147,17 +152,17 @@ func play_sound_2d(trackID: String, parent: Node2D) -> void:
 func play_dialogue(trackID: String, skipDialogue: bool = true) -> void:
 	
 	# Checks if dialogue is running and skipDialog is dissabled returns this call
-	if not res.dialogueFinished and not skipDialogue:
+	if not managerResource.dialogueFinished and not skipDialogue:
 		return
 	
 	# Checks if dialogue is running and skipDialog is enabled then terminates previous dialogue and starts a new one
-	if not res.dialogueFinished and skipDialogue:
+	if not managerResource.dialogueFinished and skipDialogue:
 		%DialogAudioStreamPlayer.stop()
 	
-	res.dialogueFinished = false
+	managerResource.dialogueFinished = false
 	
 	# Sets up and runs the dialogue audio
-	setup_audio_player(%DialogAudioStreamPlayer, trackID, AudioManagerResource.busses.DIALOGUE,true)
+	setup_audio_player(%DialogAudioStreamPlayer, trackID, AudioManagerResource.buses.DIALOGUE,true)
 	run_sound(%DialogAudioStreamPlayer)
 
 func play_dialogue_2d(trackID: String, parent: Node2D) -> void:
@@ -166,7 +171,7 @@ func play_dialogue_2d(trackID: String, parent: Node2D) -> void:
 	var audioPlayer = AudioStreamPlayer2D.new()
 	parent.add_child(audioPlayer)
 	
-	setup_audio_player_2d(audioPlayer, trackID, AudioManagerResource.busses.DIALOGUE,true)
+	setup_audio_player_2d(audioPlayer, trackID, AudioManagerResource.buses.DIALOGUE,true)
 	run_sound(%DialogAudioStreamPlayer,true)
 
 func end_dialogue(resource: DialogueResource):
@@ -175,14 +180,14 @@ func end_dialogue(resource: DialogueResource):
 
 
 #region Music Methods
-func play_music(trackID: String, pitchOverride: bool= false, loop:bool = true, fade:bool = false) -> void:
-	var track: AudioStream = res.get_track(trackID)
+func play_music(trackID: String, overridePitch: bool= true, loop:bool = true) -> void:
+	var track: AudioStream = managerResource.get_track(trackID)
 	if track == null:
 		return
 	track.loop = loop
 	%MusicAudioStreamPlayer.stream = track
-	if res.pitchVariance and not pitchOverride:
-		%MusicAudioStreamPlayer.pitch_scale = randf_range(res.pitchRange.x,res.pitchRange.y)
+	if managerResource.pitchVariance and not overridePitch:
+		%MusicAudioStreamPlayer.pitch_scale = randf_range(managerResource.pitchRange.x,managerResource.pitchRange.y)
 	%MusicAudioStreamPlayer.play()
 
 func pause_music() -> void:
@@ -198,7 +203,7 @@ func stop_music() -> void:
 		%MusicAudioStreamPlayer.stop()
 
 func change_music(trackID: String, loop:bool = true) -> void:
-	var track: AudioStream = res.get_track(trackID)
+	var track: AudioStream = managerResource.get_track(trackID)
 	if track == null:
 		return
 	track.loop = loop
@@ -214,7 +219,7 @@ func change_music(trackID: String, loop:bool = true) -> void:
 #region Audio Bus Methods
 # Creates a bus and reroutes its output to specified bus
 # Created bus is appended as last bus
-func create_bus(sendBus: AudioManagerResource.busses) -> void:
+func create_bus(sendBus: AudioManagerResource.buses) -> void:
 	AudioServer.add_bus(AudioServer.bus_count)
 	AudioServer.set_bus_send(AudioServer.bus_count, AudioServer.get_bus_name(sendBus))
 
@@ -226,40 +231,45 @@ func delete_bus(busIndex:int = -1) -> void:
 	else:
 		AudioServer.remove_bus(busIndex)
 
-func get_bus_enum(busName: String) -> AudioManagerResource.busses:
-	return res.busses.get(busName.to_upper())
+func get_bus_enum(busName: String) -> AudioManagerResource.buses:
+	return managerResource.buses.get(busName.to_upper())
 
-# Returns bus volume as linear transformation float (converts from db scale)
-# If linearOutput is set to false; returns volume as db scale
-func get_bus_volume(bus: AudioManagerResource.busses, linearOutput:bool = true) -> float:
-	if linearOutput:
+## Returns bus volume as linear transformation float (converts from db scale)
+##
+## - [param bus] choses which audio bus is the method working with. It uses an enum from the [AudioManagerResource] resource.[br]
+## - [param linear] choses if the output is in a linear number or in decibels. [br]
+func get_bus_volume(bus: AudioManagerResource.buses, linear:bool = true) -> float:
+	if linear:
 		return db_to_linear(AudioServer.get_bus_volume_db(bus))
 	return AudioServer.get_bus_volume_db(bus)
 
-# Sets bus volume from linear float (converts into db scale)
-# If linearInput is set to false; set volume as db scale (doesn't convert)
-func set_bus_volume(bus: AudioManagerResource.busses, x:float, linearInput:bool = true) -> void:
-	if linearInput:
+## Sets bus volume from linear float (converts into db scale)
+##
+## - [param bus] choses which audio bus is the method working with. It uses an enum from the [AudioManagerResource] resource.[br]
+## - [param x] is the input number to which the bus will get set. [br]
+## - [param linear] choses if the inputed number is in a linear number or in decibels. [br]
+func set_bus_volume(bus: AudioManagerResource.buses, x:float, linear:bool = true) -> void:
+	if linear:
 		AudioServer.set_bus_volume_db(bus, linear_to_db(x))
 	else:
 		AudioServer.set_bus_volume_db(bus, x)
 
 # Resets bus volume to 0 db
-func reset_bus_volume(bus: AudioManagerResource.busses) -> void:
+func reset_bus_volume(bus: AudioManagerResource.buses) -> void:
 	set_bus_volume(bus, 0.0)
 
-# Resets all busses volume to 0 db
-func reset_all_bus_volume(bus: AudioManagerResource.busses) -> void:
+# Resets all buses volume to 0 db
+func reset_all_bus_volume(bus: AudioManagerResource.buses) -> void:
 	for i in range(AudioServer.bus_count):
 		set_bus_volume(i, 0.0)
 
 # Mutes specified bus
-func mute_bus_volume(bus: AudioManagerResource.busses) -> void:
+func mute_bus_volume(bus: AudioManagerResource.buses) -> void:
 	if AudioServer.is_bus_mute(bus):
 		AudioServer.set_bus_mute(bus, false)
 
 # Unmutes specified bus
-func unmute_bus_volume(bus: AudioManagerResource.busses) -> void:
+func unmute_bus_volume(bus: AudioManagerResource.buses) -> void:
 	if not AudioServer.is_bus_mute(bus):
 		AudioServer.set_bus_mute(bus, true)
 
@@ -279,7 +289,7 @@ func fade_out_bus(bus, baseVolume:float, endVolume:float= 0, step:float = .25) -
 # Adds an effect to a specified bus to a specified index
 # The effect has to create beforehand
 # If index is not given it automatically appends it
-func add_bus_effect(bus: AudioManagerResource.busses, effect:AudioEffect, index:int = -1) -> void:
+func add_bus_effect(bus: AudioManagerResource.buses, effect:AudioEffect, index:int = -1) -> void:
 	if index == -1:
 		AudioServer.add_bus_effect(bus,effect,AudioServer.get_bus_effect_count(bus))
 	else:
@@ -287,7 +297,7 @@ func add_bus_effect(bus: AudioManagerResource.busses, effect:AudioEffect, index:
 
 # Removes an effect from a specified bus on a specified index
 # If index is not given it defaults into the last effect
-func remove_bus_effect(bus: AudioManagerResource.busses, index:int = -1) -> void:
+func remove_bus_effect(bus: AudioManagerResource.buses, index:int = -1) -> void:
 	if not check_bus_effect(bus, index):
 		return
 	
@@ -298,7 +308,7 @@ func remove_bus_effect(bus: AudioManagerResource.busses, index:int = -1) -> void
 
 # Exchanges a bus effect for another one
 # If index is not given it defaults into the last effect
-func change_bus_effect(bus: AudioManagerResource.busses, effect:AudioEffect, index:int = -1) -> void:
+func change_bus_effect(bus: AudioManagerResource.buses, effect:AudioEffect, index:int = -1) -> void:
 	if not check_bus_effect(bus, index):
 		return
 	
@@ -306,7 +316,7 @@ func change_bus_effect(bus: AudioManagerResource.busses, effect:AudioEffect, ind
 	add_bus_effect(bus, effect, index)
 
 # Clears all effects on a bus
-func clear_bus_effect_all(bus: AudioManagerResource.busses) -> void:
+func clear_bus_effect_all(bus: AudioManagerResource.buses) -> void:
 	for i in range(AudioServer.get_bus_effect_count(bus)):
 		remove_bus_effect(bus)
 
@@ -332,5 +342,5 @@ func check_bus_effect(bus, index) -> bool:
 """
 #region Audio Manager Node Methods
 func _on_dialog_audio_stream_player_finished() -> void:
-	res.dialogueFinished = true
+	managerResource.dialogueFinished = true
 #endregion
