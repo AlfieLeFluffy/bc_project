@@ -67,7 +67,7 @@ signal s_GameLoaded()
 #endregion
 
 #region Setup Methods
-## Persitcen Controller initial setup 
+## Persistence Controller initial setup 
 func _ready() -> void:
 	s_PersistenceMenuOpen.connect(open_persistence_menu)
 	s_SaveGame.connect(save_game)

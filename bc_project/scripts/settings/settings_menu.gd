@@ -1,4 +1,4 @@
-class_name SettingsMenuController extends Control
+class_name SettingsMenu extends Control
 
 """
 --- Constants
@@ -54,7 +54,7 @@ func setup_gameplay() -> void:
 
 func setup_graphics() -> void:
 	%ModeOptionButton.selected = config.get_value("Graphics", "ScreenMode")
-	%SizeOptionButton.selected = SettingsController.resolutionsDict.find_key(config.get_value("Graphics", "Resolution"))
+	%SizeOptionButton.selected = SettingsController.RESOLUTION_DICTIONARY.find_key(config.get_value("Graphics", "Resolution"))
 	%VsyncOptionButton.selected = config.get_value("Graphics", "Vsync")
 
 func setup_sound() -> void:
@@ -89,7 +89,7 @@ func _on_mode_option_button_item_selected(index: int) -> void:
 	config.set_value("Graphics", "ScreenMode", index)
 
 func _on_size_option_button_item_selected(index: int) -> void:
-	config.set_value("Graphics", "Resolution", SettingsController.resolutionsDict[index])
+	config.set_value("Graphics", "Resolution", SettingsController.RESOLUTION_DICTIONARY[index])
 
 func _on_vsync_option_button_item_selected(index: int) -> void:
 	config.set_value("Graphics", "Vsync", index)
