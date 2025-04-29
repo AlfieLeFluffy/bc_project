@@ -19,7 +19,7 @@ const CONFIG_FILEPATH: String = "user://config.cfg"
 const DEFAULT_CONFIG_FILEPATH: String = "res://scripts/settings/default_config.cfg"
 
 ## A variables holding reference to the callable method that adds and positions the persistence menu to the scene tree.
-var OPEN_MENU_METHOD: Callable = GameController.open_popup_menu
+@onready var OPEN_MENU_METHOD: Callable = GameController.open_popup_menu
 #endregion
 
 #region Signals

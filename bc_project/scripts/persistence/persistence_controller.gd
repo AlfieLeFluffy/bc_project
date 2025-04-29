@@ -14,11 +14,11 @@ const MASTER_SAVEFILE_FOLDER_PATH: String = "user://saves"
 const AUTOSAVE_FILENAME_STRING_FORMAT: String = "autosave_%s"
 
 ## A variables holding reference to the callable method that gets the scene identification for later loading.
-var GET_SCENE_IDENTIFICATION: Callable = GameController.get_current_scene
+@onready var GET_SCENE_IDENTIFICATION: Callable = GameController.get_current_scene
 ## A variables holding reference to the callable method that should be called when changing scenes.
-var SCENE_LOADING_METHOD: Callable = GameController.change_scene
+@onready var SCENE_LOADING_METHOD: Callable = GameController.change_scene
 ## A variables holding reference to the callable method that adds and positions the persistence menu to the scene tree.
-var OPEN_MENU_METHOD: Callable = GameController.open_popup_menu
+@onready var OPEN_MENU_METHOD: Callable = GameController.open_popup_menu
 #endregion
 
 #region Signals
