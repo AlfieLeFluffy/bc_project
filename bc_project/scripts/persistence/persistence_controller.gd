@@ -13,6 +13,9 @@ const MASTER_SAVEFILE_FOLDER_PATH: String = "user://saves"
 ## A constant holding the string format for autosave file name
 const AUTOSAVE_FILENAME_STRING_FORMAT: String = "autosave_%s"
 
+## A constant holding the string format for autosave file name
+const PERSISTENCE_GLOBAL_GROUP_NAME: String = "Persistent"
+
 ## A variables holding reference to the callable method that gets the scene identification for later loading.
 @onready var GET_SCENE_IDENTIFICATION: Callable = GameController.get_current_scene
 ## A variables holding reference to the callable method that should be called when changing scenes.
@@ -246,12 +249,12 @@ func save_game(profileID: String, filename:String) -> void:
 	
 	# Saves current scene first so it can be loaded first
 	var sceneDictionary: Dictionary = {
-		"scene" = GameController.get_current_scene()
+		"scene" = GET_SCENE_IDENTIFICATION.call()
 	}
 	save_line(saveFile, saveDirPath, sceneDictionary)
 	
 	# Loads up all persistent nodes in the scene (and globals)
-	var persistentNodes = get_tree().get_nodes_in_group("Persistent")
+	var persistentNodes = get_tree().get_nodes_in_group(PERSISTENCE_GLOBAL_GROUP_NAME)
 	for node in persistentNodes:
 		# Check the node has a save function.
 		if !node.has_method("saving"):
@@ -307,7 +310,7 @@ func load_game(profileID: String, filename:String) -> void:
 	await s_SceneLoaded
 	
 	# Loads up all persistent nodes in the scene (and globals)
-	var persistentNodes = get_tree().get_nodes_in_group("Persistent")
+	var persistentNodes = get_tree().get_nodes_in_group(PERSISTENCE_GLOBAL_GROUP_NAME)
 	
 	while saveFile.get_position() < saveFile.get_length():
 		data = load_line(saveFile,safeDirPath)

@@ -85,7 +85,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 25)
 layout_mode = 2
 size_flags_horizontal = 4
-selected = 0
 
 [node name="TextScaleLine" type="HBoxContainer" parent="TabContainer/GAMEPLAY_TAB/VB"]
 layout_mode = 2
