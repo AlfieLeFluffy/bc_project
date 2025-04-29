@@ -5,14 +5,6 @@ extends Node
 ## A constant holding the preloaded reference for the [SettingsMenu]
 const PRELOAD_SETTINGS_MENU: Resource = preload("res://scripts/settings/settings_menu.tscn")
 
-## A constant holding possible resolutions
-const RESOLUTION_DICTIONARY: Dictionary = {
-	0: Vector2(640,360),
-	1: Vector2(1280,720),
-	2: Vector2(1920,1080),
-	3: Vector2(2560,1440),
-}
-
 ## A constant holding the config file filepath 
 const CONFIG_FILEPATH: String = "user://config.cfg"
 ## A constant holding the default config file filepath
