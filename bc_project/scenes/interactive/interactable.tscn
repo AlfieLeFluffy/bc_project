@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6sidrweg1p0"]
+[gd_scene load_steps=6 format=3 uid="uid://b6sidrweg1p0"]
 
 [ext_resource type="Shader" uid="uid://dcwirhvnici6e" path="res://shaders/outline_recolor.gdshader" id="1_720lx"]
 [ext_resource type="Script" uid="uid://ccv0o03iblf8l" path="res://scenes/interactive/interactable.gd" id="1_m6fs8"]
-[ext_resource type="Shader" uid="uid://ce8d8jdvcd6aa" path="res://shaders/text_highlight.gdshader" id="3_720lx"]
 [ext_resource type="Script" uid="uid://e536tfomryho" path="res://scripts/interactive_handler.gd" id="6_wipk1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5j7o3"]
@@ -12,9 +11,6 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/row = -1
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rltxn"]
-shader = ExtResource("3_720lx")
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_356m4"]
 resource_local_to_scene = true
 size = Vector2(12, 10)
@@ -23,31 +19,34 @@ size = Vector2(12, 10)
 material = SubResource("ShaderMaterial_5j7o3")
 script = ExtResource("1_m6fs8")
 
-[node name="Labels" type="Control" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Labels" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
 visible = false
-z_index = 1
+z_index = 100
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -24.0
+offset_left = -984.0
 offset_top = -18.0
-offset_right = 24.0
+offset_right = -936.0
 offset_bottom = -8.0
 grow_horizontal = 2
 size_flags_horizontal = 3
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Labels"]
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Labels"]
 layout_mode = 2
 offset_right = 48.0
 offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="RichTextLabel" parent="Labels"]
+[node name="Label" type="RichTextLabel" parent="CanvasLayer/Labels"]
 unique_name_in_owner = true
 z_index = 255
-material = SubResource("ShaderMaterial_rltxn")
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0

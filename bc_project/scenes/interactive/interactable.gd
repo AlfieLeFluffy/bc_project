@@ -28,6 +28,8 @@ func _ready() -> void:
 	setup_timeline_info()
 	setup_interactable_info()
 	_local_ready()
+	%Labels.position.x = global_position.x - (%Labels.size.x / 2)
+	%Labels.position.y = %Sprite2D.global_position.y - (%Sprite2D.texture.get_size().y / 2) - 5
 
 func setup_interactable_info() -> void:
 	if interactableResource:
@@ -157,7 +159,7 @@ func activate_interactivity() -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 	if interactableResource:
 		if interactableResource.show_labels:
-			$Labels.visible = true
+			%Labels.visible = true
 	Global.Active_Interactive_Item = self
 	Signals.s_InputHelpSet.emit(GameController.get_input_key_list("add_to_board"),"ADD_TO_BOARD_INPUT_HELP")
 	Signals.s_InputHelpSet.emit(GameController.get_input_key_list("interact"),"INTERACT_INPUT_HELP")
@@ -166,7 +168,7 @@ func deactivate_interactivity() -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	if interactableResource:
 		if interactableResource.show_labels:
-			$Labels.visible = false
+			%Labels.visible = false
 	Global.Active_Interactive_Item = null
 	Signals.s_InputHelpFree.emit("ADD_TO_BOARD_INPUT_HELP")
 	Signals.s_InputHelpFree.emit("INTERACT_INPUT_HELP")
