@@ -216,7 +216,8 @@ func save_profile() -> void:
 
 ## A method that emits a signal to check if a profile has a savefile folder setup.
 func check_profile_setup() -> void:
-	PersistenceController.s_CheckProfileSavefileFolder.emit(profile.id)
+	if profile:
+		PersistenceController.s_CheckProfileSavefileFolder.emit(profile.id)
 
 ## A method that sets a current profile to another profile. [br]
 ##

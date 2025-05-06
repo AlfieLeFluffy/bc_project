@@ -20,10 +20,13 @@ func setup_title_screen() -> void:
 	%AuthorCreditLabel.parse_bbcode("[font_size=%s][color=#%s]%s: %s" % [SettingsController.scale_font_size(24),Global.color_TextBright.to_html(),tr("AUTHOR_CREDIT_LABEL"), CreditsResource.AUTHOR_NAME])
 	%LeadCreditLabel.parse_bbcode("[font_size=%s][color=#%s]%s: %s" % [SettingsController.scale_font_size(24),Global.color_TextBright.to_html(),tr("LEAD_CREDIT_LABEL"), CreditsResource.PROJECT_SUPERVISOR_NAME])
 
+	%AudioWarningLabel.parse_bbcode("[font_size=%s][color=#%s]%s" % [SettingsController.scale_font_size(36),Global.color_TextHighlight.to_html(),tr("AUDIO_WARNING")])
+	%HeadphonesWarningLabel.parse_bbcode("[font_size=%s][color=#%s]%s" % [SettingsController.scale_font_size(24),Global.color_TextBright.to_html(),tr("HEADPHONES_WARNING")])
+
 	%TitleAnimation.texture.pause = true
 	%TitleAnimation.texture.current_frame = 0
 	%TitleLabel.modulate = Color.TRANSPARENT
-	%TitleLabel.parse_bbcode("[font_size=%s][color=#%s]%s" % [SettingsController.scale_font_size(42),Global.color_TextHighlight.to_html(),ProjectSettings.get_setting("application/config/name")])
+	%TitleLabel.parse_bbcode("[font_size=%s][color=#%s]%s" % [SettingsController.scale_font_size(64),Global.color_Highlight.to_html(),ProjectSettings.get_setting("application/config/name")])
 
 func run_title_screen() -> void:
 	timer = get_tree().create_timer(0.3)

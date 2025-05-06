@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dm41tfgcyglf2"]
+[gd_scene load_steps=21 format=3 uid="uid://dm41tfgcyglf2"]
 
 [ext_resource type="FontFile" uid="uid://vewp8sui7lbb" path="res://fonts/anonymous_pro/AnonymousPro-Bold.ttf" id="1_byxgi"]
 [ext_resource type="Script" uid="uid://dxccw4edes7vm" path="res://scenes/menus/title_screen/title_screen.gd" id="1_qrqdf"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://buj804pefd5jw" path="res://textures/icon/vut_simple.png" id="5_3osdd"]
 [ext_resource type="Texture2D" uid="uid://x8dpmegbunxq" path="res://textures/ui/animations/title_animation_frames/title_animation1.png" id="6_1g67v"]
 [ext_resource type="Script" uid="uid://bi2bk77fahmaf" path="res://scenes/menus/title_screen/title_slide_animation.gd" id="6_1wpcv"]
+[ext_resource type="Texture2D" uid="uid://bpxy1we3wr2oi" path="res://textures/symbols/headphones.png" id="6_ktm0l"]
 [ext_resource type="Texture2D" uid="uid://21jcfx8fot4s" path="res://textures/ui/animations/title_animation_frames/title_animation2.png" id="7_1wpcv"]
 [ext_resource type="Texture2D" uid="uid://2w8qey0r3tji" path="res://textures/ui/animations/title_animation_frames/title_animation3.png" id="8_00755"]
 [ext_resource type="Texture2D" uid="uid://rtnjcqns0apu" path="res://textures/ui/animations/title_animation_frames/title_animation4.png" id="10_00755"]
@@ -18,13 +19,6 @@
 
 [sub_resource type="Theme" id="Theme_lksgi"]
 default_font = ExtResource("1_byxgi")
-
-[sub_resource type="Gradient" id="Gradient_qrqdf"]
-colors = PackedColorArray(0.077, 0.077, 0.1, 1, 0.0784314, 0.0784314, 0.101961, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8ff8e"]
-gradient = SubResource("Gradient_qrqdf")
-fill_to = Vector2(0, 1)
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_ul7sw"]
 frames = 9
@@ -45,6 +39,17 @@ frame_7/texture = ExtResource("14_qsikc")
 frame_7/duration = 1.0
 frame_8/texture = ExtResource("15_ktm0l")
 frame_8/duration = 1.0
+
+[sub_resource type="Gradient" id="Gradient_qsikc"]
+offsets = PackedFloat32Array(0, 0.463855, 1)
+colors = PackedColorArray(0, 0, 0, 0.588235, 0, 0, 0, 0.196078, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ktm0l"]
+gradient = SubResource("Gradient_qsikc")
+width = 1920
+height = 1920
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="TitleScreen" type="CanvasLayer"]
 
@@ -73,13 +78,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_lksgi")
 script = ExtResource("1_qrqdf")
-slides = [NodePath("WarningMargin"), NodePath("CreditsMargin"), NodePath("TitleMargin")]
-
-[node name="Background" type="TextureRect" parent="SubViewportContainer/SubViewport/TitleScreen"]
-layout_mode = 2
-offset_right = 1920.0
-offset_bottom = 1080.0
-texture = SubResource("GradientTexture2D_8ff8e")
+slides = [NodePath("WarningMargin"), NodePath("CreditsMargin"), NodePath("AudioMargin"), NodePath("TitleMargin")]
 
 [node name="WarningMargin" type="MarginContainer" parent="SubViewportContainer/SubViewport/TitleScreen"]
 unique_name_in_owner = true
@@ -142,6 +141,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_8ff8e")
+timeout = 2.0
 
 [node name="Centering" type="HBoxContainer" parent="SubViewportContainer/SubViewport/TitleScreen/CreditsMargin"]
 layout_mode = 2
@@ -234,8 +234,57 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="AudioMargin" type="MarginContainer" parent="SubViewportContainer/SubViewport/TitleScreen"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_8ff8e")
+
+[node name="Centering" type="HBoxContainer" parent="SubViewportContainer/SubViewport/TitleScreen/AudioMargin"]
+layout_mode = 2
+
+[node name="List" type="VBoxContainer" parent="SubViewportContainer/SubViewport/TitleScreen/AudioMargin/Centering"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.5
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="AudioWarningTextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/TitleScreen/AudioMargin/Centering/List"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 450)
+layout_mode = 2
+texture = ExtResource("6_ktm0l")
+stretch_mode = 5
+
+[node name="AudioWarningLabel" type="RichTextLabel" parent="SubViewportContainer/SubViewport/TitleScreen/AudioMargin/Centering/List"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+bbcode_enabled = true
+text = "AUDIO_WARNING"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HeadphonesWarningLabel" type="RichTextLabel" parent="SubViewportContainer/SubViewport/TitleScreen/AudioMargin/Centering/List"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+bbcode_enabled = true
+text = "HEADPHONES_WARNING"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="TitleMargin" type="MarginContainer" parent="SubViewportContainer/SubViewport/TitleScreen"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -243,6 +292,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_1wpcv")
+
+[node name="TitleBackground" type="TextureRect" parent="SubViewportContainer/SubViewport/TitleScreen/TitleMargin"]
+unique_name_in_owner = true
+modulate = Color(0.507, 0.689, 0.78, 0.0980392)
+custom_minimum_size = Vector2(0, 450)
+layout_mode = 2
+texture = SubResource("AnimatedTexture_ul7sw")
+stretch_mode = 6
+
+[node name="TitleFadeBackground" type="TextureRect" parent="SubViewportContainer/SubViewport/TitleScreen/TitleMargin"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = SubResource("GradientTexture2D_ktm0l")
 
 [node name="Ordering" type="VBoxContainer" parent="SubViewportContainer/SubViewport/TitleScreen/TitleMargin"]
 layout_mode = 2
@@ -260,7 +323,7 @@ unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 bbcode_enabled = true
-text = "EPILEPSY_SEIZURE_WARNING_NAME"
+text = "Game Name"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
