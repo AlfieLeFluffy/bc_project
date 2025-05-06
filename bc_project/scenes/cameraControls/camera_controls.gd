@@ -67,9 +67,9 @@ func set_camera_global_position(vector: Vector2) -> void:
 func set_camera_tracked_node(node: Node) -> void:
 	trackedNode = node
 
-## Method for setting the [param trackedNode] to a node of name [param nodeName] in the group defined by name [param Global.cameraFocusName].
+## Method for setting the [param trackedNode] to a node of name [param nodeName] in the group defined by name [param Global.CAMERA_FOCUS_GROUP_NAME].
 func set_camera_tracked_node_by_name(nodeName: String) -> void:
-	var nodes: Array = get_tree().get_nodes_in_group(Global.cameraFocusName)
+	var nodes: Array = get_tree().get_nodes_in_group(Global.CAMERA_FOCUS_GROUP_NAME)
 	var node: Node = GameController.find_node_by_name_in_array(nodes, nodeName)
 	if node != null:
 		set_camera_tracked_node(node)

@@ -1,7 +1,7 @@
 class_name MainMenuCameraController extends Node2D
 
 ## Variable keeping last inputed mouse position  
-@export_range(0.0,1.0,0.01) var ration: float = 0.05
+@export_range(0.0,1.0,0.01) var ration: float = 0.03
 
 ## Variable keeping last inputed mouse position  
 var mousePosition: Vector2

@@ -37,13 +37,6 @@ offset_bottom = -8.0
 grow_horizontal = 2
 size_flags_horizontal = 3
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Labels"]
-layout_mode = 2
-offset_right = 48.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="Label" type="RichTextLabel" parent="CanvasLayer/Labels"]
 unique_name_in_owner = true
 z_index = 255

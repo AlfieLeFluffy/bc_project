@@ -1,7 +1,7 @@
 extends Control
 
 @export_group("Character Names")
-@export var characterLeftName: String = Global.mainCharacterName
+@export var characterLeftName: String = Global.PLAYER_CHARACTER_NAME
 @export var characterRightName: String
 
 @export_group("Fade/Talking Colors")

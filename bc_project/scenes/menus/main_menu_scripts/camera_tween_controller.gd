@@ -1,7 +1,7 @@
 class_name CameraTweenController extends Node2D
 
 @export_range(0.0,5.0,0.1) var duration: float = 1.5
-@export var startPosition: Vector2 = Vector2(0.0,-300.0)
+@export var startPosition: Vector2 = Vector2(0.0,-100.0)
 @export var endPosition: Vector2 = Vector2(0.0,0.0)
 
 var tween: Tween

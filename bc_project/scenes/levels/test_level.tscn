@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=4 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=106 format=4 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Script" uid="uid://cmlgg6dxih77f" path="res://scenes/levels/level_controller.gd" id="1_t01cb"]
 [ext_resource type="PackedScene" uid="uid://ddrrl1gryxkup" path="res://scenes/characters/player/player_character.tscn" id="1_wpgi4"]
@@ -63,10 +63,17 @@ label = "Dishes"
 callables = Array[ExtResource("4_0e4k1")]([SubResource("Resource_ywsp3")])
 metadata/_custom_type_script = "uid://ds5xamger8e1m"
 
+[sub_resource type="Resource" id="Resource_e6x8h"]
+script = ExtResource("2_2orbd")
+combination = "TEST_TEXT_NAME001TestComputer001"
+label = "Password"
+callables = Array[ExtResource("4_0e4k1")]([])
+metadata/_custom_type_script = "uid://ds5xamger8e1m"
+
 [sub_resource type="Resource" id="Resource_fi7ie"]
 script = ExtResource("4_26rt0")
 case = "TestLevel"
-clues = Array[ExtResource("2_2orbd")]([SubResource("Resource_7sogp")])
+clues = Array[ExtResource("2_2orbd")]([SubResource("Resource_7sogp"), SubResource("Resource_e6x8h")])
 metadata/_custom_type_script = "uid://cbddpgqvggdxf"
 
 [sub_resource type="Resource" id="Resource_rnt0l"]
@@ -238,7 +245,7 @@ metadata/_custom_type_script = "uid://dr74pa52badlv"
 
 [sub_resource type="Resource" id="Resource_dgc65"]
 script = ExtResource("23_trjr1")
-name = "Test Computer"
+name = "TestComputer"
 type = 0
 state = true
 login = true
@@ -307,7 +314,7 @@ metadata/_custom_type_script = "uid://cigg6mv4soq7y"
 
 [sub_resource type="Resource" id="Resource_3s0xg"]
 script = ExtResource("16_2qb3d")
-npcName = "Ribli"
+npcName = "TestNPC"
 spritesheet = ExtResource("36_0e4k1")
 frameVector = Vector2(1, 1)
 description = ""

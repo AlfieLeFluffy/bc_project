@@ -23,10 +23,10 @@ int get_position(vec4 color) {
 }
 
 void fragment() {
-	
+
 	vec4 color = texture(TEXTURE, UV);
 	ivec2 recolorSize = textureSize(recolor,0);
-	
+
 	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
 	float outline = 0.0;
 

@@ -21,7 +21,7 @@ var castAhead: RayCast2D
 """
 
 func _ready() -> void:
-	castAhead = $"../../CastAhead"
+	castAhead = $"../../Raycasts/CastAhead"
 	Signals.connect("start_npc_conversation_state", start_conversation)
 
 func Enter() -> void:
