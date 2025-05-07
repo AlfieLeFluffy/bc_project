@@ -39,6 +39,7 @@ func _local_process(delta: float):
 # Active function if no dialog detected
 func _interact_function(event: InputEvent) -> void:
 	if locked:
+		GameController.play_quick_text_effect_default("LOCKED_HINT")
 		AudioManager.play_sound("sfx/locked")
 		return
 	

@@ -10,9 +10,9 @@ func _ready() -> void:
 	
 	self.mouse_entered.connect(stretch)
 	self.mouse_exited.connect(reset)
+	originalSize = size
 
 func stretch() -> void:
-	originalSize = size
 	if self.has_focus():
 		self.release_focus()
 	if tween:

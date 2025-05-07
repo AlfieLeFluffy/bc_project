@@ -23,8 +23,8 @@ GODOT_CREDIT_LABEL,Made in Godot Engine 4.x.,Vytvořeno v Godot Engine 4.x.
 VUT_CREDIT_LABEL,As part of VUT FIT bachelor's work,Jako součástí VUT FIT bakálářské práce
 AUTHOR_CREDIT_LABEL,Created by,Vytvořeno
 LEAD_CREDIT_LABEL,Project lead,Projekt veden
-AUDIO_WARNING,This game uses Audio,Tato hra používá Audio
-HEADPHONES_WARNING,Headphones are Recommended,Sluchátka jsou Doporučena
+AUDIO_WARNING,This game uses audio.,Tato hra používá audio.
+HEADPHONES_WARNING,Headphones are recommended.,Sluchátka jsou doporučena.
 TEST_SCENE,Test Scene,Testovací Scéna
 CONTINUE_BUTTON,Continue,Pokračovat
 SAVE_BUTTON,Save Game,Uložit Hru
@@ -109,3 +109,4 @@ ACTIVE_TASK_LABEL,Active Tasks,Aktivní Úkoly
 FINISHED_TASK_LABEL,Finished Tasks,Hotové Úkoly
 TIMELINESHFT_HINT,Timeline Shift,Skok na Linku
 FORESEE_HINT,Timeline Foresee,Prohlédnout do Linky
+LOCKED_HINT,Locked!,Zamčeno!

@@ -31,14 +31,17 @@ const preloaded_TimelineShiftEffect = preload("res://scenes/screenEffects/timeli
 const preloaded_FadeInEffect = preload("res://scenes/screenEffects/fade_in_effect.tscn")
 ## A constant containing a preloaded scene of a screen effect [FadeOutEffect]
 const preloaded_FadeOutEffect = preload("res://scenes/screenEffects/fade_out_effect.tscn")
+## A constant containing a preloaded scene of a screen effect [FadeOutEffect]
+const preloaded_QuickTextEffect = preload("res://scenes/screenEffects/quick_text_effect.tscn")
 
 ## An enum definition for the possible screen effects
-enum e_ScreenEffectType {TIMELINE_SHIFT,FADE_IN,FADE_OUT}
+enum e_ScreenEffectType {TIMELINE_SHIFT,FADE_IN,FADE_OUT, QUICK_TEXT}
 ## A constant dictionary holding the reference to the preloaded screen effects 
 const SCREEN_EFFECTS_DICTIONARY: Dictionary = {
 	e_ScreenEffectType.TIMELINE_SHIFT : preloaded_TimelineShiftEffect,
 	e_ScreenEffectType.FADE_IN: preloaded_FadeInEffect,
 	e_ScreenEffectType.FADE_OUT: preloaded_FadeOutEffect,
+	e_ScreenEffectType.QUICK_TEXT: preloaded_QuickTextEffect,
 }
 #endregion
 
@@ -102,6 +105,8 @@ var cameraControls: Node
 var achievementsMenu: AchievementsMenu
 ## A variable holding the [GameOver] scene instance
 var gameOver: GameOverScreen
+## A variable holding the [QuickTextEffect] scene instance
+var quickTextEffect: QuickTextEffect
 #endregion
 #endregion
 
@@ -492,6 +497,22 @@ func play_screen_text_effect(_input: String, _lineTimeout: float = 0.1, _charact
 	effect.finishTimeout = _finishTimeout
 	get_tree().current_scene.add_child(effect)
 	effect.visible = true
+
+## A method that specifically plays the [QuickTextEffect] screen effect with default settings. [br]
+func play_quick_text_effect(_input: String, _timeout: float = 1.0, _fontSize: int = 48, _color: Color = Global.color_Highlight) -> void:
+	if quickTextEffect:
+		quickTextEffect.queue_free()
+	quickTextEffect = preloaded_QuickTextEffect.instantiate()
+	quickTextEffect.text = _input
+	quickTextEffect.timeout = _timeout
+	quickTextEffect.fontSize = _fontSize
+	quickTextEffect.color = _color
+	get_tree().current_scene.add_child(quickTextEffect)
+	quickTextEffect.visible = true
+
+## A method that specifically plays the [ScreenTextEffect] screen effect with all its parameters. [br]
+func play_quick_text_effect_default(_input: String) -> void:
+	play_quick_text_effect(_input)
 
 ## Overrides [peram node] [memeber node.material] with a fade object shader. [br]
 ## Sets starting and ending alpha value based on [param start] paramenter. [br]
