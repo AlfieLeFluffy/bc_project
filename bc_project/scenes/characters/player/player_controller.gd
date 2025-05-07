@@ -26,8 +26,10 @@ func _ready() -> void:
 """
 func _unhandled_input(event: InputEvent) -> void:
 	mousePosition = get_global_mouse_position()
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump"):
 		jump = true
+	if Input.is_action_just_released("jump"):
+		jump = false
 
 	direction = Input.get_axis("ui_left", "ui_right")
 
@@ -37,9 +39,8 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	
 	# Handle jump.
-	if jump:
+	if jump and is_on_floor():
 		velocity.y = jumpVelocity
-		jump = false
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.

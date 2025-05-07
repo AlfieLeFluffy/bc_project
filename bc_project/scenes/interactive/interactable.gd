@@ -86,8 +86,9 @@ func _input(event: InputEvent) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and active:
 		if check_line_of_sight():
-			for callable in interactableResource.callables:
-				callable.run(self)
+			if interactableResource.callables:
+				for callable in interactableResource.callables:
+					callable.run(self)
 			_interact_function(event)
 	elif event.is_action_pressed("add_to_board") and active:
 		if check_line_of_sight():

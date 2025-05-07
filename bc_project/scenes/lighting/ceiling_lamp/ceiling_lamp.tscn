@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b2ynbvxgxg38d" path="res://textures/lightMaps/radialLight.png" id="3_rwgkq"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ls3e4"]
-polygon = PackedVector2Array(-2, 7, 2, 7, 0, 6)
+polygon = PackedVector2Array(-2, 7, 3, 7, 1, 6, 0, 6)
 
 [node name="ceiling_lamp" type="Node2D" groups=["Light"]]
 script = ExtResource("1_ip2ye")
@@ -19,7 +19,7 @@ position = Vector2(15, 14)
 color = Color(0.570332, 0.499661, 0.307287, 1)
 range_item_cull_mask = 3
 shadow_enabled = true
-shadow_filter = 2
+shadow_filter = 1
 shadow_item_cull_mask = 3
 texture = ExtResource("3_rwgkq")
 texture_scale = 0.5
