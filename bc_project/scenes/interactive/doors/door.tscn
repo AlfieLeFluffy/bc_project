@@ -176,12 +176,6 @@ inverted = false
 collisionChange = Vector2(18, 0)
 interactableResource = SubResource("Resource_oeasd")
 
-[node name="Labels" parent="." index="0"]
-offset_left = 0.0
-offset_top = -55.0
-offset_right = 48.0
-offset_bottom = -45.0
-
 [node name="CollisionShape2D" parent="." index="1"]
 unique_name_in_owner = true
 shape = SubResource("RectangleShape2D_mq2eq")

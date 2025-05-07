@@ -39,6 +39,7 @@ func _local_process(delta: float):
 # Active function if no dialog detected
 func _interact_function(event: InputEvent) -> void:
 	if locked:
+		AudioManager.play_sound("sfx/locked")
 		return
 	
 	opened = not opened
@@ -49,6 +50,12 @@ func update_door() -> void:
 	%StaticCollision.set_deferred("process_mode",[Node.PROCESS_MODE_INHERIT,Node.PROCESS_MODE_DISABLED][int(opened)])
 	
 	update_collision_shape()
+	
+	if opened:
+		AudioManager.play_sound("sfx/opening")
+	else:
+		AudioManager.play_sound("sfx/closing")
+	
 	await get_tree().create_timer(0.15).timeout
 	%ClosedOccluder.visible = not opened
 
