@@ -110,22 +110,22 @@ func create_profile() -> void:
 
 #region Control Signal Methods
 func _on_choose_profile_button_pressed() -> void:
-	%ProfilesList.visible = not %ProfilesList.visible
+	%ProfileSelectionWindow.popup()
 
 func _on_profiles_list_item_clicked(index: int, at_position: Vector2, mouse_button_index: int) -> void:
 	selectedProfile = profileMirror[%ProfilesList.get_item_text(index)] 
 	if mouse_button_index == MOUSE_BUTTON_LEFT:
 		GameController.set_profile(selectedProfile)
-		%ProfilesList.visible = false
+		%ProfileSelectionWindow.hide()
 	elif mouse_button_index == MOUSE_BUTTON_RIGHT:
 		%ProfileDeletionConfirmation.dialog_text = "%s\n%s" % [tr("PROFILE_DELETION_CONFIRMATION"),selectedProfile.profileName]
 		%ProfileDeletionConfirmation.popup()
 
-func _on_profile_deletion_confirmation_canceled() -> void:
-	%ProfilesList.visible = false
+func _on_profile_deletion_confirmation_canceled() -> void:	
+	%ProfileSelectionWindow.hide()
 
 func _on_profile_deletion_confirmation_confirmed() -> void:
-	%ProfilesList.visible = false
+	%ProfileSelectionWindow.hide()
 	GameController.delete_profile(selectedProfile.id)
 
 func _on_create_profile_button_pressed() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b2vbyl6277p6b"]
+[gd_scene load_steps=21 format=3 uid="uid://b2vbyl6277p6b"]
 
 [ext_resource type="Script" uid="uid://cyp36x1yqve82" path="res://scenes/menus/main_menu.gd" id="1_7ttt2"]
 [ext_resource type="Script" uid="uid://cekilgjtyqkou" path="res://scenes/menus/main_menu_scripts/camera_tween_controller.gd" id="1_50h1w"]
@@ -27,6 +27,38 @@ fill_to = Vector2(0, 1)
 RichTextLabel/constants/shadow_offset_x = 4
 RichTextLabel/constants/shadow_offset_y = 4
 RichTextLabel/constants/shadow_outline_size = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bh4e2"]
+bg_color = Color(0.215686, 0.215686, 0.278431, 1)
+corner_radius_top_left = 20
+corner_radius_bottom_right = 20
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3w8rc"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uxao6"]
+bg_color = Color(0.172549, 0.172549, 0.223529, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.372549, 0.811765, 0.901961, 1)
+corner_radius_top_left = 20
+corner_radius_bottom_right = 20
+corner_detail = 1
+
+[sub_resource type="Theme" id="Theme_vr0hv"]
+ItemList/constants/h_separation = 14
+ItemList/constants/line_separation = 4
+ItemList/constants/v_separation = 8
+ItemList/styles/focus = null
+ItemList/styles/hovered = SubResource("StyleBoxFlat_bh4e2")
+ItemList/styles/hovered_selected = null
+ItemList/styles/hovered_selected_focus = null
+ItemList/styles/panel = SubResource("StyleBoxFlat_3w8rc")
+ItemList/styles/selected = null
+PopupPanel/styles/panel = SubResource("StyleBoxFlat_uxao6")
 
 [node name="MainMenuRoot" type="Node2D"]
 
@@ -203,11 +235,10 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 
 [node name="ProfileMenu" type="VBoxContainer" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn"]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("11_bh4e2")
-alignment = 2
 
 [node name="ProfileLabel" type="RichTextLabel" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/ProfileMenu"]
 unique_name_in_owner = true
@@ -220,12 +251,6 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="ProfilesList" type="ItemList" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/ProfileMenu"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-auto_height = true
 
 [node name="ChooseProfileButton" type="Button" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/ProfileMenu"]
 unique_name_in_owner = true
@@ -274,6 +299,26 @@ horizontal_alignment = 2
 vertical_alignment = 2
 script = ExtResource("5_imvie")
 
+[node name="ProfileSelectionWindow" type="PopupPanel" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl"]
+unique_name_in_owner = true
+title = "Select Profile"
+position = Vector2i(400, 850)
+size = Vector2i(50, 50)
+theme = SubResource("Theme_vr0hv")
+
+[node name="ProfilesList" type="ItemList" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/ProfileSelectionWindow"]
+unique_name_in_owner = true
+clip_contents = false
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 44.0
+offset_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+auto_width = true
+auto_height = true
+text_overrun_behavior = 0
+
 [node name="ProfileDeletionConfirmation" type="ConfirmationDialog" parent="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl"]
 unique_name_in_owner = true
 initial_position = 5
@@ -302,9 +347,9 @@ size_flags_vertical = 3
 [connection signal="pressed" from="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/MainButtons/AchievementsButton" to="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl" method="_on_achievements_button_pressed"]
 [connection signal="pressed" from="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/MainButtons/SettingsButton" to="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/MainButtons/QuitButton" to="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl" method="_on_quit_button_pressed"]
-[connection signal="item_clicked" from="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/ProfileMenu/ProfilesList" to="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl" method="_on_profiles_list_item_clicked"]
 [connection signal="pressed" from="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/ProfileMenu/ChooseProfileButton" to="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl" method="_on_choose_profile_button_pressed"]
 [connection signal="pressed" from="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/LeftColumn/ProfileMenu/CreateProfileButton" to="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl" method="_on_create_profile_button_pressed"]
+[connection signal="item_clicked" from="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/ProfileSelectionWindow/ProfilesList" to="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl" method="_on_profiles_list_item_clicked"]
 [connection signal="canceled" from="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/ProfileDeletionConfirmation" to="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl" method="_on_profile_deletion_confirmation_canceled"]
 [connection signal="confirmed" from="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/ProfileDeletionConfirmation" to="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl" method="_on_profile_deletion_confirmation_confirmed"]
 [connection signal="confirmed" from="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl/ProfileCreationConfirmation" to="MainMenuCanvasLayer/SubViewportContainer/SubViewport/MainMenuControl" method="_on_profile_creation_confirmation_confirmed"]

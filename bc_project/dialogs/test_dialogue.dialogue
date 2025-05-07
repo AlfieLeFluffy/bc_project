@@ -4,7 +4,7 @@ Alfie: Oh, a thick mug!
 Thick Mug: Yes, that is me!
 Alfie: You can talk?
 Thick Mug: Of course!
-do Signals.s_CameraTrackedNodeSetByName.emit("Test Computer")
+do Signals.s_CameraTrackedNodeSetByName.emit("TestComputer")
 Thick Mug: Hey, look at the that computer
 Thick Mug: That is some important computer
 do Signals.s_CameraTrackedNodeSetPlayer.emit()
