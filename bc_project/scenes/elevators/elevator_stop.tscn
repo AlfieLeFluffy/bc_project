@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://be7qeot0dv5s1"]
+
+[ext_resource type="Script" uid="uid://3go56002adfa" path="res://scenes/elevators/elevator_stop.gd" id="1_buvlu"]
+[ext_resource type="Texture2D" uid="uid://c5myykfymy105" path="res://textures/elevator/elevator_stop_automated_door.png" id="2_52kc1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5vd2"]
+atlas = ExtResource("2_52kc1")
+region = Rect2(6, 0, 6, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rp3aq"]
+atlas = ExtResource("2_52kc1")
+region = Rect2(0, 0, 6, 75)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2hn1j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5vd2")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rp3aq")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_buvlu"]
+polygon = PackedVector2Array(-1, -75, 1, -75, 1, 0, -1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_52kc1"]
+size = Vector2(2, 75)
+
+[node name="ElevatorStop" type="Node2D"]
+script = ExtResource("1_buvlu")
+
+[node name="AutomatedDoorSprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -37.5)
+sprite_frames = SubResource("SpriteFrames_2hn1j")
+animation = &"closed"
+
+[node name="DoorOcclusion" type="LightOccluder2D" parent="."]
+unique_name_in_owner = true
+occluder = SubResource("OccluderPolygon2D_buvlu")
+occluder_light_mask = 3
+
+[node name="DoorCollision" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+
+[node name="DoorCollisionShape" type="CollisionShape2D" parent="DoorCollision"]
+unique_name_in_owner = true
+position = Vector2(0, -37.5)
+shape = SubResource("RectangleShape2D_52kc1")

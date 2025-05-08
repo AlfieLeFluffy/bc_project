@@ -2,36 +2,30 @@ class_name Elevator extends Node2D
 
 #region Veriables
 @export var resource: ElevatorResource
+@export var stopsArray: Array[ElevatorStop]
 #endregion
 
 #region Setup Methods
 func _ready():
-	if resource.currentStop == "" and not resource.stops.is_empty():
-		resource.currentStop = resource.stops.keys()[0]
+	setup_elevator_stops()
+	
 	if resource.currentStop != "":
-		%ElevatorCabin.position = resource.stops[resource.currentStop]
+		%ElevatorCabin.position = Vector2(0,resource.stops[resource.currentStop].position.y)
 	
 	Signals.s_ElevatorMoveToKey.connect(move_to_stop_key)
 	Signals.s_ElevatorMoveToVector.connect(move_to_stop_vector)
 	
 	setup_cabin()
 	
-	if resource.currentStop and resource.movingToStop:
+	if resource.movingToStop:
 		var timeout: float = resource.startupTimeout
 		resource.startupTimeout = 0.0
 		move_to_stop(resource.movingToStop)
 		resource.startupTimeout = timeout
-	
-#endregion
 
-#region Runtime Methods
-func _unhandled_input(event: InputEvent) -> void:
-	pass
-
-func _physics_process(delta: float) -> void:
-	if resource.active and resource.movementJitters:
-		if randi_range(1,100-resource.movementJitterFrequency) <= 1:
-			pass
+func setup_elevator_stops() -> void:
+	for stop in stopsArray:
+		resource.stops[stop.stopName] = stop
 
 #endregion
 
@@ -70,14 +64,19 @@ func check_input_valid(id: String, stop, force: bool = false) -> bool:
 
 #region Elevator Managment Methods
 func move_to_stop(key: String) -> void:
+	if resource.stops.has(resource.currentStop):
+		resource.stops[resource.currentStop].set_active(false)
 	resource.movingToStop = key
 	await set_cabin(true)
-	setup_tween(%ElevatorCabin.position, resource.stops[key])
+	setup_tween(%ElevatorCabin.position, Vector2(0,resource.stops[key].position.y))
 	await run_tween()
 	resource.currentStop = key
 	await set_cabin(false)
+	resource.stops[resource.currentStop].set_active(true)
 
 func move_to_vector(vector: Vector2) -> void:
+	if resource.stops.has(resource.currentStop):
+		resource.stops[resource.currentStop].set_active(false)
 	resource.stops["vector"] = vector
 	resource.movingToStop = "vector"
 	await set_cabin(true)
@@ -93,6 +92,8 @@ func setup_cabin() -> void:
 	%RightOccluder.visible = not (resource.openning & resource.OPENNING_RIGHT)
 	%LeftWallSprite.visible = not (resource.openning & resource.OPENNING_LEFT)
 	%RightWallSprite.visible = not (resource.openning & resource.OPENNING_RIGHT)
+	%AutomatedDoorLeft.visible = (resource.openning & resource.OPENNING_LEFT)
+	%AutomatedDoorRight.visible = (resource.openning & resource.OPENNING_RIGHT)
 
 func set_cabin(state: bool) -> bool:
 	resource.set_active(state)
@@ -102,7 +103,17 @@ func set_cabin(state: bool) -> bool:
 	%DoorsRightCollision.disabled = (resource.openning & resource.OPENNING_RIGHT) and not resource.active
 	%LeftOccluder.visible = resource.active or not (resource.openning & resource.OPENNING_LEFT)
 	%RightOccluder.visible = resource.active or not (resource.openning & resource.OPENNING_RIGHT)
+	set_automated_doors(state)
 	return true
+
+func set_automated_doors(state: bool):
+	var animation: String = "open"
+	if state:
+		animation = "closed"
+	if (resource.openning & resource.OPENNING_LEFT):
+		%AutomatedDoorLeft.play(animation)
+	if (resource.openning & resource.OPENNING_RIGHT):
+		%AutomatedDoorRight.play(animation)
 
 func setup_tween(start: Vector2, end: Vector2) -> void:
 	var duration: float = culculate_duration(start.y,end.y)

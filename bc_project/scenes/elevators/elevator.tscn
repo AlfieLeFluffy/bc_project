@@ -1,13 +1,42 @@
-[gd_scene load_steps=19 format=3 uid="uid://532uypmhsvde"]
+[gd_scene load_steps=24 format=3 uid="uid://532uypmhsvde"]
 
 [ext_resource type="Script" uid="uid://dnshcxe2qnfyb" path="res://scenes/elevators/elevator.gd" id="1_5ow4g"]
 [ext_resource type="Texture2D" uid="uid://j4ta2nqnwu7p" path="res://textures/elevator/elevator_cabin.png" id="2_5ow4g"]
 [ext_resource type="Texture2D" uid="uid://boeaysh3gvt16" path="res://textures/elevator/elevator_cabin_left_wall.png" id="3_d1wvi"]
 [ext_resource type="PackedScene" uid="uid://3yf1o1vsjr65" path="res://scenes/interactive/buttons/elevatorMenu/elevator_menu.tscn" id="3_tvmrj"]
 [ext_resource type="Texture2D" uid="uid://c85uohh8rar6l" path="res://textures/elevator/elevator_cabin_right_wall.png" id="4_s2aph"]
+[ext_resource type="Texture2D" uid="uid://c26qc3djvduba" path="res://textures/elevator/elevator_cabin_automated_door.png" id="5_x8lrt"]
 [ext_resource type="PackedScene" uid="uid://bh6uc1j2up7ya" path="res://scenes/lighting/ceiling_light_flat/ceiling_light_flat.tscn" id="6_d1wvi"]
 [ext_resource type="Shader" uid="uid://dcwirhvnici6e" path="res://shaders/outline_recolor.gdshader" id="7_kdwdv"]
 [ext_resource type="Script" uid="uid://cwo1tqjwxj8gd" path="res://scenes/interactive/interactable_resource.gd" id="8_1i5pn"]
+[ext_resource type="Script" uid="uid://djuch7xw2rnf2" path="res://scripts/callable/callable_resource.gd" id="9_3fr4o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_avj1k"]
+atlas = ExtResource("5_x8lrt")
+region = Rect2(0, 0, 4, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f34yk"]
+atlas = ExtResource("5_x8lrt")
+region = Rect2(4, 0, 4, 83)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q7r2c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_avj1k")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f34yk")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kdwdv"]
 polygon = PackedVector2Array(53, 0, 51, 0, 51, 1, -51, 1, -51, 0, -53, 0, -53, 4, -51, 4, -51, 5, -49, 5, -49, 6, -47, 6, -47, 7, -29, 7, -29, 9, -28, 9, -28, 11, -27, 11, -27, 12, -28, 12, -28, 13, -27, 13, -27, 14, -26, 14, -26, 16, -22, 16, -22, 14, -21, 14, -21, 13, -20, 13, -20, 12, -21, 12, -21, 11, -20, 11, -20, 9, -19, 9, -19, 7, -16, 7, -16, 9, -15, 9, -15, 10, -14, 10, -14, 11, 14, 11, 14, 10, 15, 10, 15, 9, 16, 9, 16, 7, 19, 7, 19, 9, 20, 9, 20, 11, 21, 11, 21, 12, 20, 12, 20, 13, 21, 13, 21, 14, 22, 14, 22, 16, 26, 16, 26, 14, 27, 14, 27, 13, 28, 13, 28, 12, 27, 12, 27, 11, 28, 11, 28, 9, 29, 9, 29, 7, 47, 7, 47, 6, 49, 6, 49, 5, 51, 5, 51, 4, 53, 4)
@@ -46,6 +75,7 @@ item_name = "ELEVATOR_MENU_NAME"
 description = "ELEVATOR_MENU_DESCRIPTION"
 detective_board_toggle = false
 show_labels = false
+callables = Array[ExtResource("9_3fr4o")]([])
 metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
 
 [node name="Elevator" type="Node2D" groups=["Persistent"]]
@@ -70,6 +100,21 @@ unique_name_in_owner = true
 visible = false
 position = Vector2(48, 0)
 texture = ExtResource("4_s2aph")
+
+[node name="AutomatedDoorLeft" type="AnimatedSprite2D" parent="ElevatorCabin/CabinSprite"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(-52, -2)
+sprite_frames = SubResource("SpriteFrames_q7r2c")
+animation = &"closed"
+flip_h = true
+
+[node name="AutomatedDoorRight" type="AnimatedSprite2D" parent="ElevatorCabin/CabinSprite"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(52, -1.5)
+sprite_frames = SubResource("SpriteFrames_q7r2c")
+animation = &"closed"
 
 [node name="ceiling_light_flat" parent="ElevatorCabin" instance=ExtResource("6_d1wvi")]
 position = Vector2(0, -84)

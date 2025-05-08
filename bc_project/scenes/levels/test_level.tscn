@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=4 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=107 format=4 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Script" uid="uid://cmlgg6dxih77f" path="res://scenes/levels/level_controller.gd" id="1_t01cb"]
 [ext_resource type="PackedScene" uid="uid://ddrrl1gryxkup" path="res://scenes/characters/player/player_character.tscn" id="1_wpgi4"]
@@ -43,6 +43,7 @@
 [ext_resource type="PackedScene" uid="uid://cs1y6cfdd6whw" path="res://scenes/interactive/combination/version/small_safe.tscn" id="33_mrmmo"]
 [ext_resource type="Script" uid="uid://dumlknmceceuw" path="res://scenes/interactive/combination/resource/combination_lock_resource.gd" id="33_y0fbb"]
 [ext_resource type="Script" uid="uid://dpd17umyvuqu3" path="res://scenes/triggers/versions/screen_text_trigger_area.gd" id="35_6g246"]
+[ext_resource type="PackedScene" uid="uid://be7qeot0dv5s1" path="res://scenes/elevators/elevator_stop.tscn" id="35_26rt0"]
 [ext_resource type="Texture2D" uid="uid://dlo6oyplrtp4v" path="res://textures/characters/test_npc_0.png" id="36_0e4k1"]
 [ext_resource type="Script" uid="uid://bo8kxkmnuh65x" path="res://scenes/triggers/versions/area_trigger_autosave.gd" id="36_rnt0l"]
 [ext_resource type="Script" uid="uid://bi25vgavxjlp6" path="res://scenes/triggers/versions/area_trigger_game_over.gd" id="38_6g246"]
@@ -99,16 +100,8 @@ speed = 70.0
 active = false
 startupTimeout = true
 startupTimeoutDuration = 0.3
-movementJitters = false
-movementJitterFrequency = 20.0
-movementJittersOffset = Vector2(-5, 5)
 currentStop = "10"
 movingToStop = "11"
-stops = {
-"10": Vector2i(0, 0),
-"11": Vector2i(0, -176),
-"12": Vector2i(0, -352)
-}
 metadata/_custom_type_script = "uid://bm15idovcdu8y"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6g246"]
@@ -200,7 +193,7 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/row = -1
 
-[sub_resource type="Resource" id="Resource_2orbd"]
+[sub_resource type="Resource" id="Resource_ib3ll"]
 resource_local_to_scene = true
 script = ExtResource("24_frqwj")
 textName = "TEST_TEXT_NAME"
@@ -359,16 +352,8 @@ speed = 70.0
 active = false
 startupTimeout = true
 startupTimeoutDuration = 0.3
-movementJitters = false
-movementJitterFrequency = 20.0
-movementJittersOffset = Vector2(-5, 5)
 currentStop = ""
 movingToStop = ""
-stops = {
-"1": Vector2(0, 0),
-"2": Vector2(0, -176),
-"3": Vector2(0, -352)
-}
 metadata/_custom_type_script = "uid://bm15idovcdu8y"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1oo6r"]
@@ -429,16 +414,8 @@ speed = 70.0
 active = false
 startupTimeout = true
 startupTimeoutDuration = 0.3
-movementJitters = false
-movementJitterFrequency = 20.0
-movementJittersOffset = Vector2(-5, 5)
 currentStop = ""
 movingToStop = ""
-stops = {
-"10": Vector2(0, 0),
-"11": Vector2(0, -176),
-"12": Vector2(0, -352)
-}
 metadata/_custom_type_script = "uid://bm15idovcdu8y"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ywsp3"]
@@ -485,21 +462,13 @@ speed = 70.0
 active = false
 startupTimeout = true
 startupTimeoutDuration = 0.3
-movementJitters = false
-movementJitterFrequency = 20.0
-movementJittersOffset = Vector2(-5, 5)
 currentStop = ""
 movingToStop = ""
-stops = {
-"1": Vector2(0, 0),
-"2": Vector2(0, -176),
-"3": Vector2(0, -352)
-}
 metadata/_custom_type_script = "uid://bm15idovcdu8y"
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rnt0l"]
 
-[node name="testScene" type="Node2D"]
+[node name="testScene" type="Node"]
 script = ExtResource("1_t01cb")
 clues = SubResource("Resource_fi7ie")
 tasks = ExtResource("6_26rt0")
@@ -613,7 +582,7 @@ position = Vector2(255, 297)
 [node name="PaperOnWall" parent="Timeline001/Interactive/Texts" instance=ExtResource("23_l5ajp")]
 material = SubResource("ShaderMaterial_ib3ll")
 position = Vector2(585, 294)
-textRosource = SubResource("Resource_2orbd")
+textRosource = SubResource("Resource_ib3ll")
 
 [node name="BookSpine" parent="Timeline001/Interactive/Texts" instance=ExtResource("17_0myxw")]
 material = SubResource("ShaderMaterial_nci5d")
@@ -647,9 +616,25 @@ resource = SubResource("Resource_smp8r")
 
 [node name="Elevators" type="Node2D" parent="Timeline001"]
 
-[node name="Elevator" parent="Timeline001/Elevators" instance=ExtResource("29_0nxvq")]
+[node name="Elevator" parent="Timeline001/Elevators" node_paths=PackedStringArray("stopsArray") instance=ExtResource("29_0nxvq")]
 position = Vector2(-64, 512)
 resource = SubResource("Resource_5vl2c")
+stopsArray = [NodePath("ElevatorStop10"), NodePath("ElevatorStop11"), NodePath("ElevatorStop12")]
+
+[node name="ElevatorStop10" parent="Timeline001/Elevators/Elevator" instance=ExtResource("35_26rt0")]
+position = Vector2(64, 2)
+stopName = "10"
+flip = true
+
+[node name="ElevatorStop11" parent="Timeline001/Elevators/Elevator" instance=ExtResource("35_26rt0")]
+position = Vector2(64, -176)
+stopName = "11"
+flip = true
+
+[node name="ElevatorStop12" parent="Timeline001/Elevators/Elevator" instance=ExtResource("35_26rt0")]
+position = Vector2(64, -352)
+stopName = "12"
+flip = true
 
 [node name="NPCs" type="Node2D" parent="Timeline001"]
 
@@ -940,8 +925,13 @@ position = Vector2(-88, 476)
 [node name="AreaTriggerGameOver" type="Area2D" parent="."]
 position = Vector2(0, 1080)
 script = ExtResource("38_6g246")
+gameOverType = null
 maxUses = -1
+timesUsed = null
 collisionShape = SubResource("WorldBoundaryShape2D_rnt0l")
+triggerOn = null
+triggerObject = null
+callables = null
 metadata/_custom_type_script = "uid://bi25vgavxjlp6"
 
 [connection signal="area_entered" from="Timeline001/Interactive/Switches/light_switch" to="Timeline001/Interactive/Switches/light_switch" method="_on_area_entered"]
