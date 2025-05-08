@@ -51,6 +51,9 @@ func fade_in(skip: bool = false) -> void:
 func _on_test_scene_button_pressed() -> void:
 	GameController.s_ChangeScene.emit("test_level")
 
+func _on_new_game_pressed() -> void:
+	GameController.s_ChangeScene.emit("case_level_001")
+
 func _on_load_button_pressed() -> void:
 	PersistenceController.s_PersistenceMenuOpen.emit(PersistenceMenu.e_Mode.LOAD)
 
@@ -108,9 +111,11 @@ func setup_controls_profile(active: bool) -> void:
 		tip = ""
 	
 	%TestSceneButton.tooltip_text = tip
+	%NewGameButton.tooltip_text = tip
 	%AchievementsButton.tooltip_text = tip
 	%LoadButton.tooltip_text = tip
 	%TestSceneButton.disabled = not active
+	%NewGameButton.disabled = not active
 	%AchievementsButton.disabled = not active
 	%LoadButton.disabled = not active
 	

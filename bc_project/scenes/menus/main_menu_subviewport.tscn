@@ -116,6 +116,17 @@ text = "TEST_SCENE"
 clip_text = true
 script = ExtResource("6_bwf2p")
 
+[node name="NewGameButton" type="Button" parent="MainMenuSubViewport/MainMenuControl/LeftColumn/MainButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../LoadButton")
+theme = ExtResource("5_u6fkr")
+disabled = true
+text = "NEW_GAME_BUTTON"
+clip_text = true
+script = ExtResource("6_bwf2p")
+
 [node name="LoadButton" type="Button" parent="MainMenuSubViewport/MainMenuControl/LeftColumn/MainButtons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 50)
@@ -352,6 +363,7 @@ cancel_button_text = "CANCEL_BUTTON"
 
 [connection signal="focus_entered" from="MainMenuSubViewport/MainMenuControl" to="MainMenuSubViewport/MainMenuControl" method="_on_focus_entered"]
 [connection signal="pressed" from="MainMenuSubViewport/MainMenuControl/LeftColumn/MainButtons/TestSceneButton" to="MainMenuSubViewport/MainMenuControl" method="_on_test_scene_button_pressed"]
+[connection signal="pressed" from="MainMenuSubViewport/MainMenuControl/LeftColumn/MainButtons/NewGameButton" to="MainMenuSubViewport/MainMenuControl" method="_on_new_game_pressed"]
 [connection signal="pressed" from="MainMenuSubViewport/MainMenuControl/LeftColumn/MainButtons/LoadButton" to="MainMenuSubViewport/MainMenuControl" method="_on_load_button_pressed"]
 [connection signal="pressed" from="MainMenuSubViewport/MainMenuControl/LeftColumn/MainButtons/AchievementsButton" to="MainMenuSubViewport/MainMenuControl" method="_on_achievements_button_pressed"]
 [connection signal="pressed" from="MainMenuSubViewport/MainMenuControl/LeftColumn/MainButtons/SettingsButton" to="MainMenuSubViewport/MainMenuControl" method="_on_settings_button_pressed"]
