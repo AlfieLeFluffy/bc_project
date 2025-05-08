@@ -358,8 +358,10 @@ func change_scene_no_load(sceneName:String) -> bool:
 	
 ## A method that checks if the current scene is a gameplay scene or not.
 func check_nongameplay_scene() -> bool:
-	var current_scene_name = get_tree().current_scene.name
-	if current_scene_name in Global.NON_GAMEPLAY_SCENE_NAMES:
+	var currerntScene: Node = get_tree().current_scene
+	if not currerntScene is LevelController:
+		return true
+	if currerntScene.name in Global.NON_GAMEPLAY_SCENE_NAMES:
 		return true
 	return false
 
@@ -513,6 +515,10 @@ func play_quick_text_effect(_input: String, _timeout: float = 1.0, _fontSize: in
 ## A method that specifically plays the [ScreenTextEffect] screen effect with all its parameters. [br]
 func play_quick_text_effect_default(_input: String) -> void:
 	play_quick_text_effect(_input)
+
+## A method that specifically plays the [ScreenTextEffect] screen effect with all its parameters. [br]
+func play_quick_text_effect_error(_input: String) -> void:
+	play_quick_text_effect(_input,1.0,48,Color.RED)
 
 ## Overrides [peram node] [memeber node.material] with a fade object shader. [br]
 ## Sets starting and ending alpha value based on [param start] paramenter. [br]

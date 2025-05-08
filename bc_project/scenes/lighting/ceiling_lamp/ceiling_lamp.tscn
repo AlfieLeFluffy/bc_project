@@ -11,11 +11,11 @@ polygon = PackedVector2Array(-2, 7, 3, 7, 1, 6, 0, 6)
 script = ExtResource("1_ip2ye")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(16, 16)
+position = Vector2(1, 16)
 texture = ExtResource("1_lbw0p")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(15, 14)
+position = Vector2(0, 14)
 color = Color(0.570332, 0.499661, 0.307287, 1)
 range_item_cull_mask = 3
 shadow_enabled = true
@@ -25,6 +25,5 @@ texture = ExtResource("3_rwgkq")
 texture_scale = 0.5
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-position = Vector2(15, 0)
 occluder = SubResource("OccluderPolygon2D_ls3e4")
 occluder_light_mask = 6

@@ -547,10 +547,10 @@ position = Vector2(691, 304)
 [node name="Lights" type="Node2D" parent="Timeline001/Interactive"]
 
 [node name="ceiling_lamp" parent="Timeline001/Interactive/Lights" instance=ExtResource("6_g4tah")]
-position = Vector2(366, 192)
+position = Vector2(382, 192)
 
 [node name="ceiling_lamp3" parent="Timeline001/Interactive/Lights" instance=ExtResource("6_g4tah")]
-position = Vector2(113, 192)
+position = Vector2(129, 192)
 
 [node name="Buttons" type="Node2D" parent="Timeline001/Interactive"]
 

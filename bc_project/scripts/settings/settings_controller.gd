@@ -123,7 +123,22 @@ func get_setting(section: String, key: String):
 	if not config.has_section_key(section,key):
 		return null
 	
-	return config.get_value(section,key)
+	return config.get_value(section, key)
+	
+## A method to set a value of a config setting. The method checks for existence
+## of the target config ahead. [br]
+##
+## - [param section] is a [String] argument.
+## - [param key] is a [String] argument.
+func set_setting(section: String, key: String, value):
+	if not config:
+		return
+	
+	if not config.has_section_key(section,key):
+		return
+	
+	config.set_value(section, key, value)
+	save_settings()
 
 ## A method that return the current selected profile ID. If the config does not 
 ## have this section it return an empty [String]
