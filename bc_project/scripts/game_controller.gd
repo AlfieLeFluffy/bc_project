@@ -69,7 +69,7 @@ signal s_AchievementsMenuOpen()
 ## If the current profile already has an achievement of [param type] acquired then nothing happens.[br]
 ##
 ## - [param type] is an enum type stored in the [AchievementsResource] refering to a specific achieveemnt.
-signal s_AchievementSet(type: AchievementsResource.type)
+signal s_AchievementSet(type: AchievementsResource.e_AchievementType)
 
 ## Signal used to set the visibility of the scene's main overlay node. [br]
 ##
@@ -86,7 +86,7 @@ signal s_ScreenEffectPlay(effectType: e_ScreenEffectType)
 signal s_ChangeScene(sceneName: String)
 ## Signal that notifies the [GameController] autoload script that a game over trigger was reached.
 ## This initializes the script to set the game into a game over state (releases camera controlls, shows a game over screen, ect.)
-signal s_GameOver(type: GameOverResource.type)
+signal s_GameOver(type: GameOverResource.e_GameOverType)
 #endregion
 
 #region Runtime Variables

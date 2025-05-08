@@ -1,25 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://fsjxx8xynty8"]
+[gd_scene load_steps=5 format=3 uid="uid://fsjxx8xynty8"]
 
 [ext_resource type="Script" uid="uid://b0412pr1cj8ug" path="res://scenes/gameOver/game_over_screen.gd" id="1_rrw8v"]
-[ext_resource type="Shader" uid="uid://dxfj0o43t2h3w" path="res://scenes/gameOver/game_over_screen.gdshader" id="2_4qxvc"]
 [ext_resource type="Theme" uid="uid://bqtjul82stgbk" path="res://settings/button_theme.tres" id="3_bu1uy"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_4qxvc"]
-noise_type = 0
-frequency = 0.02
-fractal_type = 0
-fractal_gain = 0.6
-domain_warp_enabled = true
-domain_warp_type = 2
-domain_warp_amplitude = 40.0
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bu1uy"]
-noise = SubResource("FastNoiseLite_4qxvc")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bu1uy"]
-shader = ExtResource("2_4qxvc")
-shader_parameter/color = Color(0.878473, 0, 0.117334, 1)
-shader_parameter/genTexture = SubResource("NoiseTexture2D_bu1uy")
 
 [sub_resource type="Gradient" id="Gradient_4qxvc"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -43,7 +25,6 @@ grow_vertical = 2
 
 [node name="Background" type="TextureRect" parent="Screen"]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_bu1uy")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -1,13 +1,13 @@
 class_name AreaTriggerGameOver extends AreaTrigger
 
-@export var gameOverType: GameOverResource.type 
+@export var gameOverType: GameOverResource.e_GameOverType 
 
 #region Runtime Method Override
 func _colision_enter_player(player: Player) -> void:
 	if gameOverType:
 		GameController.s_GameOver.emit(gameOverType)
 	else:
-		GameController.s_GameOver.emit(GameOverResource.type.CLIPPED)
+		GameController.s_GameOver.emit(GameOverResource.e_GameOverType.CLIPPED)
 
 func _colision_enter_npc(npc: NPC) -> void:
 	pass

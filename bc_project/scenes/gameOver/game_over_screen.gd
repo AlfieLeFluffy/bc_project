@@ -12,8 +12,6 @@ func _ready() -> void:
 	
 	if info.has_all(["name","description"]):
 		%GameOverText.text = GAME_OVER_TEXT_FORMAT % [tr(info["name"]),tr(info["description"])]
-	if info.has("color"):
-		%Background.material.set("shader_parameter/color", info["color"])
 
 func _unhandled_input(event: InputEvent) -> void:
 	if visible:

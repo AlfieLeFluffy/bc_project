@@ -23,7 +23,7 @@ func setup_menu():
 	
 	achievements = profile.achievements
 	
-	var all = achievements.type.duplicate()
+	var all = achievements.e_AchievementType.duplicate()
 	for attained in achievements.acquiredAchievements:
 		add_line(attained, all, true)
 	
@@ -38,7 +38,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_menu"):
 		close_menu()
 	
-func add_line(type: AchievementsResource.type, all: Dictionary, attained:bool) -> void:
+func add_line(type: AchievementsResource.e_AchievementType, all: Dictionary, attained:bool) -> void:
 	var line = preloadAchievementLine.instantiate()
 	line.info = achievements.information[type]
 	line.attained = attained
