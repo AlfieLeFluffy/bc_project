@@ -46,11 +46,16 @@ LOAD_BUTTON,Load,Načíst
 REWRITE_BUTTON,Rewrite,Přepsat
 DELETE_BUTTON,Delete,Smazat
 SUBMIT_BUTTON,Submit,Vyzkoušet
+PRERELEASE_LABEL,Prerelease State,Předběžná Stav
 VERSION_LABEL,Version,Verze
 PROFILE_LABEL,Profile:,Profil:
+PROFILE_CREATION_LABEL,"In-game profiles are used for separation of savefiles and tracking of achievements and statistics. They are not used for tracking users and are fully local.
+
+Select a name for the new profile:","Herní profily jsou použity pro separování uložených her a sledování úspěchů a statistic. Profili se nepoužívají pro sledování uživatelů a jsou plně lokální.
+
+Vyberte jméno pro nový učet:"
+PROFILE_SELECTION_LABEL,"Select a profile with 'LMB' and delete profile with 'RMB':","Vyberte profile s 'LMB' a smažte profile s 'RMB':"
 PROFILE_MISSING_LABEL,No profile selected,Nevybrán žádný profil
-PROFILE_REQUIRED_TOOLTIP,This feature requires a profile. Profiles keeps track of not only save files but also achievements.,Tahle akce vyžaduje profil. Profil uchovává nejen uložené hry ale také úspěchy.
-PROFILE_NO_SAVEFILES_TOOLTIP,This profiles has no saved games to load.,"Tento profil nemá žádné uložené hry, které by mohl načíst."
 ENGLISH_LANGUAGE,English,Angličtina
 CZECH_LANGUAGE,Czech,Čěština
 GAMEPLAY_TAB,Gameplay,Hratelnost

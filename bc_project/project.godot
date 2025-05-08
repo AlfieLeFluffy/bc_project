@@ -220,7 +220,7 @@ highlight={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://translation/main.cz.translation", "res://translation/main.en.translation", "res://translation/ribli.cz.translation", "res://translation/ribli.en.translation", "res://translation/object.cz.translation", "res://translation/object.en.translation", "res://translation/text.cz.translation", "res://translation/text.en.translation", "res://translation/computer.cz.translation", "res://translation/computer.en.translation", "res://translation/achievement.cz.translation", "res://translation/achievement.en.translation", "res://translation/gameover.cz.translation", "res://translation/gameover.en.translation")
+locale/translations=PackedStringArray("res://translation/main.cz.translation", "res://translation/main.en.translation", "res://translation/ribli.cz.translation", "res://translation/ribli.en.translation", "res://translation/object.cz.translation", "res://translation/object.en.translation", "res://translation/text.cz.translation", "res://translation/text.en.translation", "res://translation/computer.cz.translation", "res://translation/computer.en.translation", "res://translation/achievement.cz.translation", "res://translation/achievement.en.translation", "res://translation/gameover.cz.translation", "res://translation/gameover.en.translation", "res://translation/hint.cz.translation", "res://translation/hint.en.translation", "res://translation/error.cz.translation", "res://translation/error.en.translation")
 locale/translations_pot_files=PackedStringArray("res://dialogs/test_dialogue.dialogue", "res://dialogs/test_npc.dialogue", "res://dialogs/ribli.dialogue", "res://dialogs/test_area_trigger.dialogue", "res://dialogs/test_area_trigger_one_use.dialogue")
 
 [layer_names]

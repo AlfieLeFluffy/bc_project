@@ -1,0 +1,3 @@
+key,en,cz
+PROFILE_REQUIRED_TOOLTIP,This feature requires a profile. Profiles keeps track of not only save files but also achievements.,Tahle akce vyžaduje profil. Profil uchovává nejen uložené hry ale také úspěchy.
+PROFILE_NO_SAVEFILES_TOOLTIP,This profiles has no saved games to load.,"Tento profil nemá žádné uložené hry, které by mohl načíst."
