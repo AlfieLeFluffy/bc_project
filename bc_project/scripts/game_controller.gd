@@ -234,6 +234,8 @@ func set_profile(_profile: ProfileResource) -> void:
 
 ## A method that clears the current profile.
 func clear_profile():
+	if SettingsController.get_setting("Profile","ID") == profile.id:
+		SettingsController.set_setting("Profile","ID","")
 	profile = null
 	s_ProfileLoaded.emit()
 

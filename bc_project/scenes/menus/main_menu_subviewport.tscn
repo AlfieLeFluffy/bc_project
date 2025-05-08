@@ -1,0 +1,366 @@
+[gd_scene load_steps=15 format=3 uid="uid://btlr73tdavx5t"]
+
+[ext_resource type="Theme" uid="uid://f6rijghqdfrw" path="res://settings/main_menu_theme.tres" id="1_jv43b"]
+[ext_resource type="Script" uid="uid://cyp36x1yqve82" path="res://scenes/menus/main_menu.gd" id="2_ryymy"]
+[ext_resource type="Texture2D" uid="uid://buovekmkjq4fv" path="res://textures/icon/icon.svg" id="3_wwjch"]
+[ext_resource type="Script" uid="uid://ddxatermq2axu" path="res://scenes/menus/main_menu_scripts/title_text.gd" id="4_qr3bv"]
+[ext_resource type="Theme" uid="uid://c74vqer2j3y74" path="res://settings/main_menu_button_theme.tres" id="5_u6fkr"]
+[ext_resource type="Script" uid="uid://cv5mje71vm85n" path="res://scripts/button/stretch_button.gd" id="6_bwf2p"]
+[ext_resource type="Texture2D" uid="uid://c4d1odq88m3nh" path="res://textures/symbols/asterisk.png" id="7_nfb3u"]
+[ext_resource type="Theme" uid="uid://dbce18qngmr8p" path="res://settings/main_menu_profile_theme.tres" id="8_1yt80"]
+[ext_resource type="Theme" uid="uid://583q85mv5ni" path="res://settings/main_menu_profile_label_theme.tres" id="9_l63cm"]
+[ext_resource type="Script" uid="uid://bw0qpyt0ke700" path="res://scenes/menus/main_menu_version_label.tres.gd" id="10_73gon"]
+[ext_resource type="Theme" uid="uid://cekoodp7oprwo" path="res://settings/popup_dialog_theme.tres" id="11_7bv4m"]
+
+[sub_resource type="Gradient" id="Gradient_uxao6"]
+colors = PackedColorArray(0.0784314, 0.0784314, 0.101961, 1, 0.0784314, 0.0784314, 0.101961, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vr0hv"]
+gradient = SubResource("Gradient_uxao6")
+width = 1920
+height = 1080
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Theme" id="Theme_88kup"]
+RichTextLabel/constants/shadow_offset_x = 4
+RichTextLabel/constants/shadow_offset_y = 4
+RichTextLabel/constants/shadow_outline_size = 6
+
+[node name="MainMenuSubViewportContainer" type="SubViewportContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="MainMenuSubViewport" type="SubViewport" parent="."]
+unique_name_in_owner = true
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="FadeInBackground" type="TextureRect" parent="MainMenuSubViewport"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_vr0hv")
+
+[node name="MainMenuControl" type="Control" parent="MainMenuSubViewport"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jv43b")
+script = ExtResource("2_ryymy")
+
+[node name="LeftColumn" type="VBoxContainer" parent="MainMenuSubViewport/MainMenuControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.002
+anchor_right = 0.182
+anchor_bottom = 1.0
+offset_top = 2.16
+offset_right = 0.559967
+grow_vertical = 0
+alignment = 1
+
+[node name="Fill" type="Control" parent="MainMenuSubViewport/MainMenuControl/LeftColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TitleOrder" type="VBoxContainer" parent="MainMenuSubViewport/MainMenuControl/LeftColumn"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="MainMenuSubViewport/MainMenuControl/LeftColumn/TitleOrder"]
+custom_minimum_size = Vector2(0, 125)
+layout_mode = 2
+texture = ExtResource("3_wwjch")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TitleText" type="RichTextLabel" parent="MainMenuSubViewport/MainMenuControl/LeftColumn/TitleOrder"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_88kup")
+bbcode_enabled = true
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_qr3bv")
+
+[node name="Fill2" type="Control" parent="MainMenuSubViewport/MainMenuControl/LeftColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MainButtons" type="VBoxContainer" parent="MainMenuSubViewport/MainMenuControl/LeftColumn"]
+layout_mode = 2
+
+[node name="TestSceneButton" type="Button" parent="MainMenuSubViewport/MainMenuControl/LeftColumn/MainButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../LoadButton")
+theme = ExtResource("5_u6fkr")
+disabled = true
+text = "TEST_SCENE"
+clip_text = true
+script = ExtResource("6_bwf2p")
+
+[node name="LoadButton" type="Button" parent="MainMenuSubViewport/MainMenuControl/LeftColumn/MainButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../TestSceneButton")
+focus_neighbor_bottom = NodePath("../AchievementsButton")
+theme = ExtResource("5_u6fkr")
+disabled = true
+text = "LOAD_BUTTON"
+clip_text = true
+script = ExtResource("6_bwf2p")
+
+[node name="AchievementsButton" type="Button" parent="MainMenuSubViewport/MainMenuControl/LeftColumn/MainButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../LoadButton")
+focus_neighbor_bottom = NodePath("../SettingsButton")
+theme = ExtResource("5_u6fkr")
+disabled = true
+text = "ACHIEVEMENTS_BUTTON"
+clip_text = true
+script = ExtResource("6_bwf2p")
+
+[node name="AchievementsFlair" type="TextureRect" parent="MainMenuSubViewport/MainMenuControl/LeftColumn/MainButtons/AchievementsButton"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.956
+anchor_top = -0.12
+anchor_right = 1.02
+anchor_bottom = 0.2
+offset_right = -3.05176e-05
+texture = ExtResource("7_nfb3u")
+stretch_mode = 3
+
+[node name="SettingsButton" type="Button" parent="MainMenuSubViewport/MainMenuControl/LeftColumn/MainButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../AchievementsButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+theme = ExtResource("5_u6fkr")
+text = "SETTINGS_BUTTON"
+clip_text = true
+script = ExtResource("6_bwf2p")
+
+[node name="QuitButton" type="Button" parent="MainMenuSubViewport/MainMenuControl/LeftColumn/MainButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../SettingsButton")
+theme = ExtResource("5_u6fkr")
+text = "QUIT_BUTTON"
+clip_text = true
+script = ExtResource("6_bwf2p")
+
+[node name="Fill3" type="Control" parent="MainMenuSubViewport/MainMenuControl/LeftColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="ProfileMenu" type="VBoxContainer" parent="MainMenuSubViewport/MainMenuControl/LeftColumn"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("8_1yt80")
+
+[node name="ProfileLabel" type="RichTextLabel" parent="MainMenuSubViewport/MainMenuControl/LeftColumn/ProfileMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("9_l63cm")
+bbcode_enabled = true
+text = "Profile:
+Test"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ChooseProfileButton" type="Button" parent="MainMenuSubViewport/MainMenuControl/LeftColumn/ProfileMenu"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+theme = ExtResource("5_u6fkr")
+theme_override_font_sizes/font_size = 20
+text = "CHOOSE_PROFILE_BUTTON"
+script = ExtResource("6_bwf2p")
+
+[node name="CreateProfileButton" type="Button" parent="MainMenuSubViewport/MainMenuControl/LeftColumn/ProfileMenu"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+theme = ExtResource("5_u6fkr")
+theme_override_font_sizes/font_size = 20
+text = "CREATE_PROFILE_BUTTON"
+script = ExtResource("6_bwf2p")
+
+[node name="Fill4" type="Control" parent="MainMenuSubViewport/MainMenuControl/LeftColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="RightColumn" type="VBoxContainer" parent="MainMenuSubViewport/MainMenuControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.792
+anchor_top = -0.002
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.640137
+offset_top = 2.16
+offset_right = 0.00012207
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="VersionLabel" type="RichTextLabel" parent="MainMenuSubViewport/MainMenuControl/RightColumn"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "VERSION_LABEL - 0.0.0"
+fit_content = true
+horizontal_alignment = 2
+vertical_alignment = 2
+script = ExtResource("10_73gon")
+
+[node name="PrereleaseLabel" type="RichTextLabel" parent="MainMenuSubViewport/MainMenuControl/RightColumn"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "PRERELEASE_LABEL"
+fit_content = true
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="ProfileSelectionWindow" type="Popup" parent="MainMenuSubViewport/MainMenuControl"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+title = "PROFILE_SELECTION_TITLE"
+initial_position = 4
+size = Vector2i(550, 350)
+borderless = false
+theme = ExtResource("11_7bv4m")
+
+[node name="Control" type="Control" parent="MainMenuSubViewport/MainMenuControl/ProfileSelectionWindow"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Column" type="VBoxContainer" parent="MainMenuSubViewport/MainMenuControl/ProfileSelectionWindow/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 350.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="ProfileSelectionLabel" type="RichTextLabel" parent="MainMenuSubViewport/MainMenuControl/ProfileSelectionWindow/Control/Column"]
+layout_mode = 2
+text = "PROFILE_SELECTION_LABEL"
+fit_content = true
+scroll_active = false
+
+[node name="ProfilesList" type="ItemList" parent="MainMenuSubViewport/MainMenuControl/ProfileSelectionWindow/Control/Column"]
+unique_name_in_owner = true
+layout_mode = 2
+auto_width = true
+auto_height = true
+text_overrun_behavior = 0
+
+[node name="ProfileDeletionConfirmation" type="ConfirmationDialog" parent="MainMenuSubViewport/MainMenuControl"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+initial_position = 5
+theme = ExtResource("11_7bv4m")
+dialog_text = "PROFILE_DELETION_CONFIRMATION"
+
+[node name="ProfileCreationConfirmation" type="ConfirmationDialog" parent="MainMenuSubViewport/MainMenuControl"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+title = "PROFILE_CREACTION_CONFIRMATION"
+initial_position = 5
+size = Vector2i(820, 350)
+unresizable = true
+theme = ExtResource("11_7bv4m")
+dialog_text = "PROFILE_CREATION_LABEL"
+dialog_hide_on_ok = false
+dialog_autowrap = true
+
+[node name="Control" type="Control" parent="MainMenuSubViewport/MainMenuControl/ProfileCreationConfirmation"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 810.0
+offset_bottom = 297.0
+
+[node name="ProfileCreationLineEdit" type="LineEdit" parent="MainMenuSubViewport/MainMenuControl/ProfileCreationConfirmation/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 118.0
+offset_top = -47.0
+offset_right = -138.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+placeholder_text = "Profile Name"
+alignment = 1
+caret_blink = true
+
+[node name="NotificationConfirmation" type="ConfirmationDialog" parent="MainMenuSubViewport/MainMenuControl"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+title = "NOTIFICATION_TITLE"
+initial_position = 4
+size = Vector2i(800, 250)
+theme = ExtResource("11_7bv4m")
+ok_button_text = "CREATE_PROFILE_BUTTON"
+dialog_text = "NOTIFICATION_TEXT"
+dialog_autowrap = true
+cancel_button_text = "CANCEL_BUTTON"
+
+[connection signal="focus_entered" from="MainMenuSubViewport/MainMenuControl" to="MainMenuSubViewport/MainMenuControl" method="_on_focus_entered"]
+[connection signal="pressed" from="MainMenuSubViewport/MainMenuControl/LeftColumn/MainButtons/TestSceneButton" to="MainMenuSubViewport/MainMenuControl" method="_on_test_scene_button_pressed"]
+[connection signal="pressed" from="MainMenuSubViewport/MainMenuControl/LeftColumn/MainButtons/LoadButton" to="MainMenuSubViewport/MainMenuControl" method="_on_load_button_pressed"]
+[connection signal="pressed" from="MainMenuSubViewport/MainMenuControl/LeftColumn/MainButtons/AchievementsButton" to="MainMenuSubViewport/MainMenuControl" method="_on_achievements_button_pressed"]
+[connection signal="pressed" from="MainMenuSubViewport/MainMenuControl/LeftColumn/MainButtons/SettingsButton" to="MainMenuSubViewport/MainMenuControl" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MainMenuSubViewport/MainMenuControl/LeftColumn/MainButtons/QuitButton" to="MainMenuSubViewport/MainMenuControl" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MainMenuSubViewport/MainMenuControl/LeftColumn/ProfileMenu/ChooseProfileButton" to="MainMenuSubViewport/MainMenuControl" method="_on_choose_profile_button_pressed"]
+[connection signal="pressed" from="MainMenuSubViewport/MainMenuControl/LeftColumn/ProfileMenu/CreateProfileButton" to="MainMenuSubViewport/MainMenuControl" method="_on_create_profile_button_pressed"]
+[connection signal="item_clicked" from="MainMenuSubViewport/MainMenuControl/ProfileSelectionWindow/Control/Column/ProfilesList" to="MainMenuSubViewport/MainMenuControl" method="_on_profiles_list_item_clicked"]
+[connection signal="canceled" from="MainMenuSubViewport/MainMenuControl/ProfileDeletionConfirmation" to="MainMenuSubViewport/MainMenuControl" method="_on_profile_deletion_confirmation_canceled"]
+[connection signal="confirmed" from="MainMenuSubViewport/MainMenuControl/ProfileDeletionConfirmation" to="MainMenuSubViewport/MainMenuControl" method="_on_profile_deletion_confirmation_confirmed"]
+[connection signal="confirmed" from="MainMenuSubViewport/MainMenuControl/ProfileCreationConfirmation" to="MainMenuSubViewport/MainMenuControl" method="_on_profile_creation_confirmation_confirmed"]
+[connection signal="text_submitted" from="MainMenuSubViewport/MainMenuControl/ProfileCreationConfirmation/Control/ProfileCreationLineEdit" to="MainMenuSubViewport/MainMenuControl" method="_on_profile_creation_line_edit_text_submitted"]
+[connection signal="confirmed" from="MainMenuSubViewport/MainMenuControl/NotificationConfirmation" to="MainMenuSubViewport/MainMenuControl" method="_on_create_profile_button_pressed"]

@@ -29,6 +29,8 @@ signal s_UpdateMainOverlay()
 #region Menu Signals
 ## Signal for clearing a active state when a menu is opened.
 signal s_MenuClear()
+## Signal for notifying that the menu animation has finished.
+signal s_MenuAnimationFinished()
 #endregion
 
 #region Lights Signals

@@ -48,12 +48,19 @@ DELETE_BUTTON,Delete,Smazat
 SUBMIT_BUTTON,Submit,Vyzkoušet
 PRERELEASE_LABEL,Prerelease State,Předběžná Stav
 VERSION_LABEL,Version,Verze
+NOTIFICATION_TITLE,Notification,Upozornění
+NOTIFICATION_TEXT,"This is a early release version of the game TimeSplit for the VUT FIT Thesis submision. The game is fully playable but there may be issues with graphical or audio aspects and the game's storyline is not yet full implemented.
+
+The uses local profiles for tracking savefiles and achievements. These profiles do not track the player or any information about the player. If you wish to continue then please create a profile.","Toto je předběžná verze hry TimeSplit pro odevzdání bakalářské práce na VUT FIT. Hra je plně hratelná, ale mohou se vyskytnout problémy s grafickou nebo zvukovou stránkou a děj hry ještě není plně implementován.
+
+Hra používá lokální profily pro manipulaci s uloženými hry a achievementy. Tento profil nesleduje hráče ani žádné informace o něm. Pokud chcete pokračovat, vytvořte si prosím profil."
 PROFILE_LABEL,Profile:,Profil:
 PROFILE_CREATION_LABEL,"In-game profiles are used for separation of savefiles and tracking of achievements and statistics. They are not used for tracking users and are fully local.
 
 Select a name for the new profile:","Herní profily jsou použity pro separování uložených her a sledování úspěchů a statistic. Profili se nepoužívají pro sledování uživatelů a jsou plně lokální.
 
 Vyberte jméno pro nový učet:"
+PROFILE_SELECTION_TITLE,Select a profile,Vyberte profil
 PROFILE_SELECTION_LABEL,"Select a profile with 'LMB' and delete profile with 'RMB':","Vyberte profile s 'LMB' a smažte profile s 'RMB':"
 PROFILE_MISSING_LABEL,No profile selected,Nevybrán žádný profil
 ENGLISH_LANGUAGE,English,Angličtina

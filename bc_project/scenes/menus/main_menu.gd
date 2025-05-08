@@ -6,8 +6,6 @@ class_name MainMenuControl extends Control
 var profileMirror: Dictionary = {}
 var selectedProfile: ProfileResource
 
-signal s_CameraTweenFinished()
-
 """
 --- Setup functions
 """
@@ -16,20 +14,27 @@ func _ready() -> void:
 	fade_in_intro()
 	%MainMenuControl.visible = true
 	modulate = Color.TRANSPARENT
-	s_CameraTweenFinished.connect(fade_in)
+	Signals.s_MenuAnimationFinished.connect(fade_in)
+	Signals.s_MenuAnimationFinished.connect(setup_notifications)
 	
 	PersistenceController.s_SceneLoaded.emit()
-	GameController.s_ProfileLoaded.connect(setup_profile)
-	SettingsController.s_Retranslate.connect(setup_profile)
+	GameController.s_ProfileLoaded.connect(setup_menu)
+	SettingsController.s_Retranslate.connect(setup_menu)
 	
 	%TestSceneButton.grab_focus()
 	
-	setup_profile()
+	setup_menu()
+
+func setup_notifications() -> void:
+	if SettingsController.get_setting("Profile", "SkipIntro") == 0:
+		SettingsController.set_setting("Profile", "SkipIntro", 1)
+		%NotificationConfirmation.popup()
+	elif not GameController.profile:
+		%ProfileCreationConfirmation.popup()
 
 func fade_in_intro() -> void:
 	await get_tree().create_timer(0.5).timeout
-	GameController.fade_to_color(%FadeInBackground,Color.TRANSPARENT,1.5)
-	
+	await GameController.fade_to_color(%FadeInBackground,Color.TRANSPARENT,1.5)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton or event.is_action_pressed("interact") or event.is_action_pressed("ui_menu"):
@@ -59,52 +64,98 @@ func _on_quit_button_pressed() -> void:
 #endregion
 
 #region Profile Managemnt Methods
-func setup_profile() -> void:
+func setup_menu() -> void:#
+	setup_profile_information()
+	
+	var profileActive: bool = false
+	if GameController.profile:
+		profileActive = true
+	
+	setup_controls_profile(profileActive)
+	setup_controls_achievements(profileActive)
+	setup_controls_persistence(profileActive)
+
+func setup_profile_information() -> void:
 	var profiles: Dictionary = ProfileResource.get_available_profile_dict()
 	if profiles.is_empty():
 		%ChooseProfileButton.disabled = true
 	else:
-		profileMirror.clear()
-		%ProfilesList.clear()
-		for id in profiles.keys():
-			profileMirror[profiles[id].profileName] = profiles[id]
-			%ProfilesList.add_item(profiles[id].profileName)
-	
-	if not GameController.profile:
+		%ChooseProfileButton.disabled = false
+		setup_profile_mirror(profiles)
+		setup_profile_list()
+
+func setup_profile_mirror(profiles: Dictionary) -> void:
+	profileMirror.clear()
+	for id in profiles.keys():
+		profileMirror[profiles[id].profileName] = profiles[id]
+
+func setup_profile_list() -> void:
+	%ProfilesList.clear()
+	%ProfilesList.reset_size()
+	for id in profileMirror.keys():
+		%ProfilesList.add_item(profileMirror[id].profileName)
+
+func setup_controls_profile(active: bool) -> void:
+	if active:
+		%ProfileLabel.text = "[font_size=20][color=#%s]%s\n[/color][font_size=28][color=#%s]%s[/color]" % [Global.color_White.to_html(),tr("PROFILE_LABEL"),Global.color_TextHighlight.to_html(),GameController.profile.profileName]
+	else:
 		%ProfileLabel.text = "[color=RED]%s" % tr("PROFILE_MISSING_LABEL")
-		%TestSceneButton.disabled = true
-		%TestSceneButton.tooltip_text = "PROFILE_REQUIRED_TOOLTIP"
-		%AchievementsButton.disabled = true
-		%AchievementsButton.tooltip_text = "PROFILE_REQUIRED_TOOLTIP"
-		%LoadButton.tooltip_text = "PROFILE_REQUIRED_TOOLTIP"
-		%LoadButton.disabled = true
+	
+	var tip: String = "PROFILE_REQUIRED_TOOLTIP"
+	if active:
+		tip = ""
+	
+	%TestSceneButton.tooltip_text = tip
+	%AchievementsButton.tooltip_text = tip
+	%LoadButton.tooltip_text = tip
+	%TestSceneButton.disabled = not active
+	%AchievementsButton.disabled = not active
+	%LoadButton.disabled = not active
+	
+func setup_controls_achievements(active: bool) -> void:
+	if active:
+		if not GameController.profile.achievements:
+			return
+		if GameController.profile.achievements.get_new_achievements_count() > 0:
+			%AchievementsFlair.visible = true
+
+func setup_controls_persistence(active: bool) -> void:
+	if not active:
 		return
 	
-	%ProfileLabel.text = "[font_size=20][color=#%s]%s\n[/color][font_size=28][color=#%s]%s[/color]" % [Global.color_White.to_html(),tr("PROFILE_LABEL"),Global.color_TextHighlight.to_html(),GameController.profile.profileName]
-	%TestSceneButton.disabled = false
-	%TestSceneButton.tooltip_text = ""
-	%AchievementsButton.disabled = false
-	%AchievementsButton.tooltip_text = ""
-	if GameController.profile.achievements.get_new_achievements_count() > 0:
-		%AchievementsFlair.visible = true
+	var tip: String = "PROFILE_NO_SAVEFILES_TOOLTIP"
+	var state: bool = true
+	if PersistenceController.get_profile_savefile_count(GameController.profile.id) > 0:
+		tip = ""
+		state = false
 	
-	if GameController.profile:
-		if PersistenceController.get_profile_savefile_count(GameController.profile.id) > 0:
-			%LoadButton.tooltip_text = ""
-			%LoadButton.disabled = false
-		else:
-			%LoadButton.tooltip_text = "PROFILE_NO_SAVEFILES_TOOLTIP"
-			%LoadButton.disabled = true
+	%LoadButton.tooltip_text = tip
+	%LoadButton.disabled = state
 
 func create_profile() -> void:
 	if %ProfileCreationLineEdit.text == "":
+		GameController.play_quick_text_effect_error("ERROR_PROFILE_NAME_EMPTY")
+		%ProfileCreationLineEdit.grab_click_focus()
 		return
-	if not GameController.profile:
-		GameController.create_set_save_new_profile(%ProfileCreationLineEdit.text)
-	else:
-		GameController.create_save_new_profile(%ProfileCreationLineEdit.text)
-	%ProfileCreationLineEdit.text = ""
-	setup_profile()
+	
+	if check_profile_exists(%ProfileCreationLineEdit.text):
+		GameController.play_quick_text_effect_error("ERROR_PROFILE_EXISTS")
+		%ProfileCreationLineEdit.clear()
+		%ProfileCreationLineEdit.grab_click_focus()
+		return
+	
+	var newProfileName: String = %ProfileCreationLineEdit.text
+	%ProfileCreationConfirmation.hide()
+	%ProfileCreationLineEdit.clear()
+	GameController.create_set_save_new_profile(newProfileName)
+	setup_menu()
+	
+
+func check_profile_exists(newProfileName: String) -> bool:
+	var newID = ProfileResource.create_id(newProfileName)
+	if newID in profileMirror:
+		return true
+	return false
 
 #endregion
 
@@ -129,16 +180,15 @@ func _on_profile_deletion_confirmation_confirmed() -> void:
 	GameController.delete_profile(selectedProfile.id)
 
 func _on_create_profile_button_pressed() -> void:
+	%ProfileCreationLineEdit.grab_click_focus()
 	%ProfileCreationConfirmation.popup()
 
 func _on_profile_creation_confirmation_confirmed() -> void:
 	create_profile()
 
 func _on_profile_creation_line_edit_text_submitted(new_text: String) -> void:
-	%ProfileCreationConfirmation.confirmed.emit()
-	%ProfileCreationConfirmation.hide()
-#endregion
-
+	create_profile()
 
 func _on_focus_entered() -> void:
 	%TestSceneButton.grab_focus()
+#endregion

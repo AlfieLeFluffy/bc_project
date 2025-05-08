@@ -19,4 +19,4 @@ func _input(event: InputEvent) -> void:
 			tween.custom_step(1.0)
 
 func tween_done() -> void:
-	%MainMenuControl.s_CameraTweenFinished.emit()
+	Signals.s_MenuAnimationFinished.emit()

@@ -40,7 +40,7 @@ const SCENE_PATHS: Dictionary = {
 	"test_level": "res://scenes/levels/test_level.tscn"
 }
 ## A constant holding name of all non-gameplay scene names
-const NON_GAMEPLAY_SCENE_NAMES: Array[String] = ["MainMenuRoot", "TitleScreen"]
+const NON_GAMEPLAY_SCENE_NAMES: Array[String] = ["MainMenu", "TitleScreen"]
 #endregion
 
 """
