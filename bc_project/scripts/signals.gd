@@ -2,8 +2,12 @@ extends Node
 ## An autoload script that hold all globally accesable signals that are not tied to another autoload script.
 
 #region Timeline Shift Signals
+## A signal used to set if the timeline controller is working or not.
+signal s_SetTimelineControllerActive(state: bool)
 ## A signal that triggers the timeline shift screen effect.
 signal s_TimelineShift()
+## A signal that triggers the timeline shift screen effect.
+signal s_ShiftToTimeline(id: String)
 #endregion
 
 #region Camera Controls Signals
@@ -24,6 +28,8 @@ signal s_CameraTrackedNodeSetEmpty()
 #region Overlay Signals
 ## Signal for forcing a Main Overlay update
 signal s_UpdateMainOverlay()
+## Signal for forcing a Main Overlay update
+signal s_SetMainOverlayTimeline(state: bool)
 #endregion
 
 #region Menu Signals

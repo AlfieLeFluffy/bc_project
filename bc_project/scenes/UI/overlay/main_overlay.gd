@@ -4,7 +4,7 @@ extends Control
 --- Runtime Variables
 """
 
-var shiftTimeout = true
+var activeTimeline: bool = false
 
 """
 --- Setup Methods
@@ -13,18 +13,22 @@ var shiftTimeout = true
 func _ready() -> void:
 	update_UI()
 	Signals.s_UpdateMainOverlay.connect(update_UI)
+	Signals.s_SetMainOverlayTimeline.connect(set_timeline_overlay)
 	SettingsController.s_Retranslate.connect(update_UI)
-
-"""
---- Runtime Methods
-"""
-func _process(delta: float) -> void:
-	pass
 
 """
 --- UI methods Methods
 """
+func set_timeline_overlay(state: bool) -> void:
+	activeTimeline = state
+	update_UI()
+
 func update_UI (timeline: String = "") -> void:
+	%TimelineOverlay.visible = activeTimeline
+	if not activeTimeline:
+		return
+	
+	
 	var timelineString: String = "" 
 	if timeline != "":
 		timelineString = timeline

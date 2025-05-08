@@ -17,6 +17,8 @@ var timelineSelection: TimelineSelection
 
 #region Runtime and Exported Variables
 @export_category("Timeline Setup Variables")
+## A variable that flags if the timeline controls should work or not.
+@export var active: bool = true
 ## A variable containing the current [Timeline]
 @export var current: Timeline
 ## A variable containing an array of all possible [Timeline]s
@@ -51,6 +53,8 @@ func _ready() -> void:
 	
 	current.set_active(true)
 	update_timeline_info(current)
+	Signals.s_ShiftToTimeline.connect(shift_to_timeline_id)
+	Signals.s_SetTimelineControllerActive.connect(set_timeline_controller_active)
 	PersistenceController.s_SceneLoaded.connect(setup_timeline_selection)
 
 func setup_timelines_dictionary() -> void:
@@ -59,7 +63,6 @@ func setup_timelines_dictionary() -> void:
 
 func setup_timeline_selection() -> void:
 	timelineSelection = preloaded_TimelineSelection.instantiate()
-	await GameController.mainOverlay
 	if GameController.mainOverlay:
 		timelineSelection.timelineControler = self
 		GameController.mainOverlay.add_child(timelineSelection)
@@ -82,6 +85,9 @@ func _process(delta: float) -> void:
 		timelineSelection.visible = true
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not active and (event.is_action_pressed("timeline_shift") or event.is_action_pressed("timeline_foresight")):
+		GameController.play_quick_text_effect_default("TIMELINE_DEVICE_OFF_HINT")
+		return
 	if event.is_action_pressed("timeline_shift"):
 		selectedTimeline = timelinesDictionary[current.resource.next]
 		timelineShiftKeyDown = true
@@ -94,6 +100,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		start_foresee(selectedTimeline)
 	elif event.is_action_released("timeline_foresight"):
 		end_foresee()
+
+func set_timeline_controller_active(state: bool) -> void:
+	active = state
+	update_timeline_info(current)
 #endregion
 
 
@@ -121,6 +131,13 @@ func end_selection_foresee(_destination: Timeline) -> void:
 
 
 #region Timeline Shift Methods
+## A method that calls for a timeline shift with a specific timeline id/name. [br]
+##
+## - [param id] is the id/name of the target [Timeline]. [br]
+func shift_to_timeline_id(id: String):
+	if timelinesDictionary.has(id):
+		shift(timelinesDictionary[id])
+
 ## A method that goes through the entire timeline shift sequence. [br]
 ##
 ## - [param _destination] is the selected [Timeline]. [br]
@@ -165,6 +182,7 @@ func move_camera_controls(start: Timeline, end: Timeline) -> void:
 func update_timeline_info(timeline: Timeline) -> void:
 	Global.currentTimeline = timeline
 	Signals.s_UpdateMainOverlay.emit()
+	Signals.s_SetMainOverlayTimeline.emit(active)
 #endregion
 
 

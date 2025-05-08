@@ -33,13 +33,14 @@ offset_top = -0.200001
 offset_right = -0.0800323
 offset_bottom = 0.399998
 
-[node name="Timeline" type="HBoxContainer" parent="Overlay/MainInfo"]
+[node name="TimelineOverlay" type="HBoxContainer" parent="Overlay/MainInfo"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="TimelineInfo" type="MarginContainer" parent="Overlay/MainInfo/Timeline"]
+[node name="TimelineInfo" type="MarginContainer" parent="Overlay/MainInfo/TimelineOverlay"]
 layout_mode = 2
 
-[node name="TimelineNinePatch" type="NinePatchRect" parent="Overlay/MainInfo/Timeline/TimelineInfo"]
+[node name="TimelineNinePatch" type="NinePatchRect" parent="Overlay/MainInfo/TimelineOverlay/TimelineInfo"]
 layout_mode = 2
 texture = ExtResource("2_h5tom")
 patch_margin_left = 32
@@ -47,14 +48,14 @@ patch_margin_top = 24
 patch_margin_right = 32
 patch_margin_bottom = 24
 
-[node name="LabelAlign" type="MarginContainer" parent="Overlay/MainInfo/Timeline/TimelineInfo"]
+[node name="LabelAlign" type="MarginContainer" parent="Overlay/MainInfo/TimelineOverlay/TimelineInfo"]
 layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 6
 
-[node name="TimelineLabel" type="RichTextLabel" parent="Overlay/MainInfo/Timeline/TimelineInfo/LabelAlign"]
+[node name="TimelineLabel" type="RichTextLabel" parent="Overlay/MainInfo/TimelineOverlay/TimelineInfo/LabelAlign"]
 unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
@@ -63,10 +64,10 @@ fit_content = true
 autowrap_mode = 0
 vertical_alignment = 1
 
-[node name="TimelineKeyInfo" type="MarginContainer" parent="Overlay/MainInfo/Timeline"]
+[node name="TimelineKeyInfo" type="MarginContainer" parent="Overlay/MainInfo/TimelineOverlay"]
 layout_mode = 2
 
-[node name="TimelineKeyNinePatch" type="NinePatchRect" parent="Overlay/MainInfo/Timeline/TimelineKeyInfo"]
+[node name="TimelineKeyNinePatch" type="NinePatchRect" parent="Overlay/MainInfo/TimelineOverlay/TimelineKeyInfo"]
 layout_mode = 2
 texture = ExtResource("3_lcior")
 patch_margin_left = 24
@@ -74,11 +75,11 @@ patch_margin_top = 24
 patch_margin_right = 24
 patch_margin_bottom = 24
 
-[node name="LabelAlign" type="MarginContainer" parent="Overlay/MainInfo/Timeline/TimelineKeyInfo"]
+[node name="LabelAlign" type="MarginContainer" parent="Overlay/MainInfo/TimelineOverlay/TimelineKeyInfo"]
 layout_mode = 2
 theme_override_constants/margin_right = 4
 
-[node name="TimelineKeyLabel" type="RichTextLabel" parent="Overlay/MainInfo/Timeline/TimelineKeyInfo/LabelAlign"]
+[node name="TimelineKeyLabel" type="RichTextLabel" parent="Overlay/MainInfo/TimelineOverlay/TimelineKeyInfo/LabelAlign"]
 unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
