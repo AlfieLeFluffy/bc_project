@@ -80,7 +80,10 @@ signal s_MainOverlayVisibilitySet(state: bool)
 ## - [param effectType] is an enum type that refering to a specific screen effect.
 signal s_ScreenEffectPlay(effectType: e_ScreenEffectType)
 
-
+## Signal used changing scenes. [br]
+##
+## - [param sceneName] is a [String] scene name.
+signal s_ChangeScene(sceneName: String)
 ## Signal that notifies the [GameController] autoload script that a game over trigger was reached.
 ## This initializes the script to set the game into a game over state (releases camera controlls, shows a game over screen, ect.)
 signal s_GameOver(type: GameOverResource.type)
@@ -134,6 +137,7 @@ func _ready() -> void:
 	s_AchievementSet.connect(set_achievement)
 	s_AchievementsMenuOpen.connect(open_achievements_menu)
 	
+	s_ChangeScene.connect(change_scene)
 	s_GameOver.connect(game_over)
 	
 	## Connecting [PersistenceController] signals
@@ -177,7 +181,7 @@ func quit_game() -> void:
 			get_tree().quit(0)
 
 ## A method that instantiates the  game over scene and sets that game into game over state.
-func game_over(type: GameOverResource.type) -> void:
+func game_over(type: GameOverResource.e_GameOverType) -> void:
 	if gameOver:
 		return
 	gameOver = preloaded_GameOverScreen.instantiate()
@@ -300,7 +304,7 @@ func open_achievements_menu() -> void:
 	open_popup_menu(achievementsMenu)
 
 ## A method that sets achievement for the current profile if a current profile is set.
-func set_achievement(_type: AchievementsResource.type) -> void:
+func set_achievement(_type: AchievementsResource.e_AchievementType) -> void:
 	if not profile:
 		return
 	if not profile.achievements:
@@ -339,24 +343,20 @@ func get_current_scene() -> String:
 ## A method sets up the next scene to be loaded and then calls for a loading scene change. [br]
 ##
 ## - [param sceneName] is a [String] name of the scene to be loaded. [br]
-func change_scene(sceneName:String) -> bool:
+func change_scene(sceneName:String) -> void:
 	nextSceneToLoad = Global.SCENE_PATHS[sceneName]
 	if nextSceneToLoad:
 		Global.currentScene = sceneName
 		get_tree().change_scene_to_packed(preloaded_LoadingScreen)
-		return true
-	return false
 
 ## A method that changes the scene to the next without a loading screen. [br]
 ##
 ## - [param sceneName] is a [String] name of the scene to be loaded. [br]
-func change_scene_no_load(sceneName:String) -> bool:
+func change_scene_no_load(sceneName:String) -> void:
 	nextSceneToLoad = Global.scenePaths[sceneName]
 	if nextSceneToLoad:
 		Global.currentScene = sceneName
 		get_tree().change_scene_to_packed(load(nextSceneToLoad))
-		return true
-	return false
 	
 ## A method that checks if the current scene is a gameplay scene or not.
 func check_nongameplay_scene() -> bool:

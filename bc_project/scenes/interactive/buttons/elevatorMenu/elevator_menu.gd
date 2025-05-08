@@ -13,6 +13,8 @@ var buttons: Dictionary
 
 #region Setup Methods
 func _local_ready() -> void:
+	await get_tree().create_timer(0.1).timeout
+	
 	if get_elevator():
 		setup_menu_buttons()
 		if elevator.resource.movingToStop != null:

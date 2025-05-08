@@ -17,11 +17,15 @@ func stretch() -> void:
 		self.release_focus()
 	if tween:
 		tween.kill()
+	if not is_inside_tree():
+		return
 	tween = create_tween()
 	tween.tween_property(self, "size", originalSize * Vector2(ration,1.0),0.2)
 
 func reset() -> void:
 	if tween:
 		tween.kill()
+	if not is_inside_tree() or GameController.nextSceneToLoad:
+		return
 	tween = create_tween()
 	tween.tween_property(self, "size", originalSize,0.2)

@@ -1,4 +1,7 @@
 extends Light
+
+func _local_ready() -> void:
+	set_state(circuit,initialState)
 	
 func set_state(circuitSignal: int, state: bool) -> void:
 	if circuit == circuitSignal:

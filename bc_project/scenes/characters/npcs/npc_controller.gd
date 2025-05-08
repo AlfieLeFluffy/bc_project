@@ -5,8 +5,8 @@ class_name NPC extends CharacterBody2D
 """
 #region Exported Physics Variables
 @export_group("Character Body Constants")
-@export var SPEED: int = 300.0
-@export var JUMP_VELOCITY: int = -400.0
+@export var SPEED: int = 300
+@export var JUMP_VELOCITY: int = -400
 #endregion
 
 #region Exported Resources

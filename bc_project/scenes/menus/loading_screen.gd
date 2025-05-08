@@ -13,6 +13,7 @@ var tween: Tween
 func _ready() -> void:
 	nextSceneToLoad = GameController.nextSceneToLoad
 	ResourceLoader.load_threaded_request(nextSceneToLoad)
+	GameController.nextSceneToLoad = ""
 #endregion
 
 

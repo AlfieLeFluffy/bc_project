@@ -36,18 +36,20 @@ func fade_in_intro() -> void:
 	await get_tree().create_timer(0.5).timeout
 	await GameController.fade_to_color(%FadeInBackground,Color.TRANSPARENT,1.5)
 
-func _input(event: InputEvent) -> void:
+func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton or event.is_action_pressed("interact") or event.is_action_pressed("ui_menu"):
 		fade_in(true)
 
 func fade_in(skip: bool = false) -> void:
+	if not is_inside_tree():
+		return
 	if not skip:
 		await get_tree().create_timer(fadeInTimeout).timeout
 	GameController.fade_to_color(self,Color.WHITE,fadeInDuration)
 
 #region Main Actions Managment and Signal Methods
 func _on_test_scene_button_pressed() -> void:
-	GameController.change_scene("test_level")
+	GameController.s_ChangeScene.emit("test_level")
 
 func _on_load_button_pressed() -> void:
 	PersistenceController.s_PersistenceMenuOpen.emit(PersistenceMenu.e_Mode.LOAD)

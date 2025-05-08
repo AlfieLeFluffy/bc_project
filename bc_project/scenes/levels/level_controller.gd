@@ -1,4 +1,4 @@
-class_name LevelController extends Node2D
+class_name LevelController extends Node
 
 """
 --- Level/Case Variables
