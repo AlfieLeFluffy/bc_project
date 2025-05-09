@@ -1,7 +1,7 @@
 class_name ElementResource extends Resource
 
 #region Constants
-enum elementType {NOTE,OBJECT,TEXT,FILE,PROFILE}
+enum elementType {NOTE,OBJECT,TEXT,FILE,PROFILE,DIALOGUE}
 
 const elementColor: Dictionary = {
 	ElementResource.elementType.NOTE : Color.WHITE,
@@ -9,6 +9,7 @@ const elementColor: Dictionary = {
 	ElementResource.elementType.TEXT : Color.LIME_GREEN,
 	ElementResource.elementType.FILE : Color.DARK_RED,
 	ElementResource.elementType.PROFILE : Color.WHITE,
+	ElementResource.elementType.DIALOGUE : Color.DARK_VIOLET,
 }
 
 const elementContent: Dictionary = {
@@ -17,6 +18,7 @@ const elementContent: Dictionary = {
 	ElementResource.elementType.TEXT : "res://scenes/UI/board/board_elements/elementContent/content_text.tscn",
 	ElementResource.elementType.FILE : "res://scenes/UI/board/board_elements/elementContent/content_file.tscn",
 	ElementResource.elementType.PROFILE : "res://scenes/UI/board/board_elements/elementContent/content_profile.tscn",
+	ElementResource.elementType.DIALOGUE : "res://scenes/UI/board/board_elements/elementContent/content_dialogue.tscn",
 }
 #endregion
 

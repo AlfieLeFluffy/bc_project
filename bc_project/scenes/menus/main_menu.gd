@@ -24,6 +24,7 @@ func _ready() -> void:
 	%NewGameButton.grab_focus()
 	
 	setup_menu()
+	update_developer_tools()
 
 func setup_notifications() -> void:
 	if SettingsController.get_setting("Profile", "SkipIntro") == 0:
@@ -168,7 +169,11 @@ func check_profile_exists(newProfileName: String) -> bool:
 	return false
 
 func toggle_developer_tools() -> void:
-	%TestSceneButton.visible = not %TestSceneButton.visible
+	GameController.developerMode = not GameController.developerMode
+	update_developer_tools()
+
+func update_developer_tools() -> void:
+	%TestSceneButton.visible = GameController.developerMode
 
 #endregion
 

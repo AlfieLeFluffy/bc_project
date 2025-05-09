@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://kvjsk0o7firt"]
+[gd_scene load_steps=15 format=3 uid="uid://kvjsk0o7firt"]
 
 [ext_resource type="Script" uid="uid://bnrcco68hc5bb" path="res://scripts/dialog/balloon/balloon.gd" id="1_36de5"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://cnaf52von8j8l" path="res://settings/dialogue_balloon_theme.tres" id="3_0lg70"]
 [ext_resource type="Script" uid="uid://bp47xxwic23fh" path="res://scripts/dialog/balloon/profiles_controler.gd" id="3_7poa5"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_72ixx"]
+[ext_resource type="Script" uid="uid://1mgqrog3jd68" path="res://scripts/dialog/balloon/dialogue_line_extraction.gd" id="4_h5nal"]
 [ext_resource type="Script" uid="uid://36os1j4o8q7w" path="res://scripts/dialog/dialogue_profile_resource.gd" id="5_m1t8c"]
 [ext_resource type="Texture2D" uid="uid://dbvl0gy8mohel" path="res://textures/characters/mainCharacter2.png" id="6_gmyli"]
 [ext_resource type="Texture2D" uid="uid://dlo6oyplrtp4v" path="res://textures/characters/test_npc_0.png" id="7_gmyli"]
@@ -43,6 +44,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_0lg70")
+
+[node name="DialogueLineExtraction" type="Node" parent="Balloon"]
+script = ExtResource("4_h5nal")
+metadata/_custom_type_script = "uid://1mgqrog3jd68"
 
 [node name="Profiles" type="Control" parent="Balloon"]
 layout_mode = 1

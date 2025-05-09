@@ -1,17 +1,11 @@
 class_name LevelController extends Node
 
-"""
---- Level/Case Variables
-"""
+#region Level Variables
+## A variable that holds all level clues in a [CluesLevelResource]
 @export var clues: CluesLevelResource
+## A variable that holds all level tasks in a [TaskLevelResource]
 @export var tasks: TaskLevelResource
+#endregion
 
-"""
---- Setup functions
-"""
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	PersistenceController.s_SceneLoaded.emit()
-
-func _input(event: InputEvent) -> void:
-	pass
