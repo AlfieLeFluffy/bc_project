@@ -7,6 +7,6 @@ Dispatch: I am gonna turn on the device.
 do Signals.s_SetTimelineControllerActive.emit(true)
 *The device near silently hums to life.*
 Dispatch: You should now see the timeline information on the device's screen.
-Dispatch: Now to test the device.
+Dispatch: [#happy]Now to test the device.
 do Signals.s_ShiftToTimeline.emit("002")
 => END

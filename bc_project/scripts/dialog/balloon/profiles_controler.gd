@@ -1,57 +1,102 @@
 extends Control
 
-@export_group("Character Names")
-@export var characterLeftName: String = Global.PLAYER_CHARACTER_NAME
-@export var characterRightName: String
+@export_group("Main Character")
+@export var mainCharacterName: String = Global.PLAYER_CHARACTER_NAME
 
-@export_group("Fade/Talking Colors")
+@export_group("Character Profiles")
+@export var characterProfilesArray: Array[DialogueProfileResource]
+var characterProfilesDictionary: Dictionary
+
+@export_group("Fade and Talking Colors")
 @export var fadedModulateColor: Color = Color("ffffff80")
 @export var talkingModulateColor: Color = Color("ffffffff")
-@export var baseProfileHeight: float
 @export var offsetTalking: float
+var baseProfileHeight: float
+
+var left: bool = false
+var right: bool = false
+var talkingTweenOffset: Vector2 = Vector2(0.0,10.0)
+var talkingTweenTime: float = 3.0
+var tween: Tween
 
 """
 --- Setup functions
 """
 
 func _ready() -> void:
-	baseProfileHeight = $CharacterLeft.position.y
-	DialogueManager.connect("got_dialogue", toggle_profiles)
-	Signals.connect("setup_conversation_profile",setup_character_right)
+	baseProfileHeight = %CharacterProfileLeft.position.y
+	
+	setup_profile_dictionary()
+	setup_main_character()
+	
+	DialogueManager.got_dialogue.connect(toggle_profiles)
+	
+	%DialogueLabel.spoke.connect(animate_talking)
 
+func setup_profile_dictionary() -> void:
+	for profile in characterProfilesArray:
+		characterProfilesDictionary[profile.characterName] = profile
 
-func setup_character_right(side, character_name, picture) -> void:
-	match side:
-		"left":
-			characterLeftName = character_name
-			$CharacterLeft.texture = picture
-		"right":
-			characterRightName = character_name
-			$CharacterRight.texture = picture
-		_:
-			pass
+func setup_main_character() -> void:
+	if characterProfilesDictionary.has(mainCharacterName):
+		%CharacterProfileLeft.texture = characterProfilesDictionary[mainCharacterName].get_texture()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func animate_talking(letter: String, letter_index: int, speed: float) -> void:
 	pass
 
 func toggle_profiles(line: DialogueLine) -> void:
-	match line.character:
-		characterLeftName:
-			$CharacterLeft.position.y = baseProfileHeight
-			$CharacterRight.position.y = baseProfileHeight + offsetTalking
-			
-			$CharacterLeft.modulate = talkingModulateColor
-			$CharacterRight.modulate = fadedModulateColor
-		characterRightName:
-			$CharacterLeft.position.y = baseProfileHeight + offsetTalking
-			$CharacterRight.position.y = baseProfileHeight
-			
-			$CharacterLeft.modulate = fadedModulateColor
-			$CharacterRight.modulate = talkingModulateColor
-		_:
-			$CharacterLeft.position.y = baseProfileHeight
-			$CharacterRight.position.y = baseProfileHeight
-			
-			$CharacterLeft.modulate = fadedModulateColor
-			$CharacterRight.modulate = fadedModulateColor
+	var emotion: String = "neutral"
+	if not line.tags.is_empty():
+		emotion = line.tags.get(0)
+	
+	if line.character == mainCharacterName:
+		left = true
+		right = false
+		%CharacterProfileLeft.texture = characterProfilesDictionary[mainCharacterName].get_texture(emotion)
+		update_profiles()
+	elif characterProfilesDictionary.has(line.character):
+		%CharacterProfileRight.texture = characterProfilesDictionary[line.character].get_texture(emotion)
+		left = false
+		right = true
+		update_profiles()
+	else:
+		left = false
+		right = false
+		update_profiles_neither()
+
+func update_profiles() -> void:
+	if tween:
+		if tween.is_running():
+			tween.stop()
+		tween.kill()
+	%CharacterProfileLeft.position.y = baseProfileHeight
+	%CharacterProfileRight.position.y = baseProfileHeight
+	if left:
+		%CharacterProfileLeft.position.y -= offsetTalking
+		tween = create_tween().set_loops()
+		tween.tween_property(%CharacterProfileLeft, "position", %CharacterProfileLeft.position+talkingTweenOffset, talkingTweenTime)
+		tween.tween_property(%CharacterProfileLeft, "position", %CharacterProfileLeft.position-talkingTweenOffset, talkingTweenTime)
+	elif right:
+		%CharacterProfileRight.position.y -= offsetTalking
+		tween = create_tween().set_loops()
+		tween.tween_property(%CharacterProfileRight, "position", %CharacterProfileRight.position+talkingTweenOffset, talkingTweenTime)
+		tween.tween_property(%CharacterProfileRight, "position", %CharacterProfileRight.position-talkingTweenOffset, talkingTweenTime)
+	
+	%CharacterProfileLeft.modulate = fadedModulateColor
+	%CharacterProfileRight.modulate = fadedModulateColor
+	if left:
+		%CharacterProfileLeft.modulate = talkingModulateColor
+	elif right:
+		%CharacterProfileRight.modulate = talkingModulateColor
+
+func update_profiles_neither() -> void:
+	if tween:
+		if tween.is_running():
+			tween.stop()
+		tween.kill()
+	%CharacterProfileLeft.position.y = baseProfileHeight
+	%CharacterProfileRight.position.y = baseProfileHeight
+	
+	%CharacterProfileLeft.modulate = fadedModulateColor
+	%CharacterProfileRight.modulate = fadedModulateColor
+	

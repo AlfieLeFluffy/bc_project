@@ -21,7 +21,7 @@ func _ready() -> void:
 	GameController.s_ProfileLoaded.connect(setup_menu)
 	SettingsController.s_Retranslate.connect(setup_menu)
 	
-	%TestSceneButton.grab_focus()
+	%NewGameButton.grab_focus()
 	
 	setup_menu()
 
@@ -66,6 +66,9 @@ func _on_settings_button_pressed() -> void:
 	
 func _on_quit_button_pressed() -> void:
 	GameController.quit_game()
+
+func _on_icon_button_pressed() -> void:
+	toggle_developer_tools()
 #endregion
 
 #region Profile Managemnt Methods
@@ -163,6 +166,9 @@ func check_profile_exists(newProfileName: String) -> bool:
 	if newID in profileMirror:
 		return true
 	return false
+
+func toggle_developer_tools() -> void:
+	%TestSceneButton.visible = not %TestSceneButton.visible
 
 #endregion
 

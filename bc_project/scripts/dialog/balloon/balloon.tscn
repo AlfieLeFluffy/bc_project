@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://kvjsk0o7firt"]
+[gd_scene load_steps=14 format=3 uid="uid://kvjsk0o7firt"]
 
 [ext_resource type="Script" uid="uid://bnrcco68hc5bb" path="res://scripts/dialog/balloon/balloon.gd" id="1_36de5"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
@@ -6,17 +6,33 @@
 [ext_resource type="Theme" uid="uid://cnaf52von8j8l" path="res://settings/dialogue_balloon_theme.tres" id="3_0lg70"]
 [ext_resource type="Script" uid="uid://bp47xxwic23fh" path="res://scripts/dialog/balloon/profiles_controler.gd" id="3_7poa5"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_72ixx"]
-[ext_resource type="Texture2D" uid="uid://dni7o236p3am" path="res://textures/characters/mainCharacter_itt.png" id="5_ob21l"]
-[ext_resource type="Texture2D" uid="uid://b8xj6gwg3vfq2" path="res://textures/items/thickMug.png" id="6_no22r"]
+[ext_resource type="Script" uid="uid://36os1j4o8q7w" path="res://scripts/dialog/dialogue_profile_resource.gd" id="5_m1t8c"]
+[ext_resource type="Texture2D" uid="uid://dbvl0gy8mohel" path="res://textures/characters/mainCharacter2.png" id="6_gmyli"]
+[ext_resource type="Texture2D" uid="uid://dlo6oyplrtp4v" path="res://textures/characters/test_npc_0.png" id="7_gmyli"]
+[ext_resource type="Texture2D" uid="uid://b0rsxtokf5a6q" path="res://textures/icon.svg" id="7_h5nal"]
+
+[sub_resource type="Resource" id="Resource_8x82w"]
+script = ExtResource("5_m1t8c")
+characterName = "Alfie"
+neutralProfile = ExtResource("6_gmyli")
+metadata/_custom_type_script = "uid://36os1j4o8q7w"
+
+[sub_resource type="Resource" id="Resource_s3gah"]
+script = ExtResource("5_m1t8c")
+characterName = "Dispatch"
+neutralProfile = ExtResource("7_h5nal")
+happyProfile = ExtResource("7_gmyli")
+metadata/_custom_type_script = "uid://36os1j4o8q7w"
 
 [sub_resource type="Theme" id="Theme_0lg70"]
 default_font_size = 28
 
-[node name="ExampleBalloon" type="CanvasLayer"]
+[node name="DialogueBalloon" type="CanvasLayer"]
 layer = 100
 script = ExtResource("1_36de5")
 
 [node name="FadeBackground" parent="." instance=ExtResource("2_ualdr")]
+unique_name_in_owner = true
 
 [node name="Balloon" type="Control" parent="."]
 unique_name_in_owner = true
@@ -37,9 +53,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("3_7poa5")
-offsetTalking = 35.0
+characterProfilesArray = Array[ExtResource("5_m1t8c")]([SubResource("Resource_8x82w"), SubResource("Resource_s3gah")])
+offsetTalking = 50.0
 
-[node name="CharacterLeft" type="TextureRect" parent="Balloon/Profiles"]
+[node name="CharacterProfileLeft" type="TextureRect" parent="Balloon/Profiles"]
+unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 1
 anchors_preset = -1
@@ -53,9 +71,11 @@ offset_right = -96.4
 offset_bottom = -240.52
 scale = Vector2(8, 8)
 mouse_filter = 2
-texture = ExtResource("5_ob21l")
+expand_mode = 5
+stretch_mode = 5
 
-[node name="CharacterRight" type="TextureRect" parent="Balloon/Profiles"]
+[node name="CharacterProfileRight" type="TextureRect" parent="Balloon/Profiles"]
+unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 1
 anchors_preset = -1
@@ -71,8 +91,8 @@ grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(8, 8)
 mouse_filter = 2
-texture = ExtResource("6_no22r")
-stretch_mode = 3
+expand_mode = 5
+stretch_mode = 5
 flip_h = true
 
 [node name="Panel" type="Panel" parent="Balloon"]
