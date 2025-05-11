@@ -81,14 +81,16 @@ func _setup_content() -> void:
 --- Runtime Methods
 """
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action("ui_up"):
+	if not "keycode" in event:
+		return
+	if event.keycode == KEY_UP:
 		if savedCommandsIndex > 0:
 			%CommandInput.text = savedCommands[savedCommandsIndex]
 			savedCommandsIndex = savedCommandsIndex - 1
 		elif savedCommandsIndex == 0:
 			%CommandInput.text = savedCommands[savedCommandsIndex]
 		%CommandInput.caret_column = len(%CommandInput.text)
-	elif event.is_action("ui_down"):
+	elif event.keycode == KEY_DOWN:
 		if savedCommandsIndex < savedCommands.size()-1:
 			savedCommandsIndex = savedCommandsIndex + 1
 			%CommandInput.text = savedCommands[savedCommandsIndex]

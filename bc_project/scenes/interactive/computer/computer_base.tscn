@@ -1,8 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://b55y4332x8fpo"]
+[gd_scene load_steps=8 format=3 uid="uid://b55y4332x8fpo"]
 
 [ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable.tscn" id="1_uiomx"]
+[ext_resource type="Shader" uid="uid://dcwirhvnici6e" path="res://shaders/outline_recolor.gdshader" id="2_ct2r8"]
 [ext_resource type="Script" uid="uid://deb36kcamvccq" path="res://scenes/interactive/computer/computer_base.gd" id="2_eomu1"]
 [ext_resource type="Shader" uid="uid://beshjcnacfelm" path="res://shaders/outline_shader.gdshader" id="2_o7ltw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ft2fa"]
+resource_local_to_scene = true
+shader = ExtResource("2_ct2r8")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/row = -1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hp7a7"]
 resource_local_to_scene = true
@@ -15,11 +23,11 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 
 [node name="ComputerBase" instance=ExtResource("1_uiomx")]
+material = SubResource("ShaderMaterial_ft2fa")
 script = ExtResource("2_eomu1")
 compRes = null
 dirFileRes = null
 appRes = null
-interactable_resource = null
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("RectangleShape2D_hp7a7")

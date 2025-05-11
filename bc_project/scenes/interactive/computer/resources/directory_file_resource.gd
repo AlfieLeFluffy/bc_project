@@ -1,6 +1,5 @@
 class_name DirectoryFileResource extends Resource
 
-@export var bakctrackName: String = "_backtrack"
 @export var root: Dictionary
 
 #region Directory File Methods

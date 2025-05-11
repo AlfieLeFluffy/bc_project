@@ -1,8 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://cok6xhqh3yqi7"]
+[gd_scene load_steps=8 format=3 uid="uid://cok6xhqh3yqi7"]
 
 [ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable.tscn" id="1_au0p8"]
+[ext_resource type="Shader" uid="uid://dcwirhvnici6e" path="res://shaders/outline_recolor.gdshader" id="2_cimul"]
 [ext_resource type="Script" uid="uid://suum5fm74bwt" path="res://scenes/interactive/texts/text_object_base.gd" id="2_ids22"]
 [ext_resource type="Script" uid="uid://chrjh43tmrigw" path="res://scenes/interactive/texts/resources/text_object_resource.gd" id="3_cimul"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sr3fy"]
+resource_local_to_scene = true
+shader = ExtResource("2_cimul")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/row = -1
 
 [sub_resource type="Resource" id="Resource_sr3fy"]
 script = ExtResource("3_cimul")
@@ -16,6 +24,7 @@ resource_local_to_scene = true
 size = Vector2(12, 10)
 
 [node name="text_object_base" instance=ExtResource("1_au0p8")]
+material = SubResource("ShaderMaterial_sr3fy")
 script = ExtResource("2_ids22")
 textRosource = SubResource("Resource_sr3fy")
 
