@@ -72,6 +72,8 @@ signal s_GameLoaded()
 #region Setup Methods
 ## Persistence Controller initial setup 
 func _ready() -> void:
+	Global.check_create_directory(MASTER_SAVEFILE_FOLDER_PATH)
+	
 	s_PersistenceMenuOpen.connect(open_persistence_menu)
 	s_SaveGame.connect(save_game)
 	s_AutosaveGame.connect(autosave_game)
@@ -142,11 +144,13 @@ func save_resource(key:String, savefileDirectoryPath:String, dictionary:Dictiona
 	## A resource filename setup
 	var resourceFilename: String
 	if "name" in dictionary[key]:
-		resourceFilename = str(dictionary[key].name)+".tres"
+		resourceFilename = str(dictionary[key].name)
 	elif "id" in dictionary[key]:
-		resourceFilename = str(dictionary[key].id)+".tres"
+		resourceFilename = str(dictionary[key].id)
 	else:
-		resourceFilename = str(randi_range(00000,99999))+".tres"
+		resourceFilename = str(randi_range(000000000,999999999))
+	resourceFilename = Global.sanitize_input(resourceFilename)
+	resourceFilename = resourceFilename + ".tres"
 	
 	## Saving the resource with error catching
 	var resourcePath: String = savefileDirectoryPath.path_join("resources").path_join(resourceFilename)
@@ -230,22 +234,28 @@ func load_line(savefile: FileAccess, savefileDirectoryPath:String) -> Dictionary
 ## cursor back to normal. [br]
 ##
 ## - [param profileID] specifies which profile save file directory should be used.[br]
-## - [param filename] specifies which save file should be interacted with.
-func save_game(profileID: String, filename:String) -> void:
+## - [param input] specifies which save file should be interacted with.
+func save_game(profileID: String, input:String) -> void:
 	var animation: SavingAnimation = PRELOAD_SAVING_ANIMATION.instantiate()
 	get_tree().current_scene.add_child(animation)
 	Input.set_default_cursor_shape(Input.CURSOR_BUSY)
 	
+	var filename: String = Global.sanitize_input(input.rstrip(".sf"))
+	
 	var folderpath: String = create_profile_savefile_folderpath(profileID)
-	var saveDirPath = folderpath.path_join(filename.rstrip(".sf"))
-	var safeFilePath = saveDirPath.path_join(filename.rstrip(".sf")+".sf")
+	var saveDirPath = folderpath.path_join(filename)
+	var saveFilePath = saveDirPath.path_join(filename+".sf")
 	
 	Global.delete_directory_recurse(saveDirPath)
 	Global.check_create_directory(saveDirPath)
 	Global.check_create_directory(saveDirPath.path_join("resources"))
 	
 	# Opens and prepares the savefile
-	var saveFile = FileAccess.open(safeFilePath, FileAccess.WRITE)
+	var saveFile = FileAccess.open(saveFilePath, FileAccess.WRITE)
+	
+	if not saveFile:
+		printerr("Error: Savefile could not be created, filepath: '%s'" % saveFilePath)
+		return
 	
 	# Saves current scene first so it can be loaded first
 	var sceneDictionary: Dictionary = {

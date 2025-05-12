@@ -39,11 +39,12 @@ func set_label(_input:Array, _description:String):
 
 func setup_label() -> void:
 	var keys: String = ""
-	if input.size() == 1:
-		keys = input.pop_front()
+	var inputDuplicate: Array[String] = input.duplicate()
+	if inputDuplicate.size() == 1:
+		keys = inputDuplicate.pop_front()
 	else:
-		keys = input.pop_front()
-		for key in input:
+		keys = inputDuplicate.pop_front()
+		for key in inputDuplicate:
 			keys = keys + " / " + key
 	text = "[font_size=20][right][color=#%s]%s[/color] [color=#%s] - %s[/color]" % [Global.color_TextHighlight.to_html(),keys,Global.color_TextBright.to_html(),tr(description)]
 #endregion

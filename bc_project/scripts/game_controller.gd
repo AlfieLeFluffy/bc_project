@@ -49,7 +49,7 @@ const SCREEN_EFFECTS_DICTIONARY: Dictionary = {
 ## A variable holding the reference to the current active [ProfileResource]
 var profile: ProfileResource
 ## A variable holding the reference to the current active [ProfileResource]
-var developerMode: bool = false
+var developerMode: bool = true
 #endregion
 
 #region Signals

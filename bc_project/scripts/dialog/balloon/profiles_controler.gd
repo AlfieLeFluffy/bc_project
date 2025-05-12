@@ -24,10 +24,9 @@ var tween: Tween
 """
 
 func _ready() -> void:
-	baseProfileHeight = %CharacterProfileLeft.position.y
+	baseProfileHeight = (%CharacterProfileLeft.position.y +  %CharacterProfileRight.position.y) / 2
 	
 	setup_profile_dictionary()
-	setup_main_character()
 	
 	DialogueManager.got_dialogue.connect(toggle_profiles)
 	
@@ -45,6 +44,11 @@ func animate_talking(letter: String, letter_index: int, speed: float) -> void:
 	pass
 
 func toggle_profiles(line: DialogueLine) -> void:
+	if %CharacterProfileLeft.texture == null:
+		setup_main_character()
+	%CharacterProfileLeft.position.y = baseProfileHeight
+	%CharacterProfileRight.position.y = baseProfileHeight
+	
 	var emotion: String = "neutral"
 	if not line.tags.is_empty():
 		emotion = line.tags.get(0)
@@ -62,7 +66,7 @@ func toggle_profiles(line: DialogueLine) -> void:
 	else:
 		left = false
 		right = false
-		update_profiles_neither()
+		update_profiles()
 
 func update_profiles() -> void:
 	if tween:
@@ -72,12 +76,12 @@ func update_profiles() -> void:
 	%CharacterProfileLeft.position.y = baseProfileHeight
 	%CharacterProfileRight.position.y = baseProfileHeight
 	if left:
-		%CharacterProfileLeft.position.y -= offsetTalking
+		%CharacterProfileLeft.position.y = baseProfileHeight - offsetTalking
 		tween = create_tween().set_loops()
 		tween.tween_property(%CharacterProfileLeft, "position", %CharacterProfileLeft.position+talkingTweenOffset, talkingTweenTime)
 		tween.tween_property(%CharacterProfileLeft, "position", %CharacterProfileLeft.position-talkingTweenOffset, talkingTweenTime)
 	elif right:
-		%CharacterProfileRight.position.y -= offsetTalking
+		%CharacterProfileRight.position.y = baseProfileHeight - offsetTalking
 		tween = create_tween().set_loops()
 		tween.tween_property(%CharacterProfileRight, "position", %CharacterProfileRight.position+talkingTweenOffset, talkingTweenTime)
 		tween.tween_property(%CharacterProfileRight, "position", %CharacterProfileRight.position-talkingTweenOffset, talkingTweenTime)
@@ -88,15 +92,4 @@ func update_profiles() -> void:
 		%CharacterProfileLeft.modulate = talkingModulateColor
 	elif right:
 		%CharacterProfileRight.modulate = talkingModulateColor
-
-func update_profiles_neither() -> void:
-	if tween:
-		if tween.is_running():
-			tween.stop()
-		tween.kill()
-	%CharacterProfileLeft.position.y = baseProfileHeight
-	%CharacterProfileRight.position.y = baseProfileHeight
-	
-	%CharacterProfileLeft.modulate = fadedModulateColor
-	%CharacterProfileRight.modulate = fadedModulateColor
 	

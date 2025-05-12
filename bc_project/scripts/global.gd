@@ -12,7 +12,7 @@ var currentTimeline: Timeline = Timeline.new()
 ## A variable holding the player character node
 @onready var playerCharacterNode: Node = get_tree().get_first_node_in_group("Player")
 ## A constant holding the player character name
-const PLAYER_CHARACTER_NAME = "Alfie"
+const PLAYER_CHARACTER_NAME = "Detective"
 #endregion
 
 #region Group Name Constants
@@ -62,6 +62,10 @@ const color_MediumBackground: Color = Color("373747")
 const color_DarkBackground: Color = Color("2c2c39")
 #endregion
 
+#region Input Sanitation Constants
+const INPUT_SANITATION_CHARACTER_ARRAY: Array[String] = ["."," ",":","/","\\","?","*","\"","|","%","<",">"]
+const INPUT_SANITATION_CHARACTER_ESCAPE: String = "_"
+#endregion
 
 """
 --- Setup Methods
@@ -116,6 +120,15 @@ func delete_directory_recurse(directoryPath:String) -> void:
 	for directory in dir.get_directories():
 		delete_directory_recurse(directoryPath.path_join(directory))
 	DirAccess.remove_absolute(directoryPath)
+
+## A method that sanitizes player input for file creation. [br]
+##
+## - [param filepath] is a [String] file path of the file in question
+func sanitize_input(input: String) -> String:
+	var output: String = input
+	for character in INPUT_SANITATION_CHARACTER_ARRAY:
+		output = output.replace(character,INPUT_SANITATION_CHARACTER_ESCAPE)
+	return output
 #endregion
 
 """

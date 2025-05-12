@@ -37,7 +37,7 @@ func delete() -> void:
 
 #region Static Profile Menagment Methods
 static func create_id(_profileName: String) -> String:
-	return _profileName.strip_edges().to_lower().replace(" ","_").replace("/","_").replace(".","_")
+	return Global.sanitize_input(_profileName)
 
 static func create_filepath_id(id: String) -> String:
 	return folderPath.path_join(id)+".tres"

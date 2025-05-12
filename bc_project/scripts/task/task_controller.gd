@@ -108,6 +108,8 @@ func setup_journal_menu() -> void:
 	# If the scene is a non gameplay one this menu cannot open
 	if GameController.check_nongameplay_scene():
 		return
+	if GameController.detectiveBoard.visible:
+		return
 	journal = preloadJournalMenu.instantiate()
 	if GameController.mainOverlay:
 		GameController.mainOverlay.add_child(journal)

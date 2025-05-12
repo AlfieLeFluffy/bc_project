@@ -43,6 +43,8 @@ var timelineShiftPressedDelta: float = 0.0
 """
 #region Setup Methods
 func _ready() -> void:
+	self.add_to_group(PersistenceController.PERSISTENCE_GLOBAL_GROUP_NAME)
+	
 	setup_timelines_dictionary()
 	
 	if not current and timelines.size() > 0:
@@ -209,4 +211,35 @@ func start_foresee(_destination: Timeline) -> void:
 func end_foresee() -> void:
 	if timelineForesee:
 		timelineForesee.visible = false
+#endregion
+
+
+
+#region Persistence Methods
+"""
+--- Persistence Methods
+"""
+func saving() -> Dictionary:
+	var output: Dictionary = {
+		"persistent": true,
+		"nodepath": get_path(),
+		"parent": get_parent().get_path(),
+		"timeline": current.resource.name,
+		"active": active,
+	}
+	return output
+
+func loading(input: Dictionary) -> bool:
+	setup_timelines_dictionary()
+	if input.has("active"):
+		active = input["active"]
+	if input.has("timeline"):
+		current = timelinesDictionary[input["timeline"]]
+	
+	for timeline in timelines:
+		timeline.set_active(false)
+	
+	current.set_active(true)
+	update_timeline_info(current)
+	return true
 #endregion
