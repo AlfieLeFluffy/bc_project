@@ -114,14 +114,17 @@ func setup_controls_profile(active: bool) -> void:
 	if active:
 		tip = ""
 	
-	%TestSceneButton.tooltip_text = tip
-	%NewGameButton.tooltip_text = tip
 	%AchievementsButton.tooltip_text = tip
 	%LoadButton.tooltip_text = tip
-	%TestSceneButton.disabled = not active
-	%NewGameButton.disabled = not active
 	%AchievementsButton.disabled = not active
 	%LoadButton.disabled = not active
+	
+	match OS.get_name():
+		"Windows","Linux", "FreeBSD", "NetBSD", "OpenBSD", "BSD":
+			pass
+		_:
+			%LoadButton.tooltip_text = tr("OS_SAVEFILE_NOT_SUPPORTED_TOOLTIP")
+			%LoadButton.disabled = true
 	
 func setup_controls_achievements(active: bool) -> void:
 	if active:

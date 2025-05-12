@@ -118,12 +118,10 @@ layout_mode = 2
 
 [node name="TestSceneButton" type="Button" parent="MainMenuSubViewport/MainMenuControl/LeftColumn/MainButtons"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../LoadButton")
 theme = ExtResource("5_u6fkr")
-disabled = true
 text = "TEST_SCENE"
 clip_text = true
 script = ExtResource("6_bwf2p")
@@ -134,7 +132,6 @@ custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../LoadButton")
 theme = ExtResource("5_u6fkr")
-disabled = true
 text = "NEW_GAME_BUTTON"
 clip_text = true
 script = ExtResource("6_bwf2p")

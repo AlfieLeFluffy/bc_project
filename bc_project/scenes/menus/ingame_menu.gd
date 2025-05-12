@@ -3,6 +3,16 @@ extends CanvasLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
+	match OS.get_name():
+		"Windows","Linux", "FreeBSD", "NetBSD", "OpenBSD", "BSD":
+			pass
+		_:
+			%SaveButton.tooltip_text = tr("OS_SAVEFILE_NOT_SUPPORTED_TOOLTIP")
+			%SaveButton.disabled = true
+			%LoadButton.tooltip_text = tr("OS_SAVEFILE_NOT_SUPPORTED_TOOLTIP")
+			%LoadButton.disabled = true
+	
 	visible = false
 	
 	%ContinueButton.grab_focus()
