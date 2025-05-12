@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cutulflen0kvv"
+
+[deps]
+
+files=["res://translation/game/gameover.en.translation", "res://translation/game/gameover.cz.translation"]
+
+source_file="res://translation/game/gameover.csv"
+dest_files=["res://translation/game/gameover.en.translation", "res://translation/game/gameover.cz.translation"]
+
+[params]
+
+compress=true
+delimiter=0

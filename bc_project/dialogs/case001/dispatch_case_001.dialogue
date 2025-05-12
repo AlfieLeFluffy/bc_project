@@ -1,0 +1,62 @@
+~ start
+if DialogueVariables.check_variable("dispatch_first_meet") == true
+	=> second_talk
+*Dispatch is calling*
+Dispatch: Long time now see, detective.
+Dispatch: I hope that your... "vacation", was worth all the trouble it caused.
+- *Ingnore the remark*
+	Dispatch: [#happy] Silence, someone got their tounge snipped.
+	Dispatch: Anyways, I see you arrived at the scene, let's test the device.
+- There is nothing to talk about.
+	Detective: There is nothing to talk about.
+	Dispatch: Of course, we already know the details.
+	- *Ingnore the remark*
+	- Well, at least I can get a vacation.
+		Detective: [#happy] Well, at least I get can a get a vacation.
+		Dispatch: [#angry] Well, at least we don't need to commit a crime to get a break.
+		do DialogueVariables.set_variable("angered_dispatch", true)
+		Detective: [#happy] Dispatch, I did not miss you at all.
+		Detective: Anyways I am at the scene, can you finally explain the device I am supposed to test.
+		Dispatch: ... *sigh*, let's get to it.
+Dispatch: I am going to power on the device.
+do Signals.s_SetTimelineControllerActive.emit(true)
+*The device on your wrist hums to life*
+Dispatch: You should now see the timeline information on the device's screen.
+Dispatch: You should also see a couple of buttons.
+Dispatch: Don't touch them yet.
+Dispatch: I am going to do a test run of the device and send you to a timeline the device found as a closely resembling this one.
+Detective: Wait, I though it was just a fancy tablet?
+Detective: You are going to send me to another timeline?
+Detective: Did someone test it beforehand?
+Dispatch: ... you are the one that is going to test it.
+- What? Wait, what if it doesn't work?
+	Detective: What? Wait, what if it doesn't work?
+	Dispatch: Well, you will find out.
+- Can we test it on a dog or something?
+	Detective: Can we test it on a dog or something?
+	Dispatch: A dog cannot initiate the jump back.
+Dispatch: Once you arrive at the target timeline press the "Q" button on your device.
+*Initiating first timeline shift*
+- Fuck you dispatch.
+	Detective: [#angry] Fuck you dispatch.
+	Dispatch: Well, fuck you to...
+- Which one again?
+	Detective: [#sad] Which one again?
+	Dispatch: The "Q" one...
+do DialogueVariables.set_variable("dispatch_first_meet", true)
+do Signals.s_ShiftToTimeline.emit("002")
+=> END
+
+~ second_talk
+
+*Call reconnected*
+Dispatch: Finally, you are back. Did you forget it was the "Q" one?
+- Yes.
+	Detective: Yes.
+- No.
+	Detective: No.
+- Fuck you again.
+	Detective: [#angry]Fuck you.
+Dispatch: Well, you are in one piece, so it could not have been that bad.
+
+=> END

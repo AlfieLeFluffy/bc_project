@@ -47,12 +47,16 @@ LOAD_BUTTON,Load,Načíst
 REWRITE_BUTTON,Rewrite,Přepsat
 DELETE_BUTTON,Delete,Smazat
 SUBMIT_BUTTON,Submit,Vyzkoušet
-PRERELEASE_LABEL,Prerelease State,Předběžná Stav
+PRERELEASE_LABEL,Prerelease State,Předběžná Verze
 VERSION_LABEL,Version,Verze
 NOTIFICATION_TITLE,Notification,Upozornění
 NOTIFICATION_TEXT,"This is a early release version of the game TimeSplit for the VUT FIT Thesis submision. The game is fully playable but there may be issues with graphical or audio aspects and the game's storyline is not yet full implemented.
 
+It is advised to check the settings before starting a new game as an undiagnozed issue might render all settings to a minimum. This can be solved by opening the the settings menu, checking and possiblibly configuring the settings and then saving them through the buttons at the bottom of the menu.
+
 The uses local profiles for tracking savefiles and achievements. These profiles do not track the player or any information about the player. If you wish to continue then please create a profile.","Toto je předběžná verze hry TimeSplit pro odevzdání bakalářské práce na VUT FIT. Hra je plně hratelná, ale mohou se vyskytnout problémy s grafickou nebo zvukovou stránkou a děj hry ještě není plně implementován.
+
+Doporučuje se zkontrolovat nastavení před zahájením nové hry, protože nediagnostikovaný problém může vést k minimalizaci všech nastavení. To lze vyřešit otevřením nabídky nastavení, kontrolou a případně konfigurací nastavení a jejich uložením pomocí tlačítek ve spodní části nabídky.
 
 Hra používá lokální profily pro manipulaci s uloženými hry a achievementy. Tento profil nesleduje hráče ani žádné informace o něm. Pokud chcete pokračovat, vytvořte si prosím profil."
 PROFILE_LABEL,Profile:,Profil:
@@ -95,6 +99,7 @@ SAVE_MENU_LABEL,Save Game,Ulozžt Hru
 LOAD_MENU_LABEL,Load Game,Načist Hru
 SETTINGS_MENU_LABEL,Settings,Nastavení
 ACHIEVEMENTS_MENU_LABEL,Achievements,Úspěchy
+STATISTICS_NOT_IMPLEMENTED,Statistics are not implemented in this version.,Statistiky nejsou implementovány v této verzy. 
 SAVEFILE_DELELTE_CONFIRMATION,Do you wish to DELETE this save?,Přejete si SMAZAT uloženou hru?
 SAVEFILE_LOAD_CONFIRMATION,Do you wish to load this save?,Přejete si načist uloženou hru?
 SAVEFILE_OVERWRITE_CONFIRMATION,Do you wish to overwrite this file?,Přejete si přepsat uloženou hru?
@@ -124,3 +129,5 @@ TIMELINESHFT_HINT,Timeline Shift,Skok na Linku
 FORESEE_HINT,Timeline Foresee,Prohlédnout do Linky
 LOCKED_HINT,Locked!,Zamčeno!
 TIMELINE_DEVICE_OFF_HINT,The device is not functioning!,Zařízení nefunguje.
+CREATE_NOTE_ELEMENT,Create a Note,Vytvořit Poznámku
+NOTE_ELEMENT_NAME,Note,Poznámka

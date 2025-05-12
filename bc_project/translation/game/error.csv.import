@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://ckb5k8eqp8cwf"
+
+[deps]
+
+files=["res://translation/game/error.en.translation", "res://translation/game/error.cz.translation"]
+
+source_file="res://translation/game/error.csv"
+dest_files=["res://translation/game/error.en.translation", "res://translation/game/error.cz.translation"]
+
+[params]
+
+compress=true
+delimiter=0

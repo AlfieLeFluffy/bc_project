@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_14"
+type="Resource"
+uid="uid://dvnwynrbbuwdw"
+path="res://.godot/imported/test_area_trigger.dialogue-6d58c5973fa8e83c6b45f0cf242ab3fb.tres"
+
+[deps]
+
+source_file="res://dialogs/testing/test_area_trigger.dialogue"
+dest_files=["res://.godot/imported/test_area_trigger.dialogue-6d58c5973fa8e83c6b45f0cf242ab3fb.tres"]
+
+[params]
+
+defaults=true

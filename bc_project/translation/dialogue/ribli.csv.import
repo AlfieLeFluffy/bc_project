@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://d2dnwtu4buebf"
+
+[deps]
+
+files=["res://translation/dialogue/ribli.en.translation", "res://translation/dialogue/ribli.cz.translation"]
+
+source_file="res://translation/dialogue/ribli.csv"
+dest_files=["res://translation/dialogue/ribli.en.translation", "res://translation/dialogue/ribli.cz.translation"]
+
+[params]
+
+compress=true
+delimiter=0

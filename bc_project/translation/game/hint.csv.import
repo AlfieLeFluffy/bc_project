@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cejcf662ge1kl"
+
+[deps]
+
+files=["res://translation/game/hint.en.translation", "res://translation/game/hint.cz.translation"]
+
+source_file="res://translation/game/hint.csv"
+dest_files=["res://translation/game/hint.en.translation", "res://translation/game/hint.cz.translation"]
+
+[params]
+
+compress=true
+delimiter=0
