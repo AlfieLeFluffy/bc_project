@@ -21,7 +21,6 @@ var castAhead: RayCast2D
 """
 
 func _ready() -> void:
-	castAhead = $"../../Raycasts/CastAhead"
 	Signals.connect("start_npc_conversation_state", start_conversation)
 
 func Enter() -> void:
@@ -44,7 +43,7 @@ func Physics_Process(delta: float) -> void:
 	if characterBody:
 		characterBody.velocity = moveDirection * SPEED
 	
-	if castAhead.is_colliding():
+	if %CastAhead.is_colliding():
 		moveDirection = moveDirection * -1
 		set_cast()
 	
@@ -63,9 +62,9 @@ func randomize_wander() -> void:
 
 func set_cast() -> void:
 	if moveDirection.x == 1:
-		castAhead.target_position.y = abs(castAhead.target_position.y)
+		%CastAhead.target_position.y = abs(%CastAhead.target_position.y)
 	elif moveDirection.x == -1:
-		castAhead.target_position.y = abs(castAhead.target_position.y) * -1
+		%CastAhead.target_position.y = abs(%CastAhead.target_position.y) * -1
 
 """
 --- Starting conversation function

@@ -4,8 +4,8 @@ class_name TalkingNpcState extends State
 --- Exported Physics Constants
 """
 @export_group("Character Body Constants")
-@export var SPEED: int = 60.0
-@export var JUMP_VELOCITY: int = -200.0
+@export var SPEED: int = 60
+@export var JUMP_VELOCITY: int = -200
 @export var characterBody: CharacterBody2D
 
 var talking: bool = false

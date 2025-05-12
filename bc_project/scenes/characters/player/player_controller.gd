@@ -34,6 +34,16 @@ func _unhandled_input(event: InputEvent) -> void:
 	direction = Input.get_axis("ui_left", "ui_right")
 
 func _physics_process(delta: float) -> void:
+	if is_on_floor():
+		if velocity.x == 0 :
+			%AnimatedSprite2D.play("idle")
+		if velocity.x != 0 and not Input.is_action_pressed("run"):
+			%AnimatedSprite2D.play("walk")
+		if velocity.x != 0 and Input.is_action_pressed("run"):
+			%AnimatedSprite2D.play("run")
+	else:
+		%AnimatedSprite2D.play("falling")
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta

@@ -11,6 +11,7 @@ class_name NPC extends CharacterBody2D
 
 #region Exported Resources
 @export_group("Resources")
+@export var startFlipped: bool = false
 @export var npcResource: NPCResource
 #endregion
 
@@ -26,18 +27,9 @@ var highlight: bool = false
 """
 #region Setup Methods
 func _ready() -> void:
-	setup_npc_info()
 	setup_timeline_info()
-
-func setup_npc_info() -> void:
-	if npcResource:
-		if npcResource.spritesheet:
-			$Sprite2D.texture = npcResource.spritesheet
-			$Sprite2D.hframes = npcResource.frameVector.x
-			$Sprite2D.vframes = npcResource.frameVector.y
-			$Sprite2D.material = ShaderMaterial.new()
-			$Sprite2D.material.shader = load("res://shaders/outline_shader.gdshader")
-			$Sprite2D.material.set("shader_parameter/line_thickness",0)
+	
+	%AnimatedSprite2D.flip_h = startFlipped
 
 func setup_timeline_info() -> void:
 	var parent:Node = get_parent()
@@ -95,13 +87,21 @@ func _process(delta: float) -> void:
 		active = false
 
 func _physics_process(delta: float) -> void:
+	if is_on_floor():
+		if velocity.x == 0:
+			%AnimatedSprite2D.play("idle")
+		if velocity.x != 0:
+			%AnimatedSprite2D.play("walk")
+	else:
+		%AnimatedSprite2D.play("falling")
+	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
 	if velocity.x < 0:
-		$Sprite2D.flip_h = true
+		%AnimatedSprite2D.flip_h = true
 	elif velocity.x != 0:
-		$Sprite2D.flip_h = false
+		%AnimatedSprite2D.flip_h = false
 
 	move_and_slide()
 #endregion
@@ -110,19 +110,19 @@ func _physics_process(delta: float) -> void:
 
 #region Sprite Methods
 func get_sprite_from_current_frame() -> Texture2D:
-	if $Sprite2D.texture:
-		var texture = $Sprite2D.texture
-		if $Sprite2D.hframes > 1 or $Sprite2D.vframes > 1: 
-			var atlas = AtlasTexture.new()
-			atlas.atlas = texture
-			var frameSize = Vector2($Sprite2D.texture.get_width() / $Sprite2D.hframes,$Sprite2D.texture.get_height() / $Sprite2D.vframes)
-			atlas.region = Rect2(frameSize * Vector2($Sprite2D.frame_coords), frameSize)
-			texture = atlas
-		return texture
+	#if $Sprite2D.texture:
+	#	var texture = $Sprite2D.texture
+	#	if $Sprite2D.hframes > 1 or $Sprite2D.vframes > 1: 
+	#		var atlas = AtlasTexture.new()
+	#		atlas.atlas = texture
+	#		var frameSize = Vector2($Sprite2D.texture.get_width() / $Sprite2D.hframes,$Sprite2D.texture.get_height() / $Sprite2D.vframes)
+	#		atlas.region = Rect2(frameSize * Vector2($Sprite2D.frame_coords), frameSize)
+	#		texture = atlas
+	#	return texture
 		
-	#if $AnimatedSprite2D.sprite_frames:
-	#	var currentSprite: Texture2D = $AnimatedSprite2D.get_sprite_frames().get_frame_texture($AnimatedSprite2D.animation, $AnimatedSprite2D.get_frame())
-	#	return currentSprite
+	if $AnimatedSprite2D.sprite_frames:
+		var currentSprite: Texture2D = $AnimatedSprite2D.get_sprite_frames().get_frame_texture($AnimatedSprite2D.animation, $AnimatedSprite2D.get_frame())
+		return currentSprite
 		
 	return load("res://textures/icon.svg")
 #endregion
@@ -132,10 +132,10 @@ func get_sprite_from_current_frame() -> Texture2D:
 """
 #region Interactivity Methods
 func activate_hover() -> void:
-	$Sprite2D.material.set("shader_parameter/line_thickness",1)
+	%AnimatedSprite2D.material.set("shader_parameter/line_thickness",1)
 
 func deactivate_hover() -> void:
-	$Sprite2D.material.set("shader_parameter/line_thickness",0)
+	%AnimatedSprite2D.material.set("shader_parameter/line_thickness",0)
 
 func activate_interactivity() -> void:
 	Signals.s_InputHelpSet.emit(GameController.get_input_key_list("add_to_board"),"ADD_TO_BOARD_INPUT_HELP")
