@@ -1,7 +1,12 @@
-[gd_resource type="TileSet" load_steps=55 format=3 uid="uid://hplkdx21bhqq"]
+[gd_resource type="TileSet" load_steps=57 format=3 uid="uid://hplkdx21bhqq"]
 
+[ext_resource type="Texture2D" uid="uid://brrtdvnc8wfvw" path="res://textures/tilesets/furniture_tileset.png" id="1_wts5m"]
 [ext_resource type="Texture2D" uid="uid://d1rjso7wxivyf" path="res://textures/tilesets/apartment_tileset.png" id="2_k17vp"]
 [ext_resource type="Texture2D" uid="uid://cfvcjiug8hjl1" path="res://textures/tilesets/elevator_tileset.png" id="2_wts5m"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k17vp"]
+texture = ExtResource("1_wts5m")
+1:0/0 = 0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_xmt1q"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -601,3 +606,4 @@ physics_layer_0/collision_layer = 3
 physics_layer_0/collision_mask = 3
 sources/3 = SubResource("TileSetAtlasSource_dgc65")
 sources/2 = SubResource("TileSetAtlasSource_k6cab")
+sources/0 = SubResource("TileSetAtlasSource_k17vp")
