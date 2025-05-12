@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://c4br56b34o2el"]
+[gd_scene load_steps=10 format=3 uid="uid://c4br56b34o2el"]
 
 [ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable.tscn" id="1_ferne"]
 [ext_resource type="Script" uid="uid://ctrli6k2nidqx" path="res://scenes/interactive/buttons/elevatorCall/elevator_call_button.gd" id="2_ewimi"]
 [ext_resource type="Shader" uid="uid://dcwirhvnici6e" path="res://shaders/outline_recolor.gdshader" id="2_qx727"]
 [ext_resource type="Script" uid="uid://cwo1tqjwxj8gd" path="res://scenes/interactive/interactable_resource.gd" id="3_qx727"]
 [ext_resource type="Texture2D" uid="uid://ccpyl10gd3y4a" path="res://textures/buttons/elevator_call_button_object.png" id="4_ewimi"]
+[ext_resource type="Script" uid="uid://djuch7xw2rnf2" path="res://scripts/callable/callable_resource.gd" id="4_miypb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_miypb"]
 resource_local_to_scene = true
@@ -19,6 +20,7 @@ item_name = "ELEVATOR_CALL_BUTTON_NAME"
 description = "ELEVATOR_CALL_BUTTON_DESCRIPTION"
 detective_board_toggle = false
 show_labels = true
+callables = Array[ExtResource("4_miypb")]([])
 metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ewimi"]
@@ -28,15 +30,19 @@ size = Vector2(12, 13)
 [node name="ElevatorCallButton" instance=ExtResource("1_ferne")]
 material = SubResource("ShaderMaterial_miypb")
 script = ExtResource("2_ewimi")
-key = ""
-resource = null
+elevatorID = ""
+stopID = ""
 interactableResource = SubResource("Resource_11ugs")
 
-[node name="NinePatchRect" parent="Labels" index="0"]
+[node name="Label" parent="CanvasLayer" index="0"]
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
+offset_left = 760.0
+offset_top = 900.0
+offset_right = -760.0
+grow_vertical = 2
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, 0.5)

@@ -35,7 +35,7 @@ func get_elevator() -> bool:
 	return false
 
 func setup_menu_buttons() -> void:
-	for key in elevator.resource.stops:
+	for key in elevator.stops:
 		var button: ElevatorMenuButton = preloadElevatorMenuButton.instantiate()
 		%StopButtons.add_child(button)
 		button.name = "ElevatorMenuButton_key:%s" % key

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://532uypmhsvde"]
+[gd_scene load_steps=21 format=3 uid="uid://532uypmhsvde"]
 
 [ext_resource type="Script" uid="uid://dnshcxe2qnfyb" path="res://scenes/elevators/elevator.gd" id="1_5ow4g"]
 [ext_resource type="Texture2D" uid="uid://j4ta2nqnwu7p" path="res://textures/elevator/elevator_cabin.png" id="2_5ow4g"]
@@ -8,8 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://c26qc3djvduba" path="res://textures/elevator/elevator_cabin_automated_door.png" id="5_x8lrt"]
 [ext_resource type="PackedScene" uid="uid://bh6uc1j2up7ya" path="res://scenes/lighting/ceiling_light_flat/ceiling_light_flat.tscn" id="6_d1wvi"]
 [ext_resource type="Shader" uid="uid://dcwirhvnici6e" path="res://shaders/outline_recolor.gdshader" id="7_kdwdv"]
-[ext_resource type="Script" uid="uid://cwo1tqjwxj8gd" path="res://scenes/interactive/interactable_resource.gd" id="8_1i5pn"]
-[ext_resource type="Script" uid="uid://djuch7xw2rnf2" path="res://scripts/callable/callable_resource.gd" id="9_3fr4o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_avj1k"]
 atlas = ExtResource("5_x8lrt")
@@ -68,15 +66,6 @@ shader = ExtResource("7_kdwdv")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/row = -1
-
-[sub_resource type="Resource" id="Resource_3fr4o"]
-script = ExtResource("8_1i5pn")
-item_name = "ELEVATOR_MENU_NAME"
-description = "ELEVATOR_MENU_DESCRIPTION"
-detective_board_toggle = false
-show_labels = false
-callables = Array[ExtResource("9_3fr4o")]([])
-metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
 
 [node name="Elevator" type="Node2D" groups=["Persistent"]]
 script = ExtResource("1_5ow4g")
@@ -166,4 +155,3 @@ shape = SubResource("RectangleShape2D_ve23l")
 [node name="ElevatorButton" parent="ElevatorCabin" instance=ExtResource("3_tvmrj")]
 material = SubResource("ShaderMaterial_x8lrt")
 position = Vector2(0, -31)
-interactableResource = SubResource("Resource_3fr4o")

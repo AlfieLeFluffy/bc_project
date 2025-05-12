@@ -3,6 +3,7 @@ class_name Elevator extends Node2D
 #region Veriables
 @export var resource: ElevatorResource
 @export var stopsArray: Array[ElevatorStop]
+var stops: Dictionary
 #endregion
 
 #region Setup Methods
@@ -10,7 +11,8 @@ func _ready():
 	setup_elevator_stops()
 	
 	if resource.currentStop != "":
-		%ElevatorCabin.position = Vector2(0,resource.stops[resource.currentStop].position.y)
+		if stops.has(resource.currentStop):
+			%ElevatorCabin.position = Vector2(0,stops[resource.currentStop].position.y)
 	
 	Signals.s_ElevatorMoveToKey.connect(move_to_stop_key)
 	Signals.s_ElevatorMoveToVector.connect(move_to_stop_vector)
@@ -25,7 +27,7 @@ func _ready():
 
 func setup_elevator_stops() -> void:
 	for stop in stopsArray:
-		resource.stops[stop.stopName] = stop
+		stops[stop.stopName] = stop
 
 #endregion
 
@@ -33,19 +35,21 @@ func setup_elevator_stops() -> void:
 func move_to_stop_key(id:String, key: String, force: bool = false) -> void:
 	if not check_input_valid(id, key, force):
 		return
-	move_to_stop(key)
+	if resource.currentStop == key:
+		return
+	move_to_stop(key, force)
 
 func move_to_stop_vector(id:String, vector: Vector2, force: bool = false) -> void:
 	if not check_input_valid(id, vector, force):
 		return
-	move_to_vector(vector)
+	move_to_vector(vector, force)
 	
 func check_input_valid(id: String, stop, force: bool = false) -> bool:
 	if id != resource.id:
 		return false
 	
 	if stop is String:
-		if not resource.stops.has(stop):
+		if not stops.has(stop):
 			printerr("Error: Elevator stop of key '%s' does not exist in elevator id '%s'" % [stop, resource.id])
 			return false
 	elif stop is Vector2:
@@ -63,27 +67,30 @@ func check_input_valid(id: String, stop, force: bool = false) -> bool:
 #endregion
 
 #region Elevator Managment Methods
-func move_to_stop(key: String) -> void:
-	if resource.stops.has(resource.currentStop):
-		resource.stops[resource.currentStop].set_active(false)
+func move_to_stop(key: String, force: bool = false) -> void:
+	if stops.has(resource.currentStop):
+		stops[resource.currentStop].set_active(false)
 	resource.movingToStop = key
-	await set_cabin(true)
-	setup_tween(%ElevatorCabin.position, Vector2(0,resource.stops[key].position.y))
+	await set_cabin(true, force)
+	setup_tween(%ElevatorCabin.position, Vector2(0,stops[key].position.y))
 	await run_tween()
 	resource.currentStop = key
 	await set_cabin(false)
-	resource.stops[resource.currentStop].set_active(true)
+	if stops.has(resource.currentStop):
+		stops[resource.currentStop].set_active(true)
 
-func move_to_vector(vector: Vector2) -> void:
-	if resource.stops.has(resource.currentStop):
-		resource.stops[resource.currentStop].set_active(false)
-	resource.stops["vector"] = vector
+func move_to_vector(vector: Vector2, force: bool = false) -> void:
+	if stops.has(resource.currentStop):
+		stops[resource.currentStop].set_active(false)
+	stops["vector"] = vector
 	resource.movingToStop = "vector"
-	await set_cabin(true)
+	await set_cabin(false, force)
 	setup_tween(%ElevatorCabin.position, vector)
 	await run_tween()
 	resource.currentStop = "vector"
 	await set_cabin(false)
+	if stops.has(resource.currentStop):
+		stops[resource.currentStop].set_active(true)
 
 func setup_cabin() -> void:
 	%DoorLeftCollision.disabled = (resource.openning & resource.OPENNING_LEFT) and not resource.active
@@ -95,9 +102,9 @@ func setup_cabin() -> void:
 	%AutomatedDoorLeft.visible = (resource.openning & resource.OPENNING_LEFT)
 	%AutomatedDoorRight.visible = (resource.openning & resource.OPENNING_RIGHT)
 
-func set_cabin(state: bool) -> bool:
+func set_cabin(state: bool, force: bool = false) -> bool:
 	resource.set_active(state)
-	if resource.startupTimeout:
+	if resource.startupTimeout and not force:
 		await get_tree().create_timer(resource.startupTimeoutDuration).timeout
 	%DoorLeftCollision.disabled = (resource.openning & resource.OPENNING_LEFT) and not resource.active
 	%DoorsRightCollision.disabled = (resource.openning & resource.OPENNING_RIGHT) and not resource.active
@@ -150,6 +157,8 @@ func saving() -> Dictionary:
 	}
 
 func loading(input:Dictionary) -> bool:
+	if resource.active:
+		resource.tween.kill()
 	if input.has_all(["resources","cabin"]):
 		if input["resources"].has("resource"):
 			resource = input["resources"]["resource"]

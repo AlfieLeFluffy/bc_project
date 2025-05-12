@@ -19,7 +19,6 @@ var tween: Tween
 @export_category("Elevator Stops")
 @export var currentStop: String
 @export var movingToStop: String
-var stops: Dictionary
 
 func set_active(state: bool) -> void:
 	active = state

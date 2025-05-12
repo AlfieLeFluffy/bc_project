@@ -15,3 +15,24 @@ func set_active(state: bool) -> void:
 	if state:
 		animation = "closed"
 	%AutomatedDoorSprite.play(animation)
+
+
+#region Persistence Methods
+"""
+--- Persistence Methods
+"""
+func saving() -> Dictionary:
+	var output: Dictionary = {
+		"persistent": true,
+		"nodepath": get_path(),
+		"parent": get_parent().get_path(),
+		"active": active,
+	}
+	return output
+
+func loading(input: Dictionary) -> bool:
+	if input.has("active"):
+		active = input["active"]
+		set_active(active)
+	return true
+#endregion
