@@ -17,7 +17,11 @@ var content: ElementContentBase
 func _ready() -> void:
 	if resource:
 		name = resource.id
-		%ElementLabel.text = "%s : %s" % [tr(resource.name), resource.timeline]
+		match resource.type:
+			resource.elementType.NOTE:
+				%ElementLabel.text = tr("NOTE_ELEMENT_NAME")
+			_:
+				%ElementLabel.text = "%s : %s" % [tr(resource.name), resource.timeline]
 		%ElementTypeLabel.text = ElementResource.elementType.keys()[resource.type]
 		%Texture.modulate = %Texture.modulate.lerp(resource.color,0.2)
 		_setup_element()

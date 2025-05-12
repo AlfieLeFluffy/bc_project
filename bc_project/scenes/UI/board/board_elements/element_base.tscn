@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bmif84bbjv732" path="res://textures/symbols/close.png" id="4_t42qt"]
 
 [node name="ElementBase" type="MarginContainer" groups=["Persistent"]]
-z_index = 1
+z_index = 5
 clip_contents = true
 custom_minimum_size = Vector2(32, 32)
 anchors_preset = -1
@@ -50,6 +50,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 32)
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 text = "Test"
 horizontal_alignment = 1
 vertical_alignment = 1

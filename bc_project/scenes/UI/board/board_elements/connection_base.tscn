@@ -31,7 +31,6 @@ gradient = SubResource("Gradient_2ewxf")
 [node name="ConnectionLabel" type="MarginContainer" parent="."]
 unique_name_in_owner = true
 visible = false
-z_index = 5
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.04
@@ -64,8 +63,10 @@ theme_override_constants/margin_bottom = 0
 
 [node name="Label" type="RichTextLabel" parent="ConnectionLabel/MarginContainer"]
 unique_name_in_owner = true
+z_index = 5
 clip_contents = false
 layout_mode = 2
+mouse_filter = 1
 bbcode_enabled = true
 text = "null"
 fit_content = true

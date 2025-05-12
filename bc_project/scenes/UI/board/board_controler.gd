@@ -17,6 +17,8 @@ func setup_board() -> void:
 	%BoardControler.position = screenSize/2 - %BoardBackground.size/2
 #endregion
 
+
+
 #region Runtime Methods
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("detective_board_toggle") or visible and event.is_action_pressed("ui_menu"):
@@ -27,4 +29,16 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func toggle_board() -> void:
 	visible = not visible
+#endregion
+
+
+
+#region Signal Methods
+func _on_create_note_button_pressed() -> void:
+	var noteResource: ElementResource = ElementResource.new()
+	var noteName: String = str(randi_range(0,99999999))
+	while Global.board_elements.has(noteName):
+		noteName = str(randi_range(0,99999999))
+	noteResource.setup(ElementResource.elementType.NOTE,noteName,"000","")
+	Signals.s_CreateBoardElement.emit(noteResource)
 #endregion

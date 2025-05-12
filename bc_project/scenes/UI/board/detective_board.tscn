@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c73m21uddf5ye"]
+[gd_scene load_steps=16 format=3 uid="uid://c73m21uddf5ye"]
 
 [ext_resource type="Script" uid="uid://cbq3jb38hm50o" path="res://scenes/UI/board/board_controler.gd" id="1_hmund"]
 [ext_resource type="PackedScene" uid="uid://bcdby6svlp0fj" path="res://scenes/UI/backgrounds/fade_background.tscn" id="2_jxns0"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://cjt28j8mp3x8r" path="res://scenes/UI/board/connection_controller.gd" id="7_jjw5p"]
 [ext_resource type="Texture2D" uid="uid://c42n2b2rvmi26" path="res://textures/backgrounds/detective_board_background_ninepatch_empty.png" id="9_lwc1k"]
 [ext_resource type="Texture2D" uid="uid://cxrko8ebkgmti" path="res://textures/ui/board/board_label_background_ninepatch.png" id="10_c77tf"]
+[ext_resource type="Theme" uid="uid://hj1r2r6llhmk" path="res://settings/ingame_menu_button_theme.tres" id="11_nx2o1"]
+[ext_resource type="Script" uid="uid://cv5mje71vm85n" path="res://scripts/button/stretch_button.gd" id="12_5u1gn"]
 
 [sub_resource type="Theme" id="Theme_nx2o1"]
 MarginContainer/constants/margin_bottom = 50
@@ -186,3 +188,17 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CreateNoteButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 984.0
+offset_right = 344.0
+offset_bottom = 1017.0
+focus_mode = 0
+theme = ExtResource("11_nx2o1")
+theme_override_font_sizes/font_size = 24
+text = "CREATE_NOTE_ELEMENT"
+script = ExtResource("12_5u1gn")
+
+[connection signal="pressed" from="CreateNoteButton" to="." method="_on_create_note_button_pressed"]
