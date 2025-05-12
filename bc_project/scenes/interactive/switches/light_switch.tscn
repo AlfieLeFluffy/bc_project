@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dkvl1inu1enr8"]
+[gd_scene load_steps=10 format=3 uid="uid://dkvl1inu1enr8"]
 
 [ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable.tscn" id="1_g0vw7"]
 [ext_resource type="Script" uid="uid://ci2ev33iuvild" path="res://scenes/interactive/switches/light_switch.gd" id="2_di4um"]
 [ext_resource type="Shader" uid="uid://dcwirhvnici6e" path="res://shaders/outline_recolor.gdshader" id="2_lht1d"]
 [ext_resource type="Script" uid="uid://cwo1tqjwxj8gd" path="res://scenes/interactive/interactable_resource.gd" id="4_ajjaf"]
+[ext_resource type="Script" uid="uid://djuch7xw2rnf2" path="res://scripts/callable/callable_resource.gd" id="4_hg5ft"]
 [ext_resource type="Texture2D" uid="uid://dvxob6uesaaqh" path="res://textures/switches/lightSwitch.png" id="4_pa811"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hg5ft"]
@@ -19,11 +20,12 @@ item_name = "LIGHT_SWITCH_NAME"
 description = "TEST_DESCRIPTION"
 detective_board_toggle = true
 show_labels = true
+callables = Array[ExtResource("4_hg5ft")]([])
 metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_igsdy"]
 resource_local_to_scene = true
-size = Vector2(6, 8)
+size = Vector2(16, 16)
 
 [node name="light_switch" groups=["Persistent"] instance=ExtResource("1_g0vw7")]
 material = SubResource("ShaderMaterial_hg5ft")

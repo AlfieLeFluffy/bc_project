@@ -20,36 +20,24 @@ material = SubResource("ShaderMaterial_5j7o3")
 script = ExtResource("1_m6fs8")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
 
-[node name="Labels" type="Control" parent="CanvasLayer"]
+[node name="Label" type="RichTextLabel" parent="CanvasLayer"]
 unique_name_in_owner = true
 visible = false
-z_index = 100
-layout_mode = 3
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -984.0
-offset_top = -18.0
-offset_right = -936.0
-offset_bottom = -8.0
-grow_horizontal = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="RichTextLabel" parent="CanvasLayer/Labels"]
-unique_name_in_owner = true
 z_index = 255
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_right = 144.0
-offset_bottom = 30.0
+offset_left = -200.0
+offset_top = -180.0
+offset_right = 200.0
+offset_bottom = -80.0
 grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.25, 0.25)
+grow_vertical = 0
 size_flags_horizontal = 3
+mouse_filter = 2
 bbcode_enabled = true
 fit_content = true
 autowrap_mode = 0

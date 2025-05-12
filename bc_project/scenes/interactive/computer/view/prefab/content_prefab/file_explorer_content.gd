@@ -37,7 +37,7 @@ func setup_directory_list(directory: Dictionary) -> void:
 	%FileDirectoryList.clear()
 	# Adding directorires
 	for key in directory:
-		if directory[key] is Dictionary and key != computer.dirFileRes.bakctrackName:
+		if directory[key] is Dictionary:
 			create_directory_item(key,directory[key])
 	%FileDirectoryList.sort_items_by_text()
 	# Adding files

@@ -28,12 +28,14 @@ func _ready() -> void:
 	setup_timeline_info()
 	setup_interactable_info()
 	_local_ready()
-	%Labels.position.x = global_position.x - (%Labels.size.x / 2)
-	%Labels.position.y = %Sprite2D.global_position.y - (%Sprite2D.texture.get_size().y / 2) - 5
+	if not SettingsController.s_Retranslate.is_connected(setup_interactable_info):
+		SettingsController.s_Retranslate.connect(setup_interactable_info)
+	#%Label.position.x = global_position.x - %Label.position.x /4
+	#%Label.position.y = %Sprite2D.global_position.y - (%Sprite2D.texture.get_size().y / 2) - 10
 
 func setup_interactable_info() -> void:
 	if interactableResource:
-		%Label.text = "[font_size=24][color=#%s]%s" % [Global.color_Highlight.to_html(),tr(interactableResource.item_name)]
+		%Label.text = "[font_size=%s][color=#%s]%s" % [str(SettingsController.scale_font_size(28)),Global.color_TextHighlight.to_html(),tr(interactableResource.item_name)]
 
 func setup_timeline_info() -> void:
 	var parent:Node = get_parent()
@@ -160,17 +162,21 @@ func activate_interactivity() -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 	if interactableResource:
 		if interactableResource.show_labels:
-			%Labels.visible = true
+			%Label.visible = true
 	Global.Active_Interactive_Item = self
-	Signals.s_InputHelpSet.emit(GameController.get_input_key_list("add_to_board"),"ADD_TO_BOARD_INPUT_HELP")
+	if interactableResource:
+		if interactableResource.detective_board_toggle:
+			Signals.s_InputHelpSet.emit(GameController.get_input_key_list("add_to_board"),"ADD_TO_BOARD_INPUT_HELP")
 	Signals.s_InputHelpSet.emit(GameController.get_input_key_list("interact"),"INTERACT_INPUT_HELP")
 
 func deactivate_interactivity() -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	if interactableResource:
 		if interactableResource.show_labels:
-			%Labels.visible = false
+			%Label.visible = false
 	Global.Active_Interactive_Item = null
-	Signals.s_InputHelpFree.emit("ADD_TO_BOARD_INPUT_HELP")
+	if interactableResource:
+		if interactableResource.detective_board_toggle:
+			Signals.s_InputHelpFree.emit("ADD_TO_BOARD_INPUT_HELP")
 	Signals.s_InputHelpFree.emit("INTERACT_INPUT_HELP")
 #endregion

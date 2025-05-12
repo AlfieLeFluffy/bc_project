@@ -32,7 +32,7 @@ func _local_ready() -> void:
 func setup_interactable_info() -> void:
 	if compRes:
 		name = compRes.name
-		%Label.text = "[font_size=24][color=#%s]%s" % [Global.color_Highlight.to_html(),tr(compRes.name)]
+		%Label.text = "[font_size=%s][color=#%s]%s" % [str(SettingsController.scale_font_size(28)),Global.color_TextHighlight.to_html(),tr(compRes.name)]
 
 func setup_computer_status() -> void:
 	if compRes.state:
