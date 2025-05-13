@@ -12,4 +12,4 @@ func _setup_content(_resource: ElementResource) -> void:
 func setup_text() -> void:
 	if resource.texture:
 		%ObjectTexture.texture = resource.texture
-	%ObjectDescription.text = "[center]"+tr(resource.description)
+	%ObjectDescription.text =  "[font_size=%s] %s" % [str(SettingsController.scale_font_size(FONT_SIZE)),tr(resource.description)]

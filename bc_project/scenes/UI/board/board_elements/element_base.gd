@@ -22,8 +22,9 @@ func _ready() -> void:
 				%ElementLabel.text = tr("NOTE_ELEMENT_NAME")
 			_:
 				%ElementLabel.text = "%s : %s" % [tr(resource.name), resource.timeline]
-		%ElementTypeLabel.text = ElementResource.elementType.keys()[resource.type]
-		%Texture.modulate = %Texture.modulate.lerp(resource.color,0.2)
+		#%ElementTypeLabel.text = ElementResource.elementType.keys()[resource.type]
+		self.tooltip_text = str(ElementResource.elementType.keys()[resource.type])
+		%Texture.modulate = %Texture.modulate.lerp(resource.color,0.4)
 		_setup_element()
 
 func _setup_element() -> void:

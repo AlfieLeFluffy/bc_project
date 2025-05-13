@@ -8,6 +8,7 @@
 
 [node name="ElementBase" type="MarginContainer" groups=["Persistent"]]
 z_index = 5
+texture_filter = 1
 clip_contents = true
 custom_minimum_size = Vector2(32, 32)
 anchors_preset = -1
@@ -45,6 +46,10 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
+[node name="FillLeft" type="Control" parent="MarginContainer/Stack/Header"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
 [node name="ElementLabel" type="Label" parent="MarginContainer/Stack/Header"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 32)
@@ -55,6 +60,10 @@ text = "Test"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="FillMiddle" type="Control" parent="MarginContainer/Stack/Header"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
 [node name="DeleteButton" type="Button" parent="MarginContainer/Stack/Header"]
 custom_minimum_size = Vector2(28, 28)
 layout_mode = 2
@@ -63,10 +72,11 @@ icon = ExtResource("4_t42qt")
 icon_alignment = 1
 expand_icon = true
 
-[node name="Buffer" type="Control" parent="MarginContainer/Stack/Header"]
+[node name="FillRight" type="Control" parent="MarginContainer/Stack/Header"]
 layout_mode = 2
 
 [node name="Footer" type="HBoxContainer" parent="MarginContainer/Stack"]
+visible = false
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 
