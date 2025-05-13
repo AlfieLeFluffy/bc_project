@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlo6oyplrtp4v"
-path="res://.godot/imported/test_npc_0.png-6d176af8cb24f4fcd28909737350d026.ctex"
+uid="uid://dhabf4sfffgbi"
+path="res://.godot/imported/cop_character_walking.png-89737ec24dd7a5cb2d73b1de9a49b69a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/characters/test_npc_0.png"
-dest_files=["res://.godot/imported/test_npc_0.png-6d176af8cb24f4fcd28909737350d026.ctex"]
+source_file="res://textures/characters/cop/cop_character_walking.png"
+dest_files=["res://.godot/imported/cop_character_walking.png-89737ec24dd7a5cb2d73b1de9a49b69a.ctex"]
 
 [params]
 

@@ -1,0 +1,95 @@
+[gd_scene load_steps=15 format=3 uid="uid://djr55qrikxcmd"]
+
+[ext_resource type="PackedScene" uid="uid://ntmpwduq5xno" path="res://scenes/characters/npcs/npc.tscn" id="1_u4240"]
+[ext_resource type="Shader" uid="uid://beshjcnacfelm" path="res://shaders/outline_shader.gdshader" id="2_llbcw"]
+[ext_resource type="Texture2D" uid="uid://ctiefn0g2hx3g" path="res://textures/characters/grandma/grandma_character_idle.png" id="3_bax6d"]
+[ext_resource type="Script" uid="uid://mpbldtm5ecce" path="res://scenes/characters/npcs/npc_states/idle_npc_state.gd" id="4_leuii"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ysyl3"]
+resource_local_to_scene = true
+radius = 13.0
+height = 56.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vi3f7"]
+resource_local_to_scene = true
+shader = ExtResource("2_llbcw")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whghu"]
+atlas = ExtResource("3_bax6d")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41kxe"]
+atlas = ExtResource("3_bax6d")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvvdh"]
+atlas = ExtResource("3_bax6d")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lg62e"]
+atlas = ExtResource("3_bax6d")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvw8t"]
+atlas = ExtResource("3_bax6d")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14pkh"]
+atlas = ExtResource("3_bax6d")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3l0wi"]
+atlas = ExtResource("3_bax6d")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o5oyo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_whghu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41kxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvvdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lg62e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qvw8t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14pkh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3l0wi")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[node name="GrandmaNPC" instance=ExtResource("1_u4240")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CapsuleShape2D_ysyl3")
+
+[node name="InteractableAreCollisionShape" parent="InteractableArea" index="0"]
+shape = SubResource("CapsuleShape2D_ysyl3")
+
+[node name="AnimatedSprite2D" parent="." index="3"]
+material = SubResource("ShaderMaterial_vi3f7")
+sprite_frames = SubResource("SpriteFrames_o5oyo")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="StateMachine" parent="." index="4" node_paths=PackedStringArray("initialState")]
+initialState = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" index="0"]
+script = ExtResource("4_leuii")
+metadata/_custom_type_script = "uid://mpbldtm5ecce"

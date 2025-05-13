@@ -88,12 +88,13 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
-		if velocity.x == 0:
+		if velocity.x == 0 and %AnimatedSprite2D.sprite_frames.has_animation("idle"):
 			%AnimatedSprite2D.play("idle")
-		if velocity.x != 0:
+		if velocity.x != 0 and %AnimatedSprite2D.sprite_frames.has_animation("walk"):
 			%AnimatedSprite2D.play("walk")
 	else:
-		%AnimatedSprite2D.play("falling")
+		if %AnimatedSprite2D.sprite_frames.has_animation("falling"):
+			%AnimatedSprite2D.play("falling")
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta

@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bnyl4yhcgmj1s"
+
+[deps]
+
+files=["res://translation/objects/npc.en.translation", "res://translation/objects/npc.cz.translation"]
+
+source_file="res://translation/objects/npc.csv"
+dest_files=["res://translation/objects/npc.en.translation", "res://translation/objects/npc.cz.translation"]
+
+[params]
+
+compress=true
+delimiter=0

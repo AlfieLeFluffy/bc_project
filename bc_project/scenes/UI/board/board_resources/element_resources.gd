@@ -8,7 +8,7 @@ const elementColor: Dictionary = {
 	ElementResource.elementType.OBJECT : Color.ROYAL_BLUE,
 	ElementResource.elementType.TEXT : Color.LIME_GREEN,
 	ElementResource.elementType.FILE : Color.DARK_RED,
-	ElementResource.elementType.PROFILE : Color.WHITE,
+	ElementResource.elementType.PROFILE : Color.DARK_ORANGE,
 	ElementResource.elementType.DIALOGUE : Color.DARK_VIOLET,
 }
 

@@ -3,6 +3,9 @@ class_name WanderNpcState extends State
 """
 --- Exported Physics Constants
 """
+@export_group("Next State")
+@export var NextState: State = null
+
 @export_group("Character Body Constants")
 @export var SPEED: int = 60.0
 @export var JUMP_VELOCITY: int = -200.0
@@ -48,7 +51,10 @@ func Physics_Process(delta: float) -> void:
 		set_cast()
 	
 	if wanderTime <= 0:
-		Transition.emit(self,"Idle")
+		if NextState:
+			Transition.emit(self,NextState.name)
+		else:
+			Enter()
 
 """
 --- Randomize functions

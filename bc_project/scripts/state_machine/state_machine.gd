@@ -28,8 +28,8 @@ func _ready() -> void:
 		currentState = initialState
 		currentState.Enter()
 	else:
-		if states[0]:
-			currentState = states[0]
+		if not states.is_empty():
+			currentState = states.values().get(0)
 			currentState.Enter()
 
 """

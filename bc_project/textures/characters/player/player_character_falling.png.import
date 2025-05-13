@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ds7go0p61nqix"
-path="res://.godot/imported/cop_character_idle.png-78feafe2ee60c0e0b3ee695353f23488.ctex"
+uid="uid://d17d1vfmrjcgd"
+path="res://.godot/imported/player_character_falling.png-c761cf796e3d292022694a1b42e06369.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/characters/cop_character_idle.png"
-dest_files=["res://.godot/imported/cop_character_idle.png-78feafe2ee60c0e0b3ee695353f23488.ctex"]
+source_file="res://textures/characters/player/player_character_falling.png"
+dest_files=["res://.godot/imported/player_character_falling.png-c761cf796e3d292022694a1b42e06369.ctex"]
 
 [params]
 

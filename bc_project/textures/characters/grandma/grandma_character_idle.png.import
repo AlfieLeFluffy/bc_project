@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqnha5ktnesai"
-path="res://.godot/imported/test_npc_1.png-eaa6a69fe8a07fe01187eebb76c99450.ctex"
+uid="uid://ctiefn0g2hx3g"
+path="res://.godot/imported/grandma_character_idle.png-e569003625e4c45aa03ea832f89a518c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/characters/test_npc_1.png"
-dest_files=["res://.godot/imported/test_npc_1.png-eaa6a69fe8a07fe01187eebb76c99450.ctex"]
+source_file="res://textures/characters/grandma/grandma_character_idle.png"
+dest_files=["res://.godot/imported/grandma_character_idle.png-e569003625e4c45aa03ea832f89a518c.ctex"]
 
 [params]
 

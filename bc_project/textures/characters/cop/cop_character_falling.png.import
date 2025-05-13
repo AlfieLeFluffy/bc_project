@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ugcd2u7vid7f"
-path="res://.godot/imported/cop_character_falling.png-5d288855826bb8b9ee47d1c469e09be4.ctex"
+path="res://.godot/imported/cop_character_falling.png-6344970998979a92d027aac225a48ce5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/characters/cop_character_falling.png"
-dest_files=["res://.godot/imported/cop_character_falling.png-5d288855826bb8b9ee47d1c469e09be4.ctex"]
+source_file="res://textures/characters/cop/cop_character_falling.png"
+dest_files=["res://.godot/imported/cop_character_falling.png-6344970998979a92d027aac225a48ce5.ctex"]
 
 [params]
 

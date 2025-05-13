@@ -3,6 +3,9 @@ class_name TalkingNpcState extends State
 """
 --- Exported Physics Constants
 """
+@export_group("Next State")
+@export var NextState: State = null
+
 @export_group("Character Body Constants")
 @export var SPEED: int = 60
 @export var JUMP_VELOCITY: int = -200
@@ -35,7 +38,10 @@ func Physics_Process(delta: float) -> void:
 		characterBody.velocity = Vector2()
 	
 	if not talking:
-		Transition.emit(self,"Wander")
+		if NextState:
+			Transition.emit(self,NextState.name)
+		else:
+			Transition.emit(self,"Wander")
 
 """
 --- Conversation state functions
