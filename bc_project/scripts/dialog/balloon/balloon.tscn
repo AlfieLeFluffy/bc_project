@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://kvjsk0o7firt"]
+[gd_scene load_steps=28 format=3 uid="uid://kvjsk0o7firt"]
 
 [ext_resource type="Script" uid="uid://bnrcco68hc5bb" path="res://scripts/dialog/balloon/balloon.gd" id="1_36de5"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
@@ -48,6 +48,21 @@ sadProfile = ExtResource("16_qgmf0")
 angryProfile = ExtResource("13_nb0i5")
 metadata/_custom_type_script = "uid://36os1j4o8q7w"
 
+[sub_resource type="Gradient" id="Gradient_y6jat"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nb0i5"]
+gradient = SubResource("Gradient_y6jat")
+fill = 1
+fill_from = Vector2(0, 1)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y6jat"]
+gradient = SubResource("Gradient_y6jat")
+fill = 1
+fill_from = Vector2(1, 1)
+fill_to = Vector2(0, 0.991453)
+
 [sub_resource type="Theme" id="Theme_0lg70"]
 default_font_size = 28
 
@@ -83,6 +98,32 @@ mouse_filter = 2
 script = ExtResource("3_7poa5")
 characterProfilesArray = Array[ExtResource("5_m1t8c")]([SubResource("Resource_8x82w"), SubResource("Resource_s3gah"), SubResource("Resource_ixt6s")])
 offsetTalking = 50.0
+
+[node name="CharacterFadeLeft" type="TextureRect" parent="Balloon/Profiles"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -1080.0
+offset_right = 960.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_nb0i5")
+
+[node name="CharacterFadeRight" type="TextureRect" parent="Balloon/Profiles"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_y6jat")
 
 [node name="CharacterProfileLeft" type="TextureRect" parent="Balloon/Profiles"]
 unique_name_in_owner = true
@@ -185,7 +226,6 @@ grow_vertical = 0
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_constants/separation = 2
 script = ExtResource("3_72ixx")
 response_template = NodePath("ResponseExample")
 

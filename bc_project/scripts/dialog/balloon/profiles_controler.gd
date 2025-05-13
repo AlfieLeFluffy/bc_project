@@ -86,6 +86,8 @@ func update_profiles() -> void:
 		tween.tween_property(%CharacterProfileRight, "position", %CharacterProfileRight.position+talkingTweenOffset, talkingTweenTime)
 		tween.tween_property(%CharacterProfileRight, "position", %CharacterProfileRight.position-talkingTweenOffset, talkingTweenTime)
 	
+	%CharacterFadeLeft.visible = left
+	%CharacterFadeRight.visible = right
 	%CharacterProfileLeft.modulate = fadedModulateColor
 	%CharacterProfileRight.modulate = fadedModulateColor
 	if left:

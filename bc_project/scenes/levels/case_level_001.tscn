@@ -182,7 +182,7 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/row = -1
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pafxg"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_oehmw"]
 
 [node name="CaseLevel001" type="Node"]
 script = ExtResource("1_cx2xa")
@@ -410,5 +410,7 @@ position = Vector2(-88, 324)
 [node name="OutsideBoundsKillTrigger" type="Area2D" parent="."]
 position = Vector2(0, 1000)
 script = ExtResource("12_p5jqp")
-collisionShape = SubResource("WorldBoundaryShape2D_pafxg")
 metadata/_custom_type_script = "uid://bi25vgavxjlp6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OutsideBoundsKillTrigger"]
+shape = SubResource("WorldBoundaryShape2D_oehmw")
