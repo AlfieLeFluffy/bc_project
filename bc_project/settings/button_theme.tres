@@ -1,6 +1,9 @@
 [gd_resource type="Theme" load_steps=6 format=3 uid="uid://bqtjul82stgbk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_io1li"]
+content_margin_left = 20.0
+content_margin_top = 5.0
+content_margin_right = 20.0
 bg_color = Color(0.1694, 0.1694, 0.22, 0.588235)
 border_width_left = 4
 border_width_top = 4
@@ -17,6 +20,10 @@ shadow_size = 3
 shadow_offset = Vector2(2, 2)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kmkuj"]
+content_margin_left = 20.0
+content_margin_top = 5.0
+content_margin_right = 20.0
+content_margin_bottom = 5.0
 bg_color = Color(0.215686, 0.215686, 0.278431, 1)
 border_width_left = 4
 border_width_top = 4
@@ -32,6 +39,10 @@ shadow_size = 3
 shadow_offset = Vector2(2, 2)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mx22a"]
+content_margin_left = 20.0
+content_margin_top = 5.0
+content_margin_right = 20.0
+content_margin_bottom = 5.0
 bg_color = Color(0.172549, 0.172549, 0.223529, 1)
 border_width_left = 4
 border_width_top = 4
@@ -47,6 +58,10 @@ shadow_size = 3
 shadow_offset = Vector2(2, 2)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ub05p"]
+content_margin_left = 20.0
+content_margin_top = 5.0
+content_margin_right = 20.0
+content_margin_bottom = 5.0
 bg_color = Color(0.172549, 0.172549, 0.223529, 1)
 border_width_left = 4
 border_width_top = 4
@@ -62,6 +77,10 @@ shadow_size = 2
 shadow_offset = Vector2(2, 2)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y7n00"]
+content_margin_left = 20.0
+content_margin_top = 5.0
+content_margin_right = 20.0
+content_margin_bottom = 5.0
 bg_color = Color(0.215686, 0.215686, 0.278431, 1)
 border_width_left = 4
 border_width_top = 4

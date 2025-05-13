@@ -263,5 +263,5 @@ texture_scale = 0.5
 unique_name_in_owner = true
 z_index = 10
 sprite_frames = SubResource("SpriteFrames_wmv4b")
-animation = &"falling"
+animation = &"idle"
 autoplay = "idle"

@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c4d1odq88m3nh" path="res://textures/symbols/asterisk.png" id="3_4n4py"]
 
 [node name="AchievementLine" type="HBoxContainer"]
+texture_filter = 1
 custom_minimum_size = Vector2(46, 46)
 anchors_preset = -1
 anchor_right = 0.996
@@ -20,6 +21,10 @@ custom_minimum_size = Vector2(46, 46)
 layout_mode = 2
 texture = ExtResource("1_klr2m")
 stretch_mode = 4
+
+[node name="FillMiddle" type="Control" parent="."]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
 
 [node name="Text" type="RichTextLabel" parent="."]
 unique_name_in_owner = true

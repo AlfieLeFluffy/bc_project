@@ -6,8 +6,8 @@ enum e_AchievementType {
 }
 
 const information: Dictionary = {
-	e_AchievementType.HOW_DID_WE_GET_HERE : {"name": "ACHIEVEMENT_HOW_DID_NAME", "name_color": "CYAN", "description": "ACHIEVEMENT_HOW_DID_DESCRIPTION", "icon": null},
-	e_AchievementType.RETIREMENT: {"name": "ACHIEVEMENT_RETIREMENT_NAME", "name_color": "YELLOW", "description": "ACHIEVEMENT_RETIREMENT_DESCRIPTION", "icon": null},
+	e_AchievementType.HOW_DID_WE_GET_HERE : {"name": "ACHIEVEMENT_HOW_DID_NAME", "name_color": "CYAN", "description": "ACHIEVEMENT_HOW_DID_DESCRIPTION", "icon": preload("res://textures/ui/achievements/how_did_i_get_here.png")},
+	e_AchievementType.RETIREMENT: {"name": "ACHIEVEMENT_RETIREMENT_NAME", "name_color": "YELLOW", "description": "ACHIEVEMENT_RETIREMENT_DESCRIPTION", "icon": preload("res://textures/ui/achievements/retirement.png")},
 }
 
 @export var acquiredAchievements: Array[AchievementsResource.e_AchievementType] = []
