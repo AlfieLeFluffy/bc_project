@@ -1,8 +1,9 @@
-[gd_scene load_steps=38 format=3 uid="uid://ddrrl1gryxkup"]
+[gd_scene load_steps=39 format=3 uid="uid://ddrrl1gryxkup"]
 
 [ext_resource type="Script" uid="uid://c81h7y26qhq52" path="res://scenes/characters/player/player_controller.gd" id="1_fg2e7"]
 [ext_resource type="Texture2D" uid="uid://b2ynbvxgxg38d" path="res://textures/lightMaps/radialLight.png" id="3_66w77"]
 [ext_resource type="Texture2D" uid="uid://d17d1vfmrjcgd" path="res://textures/characters/player/player_character_falling.png" id="3_fevn2"]
+[ext_resource type="Script" uid="uid://blwvtsprt4d25" path="res://animation_controller.gd" id="3_pq06v"]
 [ext_resource type="Texture2D" uid="uid://ckpq5q4gw231t" path="res://textures/characters/player/player_character_idle.png" id="3_xusps"]
 [ext_resource type="Texture2D" uid="uid://3ucweultlm6k" path="res://textures/characters/player/player_character_walk.png" id="4_ecrnf"]
 [ext_resource type="Texture2D" uid="uid://c8oxmkopxip5m" path="res://textures/characters/player/player_character_run.png" id="4_fevn2"]
@@ -238,6 +239,7 @@ light_mask = 7
 visibility_layer = 7
 collision_layer = 273
 collision_mask = 273
+input_pickable = true
 script = ExtResource("1_fg2e7")
 metadata/InteractItemSet = false
 
@@ -258,6 +260,12 @@ shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.313726)
 texture = ExtResource("3_66w77")
 texture_scale = 0.5
+
+[node name="AnimationController" type="Node" parent="." node_paths=PackedStringArray("characterBody", "animatedSprite")]
+script = ExtResource("3_pq06v")
+characterBody = NodePath("..")
+animatedSprite = NodePath("../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://blwvtsprt4d25"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
