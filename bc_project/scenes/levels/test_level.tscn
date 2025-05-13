@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=4 uid="uid://brbrdb6ngc2es"]
+[gd_scene load_steps=108 format=4 uid="uid://brbrdb6ngc2es"]
 
 [ext_resource type="Script" uid="uid://cmlgg6dxih77f" path="res://scenes/levels/level_controller.gd" id="1_t01cb"]
 [ext_resource type="PackedScene" uid="uid://ddrrl1gryxkup" path="res://scenes/characters/player/player_character.tscn" id="1_wpgi4"]
@@ -18,12 +18,11 @@
 [ext_resource type="Shader" uid="uid://dcwirhvnici6e" path="res://shaders/outline_recolor.gdshader" id="8_0myxw"]
 [ext_resource type="PackedScene" uid="uid://c4br56b34o2el" path="res://scenes/interactive/buttons/elevatorCall/elevator_call_button.tscn" id="8_dgc65"]
 [ext_resource type="Script" uid="uid://cigg6mv4soq7y" path="res://scripts/callable/static_method_callable_resource.gd" id="8_gsoyx"]
-[ext_resource type="Resource" uid="uid://bmxx1uimby337" path="res://dialogs/test_dialogue.dialogue" id="10_wnetc"]
+[ext_resource type="Resource" uid="uid://bmxx1uimby337" path="res://dialogs/testing/test_dialogue.dialogue" id="10_wnetc"]
 [ext_resource type="Script" uid="uid://drj3o0qsip6ss" path="res://scenes/characters/npcs/npc_resource.gd" id="16_2qb3d"]
 [ext_resource type="PackedScene" uid="uid://co868n2ppblh5" path="res://scenes/interactive/texts/versions/book_spine.tscn" id="17_0myxw"]
-[ext_resource type="Resource" uid="uid://p2pgjby8025n" path="res://dialogs/ribli.dialogue" id="17_ls76e"]
+[ext_resource type="Resource" uid="uid://p2pgjby8025n" path="res://dialogs/testing/ribli.dialogue" id="17_ls76e"]
 [ext_resource type="PackedScene" uid="uid://xdset1j1nj24" path="res://scenes/interactive/doors/door.tscn" id="18_caylh"]
-[ext_resource type="PackedScene" uid="uid://doxp2j8t2vs5a" path="res://scenes/characters/npcs/npc_versions/npc_standing.tscn" id="18_tveke"]
 [ext_resource type="Script" uid="uid://dsq6w2r2l8ydw" path="res://scripts/callable/dynamic_method_callable_resource.gd" id="19_gsoyx"]
 [ext_resource type="PackedScene" uid="uid://bqm4y7yl8uqcq" path="res://scenes/static/furniture/wooden_table.tscn" id="21_auljp"]
 [ext_resource type="PackedScene" uid="uid://cqiiad58pt1w" path="res://scenes/interactive/computer/versions/tabletop_computer.tscn" id="22_maqab"]
@@ -35,20 +34,20 @@
 [ext_resource type="Script" uid="uid://btpud4ox3m0dx" path="res://scenes/interactive/computer/resources/application_resource.gd" id="25_c6ib1"]
 [ext_resource type="Script" uid="uid://bip873am5kgyj" path="res://scenes/triggers/versions/area_trigger_dialogue.gd" id="26_0nxvq"]
 [ext_resource type="Texture2D" uid="uid://my7io80ercjl" path="res://textures/text/recolor/book_spine_base_colors.png" id="26_e6x8h"]
-[ext_resource type="Resource" uid="uid://1lie11h7rb0x" path="res://dialogs/test_area_trigger_one_use.dialogue" id="27_1u7m5"]
+[ext_resource type="Resource" uid="uid://1lie11h7rb0x" path="res://dialogs/testing/test_area_trigger_one_use.dialogue" id="27_1u7m5"]
 [ext_resource type="Texture2D" uid="uid://dhr1y8plgar2r" path="res://textures/text/recolor/book_spine_recolor_colors.png" id="27_4wpc7"]
-[ext_resource type="Resource" uid="uid://dvnwynrbbuwdw" path="res://dialogs/test_area_trigger.dialogue" id="28_dgc65"]
+[ext_resource type="Resource" uid="uid://dvnwynrbbuwdw" path="res://dialogs/testing/test_area_trigger.dialogue" id="28_dgc65"]
 [ext_resource type="PackedScene" uid="uid://532uypmhsvde" path="res://scenes/elevators/elevator.tscn" id="29_0nxvq"]
 [ext_resource type="Script" uid="uid://bm15idovcdu8y" path="res://scenes/elevators/elevator_resource.gd" id="30_1u7m5"]
 [ext_resource type="PackedScene" uid="uid://cs1y6cfdd6whw" path="res://scenes/interactive/combination/version/small_safe.tscn" id="33_mrmmo"]
 [ext_resource type="Script" uid="uid://dumlknmceceuw" path="res://scenes/interactive/combination/resource/combination_lock_resource.gd" id="33_y0fbb"]
 [ext_resource type="Script" uid="uid://dpd17umyvuqu3" path="res://scenes/triggers/versions/screen_text_trigger_area.gd" id="35_6g246"]
 [ext_resource type="PackedScene" uid="uid://be7qeot0dv5s1" path="res://scenes/elevators/elevator_stop.tscn" id="35_26rt0"]
-[ext_resource type="Texture2D" uid="uid://dlo6oyplrtp4v" path="res://textures/characters/test_npc_0.png" id="36_0e4k1"]
 [ext_resource type="Script" uid="uid://bo8kxkmnuh65x" path="res://scenes/triggers/versions/area_trigger_autosave.gd" id="36_rnt0l"]
 [ext_resource type="Script" uid="uid://bi25vgavxjlp6" path="res://scenes/triggers/versions/area_trigger_game_over.gd" id="38_6g246"]
 [ext_resource type="Script" uid="uid://71eolmvkpl1e" path="res://scenes/triggers/versions/area_trigger_next_step.gd" id="41_y80st"]
 [ext_resource type="Script" uid="uid://ca8p4syf56fpg" path="res://scenes/triggers/versions/area_trigger_go_to_step.gd" id="42_t8w0x"]
+[ext_resource type="PackedScene" uid="uid://cxycidssyjap7" path="res://scenes/characters/npcs/npc_versions/cop_idle.tscn" id="43_2orbd"]
 
 [sub_resource type="Resource" id="Resource_ywsp3"]
 script = ExtResource("8_gsoyx")
@@ -90,19 +89,6 @@ shader = ExtResource("8_0myxw")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/row = -1
-
-[sub_resource type="Resource" id="Resource_5vl2c"]
-script = ExtResource("30_1u7m5")
-id = "el001"
-timeline = ""
-openning = 2
-speed = 70.0
-active = false
-startupTimeout = true
-startupTimeoutDuration = 0.3
-currentStop = "10"
-movingToStop = "11"
-metadata/_custom_type_script = "uid://bm15idovcdu8y"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6g246"]
 resource_local_to_scene = true
@@ -193,7 +179,7 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/row = -1
 
-[sub_resource type="Resource" id="Resource_ib3ll"]
+[sub_resource type="Resource" id="Resource_2orbd"]
 resource_local_to_scene = true
 script = ExtResource("24_frqwj")
 textName = "TEST_TEXT_NAME"
@@ -248,7 +234,6 @@ metadata/_custom_type_script = "uid://cbgr7ncuyd2t0"
 
 [sub_resource type="Resource" id="Resource_jlhf4"]
 script = ExtResource("24_gn46e")
-bakctrackName = "_backtrack"
 root = {
 "DIRECTORY_DOCUMENTS": {
 "FILE_TEST_NAME": "FILE_TEST_CONTENTS"
@@ -298,21 +283,18 @@ override = false
 size = 5
 metadata/_custom_type_script = "uid://dumlknmceceuw"
 
-[sub_resource type="Resource" id="Resource_g6skm"]
-script = ExtResource("8_gsoyx")
-nodeName = "CustomDialogueScripts"
-methodName = "start_dialogue"
-parameters = [ExtResource("17_ls76e")]
-metadata/_custom_type_script = "uid://cigg6mv4soq7y"
-
-[sub_resource type="Resource" id="Resource_3s0xg"]
-script = ExtResource("16_2qb3d")
-npcName = "TestNPC"
-spritesheet = ExtResource("36_0e4k1")
-frameVector = Vector2(1, 1)
-description = ""
-callables = Array[ExtResource("4_0e4k1")]([SubResource("Resource_g6skm")])
-metadata/_custom_type_script = "uid://drj3o0qsip6ss"
+[sub_resource type="Resource" id="Resource_5vl2c"]
+script = ExtResource("30_1u7m5")
+id = "el001"
+timeline = ""
+openning = 2
+speed = 70.0
+active = false
+startupTimeout = true
+startupTimeoutDuration = 0.3
+currentStop = "10"
+movingToStop = "11"
+metadata/_custom_type_script = "uid://bm15idovcdu8y"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0nxvq"]
 size = Vector2(40, 40)
@@ -329,6 +311,20 @@ size = Vector2(40, 40)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t8w0x"]
 size = Vector2(40, 40)
 
+[sub_resource type="Resource" id="Resource_ib3ll"]
+script = ExtResource("8_gsoyx")
+nodeName = "CustomDialogueScripts"
+methodName = "start_dialogue"
+parameters = [ExtResource("17_ls76e")]
+metadata/_custom_type_script = "uid://cigg6mv4soq7y"
+
+[sub_resource type="Resource" id="Resource_yguda"]
+script = ExtResource("16_2qb3d")
+npcName = "Ribli"
+description = ""
+callables = Array[ExtResource("4_0e4k1")]([SubResource("Resource_ib3ll")])
+metadata/_custom_type_script = "uid://drj3o0qsip6ss"
+
 [sub_resource type="Resource" id="Resource_y80st"]
 script = ExtResource("5_y0fbb")
 name = "002"
@@ -342,19 +338,6 @@ shader = ExtResource("8_0myxw")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/row = -1
-
-[sub_resource type="Resource" id="Resource_t8w0x"]
-script = ExtResource("30_1u7m5")
-id = "el002"
-timeline = ""
-openning = 2
-speed = 70.0
-active = false
-startupTimeout = true
-startupTimeoutDuration = 0.3
-currentStop = ""
-movingToStop = ""
-metadata/_custom_type_script = "uid://bm15idovcdu8y"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1oo6r"]
 resource_local_to_scene = true
@@ -391,6 +374,43 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/row = -1
 
+[sub_resource type="Resource" id="Resource_t8w0x"]
+script = ExtResource("30_1u7m5")
+id = "el002"
+timeline = ""
+openning = 2
+speed = 70.0
+active = false
+startupTimeout = true
+startupTimeoutDuration = 0.3
+currentStop = ""
+movingToStop = ""
+metadata/_custom_type_script = "uid://bm15idovcdu8y"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_26rt0"]
+resource_local_to_scene = true
+shader = ExtResource("8_0myxw")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/row = -1
+
+[sub_resource type="Resource" id="Resource_nci5d"]
+resource_local_to_scene = true
+script = ExtResource("7_paapu")
+item_name = "EMPTY_PLATE_NAME"
+description = "EMPTY_PLATE_DESCRIPTION"
+detective_board_toggle = true
+show_labels = true
+callables = Array[ExtResource("4_0e4k1")]([SubResource("Resource_wgpnu")])
+metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wompe"]
+resource_local_to_scene = true
+shader = ExtResource("8_0myxw")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/row = -1
+
 [sub_resource type="Resource" id="Resource_20vtg"]
 script = ExtResource("5_y0fbb")
 name = "003"
@@ -404,19 +424,6 @@ shader = ExtResource("8_0myxw")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 shader_parameter/row = -1
-
-[sub_resource type="Resource" id="Resource_tkdvg"]
-script = ExtResource("30_1u7m5")
-id = "el003"
-timeline = ""
-openning = 2
-speed = 70.0
-active = false
-startupTimeout = true
-startupTimeoutDuration = 0.3
-currentStop = ""
-movingToStop = ""
-metadata/_custom_type_script = "uid://bm15idovcdu8y"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ywsp3"]
 resource_local_to_scene = true
@@ -518,6 +525,9 @@ position = Vector2(691, 304)
 [node name="ceiling_lamp" parent="Timeline001/Interactive/Lights" instance=ExtResource("6_g4tah")]
 position = Vector2(382, 192)
 
+[node name="ceiling_lamp2" parent="Timeline001/Interactive/Lights" instance=ExtResource("6_g4tah")]
+position = Vector2(642, 195)
+
 [node name="ceiling_lamp3" parent="Timeline001/Interactive/Lights" instance=ExtResource("6_g4tah")]
 position = Vector2(129, 192)
 
@@ -526,20 +536,20 @@ position = Vector2(129, 192)
 [node name="ElevatorCallButton" parent="Timeline001/Interactive/Buttons" instance=ExtResource("8_dgc65")]
 material = SubResource("ShaderMaterial_5vl2c")
 position = Vector2(32, 480)
-key = "10"
-resource = SubResource("Resource_5vl2c")
+elevatorID = "el001"
+stopID = "10"
 
 [node name="ElevatorCallButton2" parent="Timeline001/Interactive/Buttons" instance=ExtResource("8_dgc65")]
 material = SubResource("ShaderMaterial_6g246")
 position = Vector2(32, 306)
-key = "11"
-resource = SubResource("Resource_5vl2c")
+elevatorID = "el001"
+stopID = "11"
 
 [node name="ElevatorCallButton3" parent="Timeline001/Interactive/Buttons" instance=ExtResource("8_dgc65")]
 material = SubResource("ShaderMaterial_rnt0l")
 position = Vector2(32, 124)
-key = "12"
-resource = SubResource("Resource_5vl2c")
+elevatorID = "el001"
+stopID = "12"
 
 [node name="Switches" type="Node2D" parent="Timeline001/Interactive"]
 
@@ -582,7 +592,7 @@ position = Vector2(255, 297)
 [node name="PaperOnWall" parent="Timeline001/Interactive/Texts" instance=ExtResource("23_l5ajp")]
 material = SubResource("ShaderMaterial_ib3ll")
 position = Vector2(585, 294)
-textRosource = SubResource("Resource_ib3ll")
+textRosource = SubResource("Resource_2orbd")
 
 [node name="BookSpine" parent="Timeline001/Interactive/Texts" instance=ExtResource("17_0myxw")]
 material = SubResource("ShaderMaterial_nci5d")
@@ -638,10 +648,6 @@ flip = true
 
 [node name="NPCs" type="Node2D" parent="Timeline001"]
 
-[node name="NPC_Ribli" parent="Timeline001/NPCs" instance=ExtResource("18_tveke")]
-position = Vector2(116, 302)
-npcResource = SubResource("Resource_3s0xg")
-
 [node name="Triggers" type="Node2D" parent="Timeline001"]
 
 [node name="AreaTriggerDialogueOnce" type="Area2D" parent="Timeline001/Triggers"]
@@ -675,8 +681,7 @@ metadata/_custom_type_script = "uid://bip873am5kgyj"
 z_index = 255
 position = Vector2(-64, 368)
 script = ExtResource("35_6g246")
-ScreenTextString = "[font_size=64][color=#b334a4]Welcome to the Test Level;
-[font_size=48][color=#5fcfe6]Glados would be proud"
+ScreenTextString = "SCREEN_TEXT_TEST_LEVEL"
 collisionShape = SubResource("RectangleShape2D_4g8k6")
 metadata/_custom_type_script = "uid://dpd17umyvuqu3"
 
@@ -707,6 +712,11 @@ script = ExtResource("41_y80st")
 taskName = "A Fresh Start"
 collisionShape = SubResource("RectangleShape2D_y80st")
 metadata/_custom_type_script = "uid://71eolmvkpl1e"
+
+[node name="Ribli" parent="Timeline001" instance=ExtResource("43_2orbd")]
+position = Vector2(90, 308)
+startFlipped = true
+npcResource = SubResource("Resource_yguda")
 
 [node name="Timeline002" type="Node2D" parent="."]
 position = Vector2(2000, 0)
@@ -749,20 +759,14 @@ position = Vector2(720, 336)
 [node name="ElevatorCallButton" parent="Timeline002/Interactive/Buttons" instance=ExtResource("8_dgc65")]
 material = SubResource("ShaderMaterial_g6skm")
 position = Vector2(32, 480)
-key = "1"
-resource = SubResource("Resource_t8w0x")
 
 [node name="ElevatorCallButton2" parent="Timeline002/Interactive/Buttons" instance=ExtResource("8_dgc65")]
 material = SubResource("ShaderMaterial_1oo6r")
 position = Vector2(32, 306)
-key = "2"
-resource = SubResource("Resource_t8w0x")
 
 [node name="ElevatorCallButton3" parent="Timeline002/Interactive/Buttons" instance=ExtResource("8_dgc65")]
 material = SubResource("ShaderMaterial_12lfy")
 position = Vector2(32, 124)
-key = "3"
-resource = SubResource("Resource_t8w0x")
 
 [node name="light_switch" parent="Timeline002/Interactive/Buttons" instance=ExtResource("7_wo4n4")]
 material = SubResource("ShaderMaterial_7sogp")
@@ -810,6 +814,25 @@ circuit = 1
 
 [node name="Triggers" type="Node2D" parent="Timeline002"]
 
+[node name="Ribli" parent="Timeline002" instance=ExtResource("43_2orbd")]
+position = Vector2(157, 310)
+npcResource = SubResource("Resource_yguda")
+
+[node name="Objects" type="Node2D" parent="Timeline002"]
+position = Vector2(-56, 0)
+
+[node name="EmptyPlate" parent="Timeline002/Objects" instance=ExtResource("4_w2p71")]
+material = SubResource("ShaderMaterial_26rt0")
+position = Vector2(138, 332)
+interactableResource = SubResource("Resource_nci5d")
+
+[node name="ThickMug" parent="Timeline002/Objects" instance=ExtResource("5_hqxr4")]
+material = SubResource("ShaderMaterial_wompe")
+position = Vector2(160, 332)
+interactableResource = SubResource("Resource_jigj2")
+metadata/PlayerNodeName = "player"
+metadata/Description = "Test Description"
+
 [node name="Timeline003" type="Node2D" parent="."]
 position = Vector2(4000, 0)
 script = ExtResource("4_y0fbb")
@@ -851,20 +874,14 @@ position = Vector2(720, 336)
 [node name="ElevatorCallButton" parent="Timeline003/Interactive/Buttons" instance=ExtResource("8_dgc65")]
 material = SubResource("ShaderMaterial_fi7ie")
 position = Vector2(32, 480)
-key = "10"
-resource = SubResource("Resource_tkdvg")
 
 [node name="ElevatorCallButton2" parent="Timeline003/Interactive/Buttons" instance=ExtResource("8_dgc65")]
 material = SubResource("ShaderMaterial_ywsp3")
 position = Vector2(32, 306)
-key = "11"
-resource = SubResource("Resource_tkdvg")
 
 [node name="ElevatorCallButton3" parent="Timeline003/Interactive/Buttons" instance=ExtResource("8_dgc65")]
 material = SubResource("ShaderMaterial_tkdvg")
 position = Vector2(32, 124)
-key = "12"
-resource = SubResource("Resource_tkdvg")
 
 [node name="light_switch" parent="Timeline003/Interactive/Buttons" instance=ExtResource("7_wo4n4")]
 material = SubResource("ShaderMaterial_sbfds")
@@ -918,20 +935,15 @@ current = NodePath("../Timeline001")
 timelines = [NodePath("../Timeline001"), NodePath("../Timeline002"), NodePath("../Timeline003")]
 metadata/_custom_type_script = "uid://wob4dkroqdok"
 
-[node name="player" parent="." groups=["CameraFocus"] instance=ExtResource("1_wpgi4")]
+[node name="PlayerCharacter" parent="." groups=["CameraFocus"] instance=ExtResource("1_wpgi4")]
 z_index = 1
-position = Vector2(-88, 476)
+position = Vector2(-88, 484)
 
 [node name="AreaTriggerGameOver" type="Area2D" parent="."]
 position = Vector2(0, 1080)
 script = ExtResource("38_6g246")
-gameOverType = null
 maxUses = -1
-timesUsed = null
 collisionShape = SubResource("WorldBoundaryShape2D_rnt0l")
-triggerOn = null
-triggerObject = null
-callables = null
 metadata/_custom_type_script = "uid://bi25vgavxjlp6"
 
 [connection signal="area_entered" from="Timeline001/Interactive/Switches/light_switch" to="Timeline001/Interactive/Switches/light_switch" method="_on_area_entered"]
@@ -966,6 +978,22 @@ metadata/_custom_type_script = "uid://bi25vgavxjlp6"
 [connection signal="mouse_entered" from="Timeline002/Interactive/Buttons/light_switch" to="Timeline002/Interactive/Buttons/light_switch/InteractiveHandler" method="_on_interactable_base_mouse_entered"]
 [connection signal="mouse_exited" from="Timeline002/Interactive/Buttons/light_switch" to="Timeline002/Interactive/Buttons/light_switch" method="_on_mouse_exited"]
 [connection signal="mouse_exited" from="Timeline002/Interactive/Buttons/light_switch" to="Timeline002/Interactive/Buttons/light_switch/InteractiveHandler" method="_on_interactable_base_mouse_exited"]
+[connection signal="area_entered" from="Timeline002/Objects/EmptyPlate" to="Timeline002/Objects/EmptyPlate" method="_on_area_entered"]
+[connection signal="area_entered" from="Timeline002/Objects/EmptyPlate" to="Timeline002/Objects/EmptyPlate/InteractiveHandler" method="_on_interactable_base_area_entered"]
+[connection signal="area_exited" from="Timeline002/Objects/EmptyPlate" to="Timeline002/Objects/EmptyPlate" method="_on_area_exited"]
+[connection signal="area_exited" from="Timeline002/Objects/EmptyPlate" to="Timeline002/Objects/EmptyPlate/InteractiveHandler" method="_on_interactable_base_area_exited"]
+[connection signal="mouse_entered" from="Timeline002/Objects/EmptyPlate" to="Timeline002/Objects/EmptyPlate" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="Timeline002/Objects/EmptyPlate" to="Timeline002/Objects/EmptyPlate/InteractiveHandler" method="_on_interactable_base_mouse_entered"]
+[connection signal="mouse_exited" from="Timeline002/Objects/EmptyPlate" to="Timeline002/Objects/EmptyPlate" method="_on_mouse_exited"]
+[connection signal="mouse_exited" from="Timeline002/Objects/EmptyPlate" to="Timeline002/Objects/EmptyPlate/InteractiveHandler" method="_on_interactable_base_mouse_exited"]
+[connection signal="area_entered" from="Timeline002/Objects/ThickMug" to="Timeline002/Objects/ThickMug" method="_on_area_entered"]
+[connection signal="area_entered" from="Timeline002/Objects/ThickMug" to="Timeline002/Objects/ThickMug/InteractiveHandler" method="_on_interactable_base_area_entered"]
+[connection signal="area_exited" from="Timeline002/Objects/ThickMug" to="Timeline002/Objects/ThickMug" method="_on_area_exited"]
+[connection signal="area_exited" from="Timeline002/Objects/ThickMug" to="Timeline002/Objects/ThickMug/InteractiveHandler" method="_on_interactable_base_area_exited"]
+[connection signal="mouse_entered" from="Timeline002/Objects/ThickMug" to="Timeline002/Objects/ThickMug" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="Timeline002/Objects/ThickMug" to="Timeline002/Objects/ThickMug/InteractiveHandler" method="_on_interactable_base_mouse_entered"]
+[connection signal="mouse_exited" from="Timeline002/Objects/ThickMug" to="Timeline002/Objects/ThickMug" method="_on_mouse_exited"]
+[connection signal="mouse_exited" from="Timeline002/Objects/ThickMug" to="Timeline002/Objects/ThickMug/InteractiveHandler" method="_on_interactable_base_mouse_exited"]
 [connection signal="area_entered" from="Timeline003/Interactive/Buttons/light_switch" to="Timeline003/Interactive/Buttons/light_switch" method="_on_area_entered"]
 [connection signal="area_entered" from="Timeline003/Interactive/Buttons/light_switch" to="Timeline003/Interactive/Buttons/light_switch/InteractiveHandler" method="_on_interactable_base_area_entered"]
 [connection signal="area_exited" from="Timeline003/Interactive/Buttons/light_switch" to="Timeline003/Interactive/Buttons/light_switch" method="_on_area_exited"]

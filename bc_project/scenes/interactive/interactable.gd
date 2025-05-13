@@ -92,7 +92,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				for callable in interactableResource.callables:
 					callable.run(self)
 			_interact_function(event)
-	elif event.is_action_pressed("add_to_board") and active:
+	elif event.is_action_pressed("add_to_board") and active and interactableResource.detective_board_toggle:
 		if check_line_of_sight():
 			add_board_element(event)
 

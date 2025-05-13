@@ -12,7 +12,7 @@ config_version=5
 
 config/name="TimeSplit"
 config/description="Your detective agency's R&D team has created a strange device that allows users to cross between alternative timelines similar to the one you are standing in and the best way to test it, is to use it in the field. You are tasked with using and testing the device while solving cases. What will you find out with the help of this new strange device, what consequences will it bring to solving crimes and are there any downsides of hoping through time and space? That is your objective to find out."
-config/version="0.3.23"
+config/version="0.3.24"
 run/main_scene="uid://dm41tfgcyglf2"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0.0784314, 0.0784314, 0.101961, 1)
@@ -220,7 +220,7 @@ highlight={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://translation/dialogue/ribli.cz.translation", "res://translation/dialogue/ribli.en.translation", "res://translation/game/achievement.cz.translation", "res://translation/game/achievement.en.translation", "res://translation/game/error.cz.translation", "res://translation/game/error.en.translation", "res://translation/game/gameover.cz.translation", "res://translation/game/gameover.en.translation", "res://translation/game/hint.cz.translation", "res://translation/game/hint.en.translation", "res://translation/game/main.cz.translation", "res://translation/game/main.en.translation", "res://translation/objects/computer.cz.translation", "res://translation/objects/computer.en.translation", "res://translation/objects/object.cz.translation", "res://translation/objects/object.en.translation", "res://translation/objects/text.cz.translation", "res://translation/objects/text.en.translation")
+locale/translations=PackedStringArray("res://translation/dialogue/ribli.cz.translation", "res://translation/dialogue/ribli.en.translation", "res://translation/game/achievement.cz.translation", "res://translation/game/achievement.en.translation", "res://translation/game/error.cz.translation", "res://translation/game/error.en.translation", "res://translation/game/gameover.cz.translation", "res://translation/game/gameover.en.translation", "res://translation/game/hint.cz.translation", "res://translation/game/hint.en.translation", "res://translation/game/main.cz.translation", "res://translation/game/main.en.translation", "res://translation/objects/computer.cz.translation", "res://translation/objects/computer.en.translation", "res://translation/objects/object.cz.translation", "res://translation/objects/object.en.translation", "res://translation/objects/text.cz.translation", "res://translation/objects/text.en.translation", "res://translation/objects/npc.cz.translation", "res://translation/objects/npc.en.translation", "res://translation/game/effects.cz.translation", "res://translation/game/effects.en.translation")
 locale/translations_pot_files=PackedStringArray("res://dialogs/case001/cop_case_001.dialogue", "res://dialogs/case001/dispatch_case_001.dialogue", "res://dialogs/testing/ribli.dialogue", "res://dialogs/testing/test_area_trigger.dialogue", "res://dialogs/testing/test_area_trigger_one_use.dialogue", "res://dialogs/testing/test_dialogue.dialogue", "res://dialogs/testing/test_npc.dialogue")
 
 [layer_names]

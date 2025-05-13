@@ -24,8 +24,9 @@ func _ready() -> void:
 	if not input:
 		queue_free()
 	
+	var translation: String = tr(input)
 	## Splits input by semicolon.
-	list = input.split(";")
+	list = translation.split(";")
 	
 	## Display a line for every line in the list.
 	## Await structure for sequential displaying.

@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://ddl6bbwrjwb2w"
+
+[deps]
+
+files=["res://translation/game/effects.en.translation", "res://translation/game/effects.cz.translation"]
+
+source_file="res://translation/game/effects.csv"
+dest_files=["res://translation/game/effects.en.translation", "res://translation/game/effects.cz.translation"]
+
+[params]
+
+compress=true
+delimiter=0

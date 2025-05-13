@@ -27,7 +27,7 @@ metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
 resource_local_to_scene = true
 size = Vector2(16, 16)
 
-[node name="light_switch" groups=["Persistent"] instance=ExtResource("1_g0vw7")]
+[node name="LightSwitch" groups=["Persistent"] instance=ExtResource("1_g0vw7")]
 material = SubResource("ShaderMaterial_hg5ft")
 script = ExtResource("2_di4um")
 circuit = 0
