@@ -1,0 +1,66 @@
+~ start
+
+ 
+if DialogueVariables.check_variable("officer_robert_met") != true
+	=> first_talk
+elif DialogueVariables.check_variable("case_001_finished") == true
+	=> case_finished
+
+Officer Robert: Yes?
+- Can you please go over the information again?
+	Detective: Can you please go over the information again?
+	Officer Robert:  Can do.
+	=> safe_info
+- Nothing.
+	Detective: Nothing.
+
+=> END
+
+~ first_talk
+
+Detective: So, what do we have here?
+=> safe_info
+
+=> END
+
+
+~ safe_info
+
+Officer Robert: Someone either really profesional or they knew the code.
+Officer Robert: They knew the safe was behind that ugly painting down there.
+Officer Robert: [#board=Safe State] There are no signs of forced entry.
+Officer Robert: [#board=The Money] Weird thing is that they left money in the safe and we are not talking a small about. They left some 800$.
+Officer Robert: I don't know what to think of it.
+if DialogueVariables.check_variable("officer_robert_met") == true
+	=> END
+- Yeah, that is weird.
+	Detective: Yeah, that is weird.
+- Well, I will try to find out why.
+	Detective: Well, I will try to find out why.
+
+do DialogueVariables.set_variable("officer_robert_met", true)
+=> END
+
+~ case_finished
+
+if DialogueVariables.check_variable("case_001_robert_case_finished") == true
+	Officer Robert: Finally, we can get you of here.
+	=> END
+if DialogueVariables.check_variable("case_001_jewelery_returned") == true
+	Officer Robert: Finally, you found them. I was thinking if she just lost them.
+	Officer Robert: Where were they?
+	- Behind her dresser.
+		Detective: Behind her dresser.
+		Officer Robert: Ah, didn't check there.
+	- That is complicated.
+		Detective: That is complicated.
+		Officer Robert: Okay... keep your detective secrets.
+elif DialogueVariables.check_variable("case_001_reciete_ending") == true
+	Officer Robert: Did you solve it?
+	Detective: Yeah, she sold them and forgot about it. That's why there is the money.
+	Officer Robert: God damnint, waste of time. At least we can go.
+else
+	Officer Robert: Finally, we can get you of here.
+do DialogueVariables.set_variable("case_001_robert_case_finished", true)
+
+=> END

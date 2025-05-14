@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_14"
+type="Resource"
+uid="uid://c5u7qjf2p1jys"
+path="res://.godot/imported/julia_wild_case_001.dialogue-5d95b631a3fc8f0c250c2fb15ca5be95.tres"
+
+[deps]
+
+source_file="res://dialogs/case001/julia_wild_case_001.dialogue"
+dest_files=["res://.godot/imported/julia_wild_case_001.dialogue-5d95b631a3fc8f0c250c2fb15ca5be95.tres"]
+
+[params]
+
+defaults=true

@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://b1ly568cnl3vo"
+
+[deps]
+
+files=["res://translation/game/clues.en.translation", "res://translation/game/clues.cz.translation"]
+
+source_file="res://translation/game/clues.csv"
+dest_files=["res://translation/game/clues.en.translation", "res://translation/game/clues.cz.translation"]
+
+[params]
+
+compress=true
+delimiter=0

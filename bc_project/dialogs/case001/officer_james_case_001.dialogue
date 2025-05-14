@@ -1,0 +1,91 @@
+~ start
+
+ 
+if DialogueVariables.check_variable("officer_james_met") != true
+	=> first_talk
+elif DialogueVariables.check_variable("case_001_finished") == true
+	=> case_finished
+
+Officer James: Did you find anything interesting?
+- Can you repeat the summary of the case.
+	Detective: Can you repeat the summary of the case.
+	Officer James: If it will help you out.
+	=> case_info
+- Nothing yet.
+	Detective: Nothing yet.
+- *Skip Case*.
+	=> ending_info
+
+=> END
+
+~ first_talk
+
+Officer James: Finally, I was beginning to think you are never going to show up.
+- Got delayed by dispatch.
+	Detective: Got delayed by dispatch.
+	Officer James: You too, they could not stop talking about how they want to see something fail today.
+	Detective: [#mood=angry] I will have a talk with them later.
+- The elevator got stuck for a bit.
+	Detective: The elevator got stuck for a bit.
+	Officer James: [#mood=sad]I hope that doesn't happen to me.
+Officer James: Anyways, the case.
+=> case_info
+
+~ case_info
+
+do Signals.s_CameraTrackedNodeSetByName.emit("JuliaWild")
+Officer James: [#board=Victim] The victim is Julia Wild, a mother and a grand mother, she is standing over there.
+do Signals.s_CameraTrackedNodeSetByName.emit("OfficerJohn")
+Officer James: With her is John, he already spoke to her so he will probably know more.
+
+do Signals.s_CameraTrackedNodeSetByName.emit("JuliasSafe001")
+Officer James: [#board=Crime] She went to check her jewelerry in her safe and found out they are gone. The interesting thing is that they left the money that was in there.
+do Signals.s_CameraTrackedNodeSetByName.emit("OfficerRobert")
+Officer James: Robert is already looking at the safe, so he will help you out.
+do Signals.s_CameraTrackedNodeSetPlayer.emit()
+
+Officer James: Other then that there is also Michal looking around, but he mentioned to me that he didn't find much.
+
+if DialogueVariables.check_variable("officer_james_met") == true
+	=> END
+
+Officer James: If you will need anything I will be here.
+Detective: Let's take a look at it then.
+
+do DialogueVariables.set_variable("officer_james_met", true)
+=> END
+
+~ case_finished
+
+Officer James: I see you are finished, what was it?
+
+if DialogueVariables.check_variables(["case_001_reciete_ending"]):
+	
+	Detective: She already sold the jewelry and then forgot. That is why the money was there.
+	Officer James: From what I saw and heard she will proably forget today too, better notify her relatives.
+	
+elif DialogueVariables.check_variables(["case_001_jewelery_returned"]):
+	
+	Detective: I found and returned the jewelery.
+	Officer James: Great, where was it.
+	- Hard to expain.
+		Detective: Hard to exaplain.
+		Detective: It was in... you know what I will explain in the car.
+		Officer James: Yeah, probably best.
+	- Behind her bed.
+		Detective: Behind her bed.
+		Officer James: I will have to talk to Michael about better sweeping the room before saying it's not there.
+	Officer James: Anyways, Dispatch already found another case for you, we are going along.
+	Detective: Let's go.
+
+=> ending_info
+
+~ ending_info
+
+THIS IS THE END OF THE STORY DEMO.
+But not the end of the testing.
+There is still one more level for testing more other gameplay features such as multiple timelines.
+So, let's go to it now.
+do GameController.s_ChangeScene.emit("test_level")
+
+=> END

@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_14"
+type="Resource"
+uid="uid://dyky1pnle0wo6"
+path="res://.godot/imported/full_safe_case_001.dialogue-50ff5554b046529dbf6434635dd3a9f5.tres"
+
+[deps]
+
+source_file="res://dialogs/case001/full_safe_case_001.dialogue"
+dest_files=["res://.godot/imported/full_safe_case_001.dialogue-50ff5554b046529dbf6434635dd3a9f5.tres"]
+
+[params]
+
+defaults=true

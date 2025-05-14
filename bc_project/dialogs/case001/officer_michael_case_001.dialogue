@@ -1,0 +1,76 @@
+~ start
+
+ 
+if DialogueVariables.check_variable("officer_michael_met") != true
+	=> first_talk
+elif DialogueVariables.check_variable("case_001_finished") == true
+	=> case_finished
+
+Officer Michael: Can I help you?
+- Can you please repeat what you said before?
+	Detective: Can you please repeat what you said before?
+	Officer Michael:  Yeah, I hope I didn't over look anything
+	=> appartment_info
+- Nothing.
+	Detective: Nothing.
+
+=> END
+
+~ first_talk
+
+Detective: Michael?
+Officer Michael: Yes, I am guessing you are the detective.
+Detective: Yep... I didn't see you before. Are you new?
+Officer Michael: Yes, after you went on vacation the precinct needed to hire some people to fill up the gaps.
+Detective: They are really going with the "vacation" story.
+Officer Michael: It wasn't a vacation?
+Detective: Nevermind, Dispatch will spill the beans eventually.
+Detective: What do we have here, any sings of entry?
+=> appartment_info
+
+=> END
+
+
+~ appartment_info
+
+Officer Michael: I have gone through the appartment but didn't find anything out of place, broken or any signs of entry.
+if DialogueVariables.check_variable("officer_michael_met") != true
+	Detective: So you are saying that no one other then the victim was in here?
+Officer Michael: [#board=No Signs Of Entry]From what I could gather no one was here, but they could just have had a key.
+Detective: Thanks, that will be all.
+
+do DialogueVariables.set_variable("officer_michael_met", true)
+=> END
+
+~ case_finished
+
+if DialogueVariables.check_variable("case_001_michael_case_finished") == true
+	Officer Michael: Hope the next case will be exciting.
+	Detective: I would not count on it.
+	=> END
+if DialogueVariables.check_variable("case_001_jewelery_returned") == true
+	Officer Michael: You found them. Did I miss them somewhere?
+	- Yes, they were under the bed.
+		Detective: Yes, they were under the bed.
+		Officer Robert: I though I cheked there.
+		Detective: Probably not well enough.
+	- Not really.
+		Detective: Not really.
+		Officer Robert: Then where were they?
+		- Another timeline.
+			Detective: Another timeline.
+			Officer Michael: What??? 
+			Detective: I will explain later
+		- You don't wanna know.
+			Detective: You don't wanna know.
+			Officer Michael: Ok. 
+elif DialogueVariables.check_variable("case_001_reciete_ending") == true
+	Officer Robert: So, she sold them?
+	Detective: Yeah, she sold them and forgot about it. That's why there is the money.
+	Officer Robert: Well, with her age it would makes sense.
+else
+	Officer Michael: Hope the next case will be exciting.
+	Detective: I would not count on it.
+do DialogueVariables.set_variable("case_001_michael_case_finished", true)
+
+=> END

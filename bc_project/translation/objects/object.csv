@@ -14,3 +14,14 @@ ELEVATOR_CALL_BUTTON_NAME,Elevator Call Button,Tlacitko na Privolani Vytahu
 ELEVATOR_CALL_BUTTON_DESCRIPTION,A button that will call elevator.,Tlacitka ktere privola vytah.
 TEST_COMPUTER_NAME,Test Computer,Testovní Počítač
 TEST_COMPUTER_DESCRIPTION,A computer to test stuff.,Počítač na testování věcí.
+JULIA_COMPUTER_NAME,Julia's Computer,Počítač Julie
+JULIA_001_COMPUTER_DESCRIPTION,A rather new computer a login.,Relativně nový počítař s příhlášením.
+JULIA_002_COMPUTER_DESCRIPTION,A computer nearly identical to the one in the original timeline with the acception of the note.,Počítač témeř podobný tomu v originální časové ose až na ten papírek.
+JULIA_SAFE_NAME,Julia's Safe,Trezor Julie
+JULIA_001_SAFE_DESCRIPTION,"A safe hidden behind a painting, a classic. There seems to be no signs of forced entry. Someone knew the code probably.","Trezor schovaný za obrazem, klasika. Nevypadá to že na něm jsou známky násilného vloupání. Někdo asi musel vědět kód."
+JULIA_002_SAFE_DESCRIPTION,"The same safe as in the original timeline, this one was also hidden behind a painting. There is not sings of forced entry here as well and it's locked.","Stejný trezor jako v orignální časové lince, tento taky za obrazem. Nejsou tu známky násilného otevření a je zamčený. "
+DISCO_PAINTING_NAME,Weird Painting,Divný obraz
+DISCO_PAINTING_001_DESCRIPTION,A weird paiting of someone who looks like an alcoholic. At least it is a good way to hide a safe.,Podivný obraz někoho kdo vypadá jako alkoholik. Aspoň je to dobré na schování trezoru.
+DISCO_PAINTING_002_DESCRIPTION,The weird painting is in this timeline is was still hanging up.,Ten divný obraz v této časové lince stále vysel.
+MONEY_IN_EVIDENCE_BAG_NAME,Money in an evidence bag,Peníze v sáčku na důkazy
+MONEY_IN_EVIDENCE_BAG_DESCRIPTION,Quite a lot of money for someone to leave behind. There is probably a reason as to why.,To je docela dost peněz aby je tu někdo nechal. Musí tady být důvod proč.

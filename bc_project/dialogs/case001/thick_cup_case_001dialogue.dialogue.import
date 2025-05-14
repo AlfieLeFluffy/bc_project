@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_14"
+type="Resource"
+uid="uid://bjhogo72qtlom"
+path="res://.godot/imported/thick_cup_case_001dialogue.dialogue-a11f07349127ac35318efafbbccccf11.tres"
+
+[deps]
+
+source_file="res://dialogs/case001/thick_cup_case_001dialogue.dialogue"
+dest_files=["res://.godot/imported/thick_cup_case_001dialogue.dialogue-a11f07349127ac35318efafbbccccf11.tres"]
+
+[params]
+
+defaults=true

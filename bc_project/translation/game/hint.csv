@@ -1,4 +1,8 @@
 key,en,cz
+LOCKED_HINT,Locked!,Zamčeno!
+ELEMENT_ALREADY_EXISTS,Board element already exists!,Již existuje element na tabuli!
+TIMELINE_DEVICE_OFF_HINT,The device is not functioning!,Zařízení nefunguje.
+TIMELINE_SHIFT_CANCELED_SOLID_OBJECT_HINT,Cannot shift into a solid object!,Nemůžete se přesunout do pevné předmětu!
 PROFILE_REQUIRED_TOOLTIP,This feature requires a profile. Profiles keeps track of not only save files but also achievements.,Tahle akce vyžaduje profil. Profil uchovává nejen uložené hry ale také úspěchy.
 PROFILE_NO_SAVEFILES_TOOLTIP,This profiles has no saved games to load.,"Tento profil nemá žádné uložené hry, které by mohl načíst."
 OS_SAVEFILE_NOT_SUPPORTED_TOOLTIP,"Unfortunatelly, save files are not currently supported on this platform.","Bohužel, ukládání hry není podporováno na této platformě."

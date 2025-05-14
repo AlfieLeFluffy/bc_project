@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_14"
+type="Resource"
+uid="uid://cjfc2mrrychda"
+path="res://.godot/imported/officer_james_case_001.dialogue-a9e1f1e450c3b61cd209da21f1cca6fc.tres"
+
+[deps]
+
+source_file="res://dialogs/case001/officer_james_case_001.dialogue"
+dest_files=["res://.godot/imported/officer_james_case_001.dialogue-a9e1f1e450c3b61cd209da21f1cca6fc.tres"]
+
+[params]
+
+defaults=true

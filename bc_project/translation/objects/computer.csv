@@ -14,8 +14,7 @@ APPLICATION_COMMAND_PROMPT_HELP_CD,/cd [filepath] - moves active directory to fi
 APPLICATION_COMMAND_PROMPT_HELP_CAT,/cat [filepath] - reads out contents of a file at filepath destination  ,/cat [filepath] - vypíš obsah souboru podle souborové cesty
 DIRECTORY_DOCUMENTS,Documents,Dokumenty
 DIRECTORY_PICTURES,Pictures,Obrazky
-FILE_TEST_NAME,Test_File,Testovní_Soubor
-FILE_TEST_CONTENTS,Test Contents,Testovní Obsah
+DIRECTORY_EMAILS,Emails,Emails
 APPLICATION_COMMAND_ERROR_BEGINNING,Error: ,Error:
 APPLICATION_COMMAND_ERROR_ENDING, in input: , ve vstupu:
 APPLICATION_COMMAND_ERROR_1,Unrecognized command character/first character,Nerozpoznaný příkazový charakter/první charakter
@@ -26,3 +25,62 @@ APPLICATION_COMMAND_ERROR_11,Unknown or wrong arguments,Neznámé a nebo nesprá
 APPLICATION_COMMAND_ERROR_12,Non-existent directory,Neexistující složka
 APPLICATION_COMMAND_ERROR_12,File doesn't exist,Soubor neexistuje
 APPLICATION_COMMAND_ERROR_99,Uknown error,Neznámý error
+FILE_TEST_NAME,Test_File,Testovní_Soubor
+FILE_TEST_CONTENTS,Test Contents,Testovní Obsah
+FILE_PIE_RECIPE_NAME,Pie_Recipe,Recept_Na_Koláč
+FILE_PIE_RECIPE_CONTENTS,Just buy a pie. She won't notice.,Prostě kup koláč. Ona si toho nevšimne.
+FILE_PIE_RECIPE_CONTENTS_FULL,"Mix water, flour, salt and butter. 
+Kneed until crumbly but not smooth.
+Put into a baking sheet.
+Prebake the crust and prepare apples.
+Put apple slices and suggar into the pie crust.
+Bake until done.","Smíchejte vodu, mouku, sůl a máslo. 
+Hněťte do drobivé, ale ne hladké konzistence. 
+Vysypte na plech. 
+Předpečte těsto a připravte jablka. 
+Do těsta na koláč vložte plátky jablek a cukr. 
+Pečte dozlatova."
+FILE_EMAIL_RECEIPT_NAME,email_1520,email_1520
+FILE_EMAIL_RECEIPT_CONTENTS,"sender: maria_black@goldsmiths.us
+recipient: julia_wild@gagle.com
+---
+
+Good evening,
+I am reaching out to confirm 
+that the check for the 800$ has 
+arrived as per our agreement 
+regarding the sale of jewelery.
+
+Thank you,
+Maria Black from Goldsmiths.eu","odesílatel: maria_black@goldsmiths.us
+příjemce: julia_wild@gagle.com
+---
+
+Dobrý večer,
+Ozývám se, abych potvrdila,
+že šek na 800 dolarů dorazil v souladu s naší dohodou
+ohledně prodeje šperků.
+
+Děkuji,
+Maria Black z Goldsmiths.eu"
+FILE_EMAIL_FAVORITE_NUMBER,"sender: anabel_wild@gagle.com
+recipient: julia_wild@gagle.com
+---
+
+Hey,
+I wanted to just warn you that I changed
+the number combination to the safe. It is our favorite date,
+the first four number of the day I graduated.
+
+With love,
+Anabel","odesílatel: anabel_wild@gagle.com
+příjemce: julia_wild@gagle.com
+---
+
+Ahoj,
+chtěla jsem tě jen varovat, že jsem změnila
+kombinaci čísel v trezoru. Je to naše oblíbené datum,
+první čtyři číslice dne kdy jsem provola.
+
+S láskou,
+Anabel"

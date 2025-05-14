@@ -1,0 +1,22 @@
+~ start
+
+A safe cracks open.
+
+~ fork
+if DialogueVariables.check_variable("case_001_jewelery_taken") != true
+
+	=> jewels
+
+else
+
+	There is nothing else inside the safe.
+	=> END
+
+~ jewels
+Inside is a small box, with a glass front and jewelery inside.
+- Take jewelery.
+	do DialogueVariables.set_variable("case_001_jewelery_taken", true)
+	You take the jewelery.
+	=> END
+- Walk way => END
+

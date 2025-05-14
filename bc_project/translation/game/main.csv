@@ -32,6 +32,7 @@ SAVE_BUTTON,Save Game,Uložit Hru
 LOAD_BUTTON,Load save,Načíst Hru
 ACHIEVEMENTS_BUTTON,Achievements,Úspěchy
 SETTINGS_BUTTON,Settings,Nastavení
+CREDITS_BUTTON,Credits,Kredity
 QUIT_BUTTON,Quit,Vypnout
 CHOOSE_PROFILE_BUTTON,Choose a Profile,Vybrat profil
 CREATE_PROFILE_BUTTON,Create a Profile,Vytvořit profil
@@ -50,7 +51,7 @@ SUBMIT_BUTTON,Submit,Vyzkoušet
 PRERELEASE_LABEL,Prerelease State,Předběžná Verze
 VERSION_LABEL,Version,Verze
 NOTIFICATION_TITLE,Notification,Upozornění
-NOTIFICATION_TEXT,"This is a early release version of the game TimeSplit for the VUT FIT Thesis submision. The game is fully playable but there may be issues with graphical or audio aspects and the game's storyline is not yet full implemented.
+NOTIFICATION_TEXT,"This is a early release version of the game TimeSplit for the VUT FIT Thesis submision. The game is playable but there may be issues with graphical or audio aspects and the game's storyline is not yet full implemented. Currently the game has one story crime case to solve and a testing level.
 
 It is advised to check the settings before starting a new game as an undiagnozed issue might render all settings to a minimum. This can be solved by opening the the settings menu, checking and possiblibly configuring the settings and then saving them through the buttons at the bottom of the menu.
 
@@ -106,16 +107,6 @@ SAVEFILE_OVERWRITE_CONFIRMATION,Do you wish to overwrite this file?,Přejete si 
 PROFILE_CREACTION_CONFIRMATION,Create a Profile,Vytvořit Profil
 PROFILE_DELETION_CONFIRMATION,Do you wish to DELETE this profile?,Přejete si SMAZAT tent profil?
 TIMELINE_UI,Timeline: ,Časová linka:
-TALK_INPUT_HELP,Talk,Mluvit
-OPEN_INPUT_HELP,Open,Otevřít
-GO_THROUGH_DOOR_INPUT_HELP,Go Through Door,Projit Dveřmy
-REMOVE_BOARD_ELEMENT_INPUT_HELP,Remove Element,Odstranit Element
-REMOVE_BOARD_LINE_INPUT_HELP,Remove Line,Dostranit Linku
-DETECTIVE_BOARD_INPUT_HELP,Detective Board,Detektivní Nástěnka
-TIMELINE_SHIFT_INPUT_HELP,Timeline Shift,Posunutií Časoprostoru
-JOURNAL_INPUT_HELP,Journal,Deník
-INTERACT_INPUT_HELP,Interact,Interagovat
-ADD_TO_BOARD_INPUT_HELP,Add to Detective Board,Pridat do Detektivní Nástěnky
 DETECTIVE_BOARD_LABEL,Detective Board,Detektivní Nástěnka
 TASK_OVERLAY_LABEL,Task,Úkol
 TASK_OVERLAY_COMPLETE_LABEL,Task Completed,Úkol Dokončen
@@ -127,7 +118,5 @@ ACTIVE_TASK_LABEL,Active Tasks,Aktivní Úkoly
 FINISHED_TASK_LABEL,Finished Tasks,Hotové Úkoly
 TIMELINESHFT_HINT,Timeline Shift,Skok na Linku
 FORESEE_HINT,Timeline Foresee,Prohlédnout do Linky
-LOCKED_HINT,Locked!,Zamčeno!
-TIMELINE_DEVICE_OFF_HINT,The device is not functioning!,Zařízení nefunguje.
 CREATE_NOTE_ELEMENT,Create a Note,Vytvořit Poznámku
 NOTE_ELEMENT_NAME,Note,Poznámka

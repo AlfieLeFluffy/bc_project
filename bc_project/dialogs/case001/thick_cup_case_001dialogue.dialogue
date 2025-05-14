@@ -1,0 +1,24 @@
+~ start
+
+if DialogueVariables.check_variables(["thick_mug_caught"]):
+	=> skip
+
+Detective: A levitating green mug?
+Detective: That's very ood.
+Thick Mug: It is not odd at all.
+Detective: What is this? Some trickery.
+Thick Mug: I am just here to talk about my passion for korean dramas.
+Detective: Wait, aren't you trying to gain favor with the person correcting this work.
+Thick Mug: ... well, well...
+Detective: Don't you dare.
+To clarify this is a joke.
+Thick Mug: But I can tell you that the elevator in this timeline functions and maybe there is something down there.
+do DialogueVariables.set_variable("thick_mug_caught", true)
+
+=> END
+
+~ skip
+
+Thick Mug: Nothing to see here.
+
+=> END

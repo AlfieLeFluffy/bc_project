@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8xj6gwg3vfq2"
-path="res://.godot/imported/thickMug.png-51fce8e43838cd11e6468336c6f24e5b.ctex"
+uid="uid://r87q6pppq88d"
+path="res://.godot/imported/book_view.png-50a7cc1c9c0302c87e34cf1d6b87b57e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/items/thickMug.png"
-dest_files=["res://.godot/imported/thickMug.png-51fce8e43838cd11e6468336c6f24e5b.ctex"]
+source_file="res://textures/text/book_view.png"
+dest_files=["res://.godot/imported/book_view.png-50a7cc1c9c0302c87e34cf1d6b87b57e.ctex"]
 
 [params]
 

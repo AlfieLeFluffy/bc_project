@@ -1,3 +1,13 @@
 key,en,cz
 TEST_TEXT_NAME,Test,Test
 TEST_TEXT_DESCRIPTION,The computer has user with  username 'admin' and password is 'admin'.,Počítač má uživatele se jménem 'admin' a heslem 'admin'.
+TEXT_CASE_001_PASSWORD_NAME,Sticky note hint,Nápověda na papírku
+TEXT_CASE_001_DESCRIPTION,"If you forget, it is birth year of Emily. ","Pokud zapomeneš, je to rok narození Emily".
+TEXT_CASE_001_PHOTO_ALBUM_NAME,Julia's Photo Album,Photo Album Julie
+TEXT_CASE_001_PHOTO_ALBUM_DESCIPTION,"A book contains an assortment of photos of Julia, her daughter and her grandaughter.
+*a photo of her daughter graduating* - 29.6.2023
+*a photo of her grandaughter after delivery* - 2.1.2025
+*a photo of all three under a christmas tree* - 20.12.2026","Kniha obsahujíci výběr fotek Júlie, její dcery a jejího vnučky
+*fotografie její dcery při promoci* - 29.6.2023
+*fotografie její vnučky po porodu* - 2.1.2025
+*fotografie všech tří pod vánočním stromečkem* - 20.12.2026"

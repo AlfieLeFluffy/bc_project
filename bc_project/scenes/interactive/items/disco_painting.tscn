@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8xh424m6lua3"]
+
+[ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable.tscn" id="1_ns61j"]
+[ext_resource type="Shader" uid="uid://dcwirhvnici6e" path="res://shaders/outline_recolor.gdshader" id="2_00aka"]
+[ext_resource type="Texture2D" uid="uid://pqj6tn76pugo" path="res://textures/items/disco_paiting.png" id="3_daoqg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ddymi"]
+resource_local_to_scene = true
+shader = ExtResource("2_00aka")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/row = -1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smuar"]
+resource_local_to_scene = true
+size = Vector2(24, 24)
+
+[node name="DiscoPaiting" instance=ExtResource("1_ns61j")]
+material = SubResource("ShaderMaterial_ddymi")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_smuar")
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("3_daoqg")

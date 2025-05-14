@@ -1,0 +1,31 @@
+~ start
+
+if DialogueVariables.check_variable("officer_john_met") != true
+	=> first_talk
+elif DialogueVariables.check_variable("case_001_finished") == true
+	=> case_finished
+
+Officer John: Any luck?
+- Not yet it seems.
+	Detective: Not yet it seems.
+	Officer John: Please hurry up, I don't know how long I can baby sit her.
+	Julia Wild: Ah yeah, we can go baby sit Emily.
+	Officer John: [#mood=angry]NO... not this again.
+=> END
+
+~ first_talk
+
+Officer John: So, once again. Do you know anyone other then your daughter the knew about the safe.
+Julia Wild: No, I don't think anyone else knows about... maybe my grand child.
+Officer John: [#mood=angry]We have been over this before. Your grandchild, Emily, is 2 years old and does not even know how to talk.
+Julia Wild: Oh yes, I forgot.
+Officer John: Ah, the detective, thank god, Julia here is the detective... and I will take a break.
+do DialogueVariables.set_variable("officer_john_met", true)
+=> END
+
+
+~ case_finished
+
+Officer John: Finally over, I am gonna go take a break. 
+
+=> END

@@ -1,0 +1,162 @@
+~ start
+if DialogueVariables.check_variable("officer_john_met") != true
+	=> first_talk_john
+if DialogueVariables.check_variable("julia_wild_first_meet") != true
+	=> first_talk
+elif DialogueVariables.check_variable("case_001_finished") == true
+	=> case_finished
+=> overview
+
+~ first_talk_john
+
+Officer John: So, once again. Do you know anyone other then your daughter the knew about the safe.
+Julia Wild: No, I don't think anyone else knows about... maybe my grand child.
+Officer John: [#mood=angry]We have been over this before. Your grandchild, Emily, is 2 years old and does not even know how to talk.
+Julia Wild: Oh yes, I forgot.
+Officer John: Ah, the detective, thank god, Julia here is the detective... and I will take a break.
+do DialogueVariables.set_variable("officer_john_met", true)
+=> first_talk
+
+~ first_talk
+
+Julia Wild: Finally someone who will help me out.
+Detective: Let's hope I can do so. So can you please recapitulate what you said to Officer John.
+Julia Wild: To whom?
+Detective: Officer John, the person in the unoforms standing in front of you?
+Julia Wild: Ahhh...
+Officer John: [#mood=sad] *sigh*
+Julia Wild: So, my granddaughter Emily is...
+Detective: What you told him about the stolen jewelery.
+Julia Wild: Ahh... nearly forgot that. So...
+=> recap
+
+~ recap
+
+Julia Wild: So, I came back from a visit to the hospital and after relaxing for a bit I wanted to go prepare my jewelery for the weekend.
+Julia Wild: Me and the gilrs are going out to a fancy restaurant. As I can afford it now.
+Julia Wild: So I opened the safe and they were gone. I looked around if I have forgoten them somewhere again, but didn't find them.
+Julia Wild: I started to fear I got robbed and so I called the emergency line and you guys came.
+
+if DialogueVariables.check_variable("julia_wild_first_meet") != true
+	Detective: Is that all?
+	Julia Wild: ... yeah. That's pretty much it.
+	Detective: You didn't see anyone or anything?
+	Julia Wild: Not that I remember.
+	Officer John: Yeah, that is the issue.
+	Detective: Alright, I will go look around and hopefully I can help you out.
+
+do DialogueVariables.set_variable("julia_wild_first_meet", true)
+=> END
+
+~ overview
+
+Detective: Hello again. Can I borrow you for a momemnt.
+Julia Wild: Yes?
+
+~ fork
+
+if DialogueVariables.check_variables(["case_001_reciete_found","case_001_jewelery_taken"]):
+	
+	- I found your jewelery...  => jewelery_end
+	- I found on your computer an e-mail...  => email_end
+	- Nothing => END
+	
+elif DialogueVariables.check_variables(["case_001_jewelery_taken"]):
+	
+	- I found your jewelery...  => jewelery_end
+	- Nothing => END
+
+elif DialogueVariables.check_variables(["case_001_reciete_found"]):
+	
+	- I found on your computer an e-mail...  => email_end
+	- Nothing => END
+
+elif DialogueVariables.check_variables(["case_001_password_clue","case_001_copmuter_user"]):
+	
+	- Can you please repeat what happened? => recap_start
+	- Can you plase tell me when was Emily born? => emily_bithday
+	- Can I take a look at you computer? => computer_user
+	- Nothing => END
+	
+elif DialogueVariables.check_variables(["case_001_password_clue"]):
+	
+	- Can you please repeat what happened? => recap_start
+	- Can you plase tell me when was Emily born? => emily_bithday
+	- Nothing => END
+	
+elif DialogueVariables.check_variables(["case_001_copmuter_user"]):
+	
+	- Can you please repeat what happened? => recap_start
+	- Can I take a look at you computer? => computer_user
+	- Nothing => END
+
+- Can you please repeat what happened? => recap_start
+- Nothing => END
+
+~ jewelery_end
+
+do DialogueVariables.set_variable("case_001_finished", true)
+do DialogueVariables.set_variable("case_001_jewelery_returned", true)
+Detective: I found your jewelery your jewelery.
+Julia Wild: [#mood=happy]Oh thanks goodness. I was getting worried that someone actually took it.
+Officer John: [#mood=happy]Yes... *sigh of relief*
+Julia Wild: Where was it?
+- You don't wanna know.
+	Detective: You don't wanna know.
+	Julia Wild: I am hesitant to wear it now, but I appriciate that you helped me.
+- In another timeline.
+	Detective: In another timeline.
+	Julia Wild: Oh... so that why you were disspeaaring before my eyes.
+	Julia Wild: Also didn't you take it from other Julia then?
+	- Seems like yes.
+		Julia Wild: I hope she won't miss it then. But I am not loosing these now that I have them again.
+	- I don't think so.
+		Julia Wild: That is wonderful then and I am not loosing these now that I have them again.
+	Julia Wild: I appriciate that you helped me.
+
+=> END
+
+~ email_end
+do DialogueVariables.set_variable("case_001_finished", true)
+do DialogueVariables.set_variable("case_001_reciete_ending", true)
+Detective: I found on your computer an e-mail that suggest you sold the jewelery to some gold buys.
+Julia Wild: ... wait a moment...
+Julia Wild: [#mood=sad] I totally forgot that I sold them. That's why I have the money now.
+Officer John: [#mood=#angry] For fuck sake.
+Julia Wild: [#mood=sad]I am so very sorry for doing this.
+Julia Wild: [#mood=sad]I hope I didn't take up too much of your time.
+- It is ok, we all make mistakes.
+	Detective: It is ok, we all make mistakes.
+	Julia Wild: [#mood=sad] Thank you...
+- Next time think before you act.
+	Detective: [#mood=#angry] Next time think before you act.
+	Julia Wild: [#mood=sad] I am so sorry...
+Officer John: Let's go.
+=> END
+
+~ recap_start
+Detective: Can you please repeat what happened when you came back home?
+Julia Wild: Give me a moment, ah yes...
+=> recap
+
+~ computer_user
+Detective: Can I take a look at you computer?
+Julia Wild: [#mood=angry, #board=Forgoten Password] That piece of junk that my daughter got me? I forgot the password for it.
+Julia Wild: [#mood=angry, #board=Computer User] But the user should be just my name, J-u-l-i-a.
+=> fork
+
+~ emily_bithday
+Detective: Can you plase tell me when was Emily born?
+Julia Wild: [#mood=happy] Of course, she is my favorite.
+Julia Wild: [#mood=happy, #board=Birth Year of Emily] It is 2024.
+=> fork
+
+
+~ case_finished
+
+if DialogueVariables.check_variables(["case_001_reciete_ending"]):
+	Julia Wild: [#mood=sad]I am so sorry.
+elif DialogueVariables.check_variables(["case_001_jewelery_returned"]):
+	Julia Wild: [#mood=happy]Thank you again.
+
+=> END
