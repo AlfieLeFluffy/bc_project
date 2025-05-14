@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://xtjnbuah737i"]
+
+[ext_resource type="Script" uid="uid://bu5pcxs1rot1y" path="res://scenes/UI/screen_hint/screen_hint.gd" id="1_7smdv"]
+[ext_resource type="Texture2D" uid="uid://tmcvq7t25mp" path="res://textures/ui/board/board_connection_background_ninepatch.png" id="1_dj7qm"]
+
+[node name="ScreenHint" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 464.0
+offset_top = 554.0
+offset_right = 504.0
+offset_bottom = 594.0
+script = ExtResource("1_7smdv")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.2
+anchor_top = -0.237
+anchor_right = 1.2
+anchor_bottom = 1.237
+offset_left = 8.0
+offset_top = 9.48
+offset_right = -8.0
+offset_bottom = -9.48
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="NinePatchRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_dj7qm")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="HintText" type="RichTextLabel" parent="MarginContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=48]W"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1

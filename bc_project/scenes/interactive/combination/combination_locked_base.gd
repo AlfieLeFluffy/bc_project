@@ -37,7 +37,9 @@ func create_combination_lock_view() -> void:
 	popup.popup.emit()
 
 func _interact_function_unlocked() -> void:
-	pass
+	if resource.callables:
+		for callable in resource.callables:
+			callable.run(self)
 
 # Active function if no dialog detected
 func _local_process(delta: float) -> void:

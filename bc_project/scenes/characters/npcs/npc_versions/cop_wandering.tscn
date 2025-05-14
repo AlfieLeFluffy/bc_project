@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dj78q0v3l0m84"]
+[gd_scene load_steps=33 format=3 uid="uid://dj78q0v3l0m84"]
 
 [ext_resource type="PackedScene" uid="uid://ntmpwduq5xno" path="res://scenes/characters/npcs/npc.tscn" id="1_gkp5g"]
 [ext_resource type="Shader" uid="uid://beshjcnacfelm" path="res://shaders/outline_shader.gdshader" id="2_148ow"]
@@ -13,6 +13,10 @@
 resource_local_to_scene = true
 radius = 13.0
 height = 56.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_148ow"]
+resource_local_to_scene = true
+polygon = PackedVector2Array(-8, -11, -8, 6, 8, 6, 8, -11, 5, -12, -4, -12)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ms74b"]
 resource_local_to_scene = true
@@ -184,16 +188,19 @@ animations = [{
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("CapsuleShape2D_148ow")
 
+[node name="LightOccluder2D" parent="." index="3"]
+occluder = SubResource("OccluderPolygon2D_148ow")
+
 [node name="InteractableAreCollisionShape" parent="InteractableArea" index="0"]
 shape = SubResource("CapsuleShape2D_148ow")
 
-[node name="AnimatedSprite2D" parent="." index="3"]
+[node name="AnimatedSprite2D" parent="." index="5"]
 material = SubResource("ShaderMaterial_ms74b")
 sprite_frames = SubResource("SpriteFrames_fa6xy")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="StateMachine" parent="." index="4" node_paths=PackedStringArray("initialState")]
+[node name="StateMachine" parent="." index="6" node_paths=PackedStringArray("initialState")]
 initialState = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("NextState", "characterBody")]

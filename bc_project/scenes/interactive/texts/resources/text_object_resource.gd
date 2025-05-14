@@ -3,7 +3,7 @@ class_name TextObjectResourse extends Resource
 """
 --- Text Object Enum
 """
-enum textTypeEnum {PAPER,BOOK,PDF}
+enum textTypeEnum {PAPER,BOOK,PDF,NOTE}
 
 """
 --- Text Resourses

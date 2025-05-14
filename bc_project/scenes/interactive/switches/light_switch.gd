@@ -17,6 +17,7 @@ func _local_ready() -> void:
 --- Interact Methods
 """
 func _interact_function(event: InputEvent) -> void:
+	AudioManager.play_sound("sfx/light_switch")
 	# Set animation frame to opposite
 	$Sprite2D.frame = ($Sprite2D.frame + 1) % 2
 	# Inverts state for persistence

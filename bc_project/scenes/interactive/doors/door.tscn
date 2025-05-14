@@ -20,6 +20,7 @@ item_name = "DOOR_NAME"
 description = "TEST_DESCRIPTION"
 detective_board_toggle = false
 show_labels = false
+show_outline = true
 callables = Array[ExtResource("4_pddn1")]([])
 metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
 

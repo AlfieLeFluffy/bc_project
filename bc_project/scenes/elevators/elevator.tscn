@@ -131,12 +131,10 @@ occluder = SubResource("OccluderPolygon2D_d1wvi")
 occluder_light_mask = 7
 
 [node name="FloorCollision" type="CollisionShape2D" parent="ElevatorCabin"]
-visible = false
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_vptxo")
 
 [node name="CeilingCollision" type="CollisionShape2D" parent="ElevatorCabin"]
-visible = false
 position = Vector2(0, -86)
 shape = SubResource("RectangleShape2D_rnt0l")
 

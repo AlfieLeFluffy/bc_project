@@ -3,7 +3,9 @@ class_name TextInteraactable extends Interactable
 """
 --- Preload Constants
 """
-const preloadTextView = preload("res://scenes/interactive/texts/view/text_view.tscn")
+const preload_TextViewPaper = preload("res://scenes/interactive/texts/view/text_view_paper.tscn")
+const preload_TextViewBook = preload("res://scenes/interactive/texts/view/text_view_book.tscn")
+const preload_TextViewNote = preload("res://scenes/interactive/texts/view/text_view_note.tscn")
 
 """
 --- Runtime Variables
@@ -25,7 +27,15 @@ func setup_interactable_info() -> void:
 func _interact_function(event: InputEvent) -> void:
 	if GameController.check_nongameplay_scene():
 		return
-	textViewInstance = preloadTextView.instantiate()
+	match textRosource.textType:
+		TextObjectResourse.textTypeEnum.PAPER:
+			textViewInstance = preload_TextViewPaper.instantiate()
+		TextObjectResourse.textTypeEnum.BOOK:
+			textViewInstance = preload_TextViewBook.instantiate()
+		TextObjectResourse.textTypeEnum.NOTE:
+			textViewInstance = preload_TextViewNote.instantiate()
+		_:
+			textViewInstance = preload_TextViewNote.instantiate()
 	get_tree().current_scene.add_child(textViewInstance)
 	textViewInstance.setup_text_view(textRosource)
 	textViewInstance.create_board_element_text.connect(add_board_element)

@@ -8,4 +8,6 @@ class_name LevelController extends Node
 #endregion
 
 func _ready() -> void:
+	Global.line_elements.clear()
+	Global.board_elements.clear()
 	PersistenceController.s_SceneLoaded.emit()

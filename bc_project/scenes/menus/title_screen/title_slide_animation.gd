@@ -37,7 +37,7 @@ func _run_animation() -> bool:
 	
 	timer = get_tree().create_timer(0.25)
 	await timer.timeout
-	await local_fade_to_color(%TitleLabel, Color.WHITE,0.5)
+	await local_fade_to_color(%TitleBanner, Color.WHITE,0.5)
 	timer = get_tree().create_timer(0.25)
 	await timer.timeout
 	

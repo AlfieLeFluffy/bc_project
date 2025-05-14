@@ -57,6 +57,10 @@ func set_description(text) -> void:
 	resource.description = text
 	%Label.text = tr(resource.description)
 
+func set_modulation(color : Color = Color.WHITE) -> void:
+	resource.color = color
+	%Background.modulate = Color.WHITE.lerp(color,0.8)
+
 func retranslate_description() -> void:
 	%Label.text = tr(resource.description)
 
@@ -95,11 +99,16 @@ func saving() -> Dictionary:
 func loading(input: Dictionary) -> bool:
 	position.x = input["posX"]
 	position.y = input["posY"]
-	if input.has("resources"):
-		if input["resources"].has("resource"):
-			resource = input["resources"]["resource"]
+	if not input.has("resources"):
+		return false
+	if not input["resources"].has("resource"):
+		return false
+	
+	resource = input["resources"]["resource"]
 	
 	name = resource.id
+	set_description(resource.description)
+	set_modulation(resource.color)
 	
 	if Global.board_elements.has_all([resource.startId,resource.endId]):
 		set_element(0,Global.board_elements[resource.startId])

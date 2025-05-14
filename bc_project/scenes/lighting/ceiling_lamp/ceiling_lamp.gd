@@ -5,8 +5,10 @@ func _local_ready() -> void:
 	
 func set_state(circuitSignal: int, state: bool) -> void:
 	if circuit == circuitSignal:
-		$PointLight2D.enabled = state
+		%SoftLight.enabled = state
+		%HardLight.enabled = state
 
 func toggle_state(circuitSignal: int) -> void:
 	if circuit == circuitSignal:
-		$PointLight2D.enabled = not $PointLight2D.enabled
+		%SoftLight.enabled = not %SoftLight.enabled
+		%HardLight.enabled = not %HardLight.enabled

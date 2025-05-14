@@ -35,6 +35,8 @@ func setup_interactable_info() -> void:
 		%Label.text = "[font_size=%s][color=#%s]%s" % [str(SettingsController.scale_font_size(28)),Global.color_TextHighlight.to_html(),tr(compRes.name)]
 
 func setup_computer_status() -> void:
+	if not compRes:
+		return
 	if compRes.state:
 		%Sprite2D.frame = 0
 		return
@@ -42,6 +44,8 @@ func setup_computer_status() -> void:
 	return
 
 func setup_users_dictionary() -> void:
+	if not compRes:
+		return
 	for user in compRes.users:
 		if not user is UserResource:
 			continue
@@ -85,7 +89,7 @@ func shutdown_computer(computerName: String) -> void:
 	setup_computer_status()
 
 func hide_computer_view(computerName: String) -> void:
-	if computerName == compRes.name and is_instance_valid(view):
+	if computerName == compRes.name+interactableResource.timeline and is_instance_valid(view):
 		view.visible = not view.visible
 
 # Active function if no dialog detected

@@ -80,20 +80,20 @@ func _input(event: InputEvent) -> void:
 		highlight = true
 		if not mouseHover:
 			activate_hover()
-	if event.is_action_released("highlight"):
+	if event.is_action_released("highlight") or not Input.is_action_pressed("highlight"):
 		highlight = false
 		if not mouseHover:
 			deactivate_hover()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and active:
-		if check_line_of_sight():
+		if check_line_of_sight() or interactableResource.ignore_line_of_sight:
 			if interactableResource.callables:
 				for callable in interactableResource.callables:
 					callable.run(self)
 			_interact_function(event)
 	elif event.is_action_pressed("add_to_board") and active and interactableResource.detective_board_toggle:
-		if check_line_of_sight():
+		if check_line_of_sight() or interactableResource.ignore_line_of_sight:
 			add_board_element(event)
 
 func check_line_of_sight() -> bool:
@@ -117,6 +117,20 @@ func check_line_of_sight() -> bool:
 # Active function if no dialog detected
 func _interact_function(event: InputEvent) -> void:
 	pass
+	
+func hide_object() -> void:
+	await GameController.fade_to_color(self,Color.TRANSPARENT,0.5)
+	visible = false
+
+func show_object() -> void:
+	await GameController.fade_to_color(self,Color.WHITE,0.5)
+	visible = false
+
+func move_to_position(endPosition: Vector2 = Vector2(0.0,0.0), time: float = 1.5) -> void:
+	if endPosition == Vector2(0.0,0.0):
+		return
+	var tween: Tween = create_tween()
+	tween.tween_property(self,"position", endPosition, time)
 #endregion
 
 
@@ -153,10 +167,14 @@ func get_sprite_from_current_frame() -> Texture2D:
 
 #region Interactivity Methods
 func activate_hover() -> void:
-	material.set("shader_parameter/line_thickness",1)
+	if interactableResource:
+		if interactableResource.show_outline:
+			material.set("shader_parameter/line_thickness",1)
 
 func deactivate_hover() -> void:
-	material.set("shader_parameter/line_thickness",0)
+	if interactableResource:
+		if interactableResource.show_outline:
+			material.set("shader_parameter/line_thickness",0)
 
 func activate_interactivity() -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
@@ -179,4 +197,26 @@ func deactivate_interactivity() -> void:
 		if interactableResource.detective_board_toggle:
 			Signals.s_InputHelpFree.emit("ADD_TO_BOARD_INPUT_HELP")
 	Signals.s_InputHelpFree.emit("INTERACT_INPUT_HELP")
+#endregion
+
+
+
+#region Persistence Methods
+func saving() -> Dictionary:
+	var output: Dictionary = {
+		"persistent": true,
+		"nodepath": get_path(),
+		"parent": get_parent().get_path(),
+		"visible": visible,
+		"position_x": position.x,
+		"position_y": position.y,
+	}
+	return output
+
+func loading(input: Dictionary) -> bool:
+	if input.has_all(["visible", "position_x", "position_y"]):
+		visible = input["visible"]
+		position.x = input["position_x"]
+		position.y = input["position_y"]
+	return true
 #endregion

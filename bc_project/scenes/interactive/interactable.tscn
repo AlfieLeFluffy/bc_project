@@ -16,6 +16,8 @@ resource_local_to_scene = true
 size = Vector2(12, 10)
 
 [node name="Interactable" type="Area2D"]
+light_mask = 7
+visibility_layer = 7
 material = SubResource("ShaderMaterial_5j7o3")
 script = ExtResource("1_m6fs8")
 
@@ -49,6 +51,8 @@ shape = SubResource("RectangleShape2D_356m4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+light_mask = 7
+visibility_layer = 7
 use_parent_material = true
 
 [node name="InteractiveHandler" type="Node" parent="."]

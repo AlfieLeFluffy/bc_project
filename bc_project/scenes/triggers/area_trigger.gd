@@ -59,11 +59,11 @@ func _on_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, 
 	if timesUsed >= maxUses and maxUses > 0:
 		return
 	if (triggerObject & PLAYER_COLLISION_BIT) and body is Player:
+		timesUsed += 1
 		_colision_enter_player(body)
-		timesUsed += 1
 	elif (triggerObject & NPC_COLLISION_BIT) and body is NPC:
-		_colision_enter_npc(body)
 		timesUsed += 1
+		_colision_enter_npc(body)
  
 func _on_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if not (triggerOn & EXITED_TRIGGER_BIT):
@@ -71,11 +71,11 @@ func _on_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, l
 	if timesUsed >= maxUses and maxUses > 0:
 		return
 	if (triggerObject & PLAYER_COLLISION_BIT) and body is Player:
+		timesUsed += 1
 		_colision_exit_player(body)
-		timesUsed += 1
 	elif (triggerObject & NPC_COLLISION_BIT) and body is NPC:
-		_colision_exit_npc(body)
 		timesUsed += 1
+		_colision_exit_npc(body)
 #endregion
 
 #region Persistence Methods

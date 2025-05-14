@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cqiiad58pt1w"]
+[gd_scene load_steps=12 format=3 uid="uid://cqiiad58pt1w"]
 
 [ext_resource type="PackedScene" uid="uid://b55y4332x8fpo" path="res://scenes/interactive/computer/computer_base.tscn" id="1_o5ktb"]
 [ext_resource type="Shader" uid="uid://dcwirhvnici6e" path="res://shaders/outline_recolor.gdshader" id="2_h85nd"]
@@ -23,6 +23,9 @@ show_labels = true
 callables = Array[ExtResource("3_q3g8t")]([])
 metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_iceja"]
+polygon = PackedVector2Array(-7, -12, 7, -12, 14, -8, -14, -8)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q0kl2"]
 resource_local_to_scene = true
 size = Vector2(34, 28)
@@ -37,11 +40,17 @@ shader_parameter/line_thickness = 0.0
 material = SubResource("ShaderMaterial_q3g8t")
 interactableResource = SubResource("Resource_2y3u8")
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." index="0"]
+light_mask = 7
+visibility_layer = 7
+occluder = SubResource("OccluderPolygon2D_iceja")
+occluder_light_mask = 4
+
+[node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_q0kl2")
 
-[node name="Sprite2D" parent="." index="2"]
+[node name="Sprite2D" parent="." index="3"]
 material = SubResource("ShaderMaterial_nguc5")
 position = Vector2(0, -16)
 texture = ExtResource("3_g6hcw")

@@ -11,7 +11,7 @@ func _setup_arguments() -> void:
 
 #region Runtime Methods
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("add_to_board") and arguments.has_all(["name","text"]):
+	if event.is_action_pressed("add_to_board") and arguments.has_all(["name","text"]) and is_visible_in_tree():
 		Signals.s_CreateBoardElement.emit(ElementResource.new().setup(ElementResource.elementType.FILE,arguments["name"],computer.interactableResource.timeline,arguments["text"],null))
 		Signals.s_InputHelpFree.emit("INTERACT_INPUT_HELP")
 #endregion

@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://c4x1ywanodayi"]
 
 [ext_resource type="PackedScene" uid="uid://b6sidrweg1p0" path="res://scenes/interactive/interactable.tscn" id="1_wjbls"]
-[ext_resource type="Texture2D" uid="uid://b8xj6gwg3vfq2" path="res://textures/items/thickMug.png" id="2_k4yty"]
 [ext_resource type="Shader" uid="uid://dcwirhvnici6e" path="res://shaders/outline_recolor.gdshader" id="2_nqewc"]
 [ext_resource type="Script" uid="uid://cwo1tqjwxj8gd" path="res://scenes/interactive/interactable_resource.gd" id="3_35s1i"]
 [ext_resource type="Script" uid="uid://djuch7xw2rnf2" path="res://scripts/callable/callable_resource.gd" id="3_n0t1b"]
+[ext_resource type="Texture2D" uid="uid://ccpqwvyh3pyks" path="res://textures/items/thick_mug_small.png" id="5_n0t1b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n0t1b"]
 resource_local_to_scene = true
@@ -19,19 +19,22 @@ item_name = "THICK_MUG_NAME"
 description = "THICK_MUG_DESCRIPTION"
 detective_board_toggle = true
 show_labels = true
+show_outline = true
 callables = Array[ExtResource("3_n0t1b")]([])
 metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ujfcp"]
 resource_local_to_scene = true
-size = Vector2(14, 10)
+size = Vector2(14, 11)
 
 [node name="ThickMug" instance=ExtResource("1_wjbls")]
 material = SubResource("ShaderMaterial_n0t1b")
 interactableResource = SubResource("Resource_joblu")
 
 [node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_ujfcp")
 
 [node name="Sprite2D" parent="." index="2"]
-texture = ExtResource("2_k4yty")
+position = Vector2(0, -8)
+texture = ExtResource("5_n0t1b")

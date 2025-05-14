@@ -20,6 +20,8 @@ item_name = "LIGHT_SWITCH_NAME"
 description = "TEST_DESCRIPTION"
 detective_board_toggle = true
 show_labels = true
+show_outline = true
+ignore_line_of_sight = false
 callables = Array[ExtResource("4_hg5ft")]([])
 metadata/_custom_type_script = "uid://cwo1tqjwxj8gd"
 

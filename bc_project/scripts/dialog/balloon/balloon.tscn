@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://kvjsk0o7firt"]
+[gd_scene load_steps=38 format=3 uid="uid://kvjsk0o7firt"]
 
 [ext_resource type="Script" uid="uid://bnrcco68hc5bb" path="res://scripts/dialog/balloon/balloon.gd" id="1_36de5"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
@@ -20,6 +20,11 @@
 [ext_resource type="Texture2D" uid="uid://poq7wsr1qpdg" path="res://textures/profiles/dispatch/dispatch_profile_sad.png" id="14_nc5ft"]
 [ext_resource type="Texture2D" uid="uid://bqxrvaba1mojc" path="res://textures/profiles/cop/cop_profile_neutral.png" id="15_nc5ft"]
 [ext_resource type="Texture2D" uid="uid://brbh6v6pl5gjp" path="res://textures/profiles/cop/cop_profile_sad.png" id="16_qgmf0"]
+[ext_resource type="Texture2D" uid="uid://8umeco7py4xg" path="res://textures/profiles/grandma/grandma_profile_angry.png" id="19_nb0i5"]
+[ext_resource type="Texture2D" uid="uid://baq03gkv646h2" path="res://textures/profiles/grandma/grandma_profile_happy.png" id="20_qgmf0"]
+[ext_resource type="Texture2D" uid="uid://5namuodnjvmm" path="res://textures/profiles/grandma/grandma_profile_neutral.png" id="21_ixt6s"]
+[ext_resource type="Texture2D" uid="uid://cuteawix2tksw" path="res://textures/profiles/grandma/grandma_profile_sad.png" id="22_81j7a"]
+[ext_resource type="Texture2D" uid="uid://b8xj6gwg3vfq2" path="res://textures/items/thick_mug.png" id="23_ixt6s"]
 
 [sub_resource type="Resource" id="Resource_8x82w"]
 script = ExtResource("5_m1t8c")
@@ -41,11 +46,56 @@ metadata/_custom_type_script = "uid://36os1j4o8q7w"
 
 [sub_resource type="Resource" id="Resource_ixt6s"]
 script = ExtResource("5_m1t8c")
-characterName = "Cop"
+characterName = "Officer James"
 neutralProfile = ExtResource("15_nc5ft")
 happyProfile = ExtResource("14_7gs0h")
 sadProfile = ExtResource("16_qgmf0")
 angryProfile = ExtResource("13_nb0i5")
+metadata/_custom_type_script = "uid://36os1j4o8q7w"
+
+[sub_resource type="Resource" id="Resource_y6jat"]
+script = ExtResource("5_m1t8c")
+characterName = "Officer Robert"
+neutralProfile = ExtResource("15_nc5ft")
+happyProfile = ExtResource("14_7gs0h")
+sadProfile = ExtResource("16_qgmf0")
+angryProfile = ExtResource("13_nb0i5")
+metadata/_custom_type_script = "uid://36os1j4o8q7w"
+
+[sub_resource type="Resource" id="Resource_nb0i5"]
+script = ExtResource("5_m1t8c")
+characterName = "Officer John"
+neutralProfile = ExtResource("15_nc5ft")
+happyProfile = ExtResource("14_7gs0h")
+sadProfile = ExtResource("16_qgmf0")
+angryProfile = ExtResource("13_nb0i5")
+metadata/_custom_type_script = "uid://36os1j4o8q7w"
+
+[sub_resource type="Resource" id="Resource_7gs0h"]
+script = ExtResource("5_m1t8c")
+characterName = "Officer Michael"
+neutralProfile = ExtResource("15_nc5ft")
+happyProfile = ExtResource("14_7gs0h")
+sadProfile = ExtResource("16_qgmf0")
+angryProfile = ExtResource("13_nb0i5")
+metadata/_custom_type_script = "uid://36os1j4o8q7w"
+
+[sub_resource type="Resource" id="Resource_nc5ft"]
+script = ExtResource("5_m1t8c")
+characterName = "Julia Wild"
+neutralProfile = ExtResource("21_ixt6s")
+happyProfile = ExtResource("20_qgmf0")
+sadProfile = ExtResource("22_81j7a")
+angryProfile = ExtResource("19_nb0i5")
+metadata/_custom_type_script = "uid://36os1j4o8q7w"
+
+[sub_resource type="Resource" id="Resource_81j7a"]
+script = ExtResource("5_m1t8c")
+characterName = "Thick Mug"
+neutralProfile = ExtResource("23_ixt6s")
+happyProfile = ExtResource("23_ixt6s")
+sadProfile = ExtResource("23_ixt6s")
+angryProfile = ExtResource("23_ixt6s")
 metadata/_custom_type_script = "uid://36os1j4o8q7w"
 
 [sub_resource type="Gradient" id="Gradient_y6jat"]
@@ -83,8 +133,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_0lg70")
 
-[node name="DialogueLineExtraction" type="Node" parent="Balloon"]
+[node name="DialogueLineExtraction" type="Node" parent="Balloon" node_paths=PackedStringArray("label")]
 script = ExtResource("4_h5nal")
+label = NodePath("../AddToBoardLabel")
 metadata/_custom_type_script = "uid://1mgqrog3jd68"
 
 [node name="Profiles" type="Control" parent="Balloon"]
@@ -96,7 +147,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("3_7poa5")
-characterProfilesArray = Array[ExtResource("5_m1t8c")]([SubResource("Resource_8x82w"), SubResource("Resource_s3gah"), SubResource("Resource_ixt6s")])
+characterProfilesArray = Array[ExtResource("5_m1t8c")]([SubResource("Resource_8x82w"), SubResource("Resource_s3gah"), SubResource("Resource_ixt6s"), SubResource("Resource_y6jat"), SubResource("Resource_nb0i5"), SubResource("Resource_7gs0h"), SubResource("Resource_nc5ft"), SubResource("Resource_81j7a")])
 offsetTalking = 50.0
 
 [node name="CharacterFadeLeft" type="TextureRect" parent="Balloon/Profiles"]
@@ -232,6 +283,23 @@ response_template = NodePath("ResponseExample")
 [node name="ResponseExample" type="Button" parent="Balloon/Responses/ResponsesMenu"]
 layout_mode = 2
 text = "Response example"
+
+[node name="AddToBoardLabel" type="RichTextLabel" parent="Balloon"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.957
+anchor_top = 0.937
+anchor_right = 0.978
+anchor_bottom = 0.974
+offset_left = -0.440063
+offset_top = 0.039978
+offset_right = -0.760132
+offset_bottom = 0.0799561
+grow_horizontal = 0
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
 [connection signal="response_selected" from="Balloon/Responses/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]

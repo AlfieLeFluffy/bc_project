@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dm41tfgcyglf2"]
+[gd_scene load_steps=22 format=3 uid="uid://dm41tfgcyglf2"]
 
 [ext_resource type="FontFile" uid="uid://vewp8sui7lbb" path="res://fonts/anonymous_pro/AnonymousPro-Bold.ttf" id="1_byxgi"]
 [ext_resource type="Script" uid="uid://dxccw4edes7vm" path="res://scenes/menus/title_screen/title_screen.gd" id="1_qrqdf"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dawa8bg6euwwh" path="res://textures/ui/animations/title_animation_frames/title_animation7.png" id="13_qsikc"]
 [ext_resource type="Texture2D" uid="uid://j52bbawff70i" path="res://textures/ui/animations/title_animation_frames/title_animation8.png" id="14_qsikc"]
 [ext_resource type="Texture2D" uid="uid://ckp6kp8iclygo" path="res://textures/ui/animations/title_animation_frames/title_animation9.png" id="15_ktm0l"]
+[ext_resource type="Texture2D" uid="uid://dai56l5rex0qu" path="res://textures/ui/titlename/title_name_banner.png" id="17_oj4r7"]
 
 [sub_resource type="Theme" id="Theme_lksgi"]
 default_font = ExtResource("1_byxgi")
@@ -284,7 +285,6 @@ vertical_alignment = 1
 
 [node name="TitleMargin" type="MarginContainer" parent="SubViewportContainer/SubViewport/TitleScreen"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -318,13 +318,9 @@ layout_mode = 2
 texture = SubResource("AnimatedTexture_ul7sw")
 stretch_mode = 5
 
-[node name="TitleLabel" type="RichTextLabel" parent="SubViewportContainer/SubViewport/TitleScreen/TitleMargin/Ordering"]
+[node name="TitleBanner" type="TextureRect" parent="SubViewportContainer/SubViewport/TitleScreen/TitleMargin/Ordering"]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-mouse_filter = 2
-bbcode_enabled = true
-text = "Game Name"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
+texture = ExtResource("17_oj4r7")
+stretch_mode = 5

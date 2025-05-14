@@ -25,8 +25,6 @@ func setup_title_screen() -> void:
 
 	%TitleAnimation.texture.pause = true
 	%TitleAnimation.texture.current_frame = 0
-	%TitleLabel.modulate = Color.TRANSPARENT
-	%TitleLabel.parse_bbcode("[font_size=%s][color=#%s]%s" % [SettingsController.scale_font_size(64),Global.color_Highlight.to_html(),ProjectSettings.get_setting("application/config/name")])
 
 func run_title_screen() -> void:
 	timer = get_tree().create_timer(0.3)

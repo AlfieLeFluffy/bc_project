@@ -15,7 +15,11 @@ layout_mode = 2
 expand_mode = 5
 stretch_mode = 5
 
-[node name="ProfileDescription" type="RichTextLabel" parent="." index="1"]
+[node name="Control" type="Control" parent="." index="1"]
+custom_minimum_size = Vector2(6, 0)
+layout_mode = 2
+
+[node name="ProfileDescription" type="RichTextLabel" parent="." index="2"]
 unique_name_in_owner = true
 clip_contents = false
 custom_minimum_size = Vector2(150, 0)

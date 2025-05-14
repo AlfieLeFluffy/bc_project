@@ -81,6 +81,7 @@ func end_drawing() -> void:
 			var clue: ClueResource = check_for_clue(instance.resource.id)
 			if clue != null:
 				instance.set_description(clue.label)
+				instance.set_modulation(clue.color)
 				for callable in clue.callables:
 					callable.run(self)
 				AudioManager.play_sound("sfx/ding")

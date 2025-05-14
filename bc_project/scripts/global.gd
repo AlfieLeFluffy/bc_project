@@ -38,6 +38,7 @@ const SCENE_PATHS: Dictionary = {
 	"title_screen": "res://scenes/menus/title_screen/title_screen.tscn",
 	"main_menu": "res://scenes/menus/main_menu.tscn",
 	"test_level": "res://scenes/levels/test_level.tscn",
+	"movement_testing_area": "res://scenes/levels/movement_testing_area.tscn",
 	"case_level_001": "res://scenes/levels/case_level_001.tscn",
 }
 ## A constant holding name of all non-gameplay scene names

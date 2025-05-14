@@ -30,8 +30,7 @@ func _ready() -> void:
 func _setup_element() -> void:
 	content = load(resource.elementContent[resource.type]).instantiate()
 	content._setup_content(resource)
-	%Stack.add_child(content)
-	%Stack.move_child(content,1)
+	%ContentMarginContainer.add_child(content)
 #endregion
 
 #region Runtime Methods

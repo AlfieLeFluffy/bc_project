@@ -50,25 +50,38 @@ func fade_in(skip: bool = false) -> void:
 
 #region Main Actions Managment and Signal Methods
 func _on_test_scene_button_pressed() -> void:
+	AudioManager.play_sound("sfx/click")
+	DialogueVariables.clear_variables()
 	GameController.s_ChangeScene.emit("test_level")
 
 func _on_new_game_pressed() -> void:
+	AudioManager.play_sound("sfx/click")
+	DialogueVariables.clear_variables()
 	GameController.s_ChangeScene.emit("case_level_001")
 
 func _on_load_button_pressed() -> void:
+	AudioManager.play_sound("sfx/click")
 	PersistenceController.s_PersistenceMenuOpen.emit(PersistenceMenu.e_Mode.LOAD)
 
 func _on_achievements_button_pressed() -> void:
+	AudioManager.play_sound("sfx/click")
 	%AchievementsFlair.visible = false
 	GameController.s_AchievementsMenuOpen.emit()
 
 func _on_settings_button_pressed() -> void:
+	AudioManager.play_sound("sfx/click")
 	SettingsController.s_SettingsMenuOpen.emit()
+
+func _on_credits_button_pressed() -> void:
+	AudioManager.play_sound("sfx/click")
+	GameController.s_CreditsMenuOpen.emit()
 	
 func _on_quit_button_pressed() -> void:
+	AudioManager.play_sound("sfx/click")
 	GameController.quit_game()
 
 func _on_icon_button_pressed() -> void:
+	AudioManager.play_sound("sfx/click")
 	toggle_developer_tools()
 #endregion
 
@@ -148,11 +161,13 @@ func setup_controls_persistence(active: bool) -> void:
 
 func create_profile() -> void:
 	if %ProfileCreationLineEdit.text == "":
+		AudioManager.play_sound("sfx/deny")
 		GameController.play_quick_text_effect_error("ERROR_PROFILE_NAME_EMPTY")
 		%ProfileCreationLineEdit.grab_click_focus()
 		return
 	
 	if check_profile_exists(%ProfileCreationLineEdit.text):
+		AudioManager.play_sound("sfx/deny")
 		GameController.play_quick_text_effect_error("ERROR_PROFILE_EXISTS")
 		%ProfileCreationLineEdit.clear()
 		%ProfileCreationLineEdit.grab_click_focus()

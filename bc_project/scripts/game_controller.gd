@@ -15,6 +15,8 @@ const preloaded_InputHelp = preload("res://scenes/UI/overlay/input_help_overlay.
 ## A constant containing a preloaded scene of [CameraControls]
 const preloaded_CameraControls = preload("res://scenes/cameraControls/camera_controls.tscn")
 ## A constant containing a preloaded scene of [AchievementsMenu]
+const preloaded_CreditsMenu = preload("res://scenes/menus/credits_menu.tscn")
+## A constant containing a preloaded scene of [AchievementsMenu]
 const preloaded_AchievementsMenu = preload("res://scripts/profile/achievements_menu.tscn")
 ## A constant containing a preloaded scene of [GameOverScreen]
 const preloaded_GameOverScreen = preload("res://scenes/gameOver/game_over_screen.tscn")
@@ -65,6 +67,8 @@ signal s_ProfileSet(profile: ProfileResource)
 ## Signal used for notifying scripts using the current profile resource that it a new profile was loaded.[br] 
 signal s_ProfileLoaded()
 
+## Signal used to open the credits menu.
+signal s_CreditsMenuOpen()
 ## Signal used to notify [GameController] autoload script to open the achievements menu.
 signal s_AchievementsMenuOpen()
 ## Signal used to set the an achievement of [param type] as acquired for the current profile.
@@ -106,6 +110,8 @@ var inputHelp: Node
 var detectiveBoard: Node
 ## A variable holding the [CameraControls] scene instance
 var cameraControls: Node
+## A variable holding the [CreditsMenu] scene instance
+var creditsMenu: CreditsMenu
 ## A variable holding the [AchievementsMenu] scene instance
 var achievementsMenu: AchievementsMenu
 ## A variable holding the [GameOver] scene instance
@@ -136,6 +142,7 @@ func _ready() -> void:
 	s_ProfileSet.connect(set_profile)
 	s_ProfileLoaded.connect(check_profile_setup)
 	
+	s_CreditsMenuOpen.connect(open_credits_menu)
 	s_AchievementSet.connect(set_achievement)
 	s_AchievementsMenuOpen.connect(open_achievements_menu)
 	
@@ -298,7 +305,12 @@ func get_profile_id() -> String:
 
 
 
-#region Achievements Methods
+#region Credits and Achievements Methods
+## A method that instantiates and opens the [AchievementsMenu]
+func open_credits_menu() -> void:
+	creditsMenu = preloaded_CreditsMenu.instantiate()
+	open_popup_menu(creditsMenu)
+
 ## A method that instantiates and opens the [AchievementsMenu]
 func open_achievements_menu() -> void:
 	achievementsMenu = preloaded_AchievementsMenu.instantiate()
@@ -464,7 +476,8 @@ func setup_camera_controls() -> void:
 	if check_nongameplay_scene():
 		return
 	cameraControls = preloaded_CameraControls.instantiate()
-	cameraControls.position = get_tree().get_first_node_in_group("Player").position
+	if get_tree().get_node_count_in_group("Player") > 0:
+		cameraControls.position = get_tree().get_first_node_in_group("Player").position
 	get_tree().current_scene.add_child(cameraControls)
 #endregion
 

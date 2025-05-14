@@ -32,6 +32,9 @@ func _local_ready(startup:bool = true) -> void:
 	if inverted and startup:
 		$Sprite2D.scale.x = -1
 		$Sprite2D.position.x = $Sprite2D.position.x * -1
+	
+	update_whole()
+
 
 func _local_process(delta: float):
 	pass
@@ -48,8 +51,7 @@ func _interact_function(event: InputEvent) -> void:
 
 func update_door() -> void:
 	state_machine.travel(["closing","opening"][int(opened)])
-	%StaticCollision.set_deferred("process_mode",[Node.PROCESS_MODE_INHERIT,Node.PROCESS_MODE_DISABLED][int(opened)])
-	
+	update_static_collider()
 	update_collision_shape()
 	
 	if opened:
@@ -58,6 +60,18 @@ func update_door() -> void:
 		AudioManager.play_sound("sfx/closing")
 	
 	await get_tree().create_timer(0.15).timeout
+	update_occlusion_collider()
+
+func update_whole() -> void:
+	update_static_collider()
+	update_collision_shape()
+	update_occlusion_collider()
+	
+
+func update_static_collider() -> void:
+	%StaticCollisionBox.disabled = opened
+
+func update_occlusion_collider() -> void:
 	%ClosedOccluder.visible = not opened
 
 func update_collision_shape() -> void:
@@ -133,9 +147,10 @@ func saving() -> Dictionary:
 	return output
 
 func loading(input: Dictionary) -> bool:
-	if input.has("opened") and input.has("locked"):
+	if input.has_all(["opened","locked"]):
 		opened = input["opened"]
 		locked = input["locked"]
 		_local_ready(false)
+		update_whole()
 		return true
 	return false

@@ -46,7 +46,10 @@ func delete_board_element(element) -> void:
 	Signals.s_InputHelpFree.emit("REMOVE_BOARD_ELEMENT_INPUT_HELP")
 
 func check_element(key:String) -> bool:
+	print(key)
 	if Global.board_elements.has(key):
+		AudioManager.play_sound("sfx/deny")
+		GameController.play_quick_text_effect_default("ELEMENT_ALREADY_EXISTS")
 		return true
 	return false
 #endregion

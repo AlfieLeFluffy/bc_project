@@ -8,6 +8,9 @@ class_name CombinationLockResource extends Resource
 
 @export_category("Character Lock Informations")
 @export var size: int = 5
+
+@export_category("Callable Resources Override")
+@export var callables: Array[CallableResource]
 #endregion
 
 func check_combination(input: String) -> bool:

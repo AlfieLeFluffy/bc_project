@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bcdby6svlp0fj" path="res://scenes/UI/backgrounds/fade_background.tscn" id="2_rn6c0"]
 [ext_resource type="Texture2D" uid="uid://c8p3u734y4jeo" path="res://textures/text/paper_on_wall_view.png" id="4_uhudn"]
 
-[node name="TextView" type="CanvasLayer"]
+[node name="TextViewPaper" type="CanvasLayer"]
 layer = 60
 script = ExtResource("1_dm17i")
 
@@ -48,6 +48,7 @@ mouse_filter = 2
 texture = ExtResource("4_uhudn")
 
 [node name="TextName" type="Label" parent="Control"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.435
@@ -64,6 +65,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextContents" type="RichTextLabel" parent="Control"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.435

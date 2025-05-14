@@ -1,12 +1,9 @@
-extends CanvasLayer
+class_name TextView extends CanvasLayer
 
 """
 --- Runtime Variables
 """
 signal create_board_element_text()
-
-@onready var textLabel: Label = $Control/TextName
-@onready var textContentsLabel: RichTextLabel = $Control/TextContents
 
 var type: TextObjectResourse.textTypeEnum
 var textName: String
@@ -16,6 +13,7 @@ var textContent: String
 --- Setup Methods
 """
 func _ready() -> void:
+	SettingsController.s_Retranslate.connect(setup_text_content)
 	Signals.s_InputHelpSet.emit(GameController.get_input_key_list("add_to_board"),"ADD_TO_BOARD_INPUT_HELP")
 
 func setup_text_view(textResource: TextObjectResourse) -> void:
@@ -23,8 +21,11 @@ func setup_text_view(textResource: TextObjectResourse) -> void:
 	textName = textResource.textName
 	textContent = textResource.textContents
 	
-	textLabel.text = tr(textName)
-	textContentsLabel.text = tr(textContent)
+	setup_text_content()
+
+func setup_text_content() -> void:
+	%TextName.text = tr(textName)
+	%TextContents.text = tr(textContent)
 
 """
 --- Runtime Methdos

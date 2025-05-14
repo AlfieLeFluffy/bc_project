@@ -150,7 +150,7 @@ func save_resource(key:String, savefileDirectoryPath:String, dictionary:Dictiona
 	else:
 		resourceFilename = str(randi_range(000000000,999999999))
 	resourceFilename = Global.sanitize_input(resourceFilename)
-	resourceFilename = resourceFilename + ".tres"
+	resourceFilename = "resource_" + str(hash(dictionary[key])) + "_" + resourceFilename + ".tres"
 	
 	## Saving the resource with error catching
 	var resourcePath: String = savefileDirectoryPath.path_join("resources").path_join(resourceFilename)

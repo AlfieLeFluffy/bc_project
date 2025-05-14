@@ -22,7 +22,7 @@ func _ready():
 	if resource.movingToStop:
 		var timeout: float = resource.startupTimeout
 		resource.startupTimeout = 0.0
-		move_to_stop(resource.movingToStop)
+		move_to_stop(resource.movingToStop, true)
 		resource.startupTimeout = timeout
 
 func setup_elevator_stops() -> void:
@@ -104,6 +104,12 @@ func setup_cabin() -> void:
 
 func set_cabin(state: bool, force: bool = false) -> bool:
 	resource.set_active(state)
+
+	if not state and not force:
+		AudioManager.play_sound("sfx/elevator_door_openning")
+	elif state and not force:
+		AudioManager.play_sound("sfx/elevator_door_closing")
+	
 	if resource.startupTimeout and not force:
 		await get_tree().create_timer(resource.startupTimeoutDuration).timeout
 	%DoorLeftCollision.disabled = (resource.openning & resource.OPENNING_LEFT) and not resource.active

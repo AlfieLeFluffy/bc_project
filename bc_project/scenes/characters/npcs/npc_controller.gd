@@ -54,7 +54,7 @@ func _input(event: InputEvent) -> void:
 		highlight = true
 		if not mouseHover:
 			activate_hover()
-	if event.is_action_released("highlight"):
+	if event.is_action_released("highlight") or not Input.is_action_pressed("highlight"):
 		highlight = false
 		if not mouseHover:
 			deactivate_hover()

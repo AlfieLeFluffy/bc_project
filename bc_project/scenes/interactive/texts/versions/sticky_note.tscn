@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://mbjjypm4cwfy"]
+
+[ext_resource type="PackedScene" uid="uid://cok6xhqh3yqi7" path="res://scenes/interactive/texts/text_object_base.tscn" id="1_867dn"]
+[ext_resource type="Shader" uid="uid://dcwirhvnici6e" path="res://shaders/outline_recolor.gdshader" id="2_tg7v8"]
+[ext_resource type="Texture2D" uid="uid://c0ft014vskvpp" path="res://textures/text/sticky_note.png" id="3_kydxr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wca80"]
+resource_local_to_scene = true
+shader = ExtResource("2_tg7v8")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
+shader_parameter/row = -1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qcnmj"]
+resource_local_to_scene = true
+size = Vector2(12, 10)
+
+[node name="StickyNote" instance=ExtResource("1_867dn")]
+material = SubResource("ShaderMaterial_wca80")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_qcnmj")
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("3_kydxr")

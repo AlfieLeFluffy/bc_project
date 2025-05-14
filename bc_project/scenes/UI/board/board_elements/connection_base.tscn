@@ -46,7 +46,8 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="NinePatchRect" type="NinePatchRect" parent="ConnectionLabel"]
+[node name="Background" type="NinePatchRect" parent="ConnectionLabel"]
+unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("2_i4s8x")
 patch_margin_left = 10

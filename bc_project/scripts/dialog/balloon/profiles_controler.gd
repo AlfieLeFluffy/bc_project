@@ -50,8 +50,8 @@ func toggle_profiles(line: DialogueLine) -> void:
 	%CharacterProfileRight.position.y = baseProfileHeight
 	
 	var emotion: String = "neutral"
-	if not line.tags.is_empty():
-		emotion = line.tags.get(0)
+	if line.get_tag_value("mood"):
+		emotion = line.get_tag_value("mood")
 	
 	if line.character == mainCharacterName:
 		left = true

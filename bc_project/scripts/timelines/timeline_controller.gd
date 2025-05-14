@@ -150,6 +150,11 @@ func shift(_destination: Timeline) -> void:
 	if current == _destination:
 		return
 	
+	if not check_landing_space(current, _destination):
+		AudioManager.play_sound("sfx/deny")
+		GameController.play_quick_text_effect_error("TIMELINE_SHIFT_CANCELED_SOLID_OBJECT_HINT")
+		return
+	
 	if timelineForesee:
 		end_foresee()
 	
@@ -161,6 +166,26 @@ func shift(_destination: Timeline) -> void:
 	current.set_active(false)
 	_destination.set_active(true)
 	current = _destination
+
+## A method checks if the target location is valid space. [br]
+##
+## - [param start] is the current [Timeline]. [br]
+## - [param end] is the target [Timeline]. [br]
+func check_landing_space(start: Timeline, end: Timeline) -> bool:
+	var player: Player = get_tree().get_first_node_in_group("Player")
+	var timelinePosition: Vector2 = start.to_local(player.position)
+	var cast: RayCast2D = RayCast2D.new()
+	cast.target_position = Vector2i(0.0,20.0)
+	end.add_child(cast)
+	cast.position = timelinePosition + Vector2(0,-30)
+	cast.hit_from_inside = true
+	cast.force_raycast_update()
+	if cast.is_colliding():
+		cast.queue_free()
+		return false
+	cast.queue_free()
+	return true
+	
 
 ## A method that moves the player character from one timeline to another. [br]
 ##

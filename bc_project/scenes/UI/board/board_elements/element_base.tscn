@@ -75,6 +75,14 @@ expand_icon = true
 [node name="FillRight" type="Control" parent="MarginContainer/Stack/Header"]
 layout_mode = 2
 
+[node name="ContentMarginContainer" type="MarginContainer" parent="MarginContainer/Stack"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
 [node name="Footer" type="HBoxContainer" parent="MarginContainer/Stack"]
 visible = false
 custom_minimum_size = Vector2(24, 24)

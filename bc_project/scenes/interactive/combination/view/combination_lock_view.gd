@@ -7,6 +7,7 @@ const alphabet: String = "abcdefghijklmnopqrstuvwxyz"
 enum types {NUMBERS,CHARACTERS,BOTH}
 
 var base: CombinationLockBase
+var menu: PopupMenuController
 var type: types
 
 var inputs: Array[CombinationInput]
@@ -15,6 +16,8 @@ var inputs: Array[CombinationInput]
 func _ready() -> void:
 	if not check_base():
 		return
+	
+	menu = PopupMenuController.get_popup_menu(self)
 	
 	setup_locked()
 	
@@ -101,6 +104,9 @@ func submit_inputs() -> void:
 	var value: String = get_inputs()
 	if base.resource.check_combination(value):
 		base.resource.locked = false
+		if base.resource.override:
+			base.call_deferred("_interact_function_unlocked")
+			menu.queue_free()
 		setup_locked()
 
 func get_inputs() -> String:

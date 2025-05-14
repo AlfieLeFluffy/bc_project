@@ -96,15 +96,13 @@ func saving() -> Dictionary:
 		"parent": get_parent().get_path(),
 		"posConX": position.x,
 		"posConY": position.y,
-		"posCamX": %MainCamera.position.x,
-		"posCamY": %MainCamera.position.y,
 	}
 	return output
 
 func loading(input: Dictionary) -> bool:
-	if input.has_all(["posConX","posConY","posCamX","posCamY"]):
+	if input.has_all(["posConX","posConY"]):
 		position = Vector2(input["posConX"],input["posConY"])
-		%MainCamera.position = Vector2(input["posCamX"],input["posCamY"])
+		%MainCamera.position = Vector2(0.0,0.0)
 		%MainCamera.reset_smoothing()
 	return true
 #endregion

@@ -3,11 +3,13 @@ class_name AchievementsResource extends Resource
 enum e_AchievementType {
 	HOW_DID_WE_GET_HERE,
 	RETIREMENT,
+	MISSING,
 }
 
 const information: Dictionary = {
 	e_AchievementType.HOW_DID_WE_GET_HERE : {"name": "ACHIEVEMENT_HOW_DID_NAME", "name_color": "CYAN", "description": "ACHIEVEMENT_HOW_DID_DESCRIPTION", "icon": preload("res://textures/ui/achievements/how_did_i_get_here.png")},
 	e_AchievementType.RETIREMENT: {"name": "ACHIEVEMENT_RETIREMENT_NAME", "name_color": "YELLOW", "description": "ACHIEVEMENT_RETIREMENT_DESCRIPTION", "icon": preload("res://textures/ui/achievements/retirement.png")},
+	e_AchievementType.MISSING: {"name": "ACHIEVEMENT_MISSING_NAME", "name_color": "YELLOW", "description": "ACHIEVEMENT_MISSING_DESCRIPTION", "icon": preload("res://textures/ui/achievements/missing.png")},
 }
 
 @export var acquiredAchievements: Array[AchievementsResource.e_AchievementType] = []

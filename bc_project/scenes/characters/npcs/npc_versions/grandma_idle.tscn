@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://djr55qrikxcmd"]
+[gd_scene load_steps=16 format=3 uid="uid://djr55qrikxcmd"]
 
 [ext_resource type="PackedScene" uid="uid://ntmpwduq5xno" path="res://scenes/characters/npcs/npc.tscn" id="1_u4240"]
 [ext_resource type="Shader" uid="uid://beshjcnacfelm" path="res://shaders/outline_shader.gdshader" id="2_llbcw"]
@@ -9,6 +9,10 @@
 resource_local_to_scene = true
 radius = 13.0
 height = 56.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_u4240"]
+resource_local_to_scene = true
+polygon = PackedVector2Array(-8, -11, -8, 6, 8, 6, 8, -11, 5, -12, -4, -12)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vi3f7"]
 resource_local_to_scene = true
@@ -74,20 +78,25 @@ animations = [{
 }]
 
 [node name="GrandmaNPC" instance=ExtResource("1_u4240")]
+light_mask = 262145
+visibility_layer = 262145
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("CapsuleShape2D_ysyl3")
 
+[node name="LightOccluder2D" parent="." index="3"]
+occluder = SubResource("OccluderPolygon2D_u4240")
+
 [node name="InteractableAreCollisionShape" parent="InteractableArea" index="0"]
 shape = SubResource("CapsuleShape2D_ysyl3")
 
-[node name="AnimatedSprite2D" parent="." index="3"]
+[node name="AnimatedSprite2D" parent="." index="5"]
 material = SubResource("ShaderMaterial_vi3f7")
 sprite_frames = SubResource("SpriteFrames_o5oyo")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="StateMachine" parent="." index="4" node_paths=PackedStringArray("initialState")]
+[node name="StateMachine" parent="." index="6" node_paths=PackedStringArray("initialState")]
 initialState = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine" index="0"]

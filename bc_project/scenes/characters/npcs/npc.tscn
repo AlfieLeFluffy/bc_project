@@ -1,14 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://ntmpwduq5xno"]
+[gd_scene load_steps=9 format=3 uid="uid://ntmpwduq5xno"]
 
 [ext_resource type="Script" uid="uid://wqmxcp7d2met" path="res://scenes/characters/npcs/npc_controller.gd" id="1_osmvx"]
 [ext_resource type="Script" uid="uid://e536tfomryho" path="res://scripts/interactive_handler.gd" id="3_4ik2d"]
 [ext_resource type="Shader" uid="uid://beshjcnacfelm" path="res://shaders/outline_shader.gdshader" id="3_e8nap"]
+[ext_resource type="Script" uid="uid://blwvtsprt4d25" path="res://animation_controller.gd" id="3_v4ppa"]
 [ext_resource type="Script" uid="uid://bc5d71enq3dhj" path="res://scripts/state_machine/state_machine.gd" id="7_w0oeo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_okuox"]
 resource_local_to_scene = true
 radius = 13.0
 height = 69.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_v4ppa"]
+resource_local_to_scene = true
+polygon = PackedVector2Array(-8, -11, -8, 6, 8, 6, 8, -11, 5, -12, -4, -12)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_731kl"]
 resource_local_to_scene = true
@@ -17,8 +22,8 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
 
 [node name="NPC" type="CharacterBody2D" groups=["Persistent"]]
-light_mask = 7
-visibility_layer = 7
+light_mask = 262144
+visibility_layer = 262144
 collision_layer = 514
 collision_mask = 514
 input_pickable = true
@@ -30,6 +35,18 @@ shape = SubResource("CapsuleShape2D_okuox")
 [node name="InteractiveHandler" type="Node" parent="."]
 script = ExtResource("3_4ik2d")
 
+[node name="AnimationController" type="Node" parent="." node_paths=PackedStringArray("characterBody", "animatedSprite")]
+script = ExtResource("3_v4ppa")
+characterBody = NodePath("..")
+animatedSprite = NodePath("../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://blwvtsprt4d25"
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+light_mask = 0
+visibility_layer = 0
+occluder = SubResource("OccluderPolygon2D_v4ppa")
+occluder_light_mask = 4
+
 [node name="InteractableArea" type="Area2D" parent="."]
 collision_layer = 771
 collision_mask = 771
@@ -39,6 +56,7 @@ shape = SubResource("CapsuleShape2D_okuox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
+light_mask = 262145
 z_index = 5
 material = SubResource("ShaderMaterial_731kl")
 

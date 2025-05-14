@@ -9,17 +9,21 @@ size = Vector2(61, 4)
 polygon = PackedVector2Array(-30, -29, 29, -29, 29, -27, -30, -27)
 
 [node name="WoodenTable" type="StaticBody2D"]
+light_mask = 7
+visibility_layer = 7
 
 [node name="WoodenTableSprite" type="Sprite2D" parent="."]
-position = Vector2(32, 16)
+position = Vector2(0, -16)
 texture = ExtResource("1_jgn5b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(31.5, 4)
+position = Vector2(-0.5, -28)
 shape = SubResource("RectangleShape2D_yvn7t")
 one_way_collision = true
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-position = Vector2(32, 32)
+light_mask = 7
+visibility_layer = 7
 occluder = SubResource("OccluderPolygon2D_tr1sb")
-occluder_light_mask = 6
+sdf_collision = false
+occluder_light_mask = 4

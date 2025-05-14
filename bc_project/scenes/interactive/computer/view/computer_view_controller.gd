@@ -150,7 +150,7 @@ func create_application_tab(_type: ApplicationResource.applicationTypes) -> Appl
 
 """ View Control Methods """
 func exit_view() ->void:
-	Signals.s_HideComputerView.emit(computer.compRes.name)
+	Signals.s_HideComputerView.emit(computer.compRes.name+computer.interactableResource.timeline)
 
 func s_ShutdownComputer() -> void:
 	computer_lock.emit()
